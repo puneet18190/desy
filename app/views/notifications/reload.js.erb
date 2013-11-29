@@ -11,7 +11,7 @@ if($('#tooltip_arancione').data('number') < <%= @new_notifications %>) {
 } else {
   <% @notifications.each do |n| %>
     var notification = $('#notification_<%= n.id %>');
-    if(notification.length > 0) {
+    if(notification.present?) {
       $('._notification_time_<%= n.id %>').html('<%= j n.only_time %>');
     }
   <% end %>

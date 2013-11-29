@@ -1,5 +1,5 @@
 alert("<%= @errors %>");
-<% if @errors.length > 0 %>
+<% if @errors.present? %>
   showErrorPopUp("<%= @errors %>");
 <% elsif @success %>
   showOkPopUp("<%= t('other_popup_messages.correct.user_update') %>");

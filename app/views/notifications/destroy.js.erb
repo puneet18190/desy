@@ -4,7 +4,7 @@
     $('#notification_<%= @notification_id %>').replaceWith('');
     if(was_first) {
       var first_new_notification = $('._single_notification').first();
-      if(first_new_notification.length > 0) {
+      if(first_new_notification.present?) {
         first_new_notification.addClass('no-margin');
       }
     }

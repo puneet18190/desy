@@ -6,7 +6,7 @@
 <div class="row-fluid reports">
   <div class="span6 widget">
     <h3><%= t('admin.messages.reports.media_elements') %></h3>
-    <% if @elements_reports.length > 0 %>
+    <% if @elements_reports.present? %>
       <div class="row-fluid">
         <div class="span3">
           <ul class="nav nav-pills"></ul>
@@ -37,7 +37,7 @@
     <% else %>
       <%= t('admin.messages.reports.empty.media_elements') %>
     <% end %>
-    <% if @elements_reports.length > 0 %>
+    <% if @elements_reports.present? %>
       <div class="row-fluid">
         <div class="span3">
           <ul class="nav nav-pills"></ul>
@@ -55,7 +55,7 @@
   </div>
   <div class="span6 widget">
     <h3><%= t('admin.messages.reports.lessons') %></h3>
-    <% if @lessons_reports.length > 0 %>
+    <% if @lessons_reports.present? %>
       <div class="row-fluid">
         <div class="span3">
           <ul class="nav nav-pills"></ul>
@@ -86,7 +86,7 @@
     <% else %>
       <%= t('admin.messages.reports.empty.lessons') %>
     <% end %>
-    <% if @lessons_reports.length > 0 %>
+    <% if @lessons_reports.present? %>
       <div class="row-fluid">
         <div class="span3">
           <ul class="nav nav-pills"></ul>

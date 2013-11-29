@@ -29,7 +29,7 @@
     <%= slide_text.html_safe if slide_text %>
   </div>
   
-  <% if show_documents && slide.documents_slides.length > 0 %>
+  <% if show_documents && slide.documents_slides.present? %>
     <%= render :partial => 'lesson_viewer/documents', :locals => {:documents_slides => slide.documents_slides, :url_type => url_type} %>
   <% end %>
   

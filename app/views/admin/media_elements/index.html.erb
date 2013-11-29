@@ -28,10 +28,10 @@
   </div>
 <% end %>
 <h3><%= t('admin.media_elements.title') %></h3>
-<% if @elements.length > 0 %>
+<% if @elements.present? %>
   <%= render :partial => 'admin/list_heading', :locals => {:items => @elements, :expandable => false} %>
 <% end %>
 <%= render :partial => 'admin/media_elements/list', :locals => {:elements => @elements, :from_reporting => @from_reporting} %>
-<% if @elements.length > 0 %>
+<% if @elements.present? %>
   <%= render :partial => 'admin/list_heading', :locals => {:items => @elements, :expandable => false} %>
 <% end %>

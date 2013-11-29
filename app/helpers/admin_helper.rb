@@ -3,7 +3,7 @@ module AdminHelper
   
   # Counter used in pagination
   def page_items_counter(items)
-    if items.length > 0
+    if items.present?
       from = 1
       if items.length > SETTINGS['admin_general_pagination']
         to = SETTINGS['admin_general_pagination']
