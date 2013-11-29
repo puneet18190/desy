@@ -150,9 +150,14 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
     $('#' + place_id + ' .image-id').val(image_id);
     $('#' + place_id + ' .align').val('0');
+    $('#' + place_id + ' .inscribed').val('false');
+    var inscribe_toggle_icon = $('#' + place_id + ' .deinscribe, #' + place_id + ' .inscribe');
+    var new_title = inscribe_toggle_icon.data('inscribe-title');
+    inscribe_toggle_icon.attr('title', new_title).removeClass('deinscribe').addClass('inscribe');
     var image_url = $(this).data('url');
     var image_width = $(this).data('width');
     var image_height = $(this).data('height');
+    $('#' + place_id).data('width', image_width, 'height', image_height);
     var full_place = $('#' + place_id + ' .mask');
     if(!full_place.is(':visible')) {
       full_place.show();
