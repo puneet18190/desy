@@ -1078,10 +1078,12 @@ function lessonEditorDeinscribeImage(place_id) {
   $('#' + place_id + ' .deinscribe').removeClass('deinscribe').addClass('inscribe');
   alignable.css('top', 0).css('left', 0);
   if(full_place.hasClass('vertical')) {
-    // cambia height => width dentro img
+// TODO    image.removeAttr('width').attr('height', );
   } else {
-    // cambia width => height dentro img
+// TODO    image.removeAttr('height').attr('width', );
   }
+  alignable.draggable('destroy');
+  makeDraggable(place_id);
 }
 
 /**
@@ -1101,10 +1103,12 @@ function lessonEditorInscribeImage(place_id) {
   $('#' + place_id + ' .inscribe').removeClass('inscribe').addClass('deinscribe');
   alignable.css('top', 0).css('left', 0);
   if(full_place.hasClass('vertical')) {
-    // cambia height => width dentro img
+// TODO    image.removeAttr('height').attr('width', );
   } else {
-    // cambia width => height dentro img
+// TODO    image.removeAttr('width').attr('height', );
   }
+  alignable.draggable('destroy');
+  makeDraggable(place_id);
 }
 
 /**
