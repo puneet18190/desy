@@ -1300,7 +1300,7 @@ en:
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
         title: "Registration"
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
-        description: "The registration was completed successfully: check your email address in order to confirm it, you'll find a message containing the link to confirm your account. If you don't find our email, check out the spam folder of your email manager. In case of further problems, don't hesitate contacting us"
+        description: "The registration was completed successfully: check your email address in order to confirm it, you'll find a message containing the link to confirm your account.<br/>If you don't find our email, check out the spam folder of your email manager. In case of further problems, don't hesitate contacting us"
       # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
       received:
         # 1 - views/users/fullpage_notifications/confirmation/received.html.erb

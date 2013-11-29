@@ -1300,7 +1300,7 @@ cn:
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
         title: "注册"
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
-        description: "注册成功完成: 确认它,请检查你的邮件地址, 你将发现包含链接信息的确认你的账号. 如果你没有发现我们的邮件, 请检查你的垃圾邮件. 如有问题, 请毫不犹豫地联系我们"
+        description: "注册成功完成: 确认它,请检查你的邮件地址, 你将发现包含链接信息的确认你的账号.<br/>如果你没有发现我们的邮件, 请检查你的垃圾邮件. 如有问题, 请毫不犹豫地联系我们"
       # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
       received:
         # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
