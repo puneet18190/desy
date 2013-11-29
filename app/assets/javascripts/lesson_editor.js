@@ -1061,6 +1061,37 @@ function initializeSortableNavs() {
 }
 
 /**
+Method that deinscribes the image.
+@method lessonEditorDeinscribeImage
+@for LessonEditorJqueryAnimations
+@param place_id {String} HTML id for the container to make draggable
+**/
+function lessonEditorDeinscribeImage(place_id) {
+  var full_place = $('#' + place_id + ' .mask');
+  if(full_place.hasClass('hidden')) {
+    return;
+  }
+  $('#' + place_id + ' .align').val(0);
+  $('#' + place_id + ' .inscribed').val('false');
+  $('#' + place_id + ' .deinscribe').removeClass('deinscribe').addClass('inscribe');
+}
+
+/**
+Method that inscribes the image.
+@method lessonEditorInscribeImage
+@for LessonEditorJqueryAnimations
+@param place_id {String} HTML id for the container to make draggable
+**/
+function lessonEditorInscribeImage(place_id) {
+  if($('#' + place_id + ' .mask').hasClass('hidden')) {
+    return;
+  }
+  $('#' + place_id + ' .align').val(0);
+  $('#' + place_id + ' .inscribed').val('true');
+  $('#' + place_id + ' .inscribe').removeClass('inscribe').addClass('deinscribe');
+}
+
+/**
 Inizializes jQueryUI <b>draggable</b> function on slide image containers (to understand if the draggable is vertical or horizontal it uses {{#crossLink "LessonEditorImageResizing/isHorizontalMask:method"}}{{/crossLink}}).
 @method makeDraggable
 @for LessonEditorJqueryAnimations
