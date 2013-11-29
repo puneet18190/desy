@@ -28,10 +28,10 @@
   </div>
 <% end %>
 <h3><%= t('admin.lessons.title') %></h3>
-<% if @lessons.length > 0 %>
+<% if @lessons.present? %>
   <%= render :partial => 'admin/list_heading', :locals => {:items => @lessons, :expandable => true} %>
 <% end %>
 <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @lessons, :from_reporting => @from_reporting, :covers => @covers} %>
-<% if @lessons.length > 0 %>
+<% if @lessons.present? %>
   <%= render :partial => 'admin/list_heading', :locals => {:items => @lessons, :expandable => true} %>
 <% end %>

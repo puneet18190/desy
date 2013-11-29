@@ -22,10 +22,10 @@
   </div>
 <% end %>
 <h3><%= t('admin.settings.tags.title') %></h3>
-<% if @tags.length > 0 %>
+<% if @tags.present? %>
   <%= render :partial => 'admin/list_heading', :locals => {:items => @tags, :expandable => false} %>
 <% end %>
 <%= render :partial => 'admin/settings/tags_list', :locals => {:tags => @tags} %>
-<% if @tags.length > 0 %>
+<% if @tags.present? %>
   <%= render :partial => 'admin/list_heading', :locals => {:items => @tags, :expandable => false} %>
 <% end %>

@@ -20,7 +20,7 @@
     $('#general_pagination').replaceWith('<%= j pagination %>');
     <% if items_amount > 0 %>
       $('#<%= @search_item %>_search_amount').replaceWith('<%= j amount %>');
-      <% if @tags.length > 0 %>
+      <% if @tags.present? %>
         $('#<%= @search_item %>_tag_details').replaceWith('<%= j tag_details %>');
       <% end %>
     <% else %>
