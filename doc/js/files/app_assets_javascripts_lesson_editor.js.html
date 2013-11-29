@@ -451,6 +451,7 @@ function lessonEditorDocumentReady() {
   lessonEditorDocumentReadyAddMediaElement();
   lessonEditorDocumentReadyReplaceMediaElement();
   lessonEditorDocumentReadyTextFields();
+  lessonEditorDocumentReadyInitializeImageInscription();
 }
 
 /**
@@ -482,14 +483,12 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var old_orientation = &#x27;width&#x27;;
     var orientation = &#x27;height&#x27;;
     var orientation_val = resizeHeight(image_width, image_height, current_slide.data(&#x27;kind&#x27;));
-    var to_make_draggable = &#x27;y&#x27;;
     if(isHorizontalMask(image_width, image_height, current_slide.data(&#x27;kind&#x27;))) {
       old_mask = &#x27;vertical&#x27;;
       new_mask = &#x27;horizontal&#x27;;
       old_orientation = &#x27;height&#x27;;
       orientation = &#x27;width&#x27;;
       orientation_val = resizeWidth(image_width, image_height, current_slide.data(&#x27;kind&#x27;));
-      to_make_draggable = &#x27;x&#x27;;
     }
     full_place.addClass(new_mask).removeClass(old_mask);
     var img_tag = $(&#x27;#&#x27; + place_id + &#x27; .mask img&#x27;);
@@ -686,6 +685,20 @@ function lessonEditorDocumentReadyGeneral() {
 }
 
 /**
+Initializer for dynamics of inscriptions and deinscriptions of images (it uses {{#crossLink &quot;LessonEditorJqueryAnimations/lessonEditorInscribeImage:method&quot;}}{{/crossLink}} and {{#crossLink &quot;LessonEditorJqueryAnimations/lessonEditorDeinscribeImage:method&quot;}}{{/crossLink}}).
+@method lessonEditorDocumentReadyInitializeImageInscription
+@for LessonEditorDocumentReady
+**/
+function lessonEditorDocumentReadyInitializeImageInscription() {
+  $body.on(&#x27;click&#x27;, &#x27;.slide-content .image.editable .inscribe&#x27;, function() {
+    lessonEditorInscribeImage($(this).parents(&#x27;.image.editable&#x27;).attr(&#x27;id&#x27;));
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.slide-content .image.editable .deinscribe&#x27;, function() {
+    lessonEditorDeinscribeImage($(this).parents(&#x27;.image.editable&#x27;).attr(&#x27;id&#x27;));
+  });
+}
+
+/**
 Initializer for JQueryUi animations defined in the class {{#crossLink &quot;LessonEditorJqueryAnimations&quot;}}{{/crossLink}}.
 @method lessonEditorDocumentReadyJqueryAnimations
 @for LessonEditorDocumentReady
@@ -731,11 +744,13 @@ function lessonEditorDocumentReadyReplaceMediaElement() {
   $body.on(&#x27;mouseover&#x27;, &#x27;.slide-content .image.editable .mask&#x27;, function() {
     if($(this).find(&#x27;.alignable&#x27;).data(&#x27;rolloverable&#x27;)) {
       $(this).find(&#x27;.add&#x27;).show();
+      $(this).find(&#x27;.inscribe, .deinscribe&#x27;).show();
     }
   });
   $body.on(&#x27;mouseout&#x27;, &#x27;.slide-content .image.editable .mask&#x27;, function() {
     if($(this).find(&#x27;.alignable&#x27;).data(&#x27;rolloverable&#x27;)) {
       $(this).find(&#x27;.add&#x27;).hide();
+      $(this).find(&#x27;.inscribe, .deinscribe&#x27;).hide();
     }
   });
   $body.on(&#x27;mouseover&#x27;, &#x27;.slide-content .video.editable .mask video&#x27;, function(e) {
@@ -1379,33 +1394,100 @@ function initializeSortableNavs() {
 }
 
 /**
-Inizializes jQueryUI &lt;b&gt;draggable&lt;/b&gt; function on slide image containers (to understand if the draggable is vertical or horizontal it uses {{#crossLink &quot;LessonEditorImageResizing/isHorizontalMask:method&quot;}}{{/crossLink}}).
+Method that deinscribes the image.
+@method lessonEditorDeinscribeImage
+@for LessonEditorJqueryAnimations
+@param place_id {String} HTML id for the container to make draggable
+**/
+function lessonEditorDeinscribeImage(place_id) {
+  var place = $(&#x27;#&#x27; + place);
+  var full_place = place.find(&#x27;.mask&#x27;);
+  var alignable = full_place.find(&#x27;.alignable&#x27;);
+  var image = alignable.find(&#x27;img&#x27;);
+  var kind = $(&#x27;li._lesson_editor_current_slide&#x27;).data(&#x27;kind&#x27;);
+  if(full_place.hasClass(&#x27;hidden&#x27;) || kind == &#x27;cover&#x27;) {
+    return;
+  }
+  $(&#x27;#&#x27; + place_id + &#x27; .align&#x27;).val(0);
+  $(&#x27;#&#x27; + place_id + &#x27; .inscribed&#x27;).val(&#x27;false&#x27;);
+  $(&#x27;#&#x27; + place_id + &#x27; .deinscribe&#x27;).removeClass(&#x27;deinscribe&#x27;).addClass(&#x27;inscribe&#x27;);
+  alignable.css(&#x27;top&#x27;, 0).css(&#x27;left&#x27;, 0);
+  if(full_place.hasClass(&#x27;vertical&#x27;)) {
+    image.removeAttr(&#x27;width&#x27;).attr(&#x27;height&#x27;, resizeHeight(place.data(&#x27;width&#x27;), place.data(&#x27;height&#x27;), kind));
+  } else {
+    image.removeAttr(&#x27;height&#x27;).attr(&#x27;width&#x27;, resizeWidth(place.data(&#x27;width&#x27;), place.data(&#x27;height&#x27;), kind));
+  }
+  alignable.draggable(&#x27;destroy&#x27;);
+  makeDraggable(place_id);
+}
+
+/**
+Method that inscribes the image.
+@method lessonEditorInscribeImage
+@for LessonEditorJqueryAnimations
+@param place_id {String} HTML id for the container to make draggable
+**/
+function lessonEditorInscribeImage(place_id) {
+  var place = $(&#x27;#&#x27; + place);
+  var full_place = place.find(&#x27;.mask&#x27;);
+  var alignable = full_place.find(&#x27;.alignable&#x27;);
+  var image = alignable.find(&#x27;img&#x27;);
+  var kind = $(&#x27;li._lesson_editor_current_slide&#x27;).data(&#x27;kind&#x27;);
+  if(full_place.hasClass(&#x27;hidden&#x27;) || kind == &#x27;cover&#x27;) {
+    return;
+  }
+  $(&#x27;#&#x27; + place_id + &#x27; .align&#x27;).val(0);
+  $(&#x27;#&#x27; + place_id + &#x27; .inscribed&#x27;).val(&#x27;true&#x27;);
+  $(&#x27;#&#x27; + place_id + &#x27; .inscribe&#x27;).removeClass(&#x27;inscribe&#x27;).addClass(&#x27;deinscribe&#x27;);
+  alignable.css(&#x27;top&#x27;, 0).css(&#x27;left&#x27;, 0);
+  if(full_place.hasClass(&#x27;vertical&#x27;)) {
+    image.removeAttr(&#x27;height&#x27;).attr(&#x27;width&#x27;, resizeWidth(place.data(&#x27;width&#x27;), place.data(&#x27;height&#x27;), kind));
+  } else {
+    image.removeAttr(&#x27;width&#x27;).attr(&#x27;height&#x27;, resizeHeight(place.data(&#x27;width&#x27;), place.data(&#x27;height&#x27;), kind));
+  }
+  alignable.draggable(&#x27;destroy&#x27;);
+  makeDraggable(place_id);
+}
+
+/**
+Inizializes jQueryUI &lt;b&gt;draggable&lt;/b&gt; function on slide image containers.
 @method makeDraggable
 @for LessonEditorJqueryAnimations
 @param place_id {String} HTML id for the container to make draggable
 **/
 function makeDraggable(place_id) {
   var full_place = $(&#x27;#&#x27; + place_id + &#x27; .mask&#x27;);
-  var axe = &#x27;x&#x27;;
-  if(full_place.hasClass(&#x27;vertical&#x27;)) {
-    axe = &#x27;y&#x27;;
+  if(full_place.hasClass(&#x27;hidden&#x27;)) {
+    return;
   }
   var image = $(&#x27;#&#x27; + place_id + &#x27; .mask img&#x27;);
-  var side = &#x27;&#x27;;
-  var maskedImgWidth;
-  var maskedImgHeight;
-  var dist;
-  if(axe == &#x27;x&#x27;) {
-    maskedImgWidth = image.attr(&#x27;width&#x27;);
-    dist = maskedImgWidth - full_place.width();
-    side = &#x27;left&#x27;;
+  var inscribed = (full_place.find(&#x27;.deinscribe&#x27;).length &gt; 0);
+  var side;
+  var limit_max;
+  var limit_min;
+  if(full_place.hasClass(&#x27;vertical&#x27;)) {
+    if(inscribed) {
+      side = &#x27;left&#x27;;
+      limit_min = 0;
+      limit_max = full_place.width() - image.width();
+    } else {
+      side = &#x27;top&#x27;;
+      limit_min = full_place.height() - image.height();
+      limit_max = 0;
+    }
   } else {
-    maskedImgHeight = image.attr(&#x27;height&#x27;);
-    side = &#x27;top&#x27;;
-    dist = maskedImgHeight - full_place.height();
+    if(inscribed) {
+      side = &#x27;top&#x27;;
+      limit_min = 0;
+      limit_max = full_place.height() - image.height();
+    } else {
+      side = &#x27;left&#x27;;
+      limit_min = full_place.width() - image.width();
+      limit_max = 0;
+    }
   }
   $(&#x27;#&#x27; + place_id + &#x27; .mask .alignable&#x27;).draggable({
-    axis: axe,
+    axis: ((side == &#x27;top&#x27;) ? &#x27;y&#x27; : &#x27;x&#x27;),
     cursor: &#x27;move&#x27;,
     distance: 10,
     start: function() {
@@ -1417,34 +1499,38 @@ function makeDraggable(place_id) {
       $(&#x27;#&#x27; + place_id + &#x27; .mask img&#x27;).css(&#x27;cursor&#x27;, &#x27;url(https://mail.google.com/mail/images/2/openhand.cur), move&#x27;);
       $(&#x27;#&#x27; + place_id + &#x27; .alignable&#x27;).data(&#x27;rolloverable&#x27;, true);
       $(&#x27;#&#x27; + place_id + &#x27; span&#x27;).show();
-      var thisDrag = $(this);
-      var offset = thisDrag.css(side);
-      if(parseInt(offset) &gt; 0) {
-        offset = 0;
-        if(side == &#x27;left&#x27;) {
-          thisDrag.animate({
-            left: &#x27;0&#x27;
+      var myself = $(this);
+      var offset;
+      if(side == &#x27;top&#x27;) {
+        offset = myself.position().top;
+        if(offset &lt; limit_min) {
+          offset = limit_min;
+          myself.animate({
+            top: limit_min
           }, 100);
-        } else {
-          thisDrag.animate({
-            top: &#x27;0&#x27;
+        }
+        if(offset &gt; limit_max) {
+          offset = limit_max;
+          myself.animate({
+            top: limit_max
           }, 100);
         }
       } else {
-        if(parseInt(offset) &lt; -(parseInt(dist))) {
-          offset = -parseInt(dist);
-          if(side == &#x27;left&#x27;) {
-            thisDrag.animate({
-              left: &#x27;-&#x27; + dist + &#x27;px&#x27;
-            }, 100);
-          } else {
-            thisDrag.animate({
-              top: &#x27;-&#x27; + dist + &#x27;px&#x27;
-            }, 100);
-          }
+        offset = myself.position().left;
+        if(offset &lt; limit_min) {
+          offset = limit_min;
+          myself.animate({
+            left: limit_min
+          }, 100);
+        }
+        if(offset &gt; limit_max) {
+          offset = limit_max;
+          myself.animate({
+            left: limit_max
+          }, 100);
         }
       }
-      $(&#x27;#&#x27; + place_id + &#x27; .align&#x27;).val(parseInt(offset));
+      $(&#x27;#&#x27; + place_id + &#x27; .align&#x27;).val(offset);
     }
   });
 }
