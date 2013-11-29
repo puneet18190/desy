@@ -1090,7 +1090,8 @@ function lessonEditorDeinscribeImage(place_id) {
   }
   $('#' + place_id + ' .align').val(0);
   $('#' + place_id + ' .inscribed').val('false');
-  $('#' + place_id + ' .deinscribe').removeClass('deinscribe').addClass('inscribe');
+  var new_title = $('#' + place_id + ' .deinscribe').data('inscribe-title');
+  $('#' + place_id + ' .deinscribe').attr('title', new_title).removeClass('deinscribe').addClass('inscribe');
   alignable.css('top', 0).css('left', 0);
   if(full_place.hasClass('vertical')) {
     image.removeAttr('width').attr('height', resizeHeight(place.data('width'), place.data('height'), kind));
@@ -1118,7 +1119,8 @@ function lessonEditorInscribeImage(place_id) {
   }
   $('#' + place_id + ' .align').val(0);
   $('#' + place_id + ' .inscribed').val('true');
-  $('#' + place_id + ' .inscribe').removeClass('inscribe').addClass('deinscribe');
+  var new_title = $('#' + place_id + ' .inscribe').data('deinscribe-title');
+  $('#' + place_id + ' .inscribe').attr('title', new_title).removeClass('inscribe').addClass('deinscribe');
   alignable.css('top', 0).css('left', 0);
   if(full_place.hasClass('vertical')) {
     image.removeAttr('height').attr('width', resizeWidth(place.data('width'), place.data('height'), kind));

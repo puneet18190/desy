@@ -48,9 +48,9 @@
     </div>
     <span class="add hidden" data-position="<%= position %>" title="<%= t('titles.lesson_editor.change_image') %>"></span>
     <% if image && image.inscribed %>
-      <span class="deinscribe hidden" data-position="<%= position %>" title="<%= t('titles.lesson_editor.deinscribe_image') %>"></span> <!-- TODO traduzz -->
+      <span class="deinscribe hidden" data-position="<%= position %>" title="<%= t('titles.lesson_editor.deinscribe_image') %>" data-inscribe-title="<%= t('titles.lesson_editor.inscribe_image') %>" data-deinscribe-title="<%= t('titles.lesson_editor.deinscribe_image') %>"></span> <!-- TODO traduzz -->
     <% else %>
-      <span class="inscribe hidden" data-position="<%= position %>" title="<%= t('titles.lesson_editor.inscribe_image') %>"></span> <!-- TODO traduzz -->
+      <span class="inscribe hidden" data-position="<%= position %>" title="<%= t('titles.lesson_editor.inscribe_image') %>" data-inscribe-title="<%= t('titles.lesson_editor.inscribe_image') %>" data-deinscribe-title="<%= t('titles.lesson_editor.deinscribe_image') %>"></span> <!-- TODO traduzz -->
     <% end %>
     <%= text_field_tag "caption_#{position}", ((image.nil? || image.caption.blank?) ? t('lesson_editor.placeholders.image_caption') : image.caption), :class => 'caption _lesson_editor_placeholder', :data => {:placeholder => (image.nil? || image.caption.blank?)} %>
   </div>
