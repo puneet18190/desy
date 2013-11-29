@@ -73,22 +73,22 @@ class UsersController < ApplicationController
       user.purchase_id = @trial ? nil : (purchase ? purchase.id : 0) if saas
     end
     if @user.save
-      if saas && @user.trial?
-        Notification.send_to @user.id, t('notifications.account.trial',
-          :user_name => @user.name,
-          :desy      => SETTINGS['application_name'],
-          :validity  => SETTINGS['saas_trial_duration'],
-          :link      => upgrade_trial_link
-        )
-      else
-        Notification.send_to @user.id, t('notifications.account.welcome',
-          :user_name       => @user.name,
-          :desy            => SETTINGS['application_name'],
-          :expiration_date => TimeConvert.to_string(purchase.expiration_date)
-        )
-      end
       UserMailer.account_confirmation(@user).deliver
       if saas
+        if @user.trial?
+          Notification.send_to @user.id, t('notifications.account.trial',
+            :user_name => @user.name,
+            :desy      => SETTINGS['application_name'],
+            :validity  => SETTINGS['saas_trial_duration'],
+            :link      => upgrade_trial_link
+          )
+        else
+          Notification.send_to @user.id, t('notifications.account.welcome',
+            :user_name       => @user.name,
+            :desy            => SETTINGS['application_name'],
+            :expiration_date => TimeConvert.to_string(purchase.expiration_date)
+          )
+        end
         purchase = @user.purchase
         UserMailer.purchase_full(purchase).deliver if purchase && User.where(:purchase_id => purchase.id).count >= purchase.accounts_number
       end
