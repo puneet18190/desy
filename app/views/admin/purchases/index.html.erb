@@ -56,10 +56,10 @@
   </div>
 <% end %>
 <h3><%= t('admin.purchases.title') %></h3>
-<% if @purchases.length > 0 %>
+<% if @purchases.present? %>
   <%= render :partial => 'admin/list_heading', :locals => {:items => @purchases, :expandable => false} %>
 <% end %>
 <%= render :partial => 'admin/purchases/list', :locals => {:purchases => @purchases} %>
-<% if @purchases.length > 0 %>
+<% if @purchases.present? %>
   <%= render :partial => 'admin/list_heading', :locals => {:items => @purchases, :expandable => false} %>
 <% end %>
