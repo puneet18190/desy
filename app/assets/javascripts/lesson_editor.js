@@ -131,6 +131,7 @@ function lessonEditorDocumentReady() {
   lessonEditorDocumentReadyAddMediaElement();
   lessonEditorDocumentReadyReplaceMediaElement();
   lessonEditorDocumentReadyTextFields();
+  lessonEditorDocumentReadyInitializeImageInscription();
 }
 
 /**
@@ -162,14 +163,12 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var old_orientation = 'width';
     var orientation = 'height';
     var orientation_val = resizeHeight(image_width, image_height, current_slide.data('kind'));
-    var to_make_draggable = 'y';
     if(isHorizontalMask(image_width, image_height, current_slide.data('kind'))) {
       old_mask = 'vertical';
       new_mask = 'horizontal';
       old_orientation = 'height';
       orientation = 'width';
       orientation_val = resizeWidth(image_width, image_height, current_slide.data('kind'));
-      to_make_draggable = 'x';
     }
     full_place.addClass(new_mask).removeClass(old_mask);
     var img_tag = $('#' + place_id + ' .mask img');
@@ -363,6 +362,20 @@ General initialization of position (used together with {{#crossLink "LessonEdito
 function lessonEditorDocumentReadyGeneral() {
   $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
   $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
+}
+
+/**
+Initializer for dynamics of inscriptions and deinscriptions of images (it uses {{#crossLink "LessonEditorJqueryAnimations/lessonEditorInscribeImage:method"}}{{/crossLink}} and {{#crossLink "LessonEditorJqueryAnimations/lessonEditorDeinscribeImage:method"}}{{/crossLink}}).
+@method lessonEditorDocumentReadyInitializeImageInscription
+@for LessonEditorDocumentReady
+**/
+function lessonEditorDocumentReadyInitializeImageInscription() {
+  $body.on('click', '.slide-content .image.editable .inscribe', function() {
+    lessonEditorInscribeImage($(this).parents('.image.editable').attr('id'));
+  });
+  $body.on('click', '.slide-content .image.editable .deinscribe', function() {
+    lessonEditorDeinscribeImage($(this).parents('.image.editable').attr('id'));
+  });
 }
 
 /**
@@ -1072,7 +1085,7 @@ function lessonEditorDeinscribeImage(place_id) {
   var alignable = full_place.find('.alignable');
   var image = alignable.find('img');
   var kind = $('li._lesson_editor_current_slide').data('kind');
-  if(full_place.hasClass('hidden')) {
+  if(full_place.hasClass('hidden') || kind == 'cover') {
     return;
   }
   $('#' + place_id + ' .align').val(0);
@@ -1100,7 +1113,7 @@ function lessonEditorInscribeImage(place_id) {
   var alignable = full_place.find('.alignable');
   var image = alignable.find('img');
   var kind = $('li._lesson_editor_current_slide').data('kind');
-  if(full_place.hasClass('hidden')) {
+  if(full_place.hasClass('hidden') || kind == 'cover') {
     return;
   }
   $('#' + place_id + ' .align').val(0);
