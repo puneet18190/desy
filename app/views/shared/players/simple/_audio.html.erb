@@ -1,0 +1,16 @@
+<%
+  url_type ||= nil
+%>
+
+<% if audio -%>
+  <% ogg = audio.ogg_url url_type -%>
+  <% m4a = audio.m4a_url url_type -%>
+  <audio controls="controls">
+    <source src="<%= ogg %>" type="audio/m4a"/>
+    <source src="<%= m4a %>" type="audio/ogg"/>
+    <p><%= audio.title %></p>
+    <p><%= audio.description %></p>
+  </audio>
+<% else %>
+  <%# TODO decidere con Walter che fare %>
+<% end -%>

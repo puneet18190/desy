@@ -535,6 +535,7 @@ This is the method that associates {{#crossLink "PlayersGeneral/initializeAction
 @param reference_id {String} HTML id of the unique container of the audio or video
 **/
 function initializeMediaTimeUpdater(media, reference_id) {
+  return true;
   media = $(media);
   if(media.readyState != 0) {
     media[0].addEventListener('timeupdate', function() {
