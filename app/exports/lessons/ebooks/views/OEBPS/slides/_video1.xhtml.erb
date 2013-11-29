@@ -1,10 +1,10 @@
-<% if video = slide.media_elements_at -%>
-  <video controls="controls">
-    <source src="<%= media_element_path(video, :mp4) %>" type="video/mp4"/>
-    <source src="<%= media_element_path(video, :webm) %>" type="video/webm"/>
-    <img src="<%= media_element_path(video, :cover) %>" alt="<%= video.title %>"/>
-  </video>
-<% end -%>
-<%= slide_content(slide) %>
+<%= 
+  render_slide slide, 
+               { loaded:             true                                                                       ,
+                 url_type:           UrlTypes::EXPORT                                                           ,
+                 show_documents:     false                                                                      ,
+                 media_viewer_type:  MediaElement::ViewerTypes::SIMPLE                                          ,
+                 slide_text_options: { math_images_path_relative_from_folder: math_images_archive_folder_name } }
+%>
 
-<%= render partial: 'OEBPS/slides/documents.xhtml', locals: { documents: slide.documents } %>
+<%# TODO allegati %>

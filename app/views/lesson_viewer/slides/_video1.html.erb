@@ -1,14 +1,16 @@
 <%
   url_type ||= nil
   video = slide.media_elements_at
+  slide_text_options ||= {}
+  slide_text           = slide.text(slide_text_options)
+  unless defined? show_documents    then show_documents = true                                 end
   unless defined? media_viewer_type then media_viewer_type = MediaElement::ViewerTypes::CUSTOM end
 %>
-
 
 <div class="slide-content video1 normal-size">
   
   <div class="item title-container">
-    <input class="title read-only" type="text" value="<%= slide.title %>" disabled="disabled">
+    <input class="title read-only" type="text" value="<%= slide.title %>" disabled="disabled"/>
   </div>
   
   <div class="item video-container">
@@ -24,10 +26,10 @@
   </div>
   
   <div class="item text-container read-only">
-    <%= slide.text.html_safe if slide.text %>
+    <%= slide_text.html_safe if slide_text %>
   </div>
   
-  <% if slide.documents_slides.present? %>
+  <% if show_documents && slide.documents_slides.present? %>
     <%= render :partial => 'lesson_viewer/documents', :locals => {:documents_slides => slide.documents_slides, :url_type => url_type} %>
   <% end %>
   
