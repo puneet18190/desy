@@ -14,9 +14,9 @@
     <div class="item audio-container">
       <div id="media_element_1_in_slide_<%= slide.id %>" class="audio editable">
         <% if audio %>
-          <input class="audio-id" type="hidden" value="<%= audio.id %>" name="media_element_1" autocomplete="off">
+          <input class="audio-id" type="hidden" value="<%= audio.id %>" name="media_element_1" autocomplete="off"/>
         <% else %>
-          <input class="audio-id" type="hidden" value="" name="media_element_1" autocomplete="off">
+          <input class="audio-id" type="hidden" value="" name="media_element_1" autocomplete="off"/>
         <% end %>
         <div class="mask <%= audio.nil? ? 'hidden' : 'visible' %>">
           <%= render(:partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true}) %>
