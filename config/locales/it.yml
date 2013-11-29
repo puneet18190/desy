@@ -672,7 +672,7 @@ it:
       media_file_too_large: "File troppo grande"
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
-      subject_missing_in_lesson: "Scegli un argomento"
+      subject_missing_in_lesson: "Scegli una materia"
       # The user's email is not valid or already present in the database
       # 1 - controllers/application_controller.rb
       not_valid_email: "L'email inserita non è valida o già presente nel nostro archivio"
