@@ -59,18 +59,21 @@ class UsersController < ApplicationController
   #
   def create
     email = params[:user].try(:delete, :email)
-    @trial            = params[:trial] == '1'
-    purchase = Purchase.find_by_token params[:purchase_id]
+    saas = SETTINGS['saas_registration_mode']
+    if saas
+      @trial            = params[:trial] == '1'
+      purchase = Purchase.find_by_token params[:purchase_id]
+    end
     @user = User.active.not_confirmed.new(params[:user]) do |user|
       user.email = email
       key_last_location = SETTINGS['location_types'].last.downcase
       if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
         user.location_id = params[:location][key_last_location]
       end
-      user.purchase_id = @trial ? nil : (purchase ? purchase.id : 0)
+      user.purchase_id = @trial ? nil : (purchase ? purchase.id : 0) if saas
     end
     if @user.save
-      if @user.trial?
+      if saas && @user.trial?
         Notification.send_to @user.id, t('notifications.account.trial',
           :user_name => @user.name,
           :desy      => SETTINGS['application_name'],
@@ -85,8 +88,10 @@ class UsersController < ApplicationController
         )
       end
       UserMailer.account_confirmation(@user).deliver
-      purchase = @user.purchase
-      UserMailer.purchase_full(purchase).deliver if purchase && User.where(:purchase_id => purchase.id).count >= purchase.accounts_number
+      if saas
+        purchase = @user.purchase
+        UserMailer.purchase_full(purchase).deliver if purchase && User.where(:purchase_id => purchase.id).count >= purchase.accounts_number
+      end
       render 'users/fullpage_notifications/confirmation/email_sent'
     else
       @errors = convert_user_error_messages @user.errors
