@@ -1067,9 +1067,11 @@ Method that deinscribes the image.
 @param place_id {String} HTML id for the container to make draggable
 **/
 function lessonEditorDeinscribeImage(place_id) {
-  var full_place = $('#' + place_id + ' .mask');
+  var place = $('#' + place);
+  var full_place = place.find('.mask');
   var alignable = full_place.find('.alignable');
   var image = alignable.find('img');
+  var kind = $('li._lesson_editor_current_slide').data('kind');
   if(full_place.hasClass('hidden')) {
     return;
   }
@@ -1078,9 +1080,9 @@ function lessonEditorDeinscribeImage(place_id) {
   $('#' + place_id + ' .deinscribe').removeClass('deinscribe').addClass('inscribe');
   alignable.css('top', 0).css('left', 0);
   if(full_place.hasClass('vertical')) {
-// TODO    image.removeAttr('width').attr('height', );
+    image.removeAttr('width').attr('height', resizeHeight(place.data('width'), place.data('height'), kind));
   } else {
-// TODO    image.removeAttr('height').attr('width', );
+    image.removeAttr('height').attr('width', resizeWidth(place.data('width'), place.data('height'), kind));
   }
   alignable.draggable('destroy');
   makeDraggable(place_id);
@@ -1093,8 +1095,11 @@ Method that inscribes the image.
 @param place_id {String} HTML id for the container to make draggable
 **/
 function lessonEditorInscribeImage(place_id) {
-  var full_place = $('#' + place_id + ' .mask');
+  var place = $('#' + place);
+  var full_place = place.find('.mask');
   var alignable = full_place.find('.alignable');
+  var image = alignable.find('img');
+  var kind = $('li._lesson_editor_current_slide').data('kind');
   if(full_place.hasClass('hidden')) {
     return;
   }
@@ -1103,9 +1108,9 @@ function lessonEditorInscribeImage(place_id) {
   $('#' + place_id + ' .inscribe').removeClass('inscribe').addClass('deinscribe');
   alignable.css('top', 0).css('left', 0);
   if(full_place.hasClass('vertical')) {
-// TODO    image.removeAttr('height').attr('width', );
+    image.removeAttr('height').attr('width', resizeWidth(place.data('width'), place.data('height'), kind));
   } else {
-// TODO    image.removeAttr('width').attr('height', );
+    image.removeAttr('width').attr('height', resizeHeight(place.data('width'), place.data('height'), kind));
   }
   alignable.draggable('destroy');
   makeDraggable(place_id);
