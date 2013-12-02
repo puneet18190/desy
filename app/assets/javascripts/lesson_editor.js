@@ -1203,7 +1203,7 @@ Inizializes jQueryUI <b>draggable</b> function on slide image containers.
 **/
 function makeDraggable(place_id) {
   var full_place = $('#' + place_id + ' .mask');
-  if(full_place.hasClass('hidden')) {
+  if(!full_place.is(':visible')) {
     return;
   }
   var image = $('#' + place_id + ' .mask img');
