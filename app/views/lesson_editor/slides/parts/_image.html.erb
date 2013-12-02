@@ -7,8 +7,8 @@
   if image
     original_width = image.media_element.width
     original_height = image.media_element.height
-    width = image.resize_width
-    height = image.resize_height
+    width = image.resize_width(slide.kind)
+    height = image.resize_height(slide.kind)
     url = image.media_element.url
     orientation = 'vertical'
     alignment = "top:#{image.alignment}px"
@@ -17,7 +17,7 @@
       alignment = "left:#{image.alignment}px"
       resize = "width=\"#{width}\""
     end
-    if image.is_horizontal?
+    if image.is_horizontal?(slide.kind)
       orientation = 'horizontal'
       alignment = "left:#{image.alignment}px"
       resize = "width=\"#{width}\""

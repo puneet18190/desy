@@ -1,7 +1,7 @@
 <%
   image = slide.media_elements_at
-  image_height = image.resize_height if !image.nil?
-  image_width = image.resize_width if !image.nil?
+  image_height = image.resize_height(slide.kind) if !image.nil?
+  image_width = image.resize_width(slide.kind) if !image.nil?
 %>
 
 
@@ -10,7 +10,7 @@
   <div class="image-container item">
     <% if image %>
       <div class="image read-only">
-        <% if image.is_horizontal? %>
+        <% if image.is_horizontal?(slide.kind) %>
           <% if image.inscribed %>
             <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; height:#{image_height}px" %>
           <% else %>
