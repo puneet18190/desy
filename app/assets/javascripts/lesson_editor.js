@@ -157,7 +157,7 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var image_url = $(this).data('url');
     var image_width = $(this).data('width');
     var image_height = $(this).data('height');
-    $('#' + place_id).data('width', image_width, 'height', image_height);
+    $('#' + place_id).data('width', image_width).data('height', image_height);
     var full_place = $('#' + place_id + ' .mask');
     if(!full_place.is(':visible')) {
       full_place.show();
