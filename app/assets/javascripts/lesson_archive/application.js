@@ -65,4 +65,8 @@ $(document).ready(function() {
   $(window).resize(function() {
     $('#footer').css('top', ($(window).height() - 40) + 'px').css('width', ($(window).width() - 24) + 'px');
   });
+  $body.on('click', 'a.target_blank_mce', function(e) {
+    e.preventDefault();
+    window.open($(this).attr('href'), '_blank').focus();
+  });
 });
