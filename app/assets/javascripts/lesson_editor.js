@@ -1476,6 +1476,7 @@ function initTinymce(tiny_id) {
       });
       ed.onNodeChange.add(function(ed, cm, e) {
         cleanTinyMCESpanTagsFontSize(ed);
+        $(ed.getBody()).find('a').addClass('target_blank_mce');
       });
       ed.onKeyUp.add(function(ed, e) {
         handleTinyMCEOveflow(ed, tiny_id);
