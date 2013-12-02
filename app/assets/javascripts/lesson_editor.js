@@ -1460,6 +1460,7 @@ function initTinymce(tiny_id) {
     editor_selector: 'tinymce',
     skin: 'desy',
     plugins: plugins,
+    custom_shortcuts: false,
     paste_preprocess: function(pl, o) {
       o.content = stripTagsForCutAndPaste(o.content, '');
     },
