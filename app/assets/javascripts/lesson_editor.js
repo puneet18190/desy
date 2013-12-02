@@ -267,15 +267,21 @@ Initializer for galleries.
 **/
 function lessonEditorDocumentReadyGalleries() {
   $body.on('click', '.slide-content .image.editable .add', function() {
-    showGalleryInLessonEditor(this, 'image');
+    if(!$(this).parents('.slide-content').hasClass('small-size')) {
+      showGalleryInLessonEditor(this, 'image');
+    }
   });
   $body.on('click', '.slide-content .audio.editable .add', function() {
-    stopMediaInCurrentSlide();
-    showGalleryInLessonEditor(this, 'audio');
+    if(!$(this).parents('.slide-content').hasClass('small-size')) {
+      stopMediaInCurrentSlide();
+      showGalleryInLessonEditor(this, 'audio');
+    }
   });
   $body.on('click', '.slide-content .video.editable .add', function() {
-    stopMediaInCurrentSlide();
-    showGalleryInLessonEditor(this, 'video');
+    if(!$(this).parents('.slide-content').hasClass('small-size')) {
+      stopMediaInCurrentSlide();
+      showGalleryInLessonEditor(this, 'video');
+    }
   });
   $body.on('click', '._close_image_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
