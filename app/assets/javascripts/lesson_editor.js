@@ -1125,7 +1125,7 @@ function lessonEditorDeinscribeImage(place_id) {
   var alignable = full_place.find('.alignable');
   var image = alignable.find('img');
   var kind = $('li._lesson_editor_current_slide').data('kind');
-  if(full_place.hasClass('hidden') || kind == 'cover') {
+  if(!full_place.is(':visible') || kind == 'cover') {
     return;
   }
   $('#' + place_id + ' .inscribed').val('false');
@@ -1166,7 +1166,7 @@ function lessonEditorInscribeImage(place_id) {
   var alignable = full_place.find('.alignable');
   var image = alignable.find('img');
   var kind = $('li._lesson_editor_current_slide').data('kind');
-  if(full_place.hasClass('hidden') || kind == 'cover') {
+  if(!full_place.is(':visible') || kind == 'cover') {
     return;
   }
   $('#' + place_id + ' .inscribed').val('true');
