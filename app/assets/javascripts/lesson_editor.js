@@ -142,21 +142,21 @@ Initializer of the three functionalities to add an element (image, audio, video)
 function lessonEditorDocumentReadyAddMediaElement() {
   $body.on('click', '._add_image_to_slide', function(e) {
     e.preventDefault();
+    var current_slide = $('li._lesson_editor_current_slide');
     var image_id = $(this).data('image-id');
+    var image_url = $(this).data('url');
+    var image_width = $(this).data('width');
+    var image_height = $(this).data('height');
+    var current_kind = current_slide.data('kind')
     closePopUp('dialog-image-gallery-' + image_id);
     removeGalleryInLessonEditor('image');
-    var current_slide = $('li._lesson_editor_current_slide');
     var position = $('#info_container').data('current-media-element-position');
     var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
     $('#' + place_id + ' .image-id').val(image_id);
-    $('#' + place_id + ' .align').val('0');
     $('#' + place_id + ' .inscribed').val('false');
     var inscribe_toggle_icon = $('#' + place_id + ' .deinscribe, #' + place_id + ' .inscribe');
     var new_title = inscribe_toggle_icon.data('inscribe-title');
     inscribe_toggle_icon.attr('title', new_title).removeClass('deinscribe').addClass('inscribe');
-    var image_url = $(this).data('url');
-    var image_width = $(this).data('width');
-    var image_height = $(this).data('height');
     $('#' + place_id).data('width', image_width).data('height', image_height);
     var full_place = $('#' + place_id + ' .mask');
     if(!full_place.is(':visible')) {
@@ -167,19 +167,26 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var new_mask = 'vertical';
     var old_orientation = 'width';
     var orientation = 'height';
-    var orientation_val = resizeHeight(image_width, image_height, current_slide.data('kind'));
-    if(isHorizontalMask(image_width, image_height, current_slide.data('kind'))) {
+    var orientation_val = resizeHeight(image_width, image_height, current_kind);
+    var align_val = (getVerticalStandardSizeOfSlideImage(current_kind) - orientation_val) / 2;
+    var this_align_side = 'top';
+    var other_align_side = 'left';
+    if(isHorizontalMask(image_width, image_height, current_kind)) {
       old_mask = 'vertical';
       new_mask = 'horizontal';
       old_orientation = 'height';
       orientation = 'width';
-      orientation_val = resizeWidth(image_width, image_height, current_slide.data('kind'));
+      orientation_val = resizeWidth(image_width, image_height, current_kind);
+      align_val = (getHorizontalStandardSizeOfSlideImage(current_kind) - orientation_val) / 2;
+      this_align_side = 'left';
+      other_align_side = 'top';
     }
+    $('#' + place_id + ' .align').val(align_val);
     full_place.addClass(new_mask).removeClass(old_mask);
     var img_tag = $('#' + place_id + ' .mask img');
     img_tag.attr('src', image_url);
-    img_tag.parent().css('left', 0);
-    img_tag.parent().css('top', 0);
+    img_tag.parent().css(this_align_side, align_val);
+    img_tag.parent().css(other_align_side, 0);
     img_tag.removeAttr(old_orientation);
     img_tag.attr(orientation, orientation_val);
     makeDraggable(place_id);
@@ -950,16 +957,64 @@ function updateEffectsInsideDocumentGallery() {
 
 
 /**
+Returns the width of the image space for the kind of slide.
+@method getHorizontalStandardSizeOfSlideImage
+@for LessonEditorImageResizing
+@param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
+@return {Number} width of the image space for this kind of slide
+**/
+function getHorizontalStandardSizeOfSlideImage(kind) {
+  switch(kind) {
+    case 'cover': slideWidth = 900;
+    break;
+    case 'image1': slideWidth = 420;
+    break;
+    case 'image2': slideWidth = 420;
+    break;
+    case 'image3': slideWidth = 860;
+    break;
+    case 'image4': slideWidth = 420;
+    break;
+    default: slideWidth = 900;
+  }
+  return slideWidth;
+}
+
+/**
+Returns the height of the image space for the kind of slide.
+@method getVerticalStandardSizeOfSlideImage
+@for LessonEditorImageResizing
+@param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
+@return {Number} height of the image space for this kind of slide
+**/
+function getVerticalStandardSizeOfSlideImage(kind) {
+  switch(kind) {
+    case 'cover': slideHeight = 560;
+    break;
+    case 'image1': slideHeight = 420;
+    break;
+    case 'image2': slideHeight = 550;
+    break;
+    case 'image3': slideHeight = 550;
+    break;
+    case 'image4': slideHeight = 265;
+    break;
+    default: slideHeight = 590;
+  }
+  return slideHeight;
+}
+
+/**
 Check if image ratio is bigger then kind ratio.
 @method isHorizontalMask
 @for LessonEditorImageResizing
-@param image_width {Number} width of the image
-@param image_height {Number} height of the image
+@param width {Number} width of the image
+@param height {Number} height of the image
 @param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
 @return {Boolean} true if the image is horizontal, false if vertical
 **/
-function isHorizontalMask(image_width, image_height, kind) {
-  var ratio = image_width / image_height;
+function isHorizontalMask(width, height, kind) {
+  var ratio = width / height;
   var slideRatio = 0;
   switch(kind) {
     case 'cover': slideRatio = 1.6;
@@ -987,46 +1042,20 @@ Gets scaled height to slide images.
 @return {Number} scaled height
 **/
 function resizeHeight(width, height, kind) {
-  switch(kind) {
-    case 'cover': slideWidth = 900;
-    break;
-    case 'image1': slideWidth = 420;
-    break;
-    case 'image2': slideWidth = 420;
-    break;
-    case 'image3': slideWidth = 860;
-    break;
-    case 'image4': slideWidth = 420;
-    break;
-    default: slideWidth = 900;
-  }
-  return parseInt((height * slideWidth) / width) + 1;
+  return parseInt((height * getHorizontalStandardSizeOfSlideImage(kind)) / width) + 1;
 }
 
 /**
 Gets scaled width to slide images.
 @method resizeWidth
 @for LessonEditorImageResizing
-@param image_width {Number} width of the image
-@param image_height {Number} height of the image
+@param width {Number} width of the image
+@param height {Number} height of the image
 @param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
 @return {Number} scaled width
 **/
 function resizeWidth(width, height, kind) {
-  switch(kind) {
-    case 'cover': slideHeight = 560;
-    break;
-    case 'image1': slideHeight = 420;
-    break;
-    case 'image2': slideHeight = 550;
-    break;
-    case 'image3': slideHeight = 550;
-    break;
-    case 'image4': slideHeight = 265;
-    break;
-    default: slideHeight = 590;
-  }
-  return parseInt((width * slideHeight) / height) + 1;
+  return parseInt((width * getVerticalStandardSizeOfSlideImage(kind)) / height) + 1;
 }
 
 
