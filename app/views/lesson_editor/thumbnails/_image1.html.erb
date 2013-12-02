@@ -15,9 +15,17 @@
     <% if image %>
       <div class="image read-only">
         <% if image.is_horizontal? %>
-          <%= image_tag image.media_element.url, :style => "left:#{image.alignment}px; width:#{image_width}px" %>
+          <% if image.inscribed %>
+            <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; height:#{image_height}px" %>
+          <% else %>
+            <%= image_tag image.media_element.url, :style => "left:#{image.alignment}px; width:#{image_width}px" %>
+          <% end %>
         <% else %>
-          <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; height:#{image_height}px" %>
+          <% if image.inscribed %>
+            <%= image_tag image.media_element.url, :style => "left:#{image.alignment}px; width:#{image_width}px" %>
+          <% else %>
+            <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; height:#{image_height}px" %>
+          <% end %>
         <% end %>
         <input class="caption" type="text" value="<%= image.caption.blank? ? t('lesson_editor.placeholders.image_caption') : image.caption %>" disabled="disabled">
       </div>

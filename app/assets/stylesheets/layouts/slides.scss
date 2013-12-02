@@ -94,6 +94,12 @@
     top: 0;
     left: 0;
     
+    .image-container .image.read-only {
+      
+      background-color: #F1F1F1;
+      
+    }
+    
     .image-container .image .add, .audio-container .audio .add, .video-container .video .add {
       
       cursor: default;

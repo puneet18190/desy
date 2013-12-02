@@ -1122,7 +1122,6 @@ function lessonEditorDeinscribeImage(place_id) {
   if(full_place.hasClass('hidden') || kind == 'cover') {
     return;
   }
-  $('#' + place_id + ' .align').val(0);
   $('#' + place_id + ' .inscribed').val('false');
   var new_title = $('#' + place_id + ' .deinscribe').data('inscribe-title');
   $('#' + place_id + ' .deinscribe').attr('title', new_title).removeClass('deinscribe').addClass('inscribe');
@@ -1144,6 +1143,7 @@ function lessonEditorDeinscribeImage(place_id) {
     image.removeAttr('height').attr('width', orientation_val);
   }
   alignable.css(this_align_side, align_val).css(other_align_side, 0);
+  $('#' + place_id + ' .align').val(align_val);
   alignable.draggable('destroy');
   makeDraggable(place_id);
 }
@@ -1163,7 +1163,6 @@ function lessonEditorInscribeImage(place_id) {
   if(full_place.hasClass('hidden') || kind == 'cover') {
     return;
   }
-  $('#' + place_id + ' .align').val(0);
   $('#' + place_id + ' .inscribed').val('true');
   var new_title = $('#' + place_id + ' .inscribe').data('deinscribe-title');
   $('#' + place_id + ' .inscribe').attr('title', new_title).removeClass('inscribe').addClass('deinscribe');
@@ -1185,6 +1184,7 @@ function lessonEditorInscribeImage(place_id) {
     image.removeAttr('width').attr('height', orientation_val);
   }
   alignable.css(this_align_side, align_val).css(other_align_side, 0);
+  $('#' + place_id + ' .align').val(align_val);
   alignable.draggable('destroy');
   makeDraggable(place_id);
 }
