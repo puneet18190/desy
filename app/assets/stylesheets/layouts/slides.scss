@@ -141,31 +141,33 @@
       
     }
     
-    .image-container {
+    &.cover .image-container .image .add, &.image2 .image-container .image .add, &.image3 .image-container .image .add {
       
-      .image {
-        
-        .add:hover {
-          
-          background: transparent $assets-icone-piene_svg no-repeat scroll -2em center / 6em 1em;
-          
-        }
-        
-      }
+      @include svg-circle-icon-handler-without-hover($assets-icone-piene_svg, $big-icon-dimension, 6, 1, 1, 2, 0);
       
     }
     
-    .video-container {
+    &.image1 .image-container .image .add {
       
-      .video {
-        
-        .add:hover {
-          
-          background: transparent $assets-icone-piene_svg no-repeat scroll -1em center / 6em 1em;
-          
-        }
-        
-      }
+      @include svg-circle-icon-handler-without-hover($assets-icone-piene_svg, $small-icon-dimension, 6, 1, 1, 2, 0);
+      
+    }
+    
+    &.image4 .image-container .image .add {
+      
+      @include svg-circle-icon-handler-without-hover($assets-icone-piene_svg, $tiny-icon-dimension, 6, 1, 1, 2, 0);
+      
+    }
+    
+    &.video1 .video-container .video .add {
+      
+      @include svg-circle-icon-handler-without-hover($assets-icone-piene_svg, $small-icon-dimension, 6, 1, 1, 1, 0);
+      
+    }
+    
+    &.video2 .video-container .video .add {
+      
+      @include svg-circle-icon-handler-without-hover($assets-icone-piene_svg, $small-icon-dimension, 6, 1, 1, 1, 0);
       
     }
     
@@ -175,13 +177,8 @@
         
         .add {
           
+          @include svg-circle-icon-handler-without-hover($assets-icone-piene_svg, $audio-big-icon-dimension, 6, 1, 1, 0, 0);
           cursor: default;
-          
-          &:hover {
-            
-            background: transparent $assets-icone-piene_svg no-repeat scroll 0em center / 6em 1em;
-            
-          }
           
         }
         
