@@ -167,7 +167,7 @@
     
     &.video2 .video-container .video .add {
       
-      @include svg-circle-icon-handler($assets-icone-piene_svg, $small-icon-dimension, 6, 1, 1, 1, 0, 1, 1, 0);
+      @include svg-circle-icon-handler($assets-icone-piene_svg, $big-icon-dimension, 6, 1, 1, 1, 0, 1, 1, 0);
       
     }
     
