@@ -45,9 +45,9 @@
               </select>
             </td>
             <td width="15%">
-              <label><%= t('search.lessons.filters.school_level') %></label><br /><!-- TODO traduzz -->
+              <label><%= t('search.lessons.filters.school_level') %></label><br />
               <select name="school_level_id" id="filter_search_lessons_school_level">
-                <option value="" selected="selected"><%= t('search.lessons.filters.all_school_levels') %></option><!-- TODO traduzz -->
+                <option value="" selected="selected"><%= t('search.lessons.filters.all_school_levels') %></option>
                 <% school_levels.each do |sl| %>
                   <option value="<%= sl.id %>"><%= sl.description %></option>
                 <% end %>
