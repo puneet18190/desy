@@ -716,8 +716,8 @@ html.lesson-editor-layout {
       .sbToggle {
          
          @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 2, 1);
-         margin-top: 10px;
-         margin-right: 4px;
+         margin-top: 2px;
+         margin-right: 3px;
          
          &.sbToggleOpen {
            
