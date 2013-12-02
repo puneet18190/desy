@@ -1126,12 +1126,24 @@ function lessonEditorDeinscribeImage(place_id) {
   $('#' + place_id + ' .inscribed').val('false');
   var new_title = $('#' + place_id + ' .deinscribe').data('inscribe-title');
   $('#' + place_id + ' .deinscribe').attr('title', new_title).removeClass('deinscribe').addClass('inscribe');
-  alignable.css('top', 0).css('left', 0);
+  var align_val;
+  var this_align_side;
+  var other_align_side;
+  var orientation_val;
   if(full_place.hasClass('vertical')) {
-    image.removeAttr('width').attr('height', resizeHeight(place.data('width'), place.data('height'), kind));
+    orientation_val = resizeHeight(place.data('width'), place.data('height'), kind);
+    align_val = (getVerticalStandardSizeOfSlideImage(kind) - orientation_val) / 2;
+    this_align_side = 'top';
+    other_align_side = 'left';
+    image.removeAttr('width').attr('height', orientation_val);
   } else {
-    image.removeAttr('height').attr('width', resizeWidth(place.data('width'), place.data('height'), kind));
+    orientation_val = resizeWidth(place.data('width'), place.data('height'), kind);
+    align_val = (getHorizontalStandardSizeOfSlideImage(kind) - orientation_val) / 2;
+    this_align_side = 'left';
+    other_align_side = 'top';
+    image.removeAttr('height').attr('width', orientation_val);
   }
+  alignable.css(this_align_side, align_val).css(other_align_side, 0);
   alignable.draggable('destroy');
   makeDraggable(place_id);
 }
@@ -1155,12 +1167,24 @@ function lessonEditorInscribeImage(place_id) {
   $('#' + place_id + ' .inscribed').val('true');
   var new_title = $('#' + place_id + ' .inscribe').data('deinscribe-title');
   $('#' + place_id + ' .inscribe').attr('title', new_title).removeClass('inscribe').addClass('deinscribe');
-  alignable.css('top', 0).css('left', 0);
+  var align_val;
+  var this_align_side;
+  var other_align_side;
+  var orientation_val;
   if(full_place.hasClass('vertical')) {
-    image.removeAttr('height').attr('width', resizeWidth(place.data('width'), place.data('height'), kind));
+    orientation_val = resizeWidth(place.data('width'), place.data('height'), kind);
+    align_val = (getHorizontalStandardSizeOfSlideImage(kind) - orientation_val) / 2;
+    this_align_side = 'left';
+    other_align_side = 'top';
+    image.removeAttr('height').attr('width', orientation_val);
   } else {
-    image.removeAttr('width').attr('height', resizeHeight(place.data('width'), place.data('height'), kind));
+    orientation_val = resizeHeight(place.data('width'), place.data('height'), kind);
+    align_val = (getVerticalStandardSizeOfSlideImage(kind) - orientation_val) / 2;
+    this_align_side = 'top';
+    other_align_side = 'left';
+    image.removeAttr('width').attr('height', orientation_val);
   }
+  alignable.css(this_align_side, align_val).css(other_align_side, 0);
   alignable.draggable('destroy');
   makeDraggable(place_id);
 }
