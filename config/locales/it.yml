@@ -3842,6 +3842,9 @@ it:
       # Word used in the expression '1-10 <of> 300 items'
       # 1 - helpers/admin_helper.rb
       of_range: "di"
+      # Expression used when there are too many pages to be displayed
+      # 1 - views/admin/_list_heading.html.erb
+      truncate: "..."
   
   
   # SECTION 4.3: FAQS
