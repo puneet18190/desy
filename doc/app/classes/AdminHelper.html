@@ -118,7 +118,7 @@
               <div id="method-i-page_items_counter_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/helpers/admin_helper.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">page_items_counter</span>(<span class="ruby-identifier">items</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">items</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">items</span>.<span class="ruby-identifier">present?</span>
     <span class="ruby-identifier">from</span> = <span class="ruby-number">1</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">items</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;admin_general_pagination&#39;</span>]
       <span class="ruby-identifier">to</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;admin_general_pagination&#39;</span>]
