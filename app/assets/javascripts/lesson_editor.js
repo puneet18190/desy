@@ -1176,7 +1176,6 @@ function makeDraggable(place_id) {
   $('#' + place_id + ' .mask .alignable').draggable({
     axis: ((side == 'top') ? 'y' : 'x'),
     cursor: 'move',
-    distance: 10,
     start: function() {
       $('#' + place_id + ' .mask img').css('cursor', 'move');
       $('#' + place_id + ' .alignable').data('rolloverable', false);
