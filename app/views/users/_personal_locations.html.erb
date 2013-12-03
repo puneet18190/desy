@@ -14,7 +14,7 @@
         <div class="sbHolderDeselect" id="<%= location.downcase %>_id"><%= forced_ancestors[index].name %></div>
       <% else %>
         <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="<%= is_last %>" name="location[<%= location.downcase %>]">
-          <%= render :partial => 'users/locations_list', :locals => {:locations => my_own_locations[:content], :selected => my_own_locations[:selected], :edit => edit} %>
+          <%= render :partial => 'users/locations_list', :locals => {:locations => my_own_locations[:content], :selected => my_own_locations[:selected], :edit => edit, :label => (my_own_locations[:content].any? ? Location.label_at(index) : nil)} %>
         </select>
       <% end %>
     </div>
