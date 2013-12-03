@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>app/models/media_elements_slide.rb</li>
-            <li>Last modified: 2013-11-26 09:40:44 +0100</li>
+            <li>Last modified: 2013-12-02 15:34:15 +0100</li>
         </ul>
     </div>
 
@@ -54,6 +54,9 @@ it&#39;s an image</p>
 </li><li>
 <p><strong>alignment</strong>: the alignment of the media element, if it&#39;s
 an image</p>
+</li><li>
+<p><strong>inscribed</strong>: true if the image is inscribed inside the
+available space without parts left outside</p>
 </li></ul>
 
 <h2 id="label-Associations">Associations</h2>
@@ -82,6 +85,8 @@ record for <code>media_element_id</code> and <code>slide_id</code></p>
 </li><li>
 <p><strong>inclusion</strong> of <code>position</code> in [1, 2, 3, 4]</p>
 </li><li>
+<p><strong>inclusion</strong> of <code>inscribed</code> in [true, false]</p>
+</li><li>
 <p><strong>uniqueness</strong> of the triple [<code>position</code>,
 <code>media_element_id</code>, <code>slide_id</code>]</p>
 </li><li>
@@ -107,6 +112,9 @@ created the <a href="../../../classes/Lesson.html">Lesson</a> in which the
 <code>caption</code> are checked to be present only if the <a
 href="../../../classes/MediaElement.html">MediaElement</a> is an <a
 href="../../../classes/Image.html">Image</a></p>
+</li><li>
+<p><strong>inscribed</strong> <strong>cannot</strong> <strong>be</strong>
+<strong>true</strong> if the element is not an image</p>
 </li></ul>
 
 <h2 id="label-Callbacks">Callbacks</h2>

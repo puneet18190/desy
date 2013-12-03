@@ -36,7 +36,7 @@ class Image < MediaElement
     'video_component'         => 1.77 ,
     'video_component_preview' => 1.77
   }
-
+  
   # Resize width values
   RESIZE_WIDTH_VALUES_BY_KIND = {
     Slide::COVER              => 560 ,
@@ -47,7 +47,7 @@ class Image < MediaElement
     'video_component'         => 88  ,
     'video_component_preview' => 360
   }
-
+  
   # Resize height values
   RESIZE_HEIGHT_VALUES_BY_KIND = {
     Slide::COVER              => 900 ,
@@ -58,12 +58,12 @@ class Image < MediaElement
     'video_component'         => 156 ,
     'video_component_preview' => 640
   }
-
+  
   # Used to give an orientation on images
   def is_horizontal?(kind)
     ( width.to_f / height.to_f ) >= IS_HORIZONTAL_VALUES_BY_KIND[kind]
   end
-
+  
   # Resizes the width of an image
   def resize_width(kind)
     ( width.to_f  * RESIZE_WIDTH_VALUES_BY_KIND[kind]  / height ).to_i + 1
@@ -73,7 +73,7 @@ class Image < MediaElement
   def resize_height(kind)
     ( height.to_f * RESIZE_HEIGHT_VALUES_BY_KIND[kind] / width  ).to_i + 1
   end
-
+  
   # === Description
   #
   # Returns the url of the attached image.

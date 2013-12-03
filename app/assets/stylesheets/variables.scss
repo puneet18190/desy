@@ -239,3 +239,9 @@ $miniature-title-slide-content-padding: 17px;
 $miniature-slide-text-read-only-border: 4px;
 /* padding di un campo testo in read-only, che sopperisce a un margin interno di 8px di tinyMCE */
 $miniature-slide-text-read-only-padding: 5px;
+/* distanza dall'alto dell'icona di inscribe */
+$inscribe-icon-top: 10px;
+/* distanza dalla destra dell'icona di inscribe */
+$inscribe-icon-right: $inscribe-icon-top;
+/* dimensione dell'icona di inscribe */
+$inscribe-icon-dimension: 50px;

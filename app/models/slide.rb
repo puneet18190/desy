@@ -254,6 +254,7 @@ class Slide < ActiveRecord::Base
   #   * *media_element_id*: corresponds to the id of the MediaElement associated
   #   * *alignment*: corresponds to the field +alignment+ of MediaElementsSlide
   #   * *caption*: corresponds to the field +caption+ of MediaElementsSlide
+  #   * *inscribed*: correspods to the field +inscribed+ of MediaElementsSlide
   # * *documents*: an array of integers. Each item of this argument represents a document
   # * *math_images*: math images.
   #
@@ -286,11 +287,13 @@ class Slide < ActiveRecord::Base
           mes2.media_element_id = v[0]
           mes2.alignment = v[1]
           mes2.caption = v[2]
+          mes2.inscribed = v[3]
           raise ActiveRecord::Rollback if !mes2.save
         elsif [mes.media_element_id, mes.alignment, mes.caption] != v
           mes.media_element_id = v[0]
           mes.alignment = v[1]
           mes.caption = v[2]
+          mes.inscribed = v[3]
           raise ActiveRecord::Rollback if !mes.save
         end
         my_media_element = MediaElement.find_by_id v[0]

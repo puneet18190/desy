@@ -29,10 +29,10 @@
 <% end %>
 
 <h3><%= t('admin.users.title') %></h3>
-<% if @users.length > 0 %>
+<% if @users.present? %>
   <%= render :partial => 'admin/list_heading', :locals => {:items => @users, :expandable => false} %>
 <% end %>
 <%= render :partial => 'admin/users/list', :locals => {:users => @users} %>
-<% if @users.length > 0 %>
+<% if @users.present? %>
   <%= render :partial => 'admin/list_heading', :locals => {:items => @users, :expandable => false} %>
 <% end %>

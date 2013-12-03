@@ -418,6 +418,7 @@ CREATE TABLE media_elements_slides (
     slide_id integer NOT NULL,
     "position" integer NOT NULL,
     caption text,
+    inscribed boolean DEFAULT false NOT NULL,
     alignment integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL

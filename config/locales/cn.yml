@@ -972,6 +972,12 @@ cn:
       # Button to save and exit
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       save_and_exit: "保存并退出"
+      # Button that inscribes the image inside the available space
+      # 1 - views/lesson_editor/slides/parts/_image.html.erb
+      inscribe_image: "Inscribe this image inside the available space" # TODO
+      # Button that undoes the inscription of the image
+      # 1 - views/lesson_editor/slides/parts/_image.html.erb
+      deinscribe_image: "Expand this image to fit to the available space" # TODO
     media_elements:
       # Icon to upload the file attached to a new media element
       # 1 - views/media_elements/_new_form_popup.html.erb
@@ -1300,7 +1306,7 @@ cn:
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
         title: "注册"
         # 1 - views/users/fullpage_notifications/confirmation/email_sent.html.erb
-        description: "注册成功完成: 确认它,请检查你的邮件地址, 你将发现包含链接信息的确认你的账号. 如果你没有发现我们的邮件, 请检查你的垃圾邮件. 如有问题, 请毫不犹豫地联系我们"
+        description: "注册成功完成: 确认它,请检查你的邮件地址, 你将发现包含链接信息的确认你的账号.<br/><br/>如果你没有发现我们的邮件, 请检查你的垃圾邮件. 如有问题, 请毫不犹豫地联系我们"
       # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
       received:
         # 1 - views/users/fullpage_notifications/confirmation/received.html.erb
@@ -3842,6 +3848,9 @@ cn:
       # Word used in the expression '1-10 <of> 300 items'
       # 1 - helpers/admin_helper.rb
       of_range: "属于"
+      # Expression used when there are too many pages to be displayed
+      # 1 - views/admin/_list_heading.html.erb
+      truncate: "..."
   
   
   # SECTION 4.3: FAQS
