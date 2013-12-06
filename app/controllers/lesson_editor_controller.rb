@@ -333,8 +333,9 @@ class LessonEditorController < ApplicationController
         next if params["media_element_#{i}"].blank?
         media_element_id = correct_integer?(params["media_element_#{i}"]) ? params["media_element_#{i}"].to_i : 0
         alignment = params["media_element_align_#{i}"].blank? ? nil : params["media_element_align_#{i}"].to_i
+        inscribed = (params["media_element_inscribed_#{i}"] == 'true') ? true : false
         caption = params["caption_#{i}"]
-        hash[i] = [media_element_id, alignment, caption]
+        hash[i] = [media_element_id, alignment, caption, inscribed]
       end
     end
     (1...4).each { |i| documents_params << (correct_integer?(params["document_#{i}"]) ? params["document_#{i}"].to_i : 0) if !params["document_#{i}"].blank? }

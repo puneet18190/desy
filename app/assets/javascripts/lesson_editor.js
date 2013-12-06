@@ -131,6 +131,7 @@ function lessonEditorDocumentReady() {
   lessonEditorDocumentReadyAddMediaElement();
   lessonEditorDocumentReadyReplaceMediaElement();
   lessonEditorDocumentReadyTextFields();
+  lessonEditorDocumentReadyInitializeImageInscription();
 }
 
 /**
@@ -141,17 +142,22 @@ Initializer of the three functionalities to add an element (image, audio, video)
 function lessonEditorDocumentReadyAddMediaElement() {
   $body.on('click', '._add_image_to_slide', function(e) {
     e.preventDefault();
-    var image_id = $(this).data('image-id');
-    closePopUp('dialog-image-gallery-' + image_id);
-    removeGalleryInLessonEditor('image');
     var current_slide = $('li._lesson_editor_current_slide');
-    var position = $('#info_container').data('current-media-element-position');
-    var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
-    $('#' + place_id + ' .image-id').val(image_id);
-    $('#' + place_id + ' .align').val('0');
+    var image_id = $(this).data('image-id');
     var image_url = $(this).data('url');
     var image_width = $(this).data('width');
     var image_height = $(this).data('height');
+    var current_kind = current_slide.data('kind')
+    closePopUp('dialog-image-gallery-' + image_id);
+    removeGalleryInLessonEditor('image');
+    var position = $('#info_container').data('current-media-element-position');
+    var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
+    $('#' + place_id + ' .image-id').val(image_id);
+    $('#' + place_id + ' .inscribed').val('false');
+    var inscribe_toggle_icon = $('#' + place_id + ' .deinscribe, #' + place_id + ' .inscribe');
+    var new_title = inscribe_toggle_icon.data('inscribe-title');
+    inscribe_toggle_icon.attr('title', new_title).removeClass('deinscribe').addClass('inscribe');
+    $('#' + place_id).data('width', image_width).data('height', image_height);
     var full_place = $('#' + place_id + ' .mask');
     if(!full_place.is(':visible')) {
       full_place.show();
@@ -161,21 +167,26 @@ function lessonEditorDocumentReadyAddMediaElement() {
     var new_mask = 'vertical';
     var old_orientation = 'width';
     var orientation = 'height';
-    var orientation_val = resizeHeight(image_width, image_height, current_slide.data('kind'));
-    var to_make_draggable = 'y';
-    if(isHorizontalMask(image_width, image_height, current_slide.data('kind'))) {
+    var orientation_val = resizeHeight(image_width, image_height, current_kind);
+    var align_val = (getVerticalStandardSizeOfSlideImage(current_kind) - orientation_val) / 2;
+    var this_align_side = 'top';
+    var other_align_side = 'left';
+    if(isHorizontalMask(image_width, image_height, current_kind)) {
       old_mask = 'vertical';
       new_mask = 'horizontal';
       old_orientation = 'height';
       orientation = 'width';
-      orientation_val = resizeWidth(image_width, image_height, current_slide.data('kind'));
-      to_make_draggable = 'x';
+      orientation_val = resizeWidth(image_width, image_height, current_kind);
+      align_val = (getHorizontalStandardSizeOfSlideImage(current_kind) - orientation_val) / 2;
+      this_align_side = 'left';
+      other_align_side = 'top';
     }
+    $('#' + place_id + ' .align').val(align_val);
     full_place.addClass(new_mask).removeClass(old_mask);
     var img_tag = $('#' + place_id + ' .mask img');
     img_tag.attr('src', image_url);
-    img_tag.parent().css('left', 0);
-    img_tag.parent().css('top', 0);
+    img_tag.parent().css(this_align_side, align_val);
+    img_tag.parent().css(other_align_side, 0);
     img_tag.removeAttr(old_orientation);
     img_tag.attr(orientation, orientation_val);
     makeDraggable(place_id);
@@ -256,15 +267,21 @@ Initializer for galleries.
 **/
 function lessonEditorDocumentReadyGalleries() {
   $body.on('click', '.slide-content .image.editable .add', function() {
-    showGalleryInLessonEditor(this, 'image');
+    if(!$(this).parents('.slide-content').hasClass('small-size')) {
+      showGalleryInLessonEditor(this, 'image');
+    }
   });
   $body.on('click', '.slide-content .audio.editable .add', function() {
-    stopMediaInCurrentSlide();
-    showGalleryInLessonEditor(this, 'audio');
+    if(!$(this).parents('.slide-content').hasClass('small-size')) {
+      stopMediaInCurrentSlide();
+      showGalleryInLessonEditor(this, 'audio');
+    }
   });
   $body.on('click', '.slide-content .video.editable .add', function() {
-    stopMediaInCurrentSlide();
-    showGalleryInLessonEditor(this, 'video');
+    if(!$(this).parents('.slide-content').hasClass('small-size')) {
+      stopMediaInCurrentSlide();
+      showGalleryInLessonEditor(this, 'video');
+    }
   });
   $body.on('click', '._close_image_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
@@ -366,6 +383,20 @@ function lessonEditorDocumentReadyGeneral() {
 }
 
 /**
+Initializer for dynamics of inscriptions and deinscriptions of images (it uses {{#crossLink "LessonEditorJqueryAnimations/lessonEditorInscribeImage:method"}}{{/crossLink}} and {{#crossLink "LessonEditorJqueryAnimations/lessonEditorDeinscribeImage:method"}}{{/crossLink}}).
+@method lessonEditorDocumentReadyInitializeImageInscription
+@for LessonEditorDocumentReady
+**/
+function lessonEditorDocumentReadyInitializeImageInscription() {
+  $body.on('click', '.slide-content .image.editable .inscribe', function() {
+    lessonEditorInscribeImage($(this).parents('.image.editable').attr('id'));
+  });
+  $body.on('click', '.slide-content .image.editable .deinscribe', function() {
+    lessonEditorDeinscribeImage($(this).parents('.image.editable').attr('id'));
+  });
+}
+
+/**
 Initializer for JQueryUi animations defined in the class {{#crossLink "LessonEditorJqueryAnimations"}}{{/crossLink}}.
 @method lessonEditorDocumentReadyJqueryAnimations
 @for LessonEditorDocumentReady
@@ -411,11 +442,13 @@ function lessonEditorDocumentReadyReplaceMediaElement() {
   $body.on('mouseover', '.slide-content .image.editable .mask', function() {
     if($(this).find('.alignable').data('rolloverable')) {
       $(this).find('.add').show();
+      $(this).find('.inscribe, .deinscribe').show();
     }
   });
   $body.on('mouseout', '.slide-content .image.editable .mask', function() {
     if($(this).find('.alignable').data('rolloverable')) {
       $(this).find('.add').hide();
+      $(this).find('.inscribe, .deinscribe').hide();
     }
   });
   $body.on('mouseover', '.slide-content .video.editable .mask video', function(e) {
@@ -930,16 +963,64 @@ function updateEffectsInsideDocumentGallery() {
 
 
 /**
+Returns the width of the image space for the kind of slide.
+@method getHorizontalStandardSizeOfSlideImage
+@for LessonEditorImageResizing
+@param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
+@return {Number} width of the image space for this kind of slide
+**/
+function getHorizontalStandardSizeOfSlideImage(kind) {
+  switch(kind) {
+    case 'cover': slideWidth = 900;
+    break;
+    case 'image1': slideWidth = 420;
+    break;
+    case 'image2': slideWidth = 420;
+    break;
+    case 'image3': slideWidth = 860;
+    break;
+    case 'image4': slideWidth = 420;
+    break;
+    default: slideWidth = 900;
+  }
+  return slideWidth;
+}
+
+/**
+Returns the height of the image space for the kind of slide.
+@method getVerticalStandardSizeOfSlideImage
+@for LessonEditorImageResizing
+@param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
+@return {Number} height of the image space for this kind of slide
+**/
+function getVerticalStandardSizeOfSlideImage(kind) {
+  switch(kind) {
+    case 'cover': slideHeight = 560;
+    break;
+    case 'image1': slideHeight = 420;
+    break;
+    case 'image2': slideHeight = 550;
+    break;
+    case 'image3': slideHeight = 550;
+    break;
+    case 'image4': slideHeight = 265;
+    break;
+    default: slideHeight = 590;
+  }
+  return slideHeight;
+}
+
+/**
 Check if image ratio is bigger then kind ratio.
 @method isHorizontalMask
 @for LessonEditorImageResizing
-@param image_width {Number} width of the image
-@param image_height {Number} height of the image
+@param width {Number} width of the image
+@param height {Number} height of the image
 @param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
 @return {Boolean} true if the image is horizontal, false if vertical
 **/
-function isHorizontalMask(image_width, image_height, kind) {
-  var ratio = image_width / image_height;
+function isHorizontalMask(width, height, kind) {
+  var ratio = width / height;
   var slideRatio = 0;
   switch(kind) {
     case 'cover': slideRatio = 1.6;
@@ -967,46 +1048,20 @@ Gets scaled height to slide images.
 @return {Number} scaled height
 **/
 function resizeHeight(width, height, kind) {
-  switch(kind) {
-    case 'cover': slideWidth = 900;
-    break;
-    case 'image1': slideWidth = 420;
-    break;
-    case 'image2': slideWidth = 420;
-    break;
-    case 'image3': slideWidth = 860;
-    break;
-    case 'image4': slideWidth = 420;
-    break;
-    default: slideWidth = 900;
-  }
-  return parseInt((height * slideWidth) / width) + 1;
+  return parseInt((height * getHorizontalStandardSizeOfSlideImage(kind)) / width) + 1;
 }
 
 /**
 Gets scaled width to slide images.
 @method resizeWidth
 @for LessonEditorImageResizing
-@param image_width {Number} width of the image
-@param image_height {Number} height of the image
+@param width {Number} width of the image
+@param height {Number} height of the image
 @param kind {String} type image into slide, accepts values: cover, image1, image2, image3, image4
 @return {Number} scaled width
 **/
 function resizeWidth(width, height, kind) {
-  switch(kind) {
-    case 'cover': slideHeight = 560;
-    break;
-    case 'image1': slideHeight = 420;
-    break;
-    case 'image2': slideHeight = 550;
-    break;
-    case 'image3': slideHeight = 550;
-    break;
-    case 'image4': slideHeight = 265;
-    break;
-    default: slideHeight = 590;
-  }
-  return parseInt((width * slideHeight) / height) + 1;
+  return parseInt((width * getVerticalStandardSizeOfSlideImage(kind)) / height) + 1;
 }
 
 
@@ -1059,35 +1114,127 @@ function initializeSortableNavs() {
 }
 
 /**
-Inizializes jQueryUI <b>draggable</b> function on slide image containers (to understand if the draggable is vertical or horizontal it uses {{#crossLink "LessonEditorImageResizing/isHorizontalMask:method"}}{{/crossLink}}).
+Method that deinscribes the image.
+@method lessonEditorDeinscribeImage
+@for LessonEditorJqueryAnimations
+@param place_id {String} HTML id for the container to make draggable
+**/
+function lessonEditorDeinscribeImage(place_id) {
+  var place = $('#' + place_id);
+  var full_place = place.find('.mask');
+  var alignable = full_place.find('.alignable');
+  var image = alignable.find('img');
+  var kind = $('li._lesson_editor_current_slide').data('kind');
+  if(!full_place.is(':visible') || kind == 'cover') {
+    return;
+  }
+  $('#' + place_id + ' .inscribed').val('false');
+  var new_title = $('#' + place_id + ' .deinscribe').data('inscribe-title');
+  $('#' + place_id + ' .deinscribe').attr('title', new_title).removeClass('deinscribe').addClass('inscribe');
+  var align_val;
+  var this_align_side;
+  var other_align_side;
+  var orientation_val;
+  if(full_place.hasClass('vertical')) {
+    orientation_val = resizeHeight(place.data('width'), place.data('height'), kind);
+    align_val = (getVerticalStandardSizeOfSlideImage(kind) - orientation_val) / 2;
+    this_align_side = 'top';
+    other_align_side = 'left';
+    image.removeAttr('width').attr('height', orientation_val);
+  } else {
+    orientation_val = resizeWidth(place.data('width'), place.data('height'), kind);
+    align_val = (getHorizontalStandardSizeOfSlideImage(kind) - orientation_val) / 2;
+    this_align_side = 'left';
+    other_align_side = 'top';
+    image.removeAttr('height').attr('width', orientation_val);
+  }
+  alignable.css(this_align_side, align_val).css(other_align_side, 0);
+  $('#' + place_id + ' .align').val(align_val);
+  alignable.draggable('destroy');
+  makeDraggable(place_id);
+}
+
+/**
+Method that inscribes the image.
+@method lessonEditorInscribeImage
+@for LessonEditorJqueryAnimations
+@param place_id {String} HTML id for the container to make draggable
+**/
+function lessonEditorInscribeImage(place_id) {
+  var place = $('#' + place_id);
+  var full_place = place.find('.mask');
+  var alignable = full_place.find('.alignable');
+  var image = alignable.find('img');
+  var kind = $('li._lesson_editor_current_slide').data('kind');
+  if(!full_place.is(':visible') || kind == 'cover') {
+    return;
+  }
+  $('#' + place_id + ' .inscribed').val('true');
+  var new_title = $('#' + place_id + ' .inscribe').data('deinscribe-title');
+  $('#' + place_id + ' .inscribe').attr('title', new_title).removeClass('inscribe').addClass('deinscribe');
+  var align_val;
+  var this_align_side;
+  var other_align_side;
+  var orientation_val;
+  if(full_place.hasClass('vertical')) {
+    orientation_val = resizeWidth(place.data('width'), place.data('height'), kind);
+    align_val = (getHorizontalStandardSizeOfSlideImage(kind) - orientation_val) / 2;
+    this_align_side = 'left';
+    other_align_side = 'top';
+    image.removeAttr('height').attr('width', orientation_val);
+  } else {
+    orientation_val = resizeHeight(place.data('width'), place.data('height'), kind);
+    align_val = (getVerticalStandardSizeOfSlideImage(kind) - orientation_val) / 2;
+    this_align_side = 'top';
+    other_align_side = 'left';
+    image.removeAttr('width').attr('height', orientation_val);
+  }
+  alignable.css(this_align_side, align_val).css(other_align_side, 0);
+  $('#' + place_id + ' .align').val(align_val);
+  alignable.draggable('destroy');
+  makeDraggable(place_id);
+}
+
+/**
+Inizializes jQueryUI <b>draggable</b> function on slide image containers.
 @method makeDraggable
 @for LessonEditorJqueryAnimations
 @param place_id {String} HTML id for the container to make draggable
 **/
 function makeDraggable(place_id) {
   var full_place = $('#' + place_id + ' .mask');
-  var axe = 'x';
-  if(full_place.hasClass('vertical')) {
-    axe = 'y';
+  if(!full_place.is(':visible')) {
+    return;
   }
   var image = $('#' + place_id + ' .mask img');
-  var side = '';
-  var maskedImgWidth;
-  var maskedImgHeight;
-  var dist;
-  if(axe == 'x') {
-    maskedImgWidth = image.attr('width');
-    dist = maskedImgWidth - full_place.width();
-    side = 'left';
+  var inscribed = (full_place.find('.deinscribe').length > 0);
+  var side;
+  var limit_max;
+  var limit_min;
+  if(full_place.hasClass('vertical')) {
+    if(inscribed) {
+      side = 'left';
+      limit_min = 0;
+      limit_max = full_place.width() - image.width();
+    } else {
+      side = 'top';
+      limit_min = full_place.height() - image.height();
+      limit_max = 0;
+    }
   } else {
-    maskedImgHeight = image.attr('height');
-    side = 'top';
-    dist = maskedImgHeight - full_place.height();
+    if(inscribed) {
+      side = 'top';
+      limit_min = 0;
+      limit_max = full_place.height() - image.height();
+    } else {
+      side = 'left';
+      limit_min = full_place.width() - image.width();
+      limit_max = 0;
+    }
   }
   $('#' + place_id + ' .mask .alignable').draggable({
-    axis: axe,
+    axis: ((side == 'top') ? 'y' : 'x'),
     cursor: 'move',
-    distance: 10,
     start: function() {
       $('#' + place_id + ' .mask img').css('cursor', 'move');
       $('#' + place_id + ' .alignable').data('rolloverable', false);
@@ -1097,34 +1244,38 @@ function makeDraggable(place_id) {
       $('#' + place_id + ' .mask img').css('cursor', 'url(https://mail.google.com/mail/images/2/openhand.cur), move');
       $('#' + place_id + ' .alignable').data('rolloverable', true);
       $('#' + place_id + ' span').show();
-      var thisDrag = $(this);
-      var offset = thisDrag.css(side);
-      if(parseInt(offset) > 0) {
-        offset = 0;
-        if(side == 'left') {
-          thisDrag.animate({
-            left: '0'
+      var myself = $(this);
+      var offset;
+      if(side == 'top') {
+        offset = myself.position().top;
+        if(offset < limit_min) {
+          offset = limit_min;
+          myself.animate({
+            top: limit_min
           }, 100);
-        } else {
-          thisDrag.animate({
-            top: '0'
+        }
+        if(offset > limit_max) {
+          offset = limit_max;
+          myself.animate({
+            top: limit_max
           }, 100);
         }
       } else {
-        if(parseInt(offset) < -(parseInt(dist))) {
-          offset = -parseInt(dist);
-          if(side == 'left') {
-            thisDrag.animate({
-              left: '-' + dist + 'px'
-            }, 100);
-          } else {
-            thisDrag.animate({
-              top: '-' + dist + 'px'
-            }, 100);
-          }
+        offset = myself.position().left;
+        if(offset < limit_min) {
+          offset = limit_min;
+          myself.animate({
+            left: limit_min
+          }, 100);
+        }
+        if(offset > limit_max) {
+          offset = limit_max;
+          myself.animate({
+            left: limit_max
+          }, 100);
         }
       }
-      $('#' + place_id + ' .align').val(parseInt(offset));
+      $('#' + place_id + ' .align').val(offset);
     }
   });
 }
@@ -1309,6 +1460,7 @@ function initTinymce(tiny_id) {
     editor_selector: 'tinymce',
     skin: 'desy',
     plugins: plugins,
+    custom_shortcuts: false,
     paste_preprocess: function(pl, o) {
       o.content = stripTagsForCutAndPaste(o.content, '');
     },
@@ -1324,6 +1476,7 @@ function initTinymce(tiny_id) {
       });
       ed.onNodeChange.add(function(ed, cm, e) {
         cleanTinyMCESpanTagsFontSize(ed);
+        $(ed.getBody()).find('a').addClass('target_blank_mce');
       });
       ed.onKeyUp.add(function(ed, e) {
         handleTinyMCEOveflow(ed, tiny_id);

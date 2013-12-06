@@ -362,6 +362,20 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
+                                <a href="#method_getHorizontalStandardSizeOfSlideImage">getHorizontalStandardSizeOfSlideImage</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getVerticalStandardSizeOfSlideImage">getVerticalStandardSizeOfSlideImage</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_isHorizontalMask">isHorizontalMask</a>
 
                                 
@@ -398,6 +412,220 @@
                 <h2 class="off-left">Methods</h2>
 
                 
+                    <div id="method_getHorizontalStandardSizeOfSlideImage" class="method item">
+    <h3 class="name"><code>getHorizontalStandardSizeOfSlideImage</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>kind</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l965"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:965</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns the width of the image space for the kind of slide.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">kind</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>type image into slide, accepts values: cover, image1, image2, image3, image4</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                    
+                    <p>width of the image space for this kind of slide</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getVerticalStandardSizeOfSlideImage" class="method item">
+    <h3 class="name"><code>getVerticalStandardSizeOfSlideImage</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>kind</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l989"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:989</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns the height of the image space for the kind of slide.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">kind</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>type image into slide, accepts values: cover, image1, image2, image3, image4</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                    
+                    <p>height of the image space for this kind of slide</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method_isHorizontalMask" class="method item">
     <h3 class="name"><code>isHorizontalMask</code></h3>
 
@@ -407,13 +635,13 @@
             
                 <li class="arg">
                     
-                        <code>image_width</code>
+                        <code>width</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>image_height</code>
+                        <code>height</code>
                     
                 </li>
             
@@ -456,7 +684,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l932"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:932</code></a>
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l1013"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:1013</code></a>
         
         </p>
 
@@ -479,7 +707,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">image_width</code>
+                        <code class="param-name">width</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
@@ -495,7 +723,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">image_height</code>
+                        <code class="param-name">height</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
@@ -607,7 +835,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l960"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:960</code></a>
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l1041"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:1041</code></a>
         
         </p>
 
@@ -709,13 +937,13 @@
             
                 <li class="arg">
                     
-                        <code>image_width</code>
+                        <code>width</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>image_height</code>
+                        <code>height</code>
                     
                 </li>
             
@@ -758,7 +986,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l986"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:986</code></a>
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l1054"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:1054</code></a>
         
         </p>
 
@@ -781,7 +1009,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">image_width</code>
+                        <code class="param-name">width</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
@@ -797,7 +1025,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">image_height</code>
+                        <code class="param-name">height</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 

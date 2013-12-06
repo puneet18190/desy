@@ -972,6 +972,12 @@ en:
       # Button to save and exit
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       save_and_exit: "Save and exit"
+      # Button that inscribes the image inside the available space
+      # 1 - views/lesson_editor/slides/parts/_image.html.erb
+      inscribe_image: "Inscribe this image inside the available space"
+      # Button that undoes the inscription of the image
+      # 1 - views/lesson_editor/slides/parts/_image.html.erb
+      deinscribe_image: "Expand this image to fit to the available space"
     media_elements:
       # Icon to upload the file attached to a new media element
       # 1 - views/media_elements/_new_form_popup.html.erb
@@ -3842,6 +3848,9 @@ en:
       # Word used in the expression '1-10 <of> 300 items'
       # 1 - helpers/admin_helper.rb
       of_range: "Of"
+      # Expression used when there are too many pages to be displayed
+      # 1 - views/admin/_list_heading.html.erb
+      truncate: "..."
   
   
   # SECTION 4.3: FAQS

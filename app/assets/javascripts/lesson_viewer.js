@@ -40,6 +40,10 @@ function lessonViewerDocumentReady() {
   $body.on('mouseleave', '.playlistMenu', function(e) {
     closePlaylistMenuInLessonViewer(function() {});
   });
+  $body.on('click', 'a.target_blank_mce', function(e) {
+    e.preventDefault();
+    window.open($(this).attr('href'), '_blank').focus();
+  });
 }
 
 /**

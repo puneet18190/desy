@@ -650,11 +650,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert lesson.publish
     slide = lesson.add_slide('image1', 2)
     assert !slide.nil?
-    assert !Slide.new.update_with_media_elements('titolo', 'testo', {1 => [0, 0, 'asdgs']}, [])
+    assert !Slide.new.update_with_media_elements('titolo', 'testo', {1 => [0, 0, 'asdgs', false]}, [])
     assert slide.title.blank?
     assert slide.text.blank?
     assert !MediaElement.find(5).is_public
-    assert slide.update_with_media_elements('titolo2', 'testo2', {1 => [5, 0, 'captionzz']}, [])
+    assert slide.update_with_media_elements('titolo2', 'testo2', {1 => [5, 0, 'captionzz', false]}, [])
     assert MediaElement.find(5).is_public
     slide.reload
     assert_equal 'titolo2', slide.title
@@ -664,11 +664,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 0, mes.alignment
     assert_equal 'captionzz', mes.caption
     # video in an image slide
-    assert !slide.update_with_media_elements('titolo4', 'testo4', {1 => [1, 0, 'captionzz']}, [])
+    assert !slide.update_with_media_elements('titolo4', 'testo4', {1 => [1, 0, 'captionzz', false]}, [])
     slide = Slide.find slide.id
     assert_equal 'titolo2', slide.title
     # too many elements
-    assert !slide.update_with_media_elements('titolo4', 'testo4', {1 => [5, 0, 'captionzz'], 2 => [5, 0, 'captionzz']}, [])
+    assert !slide.update_with_media_elements('titolo4', 'testo4', {1 => [5, 0, 'captionzz', false], 2 => [5, 0, 'captionzz', false]}, [])
     slide = Slide.find slide.id
     assert_equal 'titolo2', slide.title
     # let's try with image4
@@ -677,7 +677,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert slide.title.blank?
     assert slide.text.blank?
     assert MediaElementsSlide.where(:slide_id => slide.id).empty?
-    assert slide.update_with_media_elements(nil, nil, {1 => [5, 0, 'caption1'], 2 => [6, 10, 'caption2'], 3 => [5, -110, 'caption3'], 4 => [6, 4, 'caption4']}, [])
+    assert slide.update_with_media_elements(nil, nil, {1 => [5, 0, 'caption1', false], 2 => [6, 10, 'caption2', true], 3 => [5, -110, 'caption3', false], 4 => [6, 4, 'caption4', false]}, [])
     slide = Slide.find slide.id
     assert slide.title.blank?
     assert slide.text.blank?
@@ -685,22 +685,26 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !mes.nil?
     assert_equal 0, mes.alignment
     assert_equal 'caption1', mes.caption
+    assert_equal false, mes.inscribed
     stored_id_me = mes.id
     mes = MediaElementsSlide.where(:slide_id => slide.id, :position => 2).first
     assert !mes.nil?
     assert_equal 10, mes.alignment
     assert_equal 'caption2', mes.caption
+    assert_equal true, mes.inscribed
     mes = MediaElementsSlide.where(:slide_id => slide.id, :position => 3).first
     assert !mes.nil?
     assert_equal -110, mes.alignment
     assert_equal 'caption3', mes.caption
+    assert_equal false, mes.inscribed
     mes = MediaElementsSlide.where(:slide_id => slide.id, :position => 4).first
     assert !mes.nil?
     assert_equal 4, mes.alignment
     assert_equal 'caption4', mes.caption
+    assert_equal false, mes.inscribed
     assert_equal 4, MediaElementsSlide.where(:slide_id => slide.id).count
     count_media_elements_slide = MediaElementsSlide.count
-    assert slide.update_with_media_elements(nil, nil, {1 => [6, 0, 'caption1'], 2 => [6, 10, 'caption2'], 3 => [5, -110, 'caption3'], 4 => [6, 4, 'caption4']}, [])
+    assert slide.update_with_media_elements(nil, nil, {1 => [6, 0, 'caption1', false], 2 => [6, 10, 'caption2', false], 3 => [5, -110, 'caption3', false], 4 => [6, 4, 'caption4', false]}, [])
     assert_equal count_media_elements_slide, MediaElementsSlide.count
     assert_equal 6, MediaElementsSlide.find(stored_id_me).media_element_id
     slidedd = lesson.add_slide('image1', 2)
@@ -719,6 +723,18 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !slidedd.update_with_media_elements(nil, nil, {}, [1, 2, d4.id, d5.id])
     assert_equal 1, DocumentsSlide.count
     assert_equal 1, DocumentsSlide.where(:slide_id => slidedd.id, :document_id => d5.id).count
+    # another error: inscribed = true in a video and in an audio
+    slide_with_video = lesson.add_slide('video1', 2)
+    assert !slide_with_video.update_with_media_elements('titolo', 'testo', {1 => [1, 0, 'captionzz', true]}, [])
+    assert !slide_with_video.update_with_media_elements('titolo', 'testo', {1 => [1, 0, '', true]}, [])
+    assert !slide_with_video.update_with_media_elements('titolo', 'testo', {1 => [1, nil, '', true]}, [])
+    assert slide_with_video.update_with_media_elements('titolo', 'testo', {1 => [1, nil, '', false]}, [])
+    assert User.find(1).bookmark('MediaElement', 4)
+    slide_with_audio = lesson.add_slide('audio', 2)
+    assert !slide_with_audio.update_with_media_elements('titolo', 'testo', {1 => [4, 0, 'captionzz', true]}, [])
+    assert !slide_with_audio.update_with_media_elements('titolo', 'testo', {1 => [4, 0, '', true]}, [])
+    assert !slide_with_audio.update_with_media_elements('titolo', 'testo', {1 => [4, nil, '', true]}, [])
+    assert slide_with_audio.update_with_media_elements('titolo', 'testo', {1 => [4, nil, '', false]}, [])
   end
   
   test 'modify_lesson' do
