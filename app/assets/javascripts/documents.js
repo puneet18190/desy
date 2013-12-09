@@ -188,7 +188,7 @@ function documentsDocumentReadyUploader() {
   $body.on('click', '#new_document_submit', function() {
     $('input,textarea').removeClass('form_error');
     $('.barraLoading img').show();
-    $('.barraLoading img').attr('src', '/assets/loadingBar.gif');
+    $('.barraLoading img').attr('src', '/assets/loadingBar-document.gif');
     $(this).closest('#new_document').submit();
   });
   $body.on('focus', '#load-document #title', function() {
