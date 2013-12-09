@@ -1,28 +1,15 @@
-<div class="gray-bar">
-  <p class="fltlft lower titleSelected"><%= t('dashboard.selected_for_you') %></p>
-  <a id="switch_to_lessons" class="navlist-item b-dashboard current lower"><%= t('captions.lessons') %></a>
-  <a id="switch_to_media_elements" class="navlist-item b-dashboard lower"><%= t('captions.media_elements') %></a>
-  <%= render :partial => "shared/search" %>
+<div id="dashboard_container">
+  <div class="title_lessons">
+  </div>
+  <div class="space_lessons">
+  </div>
+  <div class="title_media_elements">
+  </div>
+  <div class="space_media_elements">
+  </div>
 </div>
 
-<br class="clearfloat">
-<div class="griglia-contenuti">
-  <%= render :partial => 'dashboard/lessons_and_media_elements', :locals => {:lessons => @lessons, :media_elements => @media_elements, :lessons_emptied => @lessons_emptied, :media_elements_emptied => @media_elements_emptied} %>
-  <br class="clearfloat">
-  <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
-  <br class="clearfloat">
-  <div class="boxContentIndex">
-    <p>
-      <%= t('dashboard.help_using_desy', :desy => SETTINGS['application_name']) %><br/>
-      <%= link_to t('dashboard.download_manual'), faqs_path %>
-    </p>
-  </div>
-  <div class="boxContentIndex" style="float:right">
-    <p>
-      <%= t('dashboard.talk_with_desy', :desy => SETTINGS['application_name']) %><br>
-      <%= link_to t('dashboard.contact_us'), "mailto:#{SETTINGS['application']['contact_us_email']}" %>
-    </p>
-  </div>
+<div id="dashboard_toolbar">
 </div>
 
 <%= render partial: 'media_elements/new_form_popup' %>

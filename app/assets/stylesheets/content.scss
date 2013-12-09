@@ -704,3 +704,57 @@
   }
   
 }
+
+.dashboard-controller {
+  
+  #dashboard_toolbar {
+    
+    width: 256px;
+    height: 810px;
+    float: right;
+    background-color: blue;
+    border-left: 1px solid #F5F5F5;
+    
+  }
+  
+  #dashboard_container {
+    
+    width: calc(100% - 257px);
+    height: 810px;
+    float: left;
+    
+    .title_lessons {
+      
+      height: 90px;
+      width: 100%;
+      background-color: green;
+      
+    }
+    
+    .title_media_elements {
+      
+      height: 90px;
+      width: 100%;
+      background-color: maroon;
+      
+    }
+    
+    .space_lessons {
+      
+      height: 315px;
+      width: 100%;
+      background-color: yellow;
+      
+    }
+    
+    .space_media_elements {
+      
+      height: 315px;
+      width: 100%;
+      background-color: purple;
+      
+    }
+    
+  }
+  
+}

@@ -115,18 +115,18 @@
       
       &.dashboard a {
         
-        background-color: $black;
-        text-shadow: #4e4d4d 0px 2px 0px;
+        background-color: #262626;
+        text-shadow: black 0px 2px 0px;
         
         &.current {
           
-          color: #7d7d7d;
+          color: #515151;
           
         }
         
         &:hover, &:active, &:focus { 
           
-          color: #7d7d7d;
+          color: #515151;
           
         }
         
