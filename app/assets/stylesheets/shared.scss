@@ -35,28 +35,6 @@ a.cerca.current {
   
 }
 
-.boxViewExpandedLesson {
-  
-  @include contentLayout;
-  background-color: #fbfafb;
-  float: left;
-  width: 48.7%;
-  
-  .contentInterno {
-    
-    @include contentInterno;
-    
-  }
-  
-  &.lefth {
-    
-    margin-right: 2%;
-    margin-left: 0.3%;
-    
-  }
-  
-}
-
 .boxNewLesson {
   
   @include contentLayout;

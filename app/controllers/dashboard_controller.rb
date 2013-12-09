@@ -36,9 +36,9 @@ class DashboardController < ApplicationController
   
   # Initializes all the parameters of pagination
   def initialize_pagination
-    @lessons_for_page = SETTINGS['lessons_for_page_in_dashboard']
+    @lessons_for_page = correct_integer?(params['lessons_for_page']) ? params['lessons_for_page'].to_i : 0
     @lesson_pages = SETTINGS['lesson_pages_in_dashboard']
-    @media_elements_for_page = SETTINGS['media_elements_for_page_in_dashboard']
+    @media_elements_for_page = correct_integer?(params['media_elements_for_page']) ? params['media_elements_for_page'].to_i : 0
     @media_element_pages = SETTINGS['media_element_pages_in_dashboard']
   end
   

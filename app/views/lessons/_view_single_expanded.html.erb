@@ -1,8 +1,2 @@
-<div id="<%= destination %>_<%= lesson.id %>" class="boxViewExpandedLesson">
-  <div class="contentInterno">
-    <h1><%= lesson.subject.description %></h1>
-    <h2><%= lesson.title %></h2>
-    <p><%= lesson.description %></p>
-  </div>
-  <%= render :partial => 'lessons/action_buttons', :locals => {:lesson => lesson, :destination => destination, :additional_class => ''} %>
+<div id="<%= destination %>_<%= lesson.id %>" class="lesson_in_dashboard">
 </div>

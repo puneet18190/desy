@@ -1,7 +1,10 @@
-<div id="dashboard_container">
+<div id="dashboard_container" data-status="general">
   <div class="title_lessons">
   </div>
   <div class="space_lessons">
+    <% @lessons.each do |l| %>
+      <%= render :partial => 'lessons/view_single_expanded', :locals => {:lesson => l, :destination => ButtonDestinations::EXPANDED_LESSON} %>
+    <% end %>
   </div>
   <div class="title_media_elements">
   </div>
