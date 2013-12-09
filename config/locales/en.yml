@@ -1015,12 +1015,11 @@ en:
       # 5 - views/virtual_classroom/_pagination.html.erb
       prev: "Go to previous page"
       # Go to next page
-      # 1 - views/dashboard/_pagination.html.erb
+      # 1 - views/shared/_pagination.html.erb
       # 2 - views/shared/_pagination.html.erb
-      # 3 - views/shared/_pagination.html.erb
-      # 4 - views/shared/_popups.html.erb
+      # 3 - views/shared/_popups.html.erb
+      # 4 - views/virtual_classroom/_pagination.html.erb
       # 5 - views/virtual_classroom/_pagination.html.erb
-      # 6 - views/virtual_classroom/_pagination.html.erb
       next: "Go to next page"
     # Titles for the user profile
     profile:
@@ -1331,6 +1330,9 @@ en:
     # Used in the general footer of the application, to redirect to the main page
     # 1 - views/shared/_footer.html.erb
     back_to_dashboard: "Back to dashboard"
+    # Caption of the dashboard in the menu
+    # 1 - views/shared/_menu.html.erb
+    dashboard: "Dashboard"
     # Used to refer to the user's documents
     # 1 - views/shared/_menu.html.erb
     # 2 - views/documents/index.html.erb
