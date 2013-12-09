@@ -2,7 +2,7 @@ function dashboardResizeController() {
   var container = $('#dashboard_container');
   var width = container.width();
   var lessons = parseInt((width - 20) / 320);
-  var media_elements = parseInt((width - 20) / 220);
+  var media_elements = parseInt((width - 20) / 222);
   if(container.data('status') == 'lessons') {
     if(lessons != container.data('lessons')) {
       $.ajax({

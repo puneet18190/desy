@@ -759,7 +759,21 @@
       
       height: 315px;
       width: 100%;
-      background-color: purple;
+      
+      .boxViewExpandedMediaElement {
+        
+        height: 313px;
+        border: 1px solid #F5F5F5;
+        box-shadow: none;
+        float: left;
+        
+        .contentInterno {
+          
+          height: 272px;
+          
+        }
+        
+      }
       
     }
     

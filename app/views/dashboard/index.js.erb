@@ -3,11 +3,17 @@ var lessons = <%= @lessons.length %>;
 var media_elements = <%= @media_elements.length %>;
 container.data('lessons', lessons);
 container.data('media-elements', media_elements.length);
-container.find('.space_lessons').html('');
 
+container.find('.space_lessons').html('');
 <% @lessons.each do |l| %>
   container.find('.space_lessons').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
 <% end %>
-
 var lessons_margin = (container.width() - lessons * 300) / (lessons + 1);
 container.find('.space_lessons .lesson_in_dashboard').css('margin-left', lessons_margin + 'px');
+
+container.find('.space_media_elements').html('');
+<% @media_elements.each do |me| %>
+  container.find('.space_media_elements').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => false})) %>");
+<% end %>
+var media_elements_margin = (container.width() - media_elements * 200) / (media_elements + 1);
+container.find('.space_media_elements .boxViewExpandedMediaElement').css('margin-left', media_elements_margin + 'px');
