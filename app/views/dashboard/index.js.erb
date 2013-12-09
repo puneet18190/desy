@@ -7,5 +7,7 @@ container.find('.space_lessons').html('');
 
 <% @lessons.each do |l| %>
   container.find('.space_lessons').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
-  container.find('.space_lessons .lesson_in_dashboard').css('margin-left', (container.width() - lessons * 300) / (lessons + 1));
 <% end %>
+
+var lessons_margin = (container.width() - lessons * 300) / (lessons + 1);
+container.find('.space_lessons .lesson_in_dashboard').css('margin-left', lessons_margin + 'px');
