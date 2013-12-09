@@ -1,5 +1,13 @@
+<%= render :partial => 'media_elements/new_form_popup' %>
+<%= render :partial => 'documents/new_form_popup' %>
 <div id="dashboard_container" data-status="general" data-lessons="0" data-media-elements="0">
   <div class="title_lessons">
+    <div class="icon"></div>
+    <div class="content">
+      <div class="title">Mancini sfida la Juve: «Daremo tutto per la vittoria»</div> <!-- TODO traduzz -->
+      <div class="description">Il tecnico del Galatasaray carica i suoi alla vigilia della sfida contro i bianconeri in Champions: «Conte avrà due risultati su tre a disposizione, noi saremo obbligati a vincere. Ci proveremo. Sneijder? Vedremo. Senza Pirlo la Juve perde molto»</div> <!-- TODO traduzz -->
+    </div>
+    <div class="expand_icon"></div>
   </div>
   <div class="space_lessons">
     <% @lessons.each do |l| %>
@@ -7,12 +15,15 @@
     <% end %>
   </div>
   <div class="title_media_elements">
+    <div class="icon"></div>
+    <div class="content">
+      <div class="title">Mancini sfida la Juve: «Daremo tutto per la vittoria»</div> <!-- TODO traduzz -->
+      <div class="description">Il tecnico del Galatasaray carica i suoi alla vigilia della sfida contro i bianconeri in Champions: «Conte avrà due risultati su tre a disposizione, noi saremo obbligati a vincere. Ci proveremo. Sneijder? Vedremo. Senza Pirlo la Juve perde molto»</div> <!-- TODO traduzz -->
+    </div>
+    <div class="expand_icon"></div>
   </div>
   <div class="space_media_elements">
   </div>
 </div>
-
 <div id="dashboard_toolbar">
 </div>
-
-<%= render partial: 'media_elements/new_form_popup' %>

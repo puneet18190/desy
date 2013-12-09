@@ -726,7 +726,48 @@
       
       height: 90px;
       width: 100%;
-      background-color: green;
+      
+      .icon {
+        
+        width: 90px;
+        height: 90px;
+        float: left;
+        
+      }
+      
+      .content {
+        
+        height: 50px;
+        width: calc(100% - 240px);
+        float: left;
+        padding: 30px 0 10px 0;
+        
+        .title {
+          
+          font: 13px 'Nunito', sans-serif;
+          color: $orange;
+          line-height: 17px;
+          height: 17px;
+          
+        }
+        
+        .description {
+          
+          font: 11px 'Nunito', sans-serif;
+          line-height: 12px;
+          height: 24px;
+          
+        }
+        
+      }
+      
+      .expand-icon {
+        
+        height: 90px;
+        width: 150px;
+        float: left;
+        
+      }
       
     }
     
@@ -734,7 +775,48 @@
       
       height: 90px;
       width: 100%;
-      background-color: maroon;
+      
+      .icon {
+        
+        width: 90px;
+        height: 90px;
+        float: left;
+        
+      }
+      
+      .content {
+        
+        height: 50px;
+        width: calc(100% - 240px);
+        float: left;
+        padding: 30px 0 10px 0;
+        
+        .title {
+          
+          font: 13px 'Nunito', sans-serif;
+          color: $green;
+          line-height: 17px;
+          height: 17px;
+          
+        }
+        
+        .description {
+          
+          font: 11px 'Nunito', sans-serif;
+          line-height: 12px;
+          height: 24px;
+          
+        }
+        
+      }
+      
+      .expand-icon {
+        
+        height: 90px;
+        width: 150px;
+        float: left;
+        
+      }
       
     }
     
