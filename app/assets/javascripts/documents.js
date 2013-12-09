@@ -266,7 +266,7 @@ Reloads documents page after new document is successfully loaded.
 @for DocumentsUploader
 **/
 function uploadDocumentLoaderDoneRedirect() {
-  $('.barraLoading').css('background-color', '#41A62A');
+  $('.barraLoading').css('background-color', '#5D5C5C');
   $('.barraLoading img').hide();
   $('.barraLoading img').attr('src', '');
   window.location = '/documents';
