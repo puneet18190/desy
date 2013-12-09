@@ -1,39 +1,8 @@
-var pagination_div = $('#dashboard_pagination');
+var container = $('#dashboard_container');
+container.data('lessons', <%= @lessons.length %>);
+container.data('media-elements', <%= @media_elements.length %>);
+container.find('.space_lessons').html('');
 
-var lessons_page = pagination_div.data('lessons-page');
-var lessons_tot = pagination_div.data('lessons-tot');
-var media_elements_page = pagination_div.data('media-elements-page');
-var media_elements_tot = pagination_div.data('media-elements-tot');
-
-if((lessons_page - 1) * <%= @lessons_for_page %> >= <%= @lessons.length %>) {
-  lessons_page -= 1;
-}
-
-if((media_elements_page - 1) * <%= @media_elements_for_page %> >= <%= @media_elements.length %>) {
-  media_elements_page -= 1;
-}
-
-var to_delete = $('#<%= @delete_item %>');
-to_delete.hide('fade', {}, 500, function() {
-  var temporary_msg = $('#popup_captions_container').data('temporary-msg');
-  if(temporary_msg != '') {
-    showOkPopUp(temporary_msg);
-    $('#popup_captions_container').data('temporary-msg', '');
-  }
-  $('#dashboard').replaceWith("<%= j(render(:partial => 'dashboard/lessons_and_media_elements', :locals => {:lessons => @lessons, :media_elements => @media_elements, :lessons_emptied => @lessons_emptied, :media_elements_emptied => @media_elements_emptied})) %>");
-  $(document).ready(function() {
-    realignDashboardLessons();
-  });
-  reloadDashboardPages(lessons_page, media_elements_page);
-  if('<%= @delete_item %>'.search('media_element') != -1) {
-    $('#lessons_in_dashboard').hide();
-    $('#media_elements_in_dashboard').show();
-    $('#switch_to_media_elements').addClass('current');
-    $('#switch_to_lessons').removeClass('current');
-    reloadMediaElementsDashboardPagination(media_elements_page, <%= (@media_elements.length.to_f / SETTINGS['media_elements_for_page_in_dashboard']).ceil %>);
-  } else {
-    reloadLessonsDashboardPagination(lessons_page, <%= (@lessons.length.to_f / SETTINGS['lessons_for_page_in_dashboard']).ceil %>);
-  }
-});
-
-$('#info_container').data('currenturl', <%= manipulate_url(remove_query_param: "delete_item", page: @page).to_json.html_safe %>);
+<% @lessons.each do |l| %>
+  container.find('.space_lessons').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
+<% end %>

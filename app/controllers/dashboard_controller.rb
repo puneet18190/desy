@@ -40,6 +40,12 @@ class DashboardController < ApplicationController
     @lesson_pages = SETTINGS['lesson_pages_in_dashboard']
     @media_elements_for_page = correct_integer?(params['media_elements_for_page']) ? params['media_elements_for_page'].to_i : 0
     @media_element_pages = SETTINGS['media_element_pages_in_dashboard']
+    if @lessons_for_page != 0 && @media_elements_for_page != 0
+      @lesson_pages = 1
+      @media_element_pages = 1
+    end
+    @lessons_for_page = 0 if @lessons_for_page > 50
+    @media_elements_for_page = 0 if @media_elements_for_page > 50
   end
   
 end
