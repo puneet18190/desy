@@ -17,8 +17,9 @@ function openDescriptionDashboardRecursionLayer(item, t, h_i, h_f, tot_time) {
         openDescriptionDashboardRecursionLayer(item, (t + 5), h_i, h_f, tot_time);
       }, 5);
     } else {
-      item.find('.description').hide();
-      item.css('height', '80px');
+      item.animate({height: '80px'}, t, function() {
+        item.find('.description').hide();
+      });
     }
   } else {
     item.data('moving', false);
@@ -103,8 +104,9 @@ function dashboardDocumentReady() {
     if(item.data('moving')) {
       item.data('moving', false);
     } else {
-      item.find('.description').hide();
-      item.css('height', '80px');
+      item.animate({height: '80px'}, 200, function() {
+        item.find('.description').hide();
+      });
     }
   });
 }
