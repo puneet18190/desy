@@ -19,7 +19,31 @@ module TimeConvert
       end
     end
     
+    # Converts seconds into a nice time difference
+    def time_difference_to_s(seconds)
+      seconds = seconds.to_i
+      return I18n.t('notifications.time_difference.seconds') if seconds < 0
+      case seconds
+        when (0...60)             then I18n.t('notifications.time_difference.seconds')
+        when (60...3600)          then time_difference_single('minutes', seconds, 60)
+        when (3600...86400)       then time_difference_single('hours', seconds, 3600)
+        when (86400...2629800)    then time_difference_single('days', seconds, 86400)
+        when (2629800...31557600) then time_difference_single('months', seconds, 2629800)
+        else                           time_difference_single('years', seconds, 31557600)
+      end
+    end
+    
     private
+    
+    # Gets the correct translation of a time difference
+    def time_difference_single(symbol, seconds, offset)
+      items = seconds / offset
+      if items == 1
+        I18n.t("notifications.time_difference.#{symbol.chop}")
+      else
+        I18n.t("notifications.time_difference.#{symbol}", :"#{symbol}" => items)
+      end
+    end
     
     # Convert a time according to standard english format
     def convert_in_english(a_time)
@@ -128,6 +152,11 @@ module TimeConvert
   def self.to_string(a_time)
     x = TimeConverter.new
     x.to_string a_time
+  end
+  
+  def self.time_difference_to_s(seconds)
+    x = TimeConverter.new
+    x.time_difference_to_s seconds
   end
   
 end
