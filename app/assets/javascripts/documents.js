@@ -188,7 +188,7 @@ function documentsDocumentReadyUploader() {
   $body.on('click', '#new_document_submit', function() {
     $('input,textarea').removeClass('form_error');
     $('.barraLoading img').show();
-    $('.barraLoading img').attr('src', '/assets/loadingBar.gif');
+    $('.barraLoading img').attr('src', '/assets/loadingBar-document.gif');
     $(this).closest('#new_document').submit();
   });
   $body.on('focus', '#load-document #title', function() {
@@ -266,7 +266,7 @@ Reloads documents page after new document is successfully loaded.
 @for DocumentsUploader
 **/
 function uploadDocumentLoaderDoneRedirect() {
-  $('.barraLoading').css('background-color', '#41A62A');
+  $('.barraLoading').css('background-color', '#5D5C5C');
   $('.barraLoading img').hide();
   $('.barraLoading img').attr('src', '');
   window.location = '/documents';
