@@ -13,37 +13,7 @@
  *= require jquery-ui-1.9.0.custom
  */
 
-$assets-bg-title-editor_gif: url("<%= asset_path 'bg_tile_editor.gif' %>");
-$assets-documents-fondo_png: url("<%= asset_path 'documents_fondo.png' %>");
-$assets-icone-player_svg: url("<%= asset_path 'icone-player.svg' %>");
-$assets-nav-left_png: url("<%= asset_path 'nav_left.png' %>");
-$assets-nav-right_png: url("<%= asset_path 'nav_right.png' %>");
-$assets-pallino_svg: url("<%= asset_path 'pallino.svg' %>");
-$assets-set-icone-editor_svg: url("<%= asset_path 'set-icone-editor.svg' %>");
-$assets-tiny-items_gif: url("<%= asset_path 'tiny_items.gif' %>");
-
-$assets-action-buttons_svg: '';
-$assets-bg-button-download_jpg: '';
-$assets-big-audio_jpg: '';
-$assets-big-image_jpg: '';
-$assets-big-video_jpg: '';
-$assets-cerca_png: '';
-$assets-cerca-on_png: '';
-$assets-cerca-current_png: '';
-$assets-empty-add-buttons_svg: '';
-$assets-esci_svg: '';
-$assets-google-open-hand: '';
-$assets-icone-editor-elementi_svg: '';
-$assets-icon-elements_svg: '';
-$assets-icone-resize_svg: '';
-$assets-icons-set-1_svg: '';
-$assets-icone-piene_svg: '';
-$assets-lesson-modified-notice_svg: '';
-$assets-next_svg: '';
-$assets-puntoesclamativo_png: '';
-$assets-select-icons_png: '';
-$assets-v_svg: '';
-$assets-x_svg: '';
+<%= Erubis::Eruby.new( Rails.application.config.assets.stylesheets.paths.urls.read ).result binding() %>
 
 @import '../variables';
 @import '../mixins';
