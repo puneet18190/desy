@@ -834,34 +834,51 @@
         background-color: #FBFAFB;
         float: left;
         
-        .lesson_dashboard_thumb {
+        .lesson_dashboard_hover_sensitive {
           
-          width: 280px;
-          height: 174px;
-          margin: 9px;
-          overflow: hidden;
-          position: relative;
+          height: 263px;
+          width: 298px;
+          padding-top: 9px;
+          
+          .lesson_dashboard_thumb {
+            
+            width: 280px;
+            height: 174px;
+            margin: 0 9px 9px 9px;
+            overflow: hidden;
+            position: relative;
+            background-color: white;
+            
+            img {
+              
+              position: absolute;
+              
+            }
+            
+            .text {
+              
+              position: absolute;
+              opacity: 0.95;
+              background-color: $orange;
+              bottom: 0;
+              height: 25px;
+              width: 265px;
+              padding: 8px 5px 7px 10px;
+              font: 13px 'Nunito',sans-serif;
+              color: white;
+              
+            }
+            
+          }
+          
+        }
+        
+        .lesson_dashboard_buttons {
+          
           background-color: white;
-          
-          img {
-            
-            position: absolute;
-            
-          }
-          
-          .text {
-            
-            position: absolute;
-            opacity: 0.95;
-            background-color: $orange;
-            bottom: 0;
-            height: 25px;
-            width: 265px;
-            padding: 8px 5px 7px 10px;
-            font: 13px 'Nunito',sans-serif;
-            color: white;
-            
-          }
+          height: 40px;
+          width: 298px;
+          border-top: 1px solid #F2F1F2;
           
         }
         
