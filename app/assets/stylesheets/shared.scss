@@ -484,7 +484,6 @@ a.cerca.current {
     .menuController {
       
       padding: 0px;
-      border-top: none;
       background-color: transparent;
       text-align: left;
       
@@ -554,7 +553,6 @@ a.cerca.current {
   .menuController {
     
     padding: 0px;
-    border-top: none;
     background-color: transparent;
     text-align: left;
     
@@ -1072,7 +1070,6 @@ label.filebutton span input#new_media_element_input {
 .menuController {
   
   background-color: #fff;
-  border-top: 1px solid #f2f1f2;
   text-align: right;
   color: #cbcbcb;
   display: block;
@@ -1176,6 +1173,7 @@ label.filebutton span input#new_media_element_input {
   .menuController {
     
     height: 40px;
+    border-top: 1px solid #F2F1F2;
     
     a {
       

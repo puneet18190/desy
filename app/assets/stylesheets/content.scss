@@ -754,6 +754,7 @@
         .description {
           
           font: 11px 'Nunito', sans-serif;
+          color: #939393;
           line-height: 12px;
           height: 24px;
           
@@ -802,6 +803,7 @@
         .description {
           
           font: 11px 'Nunito', sans-serif;
+          color: #939393;
           line-height: 12px;
           height: 24px;
           
@@ -826,9 +828,10 @@
       
       .lesson_in_dashboard {
         
-        width: 300px;
-        height: 315px;
-        background-color: red;
+        width: 298px;
+        height: 313px;
+        border: 1px solid #F2F1F2;
+        background-color: #FBFAFB;
         float: left;
         
       }
@@ -843,7 +846,7 @@
       .boxViewExpandedMediaElement {
         
         height: 313px;
-        border: 1px solid #F5F5F5;
+        border: 1px solid #F2F1F2;
         box-shadow: none;
         float: left;
         
