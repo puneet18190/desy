@@ -87,9 +87,9 @@ function dashboardDocumentReady() {
     dashboardResizeController();
   });
   $body.on('mouseenter', '.lesson_dashboard_hover_sensitive', function() {
-    openDescriptionDashboardLayer($(this));
+    openDescriptionDashboardLayer($(this).find('.literature_container'));
   });
   $body.on('mouseleave', '.lesson_dashboard_hover_sensitive', function() {
-    console.log('left');
+    $(this).find('.literature_container').css('height', '80px');
   });
 }
