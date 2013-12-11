@@ -1780,31 +1780,6 @@ en:
     # Caption of the user's notifications window if there are no notifications
     # 1 - views/notifications/_empty.html.erb
     empty: "You don't have any notifications"
-    # Time difference to string
-    time_difference:
-      # 1 - models/notification.rb
-      # 2 - models/notification.rb
-      seconds: "A few seconds ago"
-      # 1 - models/notification.rb
-      minute: "A minute ago"
-      # 1 - models/notification.rb
-      minutes: "%{minutes} minutes ago"
-      # 1 - models/notification.rb
-      hour:  "An hour ago"
-      # 1 - models/notification.rb
-      hours:  "%{hours} hours ago"
-      # 1 - models/notification.rb
-      day: "A day ago"
-      # 1 - models/notification.rb
-      days: "%{days} days ago"
-      # 1 - models/notification.rb
-      month: "A month ago"
-      # 1 - models/notification.rb
-      months: "%{months} months ago"
-      # 1 - models/notification.rb
-      year: "A year ago"
-      # 1 - models/notification.rb
-      years: "%{years} years ago"
     documents:
       # Notification sent by a user who destroyed a document attached to a lesson coped by somebody else, to inform all its followers (the variable %{lesson_title} is replaced by the title of the lesson, %{document_title} by the title of the document, and %{link} by the link to the lesson viewer for that lesson)
       # 1 - models/document.rb
@@ -2692,6 +2667,31 @@ en:
     # Time format
     # 1 - ..lib/autoload/time_convert.rb
     format: "english"
+    # Time difference to string
+    time_difference:
+      # 1 - ..lib/autoload/time_convert.rb
+      # 2 - ..lib/autoload/time_convert.rb
+      seconds: "A few seconds ago"
+      # 1 - ..lib/autoload/time_convert.rb
+      minute: "A minute ago"
+      # 1 - ..lib/autoload/time_convert.rb
+      minutes: "%{minutes} minutes ago"
+      # 1 - ..lib/autoload/time_convert.rb
+      hour:  "An hour ago"
+      # 1 - ..lib/autoload/time_convert.rb
+      hours:  "%{hours} hours ago"
+      # 1 - ..lib/autoload/time_convert.rb
+      day: "A day ago"
+      # 1 - ..lib/autoload/time_convert.rb
+      days: "%{days} days ago"
+      # 1 - ..lib/autoload/time_convert.rb
+      month: "A month ago"
+      # 1 - ..lib/autoload/time_convert.rb
+      months: "%{months} months ago"
+      # 1 - ..lib/autoload/time_convert.rb
+      year: "A year ago"
+      # 1 - ..lib/autoload/time_convert.rb
+      years: "%{years} years ago"
   language_parameters:
     notification:
       # Maximum length of the message inserted by the user to notify the modification of a public lesson

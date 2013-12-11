@@ -36,7 +36,7 @@
         Created by <%= "#{lesson.user.name} #{lesson.user.surname}" %> <!-- TODO -->
       </div>
       <div class="creation">
-        Published <%= TimeConvert.time_difference_to_s(Time.zone.now - lesson.updated_at) %> <!-- TODO traduzz -->
+        Published <%= TimeConvert.time_difference_to_s(Time.zone.now - lesson.updated_at).downcase %> <!-- TODO traduzz -->
       </div>
     </div>
     <div class="buttoncitos">

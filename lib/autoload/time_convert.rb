@@ -22,9 +22,9 @@ module TimeConvert
     # Converts seconds into a nice time difference
     def time_difference_to_s(seconds)
       seconds = seconds.to_i
-      return I18n.t('notifications.time_difference.seconds') if seconds < 0
+      return I18n.t('time.time_difference.seconds') if seconds < 0
       case seconds
-        when (0...60)             then I18n.t('notifications.time_difference.seconds')
+        when (0...60)             then I18n.t('time.time_difference.seconds')
         when (60...3600)          then time_difference_single('minutes', seconds, 60)
         when (3600...86400)       then time_difference_single('hours', seconds, 3600)
         when (86400...2629800)    then time_difference_single('days', seconds, 86400)
@@ -39,9 +39,9 @@ module TimeConvert
     def time_difference_single(symbol, seconds, offset)
       items = seconds / offset
       if items == 1
-        I18n.t("notifications.time_difference.#{symbol.chop}")
+        I18n.t("time.time_difference.#{symbol.chop}")
       else
-        I18n.t("notifications.time_difference.#{symbol}", :"#{symbol}" => items)
+        I18n.t("time.time_difference.#{symbol}", :"#{symbol}" => items)
       end
     end
     

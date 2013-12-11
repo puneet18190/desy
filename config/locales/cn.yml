@@ -1780,31 +1780,6 @@ cn:
     # Caption of the user's notifications window if there are no notifications
     # 1 - views/notifications/_empty.html.erb
     empty: "你没有得到任何的通知"
-    # Time difference to string
-    time_difference:
-      # 1 - models/notification.rb
-      # 2 - models/notification.rb
-      seconds: "几秒钟之前"
-      # 1 - models/notification.rb
-      minute: "几分钟之前"
-      # 1 - models/notification.rb
-      minutes: "%{minutes}分钟之前"
-      # 1 - models/notification.rb
-      hour:  "一小时之前"
-      # 1 - models/notification.rb
-      hours:  "%{hours}小时之前"
-      # 1 - models/notification.rb
-      day: "一天之前"
-      # 1 - models/notification.rb
-      days: "%{days}天之前"
-      # 1 - models/notification.rb
-      month: "一个月之前"
-      # 1 - models/notification.rb
-      months: "%{months}个月之前"
-      # 1 - models/notification.rb
-      year: "一年之前"
-      # 1 - models/notification.rb
-      years: "%{years}年之前"
     documents:
       # Notification sent by a user who destroyed a document attached to a lesson coped by somebody else, to inform all its followers (the variable %{lesson_title} is replaced by the title of the lesson, %{document_title} by the title of the document, and %{link} by the link to the lesson viewer for that lesson)
       # 1 - models/document.rb
@@ -2692,6 +2667,31 @@ cn:
     # Time format
     # 1 - ..lib/autoload/time_convert.rb
     format: "chinese"
+    # Time difference to string
+    time_difference:
+      # 1 - ..lib/autoload/time_convert.rb
+      # 2 - ..lib/autoload/time_convert.rb
+      seconds: "几秒钟之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      minute: "几分钟之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      minutes: "%{minutes}分钟之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      hour:  "一小时之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      hours:  "%{hours}小时之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      day: "一天之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      days: "%{days}天之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      month: "一个月之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      months: "%{months}个月之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      year: "一年之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      years: "%{years}年之前"
   language_parameters:
     notification:
       # Maximum length of the message inserted by the user to notify the modification of a public lesson
