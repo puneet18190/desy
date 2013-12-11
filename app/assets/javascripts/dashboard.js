@@ -19,7 +19,7 @@ function dashboardResizeController() {
     }
   } else {
     var lessons_space = lessons * 320 - 20;
-    media_elements = parseInt((lessons_space - 207) / 207) + 1;
+    media_elements = parseInt((lessons_space - 206) / 206) + 1;
     if(lessons != container.data('lessons') || media_elements != container.data('media-elements')) {
       $.ajax({
         type: 'get',
