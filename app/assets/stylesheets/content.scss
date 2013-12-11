@@ -883,6 +883,7 @@
             bottom: 0;
             z-index: 12;
             background-color: #FBFAFB;
+            overflow: hidden;
             
             .subject {
               
@@ -897,9 +898,8 @@
             
             .title {
               
-              /*font: 13px 'Nunito',sans-serif; TODO titollo */font: 19px 'Nunito',sans-serif;
+              font: 19px 'Nunito',sans-serif;
               line-height: 20px;
-              height: 20px;
               color: $black;
               margin-top: 4px;
               
@@ -907,10 +907,9 @@
             
             .description {
               
-              font: 11px 'Nunito',sans-serif;
-              line-height: 14px;
-              height: 28px;
-              overflow: hidden;
+              font: 12px Arial,sans-serif;
+              line-height: 17px;
+              margin-top: 10px;
               
             }
             

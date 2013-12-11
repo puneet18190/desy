@@ -1,13 +1,14 @@
 function openDescriptionDashboardLayer(item) {
-  var tot_time = 300;
+  var tot_time = 200;
   var h_i = item.height();
   var h_f = 263 - h_i;
   var k = h_f / (tot_time * tot_time);
+  item.find('.description').show();
   openDescriptionDashboardRecursionLayer(item, 0, h_i, h_f, tot_time);
 }
 
 function openDescriptionDashboardRecursionLayer(item, t, h_i, h_f, tot_time) {
-  var height = h_i + ((t * t * h_f) / (tot_time * tot_time));
+  var height = h_i + ((t * h_f) / tot_time);
   item.css('height', (height + 'px'));
   if(t < tot_time) {
     setTimeout(function() {
@@ -90,6 +91,7 @@ function dashboardDocumentReady() {
     openDescriptionDashboardLayer($(this).find('.literature_container'));
   });
   $body.on('mouseleave', '.lesson_dashboard_hover_sensitive', function() {
+    $(this).find('.literature_container .description').hide();
     $(this).find('.literature_container').css('height', '80px');
   });
 }
