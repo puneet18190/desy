@@ -871,6 +871,45 @@
             
           }
           
+          .literature_container {
+            
+            height: 80px;
+            padding-left: 10px;
+            padding-right: 10px;
+            width: 278px;
+            
+            .subject {
+              
+              font: 11px 'Nunito',sans-serif;
+              font-weight: bold;
+              line-height: 17px;
+              height: 17px;
+              padding-top: 2px;
+              color: $orange;
+              
+            }
+            
+            .title {
+              
+              font: 13px 'Nunito',sans-serif;
+              line-height: 20px;
+              height: 20px;
+              color: $black;
+              margin-top: 4px;
+              
+            }
+            
+            .description {
+              
+              font: 11px 'Nunito',sans-serif;
+              line-height: 14px;
+              height: 28px;
+              overflow: hidden;
+              
+            }
+            
+          }
+          
         }
         
         .lesson_dashboard_buttons {
