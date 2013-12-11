@@ -1,3 +1,21 @@
+function openDescriptionDashboardLayer(item) {
+  var tot_time = 500;
+  var h_i = item.height();
+  var h_f = 263 - h_i;
+  var k = h_f / (tot_time * tot_time);
+  openDescriptionDashboardRecursionLayer(item, 0, h_i, h_f, tot_time);
+}
+
+function openDescriptionDashboardRecursionLayer(item, t, h_i, h_f, tot_time) {
+  var height = h_i + ((t * t * h_f) / (tot_time * tot_time));
+  item.css('height', (height + 'px'));
+  if(t < tot_time) {
+    setTimeout(function() {
+      openDescriptionDashboardRecursionLayer(item, (t + 10), h_i, h_f, tot_time);
+    }, 10);
+  }
+}
+
 function dashboardResizeController() {
   var container = $('#dashboard_container');
   var width = container.width();
@@ -69,7 +87,7 @@ function dashboardDocumentReady() {
     dashboardResizeController();
   });
   $body.on('mouseenter', '.lesson_dashboard_hover_sensitive', function() {
-    console.log('entered');
+    openDescriptionDashboardLayer($(this));
   });
   $body.on('mouseleave', '.lesson_dashboard_hover_sensitive', function() {
     console.log('left');
