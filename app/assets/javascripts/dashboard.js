@@ -4,6 +4,7 @@ function openDescriptionDashboardLayer(item) {
   var h_f = 263 - h_i;
   var k = h_f / (tot_time * tot_time);
   item.find('.description').show();
+  item.data('moving', true);
   openDescriptionDashboardRecursionLayer(item, 0, h_i, h_f, tot_time);
 }
 
@@ -11,9 +12,16 @@ function openDescriptionDashboardRecursionLayer(item, t, h_i, h_f, tot_time) {
   var height = h_i + ((t * h_f) / tot_time);
   item.css('height', (height + 'px'));
   if(t < tot_time) {
-    setTimeout(function() {
-      openDescriptionDashboardRecursionLayer(item, (t + 5), h_i, h_f, tot_time);
-    }, 5);
+    if(item.data('moving')) {
+      setTimeout(function() {
+        openDescriptionDashboardRecursionLayer(item, (t + 5), h_i, h_f, tot_time);
+      }, 5);
+    } else {
+      item.find('.description').hide();
+      item.css('height', '80px');
+    }
+  } else {
+    item.data('moving', false);
   }
 }
 
@@ -91,7 +99,12 @@ function dashboardDocumentReady() {
     openDescriptionDashboardLayer($(this).find('.literature_container'));
   });
   $body.on('mouseleave', '.lesson_dashboard_hover_sensitive', function() {
-    $(this).find('.literature_container .description').hide();
-    $(this).find('.literature_container').css('height', '80px');
+    var item = $(this).find('.literature_container');
+    if(item.data('moving')) {
+      item.data('moving', false);
+    } else {
+      item.find('.description').hide();
+      item.css('height', '80px');
+    }
   });
 }
