@@ -839,6 +839,7 @@
           height: 263px;
           width: 298px;
           padding-top: 9px;
+          position: relative;
           
           .lesson_dashboard_thumb {
             
@@ -848,6 +849,7 @@
             overflow: hidden;
             position: relative;
             background-color: white;
+            z-index: 1;
             
             img {
               
@@ -877,6 +879,10 @@
             padding-left: 10px;
             padding-right: 10px;
             width: 278px;
+            position: absolute;
+            bottom: 0;
+            z-index: 12;
+            background-color: #FBFAFB;
             
             .subject {
               

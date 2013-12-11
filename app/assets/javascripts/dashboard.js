@@ -68,4 +68,10 @@ function dashboardDocumentReady() {
   $(window).resize(function() {
     dashboardResizeController();
   });
+  $body.on('mouseenter', '.lesson_dashboard_hover_sensitive', function() {
+    console.log('entered');
+  });
+  $body.on('mouseleave', '.lesson_dashboard_hover_sensitive', function() {
+    console.log('left');
+  });
 }
