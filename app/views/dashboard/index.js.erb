@@ -8,18 +8,10 @@ container.find('.space_lessons').html('');
 <% @lessons.each do |l| %>
   container.find('.space_lessons').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
 <% end %>
-var lessons_margin = (container.width() - lessons * 300) / (lessons + 1);
-container.find('.space_lessons .lesson_in_dashboard').css('margin-left', lessons_margin + 'px');
 
 container.find('.space_media_elements').html('');
 <% @media_elements.each do |me| %>
   container.find('.space_media_elements').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => false})) %>");
 <% end %>
-var first_media_element = container.find('.space_media_elements .boxViewExpandedMediaElement').first();
-first_media_element.css('margin-left', lessons_margin + 'px');
-var media_elements_margin = (container.width() - (2 * lessons_margin) - media_elements * 202) / (media_elements - 1);
-container.find('.space_media_elements .boxViewExpandedMediaElement').each(function() {
-  if($(this).attr('id') != first_media_element.attr('id')) {
-    $(this).css('margin-left', media_elements_margin + 'px');
-  }
-});
+
+resizeBothLessonsAndMediaElementsInDashboard(container, lessons, media_elements);
