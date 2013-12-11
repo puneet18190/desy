@@ -1,5 +1,5 @@
 function openDescriptionDashboardLayer(item) {
-  var tot_time = 500;
+  var tot_time = 300;
   var h_i = item.height();
   var h_f = 263 - h_i;
   var k = h_f / (tot_time * tot_time);
@@ -11,8 +11,8 @@ function openDescriptionDashboardRecursionLayer(item, t, h_i, h_f, tot_time) {
   item.css('height', (height + 'px'));
   if(t < tot_time) {
     setTimeout(function() {
-      openDescriptionDashboardRecursionLayer(item, (t + 10), h_i, h_f, tot_time);
-    }, 10);
+      openDescriptionDashboardRecursionLayer(item, (t + 5), h_i, h_f, tot_time);
+    }, 5);
   }
 }
 
