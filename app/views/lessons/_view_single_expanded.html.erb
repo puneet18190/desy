@@ -1,3 +1,19 @@
+<%
+  cover = lesson.cover.media_elements_slides.first
+  image = cover.nil? ? nil : cover.media_element
+%>
 <div id="<%= ButtonDestinations::EXPANDED_LESSON %>_<%= lesson.id %>" class="lesson_in_dashboard">
-  
+  <div class="lesson_dashboard_thumb">
+    <% if image %>
+      <% image_alignment = cover.alignment / 3.214 %>
+      <% if cover.is_horizontal? %>
+        <%= image_tag image.url, :style => "left:#{image_alignment}px; height:175px" %>
+      <% else %>
+        <%= image_tag image.url, :style => "top:#{image_alignment}px; width:280px" %>
+      <% end %>
+    <% end %>
+    <div class="text">
+      <%= lesson.title %>
+    </div>
+  </div>
 </div>
