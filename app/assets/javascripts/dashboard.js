@@ -5,19 +5,21 @@ function dashboardResizeController() {
   var media_elements = parseInt((width - 20) / 222);
   if(container.data('status') == 'lessons') {
     if(lessons != container.data('lessons')) {
+      unbindLoader();
       $.ajax({
         type: 'get',
         url: '/dashboard?lessons_for_page=' + lessons
-      });
+      }).always(bindLoader);
     } else {
       resizeLessonsOrMediaElementsInDashboard(container, '.space_lessons .lesson_in_dashboard', '.title_lessons .icon', lessons, 300);
     }
   } else if(container.data('status') == 'media_elements') {
     if(media_elements != container.data('media-elements')) {
+      unbindLoader();
       $.ajax({
         type: 'get',
         url: '/dashboard?media_elements_for_page=' + media_elements
-      });
+      }).always(bindLoader);
     } else {
       resizeLessonsOrMediaElementsInDashboard(container, '.space_media_elements .boxViewExpandedMediaElement', '.title_media_elements .icon', media_elements, 202);
     }
@@ -26,10 +28,11 @@ function dashboardResizeController() {
     var lessons_space = lessons * (300 + lessons_margin) - lessons_margin;
     media_elements = parseInt((lessons_space - 207) / 207) + 1;
     if(lessons != container.data('lessons') || media_elements != container.data('media-elements')) {
+      unbindLoader();
       $.ajax({
         type: 'get',
         url: '/dashboard?media_elements_for_page=' + media_elements + '&lessons_for_page=' + lessons
-      });
+      }).always(bindLoader);
     } else {
       resizeBothLessonsAndMediaElementsInDashboard(container, lessons, media_elements);
     }
