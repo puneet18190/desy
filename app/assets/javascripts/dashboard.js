@@ -97,10 +97,17 @@ function dashboardDocumentReady() {
     dashboardResizeController();
   });
   $body.on('mouseenter', '.lesson_dashboard_hover_sensitive', function() {
-    openDescriptionDashboardLayer($(this).find('.literature_container'));
+    var item = $(this).find('.literature_container');
+    item.data('delaying', true);
+    setTimeout(function() {
+      if(item.data('delaying')) {
+        openDescriptionDashboardLayer(item);
+      }
+    }, 500);
   });
   $body.on('mouseleave', '.lesson_dashboard_hover_sensitive', function() {
     var item = $(this).find('.literature_container');
+    item.data('delaying', false);
     if(item.data('moving')) {
       item.data('moving', false);
     } else {
