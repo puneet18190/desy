@@ -2,7 +2,7 @@ var container = $('#dashboard_container');
 var lessons = <%= @lessons.length %>;
 var media_elements = <%= @media_elements.length %>;
 container.data('lessons', lessons);
-container.data('media-elements', media_elements.length);
+container.data('media-elements', media_elements);
 
 container.find('.space_lessons').html('');
 <% @lessons.each do |l| %>
