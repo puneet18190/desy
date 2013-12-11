@@ -730,9 +730,8 @@
       
       .icon {
         
-        width: 90px;
-        height: 90px;
-        float: left;
+        @include svg-circle-icon-handler-without-hover($assets-dashboard-lessons-and-elements_svg, 70px, 2, 1, 1, 1, 0);
+        margin: 10px;
         
       }
       
@@ -779,9 +778,8 @@
       
       .icon {
         
-        width: 90px;
-        height: 90px;
-        float: left;
+        @include svg-circle-icon-handler-without-hover($assets-dashboard-lessons-and-elements_svg, 70px, 2, 1, 1, 0, 0);
+        margin: 10px;
         
       }
       
