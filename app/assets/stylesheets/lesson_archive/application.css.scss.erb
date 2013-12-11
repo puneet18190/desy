@@ -13,7 +13,6 @@
  *= require jquery-ui-1.9.0.custom
  */
 
-<%# assets urls %>
 <%= Erubis::Eruby.new( Rails.application.config.assets.stylesheets.paths.urls.read ).result binding() %>
 
 @import 'variables';

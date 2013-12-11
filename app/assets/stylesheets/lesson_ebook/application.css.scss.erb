@@ -12,7 +12,6 @@
  *
  */
 
-<%# assets urls %>
 <%= Erubis::Eruby.new( Rails.application.config.assets.stylesheets.paths.urls.read ).result binding() %>
 
 <% SETTINGS['colors'].each do |key, value| %>
