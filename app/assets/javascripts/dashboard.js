@@ -22,7 +22,8 @@ function dashboardResizeController() {
       resizeLessonsOrMediaElementsInDashboard(container, '.space_media_elements .boxViewExpandedMediaElement', '.title_media_elements .icon', media_elements, 202);
     }
   } else {
-    var lessons_space = lessons * 320 - 20;
+    var lessons_margin = (width - lessons * 300) / (lessons + 1);
+    var lessons_space = lessons * (300 + lessons_margin) - lessons_margin;
     media_elements = parseInt((lessons_space - 207) / 207) + 1;
     if(lessons != container.data('lessons') || media_elements != container.data('media-elements')) {
       $.ajax({
