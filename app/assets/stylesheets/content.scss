@@ -940,28 +940,37 @@
           .buttoncitos {
             
             float: right;
+            width: 115px;
+            height: 40px;
             
-            &.add {
+            a {
               
-              @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 9, 1, 1, 9, none);
+              margin-top: 5px;
+              margin-right: 8px;
               
             }
             
-            &.dislike {
+            .add {
               
-              @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 1, 3, 1, 0, 3, none);
-              
-            }
-            
-            &.like {
-              
-              @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 3, 1, 1, 3, none);
+              @include svg-circle-icon-handler($assets-action-buttons_svg, 30px, 2, 10, 1, 0, 9, 1, 1, 9);
               
             }
             
-            &.preview {
+            .dislike {
               
-              @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 7, 1, 1, 7, none);
+              @include svg-circle-icon-handler($assets-action-buttons_svg, 30px, 2, 10, 1, 1, 3, 1, 0, 3);
+              
+            }
+            
+            .like {
+              
+              @include svg-circle-icon-handler($assets-action-buttons_svg, 30px, 2, 10, 1, 0, 3, 1, 1, 3);
+              
+            }
+            
+            .preview {
+              
+              @include svg-circle-icon-handler($assets-action-buttons_svg, 30px, 2, 10, 1, 0, 7, 1, 1, 7);
               
             }
             
