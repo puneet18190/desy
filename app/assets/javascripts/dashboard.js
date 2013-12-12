@@ -11,6 +11,8 @@ function expandLessonsInDashboard() {
   container.find('.title_media_elements').css('z-index', 1);
   space_lessons.animate({height: '670px'}, 500, function() {
     container.data('status', 'lessons');
+    container.data('lessons', 0);
+    container.data('media-elements', 0);
     space_media_elements.html('');
     dashboardResizeController();
     pagination_lessons.animate({height: '50px'}, 40);
@@ -73,7 +75,7 @@ function dashboardResizeController() {
       unbindLoader();
       $.ajax({
         type: 'get',
-        url: '/dashboard?lessons_for_page=' + lessons
+        url: '/dashboard?lessons_for_raw=' + lessons
       }).always(bindLoader);
     } else {
       resizeLessonsOrMediaElementsInDashboard(container, '.space_lessons .lesson_in_dashboard', '.title_lessons .icon', lessons, 300);
@@ -83,7 +85,7 @@ function dashboardResizeController() {
       unbindLoader();
       $.ajax({
         type: 'get',
-        url: '/dashboard?media_elements_for_page=' + media_elements
+        url: '/dashboard?media_elements_for_raw=' + media_elements
       }).always(bindLoader);
     } else {
       resizeLessonsOrMediaElementsInDashboard(container, '.space_media_elements .boxViewExpandedMediaElement', '.title_media_elements .icon', media_elements, 202);
@@ -96,7 +98,7 @@ function dashboardResizeController() {
       unbindLoader();
       $.ajax({
         type: 'get',
-        url: '/dashboard?media_elements_for_page=' + media_elements + '&lessons_for_page=' + lessons
+        url: '/dashboard?media_elements_for_raw=' + media_elements + '&lessons_for_raw=' + lessons
       }).always(bindLoader);
     } else {
       resizeBothLessonsAndMediaElementsInDashboard(container, lessons, media_elements);
