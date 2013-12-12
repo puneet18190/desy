@@ -1,6 +1,8 @@
 <%
   lessons_for_page = @lessons_for_raw * 2
-   media_elements_for_page = @media_elements_for_raw * 2
+  media_elements_for_page = @media_elements_for_raw * 2
+  lesson_destination = ButtonDestinations::EXPANDED_LESSON
+  media_element_destination = ButtonDestinations::EXPANDED_MEDIA_ELEMENT
 %>
 
 var container = $('#dashboard_container');
@@ -13,10 +15,9 @@ container.find('.space_lessons .page1').html('');
 container.find('.space_lessons .page2').html('');
 container.find('.space_lessons .page3').html('');
 <% @lessons.each_with_index do |l, index| %>
-  <% lesson_page = (index / lessons_for_page) + 1 %>
-  container.find('.space_lessons .page<%= lesson_page %>').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
+  container.find('.space_lessons .page<%= ((index / lessons_for_page) + 1) %>').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
   <% if index % lessons_for_page >= @lessons_for_raw %>
-    container.find('.space_lessons .page<%= lesson_page %>').last().css('margin-top', '40px');
+    $('#<%= lesson_destination %>_<%= l.id %>').css('margin-top', '40px');
   <% end %>
 <% end %>
 
@@ -24,10 +25,9 @@ container.find('.space_media_elements .page1').html('');
 container.find('.space_media_elements .page2').html('');
 container.find('.space_media_elements .page3').html('');
 <% @media_elements.each_with_index do |me, index| %>
-  <% media_element_page = (index / media_elements_for_page) + 1 %>
-  container.find('.space_media_elements .page<%= media_element_page %>').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => false})) %>");
+  container.find('.space_media_elements .page<%= ((index / media_elements_for_page) + 1) %>').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => media_element_destination, :used_in_private_lessons => false})) %>");
   <% if index % media_elements_for_page >= @media_elements_for_raw %>
-    container.find('.space_media_elements .page<%= media_element_page %>').last().css('margin-top', '40px');
+    $('#<%= media_element_destination %>_<%= me.id %>').css('margin-top', '40px');
   <% end %>
 <% end %>
 
