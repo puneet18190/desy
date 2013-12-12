@@ -78,10 +78,10 @@ function dashboardResizeController() {
     var dashboard_url = '/dashboard?media_elements_for_row=' + media_elements_in_space;
     dashboard_url += '&lessons_for_row=' + lessons_in_space;
     if(container.data('lessons-expanded')) {
-      dashboard_url += '&lessons_page=1'; // TODO paginazzione
+      dashboard_url += '&lessons_expanded=true';
     }
     if(container.data('media-elements-expanded')) {
-      dashboard_url += '&media_elements_page=1'; // TODO paginazzione
+      dashboard_url += '&media_elements_expanded=true';
     }
     unbindLoader();
     $.ajax({
@@ -89,13 +89,17 @@ function dashboardResizeController() {
       url: dashboard_url
     }).always(bindLoader);
   } else {
-    resizeBothLessonsAndMediaElementsInDashboard(lessons_in_space, media_elements_in_space);
+    resizeLessonsAndMediaElementsInDashboard(lessons_in_space, media_elements_in_space);
   }
 }
 
-function resizeBothLessonsAndMediaElementsInDashboard(lessons, media_elements) {
+function resizeLessonsAndMediaElementsInDashboard(lessons, media_elements) {
   var container = $('#dashboard_container');
-  var lessons_margin = resizeLessonsInDashboard(lessons);
+  var lessons_margin = (container.width() - num * 300) / (num + 1);
+  container.find('.space_lessons .lesson_in_dashboard').css('margin-left', margin + 'px');
+  container.find('.title_lessons .icon').css('margin-left', margin + 'px');
+  var new_calc = 2 * lessons_margin + 90;
+  container.find('.title_lessons .icon').next().css('width', 'calc(100% - ' + new_calc + 'px)');
   var first_media_element = container.find('.space_media_elements .boxViewExpandedMediaElement').first();
   first_media_element.css('margin-left', lessons_margin + 'px');
   var media_elements_margin = (container.width() - (2 * lessons_margin) - media_elements * 202) / (media_elements - 1);
@@ -107,26 +111,6 @@ function resizeBothLessonsAndMediaElementsInDashboard(lessons, media_elements) {
   container.find('.title_media_elements .icon').css('margin-left', lessons_margin + 'px');
   var new_calc = 2 * lessons_margin + 90;
   container.find('.title_media_elements .icon').next().css('width', 'calc(100% - ' + new_calc + 'px)');
-}
-
-function resizeLessonsInDashboard(num) {
-  var container = $('#dashboard_container');
-  var margin = (container.width() - num * 300) / (num + 1);
-  container.find('.space_lessons .lesson_in_dashboard').css('margin-left', margin + 'px');
-  container.find('.title_lessons .icon').css('margin-left', margin + 'px');
-  var new_calc = 2 * margin + 90;
-  container.find('.title_lessons .icon').next().css('width', 'calc(100% - ' + new_calc + 'px)');
-  return margin;
-}
-
-function resizeMediaElementsInDashboard(num) {
-  var container = $('#dashboard_container');
-  var margin = (container.width() - num * 202) / (num + 1);
-  container.find('.space_media_elements .boxViewExpandedMediaElement').css('margin-left', margin + 'px');
-  container.find('.title_media_elements .icon').css('margin-left', margin + 'px');
-  var new_calc = 2 * margin + 90;
-  container.find('.title_media_elements .icon').next().css('width', 'calc(100% - ' + new_calc + 'px)');
-  return margin;
 }
 
 function dashboardDocumentReady() {
