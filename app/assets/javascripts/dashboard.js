@@ -102,9 +102,11 @@ function resizeLessonsAndMediaElementsInDashboard(lessons, media_elements) {
   container.find('.title_lessons .icon').next().css('width', 'calc(100% - ' + new_calc + 'px)');
   var first_media_element = container.find('.space_media_elements .boxViewExpandedMediaElement').first();
   first_media_element.css('margin-left', lessons_margin + 'px');
+  var first_media_element_of_second_row = $(container.find('.space_media_elements .boxViewExpandedMediaElement')[media_elements]);
+  first_media_element_of_second_row.css('margin-left', lessons_margin + 'px');
   var media_elements_margin = (container.width() - (2 * lessons_margin) - media_elements * 202) / (media_elements - 1);
   container.find('.space_media_elements .boxViewExpandedMediaElement').each(function() {
-    if($(this).attr('id') != first_media_element.attr('id')) {
+    if($(this).attr('id') != first_media_element.attr('id') && $(this).attr('id') != first_media_element_of_second_row.attr('id')) {
       $(this).css('margin-left', media_elements_margin + 'px');
     }
   });
