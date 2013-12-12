@@ -1,17 +1,25 @@
 function expandLessonsInDashboard() {
-  
+  $('#dashboard_container .title_lessons .expand_icon.off').hide();
+  $('#dashboard_container .title_lessons .expand_icon.on').show();
+  console.log('espandiamo le lezioni');
 }
 
 function expandMediaElementsInDashboard() {
-  
+  $('#dashboard_container .title_media_elements .expand_icon.off').hide();
+  $('#dashboard_container .title_media_elements .expand_icon.on').show();
+  console.log('espandiamo gli elementi');
 }
 
 function compressLessonsInDashboard() {
-  
+  $('#dashboard_container .title_lessons .expand_icon.on').hide();
+  $('#dashboard_container .title_lessons .expand_icon.off').show();
+  console.log('comprimiamo le lezioni');
 }
 
 function compressMediaElementsInDashboard() {
-  
+  $('#dashboard_container .title_media_elements .expand_icon.on').hide();
+  $('#dashboard_container .title_media_elements .expand_icon.off').show();
+  console.log('comprimiamo gli elementi');
 }
 
 function openDescriptionDashboardLayer(item) {
