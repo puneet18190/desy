@@ -46,9 +46,9 @@ class DashboardController < ApplicationController
   # Initializes all the parameters of pagination
   def initialize_pagination
     @lessons_for_row = correct_integer?(params['lessons_for_row']) ? params['lessons_for_row'].to_i : 0
-    @lesson_rows = params[:lessons_expanded].present? ? LESSON_PAGES * LESSON_ROWS_PER_PAGE : 1
+    @lesson_rows = params['lessons_expanded'].present? ? LESSON_PAGES * LESSON_ROWS_PER_PAGE : 1
     @media_elements_for_row = correct_integer?(params['media_elements_for_row']) ? params['media_elements_for_row'].to_i : 0
-    @media_element_rows = params[:media_elements_expanded].present? ? MEDIA_ELEMENT_PAGES * MEDIA_ELEMENT_ROWS_PER_PAGE : 1
+    @media_element_rows = params['media_elements_expanded'].present? ? MEDIA_ELEMENT_PAGES * MEDIA_ELEMENT_ROWS_PER_PAGE : 1
     @lessons_for_row = 0 if @lessons_for_row > 50
     @media_elements_for_row = 0 if @media_elements_for_row > 50
   end
