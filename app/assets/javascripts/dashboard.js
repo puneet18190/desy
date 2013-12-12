@@ -15,6 +15,7 @@ function expandMediaElementsInDashboard() {
   var container = $('#dashboard_container');
   container.find('.title_media_elements .expand_icon.off').hide();
   container.find('.title_media_elements .expand_icon.on').show();
+  $html.animate({scrollTop: $(document).height()}, 500);
   $('#dashboard_container .space_media_elements').animate({top: '90px', height: '660px'}, 500, function() {
     container.data('media-elements-expanded', true);
     container.data('media-elements-in-space', 0);
