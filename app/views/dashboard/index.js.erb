@@ -6,11 +6,6 @@
 %>
 
 var container = $('#dashboard_container');
-var lessons = <%= @lessons_for_raw %>;
-var media_elements = <%= @media_elements_for_raw %>;
-container.data('lessons', lessons);
-container.data('media-elements', media_elements);
-
 container.find('.space_lessons .page1').html('');
 container.find('.space_lessons .page2').html('');
 container.find('.space_lessons .page3').html('');
@@ -32,9 +27,9 @@ container.find('.space_media_elements .page3').html('');
 <% end %>
 
 <% if @lessons_for_raw == 0 %>
-  resizeMediaElementsInDashboard(media_elements);
+  resizeMediaElementsInDashboard(<%= @media_elements_for_raw %>);
 <% elsif @media_elements_for_raw == 0 %>
-  resizeLessonsInDashboard(lessons);
+  resizeLessonsInDashboard(<%= @lessons_for_raw %>);
 <% else %>
-  resizeBothLessonsAndMediaElementsInDashboard(lessons, media_elements);
+  resizeBothLessonsAndMediaElementsInDashboard(<%= @lessons_for_raw %>, <%= @media_elements_for_raw %>);
 <% end %>

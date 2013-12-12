@@ -72,6 +72,7 @@ function dashboardResizeController() {
   var media_elements = parseInt((width - 20) / 222);
   if(container.data('status') == 'lessons') {
     if(lessons != container.data('lessons')) {
+      container.data('lessons', lessons);
       unbindLoader();
       $.ajax({
         type: 'get',
@@ -82,6 +83,7 @@ function dashboardResizeController() {
     }
   } else if(container.data('status') == 'media_elements') {
     if(media_elements != container.data('media-elements')) {
+      container.data('media-elements', media_elements);
       unbindLoader();
       $.ajax({
         type: 'get',
@@ -95,6 +97,8 @@ function dashboardResizeController() {
     var lessons_space = lessons * (300 + lessons_margin) - lessons_margin;
     media_elements = parseInt((lessons_space - 207) / 207) + 1;
     if(lessons != container.data('lessons') || media_elements != container.data('media-elements')) {
+      container.data('lessons', lessons);
+      container.data('media-elements', media_elements);
       unbindLoader();
       $.ajax({
         type: 'get',
