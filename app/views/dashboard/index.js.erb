@@ -4,8 +4,8 @@
 %>
 
 var container = $('#dashboard_container');
-var lessons = <%= @lessons.length %>;
-var media_elements = <%= @media_elements.length %>;
+var lessons = <%= @lessons_for_raw %>;
+var media_elements = <%= @media_elements_for_raw %>;
 container.data('lessons', lessons);
 container.data('media-elements', media_elements);
 
