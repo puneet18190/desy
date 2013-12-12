@@ -11,9 +11,8 @@
     <a class="expand_icon on" title="compress lessons" style="display:none"></a> <!-- TODO traduzz -->
   </div>
   <div class="space_lessons">
-    <% @lessons.each do |l| %>
-      <%= render :partial => 'lessons/view_single_expanded', :locals => {:lesson => l, :destination => ButtonDestinations::EXPANDED_LESSON} %>
-    <% end %>
+  </div>
+  <div class="pagination_lessons">
   </div>
   <div class="title_media_elements">
     <div class="icon"></div>
@@ -25,6 +24,8 @@
     <a class="expand_icon on" title="compress media_elements" style="display:none"></a> <!-- TODO traduzz -->
   </div>
   <div class="space_media_elements">
+  </div>
+  <div class="pagination_media_elements">
   </div>
 </div>
 <div id="dashboard_toolbar">

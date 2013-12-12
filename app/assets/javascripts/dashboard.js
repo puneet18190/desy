@@ -1,7 +1,20 @@
 function expandLessonsInDashboard() {
-  $('#dashboard_container .title_lessons .expand_icon.off').hide();
-  $('#dashboard_container .title_lessons .expand_icon.on').show();
-  console.log('espandiamo le lezioni');
+  var container = $('#dashboard_container');
+  var space_lessons = $('#dashboard_container .space_lessons');
+  var space_media_elements = $('#dashboard_container .space_media_elements');
+  var pagination_lessons = $('#dashboard_container .pagination_lessons');
+  container.find('.title_lessons .expand_icon.off').hide();
+  container.find('.title_lessons .expand_icon.on').show();
+  space_lessons.css('z-index', 2);
+  pagination_lessons.css('z-index', 2);
+  space_media_elements.css('z-index', 1);
+  container.find('.title_media_elements').css('z-index', 1);
+  space_lessons.animate({height: '670px'}, 500, function() {
+    container.data('status', 'lessons');
+    space_media_elements.html('');
+    dashboardResizeController();
+    pagination_lessons.animate({height: '50px'}, 40);
+  });
 }
 
 function expandMediaElementsInDashboard() {

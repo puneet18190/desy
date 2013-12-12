@@ -418,7 +418,7 @@ function showMediaElementInfoPopUp(media_element_id) {
         close: function() {
           if(obj.length > 0 && $('#dashboard_container .literature_container').length > 0) {
             $('#dashboard_container .literature_container').css('z-index', 12);
-            $('#dashboard_container .lesson_dashboard_thumb').css('z-index', 1);
+            $('#dashboard_container .lesson_dashboard_thumb').css('z-index', 3);
           }
           resetMediaElementChangeInfo(media_element_id);
           $(this).find('._report_form_content').hide();

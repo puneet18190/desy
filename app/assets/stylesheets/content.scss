@@ -722,11 +722,14 @@
     height: 810px;
     margin-bottom: 60px;
     float: left;
+    position: relative;
     
     .title_lessons {
       
       height: 90px;
       width: 100%;
+      position: absolute;
+      top: 0;
       
       .icon {
         
@@ -787,6 +790,8 @@
       
       height: 90px;
       width: 100%;
+      position: absolute;
+      top: 405px;
       
       .icon {
         
@@ -843,10 +848,23 @@
       
     }
     
+    .pagination_lessons, .pagination_media_elements {
+      
+      height: 0;
+      width: 100%;
+      background-color: blue;
+      position: absolute;
+      top: 760px;
+      
+    }
+    
     .space_lessons {
       
       height: 315px;
       width: 100%;
+      position: absolute;
+      top: 90px;
+      background-color: white;
       
       .lesson_in_dashboard {
         
@@ -871,7 +889,7 @@
             overflow: hidden;
             position: relative;
             background-color: white;
-            z-index: 1;
+            z-index: 3;
             
             img {
               
@@ -1008,6 +1026,9 @@
       
       height: 315px;
       width: 100%;
+      position: absolute;
+      top: 495px;
+      background-color: white;
       
       .boxViewExpandedMediaElement {
         
