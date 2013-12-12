@@ -2471,7 +2471,7 @@ en:
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       empty: "You don't have any lessons to add to your Virtual Classroom"
       # Button to open the window from the main bar inside Virtual Classroom
-      # 1 - views/virtual_classroom/_header_buttons.html.erb
+      # 1 - views/virtual_classroom/index.html.erb
       label: "Add lessons"
       # Instructions
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
@@ -2480,7 +2480,7 @@ en:
     # 1 - views/virtual_classroom/_empty.html.erb
     empty: "Your Virtual Classroom is empty"
     # Caption of the button which empties your Virtual Classroom
-    # 1 - views/virtual_classroom/_header_buttons.html.erb
+    # 1 - views/virtual_classroom/index.html.erb
     make_it_empty: "Empty your Virtual Classroom"
     # Captions used for the composition of the playlist
     playlist:
