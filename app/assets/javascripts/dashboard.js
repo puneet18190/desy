@@ -78,16 +78,18 @@ function resizeBothLessonsAndMediaElementsInDashboard(container, lessons, media_
     }
   });
   container.find('.title_media_elements .icon').css('margin-left', lessons_margin + 'px');
-  var new_calc = lessons_margin + 210;
+  var new_calc = 2 * lessons_margin + 90;
   container.find('.title_media_elements .icon').next().css('width', 'calc(100% - ' + new_calc + 'px)');
+  container.find('.title_media_elements .icon').next().next().css('width', (lesson_margin + 30) + 'px');
 }
 
 function resizeLessonsOrMediaElementsInDashboard(container, selector, icon_selector, num, item_width) {
   var margin = (container.width() - num * item_width) / (num + 1);
   container.find(selector).css('margin-left', margin + 'px');
   container.find(icon_selector).css('margin-left', margin + 'px');
-  var new_calc = margin + 210;
+  var new_calc = 2 * margin + 90;
   container.find(icon_selector).next().css('width', 'calc(100% - ' + new_calc + 'px)');
+  container.find(icon_selector).next().next().css('width', (margin + 30) + 'px');
   return margin;
 }
 
