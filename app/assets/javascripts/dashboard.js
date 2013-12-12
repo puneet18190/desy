@@ -96,8 +96,8 @@ function dashboardResizeController() {
 function resizeLessonsAndMediaElementsInDashboard(lessons, media_elements) {
   var container = $('#dashboard_container');
   var lessons_margin = (container.width() - lessons * 300) / (lessons + 1);
-  container.find('.space_lessons .lesson_in_dashboard').css('margin-left', margin + 'px');
-  container.find('.title_lessons .icon').css('margin-left', margin + 'px');
+  container.find('.space_lessons .lesson_in_dashboard').css('margin-left', lessons_margin + 'px');
+  container.find('.title_lessons .icon').css('margin-left', lessons_margin + 'px');
   var new_calc = 2 * lessons_margin + 90;
   container.find('.title_lessons .icon').next().css('width', 'calc(100% - ' + new_calc + 'px)');
   var first_media_element = container.find('.space_media_elements .boxViewExpandedMediaElement').first();
