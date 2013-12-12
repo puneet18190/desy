@@ -1,3 +1,19 @@
+function expandLessonsInDashboard() {
+  
+}
+
+function expandMediaElementsInDashboard() {
+  
+}
+
+function compressLessonsInDashboard() {
+  
+}
+
+function compressMediaElementsInDashboard() {
+  
+}
+
 function openDescriptionDashboardLayer(item) {
   var tot_time = 200;
   var h_i = item.height();
@@ -115,5 +131,17 @@ function dashboardDocumentReady() {
         item.find('.description').hide();
       });
     }
+  });
+  $body.on('click', '#dashboard_container .title_lessons .expand_icon.off', function() {
+    expandLessonsInDashboard();
+  });
+  $body.on('click', '#dashboard_container .title_media_elements .expand_icon.off', function() {
+    expandMediaElementsInDashboard();
+  });
+  $body.on('click', '#dashboard_container .title_lessons .expand_icon.on', function() {
+    compressLessonsInDashboard();
+  });
+  $body.on('click', '#dashboard_container .title_media_elements .expand_icon.on', function() {
+    compressMediaElementsInDashboard();
   });
 }
