@@ -4,14 +4,14 @@ var media_elements = <%= @media_elements.length %>;
 container.data('lessons', lessons);
 container.data('media-elements', media_elements);
 
-container.find('.space_lessons').html('');
+container.find('.space_lessons .page1').html('');
 <% @lessons.each do |l| %>
-  container.find('.space_lessons').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
+  container.find('.space_lessons .page1').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
 <% end %>
 
-container.find('.space_media_elements').html('');
+container.find('.space_media_elements .page1').html('');
 <% @media_elements.each do |me| %>
-  container.find('.space_media_elements').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => false})) %>");
+  container.find('.space_media_elements .page1').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => false})) %>");
 <% end %>
 
 resizeBothLessonsAndMediaElementsInDashboard(container, lessons, media_elements);

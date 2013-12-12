@@ -55,10 +55,6 @@ languages:
 seconds_for_timeout_dialogs: 2500
 # Seconds between each ajax call that saves the cache in Video Editor and Audio Editor
 seconds_for_saving_cache: 60000
-# Pages of lessons in dashboard
-lesson_pages_in_dashboard: 3
-# Pages of media elements in dashboard
-media_element_pages_in_dashboard: 3
 # Pagination of lessons, in sections (1) Lessons and (2) Search engine
 compact_lesson_pagination: 18
 # Pagination of compact media elements, in sections (1) Elements and (2) Search engine
