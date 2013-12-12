@@ -16,7 +16,7 @@ function expandMediaElementsInDashboard() {
   container.find('.title_media_elements .expand_icon.off').hide();
   container.find('.title_media_elements .expand_icon.on').show();
   $html.animate({scrollTop: $(document).height()}, 500);
-  $('#dashboard_container .space_media_elements').animate({top: '90px', height: '660px'}, 500, function() {
+  $('#dashboard_container .space_media_elements').animate({height: '660px'}, 500, function() {
     container.data('media-elements-expanded', true);
     container.data('media-elements-in-space', 0);
     container.data('lessons-in-space', 0);
@@ -26,15 +26,29 @@ function expandMediaElementsInDashboard() {
 }
 
 function compressLessonsInDashboard() {
-  $('#dashboard_container .title_lessons .expand_icon.on').hide();
-  $('#dashboard_container .title_lessons .expand_icon.off').show();
-  console.log('comprimiamo le lezioni');
+  var container = $('#dashboard_container');
+  container.find('.title_lessons .expand_icon.on').hide();
+  container.find('.title_lessons .expand_icon.off').show();
+  $('#dashboard_container .space_lessons').animate({height: '315px'}, 500, function() {
+    container.data('lessons-expanded', false);
+    container.data('lessons-in-space', 0);
+    container.data('media-elements-in-space', 0);
+    dashboardResizeController();
+    $('#dashboard_container .pagination_lessons').animate({height: '0px'}, 40);
+  });
 }
 
 function compressMediaElementsInDashboard() {
-  $('#dashboard_container .title_media_elements .expand_icon.on').hide();
-  $('#dashboard_container .title_media_elements .expand_icon.off').show();
-  console.log('comprimiamo gli elementi');
+  var container = $('#dashboard_container');
+  container.find('.title_media_elements .expand_icon.on').hide();
+  container.find('.title_media_elements .expand_icon.off').show();
+  $('#dashboard_container .space_media_elements').animate({height: '315px'}, 500, function() {
+    container.data('media-elements-expanded', false);
+    container.data('media-elements-in-space', 0);
+    container.data('lessons-in-space', 0);
+    dashboardResizeController();
+    $('#dashboard_container .pagination_media_elements').animate({height: '0px'}, 40);
+  });
 }
 
 function openDescriptionDashboardLayer(item) {
