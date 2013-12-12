@@ -67,29 +67,36 @@ html.virtual_classroom-controller {
       
     }
     
-    a {
+    .buttons_container {
       
-      font: 15px 'Nunito', sans-serif;
-      line-height: 45px;
-      height: 45px;
-      display: inline-block;
-      background-color: #42B9E9;
-      padding-left: 20px;
-      padding-right: 20px;
-      margin-right: 10px;
-      color: #fff;
+      float: left;
       
-      &:hover {
+      a {
         
-        background-color: #59C9F6;
-        
-      }
-      
-      &.current, &.disabled {
-        
+        float: left;
+        font: 15px 'Nunito', sans-serif;
+        line-height: 45px;
+        height: 45px;
+        display: block;
         background-color: #42B9E9;
-        color: $blue;
-        cursor: default;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-right: 8px;
+        color: #fff;
+        
+        &:hover {
+          
+          background-color: #59C9F6;
+          
+        }
+        
+        &.current, &.disabled {
+          
+          background-color: #42B9E9;
+          color: $blue;
+          cursor: default;
+          
+        }
         
       }
       
