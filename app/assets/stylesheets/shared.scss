@@ -1109,7 +1109,7 @@ label.filebutton span input#new_media_element_input {
     
     &.dislike {
       
-      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 1, 3, 1, 0, 3, none);
+      @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 34px, 2, 10, 1, 1, 3, none);
       
     }
     
@@ -1145,13 +1145,13 @@ label.filebutton span input#new_media_element_input {
     
     &.remove_virtual_classroom {
       
-      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 1, 5, 1, 0, 5, none);
+      @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 34px, 2, 10, 1, 1, 5, none);
       
     }
     
     &.unpublish {
       
-      @include svg-circle-icon-handler($assets-action-buttons_svg, 34px, 2, 10, 1, 1, 4, 1, 0, 4, none);
+      @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 34px, 2, 10, 1, 1, 4, none);
       
     }
     
@@ -1276,12 +1276,6 @@ label.filebutton span input#new_media_element_input {
   &.publish:hover {
     
     @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 34px, 2, 10, 1, 0, 4, none);
-    
-  }
-  
-  &.remove_virtual_classroom:hover {
-    
-    @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 34px, 2, 10, 1, 1, 5, none);
     
   }
   
