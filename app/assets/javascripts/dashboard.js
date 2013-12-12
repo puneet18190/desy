@@ -9,13 +9,13 @@ function expandLessonsInDashboard() {
   pagination_lessons.css('z-index', 2);
   space_media_elements.css('z-index', 1);
   container.find('.title_media_elements').css('z-index', 1);
-  space_lessons.animate({height: '670px'}, 500, function() {
+  space_lessons.animate({height: '660px'}, 500, function() {
     container.data('status', 'lessons');
     container.data('lessons', 0);
     container.data('media-elements', 0);
     space_media_elements.html('');
     dashboardResizeController();
-    pagination_lessons.animate({height: '50px'}, 40);
+    pagination_lessons.animate({height: '60px'}, 40);
   });
 }
 
