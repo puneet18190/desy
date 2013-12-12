@@ -6,7 +6,7 @@
   var margin_left = target.css('margin-left');
   <% js_content = j(render(:partial => "lessons/view_single_expanded", :locals => {:lesson => @lesson, :destination => @destination})) %>
   target.replaceWith("<%= js_content %>");
-  target.css('margin-left', margin_left);
+  $('#<%= @destination %>_<%= @lesson_id %>').css('margin-left', margin_left);
 <% else %>
   showErrorPopUp('<%= j @error %>');
 <% end %>
