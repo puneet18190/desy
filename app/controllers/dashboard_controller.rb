@@ -34,9 +34,9 @@ class DashboardController < ApplicationController
   # * ApplicationController#initialize_layout
   #
   def index
-    @lessons = current_user.suggested_lessons(@lessons_for_raw * @lesson_raws)
+    @lessons = current_user.suggested_lessons(@lessons_for_row * @lesson_rows)
     @lessons_emptied = Lesson.dashboard_emptied? current_user.id
-    @media_elements = current_user.suggested_media_elements(@media_elements_for_raw * @media_element_raws)
+    @media_elements = current_user.suggested_media_elements(@media_elements_for_row * @media_element_rows)
     @media_elements_emptied = MediaElement.dashboard_emptied? current_user.id
     render_js_or_html_index
   end
@@ -45,16 +45,16 @@ class DashboardController < ApplicationController
   
   # Initializes all the parameters of pagination
   def initialize_pagination
-    @lessons_for_raw = correct_integer?(params['lessons_for_raw']) ? params['lessons_for_raw'].to_i : 0
-    @lesson_raws = LESSON_PAGES * LESSON_ROWS_PER_PAGE
-    @media_elements_for_raw = correct_integer?(params['media_elements_for_raw']) ? params['media_elements_for_raw'].to_i : 0
-    @media_element_raws = MEDIA_ELEMENT_PAGES * MEDIA_ELEMENT_ROWS_PER_PAGE
-    if @lessons_for_raw != 0 && @media_elements_for_raw != 0
-      @lesson_raws = 1
-      @media_element_raws = 1
+    @lessons_for_row = correct_integer?(params['lessons_for_row']) ? params['lessons_for_row'].to_i : 0
+    @lesson_rows = LESSON_PAGES * LESSON_ROWS_PER_PAGE
+    @media_elements_for_row = correct_integer?(params['media_elements_for_row']) ? params['media_elements_for_row'].to_i : 0
+    @media_element_rows = MEDIA_ELEMENT_PAGES * MEDIA_ELEMENT_ROWS_PER_PAGE
+    if @lessons_for_row != 0 && @media_elements_for_row != 0
+      @lesson_rows = 1
+      @media_element_rows = 1
     end
-    @lessons_for_raw = 0 if @lessons_for_raw > 50
-    @media_elements_for_raw = 0 if @media_elements_for_raw > 50
+    @lessons_for_row = 0 if @lessons_for_row > 50
+    @media_elements_for_row = 0 if @media_elements_for_row > 50
   end
   
 end

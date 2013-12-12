@@ -1,6 +1,6 @@
 <%
-  lessons_for_page = @lessons_for_raw * 2
-  media_elements_for_page = @media_elements_for_raw * 2
+  lessons_for_page = @lessons_for_row * 2
+  media_elements_for_page = @media_elements_for_row * 2
   lesson_destination = ButtonDestinations::EXPANDED_LESSON
   media_element_destination = ButtonDestinations::EXPANDED_MEDIA_ELEMENT
 %>
@@ -14,7 +14,7 @@ container.find('.space_lessons .page5').html('');
 container.find('.space_lessons .page6').html('');
 <% @lessons.each_with_index do |l, index| %>
   container.find('.space_lessons .page<%= ((index / lessons_for_page) + 1) %>').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
-  <% if index % lessons_for_page >= @lessons_for_raw %>
+  <% if index % lessons_for_page >= @lessons_for_row %>
     $('#<%= lesson_destination %>_<%= l.id %>').css('margin-top', '30px');
   <% end %>
 <% end %>
@@ -27,15 +27,15 @@ container.find('.space_media_elements .page5').html('');
 container.find('.space_media_elements .page6').html('');
 <% @media_elements.each_with_index do |me, index| %>
   container.find('.space_media_elements .page<%= ((index / media_elements_for_page) + 1) %>').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => media_element_destination, :used_in_private_lessons => false})) %>");
-  <% if index % media_elements_for_page >= @media_elements_for_raw %>
+  <% if index % media_elements_for_page >= @media_elements_for_row %>
     $('#<%= media_element_destination %>_<%= me.id %>').css('margin-top', '30px');
   <% end %>
 <% end %>
 
-<% if @lessons_for_raw == 0 %>
-  resizeMediaElementsInDashboard(<%= @media_elements_for_raw %>);
-<% elsif @media_elements_for_raw == 0 %>
-  resizeLessonsInDashboard(<%= @lessons_for_raw %>);
+<% if @lessons_for_row == 0 %>
+  resizeMediaElementsInDashboard(<%= @media_elements_for_row %>);
+<% elsif @media_elements_for_row == 0 %>
+  resizeLessonsInDashboard(<%= @lessons_for_row %>);
 <% else %>
-  resizeBothLessonsAndMediaElementsInDashboard(<%= @lessons_for_raw %>, <%= @media_elements_for_raw %>);
+  resizeBothLessonsAndMediaElementsInDashboard(<%= @lessons_for_row %>, <%= @media_elements_for_row %>);
 <% end %>
