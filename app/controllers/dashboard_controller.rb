@@ -11,6 +11,15 @@ class DashboardController < ApplicationController
   
   before_filter :initialize_layout, :initialize_pagination
   
+  # Pages of lessons
+  LESSON_PAGES = 6
+  # Pages of media elements
+  MEDIA_ELEMENT_PAGES = 6
+  # Rows of lessons in each page
+  LESSON_ROWS_PER_PAGE = 2
+  # Rows of media elements in each page
+  MEDIA_ELEMENT_ROWS_PER_PAGE = 2
+  
   # === Description
   #
   # Extracts suggested lessons and elements (see User#suggested_lessons, User#suggested_media_elements). When it's called via ajax it's because of the application of filters, paginations, or after an operation that changed the number of items in the page.
@@ -37,9 +46,9 @@ class DashboardController < ApplicationController
   # Initializes all the parameters of pagination
   def initialize_pagination
     @lessons_for_raw = correct_integer?(params['lessons_for_raw']) ? params['lessons_for_raw'].to_i : 0
-    @lesson_raws = 6
+    @lesson_raws = LESSON_PAGES * LESSON_ROWS_PER_PAGE
     @media_elements_for_raw = correct_integer?(params['media_elements_for_raw']) ? params['media_elements_for_raw'].to_i : 0
-    @media_element_raws = 6
+    @media_element_raws = MEDIA_ELEMENT_PAGES * MEDIA_ELEMENT_ROWS_PER_PAGE
     if @lessons_for_raw != 0 && @media_elements_for_raw != 0
       @lesson_raws = 1
       @media_element_raws = 1
