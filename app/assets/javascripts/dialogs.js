@@ -389,6 +389,9 @@ Dialog containing the media element general information. If the element is priva
 **/
 function showMediaElementInfoPopUp(media_element_id) {
   var obj = $('#dialog-media-element-' + media_element_id);
+  if(obj.length > 0 && $('#dashboard_container .literature_container').length > 0) {
+    $('#dashboard_container .literature_container, #dashboard_container .lesson_dashboard_thumb').css('z-index', 0);
+  }
   if(!$('._media_element_item_id_' + media_element_id).data('preview-loaded')) {
     $.ajax({
       type: 'get',
@@ -413,6 +416,10 @@ function showMediaElementInfoPopUp(media_element_id) {
           removeCustomOverlayClose();
         },
         close: function() {
+          if(obj.length > 0 && $('#dashboard_container .literature_container').length > 0) {
+            $('#dashboard_container .literature_container').css('z-index', 12);
+            $('#dashboard_container .lesson_dashboard_thumb').css('z-index', 1);
+          }
           resetMediaElementChangeInfo(media_element_id);
           $(this).find('._report_form_content').hide();
           $(this).find('._report_media_element_click').removeClass('report_light');
