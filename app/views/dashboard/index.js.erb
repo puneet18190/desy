@@ -31,4 +31,10 @@ container.find('.space_media_elements .page3').html('');
   <% end %>
 <% end %>
 
-resizeBothLessonsAndMediaElementsInDashboard(container, lessons, media_elements);
+<% if @lessons_for_raw == 0 %>
+  resizeMediaElementsInDashboard(media_elements);
+<% elsif @media_elements_for_raw == 0 %>
+  resizeLessonsInDashboard(lessons);
+<% else %>
+  resizeBothLessonsAndMediaElementsInDashboard(lessons, media_elements);
+<% end %>
