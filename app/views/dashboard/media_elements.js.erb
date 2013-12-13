@@ -9,7 +9,7 @@ var lessons_margin = (container.width() - lessons * 300) / (lessons + 1);
 var media_elements_margin = (container.width() - (2 * lessons_margin) - <%= @for_row %> * 202) / (<%= @for_row %> - 1);
 emptyAllPagesInDashboard('media_elements');
 <% @media_elements.each_with_index do |me, index| %>
-  container.find('.space_media_elements .page<%= ((index / for_page) + 1) %>').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => media_element_destination, :used_in_private_lessons => false})) %>");
+  container.find('.space_media_elements .page<%= ((index / for_page) + 1) %>').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => destination, :used_in_private_lessons => false})) %>");
   <% if index % @for_row == 0 %>
     $('#<%= destination %>_<%= me.id %>').css('margin-left', lessons_margin + 'px');
   <% else %>
