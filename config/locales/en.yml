@@ -1398,7 +1398,7 @@ en:
       virtual_classroom: "%{desy} - virtual classroom"
     # Caption for Virtual Classroom
     # 1 - views/shared/_menu.html.erb
-    # 2 - views/layouts/_virtual_classroom.html.erb
+    # 2 - views/layouts/virtual_classroom.html.erb
     virtual_classroom: "Virtual Classroom"
     # Used in the login, before the logged user's name
     # 1 - views/admin/_header.html.erb
@@ -2471,7 +2471,7 @@ en:
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       empty: "You don't have any lessons to add to your Virtual Classroom"
       # Button to open the window from the main bar inside Virtual Classroom
-      # 1 - views/layouts/_virtual_classroom.html.erb
+      # 1 - views/layouts/virtual_classroom.html.erb
       label: "Add lessons"
       # Instructions
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
@@ -2480,7 +2480,7 @@ en:
     # 1 - views/virtual_classroom/_empty.html.erb
     empty: "Your Virtual Classroom is empty"
     # Caption of the button which empties your Virtual Classroom
-    # 1 - views/layouts/_virtual_classroom.html.erb
+    # 1 - views/layouts/virtual_classroom.html.erb
     make_it_empty: "Empty your Virtual Classroom"
     # Captions used for the composition of the playlist
     playlist:
