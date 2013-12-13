@@ -46,7 +46,6 @@ html.faqs-controller {
       float: left;
       width: 304px;
       height: 300px;
-      margin: 0 3% 5% 0;
       
       &:last-child {
         
@@ -93,14 +92,8 @@ html.faqs-controller {
   .lessons {
     
     padding: 30px 40px;
-      
-    h2.title {
-      
-      color: $orange;
-      
-    }
     
-    a:hover {
+    h2.title, a:hover {
       
       color: $orange;
       
@@ -112,13 +105,7 @@ html.faqs-controller {
     
     padding: 30px 40px;
     
-    h2.title {
-      
-      color: $green;
-      
-    }
-    
-    a:hover {
+    h2.title, a:hover {
       
       color: $green;
       
@@ -130,13 +117,7 @@ html.faqs-controller {
     
     padding: 30px 40px;
     
-    h2.title {
-      
-      color: $blue;
-      
-    }
-    
-    a:hover {
+    h2.title, a:hover {
       
       color: $blue;
       
@@ -148,17 +129,35 @@ html.faqs-controller {
     
     padding: 30px 40px;
     
-    h2.title {
+    h2.title, a:hover {
       
       color: #5D5C5C;
       
     }
     
-    a:hover {
-      
-      color: #5D5C5C;
-      
-    }
+  }
+  
+  #lessons_faq h2.title {
+    
+    color: $orange;
+    
+  }
+  
+  #media_elements_faq h2.title {
+    
+    color: $green;
+    
+  }
+  
+  #profile_faq h2.title {
+    
+    color: #5D5C5C;
+    
+  }
+  
+  #virtual_classroom_faq h2.title {
+    
+    color: $blue;
     
   }
   
@@ -176,11 +175,19 @@ html.faqs-controller {
     
   }
   
-  #lessons_faqs, #media_elements_faqs, #profile_faqs, #virtual_classroom_faqs {
+  #lessons_faq, #media_elements_faq, #profile_faq, #virtual_classroom_faq {
+    
+    padding: 30px 40px 0 40px;
     
     .content {
       
       padding: 0 0 43px 0;
+      
+    }
+    
+    a:hover {
+      
+      text-decoration: underline;
       
     }
     
