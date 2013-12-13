@@ -118,6 +118,16 @@ function dashboardResizeController() {
   }
 }
 
+function emptyAllPagesInDashboard(selector) {
+  var container = $('#dashboard_container .space_' + selector);
+  container.find('.page1').html('');
+  container.find('.page2').html('');
+  container.find('.page3').html('');
+  container.find('.page4').html('');
+  container.find('.page5').html('');
+  container.find('.page6').html('');
+}
+
 function resizeLessonsAndMediaElementsInDashboard(lessons, media_elements) {
   var container = $('#dashboard_container');
   var lessons_margin = (container.width() - lessons * 300) / (lessons + 1);

@@ -5,34 +5,20 @@
   media_element_destination = ButtonDestinations::EXPANDED_MEDIA_ELEMENT
 %>
 
-<% if @lessons_for_row > 0 %>
-  var container = $('#dashboard_container');
-  container.find('.space_lessons .page1').html('');
-  container.find('.space_lessons .page2').html('');
-  container.find('.space_lessons .page3').html('');
-  container.find('.space_lessons .page4').html('');
-  container.find('.space_lessons .page5').html('');
-  container.find('.space_lessons .page6').html('');
-  <% @lessons.each_with_index do |l, index| %>
-    container.find('.space_lessons .page<%= ((index / lessons_for_page) + 1) %>').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
-    <% if index % lessons_for_page >= @lessons_for_row %>
-      $('#<%= lesson_destination %>_<%= l.id %>').css('margin-top', '30px');
-    <% end %>
+var container = $('#dashboard_container');
+emptyAllPagesInDashboard('lessons');
+<% @lessons.each_with_index do |l, index| %>
+  container.find('.space_lessons .page<%= ((index / lessons_for_page) + 1) %>').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
+  <% if index % lessons_for_page >= @lessons_for_row %>
+    $('#<%= lesson_destination %>_<%= l.id %>').css('margin-top', '30px');
   <% end %>
 <% end %>
 
-<% if @media_elements_for_row > 0 %>
-  container.find('.space_media_elements .page1').html('');
-  container.find('.space_media_elements .page2').html('');
-  container.find('.space_media_elements .page3').html('');
-  container.find('.space_media_elements .page4').html('');
-  container.find('.space_media_elements .page5').html('');
-  container.find('.space_media_elements .page6').html('');
-  <% @media_elements.each_with_index do |me, index| %>
-    container.find('.space_media_elements .page<%= ((index / media_elements_for_page) + 1) %>').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => media_element_destination, :used_in_private_lessons => false})) %>");
-    <% if index % media_elements_for_page >= @media_elements_for_row %>
-      $('#<%= media_element_destination %>_<%= me.id %>').css('margin-top', '30px');
-    <% end %>
+emptyAllPagesInDashboard('media_elements');
+<% @media_elements.each_with_index do |me, index| %>
+  container.find('.space_media_elements .page<%= ((index / media_elements_for_page) + 1) %>').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => media_element_destination, :used_in_private_lessons => false})) %>");
+  <% if index % media_elements_for_page >= @media_elements_for_row %>
+    $('#<%= media_element_destination %>_<%= me.id %>').css('margin-top', '30px');
   <% end %>
 <% end %>
 
