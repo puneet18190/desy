@@ -44,6 +44,9 @@ function compressLessonsInDashboard() {
         type: 'get',
         url: '/dashboard/lessons?for_row=' + container.data('lessons-in-space')
       }).always(bindLoader);
+      if(container.find('.space_lessons .page1 .lesson_in_dashboard').length <= container.data('lessons-in-space')) {
+        $('#dashboard_container .title_lessons .expand_icon.off').removeClass('off').addClass('disabled');
+      }
     });
   });
 }
@@ -60,6 +63,9 @@ function compressMediaElementsInDashboard() {
         type: 'get',
         url: '/dashboard/media_elements?for_row=' + container.data('media-elements-in-space')
       }).always(bindLoader);
+      if(container.find('.space_media_elements .page1 .boxViewExpandedMediaElement').length <= container.data('media-elements-in-space')) {
+        $('#dashboard_container .title_media_elements .expand_icon.off').removeClass('off').addClass('disabled');
+      }
     });
   });
 }
