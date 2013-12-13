@@ -13,3 +13,6 @@ emptyAllPagesInDashboard('lessons');
     $('#<%= destination %>_<%= l.id %>').css('margin-top', '30px');
   <% end %>
 <% end %>
+
+container.find('.title_lessons .expand_icon.off, .title_lessons .expand_icon.disabled').data('moving', false);
+container.find('.title_lessons .expand_icon.on').data('moving', false);

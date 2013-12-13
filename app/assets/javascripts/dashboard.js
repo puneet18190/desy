@@ -1,7 +1,7 @@
 function expandLessonsInDashboard() {
   var container = $('#dashboard_container');
   container.find('.title_lessons .expand_icon.off').hide();
-  container.find('.title_lessons .expand_icon.on').show();
+  container.find('.title_lessons .expand_icon.on').show().data('moving', true);
   $('#dashboard_container .space_lessons').animate({height: '660px'}, 500, function() {
     container.data('lessons-expanded', true);
     $('#dashboard_container .pagination_lessons').animate({height: '60px'}, 40);
@@ -16,7 +16,7 @@ function expandLessonsInDashboard() {
 function expandMediaElementsInDashboard() {
   var container = $('#dashboard_container');
   container.find('.title_media_elements .expand_icon.off').hide();
-  container.find('.title_media_elements .expand_icon.on').show();
+  container.find('.title_media_elements .expand_icon.on').show().data('moving', true);
   // if lessons are expanded the height is 72 + 61 + 30 + 20 + 70 + 660 + 60 + 50 + 70 + 660 + 60 = 1813
   // otherwise the height is 72 + 61 + 30 + 20 + 70 + 315 + 50 + 70 + 660 + 60 = 1408
   var scroll_height = (container.data('lessons-expanded') ? 1813 : 1408) - $(window).height() + $('.global-footer').height();
@@ -35,7 +35,7 @@ function expandMediaElementsInDashboard() {
 function compressLessonsInDashboard() {
   var container = $('#dashboard_container');
   container.find('.title_lessons .expand_icon.on').hide();
-  container.find('.title_lessons .expand_icon.off').show();
+  container.find('.title_lessons .expand_icon.off').show().data('moving', true);
   $('#dashboard_container .pagination_lessons').animate({height: '0px'}, 40, function() {
     $('#dashboard_container .space_lessons').animate({height: '315px'}, 500, function() {
       container.data('lessons-expanded', false);
@@ -54,7 +54,7 @@ function compressLessonsInDashboard() {
 function compressMediaElementsInDashboard() {
   var container = $('#dashboard_container');
   container.find('.title_media_elements .expand_icon.on').hide();
-  container.find('.title_media_elements .expand_icon.off').show();
+  container.find('.title_media_elements .expand_icon.off').show().data('moving', true);
   $('#dashboard_container .pagination_media_elements').animate({height: '0px'}, 40, function() {
     $('#dashboard_container .space_media_elements').animate({height: '315px'}, 500, function() {
       container.data('media-elements-expanded', false);
@@ -185,15 +185,23 @@ function dashboardDocumentReady() {
     }
   });
   $body.on('click', '#dashboard_container .title_lessons .expand_icon.off', function() {
-    expandLessonsInDashboard();
+    if(!$(this).data('moving')) {
+      expandLessonsInDashboard();
+    }
   });
   $body.on('click', '#dashboard_container .title_media_elements .expand_icon.off', function() {
-    expandMediaElementsInDashboard();
+    if(!$(this).data('moving')) {
+      expandMediaElementsInDashboard();
+    }
   });
   $body.on('click', '#dashboard_container .title_lessons .expand_icon.on', function() {
-    compressLessonsInDashboard();
+    if(!$(this).data('moving')) {
+      compressLessonsInDashboard();
+    }
   });
   $body.on('click', '#dashboard_container .title_media_elements .expand_icon.on', function() {
-    compressMediaElementsInDashboard();
+    if(!$(this).data('moving')) {
+      compressMediaElementsInDashboard();
+    }
   });
 }

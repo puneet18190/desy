@@ -19,3 +19,6 @@ emptyAllPagesInDashboard('media_elements');
     $('#<%= destination %>_<%= me.id %>').css('margin-top', '30px');
   <% end %>
 <% end %>
+
+container.find('.title_media_elements .expand_icon.off, .title_media_elements .expand_icon.disabled').data('moving', false);
+container.find('.title_media_elements .expand_icon.on').data('moving', false);
