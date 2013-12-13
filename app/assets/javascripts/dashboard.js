@@ -8,7 +8,7 @@ function expandLessonsInDashboard() {
     unbindLoader();
     $.ajax({
       type: 'get',
-      url: '/dashboard?lessons_for_row=' + container.data('lessons-in-space') + '&lessons_expanded=true'
+      url: '/dashboard/lessons?for_row=' + container.data('lessons-in-space') + '&expanded=true'
     }).always(bindLoader);
   });
 }
@@ -24,7 +24,7 @@ function expandMediaElementsInDashboard() {
     unbindLoader();
     $.ajax({
       type: 'get',
-      url: '/dashboard?media_elements_for_row=' + container.data('media-elements-in-space') + '&media_elements_expanded=true'
+      url: '/dashboard/media_elements?for_row=' + container.data('media-elements-in-space') + '&expanded=true'
     }).always(bindLoader);
   });
 }
@@ -39,7 +39,7 @@ function compressLessonsInDashboard() {
       unbindLoader();
       $.ajax({
         type: 'get',
-        url: '/dashboard?lessons_for_row=' + container.data('lessons-in-space') + '&lessons_expanded=false'
+        url: '/dashboard/lessons?for_row=' + container.data('lessons-in-space')
       }).always(bindLoader);
     });
   });
@@ -55,7 +55,7 @@ function compressMediaElementsInDashboard() {
       unbindLoader();
       $.ajax({
         type: 'get',
-        url: '/dashboard?media_elements_for_row=' + container.data('media-elements-in-space') + '&media_elements_expanded=false'
+        url: '/dashboard/media_elements?for_row=' + container.data('media-elements-in-space')
       }).always(bindLoader);
     });
   });

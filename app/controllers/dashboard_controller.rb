@@ -9,7 +9,7 @@
 #
 class DashboardController < ApplicationController
   
-  before_filter :initialize_layout, :initialize_pagination
+  before_filter :initialize_layout, :initialize_pagination, :only => :index
   
   # Pages of lessons
   LESSON_PAGES = 6
@@ -19,6 +19,34 @@ class DashboardController < ApplicationController
   LESSON_ROWS_PER_PAGE = 2
   # Rows of media elements in each page
   MEDIA_ELEMENT_ROWS_PER_PAGE = 2
+  
+  # === Description
+  #
+  # Expands or compresses lessons. This url is supposed to be called in 'expand' mode only if there are actually further lessons to be loaded.
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  def lessons
+    @for_row = correct_integer?(params['for_row']) ? params['for_row'].to_i : 0
+    @rows = params['expanded'].present? ? LESSON_PAGES * LESSON_ROWS_PER_PAGE : 1
+    @lessons = current_user.suggested_lessons(@for_row * @rows)
+  end
+  
+  # === Description
+  #
+  # Expands or compresses media elements. This url is supposed to be called in 'expand' mode only if there are actually further media elements to be loaded.
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  def media_elements
+    @for_row = correct_integer?(params['for_row']) ? params['for_row'].to_i : 0
+    @rows = params['expanded'].present? ? MEDIA_ELEMENT_PAGES * MEDIA_ELEMENT_ROWS_PER_PAGE : 1
+    @media_elements = current_user.suggested_media_elements(@for_row * @rows)
+  end
   
   # === Description
   #

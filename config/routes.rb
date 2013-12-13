@@ -3,11 +3,15 @@ Desy::Application.routes.draw do
   root :to => 'prelogin#home'
   
   # MAIN SECTIONS
-  get  'dashboard'         => 'dashboard#index',         :as => :dashboard
-  get  'lessons'           => 'lessons#index',           :as => :my_lessons
-  get  'media_elements'    => 'media_elements#index',    :as => :my_media_elements
-  get  'virtual_classroom' => 'virtual_classroom#index', :as => :my_virtual_classroom
-  get  'documents'         => 'documents#index',         :as => :documents
+  get 'dashboard'         => 'dashboard#index',         :as => :dashboard
+  get 'lessons'           => 'lessons#index',           :as => :my_lessons
+  get 'media_elements'    => 'media_elements#index',    :as => :my_media_elements
+  get 'virtual_classroom' => 'virtual_classroom#index', :as => :my_virtual_classroom
+  get 'documents'         => 'documents#index',         :as => :documents
+  
+  # DASHBOARD
+  get 'dashboard/lessons'        => 'dashboard#lessons',        :as => :dashboard_lessons
+  get 'dashboard/media_elements' => 'dashboard#media_elements', :as => :dashboard_media_elements
   
   # LESSONS
   post 'lessons/:lesson_id/add'                      => 'lessons#add'
