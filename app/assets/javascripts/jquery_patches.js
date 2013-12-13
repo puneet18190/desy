@@ -10,6 +10,15 @@ So far the only class present in the module is {{#crossLink "JqueryPatchesBrowse
 
 
 /**
+If the browser is Chrome, it returns body, otherwise it returns html
+@method browserDependingScrollToTag
+@for JqueryPatchesBrowsers
+**/
+function browserDependingScrollToTag() {
+  return ($.browser.webkit ? $body : $html);
+}
+
+/**
 Detects if the browser is an iPad, or iPhone, or other mobile browsers, and saves the result in <b>$.browser.[mobile_kind]</b>.
 @method mobileDetection
 @for JqueryPatchesBrowsers
@@ -20,6 +29,8 @@ Detects if the browser is an iPad, or iPhone, or other mobile browsers, and save
     $.browser.ipad = true;
   } else if(ua.indexOf('iphone') >= 0) {
     $.browser.iphone = true;
+  } else if(ua.indexOf('webkit') >= 0) {
+    $.browser.webkit = true;
   }
 })();
 
