@@ -781,6 +781,13 @@
           
         }
         
+        &.disabled {
+          
+          @include svg-circle-icon-handler-without-hover($assets-expand-dashboard_png, 30px, 2, 4, 0.5, 1, 0);
+          cursor: default;
+          
+        }
+        
       }
       
     }
@@ -840,6 +847,13 @@
         &.off {
           
           @include svg-circle-icon-handler($assets-expand-dashboard_png, 30px, 2, 4, 1, 0, 1, 1, 0, 3);
+          
+        }
+        
+        &.disabled {
+          
+          @include svg-circle-icon-handler-without-hover($assets-expand-dashboard_png, 30px, 2, 4, 0.5, 0, 0);
+          cursor: default;
           
         }
         

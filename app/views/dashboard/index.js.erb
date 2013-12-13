@@ -14,6 +14,14 @@ emptyAllPagesInDashboard('lessons');
   <% end %>
 <% end %>
 
+if(!container.data('lessons-expanded')) {
+  <% if @lessons.length <= @lessons_for_row %>
+    $('#dashboard_container .title_lessons .expand_icon').removeClass('off').addClass('disabled');
+  <% else %>
+    $('#dashboard_container .title_lessons .expand_icon').removeClass('disabled').addClass('off');
+  <% end %>
+}
+
 emptyAllPagesInDashboard('media_elements');
 <% @media_elements.each_with_index do |me, index| %>
   container.find('.space_media_elements .page<%= ((index / media_elements_for_page) + 1) %>').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => media_element_destination, :used_in_private_lessons => false})) %>");
@@ -21,5 +29,13 @@ emptyAllPagesInDashboard('media_elements');
     $('#<%= media_element_destination %>_<%= me.id %>').css('margin-top', '30px');
   <% end %>
 <% end %>
+
+if(!container.data('media-elements-expanded')) {
+  <% if @media_elements.length <= @media_elements_for_row %>
+    $('#dashboard_container .title_media_elements .expand_icon').removeClass('off').addClass('disabled');
+  <% else %>
+    $('#dashboard_container .title_media_elements .expand_icon').removeClass('disabled').addClass('off');
+  <% end %>
+}
 
 resizeLessonsAndMediaElementsInDashboard(<%= @lessons_for_row %>, <%= @media_elements_for_row %>);
