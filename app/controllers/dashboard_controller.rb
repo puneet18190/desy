@@ -62,14 +62,28 @@ class DashboardController < ApplicationController
   # * ApplicationController#initialize_layout
   #
   def index
-    @lessons = current_user.suggested_lessons(@lessons_for_row * @lesson_rows)
-    @lessons_emptied = Lesson.dashboard_emptied? current_user.id
-    @media_elements = current_user.suggested_media_elements(@media_elements_for_row * @media_element_rows)
-    @media_elements_emptied = MediaElement.dashboard_emptied? current_user.id
+    get_lessons_for_dashboard
+    get_media_elements_for_dashboard
     render_js_or_html_index
   end
   
   private
+  
+  # Gets lessons for dashboard, and checks if there are more lessons to be extracted
+  def get_lessons_for_dashboard
+    lessons = current_user.suggested_lessons(@lessons_for_row * @lesson_rows + 1)
+    @lessons_expandible = (lessons.length > @lessons_for_row * @lesson_rows)
+    @lessons = @lessons_expandible ? lessons.first(lessons.length - 1) : lessons
+    @lessons_emptied = Lesson.dashboard_emptied? current_user.id
+  end
+  
+  # Gets media elements for dashboard, and checks if there are more media elements to be extracted
+  def get_media_elements_for_dashboard
+    media_elements = current_user.suggested_media_elements(@media_elements_for_row * @lesson_rows + 1)
+    @media_elements_expandible = (media_elements.length > @media_elements_for_row * @lesson_rows)
+    @media_elements = @media_elements_expandible ? media_elements.first(media_elements.length - 1) : media_elements
+    @media_elements_emptied = MediaElement.dashboard_emptied? current_user.id
+  end
   
   # Initializes all the parameters of pagination
   def initialize_pagination

@@ -15,7 +15,7 @@ emptyAllPagesInDashboard('lessons');
 <% end %>
 
 if(!container.data('lessons-expanded')) {
-  <% if @lessons.length <= @lessons_for_row %>
+  <% if @lessons_expandible %>
     $('#dashboard_container .title_lessons .expand_icon').removeClass('off').addClass('disabled');
   <% else %>
     $('#dashboard_container .title_lessons .expand_icon').removeClass('disabled').addClass('off');
@@ -31,7 +31,7 @@ emptyAllPagesInDashboard('media_elements');
 <% end %>
 
 if(!container.data('media-elements-expanded')) {
-  <% if @media_elements.length <= @media_elements_for_row %>
+  <% if @media_elements_expandible %>
     $('#dashboard_container .title_media_elements .expand_icon').removeClass('off').addClass('disabled');
   <% else %>
     $('#dashboard_container .title_media_elements .expand_icon').removeClass('disabled').addClass('off');
