@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:epub="http://www.idpf.org/2007/ops">
   <head>
-    <title><%= lesson.title %> - Table of Contents</title>
+    <title><%= lesson.title %> - Indice</title>
   </head>
   <body>
     <div>
       <h1><%= lesson.title %></h1>
       <nav epub:type="toc" id="toc">
-        <h1>Table of Contents</h1>
+        <h1>Indice</h1>
         <ol>
           <% slides_without_cover.each do |r| -%>
             <li><a href="<%= slide_path(r) %>"><%= slide_title(r) %></a></li>

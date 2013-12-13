@@ -16,7 +16,6 @@ module Export
   module Lesson
     class Ebook
       class View
-        # TODO provare a memoizzare per vedere l'effetto che fa
         module Helper
 
           # TODO spostarlo in SETTINGS
@@ -37,7 +36,7 @@ module Export
 
           def render_slide(slide, locals = {})
             render partial: "lesson_viewer/slides/#{slide.kind}",
-                                        locals: { slide: slide }.merge(locals)
+                   locals:  { slide: slide }.merge(locals)
           end
 
           def stylesheet_path
@@ -85,9 +84,9 @@ module Export
             id =  "#{media_element.class.to_s.downcase}_#{media_element.id}"
             id << "_#{format}" if format
 
-            href = media_element_path(media_element, format)
+            href = media_element_path media_element, format
 
-            properties  = media_element.cover_of?(lesson) ? 'cover-image' : nil
+            properties = media_element.cover_of?(lesson) ? 'cover-image' : nil
 
             { id:         id                            ,
               href:       href                          ,
