@@ -58,10 +58,6 @@ module Export
             title
           end
 
-          def document_fallback_title(document, position)
-            "Document #{position} - #{document.title}"
-          end
-
           def image_path(image)
             image.url UrlTypes::EXPORT
           end
@@ -78,24 +74,6 @@ module Export
 
           def mime_type(path)
             MIME::Types.of(path.to_s).first.try(:content_type) || UNKNOWN_MIME_TYPE
-          end
-
-          def document_path(document)
-            document.url UrlTypes::EXPORT
-          end
-
-          def document_item_attributes(document)
-            href = document_path(document)
-
-            { id:         document_item_id(document)          ,
-              href:       href                                ,
-              fallback:   document_item_fallback_id(document) ,
-              media_type: mime_type(href)                     }
-          end
-
-          def document_item_fallback_attributes(document)
-            { id:   document_item_fallback_id(document)                     ,
-              href: document_fallbacks_relative_from_content_path(document) }
           end
 
           def media_element_path(media_element, format = nil)

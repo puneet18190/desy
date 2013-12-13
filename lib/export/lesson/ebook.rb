@@ -21,7 +21,7 @@ module Export
       include Shared::EbookAndEbookView
 
       FOLDER               = env_relative_pathname Rails.public_pathname, 'lessons', 'exports', 'ebooks'
-      SLIDES_INCLUDES      = [ :documents_slides, :documents, :media_elements_slides, :media_elements ]
+      SLIDES_INCLUDES      = [ :media_elements_slides, :media_elements ]
       SLIDES_EAGER_LOAD    = SLIDES_INCLUDES
       SLIDES_ORDER         = 'slides.position'
       CONTENTS_FOLDER_NAME = Pathname 'OEBPS'
@@ -104,18 +104,6 @@ module Export
 
           media_elements_files(exclude_versions: [ :thumb ]).each do |path|
             add_path_entry archive, path, CONTENTS_FOLDER_NAME.join(path.relative_path_from MEDIA_ELEMENTS_UPFOLDER)
-          end
-
-          documents_files.each do |path|
-            add_path_entry archive, path, CONTENTS_FOLDER_NAME.join(path.relative_path_from DOCUMENTS_UPFOLDER)
-          end
-
-          document_fallback_view_path = CONTENTS_FOLDER_NAME.join('documents/fallback.xhtml')
-          lesson.documents.each_with_index do |document, i|
-            add_template archive                                                                           ,
-                         { document: document, position: i+1 }                                             ,
-                         CONTENTS_FOLDER_NAME.join(document_fallbacks_relative_from_content_path document) , 
-                         document_fallback_view_path
           end
 
           math_images.each do |path|

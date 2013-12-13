@@ -46,17 +46,6 @@
       <% end -%>
     <% end -%>
 
-    <% lesson.documents.each do |r| -%>
-        <% attributes          = document_item_attributes(r) -%>
-        <% fallback_attributes = document_item_fallback_attributes(r) -%>
-      <item id="<%= attributes[:id] %>"
-            href="<%= attributes[:href] %>"
-            fallback="<%= attributes[:fallback] %>"
-            media-type="<%= attributes[:media_type] %>"/>
-      <item id="<%= fallback_attributes[:id] %>"
-            href="<%= fallback_attributes[:href] %>"
-            media-type="application/xhtml+xml"/>
-    <% end -%>
     <% math_images.each_with_index do |math_image, i| -%>
         <item id="<%= math_image_item_id(i) %>"
               href="<%= math_image_item_href(math_image) %>"
@@ -65,9 +54,6 @@
   </manifest>
 
    <spine>
-    <% lesson.documents.each do |r| -%>
-      <itemref idref="<%= document_item_id(r) %>" linear="no"/>
-    <% end -%>
     <itemref idref="cover"/>
     <itemref idref="toc"/>
     <% slides_without_cover.each do |r| -%>
