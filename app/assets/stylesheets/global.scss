@@ -230,6 +230,7 @@ p {
 .global-footer {
   
   width: 100%;
+  height: 85px;
   position: fixed;
   bottom: 0;
   z-index: 5000;
@@ -239,34 +240,40 @@ p {
   
   .global-footer-content {
     
-    padding: 7px 41px 20px 0px;
+    height: 27px;
+    padding-right: 1%;
     background-color: #373737;
     
-    .back-to-dashboard {
+    a.back-to-dashboard {
       
+      margin-top: 8px;
       float: right;
       text-transform: uppercase;
+      color: #fff;
       
-      a {
+      &:hover {
         
-        color: #fff;
-        
-        &:hover {
-          
-          color: #DEDEDE;
-          
-        }
+        color: #DEDEDE;
         
       }
+      
+    }
     
+    img.back-to-dashboard {
+      
+      float: right;
+      margin-left: 5px;
+      margin-top: 8px;
+      
     }
     
   }
   
   .global-footer-logo {
     
-    width: 96%;
-    padding: 0 2% 0 2%;
+    width: 98%;
+    height: 58px;
+    padding: 0 1%;
     float: left;
     
     .partner {
@@ -278,8 +285,8 @@ p {
     
     .copyright {
       
-      float: left;
-      padding-top: 30px;
+      float: right;
+      padding-top: 25px;
       
     }
     
