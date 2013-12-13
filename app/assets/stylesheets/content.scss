@@ -27,9 +27,14 @@
 
 .global-content {
   
-  height: 100%;
-  padding: 0 0 43px 0;
+  padding: 0 0 135px 0;
   color: #939393;
+  
+  .dots_pagination_container {
+    
+    margin-top: 25px;
+    
+  }
   
 }
 
@@ -267,7 +272,6 @@
 .lessons-content {
   
   width: 100%;
-  margin-bottom: 3%;
   
   .current {
     
@@ -280,7 +284,6 @@
 .elements-content {
   
   width: 100%;
-  margin-bottom: 3%;
   
   .boxViewSingleMediaElement {
     
@@ -719,7 +722,6 @@
   #dashboard_container {
     
     width: calc(100% - 257px);
-    margin-bottom: 60px;
     float: left;
     position: relative;
     
