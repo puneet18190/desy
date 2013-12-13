@@ -141,11 +141,11 @@
     color: #999;
     padding-left: 2%;
     
-  }
-  
-  a.advanced:hover {
-    
-    color: #a5a4a4;
+    &:hover {
+      
+      color: #a5a4a4;
+      
+    }
     
   }
   
@@ -211,7 +211,6 @@
 .advanced-search-content {
   
   width: 100%;
-  margin-bottom: 5%;
   
   .boxViewSingleLesson.current {
     
