@@ -227,7 +227,7 @@ p {
   
 }
 
-.footer {
+.global-footer {
   
   width: 100%;
   position: fixed;
@@ -237,36 +237,51 @@ p {
   color: #999;
   font-size: 11px;
   
-  .footer_content {
+  .global-footer-content {
     
     padding: 7px 41px 20px 0px;
     background-color: #373737;
     
-    a {
+    .back-to-dashboard {
       
-      color: #fff;
-      
-      &:hover {
-        
-        color: #dedede;
-        
-      }
-      
-    }
-    
-    .dashboard {
-      
+      float: right;
       text-transform: uppercase;
       
+      a {
+        
+        color: #fff;
+        
+        &:hover {
+          
+          color: #DEDEDE;
+          
+        }
+        
+      }
+    
     }
     
   }
   
-  .footer_logo_content {
+  .global-footer-logo {
     
     width: 96%;
     padding: 0 2% 0 2%;
     float: left;
+    
+    .partner {
+      
+      float: left;
+      padding: 10px;
+      
+    }
+    
+    .copyright {
+      
+      float: left;
+      padding-top: 30px;
+      
+    }
     
   }
   
