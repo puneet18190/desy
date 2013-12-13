@@ -73,7 +73,7 @@ class DashboardController < ApplicationController
   def get_lessons_for_dashboard
     lessons = current_user.suggested_lessons(@lessons_for_row * @lesson_rows + 1)
     @lessons_expandible = (lessons.length > @lessons_for_row * @lesson_rows)
-    @lessons = @lessons_expandible ? lessons.first(lessons.length - 1) : lessons
+    @lessons = @lessons_expandible ? lessons[0, lessons.length - 1] : lessons
     @lessons_emptied = Lesson.dashboard_emptied? current_user.id
   end
   
@@ -81,7 +81,7 @@ class DashboardController < ApplicationController
   def get_media_elements_for_dashboard
     media_elements = current_user.suggested_media_elements(@media_elements_for_row * @lesson_rows + 1)
     @media_elements_expandible = (media_elements.length > @media_elements_for_row * @lesson_rows)
-    @media_elements = @media_elements_expandible ? media_elements.first(media_elements.length - 1) : media_elements
+    @media_elements = @media_elements_expandible ? media_elements[0, media_elements.length - 1] : media_elements
     @media_elements_emptied = MediaElement.dashboard_emptied? current_user.id
   end
   
