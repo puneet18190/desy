@@ -97,8 +97,7 @@ module Export
 
           add_template archive, locals, CONTENTS_FOLDER_NAME.join('cover.xhtml')
 
-          slide_view_path = CONTENTS_FOLDER_NAME.join('slide.xhtml')
-          slides_without_cover.each do |slide|
+          slides_without_cover.each_with_object(CONTENTS_FOLDER_NAME.join 'slide.xhtml') do |slide, slide_view_path|
             add_template archive, { slide: slide }, CONTENTS_FOLDER_NAME.join(slide_filename slide), slide_view_path
           end
 
