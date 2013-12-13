@@ -1398,7 +1398,7 @@ it:
       virtual_classroom: "%{desy} - virtual classroom"
     # Caption for Virtual Classroom
     # 1 - views/shared/_menu.html.erb
-    # 2 - views/virtual_classroom/index.html.erb
+    # 2 - views/layouts/_virtual_classroom.html.erb
     virtual_classroom: "Playlist" # FIXME "Virtual Classroom"
     # Used in the login, before the logged user's name
     # 1 - views/admin/_header.html.erb
@@ -2471,7 +2471,7 @@ it:
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       empty: "Non ci sono lezioni da aggiungere alla Playlist" # FIXME "Non ci sono lezioni da aggiungere alla Virtual Classroom"
       # Button to open the window from the main bar inside Virtual Classroom
-      # 1 - views/virtual_classroom/index.html.erb
+      # 1 - views/layouts/_virtual_classroom.html.erb
       label: "Aggiungi lezioni"
       # Instructions
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
@@ -2480,7 +2480,7 @@ it:
     # 1 - views/virtual_classroom/_empty.html.erb
     empty: "La tua Playlist è vuota" # FIXME "La tua Virtual Classroom è vuota"
     # Caption of the button which empties your Virtual Classroom
-    # 1 - views/virtual_classroom/index.html.erb
+    # 1 - views/layouts/_virtual_classroom.html.erb
     make_it_empty: "Svuota la tua Playlist" # FIXME "Svuota la tua Virtual Classroom"
     # Captions used for the composition of the playlist
     playlist:
