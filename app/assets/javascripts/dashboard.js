@@ -37,23 +37,19 @@ function resetEnableAndDisableInDashboardPagination(pos) {
   }
 }
 
-function enableLastPageInDashboardPagination(selector) {
-  var paginator = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container');
+function enableLastPageInDashboardPagination(paginator) {
   paginator.find('.pages a').last().removeClass('disabled').attr('title', paginator.data('title-next'));
 }
 
-function disableLastPageInDashboardPagination(selector) {
-  var paginator = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container');
+function disableLastPageInDashboardPagination(paginator) {
   paginator.find('.pages a').last().addClass('disabled').removeAttr('title');
 }
 
-function enableFirstPageInDashboardPagination(selector) {
-  var paginator = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container');
+function enableFirstPageInDashboardPagination(paginator) {
   paginator.find('.pages a').first().removeClass('disabled').attr('title', paginator.data('title-prev'));
 }
 
-function disableFirstPageInDashboardPagination(selector) {
-  var paginator = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container');
+function disableFirstPageInDashboardPagination(paginator) {
   paginator.find('.pages a').first().addClass('disabled').removeAttr('title');
 }
 

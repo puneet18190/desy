@@ -19,9 +19,9 @@ container.find('.title_lessons .expand_icon.on').data('moving', false);
 
 $(document).ready(function() {
   <% if @lessons.length > for_page %>
-    enableLastPageInDashboardPagination('lessons');
+    enableLastPageInDashboardPagination($('#dashboard_container .pagination_lessons .dots_pagination_container'));
     initializeDashboardPagination('lessons', 1, <%= Rational(@lessons.length, for_page).ceil %>);
   <% else %>
-    disableLastPageInDashboardPagination('lessons');
+    disableLastPageInDashboardPagination($('#dashboard_container .pagination_lessons .dots_pagination_container'));
   <% end %>
 });
