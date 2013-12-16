@@ -19,6 +19,7 @@ container.find('.title_lessons .expand_icon.on').data('moving', false);
 
 <% if @lessons.length > for_page %>
   enableLastPageInDashboardPagination('lessons');
+  initializeDashboardPagination('lessons', 1);
 <% else %>
   disableLastPageInDashboardPagination('lessons');
 <% end %>
