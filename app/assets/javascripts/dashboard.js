@@ -1,15 +1,24 @@
+// Parte sempre dal div vuoto!
 function initializeDashboardPagination(selector, pos, pages_amount) {
   var space = $('#dashboard_container .space_' + selector);
   var paginator = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container');
+  paginator.replaceWith($('#hidden_dashboard_pagination').html());
+  var first_page = paginator.find('.pages a').first();
+  var second_page = $(paginator.find('.pages a')[1]);
+  var third_page = paginator.find('.pages a').last();
+  first_page.data('page', (pos - 1));
+  second_page.data('page', pos);
+  third_page.data('page', (pos + 1));
+  var next_space = $('#dashboard_container .space_' + selector + ' .page' + (pos + 1));
+  if(pos != 1) {
+    first_page.removeClass('disabled').attr('title', paginator.data('title-prev'));
+  }
+  if(next_space.length != 0 && next_next.find('div').length != 0) {
+    first_page.removeClass('disabled').attr('title', paginator.data('title-prev'));
+  }
   var prevPage = function(prevPage) {
     space.find('.page' + pos).hide('fade', {}, 500, function() {
       space.find('.page' + (pos - 1)).show();
-      resetEnableAndDisableInDashboardPagination(selector, pos - 1);
-      paginator.replaceWith($('#hidden_dashboard_pagination').html());
-      var pages = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container .pages a');
-      pages.first().data('page', (pos - 2));
-      $(pages[1]).data('page', (pos - 1));
-      pages.last().data('page', pos);
       initializeDashboardPagination(selector, pos - 1, pages_amount);
     });
     return true;
@@ -17,48 +26,11 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
   var nextPage = function(nextPage) {
     space.find('.page' + pos).hide('fade', {}, 500, function() {
       space.find('.page' + (pos + 1)).show();
-      resetEnableAndDisableInDashboardPagination(selector, pos + 1);
-      paginator.replaceWith($('#hidden_dashboard_pagination').html());
-      var pages = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container .pages a');
-      pages.first().data('page', pos);
-      $(pages[1]).data('page', (pos + 1));
-      pages.last().data('page', (pos + 2));
       initializeDashboardPagination(selector, pos + 1, pages_amount);
     });
     return true;
   }
   new DotsPagination(paginator.find('.pages'), pages_amount, { 'complete': { 'prev': prevPage, 'next': nextPage } });
-}
-
-function resetEnableAndDisableInDashboardPagination(selector, pos) {
-  var paginator = $('#hidden_dashboard_pagination .dots_pagination_container');
-  var next_next = $('#dashboard_container .space_' + selector + ' .page' + (pos + 1));
-  if(pos == 1) {
-    disableFirstPageInDashboardPagination(paginator);
-  } else {
-    enableFirstPageInDashboardPagination(paginator);
-  }
-  if(next_next.length == 0 || next_next.find('div').length == 0) {
-    disableLastPageInDashboardPagination(paginator);
-  } else {
-    enableLastPageInDashboardPagination(paginator);
-  }
-}
-
-function enableLastPageInDashboardPagination(paginator) {
-  paginator.find('.pages a').last().removeClass('disabled').attr('title', paginator.data('title-next'));
-}
-
-function disableLastPageInDashboardPagination(paginator) {
-  paginator.find('.pages a').last().addClass('disabled').removeAttr('title');
-}
-
-function enableFirstPageInDashboardPagination(paginator) {
-  paginator.find('.pages a').first().removeClass('disabled').attr('title', paginator.data('title-prev'));
-}
-
-function disableFirstPageInDashboardPagination(paginator) {
-  paginator.find('.pages a').first().addClass('disabled').removeAttr('title');
 }
 
 function expandLessonsInDashboard() {

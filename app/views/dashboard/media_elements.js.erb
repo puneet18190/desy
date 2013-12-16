@@ -25,9 +25,6 @@ container.find('.title_media_elements .expand_icon.on').data('moving', false);
 
 $(document).ready(function() {
   <% if @media_elements.length > for_page %>
-    enableLastPageInDashboardPagination($('#dashboard_container .pagination_media_elements .dots_pagination_container'));
     initializeDashboardPagination('media_elements', 1, <%= Rational(@media_elements.length, for_page).ceil %>);
-  <% else %>
-    disableLastPageInDashboardPagination($('#dashboard_container .pagination_media_elements .dots_pagination_container'));
   <% end %>
 });
