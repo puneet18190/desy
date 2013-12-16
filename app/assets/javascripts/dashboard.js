@@ -133,6 +133,13 @@ function openDescriptionDashboardRecursionLayer(item, t, h_i, h_f, tot_time) {
   }
 }
 
+function calculateTheNewVisiblePageInDashboard(for_row, page, new_for_row) {
+  var for_page = for_row * 2;
+  var new_for_page = new_for_row * 2;
+  var selected_item = for_page * (page - 1) + 1;
+  return parseInt(selected_item / new_for_page) + 1;
+}
+
 function dashboardResizeController() {
   var container = $('#dashboard_container');
   var width = container.width();
@@ -142,17 +149,22 @@ function dashboardResizeController() {
   var lessons_width = lessons_in_space * (300 + lessons_margin) - lessons_margin;
   media_elements_in_space = parseInt((lessons_width - 207) / 207) + 1;
   if(lessons_in_space != container.data('lessons-in-space') || media_elements_in_space != container.data('media-elements-in-space')) {
-    container.data('lessons-in-space', lessons_in_space);
-    container.data('media-elements-in-space', media_elements_in_space);
-    resizeLessonsAndMediaElementsInDashboard(lessons_in_space, media_elements_in_space, true);
-    var dashboard_url = '/dashboard?media_elements_for_row=' + media_elements_in_space;
-    dashboard_url += '&lessons_for_row=' + lessons_in_space;
+    var dashboard_url = '/dashboard?media_elements_for_row=' + media_elements_in_space + '&lessons_for_row=' + lessons_in_space;
     if(container.data('lessons-expanded')) {
       dashboard_url += '&lessons_expanded=true';
+      var current_lessons_page = 1; // TODO
+      var new_lessons_page = calculateTheNewVisiblePageInDashboard(container.data('lessons-in-space'), current_lessons_page, lessons_in_space);
+      resetVisibilityOfAllPagesInDashboard('lessons', new_lessons_page);
     }
     if(container.data('media-elements-expanded')) {
       dashboard_url += '&media_elements_expanded=true';
+      var current_media_elements_page = 1; // TODO
+      var new_media_elements_page = calculateTheNewVisiblePageInDashboard(container.data('media-elements-in-space'), current_media_elements_page, media_elements_in_space);
+      resetVisibilityOfAllPagesInDashboard('media_elements', new_media_elements_page);
     }
+    container.data('lessons-in-space', lessons_in_space);
+    container.data('media-elements-in-space', media_elements_in_space);
+    resizeLessonsAndMediaElementsInDashboard(lessons_in_space, media_elements_in_space, true);
     unbindLoader();
     $.ajax({
       type: 'get',
