@@ -4,6 +4,7 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
   var prevPage = function(prevPage) {
     space.find('.page' + pos).hide('fade', {}, 500, function() {
       space.find('.page' + (pos - 1)).show();
+      paginator.replaceWith($('#hidden_dashboard_pagination').html());
       if(pos == 1) {
         disableFirstPageInDashboardPagination(selector);
       } else {
@@ -16,6 +17,7 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
   var nextPage = function(nextPage) {
     space.find('.page' + pos).hide('fade', {}, 500, function() {
       space.find('.page' + (pos + 1)).show();
+      paginator.replaceWith($('#hidden_dashboard_pagination').html());
       var next_next = space.find('.page' + (pos + 2));
       if(next_next.length == 0 || next_next.find('div').length == 0) {
         disableLastPageInDashboardPagination(selector);
