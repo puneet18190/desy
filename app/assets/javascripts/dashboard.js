@@ -1,3 +1,23 @@
+function enableLastPageInDashboardPagination(selector) {
+  var paginator = $('#dashboard_container .' + selector + '_pagination .dots_pagination_container');
+  paginator.find('.pages a').last().removeClass('disabled').attr('title', paginator.data('title-next'));
+}
+
+function disableLastPageInDashboardPagination(selector) {
+  var paginator = $('#dashboard_container .' + selector + '_pagination .dots_pagination_container');
+  paginator.find('.pages a').last().addClass('disabled').removeAttr('title');
+}
+
+function enableFirstPageInDashboardPagination(selector) {
+  var paginator = $('#dashboard_container .' + selector + '_pagination .dots_pagination_container');
+  paginator.find('.pages a').first().removeClass('disabled').attr('title', paginator.data('title-prev'));
+}
+
+function disableFirstPageInDashboardPagination(selector) {
+  var paginator = $('#dashboard_container .' + selector + '_pagination .dots_pagination_container');
+  paginator.find('.pages a').first().addClass('disabled').removeAttr('title');
+}
+
 function expandLessonsInDashboard() {
   var container = $('#dashboard_container');
   container.find('.title_lessons .expand_icon.off').hide();
