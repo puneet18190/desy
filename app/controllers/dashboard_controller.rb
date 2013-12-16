@@ -95,6 +95,8 @@ class DashboardController < ApplicationController
     @media_element_rows = @media_elements_expanded ? MEDIA_ELEMENT_PAGES * MEDIA_ELEMENT_ROWS_PER_PAGE : 1
     @lessons_for_row = 0 if @lessons_for_row > 50
     @media_elements_for_row = 0 if @media_elements_for_row > 50
+    @lessons_current_page = correct_integer?(params['lessons_expanded']) ? params['lessons_expanded'] : 1 if @lessons_expanded
+    @media_elements_current_page = correct_integer?(params['media_elements_expanded']) ? params['media_elements_expanded'] : 1 if @media_elements_expanded
   end
   
 end

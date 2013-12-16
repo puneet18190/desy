@@ -151,16 +151,16 @@ function dashboardResizeController() {
   if(lessons_in_space != container.data('lessons-in-space') || media_elements_in_space != container.data('media-elements-in-space')) {
     var dashboard_url = '/dashboard?media_elements_for_row=' + media_elements_in_space + '&lessons_for_row=' + lessons_in_space;
     if(container.data('lessons-expanded')) {
-      dashboard_url += '&lessons_expanded=true';
       var current_lessons_page = container.find('.pagination_lessons .pages a').first().data('page') + 1;
       var new_lessons_page = calculateTheNewVisiblePageInDashboard(container.data('lessons-in-space'), current_lessons_page, lessons_in_space);
       resetVisibilityOfAllPagesInDashboard('lessons', new_lessons_page);
+      dashboard_url += '&lessons_expanded=' + new_lessons_page;
     }
     if(container.data('media-elements-expanded')) {
-      dashboard_url += '&media_elements_expanded=true';
       var current_media_elements_page = container.find('.pagination_media_elements .pages a').first().data('page') + 1;
       var new_media_elements_page = calculateTheNewVisiblePageInDashboard(container.data('media-elements-in-space'), current_media_elements_page, media_elements_in_space);
       resetVisibilityOfAllPagesInDashboard('media_elements', new_media_elements_page);
+      dashboard_url += '&media_elements_expanded=' + new_media_elements_page;
     }
     container.data('lessons-in-space', lessons_in_space);
     container.data('media-elements-in-space', media_elements_in_space);

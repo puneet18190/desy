@@ -41,10 +41,10 @@ if(!container.data('media-elements-expanded')) {
 resizeLessonsAndMediaElementsInDashboard(<%= @lessons_for_row %>, <%= @media_elements_for_row %>, false);
 
 $(document).ready(function() {
-  <% if @media_elements_expanded && @media_elements.length > media_elements_for_page %>
-    initializeDashboardPagination('media_elements', 1, <%= Rational(@media_elements.length, media_elements_for_page).ceil %>);
-  <% end %>
   <% if @lessons_expanded && @lessons.length > lessons_for_page %>
-    initializeDashboardPagination('lessons', 1, <%= Rational(@lessons.length, lessons_for_page).ceil %>);
+    initializeDashboardPagination('lessons', <%= @lessons_current_page %>, <%= Rational(@lessons.length, lessons_for_page).ceil %>);
+  <% end %>
+  <% if @media_elements_expanded && @media_elements.length > media_elements_for_page %>
+    initializeDashboardPagination('media_elements', <%= @media_elements_current_page %>, <%= Rational(@media_elements.length, media_elements_for_page).ceil %>);
   <% end %>
 });
