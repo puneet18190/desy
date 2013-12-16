@@ -1,8 +1,8 @@
 // Parte sempre dal div vuoto!
 function initializeDashboardPagination(selector, pos, pages_amount) {
+  $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container').replaceWith($('#hidden_dashboard_pagination').html());
   var space = $('#dashboard_container .space_' + selector);
   var paginator = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container');
-  paginator.replaceWith($('#hidden_dashboard_pagination').html());
   var first_page = paginator.find('.pages a').first();
   var second_page = $(paginator.find('.pages a')[1]);
   var third_page = paginator.find('.pages a').last();
