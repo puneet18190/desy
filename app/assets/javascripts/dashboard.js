@@ -4,6 +4,7 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
   var prevPage = function(prevPage) {
     space.find('.page' + pos).hide('fade', {}, 500, function() {
       space.find('.page' + (pos - 1)).show();
+      resetEnableAndDisableInDashboardPagination(pos - 1);
       paginator.replaceWith($('#hidden_dashboard_pagination').html());
       initializeDashboardPagination(selector, pos - 1, pages_amount);
     });
@@ -12,6 +13,7 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
   var nextPage = function(nextPage) {
     space.find('.page' + pos).hide('fade', {}, 500, function() {
       space.find('.page' + (pos + 1)).show();
+      resetEnableAndDisableInDashboardPagination(pos + 1);
       paginator.replaceWith($('#hidden_dashboard_pagination').html());
       initializeDashboardPagination(selector, pos + 1, pages_amount);
     });
@@ -20,17 +22,18 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
   new DotsPagination(paginator.find('.pages'), pages_amount, { 'complete': { 'prev': prevPage, 'next': nextPage } });
 }
 
-function resetEnableAndDisableInDashboardPagination(selector, pos) {
-  var next_next = $('#dashboard_container .space_' + selector + ' .page' + (pos + 2));
+function resetEnableAndDisableInDashboardPagination(pos) {
+  var paginator = $('#hidden_dashboard_pagination .dots_pagination_container');
+  var next_next = $('#dashboard_container .space_' + selector + ' .page' + (pos + 1));
   if(pos == 1) {
-    disableFirstPageInDashboardPagination(selector);
+    disableFirstPageInDashboardPagination(paginator);
   } else {
-    enableFirstPageInDashboardPagination(selector);
+    enableFirstPageInDashboardPagination(paginator);
   }
   if(next_next.length == 0 || next_next.find('div').length == 0) {
-    disableLastPageInDashboardPagination(selector);
+    disableLastPageInDashboardPagination(paginator);
   } else {
-    enableLastPageInDashboardPagination(selector);
+    enableLastPageInDashboardPagination(paginator);
   }
 }
 
