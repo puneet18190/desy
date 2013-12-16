@@ -5,11 +5,6 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
     space.find('.page' + pos).hide('fade', {}, 500, function() {
       space.find('.page' + (pos - 1)).show();
       paginator.replaceWith($('#hidden_dashboard_pagination').html());
-      if(pos == 1) {
-        disableFirstPageInDashboardPagination(selector);
-      } else {
-        enableFirstPageInDashboardPagination(selector);
-      }
       initializeDashboardPagination(selector, pos - 1, pages_amount);
     });
     return true;
@@ -18,17 +13,25 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
     space.find('.page' + pos).hide('fade', {}, 500, function() {
       space.find('.page' + (pos + 1)).show();
       paginator.replaceWith($('#hidden_dashboard_pagination').html());
-      var next_next = space.find('.page' + (pos + 2));
-      if(next_next.length == 0 || next_next.find('div').length == 0) {
-        disableLastPageInDashboardPagination(selector);
-      } else {
-        enableLastPageInDashboardPagination(selector);
-      }
       initializeDashboardPagination(selector, pos + 1, pages_amount);
     });
     return true;
   }
   new DotsPagination(paginator.find('.pages'), pages_amount, { 'complete': { 'prev': prevPage, 'next': nextPage } });
+}
+
+function resetEnableAndDisableInDashboardPagination(selector, pos) {
+  var next_next = $('#dashboard_container .space_' + selector + ' .page' + (pos + 2));
+  if(pos == 1) {
+    disableFirstPageInDashboardPagination(selector);
+  } else {
+    enableFirstPageInDashboardPagination(selector);
+  }
+  if(next_next.length == 0 || next_next.find('div').length == 0) {
+    disableLastPageInDashboardPagination(selector);
+  } else {
+    enableLastPageInDashboardPagination(selector);
+  }
 }
 
 function enableLastPageInDashboardPagination(selector) {
