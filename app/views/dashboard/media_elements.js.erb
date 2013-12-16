@@ -25,7 +25,7 @@ container.find('.title_media_elements .expand_icon.on').data('moving', false);
 
 <% if @media_elements.length > for_page %>
   enableLastPageInDashboardPagination('media_elements');
-  initializeDashboardPagination('media_elements', 1);
+  initializeDashboardPagination('media_elements', 1, <%= Rational(@media_elements.length, for_page).ceil %>);
 <% else %>
   disableLastPageInDashboardPagination('media_elements');
 <% end %>

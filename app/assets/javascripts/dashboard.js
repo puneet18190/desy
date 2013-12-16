@@ -1,4 +1,4 @@
-function initializeDashboardPagination(selector, pos) {
+function initializeDashboardPagination(selector, pos, pages_amount) {
   var space = $('#dashboard_container .space_' + selector);
   var paginator = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container');
   $(document).ready(function() {
@@ -10,7 +10,7 @@ function initializeDashboardPagination(selector, pos) {
         } else {
           enableFirstPageInDashboardPagination(selector);
         }
-        initializeDashboardPagination(selector, pos - 1);
+        initializeDashboardPagination(selector, pos - 1, pages_amount);
       });
       return true;
     }
@@ -23,7 +23,7 @@ function initializeDashboardPagination(selector, pos) {
         } else {
           enableLastPageInDashboardPagination(selector);
         }
-        initializeDashboardPagination(selector, pos + 1);
+        initializeDashboardPagination(selector, pos + 1, pages_amount);
       });
       return true;
     }
