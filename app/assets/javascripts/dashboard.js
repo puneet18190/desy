@@ -181,16 +181,26 @@ function resizeLessonsAndMediaElementsInDashboard(lessons, media_elements, with_
   if(with_vertical_margin) {
     container.find('.space_lessons .dashpage').each(function() {
       var second_row_lesson = $($(this).find('.lesson_in_dashboard')[lessons]);
+      var first_row_lesson = second_row_lesson.prev();
       while(second_row_lesson.length != 0) {
         second_row_lesson.css('margin-top', '30px');
         second_row_lesson = second_row_lesson.next();
       }
+      while(first_row_lesson.length != 0) {
+        first_row_lesson.css('margin-top', '0px');
+        first_row_lesson = first_row_lesson.prev();
+      }
     });
     container.find('.space_media_elements .dashpage').each(function() {
       var second_row_media_element = $($(this).find('.boxViewExpandedMediaElement')[media_elements]);
+      var first_row_media_element = second_row_media_element.prev();
       while(second_row_media_element.length != 0) {
         second_row_media_element.css('margin-top', '30px');
         second_row_media_element = second_row_media_element.next();
+      }
+      while(first_row_media_element.length != 0) {
+        first_row_media_element.css('margin-top', '0px');
+        first_row_media_element = first_row_media_element.prev();
       }
     });
   }
