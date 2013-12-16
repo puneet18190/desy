@@ -6,6 +6,10 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
       space.find('.page' + (pos - 1)).show();
       resetEnableAndDisableInDashboardPagination(selector, pos - 1);
       paginator.replaceWith($('#hidden_dashboard_pagination').html());
+      var pages = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container .pages a');
+      pages.first().data('page', (pos - 2));
+      $(pages[1]).data('page', (pos - 1));
+      pages.last().data('page', pos);
       initializeDashboardPagination(selector, pos - 1, pages_amount);
     });
     return true;
@@ -15,6 +19,10 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
       space.find('.page' + (pos + 1)).show();
       resetEnableAndDisableInDashboardPagination(selector, pos + 1);
       paginator.replaceWith($('#hidden_dashboard_pagination').html());
+      var pages = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container .pages a');
+      pages.first().data('page', pos);
+      $(pages[1]).data('page', (pos + 1));
+      pages.last().data('page', (pos + 2));
       initializeDashboardPagination(selector, pos + 1, pages_amount);
     });
     return true;
@@ -25,10 +33,6 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
 function resetEnableAndDisableInDashboardPagination(selector, pos) {
   var paginator = $('#hidden_dashboard_pagination .dots_pagination_container');
   var next_next = $('#dashboard_container .space_' + selector + ' .page' + (pos + 1));
-  var pages = paginator.find('.pages a');
-  pages.first().data('page', (pos - 1));
-  $(pages[1]).data('page', pos);
-  pages.last().data('page', (pos + 1));
   if(pos == 1) {
     disableFirstPageInDashboardPagination(paginator);
   } else {
