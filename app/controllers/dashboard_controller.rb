@@ -79,8 +79,8 @@ class DashboardController < ApplicationController
   
   # Gets media elements for dashboard, and checks if there are more media elements to be extracted
   def get_media_elements_for_dashboard
-    media_elements = current_user.suggested_media_elements(@media_elements_for_row * @lesson_rows + 1)
-    @media_elements_expandible = (media_elements.length > @media_elements_for_row * @lesson_rows)
+    media_elements = current_user.suggested_media_elements(@media_elements_for_row * @media_element_rows + 1)
+    @media_elements_expandible = (media_elements.length > @media_elements_for_row * @media_element_rows)
     @media_elements = @media_elements_expandible ? media_elements[0, media_elements.length - 1] : media_elements
     @media_elements_emptied = MediaElement.dashboard_emptied? current_user.id
   end
