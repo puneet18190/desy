@@ -1,7 +1,7 @@
 function initializeDashboardPagination(selector, pos) {
+  var space = $('#dashboard_container .space_' + selector);
+  var paginator = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container');
   $(document).ready(function() {
-    var space = $('#dashboard_container .space_' + selector);
-    var paginator = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container');
     var prevPage = function(prevPage) {
       space.find('.page' + pos).hide('fade', {}, 500, function() {
         space.find('.page' + (pos - 1)).show();
@@ -27,7 +27,7 @@ function initializeDashboardPagination(selector, pos) {
       });
       return true;
     }
-    new DotsPagination($('.pages'), pages_amount, { 'complete': { 'prev': prevPage, 'next': nextPage } });
+    new DotsPagination(paginator.find('.pages'), pages_amount, { 'complete': { 'prev': prevPage, 'next': nextPage } });
   });
 }
 
