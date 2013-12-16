@@ -17,9 +17,11 @@ emptyAllPagesInDashboard('lessons');
 container.find('.title_lessons .expand_icon.off, .title_lessons .expand_icon.disabled').data('moving', false);
 container.find('.title_lessons .expand_icon.on').data('moving', false);
 
-<% if @lessons.length > for_page %>
-  enableLastPageInDashboardPagination('lessons');
-  initializeDashboardPagination('lessons', 1, <%= Rational(@lessons.length, for_page).ceil %>);
-<% else %>
-  disableLastPageInDashboardPagination('lessons');
-<% end %>
+$(document).ready(function() {
+  <% if @lessons.length > for_page %>
+    enableLastPageInDashboardPagination('lessons');
+    initializeDashboardPagination('lessons', 1, <%= Rational(@lessons.length, for_page).ceil %>);
+  <% else %>
+    disableLastPageInDashboardPagination('lessons');
+  <% end %>
+});

@@ -23,9 +23,11 @@ emptyAllPagesInDashboard('media_elements');
 container.find('.title_media_elements .expand_icon.off, .title_media_elements .expand_icon.disabled').data('moving', false);
 container.find('.title_media_elements .expand_icon.on').data('moving', false);
 
-<% if @media_elements.length > for_page %>
-  enableLastPageInDashboardPagination('media_elements');
-  initializeDashboardPagination('media_elements', 1, <%= Rational(@media_elements.length, for_page).ceil %>);
-<% else %>
-  disableLastPageInDashboardPagination('media_elements');
-<% end %>
+$(document).ready(function() {
+  <% if @media_elements.length > for_page %>
+    enableLastPageInDashboardPagination('media_elements');
+    initializeDashboardPagination('media_elements', 1, <%= Rational(@media_elements.length, for_page).ceil %>);
+  <% else %>
+    disableLastPageInDashboardPagination('media_elements');
+  <% end %>
+});

@@ -1,34 +1,32 @@
 function initializeDashboardPagination(selector, pos, pages_amount) {
   var space = $('#dashboard_container .space_' + selector);
   var paginator = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container');
-  $(document).ready(function() {
-    var prevPage = function(prevPage) {
-      space.find('.page' + pos).hide('fade', {}, 500, function() {
-        space.find('.page' + (pos - 1)).show();
-        if(pos == 1) {
-          disableFirstPageInDashboardPagination(selector);
-        } else {
-          enableFirstPageInDashboardPagination(selector);
-        }
-        initializeDashboardPagination(selector, pos - 1, pages_amount);
-      });
-      return true;
-    }
-    var nextPage = function(nextPage) {
-      space.find('.page' + pos).hide('fade', {}, 500, function() {
-        space.find('.page' + (pos + 1)).show();
-        var next_next = space.find('.page' + (pos + 2));
-        if(next_next.length == 0 || next_next.find('div').length == 0) {
-          disableLastPageInDashboardPagination(selector);
-        } else {
-          enableLastPageInDashboardPagination(selector);
-        }
-        initializeDashboardPagination(selector, pos + 1, pages_amount);
-      });
-      return true;
-    }
-    new DotsPagination(paginator.find('.pages'), pages_amount, { 'complete': { 'prev': prevPage, 'next': nextPage } });
-  });
+  var prevPage = function(prevPage) {
+    space.find('.page' + pos).hide('fade', {}, 500, function() {
+      space.find('.page' + (pos - 1)).show();
+      if(pos == 1) {
+        disableFirstPageInDashboardPagination(selector);
+      } else {
+        enableFirstPageInDashboardPagination(selector);
+      }
+      initializeDashboardPagination(selector, pos - 1, pages_amount);
+    });
+    return true;
+  }
+  var nextPage = function(nextPage) {
+    space.find('.page' + pos).hide('fade', {}, 500, function() {
+      space.find('.page' + (pos + 1)).show();
+      var next_next = space.find('.page' + (pos + 2));
+      if(next_next.length == 0 || next_next.find('div').length == 0) {
+        disableLastPageInDashboardPagination(selector);
+      } else {
+        enableLastPageInDashboardPagination(selector);
+      }
+      initializeDashboardPagination(selector, pos + 1, pages_amount);
+    });
+    return true;
+  }
+  new DotsPagination(paginator.find('.pages'), pages_amount, { 'complete': { 'prev': prevPage, 'next': nextPage } });
 }
 
 function enableLastPageInDashboardPagination(selector) {
