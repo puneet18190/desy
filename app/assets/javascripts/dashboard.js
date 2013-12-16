@@ -144,6 +144,7 @@ function dashboardResizeController() {
   if(lessons_in_space != container.data('lessons-in-space') || media_elements_in_space != container.data('media-elements-in-space')) {
     container.data('lessons-in-space', lessons_in_space);
     container.data('media-elements-in-space', media_elements_in_space);
+    resizeLessonsAndMediaElementsInDashboard(lessons_in_space, media_elements_in_space, true);
     var dashboard_url = '/dashboard?media_elements_for_row=' + media_elements_in_space;
     dashboard_url += '&lessons_for_row=' + lessons_in_space;
     if(container.data('lessons-expanded')) {
@@ -158,7 +159,7 @@ function dashboardResizeController() {
       url: dashboard_url
     }).always(bindLoader);
   } else {
-    resizeLessonsAndMediaElementsInDashboard(lessons_in_space, media_elements_in_space);
+    resizeLessonsAndMediaElementsInDashboard(lessons_in_space, media_elements_in_space, false);
   }
 }
 
@@ -172,7 +173,7 @@ function emptyAllPagesInDashboard(selector) {
   container.find('.page6').html('').hide();
 }
 
-function resizeLessonsAndMediaElementsInDashboard(lessons, media_elements) {
+function resizeLessonsAndMediaElementsInDashboard(lessons, media_elements, with_vertical_margin) {
   var container = $('#dashboard_container');
   var lessons_margin = (container.width() - lessons * 300) / (lessons + 1);
   container.find('.space_lessons .lesson_in_dashboard').css('margin-left', lessons_margin + 'px');

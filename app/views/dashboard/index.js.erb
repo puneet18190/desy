@@ -38,7 +38,7 @@ if(!container.data('media-elements-expanded')) {
   <% end %>
 }
 
-resizeLessonsAndMediaElementsInDashboard(<%= @lessons_for_row %>, <%= @media_elements_for_row %>);
+resizeLessonsAndMediaElementsInDashboard(<%= @lessons_for_row %>, <%= @media_elements_for_row %>, false);
 
 $(document).ready(function() {
   <% if @media_elements_expanded && @media_elements.length > media_elements_for_page %>
