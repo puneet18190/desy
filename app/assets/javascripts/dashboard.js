@@ -13,8 +13,8 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
   if(pos != 1) {
     first_page.removeClass('disabled').attr('title', paginator.data('title-prev'));
   }
-  if(next_space.length != 0 && next_next.find('div').length != 0) {
-    first_page.removeClass('disabled').attr('title', paginator.data('title-prev'));
+  if(next_space.length != 0 && next_space.find('div').length != 0) {
+    third_page.removeClass('disabled').attr('title', paginator.data('title-prev'));
   }
   var prevPage = function(prevPage) {
     space.find('.page' + pos).hide('fade', {}, 500, function() {
