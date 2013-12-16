@@ -4,7 +4,7 @@ function expandLessonsInDashboard() {
   container.find('.title_lessons .expand_icon.on').show().data('moving', true);
   $('#dashboard_container .space_lessons').animate({height: '660px'}, 500, function() {
     container.data('lessons-expanded', true);
-    $('#dashboard_container .pagination_lessons').animate({height: '60px'}, 40);
+    $('#dashboard_container .pagination_lessons').animate({height: '40px'}, 40);
     unbindLoader();
     $.ajax({
       type: 'get',
@@ -17,13 +17,13 @@ function expandMediaElementsInDashboard() {
   var container = $('#dashboard_container');
   container.find('.title_media_elements .expand_icon.off').hide();
   container.find('.title_media_elements .expand_icon.on').show().data('moving', true);
-  // if lessons are expanded the height is 72 + 61 + 30 + 20 + 70 + 660 + 60 + 50 + 70 + 660 + 60 = 1813
-  // otherwise the height is 72 + 61 + 30 + 20 + 70 + 315 + 50 + 70 + 660 + 60 = 1408
-  var scroll_height = (container.data('lessons-expanded') ? 1813 : 1408) - $(window).height() + $('.global-footer').height();
+  // if lessons are expanded the height is 72 + 61 + 30 + 20 + 70 + 660 + 40 + 50 + 70 + 660 + 40 + 50 = 1823
+  // otherwise the height is 72 + 61 + 30 + 20 + 70 + 315 + 50 + 70 + 660 + 40 + 50 = 1438
+  var scroll_height = (container.data('lessons-expanded') ? 1823 : 1438) - $(window).height() + $('.global-footer').height();
   browserDependingScrollToTag().animate({scrollTop: (scroll_height + 'px')}, 500);
   $('#dashboard_container .space_media_elements').animate({height: '660px'}, 500, function() {
     container.data('media-elements-expanded', true);
-    $('#dashboard_container .pagination_media_elements').animate({height: '60px'}, 40);
+    $('#dashboard_container .pagination_media_elements').animate({height: '40px'}, 40);
     unbindLoader();
     $.ajax({
       type: 'get',
