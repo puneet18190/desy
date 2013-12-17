@@ -3,48 +3,66 @@
   media_elements_for_page = @media_elements_for_row * 2
   lesson_destination = ButtonDestinations::EXPANDED_LESSON
   media_element_destination = ButtonDestinations::EXPANDED_MEDIA_ELEMENT
+  current_url_hash = {
+    :remove_query_param => 'delete_item',
+    :l_d_exp            => @lessons_current_page,
+    :me_d_exp           => @media_elements_current_page
+  }
 %>
 
-var container = $('#dashboard_container');
-emptyAllPagesInDashboard('lessons');
-<% @lessons.each_with_index do |l, index| %>
-  container.find('.space_lessons .page<%= ((index / lessons_for_page) + 1) %>').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
-  <% if index % lessons_for_page >= @lessons_for_row %>
-    $('#<%= lesson_destination %>_<%= l.id %>').css('margin-top', '30px');
+var my_function = function() {
+  var container = $('#dashboard_container');
+  emptyAllPagesInDashboard('lessons');
+  <% @lessons.each_with_index do |l, index| %>
+    container.find('.space_lessons .page<%= ((index / lessons_for_page) + 1) %>').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
+    <% if index % lessons_for_page >= @lessons_for_row %>
+      $('#<%= lesson_destination %>_<%= l.id %>').css('margin-top', '30px');
+    <% end %>
   <% end %>
-<% end %>
-
-if(!container.data('lessons-expanded')) {
-  <% if @lessons_expandible %>
-    $('#dashboard_container .title_lessons .expand_icon.disabled').removeClass('disabled').addClass('off');
-  <% else %>
-    $('#dashboard_container .title_lessons .expand_icon.off').removeClass('off').addClass('disabled');
+  if(!container.data('lessons-expanded')) {
+    <% if @lessons_expandible %>
+      $('#dashboard_container .title_lessons .expand_icon.disabled').removeClass('disabled').addClass('off');
+    <% else %>
+      $('#dashboard_container .title_lessons .expand_icon.off').removeClass('off').addClass('disabled');
+    <% end %>
+  }
+  emptyAllPagesInDashboard('media_elements');
+  <% @media_elements.each_with_index do |me, index| %>
+    container.find('.space_media_elements .page<%= ((index / media_elements_for_page) + 1) %>').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => media_element_destination, :used_in_private_lessons => false})) %>");
+    <% if index % media_elements_for_page >= @media_elements_for_row %>
+      $('#<%= media_element_destination %>_<%= me.id %>').css('margin-top', '30px');
+    <% end %>
   <% end %>
+  if(!container.data('media-elements-expanded')) {
+    <% if @media_elements_expandible %>
+      $('#dashboard_container .title_media_elements .expand_icon.disabled').removeClass('disabled').addClass('off');
+    <% else %>
+      $('#dashboard_container .title_media_elements .expand_icon.off').removeClass('off').addClass('disabled');
+    <% end %>
+  }
+  resizeLessonsAndMediaElementsInDashboard(<%= @lessons_for_row %>, <%= @media_elements_for_row %>, false);
+  $(document).ready(function() {
+    <% if @lessons_expanded && @lessons.length > lessons_for_page %>
+      initializeDashboardPagination('lessons', <%= @lessons_current_page %>, <%= @lesson_pages_amount %>);
+    <% end %>
+    <% if @media_elements_expanded && @media_elements.length > media_elements_for_page %>
+      initializeDashboardPagination('media_elements', <%= @media_elements_current_page %>, <%= @media_element_pages_amount %>);
+    <% end %>
+  });
 }
 
-emptyAllPagesInDashboard('media_elements');
-<% @media_elements.each_with_index do |me, index| %>
-  container.find('.space_media_elements .page<%= ((index / media_elements_for_page) + 1) %>').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => media_element_destination, :used_in_private_lessons => false})) %>");
-  <% if index % media_elements_for_page >= @media_elements_for_row %>
-    $('#<%= media_element_destination %>_<%= me.id %>').css('margin-top', '30px');
-  <% end %>
+<% if @delete_item.blank? %>
+  my_function();
+<% else %>
+  var to_delete = $('#<%= @delete_item %>');
+  to_delete.hide('fade', {}, 500, function() {
+    var temporary_msg = $('#popup_captions_container').data('temporary-msg');
+    if(temporary_msg != '') {
+      showOkPopUp(temporary_msg);
+      $('#popup_captions_container').data('temporary-msg', '');
+    }
+    my_function();
+  });
 <% end %>
 
-if(!container.data('media-elements-expanded')) {
-  <% if @media_elements_expandible %>
-    $('#dashboard_container .title_media_elements .expand_icon.disabled').removeClass('disabled').addClass('off');
-  <% else %>
-    $('#dashboard_container .title_media_elements .expand_icon.off').removeClass('off').addClass('disabled');
-  <% end %>
-}
-
-resizeLessonsAndMediaElementsInDashboard(<%= @lessons_for_row %>, <%= @media_elements_for_row %>, false);
-
-$(document).ready(function() {
-  <% if @lessons_expanded && @lessons.length > lessons_for_page %>
-    initializeDashboardPagination('lessons', <%= @lessons_current_page %>, <%= Rational(@lessons.length, lessons_for_page).ceil %>);
-  <% end %>
-  <% if @media_elements_expanded && @media_elements.length > media_elements_for_page %>
-    initializeDashboardPagination('media_elements', <%= @media_elements_current_page %>, <%= Rational(@media_elements.length, media_elements_for_page).ceil %>);
-  <% end %>
-});
+$('#info_container').data('currenturl', <%= manipulate_url(current_url_hash).to_json.html_safe %>);
