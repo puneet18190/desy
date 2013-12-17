@@ -81,12 +81,6 @@
             
                 <li><a href="../classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="../classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
-            
-                <li><a href="../classes/DashboardGeneral.html">DashboardGeneral</a></li>
-            
-                <li><a href="../classes/DashboardPagination.html">DashboardPagination</a></li>
-            
                 <li><a href="../classes/DialogsAccessories.html">DialogsAccessories</a></li>
             
                 <li><a href="../classes/DialogsConfirmation.html">DialogsConfirmation</a></li>
@@ -242,8 +236,6 @@
                 <li><a href="../modules/browser-support.html">browser-support</a></li>
             
                 <li><a href="../modules/buttons.html">buttons</a></li>
-            
-                <li><a href="../modules/dashboard.html">dashboard</a></li>
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
             
@@ -508,7 +500,7 @@ function documentsDocumentReadyUploader() {
   $body.on(&#x27;click&#x27;, &#x27;#new_document_submit&#x27;, function() {
     $(&#x27;input,textarea&#x27;).removeClass(&#x27;form_error&#x27;);
     $(&#x27;.barraLoading img&#x27;).show();
-    $(&#x27;.barraLoading img&#x27;).attr(&#x27;src&#x27;, &#x27;/assets/loadingBar.gif&#x27;);
+    $(&#x27;.barraLoading img&#x27;).attr(&#x27;src&#x27;, &#x27;/assets/loadingBar-document.gif&#x27;);
     $(this).closest(&#x27;#new_document&#x27;).submit();
   });
   $body.on(&#x27;focus&#x27;, &#x27;#load-document #title&#x27;, function() {
@@ -586,7 +578,7 @@ Reloads documents page after new document is successfully loaded.
 @for DocumentsUploader
 **/
 function uploadDocumentLoaderDoneRedirect() {
-  $(&#x27;.barraLoading&#x27;).css(&#x27;background-color&#x27;, &#x27;#41A62A&#x27;);
+  $(&#x27;.barraLoading&#x27;).css(&#x27;background-color&#x27;, &#x27;#5D5C5C&#x27;);
   $(&#x27;.barraLoading img&#x27;).hide();
   $(&#x27;.barraLoading img&#x27;).attr(&#x27;src&#x27;, &#x27;&#x27;);
   window.location = &#x27;/documents&#x27;;

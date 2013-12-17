@@ -20,9 +20,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "ButtonsDocumentReady",
         "ButtonsLesson",
         "ButtonsMediaElement",
-        "DashboardDocumentReady",
-        "DashboardGeneral",
-        "DashboardPagination",
         "DialogsAccessories",
         "DialogsConfirmation",
         "DialogsGalleries",
@@ -102,7 +99,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "audio-editor",
         "browser-support",
         "buttons",
-        "dashboard",
         "dialogs",
         "documents",
         "galleries",
@@ -146,11 +142,6 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "buttons",
             "name": "buttons",
             "description": "Lessons and Elements actions triggered via buttons."
-        },
-        {
-            "displayName": "dashboard",
-            "name": "dashboard",
-            "description": "The dashboard is the home page of DESY: the page is divided in two sections, one for <b>suggested elements</b> and one for <b>suggested lessons</b>. Each of these two sections is split into three pages of lessons and elements. When the server loads the dashboard, all the six pages (three for lessons, three for elements) are loaded together, and all the operations are handled with javascript functions.\n<br/><br/>\nThere are two simple functions that switch between the pages for lessons and elements (see both methods of {{#crossLink \"DashboardGeneral\"}}{{/crossLink}}). A bit more complicated are the functions to pass from a page to another (all contained in the class {{#crossLink \"DashboardPagination\"}}{{/crossLink}}): the core of such an asynchronous pagination is the method {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}} that reconstructs the normal pagination without calling the corresponding partial in <i>views/shared/pagination.html.erb</i>: this pagination is unique for both elements and lessons, and it is reloaded each time the user changes page using the functions {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}} and {{#crossLink \"DashboardPagination/reloadMediaElementsDashboardPagination:method\"}}{{/crossLink}}."
         },
         {
             "displayName": "dialogs",

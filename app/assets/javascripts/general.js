@@ -3,6 +3,23 @@ Generic javascript functions user throughout the application.
 @module general
 **/
 
+
+
+
+
+/**
+Calculates in which page the user is going to be redirected when he is watching a paginated list of items, and he resizes the screen. Used for example in the dashboard, and in the section of media elements.
+@method calculateTheNewVisiblePage
+@for GeneralCentering
+@param for_page {Number} items for page before resizing
+@param page {Number} page the user was visualizing before resizing
+@param new_for_page {Number} items for page after resizing
+**/
+function calculateTheNewVisiblePage(for_page, page, new_for_page) {
+  var selected_item = for_page * (page - 1) + 1;
+  return parseInt(selected_item / new_for_page) + 1;
+}
+
 /**
 Centers a div into the current window.
 @method centerThis

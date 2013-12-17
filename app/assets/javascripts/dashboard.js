@@ -133,13 +133,6 @@ function openDescriptionDashboardRecursionLayer(item, t, h_i, h_f, tot_time) {
   }
 }
 
-function calculateTheNewVisiblePageInDashboard(for_row, page, new_for_row) {
-  var for_page = for_row * 2;
-  var new_for_page = new_for_row * 2;
-  var selected_item = for_page * (page - 1) + 1;
-  return parseInt(selected_item / new_for_page) + 1;
-}
-
 function dashboardResizeController() {
   var container = $('#dashboard_container');
   var width = container.width();
@@ -152,13 +145,13 @@ function dashboardResizeController() {
     var dashboard_url = '/dashboard?media_elements_for_row=' + media_elements_in_space + '&lessons_for_row=' + lessons_in_space;
     if(container.data('lessons-expanded')) {
       var current_lessons_page = container.find('.pagination_lessons .pages a').first().data('page') + 1;
-      var new_lessons_page = calculateTheNewVisiblePageInDashboard(container.data('lessons-in-space'), current_lessons_page, lessons_in_space);
+      var new_lessons_page = calculateTheNewVisiblePage(container.data('lessons-in-space') * 2, current_lessons_page, lessons_in_space * 2);
       resetVisibilityOfAllPagesInDashboard('lessons', new_lessons_page);
       dashboard_url += '&lessons_expanded=' + new_lessons_page;
     }
     if(container.data('media-elements-expanded')) {
       var current_media_elements_page = container.find('.pagination_media_elements .pages a').first().data('page') + 1;
-      var new_media_elements_page = calculateTheNewVisiblePageInDashboard(container.data('media-elements-in-space'), current_media_elements_page, media_elements_in_space);
+      var new_media_elements_page = calculateTheNewVisiblePage(container.data('media-elements-in-space') * 2, current_media_elements_page, media_elements_in_space * 2);
       resetVisibilityOfAllPagesInDashboard('media_elements', new_media_elements_page);
       dashboard_url += '&media_elements_expanded=' + new_media_elements_page;
     }
