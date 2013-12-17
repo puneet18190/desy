@@ -783,7 +783,7 @@
         
         &.disabled {
           
-          @include svg-circle-icon-handler-without-hover($assets-expand-dashboard_png, 30px, 2, 4, 0.5, 1, 0);
+          @include svg-circle-icon-handler-without-hover($assets-expand-dashboard_png, 30px, 2, 4, 0.5, 1, 1);
           cursor: default;
           
         }
@@ -852,7 +852,7 @@
         
         &.disabled {
           
-          @include svg-circle-icon-handler-without-hover($assets-expand-dashboard_png, 30px, 2, 4, 0.5, 0, 0);
+          @include svg-circle-icon-handler-without-hover($assets-expand-dashboard_png, 30px, 2, 4, 0.5, 0, 1);
           cursor: default;
           
         }
