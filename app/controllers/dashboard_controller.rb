@@ -71,6 +71,11 @@ class DashboardController < ApplicationController
   
   # Handles expanded lessons pagination
   def handle_expanded_lessons_in_dashboard
+    if @lessons.empty? && @lessons_for_row > 0
+      @lessons_were_expanded = true
+      @lessons_expandible = false
+      return
+    end
     @lessons_current_page = correct_integer?(params['lessons_expanded']) ? params['lessons_expanded'].to_i : 1
     @lesson_pages_amount = Rational(@lessons.length, (@lessons_for_row * 2)).ceil
     @lessons_current_page = @lesson_pages_amount if @lessons_current_page > @lesson_pages_amount && @lesson_pages_amount != 0
@@ -78,6 +83,11 @@ class DashboardController < ApplicationController
   
   # Handles expanded media elements pagination
   def handle_expanded_media_elements_in_dashboard
+    if @media_elements.empty? && @media_elements_for_row > 0
+      @media_elements_were_expanded = true
+      @media_elements_expandible = false
+      return
+    end
     @media_elements_current_page = correct_integer?(params['media_elements_expanded']) ? params['media_elements_expanded'].to_i : 1
     @media_element_pages_amount = Rational(@media_elements.length, (@media_elements_for_row * 2)).ceil
     @media_elements_current_page = @media_element_pages_amount if @media_elements_current_page > @media_element_pages_amount && @media_element_pages_amount != 0
