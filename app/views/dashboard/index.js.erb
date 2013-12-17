@@ -58,11 +58,11 @@ var my_function = function() {
   }
   resizeLessonsAndMediaElementsInDashboard(<%= @lessons_for_row %>, <%= @media_elements_for_row %>, false);
   $(document).ready(function() {
-    <% if @lessons_expanded && @lessons.length > lessons_for_page %>
+    <% if @lessons_expanded %>
       initializeDashboardPagination('lessons', <%= @lessons_current_page %>, <%= @lesson_pages_amount %>);
       resetVisibilityOfAllPagesInDashboard('lessons', <%= @lessons_current_page %>);
     <% end %>
-    <% if @media_elements_expanded && @media_elements.length > media_elements_for_page %>
+    <% if @media_elements_expanded %>
       initializeDashboardPagination('media_elements', <%= @media_elements_current_page %>, <%= @media_element_pages_amount %>);
       resetVisibilityOfAllPagesInDashboard('media_elements', <%= @media_elements_current_page %>);
     <% end %>
