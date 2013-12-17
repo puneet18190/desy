@@ -23,3 +23,11 @@ $(document).ready(function() {
     initializeDashboardPagination('lessons', 1, <%= Rational(@lessons.length, for_page).ceil %>);
   <% end %>
 });
+
+var current_url = $('#info_container').data('currenturl');
+if(current_url.indexOf('lessons_expanded') == -1) {
+  current_url = updateURLParameter(current_url, 'lessons_expanded', 1);
+} else {
+  current_url = removeURLParameter(current_url, 'lessons_expanded');
+}
+$('#info_container').data('currenturl', current_url);

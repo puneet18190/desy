@@ -29,3 +29,11 @@ $(document).ready(function() {
     initializeDashboardPagination('media_elements', 1, <%= Rational(@media_elements.length, for_page).ceil %>);
   <% end %>
 });
+
+var current_url = $('#info_container').data('currenturl');
+if(current_url.indexOf('media_elements_expanded') == -1) {
+  current_url = updateURLParameter(current_url, 'media_elements_expanded', 1);
+} else {
+  current_url = removeURLParameter(current_url, 'media_elements_expanded');
+}
+$('#info_container').data('currenturl', current_url);
