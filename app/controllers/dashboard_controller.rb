@@ -74,6 +74,7 @@ class DashboardController < ApplicationController
     if @lessons.empty? && @lessons_for_row > 0
       @lessons_were_expanded = true
       @lessons_expandible = false
+      @lessons_emptied = Lesson.dashboard_emptied? current_user.id
       return
     end
     @lessons_current_page = correct_integer?(params['lessons_expanded']) ? params['lessons_expanded'].to_i : 1
@@ -86,6 +87,7 @@ class DashboardController < ApplicationController
     if @media_elements.empty? && @media_elements_for_row > 0
       @media_elements_were_expanded = true
       @media_elements_expandible = false
+      @media_elements_emptied = MediaElement.dashboard_emptied? current_user.id
       return
     end
     @media_elements_current_page = correct_integer?(params['media_elements_expanded']) ? params['media_elements_expanded'].to_i : 1
@@ -98,7 +100,6 @@ class DashboardController < ApplicationController
     lessons = current_user.suggested_lessons(@lessons_for_row * @lesson_rows + 1)
     @lessons_expandible = (lessons.length > @lessons_for_row * @lesson_rows)
     @lessons = @lessons_expandible ? lessons[0, lessons.length - 1] : lessons
-    @lessons_emptied = Lesson.dashboard_emptied? current_user.id
     handle_expanded_lessons_in_dashboard if @lessons_expanded
   end
   
@@ -107,7 +108,6 @@ class DashboardController < ApplicationController
     media_elements = current_user.suggested_media_elements(@media_elements_for_row * @media_element_rows + 1)
     @media_elements_expandible = (media_elements.length > @media_elements_for_row * @media_element_rows)
     @media_elements = @media_elements_expandible ? media_elements[0, media_elements.length - 1] : media_elements
-    @media_elements_emptied = MediaElement.dashboard_emptied? current_user.id
     handle_expanded_media_elements_in_dashboard if @media_elements_expanded
   end
   
