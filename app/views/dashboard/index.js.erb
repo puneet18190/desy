@@ -28,34 +28,42 @@ var my_function = function() {
     container.find('.space_media_elements').css('height', '315px');
     container.find('.title_media_elements .expand_icon.off').removeClass('off').addClass('disabled');
   <% end %>
-  emptyAllPagesInDashboard('lessons');
-  <% @lessons.each_with_index do |l, index| %>
-    container.find('.space_lessons .page<%= ((index / lessons_for_page) + 1) %>').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
-    <% if index % lessons_for_page >= @lessons_for_row %>
-      $('#<%= lesson_destination %>_<%= l.id %>').css('margin-top', '30px');
+  <% if @lessons.empty? %>
+    container.find('.space_lessons').html("<%= j(render(:partial => 'dashboard/lessons_empty', :locals => {:emptied => @lessons_emptied})) %>");
+  <% else %>
+    emptyAllPagesInDashboard('lessons');
+    <% @lessons.each_with_index do |l, index| %>
+      container.find('.space_lessons .page<%= ((index / lessons_for_page) + 1) %>').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
+      <% if index % lessons_for_page >= @lessons_for_row %>
+        $('#<%= lesson_destination %>_<%= l.id %>').css('margin-top', '30px');
+      <% end %>
     <% end %>
+    if(!container.data('lessons-expanded')) {
+      <% if @lessons_expandible %>
+        container.find('.title_lessons .expand_icon.disabled').removeClass('disabled').addClass('off');
+      <% else %>
+        container.find('.title_lessons .expand_icon.off').removeClass('off').addClass('disabled');
+      <% end %>
+    }
   <% end %>
-  if(!container.data('lessons-expanded')) {
-    <% if @lessons_expandible %>
-      $('#dashboard_container .title_lessons .expand_icon.disabled').removeClass('disabled').addClass('off');
-    <% else %>
-      $('#dashboard_container .title_lessons .expand_icon.off').removeClass('off').addClass('disabled');
+  <% if @media_elements.empty? %>
+    container.find('.space_media_elements').html("<%= j(render(:partial => 'dashboard/media_elements_empty', :locals => {:emptied => @media_elements_emptied})) %>");
+  <% else %>
+    emptyAllPagesInDashboard('media_elements');
+    <% @media_elements.each_with_index do |me, index| %>
+      container.find('.space_media_elements .page<%= ((index / media_elements_for_page) + 1) %>').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => media_element_destination, :used_in_private_lessons => false})) %>");
+      <% if index % media_elements_for_page >= @media_elements_for_row %>
+        $('#<%= media_element_destination %>_<%= me.id %>').css('margin-top', '30px');
+      <% end %>
     <% end %>
-  }
-  emptyAllPagesInDashboard('media_elements');
-  <% @media_elements.each_with_index do |me, index| %>
-    container.find('.space_media_elements .page<%= ((index / media_elements_for_page) + 1) %>').append("<%= j(render(:partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => media_element_destination, :used_in_private_lessons => false})) %>");
-    <% if index % media_elements_for_page >= @media_elements_for_row %>
-      $('#<%= media_element_destination %>_<%= me.id %>').css('margin-top', '30px');
-    <% end %>
+    if(!container.data('media-elements-expanded')) {
+      <% if @media_elements_expandible %>
+        container.find('.title_media_elements .expand_icon.disabled').removeClass('disabled').addClass('off');
+      <% else %>
+        container.find('.title_media_elements .expand_icon.off').removeClass('off').addClass('disabled');
+      <% end %>
+    }
   <% end %>
-  if(!container.data('media-elements-expanded')) {
-    <% if @media_elements_expandible %>
-      $('#dashboard_container .title_media_elements .expand_icon.disabled').removeClass('disabled').addClass('off');
-    <% else %>
-      $('#dashboard_container .title_media_elements .expand_icon.off').removeClass('off').addClass('disabled');
-    <% end %>
-  }
   resizeLessonsAndMediaElementsInDashboard(<%= @lessons_for_row %>, <%= @media_elements_for_row %>, false);
   $(document).ready(function() {
     <% if @lessons_expanded %>
