@@ -55,7 +55,9 @@ function expandMediaElementsInDashboard() {
   // if lessons are expanded the height is 72 + 61 + 50 + 70 + 660 + 40 + 50 + 70 + 660 + 40 + 50 = 1823
   // otherwise the height is 72 + 61 + 50 + 70 + 315 + 50 + 70 + 660 + 40 + 50 = 1438
   var scroll_height = (container.data('lessons-expanded') ? 1823 : 1438) - $(window).height() + $('.global-footer').height();
-  browserDependingScrollToTag().animate({scrollTop: (scroll_height + 'px')}, 500);
+  setTimeout(function() {
+    browserDependingScrollToTag().animate({scrollTop: (scroll_height + 'px')}, 500);
+  }, 150);
   $('#dashboard_container .space_media_elements').animate({height: '660px'}, 500, function() {
     container.data('media-elements-expanded', true);
     $('#dashboard_container .pagination_media_elements').animate({height: '40px'}, 40);
