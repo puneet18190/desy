@@ -2,6 +2,7 @@
 function initializeDashboardPagination(selector, pos, pages_amount) {
   $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container').replaceWith($('#hidden_dashboard_pagination').html());
   var space = $('#dashboard_container .space_' + selector);
+  var info = $('#info_container');
   var paginator = $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container');
   var first_page = paginator.find('.pages a').first();
   var second_page = $(paginator.find('.pages a')[1]);
@@ -19,6 +20,7 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
   var prevPage = function(prevPage) {
     space.find('.page' + pos).hide('fade', {}, 500, function() {
       space.find('.page' + (pos - 1)).show();
+      info.data('currenturl', updateURLParameter(info.data('currenturl'), (selector + '_expanded'), (pos - 1)));
       initializeDashboardPagination(selector, pos - 1, pages_amount);
     });
     return true;
@@ -26,6 +28,7 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
   var nextPage = function(nextPage) {
     space.find('.page' + pos).hide('fade', {}, 500, function() {
       space.find('.page' + (pos + 1)).show();
+      info.data('currenturl', updateURLParameter(info.data('currenturl'), (selector + '_expanded'), (pos + 1)));
       initializeDashboardPagination(selector, pos + 1, pages_amount);
     });
     return true;

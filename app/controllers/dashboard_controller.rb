@@ -69,12 +69,27 @@ class DashboardController < ApplicationController
   
   private
   
+  # Handles expanded lessons pagination
+  def handle_expanded_lessons_in_dashboard
+    @lessons_current_page = correct_integer?(params['lessons_expanded']) ? params['lessons_expanded'] : 1
+    @lesson_pages_amount = Rational(@lessons.length, (@lessons_for_row * 2)).ceil
+    @lessons_current_page = @lesson_pages_amount if @lessons_current_page > @lesson_pages_amount && @lesson_pages_amount != 0
+  end
+  
+  # Handles expanded media elements pagination
+  def handle_expanded_media_elements_in_dashboard
+    @media_elements_current_page = correct_integer?(params['media_elements_expanded']) ? params['media_elements_expanded'] : 1
+    @media_element_pages_amount = Rational(@media_elements.length, (@media_elements_for_row * 2)).ceil
+    @media_elements_current_page = @media_element_pages_amount if @media_elements_current_page > @media_element_pages_amount && @media_element_pages_amount != 0
+  end
+  
   # Gets lessons for dashboard, and checks if there are more lessons to be extracted
   def get_lessons_for_dashboard
     lessons = current_user.suggested_lessons(@lessons_for_row * @lesson_rows + 1)
     @lessons_expandible = (lessons.length > @lessons_for_row * @lesson_rows)
     @lessons = @lessons_expandible ? lessons[0, lessons.length - 1] : lessons
     @lessons_emptied = Lesson.dashboard_emptied? current_user.id
+    handle_expanded_lessons_in_dashboard if @lessons_expanded
   end
   
   # Gets media elements for dashboard, and checks if there are more media elements to be extracted
@@ -83,6 +98,7 @@ class DashboardController < ApplicationController
     @media_elements_expandible = (media_elements.length > @media_elements_for_row * @media_element_rows)
     @media_elements = @media_elements_expandible ? media_elements[0, media_elements.length - 1] : media_elements
     @media_elements_emptied = MediaElement.dashboard_emptied? current_user.id
+    handle_expanded_media_elements_in_dashboard if @media_elements_expanded
   end
   
   # Initializes all the parameters of pagination
@@ -95,16 +111,6 @@ class DashboardController < ApplicationController
     @media_element_rows = @media_elements_expanded ? MEDIA_ELEMENT_PAGES * MEDIA_ELEMENT_ROWS_PER_PAGE : 1
     @lessons_for_row = 0 if @lessons_for_row > 50
     @media_elements_for_row = 0 if @media_elements_for_row > 50
-    if @lessons_expanded
-      @lessons_current_page = correct_integer?(params['lessons_expanded']) ? params['lessons_expanded'] : 1
-      @lesson_pages_amount = Rational(@lessons.length, (@lessons_for_row * 2)).ceil
-      @lessons_current_page = @lesson_pages_amount if @lessons_current_page > @lesson_pages_amount && @lesson_pages_amount != 0
-    end
-    if @media_elements_expanded
-      @media_elements_current_page = correct_integer?(params['media_elements_expanded']) ? params['media_elements_expanded'] : 1
-      @media_element_pages_amount = Rational(@media_elements.length, (@media_elements_for_row * 2)).ceil
-      @media_elements_current_page = @media_element_pages_amount if @media_elements_current_page > @media_element_pages_amount && @media_element_pages_amount != 0
-    end
   end
   
 end
