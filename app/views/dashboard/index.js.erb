@@ -16,17 +16,17 @@ var my_function = function() {
     container.find('.title_lessons .expand_icon.on').hide();
     container.find('.title_lessons .expand_icon.off').show();
     container.data('lessons-expanded', false);
-    container.data('lessons-empty', true);
     container.find('.pagination_lessons').css('height', '0px');
-    container.find('.space_lessons').css('height', '315px').html("<%= j(render(:partial => 'dashboard/lessons_empty', :locals => {:emptied => @lessons_emptied})) %>");
+    container.find('.space_lessons').css('height', '315px');
+    container.find('.title_lessons .expand_icon.off').removeClass('off').addClass('disabled');
   <% end %>
   <% if @media_elements_were_expanded %>
     container.find('.title_media_elements .expand_icon.on').hide();
     container.find('.title_media_elements .expand_icon.off').show();
     container.data('media-elements-expanded', false);
-    container.data('media-elements-empty', true);
     container.find('.pagination_media_elements').css('height', '0px');
-    container.find('.space_media_elements').css('height', '315px').html("<%= j(render(:partial => 'dashboard/media_elements_empty', :locals => {:emptied => @media_elements_emptied})) %>");
+    container.find('.space_media_elements').css('height', '315px');
+    container.find('.title_media_elements .expand_icon.off').removeClass('off').addClass('disabled');
   <% end %>
   emptyAllPagesInDashboard('lessons');
   <% @lessons.each_with_index do |l, index| %>
