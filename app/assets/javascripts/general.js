@@ -16,6 +16,9 @@ Calculates in which page the user is going to be redirected when he is watching 
 @param new_for_page {Number} items for page after resizing
 **/
 function calculateTheNewVisiblePage(for_page, page, new_for_page) {
+  if(page == 1) {
+    return 1;
+  }
   var selected_item = for_page * (page - 1) + 1;
   return parseInt(selected_item / new_for_page) + 1;
 }
