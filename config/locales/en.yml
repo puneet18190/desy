@@ -1013,6 +1013,7 @@ en:
       # 3 - views/shared/_popups.html.erb
       # 4 - views/virtual_classroom/_pagination.html.erb
       # 5 - views/virtual_classroom/_pagination.html.erb
+      # 6 - views/dashboard/_pagination.html.erb
       prev: "Go to previous page"
       # Go to next page
       # 1 - views/shared/_pagination.html.erb
@@ -1020,6 +1021,7 @@ en:
       # 3 - views/shared/_popups.html.erb
       # 4 - views/virtual_classroom/_pagination.html.erb
       # 5 - views/virtual_classroom/_pagination.html.erb
+      # 6 - views/dashboard/_pagination.html.erb
       next: "Go to next page"
     # Titles for the user profile
     profile:
