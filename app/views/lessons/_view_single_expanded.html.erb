@@ -38,7 +38,7 @@
         <%= t('lessons.created_by', :author => "#{lesson.user.name} #{lesson.user.surname}") %>
       </div>
       <div class="creation">
-        <%= t('lessons.published_at', :published_time => TimeConvert.time_difference_to_s(Time.zone.now - lesson.updated_at).downcase) %>
+        <%= t('lessons.published_at', :published_time => TimeConvert.time_difference_to_s(Time.zone.now - lesson.updated_at).downcase).html_safe %>
       </div>
     </div>
     <div class="buttoncitos">
