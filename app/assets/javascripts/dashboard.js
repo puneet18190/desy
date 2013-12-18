@@ -1,4 +1,187 @@
-// Parte sempre dal div vuoto!
+/**
+The dashboard contains a list of suggested lessons and media elements. The dashboard is the first page shown to the logged user.
+<br/><br/>
+When the dashboard is opened at first, it's possible to see two subsections, one containing elements and the other one containing lessons. The number of items shown depends on the browser {{#crossLink "LessonEditorImageResizing"}}{{/crossLink}} - {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method"}}{{/crossLink}}.
+@module dashboard
+**/
+
+
+
+
+
+/**
+@method dashboardDocumentReady
+@for DashboardAccessories
+**/
+function dashboardDocumentReady() {
+  dashboardResizeController();
+  $(window).resize(function() {
+    dashboardResizeController();
+  });
+  $body.on('mouseenter', '.lesson_dashboard_hover_sensitive', function() {
+    var item = $(this).find('.literature_container');
+    item.data('delaying', true);
+    setTimeout(function() {
+      if(item.data('delaying')) {
+        openDescriptionDashboardLayer(item);
+      }
+    }, 500);
+  });
+  $body.on('mouseleave', '.lesson_dashboard_hover_sensitive', function() {
+    var item = $(this).find('.literature_container');
+    item.data('delaying', false);
+    if(item.data('moving')) {
+      item.data('moving', false);
+    } else {
+      item.animate({height: '80px'}, 200, function() {
+        item.find('.description').hide();
+      });
+    }
+  });
+  $body.on('click', '#dashboard_container .title_lessons .expand_icon.off', function() {
+    if(!$(this).data('moving')) {
+      expandLessonsInDashboard();
+    }
+  });
+  $body.on('click', '#dashboard_container .title_media_elements .expand_icon.off', function() {
+    if(!$(this).data('moving')) {
+      expandMediaElementsInDashboard();
+    }
+  });
+  $body.on('click', '#dashboard_container .title_lessons .expand_icon.on', function() {
+    if(!$(this).data('moving')) {
+      compressLessonsInDashboard();
+    }
+  });
+  $body.on('click', '#dashboard_container .title_media_elements .expand_icon.on', function() {
+    if(!$(this).data('moving')) {
+      compressMediaElementsInDashboard();
+    }
+  });
+}
+
+/**
+@method emptyAllPagesInDashboard
+@for DashboardAccessories
+**/
+function emptyAllPagesInDashboard(selector) {
+  var container = $('#dashboard_container .space_' + selector);
+  container.find('.page1').html('');
+  container.find('.page2').html('');
+  container.find('.page3').html('');
+  container.find('.page4').html('');
+  container.find('.page5').html('');
+  container.find('.page6').html('');
+}
+
+/**
+@method resetVisibilityOfAllPagesInDashboard
+@for DashboardAccessories
+**/
+function resetVisibilityOfAllPagesInDashboard(selector, visible) {
+  var container = $('#dashboard_container .space_' + selector);
+  container.find('.dashpage').hide();
+  container.find('.page' + visible).show();
+}
+
+
+
+
+
+/**
+@method compressLessonsInDashboard
+@for DashboardExpandedContents
+**/
+function compressLessonsInDashboard() {
+  var container = $('#dashboard_container');
+  container.find('.title_lessons .expand_icon.on').hide();
+  container.find('.title_lessons .expand_icon.off').show().data('moving', true);
+  $('#dashboard_container .pagination_lessons').animate({height: '0px'}, 40, function() {
+    $('#dashboard_container .space_lessons').animate({height: '315px'}, 500, function() {
+      container.data('lessons-expanded', false);
+      unbindLoader();
+      $.ajax({
+        type: 'get',
+        url: '/dashboard/lessons?for_row=' + container.data('lessons-in-space')
+      }).always(bindLoader);
+      if(container.find('.space_lessons .page1 .lesson_in_dashboard').length <= container.data('lessons-in-space')) {
+        $('#dashboard_container .title_lessons .expand_icon.off').removeClass('off').addClass('disabled');
+      }
+    });
+  });
+}
+
+/**
+@method compressMediaElementsInDashboard
+@for DashboardExpandedContents
+**/
+function compressMediaElementsInDashboard() {
+  var container = $('#dashboard_container');
+  container.find('.title_media_elements .expand_icon.on').hide();
+  container.find('.title_media_elements .expand_icon.off').show().data('moving', true);
+  $('#dashboard_container .pagination_media_elements').animate({height: '0px'}, 40, function() {
+    $('#dashboard_container .space_media_elements').animate({height: '315px'}, 500, function() {
+      container.data('media-elements-expanded', false);
+      unbindLoader();
+      $.ajax({
+        type: 'get',
+        url: '/dashboard/media_elements?for_row=' + container.data('media-elements-in-space')
+      }).always(bindLoader);
+      if(container.find('.space_media_elements .page1 .boxViewExpandedMediaElement').length <= container.data('media-elements-in-space')) {
+        $('#dashboard_container .title_media_elements .expand_icon.off').removeClass('off').addClass('disabled');
+      }
+    });
+  });
+}
+
+/**
+@method expandLessonsInDashboard
+@for DashboardExpandedContents
+**/
+function expandLessonsInDashboard() {
+  var container = $('#dashboard_container');
+  container.find('.title_lessons .expand_icon.off').hide();
+  container.find('.title_lessons .expand_icon.on').show().data('moving', true);
+  $('#dashboard_container .space_lessons').animate({height: '660px'}, 500, function() {
+    container.data('lessons-expanded', true);
+    $('#dashboard_container .pagination_lessons').animate({height: '40px'}, 40);
+    unbindLoader();
+    $.ajax({
+      type: 'get',
+      url: '/dashboard/lessons?for_row=' + container.data('lessons-in-space') + '&expanded=true'
+    }).always(bindLoader);
+  });
+}
+
+/**
+scroll_height: if lessons are expanded the height is 72 + 61 + 50 + 70 + 660 + 40 + 50 + 70 + 660 + 40 + 50 = 1823; otherwise the height is 72 + 61 + 50 + 70 + 315 + 50 + 70 + 660 + 40 + 50 = 1438
+@method expandMediaElementsInDashboard
+@for DashboardExpandedContents
+**/
+function expandMediaElementsInDashboard() {
+  var container = $('#dashboard_container');
+  container.find('.title_media_elements .expand_icon.off').hide();
+  container.find('.title_media_elements .expand_icon.on').show().data('moving', true);
+  var scroll_height = (container.data('lessons-expanded') ? 1823 : 1438) - $(window).height() + $('.global-footer').height();
+  setTimeout(function() {
+    browserDependingScrollToTag().animate({scrollTop: (scroll_height + 'px')}, 500);
+  }, 150);
+  $('#dashboard_container .space_media_elements').animate({height: '660px'}, 500, function() {
+    container.data('media-elements-expanded', true);
+    $('#dashboard_container .pagination_media_elements').animate({height: '40px'}, 40);
+    unbindLoader();
+    $.ajax({
+      type: 'get',
+      url: '/dashboard/media_elements?for_row=' + container.data('media-elements-in-space') + '&expanded=true'
+    }).always(bindLoader);
+  });
+}
+
+/**
+Parte sempre dal div vuoto!
+@method initializeDashboardPagination
+@for DashboardExpandedContents
+**/
 function initializeDashboardPagination(selector, pos, pages_amount) {
   $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container').replaceWith($('#hidden_dashboard_pagination').html());
   var space = $('#dashboard_container .space_' + selector);
@@ -36,80 +219,14 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
   new DotsPagination(paginator.find('.pages'), pages_amount, { 'complete': { 'prev': prevPage, 'next': nextPage } });
 }
 
-function expandLessonsInDashboard() {
-  var container = $('#dashboard_container');
-  container.find('.title_lessons .expand_icon.off').hide();
-  container.find('.title_lessons .expand_icon.on').show().data('moving', true);
-  $('#dashboard_container .space_lessons').animate({height: '660px'}, 500, function() {
-    container.data('lessons-expanded', true);
-    $('#dashboard_container .pagination_lessons').animate({height: '40px'}, 40);
-    unbindLoader();
-    $.ajax({
-      type: 'get',
-      url: '/dashboard/lessons?for_row=' + container.data('lessons-in-space') + '&expanded=true'
-    }).always(bindLoader);
-  });
-}
 
-function expandMediaElementsInDashboard() {
-  var container = $('#dashboard_container');
-  container.find('.title_media_elements .expand_icon.off').hide();
-  container.find('.title_media_elements .expand_icon.on').show().data('moving', true);
-  // if lessons are expanded the height is 72 + 61 + 50 + 70 + 660 + 40 + 50 + 70 + 660 + 40 + 50 = 1823
-  // otherwise the height is 72 + 61 + 50 + 70 + 315 + 50 + 70 + 660 + 40 + 50 = 1438
-  var scroll_height = (container.data('lessons-expanded') ? 1823 : 1438) - $(window).height() + $('.global-footer').height();
-  setTimeout(function() {
-    browserDependingScrollToTag().animate({scrollTop: (scroll_height + 'px')}, 500);
-  }, 150);
-  $('#dashboard_container .space_media_elements').animate({height: '660px'}, 500, function() {
-    container.data('media-elements-expanded', true);
-    $('#dashboard_container .pagination_media_elements').animate({height: '40px'}, 40);
-    unbindLoader();
-    $.ajax({
-      type: 'get',
-      url: '/dashboard/media_elements?for_row=' + container.data('media-elements-in-space') + '&expanded=true'
-    }).always(bindLoader);
-  });
-}
 
-function compressLessonsInDashboard() {
-  var container = $('#dashboard_container');
-  container.find('.title_lessons .expand_icon.on').hide();
-  container.find('.title_lessons .expand_icon.off').show().data('moving', true);
-  $('#dashboard_container .pagination_lessons').animate({height: '0px'}, 40, function() {
-    $('#dashboard_container .space_lessons').animate({height: '315px'}, 500, function() {
-      container.data('lessons-expanded', false);
-      unbindLoader();
-      $.ajax({
-        type: 'get',
-        url: '/dashboard/lessons?for_row=' + container.data('lessons-in-space')
-      }).always(bindLoader);
-      if(container.find('.space_lessons .page1 .lesson_in_dashboard').length <= container.data('lessons-in-space')) {
-        $('#dashboard_container .title_lessons .expand_icon.off').removeClass('off').addClass('disabled');
-      }
-    });
-  });
-}
 
-function compressMediaElementsInDashboard() {
-  var container = $('#dashboard_container');
-  container.find('.title_media_elements .expand_icon.on').hide();
-  container.find('.title_media_elements .expand_icon.off').show().data('moving', true);
-  $('#dashboard_container .pagination_media_elements').animate({height: '0px'}, 40, function() {
-    $('#dashboard_container .space_media_elements').animate({height: '315px'}, 500, function() {
-      container.data('media-elements-expanded', false);
-      unbindLoader();
-      $.ajax({
-        type: 'get',
-        url: '/dashboard/media_elements?for_row=' + container.data('media-elements-in-space')
-      }).always(bindLoader);
-      if(container.find('.space_media_elements .page1 .boxViewExpandedMediaElement').length <= container.data('media-elements-in-space')) {
-        $('#dashboard_container .title_media_elements .expand_icon.off').removeClass('off').addClass('disabled');
-      }
-    });
-  });
-}
 
+/**
+@method openDescriptionDashboardLayer
+@for DashboardLessonDescriptions
+**/
 function openDescriptionDashboardLayer(item) {
   var tot_time = 200;
   var h_i = item.height();
@@ -120,6 +237,10 @@ function openDescriptionDashboardLayer(item) {
   openDescriptionDashboardRecursionLayer(item, 0, h_i, h_f, tot_time);
 }
 
+/**
+@method openDescriptionDashboardRecursionLayer
+@for DashboardLessonDescriptions
+**/
 function openDescriptionDashboardRecursionLayer(item, t, h_i, h_f, tot_time) {
   var height = h_i + ((t * h_f) / tot_time);
   item.css('height', (height + 'px'));
@@ -138,6 +259,14 @@ function openDescriptionDashboardRecursionLayer(item, t, h_i, h_f, tot_time) {
   }
 }
 
+
+
+
+
+/**
+@method dashboardResizeController
+@for DashboardResizing
+**/
 function dashboardResizeController() {
   var container = $('#dashboard_container');
   var width = container.width();
@@ -175,22 +304,10 @@ function dashboardResizeController() {
   }
 }
 
-function emptyAllPagesInDashboard(selector) {
-  var container = $('#dashboard_container .space_' + selector);
-  container.find('.page1').html('');
-  container.find('.page2').html('');
-  container.find('.page3').html('');
-  container.find('.page4').html('');
-  container.find('.page5').html('');
-  container.find('.page6').html('');
-}
-
-function resetVisibilityOfAllPagesInDashboard(selector, visible) {
-  var container = $('#dashboard_container .space_' + selector);
-  container.find('.dashpage').hide();
-  container.find('.page' + visible).show();
-}
-
+/**
+@method resizeLessonsAndMediaElementsInDashboard
+@for DashboardResizing
+**/
 function resizeLessonsAndMediaElementsInDashboard(lessons, media_elements, with_vertical_margin) {
   var container = $('#dashboard_container');
   var lessons_margin = (container.width() - lessons * 300) / (lessons + 1);
@@ -239,51 +356,4 @@ function resizeLessonsAndMediaElementsInDashboard(lessons, media_elements, with_
   container.find('.title_media_elements .icon').css('margin-left', lessons_margin + 'px');
   var new_calc = 2 * lessons_margin + 90;
   container.find('.title_media_elements .icon').next().css('width', 'calc(100% - ' + new_calc + 'px)');
-}
-
-function dashboardDocumentReady() {
-  dashboardResizeController();
-  $(window).resize(function() {
-    dashboardResizeController();
-  });
-  $body.on('mouseenter', '.lesson_dashboard_hover_sensitive', function() {
-    var item = $(this).find('.literature_container');
-    item.data('delaying', true);
-    setTimeout(function() {
-      if(item.data('delaying')) {
-        openDescriptionDashboardLayer(item);
-      }
-    }, 500);
-  });
-  $body.on('mouseleave', '.lesson_dashboard_hover_sensitive', function() {
-    var item = $(this).find('.literature_container');
-    item.data('delaying', false);
-    if(item.data('moving')) {
-      item.data('moving', false);
-    } else {
-      item.animate({height: '80px'}, 200, function() {
-        item.find('.description').hide();
-      });
-    }
-  });
-  $body.on('click', '#dashboard_container .title_lessons .expand_icon.off', function() {
-    if(!$(this).data('moving')) {
-      expandLessonsInDashboard();
-    }
-  });
-  $body.on('click', '#dashboard_container .title_media_elements .expand_icon.off', function() {
-    if(!$(this).data('moving')) {
-      expandMediaElementsInDashboard();
-    }
-  });
-  $body.on('click', '#dashboard_container .title_lessons .expand_icon.on', function() {
-    if(!$(this).data('moving')) {
-      compressLessonsInDashboard();
-    }
-  });
-  $body.on('click', '#dashboard_container .title_media_elements .expand_icon.on', function() {
-    if(!$(this).data('moving')) {
-      compressMediaElementsInDashboard();
-    }
-  });
 }
