@@ -16,16 +16,16 @@ var my_function = function() {
     container.find('.title_lessons .expand_icon.on').hide();
     container.find('.title_lessons .expand_icon.off').show();
     container.data('lessons-expanded', false);
-    container.find('.pagination_lessons').css('height', '0px');
-    container.find('.space_lessons').css('height', '315px');
+    container.find('.pagination_lessons').animate({height: '0px'}, 40);
+    container.find('.space_lessons').animate({height: '315px'}, 500);
     container.find('.title_lessons .expand_icon.off').removeClass('off').addClass('disabled');
   <% end %>
   <% if @media_elements_were_expanded %>
     container.find('.title_media_elements .expand_icon.on').hide();
     container.find('.title_media_elements .expand_icon.off').show();
     container.data('media-elements-expanded', false);
-    container.find('.pagination_media_elements').css('height', '0px');
-    container.find('.space_media_elements').css('height', '315px');
+    container.find('.pagination_media_elements').animate({height: '0px'}, 40);
+    container.find('.space_media_elements').animate({height: '315px'}, 500);
     container.find('.title_media_elements .expand_icon.off').removeClass('off').addClass('disabled');
   <% end %>
   <% if @lessons.empty? %>
@@ -87,7 +87,11 @@ var my_function = function() {
       showOkPopUp(temporary_msg);
       $('#popup_captions_container').data('temporary-msg', '');
     }
-    my_function();
+    <% if @lessons_were_expanded.nil? && @media_elements_were_expanded.nil? %>
+      my_function();
+    <% else %>
+      setTimeout(my_function, $parameters.data('timeout'));
+    <% end %>
   });
 <% end %>
 
