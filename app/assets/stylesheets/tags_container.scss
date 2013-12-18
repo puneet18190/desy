@@ -3,10 +3,10 @@
 
 .media_element_editor-layout .contentFormInfoMediaElementEditor ._tags_container {
   
+  @include tagContainer;
   width: 336px;
   height: 170px;
   background-color: #454343;
-  @include tagContainer;
   
   span.new_tag {
     
@@ -85,12 +85,12 @@
 
 .lesson-editor-layout ul#slides.new .info ._tags_container {
   
+  @include tagContainer;
   width: 336px;
   height: 140px;
   border: 3px solid $orange;
   background-color: #E48D1F;
   margin-top: 30px;
-  @include tagContainer;
   
   span.new_tag {
     
@@ -120,12 +120,12 @@
 
 .MediaElementPopUpContainer ._tags_container {
   
+  @include tagContainer;
   width: 336px;
   height: 170px;
   border: 3px solid #373737;
   margin-bottom: 5px;
   background-color: #454343;
-  @include tagContainer;
   
   span.new_tag {
     

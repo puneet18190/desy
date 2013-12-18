@@ -58,8 +58,8 @@ a.cerca.current {
     
     p {
       
+      @include nunito(110%);
       padding-top: 90px;
-      font: 110% 'Nunito', "Arial Rounded MT Bold", sans-serif;
       
     }
     
@@ -120,10 +120,10 @@ a.cerca.current {
     
     h1 {
       
+      @include nunito(200%);
       color: #fff;
       padding: 0;
       margin: 0;
-      font: 200% 'Nunito', "Arial Rounded MT Bold", sans-serif;
       float: left;
       width: 39%;
       
@@ -131,7 +131,7 @@ a.cerca.current {
     
     h2 {
       
-      font: 120% 'Nunito', "Arial Rounded MT Bold", sans-serif;
+      @include nunito(120%);
       color: #fff;
       float: left;
       padding: 0px;
@@ -141,7 +141,7 @@ a.cerca.current {
     
     h3 {
       
-      font: 120% 'Nunito', "Arial Rounded MT Bold", sans-serif;
+      @include nunito(120%);
       color: $black;
       padding: 0.5% 0 0 0;
       width: 38.5%;
@@ -360,10 +360,9 @@ a.cerca.current {
     
     .lessonTitle {
       
-      font: 100% 'Nunito', "Arial Rounded MT Bold", sans-serif;
+      @include nunito-with-line-height(100%, 1em);
       color: #fff;
       padding: 5px 0 5px 0;
-      line-height: 1em;
       
     }
     
@@ -437,8 +436,7 @@ a.cerca.current {
   
   h4 {
     
-    font-family: 'Nunito', "Arial Rounded MT Bold", sans-serif;
-    line-height: 1.3em;
+    @include nunito-with-line-height(100%, 1.3em);
     padding-top: 0.3em;
     
   }
@@ -451,7 +449,7 @@ a.cerca.current {
     
     p {
       
-      font: 110% 'Nunito', "Arial Rounded MT Bold", sans-serif;
+      @include nunito(110%);
       
     }
     
@@ -583,7 +581,7 @@ a.cerca.current {
     
     p {
       
-      font: 110% 'Nunito', "Arial Rounded MT Bold", sans-serif;
+      @include nunito(110%);
       padding-top: 40px;
       
     }
@@ -727,8 +725,8 @@ a.cerca.current {
   
   h1 {
     
+    @include nunito(180%);
     color: #fff;
-    font: 180% 'Nunito', "Arial Rounded MT Bold", sans-serif;
     
   }
   
@@ -742,8 +740,8 @@ a.cerca.current {
   
   h3 {
     
+    @include nunito(160%);
     color: #fff;
-    font: 160% 'Nunito', "Arial Rounded MT Bold", sans-serif;
     
   }
   
@@ -788,22 +786,22 @@ a.cerca.current {
   
   input[type="text"] {
     
+    @include arial(100%);
     border-radius: 10px;
     box-shadow: 0px 2px 2px rgba(10, 10, 10, 0.2) inset;
     background-color: #454343;
     padding: 2% 4%;
     width: 92%;
-    font: 100% Arial, Helvetica, sans-serif;
     color: #fff;
     
   }
   
   input[type="submit"] {
     
+    @include nunito(18px);
     padding: 5px 30px ;
     width: 130px;
     height: 34px;
-    font: 18px 'Nunito', "Arial Rounded MT Bold", sans-serif;
     color: #fff;
     background-color:$green;
     border: 0px solid #4fc356;
@@ -819,11 +817,11 @@ a.cerca.current {
   
   textarea {
     
+    @include arial(95%);
     border-color: #373737;
     border-radius: 10px;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2) inset;
     background-color: #454343;
-    font: 95% Arial, Helvetica, sans-serif;
     padding: 2% 4%;
     width: 92%;
     height: 122px;
@@ -1048,18 +1046,18 @@ label.filebutton span input#new_media_element_input {
 
 .buttonForm {
   
+  @include nunito(18px);
   padding: 5px 30px;
   color: #000;
   background-color: white;
-  font: 18px 'Nunito', "Arial Rounded MT Bold", sans-serif;
   
 }
 
 .buttonDownload {
   
+  @include nunito(13px);
   padding: 5.250em 1.875em 0 1.875em;
   color: #fff;
-  font: 13px 'Nunito', "Arial Rounded MT Bold", sans-serif;
   background-image: $assets-bg-button-download_jpg;
   background-position: top center;
   background-repeat: no-repeat;

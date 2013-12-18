@@ -7,7 +7,7 @@ html.prelogin-layout.prelogin-controller.home-action {
   
   body {
     
-    font: 80% Arial, Helvetica, sans-serif;
+    @include arial(80%);
     background-color: #fff;
     background-image: $assets-bg-prelogin_jpg;
     background-repeat: repeat-x;
@@ -44,11 +44,10 @@ html.prelogin-layout.prelogin-controller.home-action {
       
       h1 {
        
-       font: 150% 'Nunito', sans-serif;
+       @include nunito-with-line-height(150%, 100%);
        color: #505051;
        padding-top: 14px;
        padding-bottom: 0px;
-       line-height: 100%;
        
       }
       

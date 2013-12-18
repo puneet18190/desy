@@ -5,14 +5,14 @@ html.faqs-controller {
   
   .faqsHeader {
     
-    background-color: #5d5d5d;
+    background-color: #5D5D5D;
     padding: 8px 0 12px 40px;
     height: 34px;
     
     h1 {
       
+      @include nunito(30px);
       color: white;
-      font: 30px 'Nunito', sans-serif;
       padding: 0px;
       
     }
@@ -73,7 +73,7 @@ html.faqs-controller {
   
   h2 {
     
-    font: 23px 'Nunito', sans-serif;
+    @include nunito(23px);
     text-transform: uppercase;
     font-weight: 700;
     padding-bottom: 0;
@@ -82,8 +82,8 @@ html.faqs-controller {
   
   h3 {
     
-    font: 23px 'Nunito', sans-serif;
-    color: #5d5c5c;
+    @include nunito(23px);
+    color: #5D5C5C;
     font-size: 20px;
     padding-top: 10px;
     
@@ -158,9 +158,9 @@ html.faqs-controller {
     text-transform: uppercase;
     font-size: 13px;
     font-weight: bold;
-    color: #5d5d5d;
+    color: #5D5D5D;
     padding: 10px 35px;
-    background-image: url('/assets/back_arrow.png');
+    background-image: $assets-back-arrow_png;
     background-repeat: no-repeat;
     background-size: 26px 26px;
     background-position: center left;

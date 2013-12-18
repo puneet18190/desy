@@ -7,7 +7,7 @@ html.virtual_classroom-controller {
   
   body {
     
-    font: 80% Arial, Helvetica, sans-serif;
+    @include arial(80%);
     background-color: #252525;
     margin: 0;
     padding: 0;
@@ -59,10 +59,9 @@ html.virtual_classroom-controller {
     
     h1 {
       
+      @include nunito-with-line-height(30px, 45px);
       color: #fff;
       padding: 0;
-      font: 30px 'Nunito', sans-serif;
-      line-height: 45px;
       float: left;
       width: 30%;
       padding-left: 10px;
@@ -75,9 +74,8 @@ html.virtual_classroom-controller {
       
       a {
         
+        @include nunito-with-line-height(15px, 45px);
         float: left;
-        font: 15px 'Nunito', sans-serif;
-        line-height: 45px;
         height: 45px;
         display: block;
         background-color: #42B9E9;
@@ -303,8 +301,8 @@ html.virtual_classroom-controller {
     
     h1 {
       
+      @include nunito(120%);
       color: $blue;
-      font: 120% 'Nunito', sans-serif;
       
     }
     
@@ -419,9 +417,8 @@ html.virtual_classroom-controller {
       
       h1 {
         
-        font: 12.8px, 'Nunito', sans-serif;
+        @include nunito-with-line-height(12.8px, 12.8px);
         color: #fff;
-        line-height: 12.8px;
         height: 27px;
         padding: 0;
         
@@ -444,10 +441,10 @@ html.virtual_classroom-controller {
     
     .playInVirtualClassroom {
       
+      @include nunito(180%);
       padding: 8px 10px 10px 70px;
       background: #252525 $assets-freccina-play-virtual_png no-repeat 1.6em 0.6em;
       color: #fff;
-      font: 180% 'Nunito', sans-serif;
       margin-bottom: 15px;
       
     }
@@ -482,13 +479,13 @@ html.virtual_classroom-controller {
     
     h1 {
       
-      font: 100% 'Nunito', sans-serif;
+      @include nunito(100%);
       
     }
     
     h2 {
       
-      font: 240% 'Nunito', sans-serif;
+      @include nunito(240%);
       
     }
     
