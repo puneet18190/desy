@@ -120,7 +120,8 @@
     
     margin-top: 4px;
     text-transform: uppercase;
-    @include arial(12px);
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     color: $orange;
     
@@ -788,7 +789,9 @@
       
       .lessonTitle {
         
-        @include nunito-with-line-height(107%, 1em);
+        font-size: 107%;
+        font-family: "Nunito", "Arial Rounded MT Bold", Helvetica, sans-serif;
+        line-height: 1em;
         color: #fff;
         padding: 5px 0 5px 0;
         
