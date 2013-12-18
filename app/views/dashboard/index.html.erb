@@ -88,15 +88,15 @@
     </form>
   </div>
   <div class="buttonPlus">
-    <a href="" class="createLessonBtn fltlft">
+    <a href="/lessons/new" class="createLessonBtn fltlft">
       <div class="iconPlus"></div> 
       <p>crea una nuova lezione</p><!-- TODO traduzz -->
     </a>
-    <a href="" class="uploadResourceBtn fltlft">
+    <a class="_load_media_element uploadResourceBtn fltlft">
       <div class="iconPlus"></div> 
       <p>carica una nuova risorsa</p><!-- TODO traduzz -->
     </a>
-    <a href="" class="uploadDocumentBtn fltlft">
+    <a class="_load_document uploadDocumentBtn fltlft">
       <div class="iconPlus"></div> 
       <p>carica un approfondimento</p><!-- TODO traduzz -->
     </a>
@@ -104,12 +104,12 @@
   <div class="boxText">
      <span>Hai bisogno di aiuto per usare AmicoCloud?</span><!-- TODO traduzz -->
     <p>Hai bisogno di aiuto per scoprire tutte le caratteristiche di AmicoCloud?</p><!-- TODO traduzz -->
-    <a href="">Consulta le Faq’s</a><!-- TODO traduzz -->
+    <%= link_to 'Consulta le Faqs', faqs_path %><!-- TODO traduzz -->
   </div>
   <div class="boxText">
     <span>Vuoi parlare con AmicoCloud</span><!-- TODO traduzz -->
     <p>Il tuo contributo è molto importante per migliorare i nostri servizi.</p><!-- TODO traduzz -->
-    <a href="">Contattaci</a><!-- TODO traduzz -->
+    <%= link_to 'Contattaci', "mailto:#{SETTINGS['application']['contact_us_email']}" %><!-- TODO traduzz -->
   </div>
 </div>
 <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
