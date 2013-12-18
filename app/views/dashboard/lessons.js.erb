@@ -8,7 +8,7 @@ var margin = (container.width() - <%= @for_row %> * 300) / (<%= @for_row %> + 1)
 emptyAllPagesInDashboard('lessons');
 resetVisibilityOfAllPagesInDashboard('lessons', 1);
 <% @lessons.each_with_index do |l, index| %>
-  container.find('.space_lessons .page<%= ((index / for_page) + 1) %>').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l})) %>");
+  container.find('.space_lessons .page<%= ((index / for_page) + 1) %>').append("<%= j(render(:partial => 'lessons/view_single_expanded', :locals => {:lesson => l, :cover => @covers[l.id]})) %>");
   $('#<%= destination %>_<%= l.id %>').css('margin-left', margin + 'px');
   <% if index % for_page >= @for_row %>
     $('#<%= destination %>_<%= l.id %>').css('margin-top', '30px');

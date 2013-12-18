@@ -32,6 +32,8 @@ class DashboardController < ApplicationController
     @for_row = correct_integer?(params['for_row']) ? params['for_row'].to_i : 0
     @rows = params['expanded'].present? ? LESSON_PAGES * LESSON_ROWS_PER_PAGE : 1
     @lessons = current_user.suggested_lessons(@for_row * @rows)
+    @covers = @lessons[:covers]
+    @lessons = @lessons[:records]
   end
   
   # === Description
@@ -86,7 +88,9 @@ class DashboardController < ApplicationController
   # Gets lessons for dashboard, and checks if there are more lessons to be extracted
   def get_lessons_for_dashboard
     @lessons = current_user.suggested_lessons(@lessons_for_row * @lesson_rows)
-    @lessons_expandible = current_user.suggested_lessons(@lessons_for_row + 1).count == (@lessons_for_row + 1)
+    @covers = @lessons[:covers]
+    @lessons = @lessons[:records]
+    @lessons_expandible = current_user.suggested_lessons(@lessons_for_row + 1)[:records].length == (@lessons_for_row + 1)
     @lessons_emptied = Lesson.dashboard_emptied? current_user.id
     if !@lessons_expandible && @lessons_expanded
       @lessons_expanded = false
