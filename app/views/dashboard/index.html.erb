@@ -63,52 +63,44 @@
     <p>Utilizza il morore di ricerca di AmicoCloud
   per trovare nuove lezioni o risorse didattiche.</p><!-- TODO traduzz -->
   </div>
-
-  
-    <div class="searchBox">
+  <div class="searchBox">
     <form id="search_general" class="search-form" method="get" action="/search">
       <table>
         <tr>
           <td colspan="2">
-            <input type="text" name="word" value="<%= t('search.long_label', :desy => SETTINGS['application_name']) %>" class="text" id="general_tag_reader_for_search" style="color:#999">
+            <input type="text" name="word" value="<%= t('search.long_label', :desy => SETTINGS['application_name']) %>" class="text" id="general_tag_reader_for_search" style="color:#999"> <!-- TODO traduzz -->
             <%= hidden_field_tag 'word_placeholder', '', :id => 'general_tag_kind_for_search' %>
           </td>
         </tr>
         <tr>
           <td colspan="2">
             <select name="item" id="which_item_to_search">
-              <option value="lessons" <%= @where != 'media_elements' ? "selected=\"selected\"".html_safe : '' %>><%= t('captions.lessons') %></option>
-              <option value="media_elements" <%= @where == 'media_elements' ? "selected=\"selected\"".html_safe : '' %>><%= t('captions.media_elements') %></option>
+              <option value="lessons" <%= @where != 'media_elements' ? "selected=\"selected\"".html_safe : '' %>><%= t('captions.lessons') %></option> <!-- TODO traduzz -->
+              <option value="media_elements" <%= @where == 'media_elements' ? "selected=\"selected\"".html_safe : '' %>><%= t('captions.media_elements') %></option> <!-- TODO traduzz -->
             </select>
           </td>
         </tr>
-        
       </table>
-      <div class="boxAdvancedSearch"><%= link_to t('search.label'), "#{search_items_path}?item=#{@where}", :class =>'advanced fltlft' %> <a id="search_general_submit" class="cerca current fltrt"  title="<%= t('titles.search') %>">&nbsp;</a></div>
+      <div class="boxAdvancedSearch">
+        <%= link_to t('search.label'), "#{search_items_path}?item=#{@where}", :class =>'advanced fltlft' %> <!-- TODO traduzz -->
+        <a id="search_general_submit" class="cerca current fltrt" title="<%= t('titles.search') %>">&nbsp;</a> <!-- TODO traduzz -->
+      </div>
     </form>
-    
-    </div>
-
-  
-  
-
+  </div>
   <div class="buttonPlus">
     <a href="" class="createLessonBtn fltlft">
       <div class="iconPlus"></div> 
-      <p>crea una nuova lezione</p>
-    </a><!-- TODO traduzz -->
-    
+      <p>crea una nuova lezione</p><!-- TODO traduzz -->
+    </a>
     <a href="" class="uploadResourceBtn fltlft">
       <div class="iconPlus"></div> 
-      <p>carica una nuova risorsa</p>
-    </a><!-- TODO traduzz -->
-    
+      <p>carica una nuova risorsa</p><!-- TODO traduzz -->
+    </a>
     <a href="" class="uploadDocumentBtn fltlft">
       <div class="iconPlus"></div> 
-      <p>carica un approfondimento</p>
-    </a><!-- TODO traduzz -->
+      <p>carica un approfondimento</p><!-- TODO traduzz -->
+    </a>
   </div>
-
   <div class="boxText">
      <span>Hai bisogno di aiuto per usare AmicoCloud?</span><!-- TODO traduzz -->
     <p>Hai bisogno di aiuto per scoprire tutte le caratteristiche di AmicoCloud?</p><!-- TODO traduzz -->
@@ -119,7 +111,6 @@
     <p>Il tuo contributo è molto importante per migliorare i nostri servizi.</p><!-- TODO traduzz -->
     <a href="">Contattaci</a><!-- TODO traduzz -->
   </div>
-  
 </div>
 <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
 <br class="clearfloat"/>
