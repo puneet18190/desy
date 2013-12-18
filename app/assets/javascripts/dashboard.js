@@ -286,6 +286,7 @@ function openDescriptionDashboardRecursionLayer(item, t, h_i, h_f, tot_time) {
 
 
 /**
+This method makes decisions about how to react to a resize event. First it centers the lessons, calculating the maximum number that fits the available horizontal space, and the margin-left to apply. Then, it uses such a margin left to calculate the available space for media elements (these must be aligned with the lessons on both left and right sides). After the correct number of lessons and media elements has been calculated, the method decides if it's necessary to call the server and fetch new items: if this is not necessary, it's called {{#crossLink "DashboardResizing/resizeLessonsAndMediaElementsInDashboard:method}}{{/crossLink}}.
 @method dashboardResizeController
 @for DashboardResizing
 **/
@@ -327,8 +328,12 @@ function dashboardResizeController() {
 }
 
 /**
+This method resizes lessons and media elements without calling the server to add new ones.
 @method resizeLessonsAndMediaElementsInDashboard
 @for DashboardResizing
+@param lessons {Number} how many lessons fit horizontally the screen
+@param media_elements {Number} how many media elements fit horizontally the screen
+@param with_vertical_margin {Boolean} if true, sets temporarily the vertical margin to adapt to the new pagination: this is used in case the server is too slow, to visualize in a good way the items while waiting for an answer
 **/
 function resizeLessonsAndMediaElementsInDashboard(lessons, media_elements, with_vertical_margin) {
   var container = $('#dashboard_container');
