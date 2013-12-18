@@ -446,7 +446,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_dashboard.js.html#l93"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:93</code></a>
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l99"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:99</code></a>
         
         </p>
 
@@ -457,7 +457,8 @@
     </div>
 
     <div class="description">
-        
+        <p>Compresses the section &#39;lessons&#39;, using animate to have a graphical effect.</p>
+
     </div>
 
     
@@ -500,7 +501,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_dashboard.js.html#l116"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:116</code></a>
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l123"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:123</code></a>
         
         </p>
 
@@ -511,7 +512,8 @@
     </div>
 
     <div class="description">
-        
+        <p>Compresses the section &#39;media elements&#39;, using animate to have a graphical effect.</p>
+
     </div>
 
     
@@ -554,7 +556,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_dashboard.js.html#l139"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:139</code></a>
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l147"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:147</code></a>
         
         </p>
 
@@ -565,7 +567,8 @@
     </div>
 
     <div class="description">
-        
+        <p>Expands the section &#39;lessons&#39;, using animate to have a graphical effect.</p>
+
     </div>
 
     
@@ -608,7 +611,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_dashboard.js.html#l158"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:158</code></a>
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l167"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:167</code></a>
         
         </p>
 
@@ -619,7 +622,7 @@
     </div>
 
     <div class="description">
-        <p>scroll_height: if lessons are expanded the height is 72 + 61 + 50 + 70 + 660 + 40 + 50 + 70 + 660 + 40 + 50 = 1823; otherwise the height is 72 + 61 + 50 + 70 + 315 + 50 + 70 + 660 + 40 + 50 = 1438</p>
+        <p>Expands the section &#39;media elements&#39;, using animate to have a graphical effect. The variable &#39;scroll_height&#39; is calculated as follows: if the section lessons has been expanded (see <a href="../classes/DashboardExpandedContents.html#method_expandLessonsInDashboard" class="crosslink">expandLessonsInDashboard</a>) the overall height is 72px (header) + 61px (header menu) + 50px (margin of global content) + 70px (header of lessons) + 660px (height of lessons) + 40px (pagination of lessons) + 50px (margin of the section elements) + 70px (header of elements) + 660px (height of section elements, once it is expanded) + 40px (pagination of elements) + 50px (padding between main content and footer) = 1823px; if lessons are not expanded, the height of lessons is only 315, and it&#39;s not calculated the height of lessons pagination, obtaining a total of 1438px. The scroll is launched with a delay of 150 ms, to avoid overlapping with the expansion effect.</p>
 
     </div>
 
@@ -635,7 +638,29 @@
     <h3 class="name"><code>initializeDashboardPagination</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>selector</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>pos</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>pages_amount</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -663,7 +688,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_dashboard.js.html#l182"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:182</code></a>
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l191"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:191</code></a>
         
         </p>
 
@@ -674,10 +699,66 @@
     </div>
 
     <div class="description">
-        <p>Parte sempre dal div vuoto!</p>
+        <p>This function is used to initialize the paginator in the dashboard. It replaces the paginator, copying and pasting it from a hidden div. The method is called only for an expanded section, otherwise there is no pagination.</p>
 
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">selector</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>either &#39;lessons&#39; or &#39;media_elements&#39;</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">pos</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the current page</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">pages_amount</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the total amount of pages</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     

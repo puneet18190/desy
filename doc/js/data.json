@@ -2981,6 +2981,7 @@
         {
             "file": "app/assets/javascripts/dashboard.js",
             "line": 14,
+            "description": "Initializes the dashboard, and reactions to window resizing. To handle hover sensitive lessons and show a div containing the description, the method calls functions in {{#crossLink \"DashboardLessonDescriptions\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "dashboardDocumentReady",
             "class": "DashboardAccessories",
@@ -2988,23 +2989,45 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 65,
+            "line": 66,
+            "description": "Empties the pages, before loading new contents. This is used in the action index.js.erb.",
             "itemtype": "method",
             "name": "emptyAllPagesInDashboard",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "either 'lessons' or 'media_elements'",
+                    "type": "String"
+                }
+            ],
             "class": "DashboardAccessories",
             "module": "dashboard"
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 79,
+            "line": 82,
+            "description": "Resets all the pages to invisible, and sets as visible the one selected by the user.",
             "itemtype": "method",
             "name": "resetVisibilityOfAllPagesInDashboard",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "either 'lessons' or 'media_elements'",
+                    "type": "String"
+                },
+                {
+                    "name": "visible",
+                    "description": "the number of the page to be shown",
+                    "type": "Number"
+                }
+            ],
             "class": "DashboardAccessories",
             "module": "dashboard"
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 93,
+            "line": 99,
+            "description": "Compresses the section 'lessons', using animate to have a graphical effect.",
             "itemtype": "method",
             "name": "compressLessonsInDashboard",
             "class": "DashboardExpandedContents",
@@ -3012,7 +3035,8 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 116,
+            "line": 123,
+            "description": "Compresses the section 'media elements', using animate to have a graphical effect.",
             "itemtype": "method",
             "name": "compressMediaElementsInDashboard",
             "class": "DashboardExpandedContents",
@@ -3020,7 +3044,8 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 139,
+            "line": 147,
+            "description": "Expands the section 'lessons', using animate to have a graphical effect.",
             "itemtype": "method",
             "name": "expandLessonsInDashboard",
             "class": "DashboardExpandedContents",
@@ -3028,8 +3053,8 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 158,
-            "description": "scroll_height: if lessons are expanded the height is 72 + 61 + 50 + 70 + 660 + 40 + 50 + 70 + 660 + 40 + 50 = 1823; otherwise the height is 72 + 61 + 50 + 70 + 315 + 50 + 70 + 660 + 40 + 50 = 1438",
+            "line": 167,
+            "description": "Expands the section 'media elements', using animate to have a graphical effect. The variable 'scroll_height' is calculated as follows: if the section lessons has been expanded (see {{#crossLink \"DashboardExpandedContents/expandLessonsInDashboard:method\"}}{{/crossLink}}) the overall height is 72px (header) + 61px (header menu) + 50px (margin of global content) + 70px (header of lessons) + 660px (height of lessons) + 40px (pagination of lessons) + 50px (margin of the section elements) + 70px (header of elements) + 660px (height of section elements, once it is expanded) + 40px (pagination of elements) + 50px (padding between main content and footer) = 1823px; if lessons are not expanded, the height of lessons is only 315, and it's not calculated the height of lessons pagination, obtaining a total of 1438px. The scroll is launched with a delay of 150 ms, to avoid overlapping with the expansion effect.",
             "itemtype": "method",
             "name": "expandMediaElementsInDashboard",
             "class": "DashboardExpandedContents",
@@ -3037,16 +3062,33 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 182,
-            "description": "Parte sempre dal div vuoto!",
+            "line": 191,
+            "description": "This function is used to initialize the paginator in the dashboard. It replaces the paginator, copying and pasting it from a hidden div. The method is called only for an expanded section, otherwise there is no pagination.",
             "itemtype": "method",
             "name": "initializeDashboardPagination",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "either 'lessons' or 'media_elements'",
+                    "type": "String"
+                },
+                {
+                    "name": "pos",
+                    "description": "the current page",
+                    "type": "Number"
+                },
+                {
+                    "name": "pages_amount",
+                    "description": "the total amount of pages",
+                    "type": "Number"
+                }
+            ],
             "class": "DashboardExpandedContents",
             "module": "dashboard"
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 228,
+            "line": 240,
             "itemtype": "method",
             "name": "openDescriptionDashboardLayer",
             "class": "DashboardLessonDescriptions",
@@ -3054,7 +3096,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 242,
+            "line": 254,
             "itemtype": "method",
             "name": "openDescriptionDashboardRecursionLayer",
             "class": "DashboardLessonDescriptions",
@@ -3062,7 +3104,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 268,
+            "line": 280,
             "itemtype": "method",
             "name": "dashboardResizeController",
             "class": "DashboardResizing",
@@ -3070,7 +3112,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 309,
+            "line": 321,
             "itemtype": "method",
             "name": "resizeLessonsAndMediaElementsInDashboard",
             "class": "DashboardResizing",

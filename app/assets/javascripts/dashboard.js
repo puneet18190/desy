@@ -12,6 +12,7 @@ Clicking on a special icon, the section of lessons or media elements can be expa
 
 
 /**
+Initializes the dashboard, and reactions to window resizing. To handle hover sensitive lessons and show a div containing the description, the method calls functions in {{#crossLink "DashboardLessonDescriptions"}}{{/crossLink}}.
 @method dashboardDocumentReady
 @for DashboardAccessories
 **/
@@ -63,8 +64,10 @@ function dashboardDocumentReady() {
 }
 
 /**
+Empties the pages, before loading new contents. This is used in the action index.js.erb.
 @method emptyAllPagesInDashboard
 @for DashboardAccessories
+@param selector {String} either 'lessons' or 'media_elements'
 **/
 function emptyAllPagesInDashboard(selector) {
   var container = $('#dashboard_container .space_' + selector);
@@ -77,8 +80,11 @@ function emptyAllPagesInDashboard(selector) {
 }
 
 /**
+Resets all the pages to invisible, and sets as visible the one selected by the user.
 @method resetVisibilityOfAllPagesInDashboard
 @for DashboardAccessories
+@param selector {String} either 'lessons' or 'media_elements'
+@param visible {Number} the number of the page to be shown
 **/
 function resetVisibilityOfAllPagesInDashboard(selector, visible) {
   var container = $('#dashboard_container .space_' + selector);
@@ -91,6 +97,7 @@ function resetVisibilityOfAllPagesInDashboard(selector, visible) {
 
 
 /**
+Compresses the section 'lessons', using animate to have a graphical effect.
 @method compressLessonsInDashboard
 @for DashboardExpandedContents
 **/
@@ -114,6 +121,7 @@ function compressLessonsInDashboard() {
 }
 
 /**
+Compresses the section 'media elements', using animate to have a graphical effect.
 @method compressMediaElementsInDashboard
 @for DashboardExpandedContents
 **/
@@ -137,6 +145,7 @@ function compressMediaElementsInDashboard() {
 }
 
 /**
+Expands the section 'lessons', using animate to have a graphical effect.
 @method expandLessonsInDashboard
 @for DashboardExpandedContents
 **/
@@ -156,7 +165,7 @@ function expandLessonsInDashboard() {
 }
 
 /**
-scroll_height: if lessons are expanded the height is 72 + 61 + 50 + 70 + 660 + 40 + 50 + 70 + 660 + 40 + 50 = 1823; otherwise the height is 72 + 61 + 50 + 70 + 315 + 50 + 70 + 660 + 40 + 50 = 1438
+Expands the section 'media elements', using animate to have a graphical effect. The variable 'scroll_height' is calculated as follows: if the section lessons has been expanded (see {{#crossLink "DashboardExpandedContents/expandLessonsInDashboard:method"}}{{/crossLink}}) the overall height is 72px (header) + 61px (header menu) + 50px (margin of global content) + 70px (header of lessons) + 660px (height of lessons) + 40px (pagination of lessons) + 50px (margin of the section elements) + 70px (header of elements) + 660px (height of section elements, once it is expanded) + 40px (pagination of elements) + 50px (padding between main content and footer) = 1823px; if lessons are not expanded, the height of lessons is only 315, and it's not calculated the height of lessons pagination, obtaining a total of 1438px. The scroll is launched with a delay of 150 ms, to avoid overlapping with the expansion effect.
 @method expandMediaElementsInDashboard
 @for DashboardExpandedContents
 **/
@@ -180,9 +189,12 @@ function expandMediaElementsInDashboard() {
 }
 
 /**
-Parte sempre dal div vuoto!
+This function is used to initialize the paginator in the dashboard. It replaces the paginator, copying and pasting it from a hidden div. The method is called only for an expanded section, otherwise there is no pagination.
 @method initializeDashboardPagination
 @for DashboardExpandedContents
+@param selector {String}  either 'lessons' or 'media_elements'
+@param pos {Number} the current page
+@param pages_amount {Number} the total amount of pages
 **/
 function initializeDashboardPagination(selector, pos, pages_amount) {
   $('#dashboard_container .pagination_' + selector + ' .dots_pagination_container').replaceWith($('#hidden_dashboard_pagination').html());
