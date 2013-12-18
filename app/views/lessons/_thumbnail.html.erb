@@ -10,8 +10,8 @@
 <div class="img_expanded _lesson_thumb _lesson_<%= lesson.id %>" data-lesson-id="<%= lesson.id %>" style="width:247px; height:162px">
   <% if image %>
     <%
-      image_height = image_cover.resize_height / 3.64
-      image_width = image_cover.resize_width / 3.64
+      image_height = image_cover.resize_height('cover') / 3.64
+      image_width = image_cover.resize_width('cover') / 3.64
       image_alignment = image_cover.alignment / 3.64
     %>
     <div class="cover" style="height:144px">
