@@ -3,11 +3,11 @@
 
 .navcontainer {
   
+  @include nunito(180%);
   margin: 0 auto;
   padding-bottom: 50px;
   float: left;
   width: 100%;
-  font: 180% 'Nunito', sans-serif;
   
   ul.navlist {
     
