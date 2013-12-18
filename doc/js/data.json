@@ -76,6 +76,20 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/dashboard.js": {
+            "name": "app/assets/javascripts/dashboard.js",
+            "modules": {
+                "dashboard": 1
+            },
+            "classes": {},
+            "fors": {
+                "DashboardAccessories": 1,
+                "DashboardExpandedContents": 1,
+                "DashboardLessonDescriptions": 1,
+                "DashboardResizing": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/dialogs.js": {
             "name": "app/assets/javascripts/dialogs.js",
             "modules": {
@@ -423,6 +437,27 @@
             "file": "app/assets/javascripts/buttons.js",
             "line": 1,
             "description": "Lessons and Elements actions triggered via buttons."
+        },
+        "dashboard": {
+            "name": "dashboard",
+            "submodules": {},
+            "classes": {
+                "DashboardAccessories": 1,
+                "DashboardExpandedContents": 1,
+                "DashboardLessonDescriptions": 1,
+                "DashboardResizing": 1
+            },
+            "fors": {
+                "DashboardAccessories": 1,
+                "DashboardExpandedContents": 1,
+                "DashboardLessonDescriptions": 1,
+                "DashboardResizing": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 1,
+            "description": "The dashboard contains a list of suggested lessons and media elements. The dashboard is the first page shown to the logged user.\n<br/><br/>\nWhen the dashboard is opened at first, it's possible to see two subsections, one containing elements and the other one containing lessons. The number of items shown depends on the browser, this functionality is handled by the class {{#crossLink \"DashboardResizing\"}}{{/crossLink}}. At any time the user resizes the window, the application calls the server that responds with index.js (see {{#crossLink \"DashboardAccessories/dashboardDocumentReady:method\"}}{{/crossLink}}).\n<br/><br/>\nClicking on a special icon, the section of lessons or media elements can be expanded or compressed: this functionality is handled in {{#crossLink \"DashboardExpandedContents\"}}{{/crossLink}}. Finally, a single lesson has its own expansion that opens a div containing description, author and subject: see functions in the class {{#crossLink \"DashboardLessonDescriptions\"}}{{/crossLink}}."
         },
         "dialogs": {
             "name": "dialogs",
@@ -1007,6 +1042,50 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "buttons",
+            "namespace": ""
+        },
+        "DashboardAccessories": {
+            "name": "DashboardAccessories",
+            "shortname": "DashboardAccessories",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "dashboard",
+            "namespace": ""
+        },
+        "DashboardExpandedContents": {
+            "name": "DashboardExpandedContents",
+            "shortname": "DashboardExpandedContents",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "dashboard",
+            "namespace": ""
+        },
+        "DashboardLessonDescriptions": {
+            "name": "DashboardLessonDescriptions",
+            "shortname": "DashboardLessonDescriptions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "dashboard",
+            "namespace": ""
+        },
+        "DashboardResizing": {
+            "name": "DashboardResizing",
+            "shortname": "DashboardResizing",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "dashboard",
             "namespace": ""
         },
         "DialogsAccessories": {
@@ -2900,6 +2979,104 @@
             "module": "buttons"
         },
         {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 14,
+            "itemtype": "method",
+            "name": "dashboardDocumentReady",
+            "class": "DashboardAccessories",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 65,
+            "itemtype": "method",
+            "name": "emptyAllPagesInDashboard",
+            "class": "DashboardAccessories",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 79,
+            "itemtype": "method",
+            "name": "resetVisibilityOfAllPagesInDashboard",
+            "class": "DashboardAccessories",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 93,
+            "itemtype": "method",
+            "name": "compressLessonsInDashboard",
+            "class": "DashboardExpandedContents",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 116,
+            "itemtype": "method",
+            "name": "compressMediaElementsInDashboard",
+            "class": "DashboardExpandedContents",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 139,
+            "itemtype": "method",
+            "name": "expandLessonsInDashboard",
+            "class": "DashboardExpandedContents",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 158,
+            "description": "scroll_height: if lessons are expanded the height is 72 + 61 + 50 + 70 + 660 + 40 + 50 + 70 + 660 + 40 + 50 = 1823; otherwise the height is 72 + 61 + 50 + 70 + 315 + 50 + 70 + 660 + 40 + 50 = 1438",
+            "itemtype": "method",
+            "name": "expandMediaElementsInDashboard",
+            "class": "DashboardExpandedContents",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 182,
+            "description": "Parte sempre dal div vuoto!",
+            "itemtype": "method",
+            "name": "initializeDashboardPagination",
+            "class": "DashboardExpandedContents",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 228,
+            "itemtype": "method",
+            "name": "openDescriptionDashboardLayer",
+            "class": "DashboardLessonDescriptions",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 242,
+            "itemtype": "method",
+            "name": "openDescriptionDashboardRecursionLayer",
+            "class": "DashboardLessonDescriptions",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 268,
+            "itemtype": "method",
+            "name": "dashboardResizeController",
+            "class": "DashboardResizing",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 309,
+            "itemtype": "method",
+            "name": "resizeLessonsAndMediaElementsInDashboard",
+            "class": "DashboardResizing",
+            "module": "dashboard"
+        },
+        {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 10,
             "description": "Close a dialog with given HTML id.",
@@ -3439,7 +3616,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 23,
+            "line": 26,
             "description": "Centers a div into the current window.",
             "itemtype": "method",
             "name": "centerThis",
@@ -3455,7 +3632,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 37,
+            "line": 40,
             "description": "Centers a div into a given container.",
             "itemtype": "method",
             "name": "centerThisInContainer",
@@ -3476,7 +3653,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 52,
+            "line": 55,
             "description": "Recenters the media elements according to their number and the screen resolution.",
             "itemtype": "method",
             "name": "recenterMyMediaElements",
@@ -3485,7 +3662,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 67,
+            "line": 70,
             "description": "This function guesses the browser and writes it in a class of the tag 'html'.",
             "itemtype": "method",
             "name": "browsersDocumentReady",
@@ -3494,7 +3671,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 81,
+            "line": 84,
             "description": "This function sets the default values of SelectBoxe all around the application. This function is necessary because otherwise the original value wouldn't be set, since we use a JQuery plugin to design selects.",
             "itemtype": "method",
             "name": "defaultValueJavaScriptAnimationsDocumentReady",
@@ -3503,7 +3680,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 99,
+            "line": 102,
             "description": "Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "expandedItemsDocumentReady",
@@ -3512,7 +3689,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 163,
+            "line": 166,
             "description": "Similar to {{#crossLink \"GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method\"}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.",
             "itemtype": "method",
             "name": "filtersDocumentReady",
@@ -3521,7 +3698,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 186,
+            "line": 189,
             "description": "Initializer for consequences of window resizing.",
             "itemtype": "method",
             "name": "generalWindowResizeDocumentReady",
@@ -3530,7 +3707,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 199,
+            "line": 202,
             "description": "Initializer for all javascript and JQuery plugins.",
             "itemtype": "method",
             "name": "javaScriptAnimationsDocumentReady",
@@ -3539,7 +3716,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 259,
+            "line": 262,
             "description": "Initializer for locations automatic filling.",
             "itemtype": "method",
             "name": "locationsDocumentReady",
@@ -3548,7 +3725,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 282,
+            "line": 285,
             "description": "Initializes reports forms for both lessons and media elements.",
             "itemtype": "method",
             "name": "reportsDocumentReady",
@@ -3557,7 +3734,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 331,
+            "line": 334,
             "description": "Gets the requested format to visualize media elements.",
             "itemtype": "method",
             "name": "getMediaElementsFormat",
@@ -3566,7 +3743,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 344,
+            "line": 347,
             "description": "Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "redError",
@@ -3575,7 +3752,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 355,
+            "line": 358,
             "description": "Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3591,7 +3768,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 383,
+            "line": 386,
             "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}here{{/crossLink}}",
             "itemtype": "method",
             "name": "browserSupport",
@@ -3600,7 +3777,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 392,
+            "line": 395,
             "description": "This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutForPage",
@@ -3613,7 +3790,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 404,
+            "line": 407,
             "description": "This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutFilter",
@@ -3626,7 +3803,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 416,
+            "line": 419,
             "description": "This function returns an url for documents without the parameter 'order'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteDocumentsUrlWithoutOrder",
@@ -3639,7 +3816,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 427,
+            "line": 430,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3664,7 +3841,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 453,
+            "line": 456,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",

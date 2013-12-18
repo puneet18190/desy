@@ -81,6 +81,14 @@
             
                 <li><a href="../classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
+                <li><a href="../classes/DashboardAccessories.html">DashboardAccessories</a></li>
+            
+                <li><a href="../classes/DashboardExpandedContents.html">DashboardExpandedContents</a></li>
+            
+                <li><a href="../classes/DashboardLessonDescriptions.html">DashboardLessonDescriptions</a></li>
+            
+                <li><a href="../classes/DashboardResizing.html">DashboardResizing</a></li>
+            
                 <li><a href="../classes/DialogsAccessories.html">DialogsAccessories</a></li>
             
                 <li><a href="../classes/DialogsConfirmation.html">DialogsConfirmation</a></li>
@@ -237,6 +245,8 @@
             
                 <li><a href="../modules/buttons.html">buttons</a></li>
             
+                <li><a href="../modules/dashboard.html">dashboard</a></li>
+            
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
             
                 <li><a href="../modules/documents.html">documents</a></li>
@@ -328,6 +338,9 @@ Calculates in which page the user is going to be redirected when he is watching 
 @param new_for_page {Number} items for page after resizing
 **/
 function calculateTheNewVisiblePage(for_page, page, new_for_page) {
+  if(page == 1) {
+    return 1;
+  }
   var selected_item = for_page * (page - 1) + 1;
   return parseInt(selected_item / new_for_page) + 1;
 }

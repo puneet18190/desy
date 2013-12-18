@@ -81,6 +81,14 @@
             
                 <li><a href="../classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
+                <li><a href="../classes/DashboardAccessories.html">DashboardAccessories</a></li>
+            
+                <li><a href="../classes/DashboardExpandedContents.html">DashboardExpandedContents</a></li>
+            
+                <li><a href="../classes/DashboardLessonDescriptions.html">DashboardLessonDescriptions</a></li>
+            
+                <li><a href="../classes/DashboardResizing.html">DashboardResizing</a></li>
+            
                 <li><a href="../classes/DialogsAccessories.html">DialogsAccessories</a></li>
             
                 <li><a href="../classes/DialogsConfirmation.html">DialogsConfirmation</a></li>
@@ -236,6 +244,8 @@
                 <li><a href="../modules/browser-support.html">browser-support</a></li>
             
                 <li><a href="../modules/buttons.html">buttons</a></li>
+            
+                <li><a href="../modules/dashboard.html">dashboard</a></li>
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
             
@@ -504,7 +514,7 @@ function mediaElementButtonsDocumentReady() {
       var redirect_back_to = $(&quot;#info_container&quot;).data(&#x27;currenturl&#x27;);
       var parser = document.createElement(&#x27;a&#x27;);
       parser.href = redirect_back_to;
-      window.location = &#x27;/videos/&#x27; + video_id + &#x27;/edit?back=&#x27; + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+      window.location = &#x27;/videos/&#x27; + video_id + &#x27;/edit?back=&#x27; + encodeURIComponent(parser.pathname + parser.search+parser.hash);
       return false;
     }
   });
@@ -515,7 +525,7 @@ function mediaElementButtonsDocumentReady() {
       var redirect_back_to = $(&quot;#info_container&quot;).data(&#x27;currenturl&#x27;);
       var parser = document.createElement(&#x27;a&#x27;);
       parser.href = redirect_back_to;
-      window.location = &#x27;/audios/&#x27; + audio_id + &#x27;/edit?back=&#x27; + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+      window.location = &#x27;/audios/&#x27; + audio_id + &#x27;/edit?back=&#x27; + encodeURIComponent(parser.pathname + parser.search+parser.hash);
       return false;
     }
   });
@@ -526,7 +536,7 @@ function mediaElementButtonsDocumentReady() {
       var redirect_back_to = $(&quot;#info_container&quot;).data(&#x27;currenturl&#x27;);
       var parser = document.createElement(&#x27;a&#x27;);
       parser.href = redirect_back_to;
-      window.location = &#x27;/images/&#x27; + image_id + &#x27;/edit?back=&#x27; + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+      window.location = &#x27;/images/&#x27; + image_id + &#x27;/edit?back=&#x27; + encodeURIComponent(parser.pathname + parser.search+parser.hash);
       return false;
     }
   });

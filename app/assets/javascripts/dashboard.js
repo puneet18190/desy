@@ -1,7 +1,9 @@
 /**
 The dashboard contains a list of suggested lessons and media elements. The dashboard is the first page shown to the logged user.
 <br/><br/>
-When the dashboard is opened at first, it's possible to see two subsections, one containing elements and the other one containing lessons. The number of items shown depends on the browser {{#crossLink "LessonEditorImageResizing"}}{{/crossLink}} - {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method"}}{{/crossLink}}.
+When the dashboard is opened at first, it's possible to see two subsections, one containing elements and the other one containing lessons. The number of items shown depends on the browser, this functionality is handled by the class {{#crossLink "DashboardResizing"}}{{/crossLink}}. At any time the user resizes the window, the application calls the server that responds with index.js (see {{#crossLink "DashboardAccessories/dashboardDocumentReady:method"}}{{/crossLink}}).
+<br/><br/>
+Clicking on a special icon, the section of lessons or media elements can be expanded or compressed: this functionality is handled in {{#crossLink "DashboardExpandedContents"}}{{/crossLink}}. Finally, a single lesson has its own expansion that opens a div containing description, author and subject: see functions in the class {{#crossLink "DashboardLessonDescriptions"}}{{/crossLink}}.
 @module dashboard
 **/
 

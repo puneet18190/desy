@@ -20,6 +20,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "ButtonsDocumentReady",
         "ButtonsLesson",
         "ButtonsMediaElement",
+        "DashboardAccessories",
+        "DashboardExpandedContents",
+        "DashboardLessonDescriptions",
+        "DashboardResizing",
         "DialogsAccessories",
         "DialogsConfirmation",
         "DialogsGalleries",
@@ -99,6 +103,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "audio-editor",
         "browser-support",
         "buttons",
+        "dashboard",
         "dialogs",
         "documents",
         "galleries",
@@ -142,6 +147,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "buttons",
             "name": "buttons",
             "description": "Lessons and Elements actions triggered via buttons."
+        },
+        {
+            "displayName": "dashboard",
+            "name": "dashboard",
+            "description": "The dashboard contains a list of suggested lessons and media elements. The dashboard is the first page shown to the logged user.\n<br/><br/>\nWhen the dashboard is opened at first, it's possible to see two subsections, one containing elements and the other one containing lessons. The number of items shown depends on the browser, this functionality is handled by the class {{#crossLink \"DashboardResizing\"}}{{/crossLink}}. At any time the user resizes the window, the application calls the server that responds with index.js (see {{#crossLink \"DashboardAccessories/dashboardDocumentReady:method\"}}{{/crossLink}}).\n<br/><br/>\nClicking on a special icon, the section of lessons or media elements can be expanded or compressed: this functionality is handled in {{#crossLink \"DashboardExpandedContents\"}}{{/crossLink}}. Finally, a single lesson has its own expansion that opens a div containing description, author and subject: see functions in the class {{#crossLink \"DashboardLessonDescriptions\"}}{{/crossLink}}."
         },
         {
             "displayName": "dialogs",
