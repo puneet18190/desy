@@ -1349,17 +1349,15 @@ it:
     dont_support_audio: "Il tuo browser non supporta gli audio"
     # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for instance, in the search engine when the application asks where to search, or in the main page to separate suggested lessons by suggested elements)
     # 1 - views/lessons/index.html.erb
-    # 2 - views/dashboard/index.html.erb
-    # 3 - views/shared/_menu.html.erb
-    # 4 - views/shared/_search.html.erb
-    # 5 - views/search/_item_selector.html.erb
-    lessons: "Lezioni"
-    # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
-    # 1 - views/dashboard/index.html.erb
     # 2 - views/shared/_menu.html.erb
     # 3 - views/shared/_search.html.erb
-    # 4 - views/media_elements/_title_bar.html.erb
-    # 5 - views/search/_item_selector.html.erb
+    # 4 - views/search/_item_selector.html.erb
+    lessons: "Lezioni"
+    # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
+    # 1 - views/shared/_menu.html.erb
+    # 2 - views/shared/_search.html.erb
+    # 3 - views/media_elements/_title_bar.html.erb
+    # 4 - views/search/_item_selector.html.erb
     media_elements: "Elementi"
     # Used to refer to the user's personal profile
     # 1 - views/users/_title_bar.html.erb
