@@ -9,7 +9,7 @@ html.documents-controller {
       
       height: 300px;
       padding: 2.750em 1.875em 1.875em;
-      color: #c2c1c2;
+      color: #C2C1C2;
       
       .ChangeInfoContainerLoading {
         
@@ -54,7 +54,6 @@ html.documents-controller {
           left: -700px;
           opacity: 0;
           cursor: pointer;
-          _cursor: hand;
           margin: 0;
           padding: 0;
           
@@ -89,16 +88,16 @@ html.documents-controller {
       
       h1 {
         
+        @include nunito(180%);
         color: #fff;
-        font: 180% 'Nunito', sans-serif;
         padding: 0;
         
       }
       
       h2 {
         
+        @include nunito(17px);
         color: #fff;
-        font: 17px 'Nunito', sans-serif;
         
       }
       
@@ -141,22 +140,22 @@ html.documents-controller {
         
         input[type="text"] {
           
+          @include arial(1.063em);
           border-radius: 10px;
           box-shadow: 0px 2px 2px rgba(10, 10, 10, 0.2) inset;
           background-color: #454343;
           padding: 2% 4%;
           width: 92%;
-          font: 1.063em Arial, Helvetica, sans-serif;
           color: #fff;
           
         }
         
         input[type="submit"] {
           
+          @include nunito(18px);
           padding: 5px 30px ;
           width: 130px;
           height: 34px;
-          font: 18px 'Nunito', sans-serif;
           color: #fff;
           background-color: $black;
           border: 0px solid #4fc356;
@@ -172,11 +171,11 @@ html.documents-controller {
         
         textarea {
           
+          @include arial(95%);
           border-color: #373737;
           border-radius: 10px;
           box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2) inset;
           background-color: #454343;
-          font: 95% Arial, Helvetica, sans-serif;
           padding: 2% 4%;
           width: 92%;
           height: 137px;
@@ -236,7 +235,7 @@ html.documents-controller {
       
       h1 {
         
-        font:  110% 'Nunito', sans-serif;
+        @include nunito(110%);
         color: $orange;
         padding: 0px;
         
@@ -244,7 +243,7 @@ html.documents-controller {
       
       h2 {
         
-        font: 140% 'Nunito', sans-serif;
+        @include nunito(140%);
         
       }
       
@@ -262,7 +261,7 @@ html.documents-controller {
         
         h3 {
           
-          color: #6d6c6c;
+          color: #6D6C6C;
           font-size: 100%;
           padding-top: 7px;
           padding-left: 10px;
@@ -274,7 +273,7 @@ html.documents-controller {
           
           width: 48%;
           float: left;
-          padding: 4px 0px 2px 0px; 
+          padding: 4px 0px 2px 0px;
           display: inline-block;
           margin-right: 1.8%;
           
