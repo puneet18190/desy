@@ -10,7 +10,7 @@
     <div class="lesson_dashboard_thumb">
       <% if image %>
         <% image_alignment = image_cover.alignment / 3.214 %>
-        <% if image_cover.is_horizontal? %>
+        <% if image_cover.is_horizontal?('cover') %>
           <%= image_tag image.url, :style => "left:#{image_alignment}px; height:175px" %>
         <% else %>
           <%= image_tag image.url, :style => "top:#{image_alignment}px; width:280px" %>
