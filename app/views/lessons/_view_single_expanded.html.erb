@@ -35,10 +35,10 @@
   <div class="lesson_dashboard_buttons">
     <div class="author_and_creation">
       <div class="author">
-        Created by <%= "#{lesson.user.name} #{lesson.user.surname}" %> <!-- TODO traduzz -->
+        <%= t('lessons.created_by', :author => "#{lesson.user.name} #{lesson.user.surname}") %>
       </div>
       <div class="creation">
-        Published <%= TimeConvert.time_difference_to_s(Time.zone.now - lesson.updated_at).downcase %> <!-- TODO traduzz -->
+        <%= t('lessons.published_at', :published_time => TimeConvert.time_difference_to_s(Time.zone.now - lesson.updated_at).downcase) %>
       </div>
     </div>
     <div class="buttoncitos">
