@@ -298,8 +298,8 @@ function dashboardResizeController() {
   var lessons_margin = (width - lessons_in_space * 300) / (lessons_in_space + 1);
   var lessons_width = lessons_in_space * (300 + lessons_margin) - lessons_margin;
   media_elements_in_space = parseInt((lessons_width - 207) / 207) + 1;
-  var condition_lessons = (lessons_in_space != container.data('lessons-in-space') && !container.data('lessons-empty'));
-  var condition_media_elements = (media_elements_in_space != container.data('media-elements-in-space') && !container.data('media-elements-empty'));
+  var condition_lessons = (lessons_in_space <= 50 && lessons_in_space != container.data('lessons-in-space'));
+  var condition_media_elements = (media_elements_in_space <= 50 && media_elements_in_space != container.data('media-elements-in-space'));
   if(condition_lessons || condition_media_elements) {
     var dashboard_url = '/dashboard?media_elements_for_row=' + media_elements_in_space + '&lessons_for_row=' + lessons_in_space;
     if(container.data('lessons-expanded')) {
