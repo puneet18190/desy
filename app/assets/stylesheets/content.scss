@@ -1081,7 +1081,6 @@
   a {
     
     display: inline-block;
-    @include svg-circle-icon-handler($assets-icone-player_svg, 90px, 5, 4, 1, 4, 3, 0.7, 4, 3, none);
     
   }
   
@@ -1091,8 +1090,6 @@
     
     .reason {
       
-      height: 20px;
-      line-height: 20px;
       font: 13px 'Nunito', "Arial Rounded MT Bold", sans-serif;
       color: #262626;
       
@@ -1100,10 +1097,48 @@
     
     .big-prompt {
       
-      height: 35px;
-      line-height: 35px;
-      font: 23px 'Nunito', "Arial Rounded MT Bold", sans-serif;
+      font: 30px/25px 'Nunito', "Arial Rounded MT Bold", sans-serif;
+      letter-spacing: -1px;
+      
+    }
+    
+  }
+  
+}
+
+.dashboard-lessons-empty-situation-container {
+  
+  a {
+    
+    @include svg-circle-icon-handler($assets-icone-player_svg, 90px, 5, 4, 1, 4, 3, 0.7, 4, 3, none);
+    
+  }
+  
+  .prompts {
+    
+    .big-prompt {
+      
       color: $orange;
+      
+    }
+    
+  }
+  
+}
+
+.dashboard-media-elements-empty-situation-container {
+  
+  a {
+    
+    @include svg-circle-icon-handler($assets-icone-player_svg, 90px, 5, 4, 1, 4, 0, 0.7, 4, 0, none);
+    
+  }
+  
+  .prompts {
+    
+    .big-prompt {
+      
+      color: $green;
       
     }
     
