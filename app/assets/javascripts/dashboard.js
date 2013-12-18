@@ -238,8 +238,10 @@ function initializeDashboardPagination(selector, pos, pages_amount) {
 
 
 /**
+This method calls {{#crossLink "DashboardLessonDescriptions/openDescriptionDashboardRecursionLayer:method"}}{{/crossLink}} after a certain delay of ms (this procedure is similar to the one defined in {{#crossLink "VideoEditorComponents/startVideoEditorPreviewClipWithDelay:method"}}{{/crossLink}}, in the module {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}.
 @method openDescriptionDashboardLayer
 @for DashboardLessonDescriptions
+@param item {Object} the div that expands, containing a hidden description
 **/
 function openDescriptionDashboardLayer(item) {
   var tot_time = 200;
@@ -252,8 +254,14 @@ function openDescriptionDashboardLayer(item) {
 }
 
 /**
+This method is used to open the special div containing description, author and subject of a lesson. It doesn't use animate so it's possible to reverse the expansion just firing mouseleave on the lesson.
 @method openDescriptionDashboardRecursionLayer
 @for DashboardLessonDescriptions
+@param item {Object} the div that expands, containing a hidden description
+@param t {Number} the current time in the animation
+@param h_i {Number} the current height
+@param h_f {Number} the final height of the div
+@param tot_time {Number} the total time available to achieve the animation
 **/
 function openDescriptionDashboardRecursionLayer(item, t, h_i, h_f, tot_time) {
   var height = h_i + ((t * h_f) / tot_time);

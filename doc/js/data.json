@@ -3089,22 +3089,58 @@
         {
             "file": "app/assets/javascripts/dashboard.js",
             "line": 240,
+            "description": "This method calls {{#crossLink \"DashboardLessonDescriptions/openDescriptionDashboardRecursionLayer:method\"}}{{/crossLink}} after a certain delay of ms (this procedure is similar to the one defined in {{#crossLink \"VideoEditorComponents/startVideoEditorPreviewClipWithDelay:method\"}}{{/crossLink}}, in the module {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "openDescriptionDashboardLayer",
+            "params": [
+                {
+                    "name": "item",
+                    "description": "the div that expands, containing a hidden description",
+                    "type": "Object"
+                }
+            ],
             "class": "DashboardLessonDescriptions",
             "module": "dashboard"
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 254,
+            "line": 256,
+            "description": "This method is used to open the special div containing description, author and subject of a lesson. It doesn't use animate so it's possible to reverse the expansion just firing mouseleave on the lesson.",
             "itemtype": "method",
             "name": "openDescriptionDashboardRecursionLayer",
+            "params": [
+                {
+                    "name": "item",
+                    "description": "the div that expands, containing a hidden description",
+                    "type": "Object"
+                },
+                {
+                    "name": "t",
+                    "description": "the current time in the animation",
+                    "type": "Number"
+                },
+                {
+                    "name": "h_i",
+                    "description": "the current height",
+                    "type": "Number"
+                },
+                {
+                    "name": "h_f",
+                    "description": "the final height of the div",
+                    "type": "Number"
+                },
+                {
+                    "name": "tot_time",
+                    "description": "the total time available to achieve the animation",
+                    "type": "Number"
+                }
+            ],
             "class": "DashboardLessonDescriptions",
             "module": "dashboard"
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 280,
+            "line": 288,
             "itemtype": "method",
             "name": "dashboardResizeController",
             "class": "DashboardResizing",
@@ -3112,7 +3148,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 321,
+            "line": 329,
             "itemtype": "method",
             "name": "resizeLessonsAndMediaElementsInDashboard",
             "class": "DashboardResizing",
