@@ -1070,3 +1070,43 @@
   }
   
 }
+
+.dashboard-lessons-empty-situation-container, .dashboard-media-elements-empty-situation-container {
+  
+  width: 100%;
+  height: 115px;
+  text-align: center;
+  padding-top: 85px;
+  
+  a {
+    
+    display: inline-block;
+    @include svg-circle-icon-handler($assets-icone-player_svg, 90px, 5, 4, 1, 4, 3, 0.7, 4, 3, none);
+    
+  }
+  
+  .prompts {
+    
+    height: 55px;
+    
+    .reason {
+      
+      height: 20px;
+      line-height: 20px;
+      font: 13px 'Nunito', "Arial Rounded MT Bold", sans-serif;
+      color: #262626;
+      
+    }
+    
+    .big-prompt {
+      
+      height: 35px;
+      line-height: 35px;
+      font: 23px 'Nunito', "Arial Rounded MT Bold", sans-serif;
+      color: $orange;
+      
+    }
+    
+  }
+  
+}

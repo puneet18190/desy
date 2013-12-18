@@ -1,17 +1,15 @@
-<div class="empty-situation-container">
-  <a class="_load_media_element">
-    <div class="plus"></div>
-    <div class="prompts">
-      <div class="reason">
-        <% if emptied %>
-          <%= t('dashboard.emptied_media_elements') %>
-        <% else %>
-          <%= t('dashboard.empty_media_elements') %>
-        <% end %>
-      </div>
-      <div class="big-prompt">
-        <%= t('dashboard.load_new_media_element_now') %>
-      </div>
+<div class="dashboard-media-elements-empty-situation-container">
+  <a class="_load_media_element"></a>
+  <div class="prompts">
+    <div class="reason">
+      <% if emptied %>
+        <%= t('dashboard.emptied_media_elements') %>
+      <% else %>
+        <%= t('dashboard.empty_media_elements') %>
+      <% end %>
     </div>
-  </a>
+    <div class="big-prompt">
+      <%= t('dashboard.load_new_media_element_now') %>
+    </div>
+  </div>
 </div>
