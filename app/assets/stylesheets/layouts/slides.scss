@@ -14,6 +14,12 @@
 
 .slide-content {
   
+  height: $slide-inner-height;
+  width: $slide-inner-width;
+  padding: $slide-inner-padding;
+  font-family: Arial,Verdana,sans-serif;
+  background-color: white;
+  
   .attached_document_internal {
     
     @include svg-circle-icon-handler($assets-set-icone-editor_svg, 40px, 4, 12, 1, 3, 11, 1, 2, 11);
@@ -231,12 +237,6 @@
     }
     
   }
-  
-  height: $slide-inner-height;
-  width: $slide-inner-width;
-  padding: $slide-inner-padding;
-  font-family: Arial,Verdana,sans-serif;
-  background-color: white;
   
   .item {
     
@@ -524,31 +524,28 @@
     
     .title-container {
       
+      @include nunito-with-line-height($title-font-size-in-cover, $title-line-height-in-cover);
       height: $title-inner-height-in-cover;
       width: $title-inner-width-in-cover;
       top: $title-top-offset-in-cover;
       position: absolute;
       padding-top: $title-left-and-top-padding-in-cover;
       padding-left: $title-left-and-top-padding-in-cover;
-      font-family: "Nunito", "Arial Rounded MT Bold", Helvetica, sans-serif;
       background-color: $orange;
       opacity: 0.95;
       color: #fff;
-      font-size: $title-font-size-in-cover;
       font-weight: normal;
-      line-height: $title-line-height-in-cover;
       
     }
     
     .footer-container {
       
+      @include arial($footer-font-size-in-cover);
       background-color: white;
       color: #373737;
       height: $footer-inner-height-in-cover;
       width: $footer-inner-width-in-cover;
       padding: $footer-vertical-padding-in-cover $footer-horizontal-padding-in-cover;
-      font-size: $footer-font-size-in-cover;
-      font-family: Arial, sans-serif;
       
       .subject {
         
@@ -1141,16 +1138,14 @@
       
       .title {
         
+        @include nunito-with-line-height($title-slide-font-size, $title-slide-line-height);
         width: $title-slide-content-width;
         height: $title-slide-content-height;
         padding: $title-slide-content-padding;
         margin-top: $title-slide-content-margin-top;
         border: $title-slide-content-border solid #EFEFEF;
-        font-size: $title-slide-font-size;
-        line-height: $title-slide-line-height;
         text-align: center;
         color: $orange;
-        font-family: "Nunito", "Arial Rounded MT Bold", Helvetica, sans-serif;
         background-color: white;
         letter-spacing: -3px;
         
