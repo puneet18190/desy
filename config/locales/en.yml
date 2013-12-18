@@ -1439,10 +1439,6 @@ en:
     # The caption of the link to open the 'contacts' page (the link is on the bottom left of the Dashboard)
     # 1 - views/dashboard/index.html.erb
     contact_us: "Contact us"
-    # Caption of the link opening the lesson editor (in each page of lessons inside the Dashboard, after the last lesson there is a button with a 'plus' which opens the lesson editor)
-    # 1 - views/dashboard/_lessons_and_media_elements.html.erb
-    # 2 - views/dashboard/_lessons_and_media_elements.html.erb
-    create_new_lesson: "Create a new lesson"
     # Caption of the link opening the lesson editor, containing a prompt for the user (this is used only in the case there are no suggested lessons in the Dashboard: in this case the application invites the user to create a lesson right now)
     # 1 - views/dashboard/_lessons_empty.html.erb
     create_new_lesson_now: "Create a lesson now"
@@ -1464,18 +1460,36 @@ en:
     # Title of the link 'Download the user guide' (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
     help_using_desy: "Need help using %{desy}?"
-    # Caption of the link opening the window to load a new element (in each page of elements inside the Dashboard, after the last element there is a button with a 'plus' which opens the window)
-    # 1 - views/dashboard/_lessons_and_media_elements.html.erb
-    load_new_media_element: "Load a new element"
     # Caption of the link opening the window to load new elements, containing a prompt for the user (this is used only in the case there are no suggested elements in the Dashboard: in this case the application invites the user to load an element right now)
     # 1 - views/dashboard/_media_elements_empty.html.erb
     load_new_media_element_now: "Load a new element now"
-    # Caption of the buttons to switch between suggested lessons and elements ('selected for you': lessons - elements)
-    # 1 - views/dashboard/index.html.erb
-    selected_for_you: "Selected for you"
     # Title of the link 'contact us' (bottom left in the page)
     # 1 - views/dashboard/index.html.erb
     talk_with_desy: "Want to talk with %{desy}?"
+    # Captions of buttons to create new items (lessons, media elements, documents)
+    create_new:
+      # 1 - views/dashboard/index.html.erb
+      lesson: "Create a lesson"
+      # 1 - views/dashboard/index.html.erb
+      document: "Load a document"
+      # 1 - views/dashboard/index.html.erb
+      media_element: "Load an element"
+    # Captions for subsections of the dashboard
+    selected:
+      # Subsection of lessons
+      lessons:
+        # 1 - views/dashboard/index.html.erb
+        title: "New lessons that might interest you"
+        # The variable %{desy} is replaced by the name of the application
+        # 1 - views/dashboard/index.html.erb
+        description: "Add to your personal list new interesting lessons created by other users"
+      # Subsection of media elements
+      media_elements:
+        # 1 - views/dashboard/index.html.erb
+        title: "Latest didactic elements"
+        # The variable %{desy} is replaced by the name of the application
+        # 1 - views/dashboard/index.html.erb
+        description: "The offer of contents inside %{desy} evolves continuously: find out the new multimedia elements available for you"
   
   
   # SECTION 2.4: Captions used in general media galleries. There are three kinds of galleries: Audio, Image and Video. They are used to pick quickly a media element and use it inside a lesson (or as a component to create a new media element, in Audio, Image and Video Editor)
