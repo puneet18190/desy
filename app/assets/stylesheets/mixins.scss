@@ -21,7 +21,7 @@
 
 @mixin arial-with-line-height($size, $line-height) {
   
-  @include nunito($size);
+  @include arial($size);
   line-height: $line-height;
   
 }
