@@ -1,3 +1,31 @@
+@mixin nunito($size) {
+  
+  font-size: $size;
+  font-family: "Nunito", "Arial Rounded MT Bold", Helvetica, sans-serif;
+  
+}
+
+@mixin nunito-with-line-height($size, $line-height) {
+  
+  @include nunito($size);
+  line-height: $line-height;
+  
+}
+
+@mixin arial($size) {
+  
+  font-size: $size;
+  font-family: Arial, Helvetica, sans-serif;
+  
+}
+
+@mixin arial-with-line-height($size, $line-height) {
+  
+  @include nunito($size);
+  line-height: $line-height;
+  
+}
+
 @mixin ulGallery {
   
   .pseudo-ul {
@@ -49,20 +77,27 @@
 }
 
 @mixin slideshow($slidesAmount, $slideshowSel: ".slideshow", $slidesSel: ".slides", $slideSel: ".slide") {
+  
   #{$slideshowSel} {
-    /*margin: 0 auto;*/
+    
     overflow: hidden;
-
+    
     #{$slidesSel} {
+      
       width: calc(100% * #{$slidesAmount}); /* calc(100% * n) dove n è il numero di slides */
       position: relative;
       
       #{$slideSel} {
+        
         float: left;
         width: calc(100% / #{$slidesAmount}); /* calc(100% / n) dove n è il numero di slides */
+        
       }
+      
     }
+    
   }
+  
 }
 
 @mixin slide-miniature {
