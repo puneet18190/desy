@@ -713,9 +713,129 @@
   
   #dashboard_toolbar {
     
-    width: 256px;
+    width: 225px;
+    padding:15px;
     float: right;
-    
+
+    .boxText {
+      font: 11px 'Nunito', sans-serif;
+      color:#a7a9ac;
+      margin-bottom:40px;
+      span {
+        color:#373737;
+        font-size:14px;
+        font-weight: bold;
+        letter-spacing:-1px;
+      }
+      p {
+        padding:10px 0 10px 0;
+      }
+      a {
+        font-size:14px;
+        font-weight: bold;
+        color:#2eaadc;
+      }
+
+    }
+
+    .searchBox {
+      
+      margin: 0px;
+            
+      input.text {
+        margin-bottom:10px;
+        width: 200px;
+        background-color:#f5f5f5;
+        
+      }
+      a {
+        color:#999999;
+        font-size:11px;
+      }
+      .sbHolder {
+        width:220px;
+        background-color: #f5f5f5;
+        .sbSelector {
+          width: 220px;
+          box-shadow: 0 3px 5px rgba(50, 50, 50, 0.2);
+        }
+      
+        .sbOptions {
+            width:220px;
+          a:hover, a:focus, a.sbFocus {
+            
+            background-color: #f5f5f5;
+            color: #999999;
+            
+          }
+          
+        }
+      }
+      .boxAdvancedSearch {
+        
+        display:inline-block; 
+        width:202px; 
+        margin-top:10px; 
+        padding:10px;
+        a {
+          padding-top:10px
+        }
+            
+      }
+    }
+
+
+    .buttonPlus {
+      width:222px;
+      margin-top:28px;
+      margin-bottom:40px;
+      display:inline-block;
+
+      a {
+        color:white;
+        margin-bottom:10px;
+        &:hover .iconPlus, &:hover p {
+          opacity:0.5;
+        }
+      }
+
+      p {
+        padding:8px 0 0 10px;
+        float:left;
+      }
+
+      .createLessonBtn {
+        background-color: $orange;
+        width:202px;
+        padding:10px;
+        p {
+          text-shadow: #d68300 0px 2px 0px;
+        }
+      }
+
+      .uploadResourceBtn {
+        background-color: $green;
+        width:202px;
+        padding:10px;
+        p {
+          text-shadow: #368a23 0px 2px 0px;
+        }
+      }
+
+      .uploadDocumentBtn {
+        background-color: #5d5c5c;
+        width:202px;
+        padding:10px;
+        p {
+          text-shadow: #4e4d4d 0px 2px 0px;
+        }
+      }
+
+      .iconPlus {
+         @include svg-circle-icon-handler-without-hover($assets-icone-player_svg, 32px, 5, 4, 1, 4, 2);
+      }
+    }
+      
   }
   
   #dashboard_container {
@@ -723,6 +843,7 @@
     width: calc(100% - 257px);
     float: left;
     position: relative;
+    border-right:1px solid #f7f7f7;
     
     .title_lessons {
       
