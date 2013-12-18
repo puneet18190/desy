@@ -713,7 +713,7 @@
     
     .boxText {
       
-      font: 11px 'Nunito', sans-serif;
+      @include nunito(11px);
       color: #A7A9AC;
       margin-bottom: 40px;
       
