@@ -45,9 +45,9 @@
     
     .title {
       
+      @include nunito(20px);
       padding: 20px;
       height: 20px;
-      font: 20px 'Nunito', sans-serif;
       letter-spacing: -1px;
       font-weight: bold;
       color: #2FAADC;
@@ -171,6 +171,7 @@
       
       ._single_notification {
         
+        @include arial-with-line-height(12.8px, 15px);
         height: 65px; /* width is 268 if there is a scrollbar, and 268 + 8 + 5 = 281 if there is not a scrollbar */
         margin-top: 5px;
         background-color: #c1e6f6;
@@ -181,8 +182,6 @@
         -webkit-border-radius: 3px;
         color: $black;
         cursor: pointer;
-        font: 12.8px Arial, Helvetica, sans-serif;
-        line-height: 15px;
         
         &.current {
           
