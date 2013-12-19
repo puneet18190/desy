@@ -18,7 +18,7 @@
     
     window.onload = function() {
       top.uploadMediaElementLoaderError(<%= @error_fields.to_json.html_safe %>);
-      if(top.uploadDone) top.uploadDone(); //top means parent frame.
+      if(top.uploadDone) top.uploadDone();
     }
     
   </script>
@@ -29,7 +29,7 @@
     
     window.onload = function() {
       top.uploadMediaElementLoaderDoneRedirect();
-      if(top.uploadDone) top.uploadDone(); //top means parent frame.
+      if(top.uploadDone) top.uploadDone();
     }
     
   </script>

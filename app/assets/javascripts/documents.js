@@ -251,6 +251,7 @@ Handles 413 status error, file too large.
 @return {Boolean} false, for some reason
 **/
 function uploadDocumentDone() {
+  $('#upload_doc_target').css('height', '60px');
   var ret = document.getElementById('upload_doc_target').contentWindow.document.title;
   if(ret && ret.match(/413/g)) {
     $('.barraLoading img').hide();

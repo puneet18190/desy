@@ -100,6 +100,7 @@ Handles 413 status error, file too large.
 @return {Boolean} false, for some reason
 **/
 function uploadDone() {
+  $('#upload_target').css('height', '60px');
   var ret = document.getElementById('upload_target').contentWindow.document.title;
   if(ret && ret.match(/413/g)) {
     $('.barraLoading img').hide();
@@ -160,7 +161,7 @@ Sets iframe as target for form submit, and adds a callback function to control 4
 @for MediaElementLoaderGeneral
 **/
 function initMediaElementLoader() {
-  document.getElementById('new_media_element').onsubmit=function() {
+  document.getElementById('new_media_element').onsubmit = function() {
     $('.form_error').removeClass('form_error');
     $('.too_large').remove();
     document.getElementById('new_media_element').target = 'upload_target';
