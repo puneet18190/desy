@@ -39,12 +39,11 @@ module Export
         FileUtils.rm_rf FOLDER
       end
 
-      attr_reader :lesson, :slides_without_cover, :cover_slide, :filename_without_extension, :folder, :filename, :path
+      attr_reader :lesson, :slides, :filename_without_extension, :folder, :filename, :path
 
       def initialize(lesson)
-        @lesson               = lesson
-        @slides_without_cover = @lesson.slides.includes(SLIDES_INCLUDES).eager_load(SLIDES_EAGER_LOAD).order(SLIDES_ORDER)
-        @cover_slide          = @slides_without_cover.shift # @slides_without_cover includes cover slide till now
+        @lesson = lesson
+        @slides = lesson.slides
 
         parameterized_title = lesson.title.parameterize
         time                = lesson.updated_at.utc.strftime(WRITE_TIME_FORMAT)
@@ -82,7 +81,7 @@ module Export
 
           add_path_entry archive, view_path('META-INF/container.xml'), 'META-INF/container.xml'
 
-          locals = { lesson: lesson, slides_without_cover: slides_without_cover, cover_slide: cover_slide }
+          locals = { lesson: lesson, slides: slides }
 
           add_template archive, locals.merge(math_images: math_images), CONTENTS_FOLDER_NAME.join('package.opf')
 
@@ -92,9 +91,7 @@ module Export
 
           add_template archive, locals, CONTENTS_FOLDER_NAME.join('toc.xhtml')
 
-          add_template archive, locals, CONTENTS_FOLDER_NAME.join('cover.xhtml')
-
-          slides_without_cover.each_with_object(CONTENTS_FOLDER_NAME.join 'slide.xhtml') do |slide, slide_view_path|
+          slides.each_with_object(CONTENTS_FOLDER_NAME.join 'slide.xhtml') do |slide, slide_view_path|
             add_template archive, { slide: slide }, CONTENTS_FOLDER_NAME.join(slide_filename slide), slide_view_path
           end
 

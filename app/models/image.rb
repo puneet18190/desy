@@ -25,7 +25,7 @@ class Image < MediaElement
   before_create :set_converted_to_true
   
   attr_reader :edit_mode
-  
+
   # Horizontal detection values
   IS_HORIZONTAL_VALUES_BY_KIND = {
     Slide::COVER              => 1.6  ,
@@ -37,27 +37,111 @@ class Image < MediaElement
     'video_component_preview' => 1.77
   }
   
-  # Resize width values
-  RESIZE_WIDTH_VALUES_BY_KIND = {
-    Slide::COVER              => 560 ,
-    Slide::IMAGE1             => 420 ,
-    Slide::IMAGE2             => 550 ,
-    Slide::IMAGE3             => 550 ,
-    Slide::IMAGE4             => 265 ,
-    'video_component'         => 88  ,
-    'video_component_preview' => 360
+  # Container size
+  CONTAINER_SIZE_BY_KIND = {
+    Slide::COVER              => [900, 560] ,
+    Slide::IMAGE1             => [420, 420] ,
+    Slide::IMAGE2             => [550, 420] ,
+    Slide::IMAGE3             => [550, 860] ,
+    Slide::IMAGE4             => [265, 420] ,
+    'video_component'         => [88 , 156] ,
+    'video_component_preview' => [360, 640]
   }
-  
-  # Resize height values
-  RESIZE_HEIGHT_VALUES_BY_KIND = {
-    Slide::COVER              => 900 ,
-    Slide::IMAGE1             => 420 ,
-    Slide::IMAGE2             => 420 ,
-    Slide::IMAGE3             => 860 ,
-    Slide::IMAGE4             => 420 ,
-    'video_component'         => 156 ,
-    'video_component_preview' => 640
-  }
+
+  CONTAINER_WIDTH_BY_KIND  = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, v| [ k, v[0] ] } ]
+  CONTAINER_HEIGHT_BY_KIND = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, v| [ k, v[1] ] } ]
+
+  # === Description
+  #
+  # Elaborates the CSS background-position property in order to 
+  # position the image when used as background of a HTML element.
+  # The returned property is in percentage so it can be used regardless
+  # of the container size.
+  #
+  # Calcolo background-position immagine orizzontale e spalmata
+  #
+  #   o    offset dell'immagine
+  #   hc   altezza del contenitore
+  #   hi   altezza dell'immagine
+  #   s    centro di posizione
+  #   x    valore di background-position in percentuale
+  #
+  #             immagine
+  #   ─   ┌──────────────────┐       ─
+  #       │                  │     
+  #       │                  │     
+  #   o   │                  │     
+  #       │                  │     
+  #       │                  │     
+  #       │                  │     
+  #       │   contenitore    │     
+  #   ─   ┢━━━━━━━━━━━━━━━━━━┪   ─ 
+  #       ┃                  ┃     
+  #       ┃                  ┃   hc  hi
+  #       ┃                  ┃     
+  #   s ─ ┃                  ┃     
+  #       ┡━━━━━━━━━━━━━━━━━━┩   ─ 
+  #       │                  │     
+  #       └──────────────────┘       ─
+  #
+  #   o va da 0 a hi - hc
+  #   il centro di posizione va da 0 a hc
+  #   dunque x : o = hc : (hi - hc)
+  #   x = o * hc / (hi - hc)
+  #   adesso mi serve il rapporto di x / hc moltiplicato per 100 per ottenere la percentuale
+  #   x / hc * 100 = o * hc * 100 / ((hi - hc) * hc) = o * 100 / (hi - hc)
+  #
+  #
+  # Calcolo background-position immagine verticale e iscritta
+  #
+  #   o    offset dell'immagine
+  #   wc   larghezza del contenitore
+  #   wi   larghezza dell'immagine iscritta
+  #   s    centro di posizione
+  #   x    valore di background-position in percentuale
+  #
+  #
+  #       │                wc                  │
+  #
+  #                   │  wi   │
+  #
+  #       ┌───────────┲━━━━━━━┱────────────────┐
+  #       │           ┃       ┃                │
+  #       │           ┃       ┃                │
+  #       │           ┃       ┃ immagine       │ contenitore
+  #       │           ┃       ┃                │
+  #       │           ┃       ┃                │
+  #       │           ┃       ┃                │
+  #       └───────────┺━━━━━━━┹────────────────┘
+  #                      │
+  #       │     o     │  s
+  #
+  #   o va da 0 a wc - wi
+  #   il centro di posizione va da 0 a wc
+  #   dunque x : o = wc : (wc - wi)
+  #   x = o * wc / (wc - wi)
+  #   adesso mi serve il rapporto di x / wc moltiplicato per 100 per ottenere la percentuale
+  #   x / wc * 100 = o * wc * 100 / ((wc - wi) * wc) = o * 100 / (wc - wi)
+  #
+  # === Returns
+  #
+  # A value compliant to background-position
+  #
+  def background_position(kind, alignment)
+    w_h    = ['0', '0']
+    offset = alignment.abs
+
+    return w_h.join(' ') if offset == 0
+
+    resize, i      = is_horizontal?(kind) ? [resize_width(kind), 0] : [resize_height(kind), 1]
+    container_size = CONTAINER_SIZE_BY_KIND[kind][i]
+    difference     = resize > container_size ? resize - container_size : container_size - resize
+
+    v      = (offset * 100.0 / difference).round 5
+    w_h[i] = "#{v}%"
+
+    w_h.join(' ')
+  end
   
   # Used to give an orientation on images
   def is_horizontal?(kind)
@@ -66,12 +150,12 @@ class Image < MediaElement
   
   # Resizes the width of an image
   def resize_width(kind)
-    ( width.to_f  * RESIZE_WIDTH_VALUES_BY_KIND[kind]  / height ).to_i + 1
+    ( width.to_f  * CONTAINER_HEIGHT_BY_KIND[kind] / height ).to_i + 1
   end
   
   # Resizes the height of an image
   def resize_height(kind)
-    ( height.to_f * RESIZE_HEIGHT_VALUES_BY_KIND[kind] / width  ).to_i + 1
+    ( height.to_f * CONTAINER_WIDTH_BY_KIND[kind] / width ).to_i + 1
   end
   
   # === Description

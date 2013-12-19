@@ -1,25 +1,12 @@
 <%
-  url_type = UrlTypes::EXPORT
-  image    = slide.media_elements_at
-  author   = slide.lesson.user
-  subject  = slide.lesson.subject
+  url_type ||= UrlTypes::EXPORT
+  image      = slide.media_elements_at
+  author     = slide.lesson.user
+  subject    = slide.lesson.subject
 %>
 
 <% if image -%>
-  <%
-  if image.is_horizontal? slide.kind
-    
-  else
-    
-  end
-  %>
-  <style type="text/css">
-  .image {
-    background-image: url("<%= image.media_element.url(url_type) %>");
-    background-position: 0 0;
-    background-size: cover;
-  }
-  </style>
+  <%= render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml', locals: { image_media_elements_slide: image } %>
 <% end -%>
 
 <div class="image"></div>

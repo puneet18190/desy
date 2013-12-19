@@ -11,7 +11,7 @@
       <nav epub:type="toc" id="toc">
         <h1>Indice</h1>
         <ol>
-          <% slides_without_cover.each do |r| -%>
+          <% slides.each do |r| -%>
             <li><a href="<%= slide_path(r) %>"><%= slide_title(r) %></a></li>
           <% end -%>
         </ol>

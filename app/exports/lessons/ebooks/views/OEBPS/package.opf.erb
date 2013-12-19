@@ -26,11 +26,7 @@
           media-type="application/xhtml+xml"
           href="toc.xhtml"/>
 
-    <item id="cover"
-          href="cover.xhtml"
-          media-type="application/xhtml+xml"/>
-
-    <% slides_without_cover.each do |r| -%>
+    <% slides.each do |r| -%>
       <item id="<%= slide_item_id(r) %>"
             href="<%= slide_path(r) %>"
             media-type="application/xhtml+xml"/>
@@ -54,9 +50,8 @@
   </manifest>
 
    <spine>
-    <itemref idref="cover"/>
     <itemref idref="toc"/>
-    <% slides_without_cover.each do |r| -%>
+    <% slides.each do |r| -%>
       <itemref idref="<%= slide_item_id(r) %>"/>
     <% end -%>
   </spine>
