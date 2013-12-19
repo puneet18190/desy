@@ -1,3 +1,4 @@
+<% desy = SETTINGS['application_name'] %>
 <%= render :partial => 'media_elements/new_form_popup' %>
 <%= render :partial => 'documents/new_form_popup' %>
 <div id="dashboard_container" data-lessons-expanded="false" data-media-elements-expanded="false" data-lessons-in-space="0" data-media-elements-in-space="0">
@@ -5,7 +6,7 @@
     <div class="icon"></div>
     <div class="content">
       <div class="title"><%= t('dashboard.selected.lessons.title') %></div>
-      <div class="description"><%= t('dashboard.selected.lessons.description', :desy => SETTINGS['application_name']) %></div>
+      <div class="description"><%= t('dashboard.selected.lessons.description', :desy => desy) %></div>
     </div>
     <a class="expand_icon disabled" title="expand lessons" data-moving="false"></a> <!-- TODO traduzz -->
     <a class="expand_icon on" title="compress lessons" data-moving="false" style="display:none"></a> <!-- TODO traduzz -->
@@ -31,7 +32,7 @@
     <div class="icon"></div>
     <div class="content">
       <div class="title"><%= t('dashboard.selected.media_elements.title') %></div>
-      <div class="description"><%= t('dashboard.selected.media_elements.description', :desy => SETTINGS['application_name']) %></div>
+      <div class="description"><%= t('dashboard.selected.media_elements.description', :desy => desy) %></div>
     </div>
     <a class="expand_icon disabled" title="expand media elements" data-moving="false"></a> <!-- TODO traduzz -->
     <a class="expand_icon on" title="compress media_elements" data-moving="false" style="display:none"></a> <!-- TODO traduzz -->
@@ -68,7 +69,7 @@
       <table>
         <tr>
           <td colspan="2">
-            <input type="text" name="word" value="<%= t('search.long_label', :desy => SETTINGS['application_name']) %>" class="text" id="general_tag_reader_for_search" style="color:#999"> <!-- TODO traduzz -->
+            <input type="text" name="word" value="<%= t('search.long_label', :desy => desy) %>" class="text" id="general_tag_reader_for_search" style="color:#999"> <!-- TODO traduzz -->
             <%= hidden_field_tag 'word_placeholder', '', :id => 'general_tag_kind_for_search' %>
           </td>
         </tr>
@@ -102,14 +103,14 @@
     </a>
   </div>
   <div class="boxText">
-     <span>Hai bisogno di aiuto per usare AmicoCloud?</span><!-- TODO traduzz -->
-    <p>Hai bisogno di aiuto per scoprire tutte le caratteristiche di AmicoCloud?</p><!-- TODO traduzz -->
-    <%= link_to 'Consulta le Faqs', faqs_path %><!-- TODO traduzz -->
+    <span><%= t('dashboard.faqs.title', :desy => desy) %></span>
+    <p><%= t('dashboard.faqs.description', :desy => desy) %></p>
+    <%= link_to t('dashboard.faqs.link'), faqs_path %>
   </div>
   <div class="boxText">
-    <span>Vuoi parlare con AmicoCloud</span><!-- TODO traduzz -->
-    <p>Il tuo contributo è molto importante per migliorare i nostri servizi.</p><!-- TODO traduzz -->
-    <%= link_to 'Contattaci', "mailto:#{SETTINGS['application']['contact_us_email']}" %><!-- TODO traduzz -->
+    <span><%= t('dashboard.contact_us.title', :desy => desy) %></span>
+    <p><%= t('dashboard.contact_us.description', :desy => desy) %></p>
+    <%= link_to t('dashboard.contact_us.link'), "mailto:#{SETTINGS['application']['contact_us_email']}" %>
   </div>
 </div>
 <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>

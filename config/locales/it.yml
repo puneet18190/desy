@@ -1436,18 +1436,22 @@ it:
   # SECTION 2.3: Captions used inside the Dashboard (main page)
   
   dashboard:
-    # The caption of the link to open the 'contacts' page (the link is on the bottom left of the Dashboard)
-    # 1 - views/dashboard/index.html.erb
-    contact_us: "Contattaci"
-    # Caption of the link to download the user guide (bottom right in the page)
-    # 1 - views/dashboard/index.html.erb
-    download_manual: "Vai alle FAQs"
-    # Title of the link 'Download the user guide' (bottom right in the page)
-    # 1 - views/dashboard/index.html.erb
-    help_using_desy: "Hai bisogno di aiuto per usare %{desy}?"
-    # Title of the link 'contact us' (bottom left in the page)
-    # 1 - views/dashboard/index.html.erb
-    talk_with_desy: "Vuoi parlare con %{desy}?"
+    # Captions for the link that allows the user to open the FAQs section (the variable %{desy} is replaced by the name of the application)
+    faqs:
+      # 1 - views/dashboard/index.html.erb
+      title: "Hai bisogno di aiuto per usare %{desy}?"
+      # 1 - views/dashboard/index.html.erb
+      description: "Hai bisogno del nostro supporto per capire tutte le funzionalità di %{desy}?"
+      # 1 - views/dashboard/index.html.erb
+      link: "Vai alle FAQs"
+    # Captions for the link that allows the user to contact the administrator (the variable %{desy} is replaced by the name of the application)
+    contact_us:
+      # 1 - views/dashboard/index.html.erb
+      title: "Vuoi parlare con %{desy}?"
+      # 1 - views/dashboard/index.html.erb
+      description: "La tua opinione è molto importante per migliorare i nostri servizi"
+      # 1 - views/dashboard/index.html.erb
+      link: "Contattaci"
     # Containers showing a standard message in case there are no lessons or media elements
     empty:
       lessons:

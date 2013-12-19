@@ -1436,18 +1436,22 @@ cn:
   # SECTION 2.3: Captions used inside the Dashboard (main page)
   
   dashboard:
-    # The caption of the link to open the 'contacts' page (the link is on the bottom left of the Dashboard)
-    # 1 - views/dashboard/index.html.erb
-    contact_us: "联系我们"
-    # Caption of the link to download the user guide (bottom right in the page)
-    # 1 - views/dashboard/index.html.erb
-    download_manual: "去回答问题页"
-    # Title of the link 'Download the user guide' (bottom right in the page)
-    # 1 - views/dashboard/index.html.erb
-    help_using_desy: "需要%{desy}帮助吗？"
-    # Title of the link 'contact us' (bottom left in the page)
-    # 1 - views/dashboard/index.html.erb
-    talk_with_desy: "你想与%{desy}交谈吗？"
+    # Captions for the link that allows the user to open the FAQs section (the variable %{desy} is replaced by the name of the application)
+    faqs:
+      # 1 - views/dashboard/index.html.erb
+      title: "需要%{desy}帮助吗？"
+      # 1 - views/dashboard/index.html.erb
+      description: "Do you need our support to understand all the functionalities of %{desy}?" # TODO
+      # 1 - views/dashboard/index.html.erb
+      link: "去回答问题页"
+    # Captions for the link that allows the user to contact the administrator (the variable %{desy} is replaced by the name of the application)
+    contact_us:
+      # 1 - views/dashboard/index.html.erb
+      title: "你想与%{desy}交谈吗？"
+      # 1 - views/dashboard/index.html.erb
+      description: "Your opinion is very important to improve our services" # TODO
+      # 1 - views/dashboard/index.html.erb
+      link: "联系我们"
     # Containers showing a standard message in case there are no lessons or media elements
     empty:
       lessons:
