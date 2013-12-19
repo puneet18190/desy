@@ -60,9 +60,8 @@
 </div>
 <div id="dashboard_toolbar">
   <div class="boxText">
-    <span>Cerca nuove lezioni</span><!-- TODO traduzz -->
-    <p>Utilizza il morore di ricerca di AmicoCloud
-  per trovare nuove lezioni o risorse didattiche.</p><!-- TODO traduzz -->
+    <span><%= t('dashboard.search.title') %></span>
+    <p><%= t('dashboard.search.description', :desy => desy) %></p>
   </div>
   <div class="searchBox">
     <form id="search_general" class="search-form" method="get" action="/search">

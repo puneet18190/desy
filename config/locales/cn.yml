@@ -1439,6 +1439,12 @@ cn:
   # SECTION 2.3: Captions used inside the Dashboard (main page)
   
   dashboard:
+    # Captions for the link to the search engine (the variable %{desy} is replaced by the name of the application)
+    search:
+      # 1 - views/dashboard/index.html.erb
+      title: "Search for lessons or elements" # TODO
+      # 1 - views/dashboard/index.html.erb
+      description: "Use the search engine of %{desy} to find lessons and elements you need" # TODO
     # Captions for the link that allows the user to open the FAQs section (the variable %{desy} is replaced by the name of the application)
     faqs:
       # 1 - views/dashboard/index.html.erb
