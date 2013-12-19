@@ -3,15 +3,14 @@
 
 .gray-bar {
   
+  @include nunito(120%);
   padding: 8px;
   background-color: #f5f5f5;
   color: #727377;
   float: left;
   margin-bottom: 20px;
   margin-left: 1%;
-  font: 80% 'Nunito', sans-serif;
   width: calc(98% - 16px);
-  font-size: 120%;
   height: 55px;
   
   .titleSelected {
@@ -141,11 +140,11 @@
     color: #999;
     padding-left: 2%;
     
-  }
-  
-  a.advanced:hover {
-    
-    color: #a5a4a4;
+    &:hover {
+      
+      text-decoration: underline;
+      
+    }
     
   }
   
@@ -166,8 +165,8 @@
     
     h1 {
       
-      font: 160% 'Nunito', sans-serif;
-      color: #d1d1d1;
+      @include nunito(160%);
+      color: #D1D1D1;
       padding: 0;
       
     }
@@ -177,7 +176,7 @@
       font-size: 80%;
       padding-top: 10px;
       margin: 0 10px 0 0;
-      color: #c0bebe;
+      color: #C0BEBE;
       
     }
     
@@ -196,7 +195,7 @@
       
       td {
         
-        font: 160% 'Nunito', sans-serif;
+        @include nunito(160%);
         color: #666;
         padding-top: 2%;
         
@@ -211,7 +210,6 @@
 .advanced-search-content {
   
   width: 100%;
-  margin-bottom: 5%;
   
   .boxViewSingleLesson.current {
     
@@ -226,7 +224,7 @@
     
     form {
       
-      font: 100% 'Nunito', sans-serif;
+      @include nunito(100%);
       padding: 18px;
       border: 1px solid #efefef;
       
@@ -238,17 +236,17 @@
       
       input {
         
+        @include nunito(100%);
         border-radius: 4px;
         box-shadow: 0 1px 2px rgba(50,50,50,0.2) inset;
         color: #bbb;
-        font: 100% 'Nunito', sans-serif;
         
       }
       
       .sbHolder {
         
+        @include nunito(100%);
         width: 170px;
-        font-size: 100%;
         
       }
       

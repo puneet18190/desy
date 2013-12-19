@@ -850,6 +850,20 @@ cn:
     # 1 - views/media_elements/_popup.html.erb
     # 2 - views/documents/_view_single_compact.html.erb
     close: "关闭"
+    # Titles for compressed dashboard
+    dashboard:
+      # Button to compress lessons subsection
+      # 1 - views/dashboard/index.html.erb
+      compress_lessons: "Close lessons" # TODO
+      # Button to compress media elements subsection
+      # 1 - views/dashboard/index.html.erb
+      compress_media_elements: "Close elements" # TODO
+      # Button to expand lessons subsection
+      # 1 - views/dashboard/index.html.erb
+      expand_lessons: "Expand lessons" # TODO
+      # Button to expand media elements subsection
+      # 1 - views/dashboard/index.html.erb
+      expand_media_elements: "Expand elements" # TODO
     # Titles for the icons of documents
     documents:
       # Includes .doc, .odt
@@ -1013,14 +1027,15 @@ cn:
       # 3 - views/shared/_popups.html.erb
       # 4 - views/virtual_classroom/_pagination.html.erb
       # 5 - views/virtual_classroom/_pagination.html.erb
+      # 6 - views/dashboard/_pagination.html.erb
       prev: "到之前的页面"
       # Go to next page
-      # 1 - views/dashboard/_pagination.html.erb
+      # 1 - views/shared/_pagination.html.erb
       # 2 - views/shared/_pagination.html.erb
-      # 3 - views/shared/_pagination.html.erb
-      # 4 - views/shared/_popups.html.erb
+      # 3 - views/shared/_popups.html.erb
+      # 4 - views/virtual_classroom/_pagination.html.erb
       # 5 - views/virtual_classroom/_pagination.html.erb
-      # 6 - views/virtual_classroom/_pagination.html.erb
+      # 6 - views/dashboard/_pagination.html.erb
       next: "到下一页"
     # Titles for the user profile
     profile:
@@ -1032,6 +1047,7 @@ cn:
     report: "报告有攻击性的内容"
     # Icon with a lens in the main sections
     # 1 - views/shared/_search.html.erb
+    # 2 - views/dashboard/index.html.erb
     search: "查找"
     # Icon to share a lesson throughout social networks
     # 1 - views/lesson_viewer/_social_networks.html.erb
@@ -1331,6 +1347,9 @@ cn:
     # Used in the general footer of the application, to redirect to the main page
     # 1 - views/shared/_footer.html.erb
     back_to_dashboard: "回到版面"
+    # Caption of the dashboard in the menu
+    # 1 - views/shared/_menu.html.erb
+    dashboard: "Dashboard" # TODO
     # Used to refer to the user's documents
     # 1 - views/shared/_menu.html.erb
     # 2 - views/documents/index.html.erb
@@ -1347,17 +1366,17 @@ cn:
     dont_support_audio: "你的浏览器不支持音频"
     # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for instance, in the search engine when the application asks where to search, or in the main page to separate suggested lessons by suggested elements)
     # 1 - views/lessons/index.html.erb
-    # 2 - views/dashboard/index.html.erb
-    # 3 - views/shared/_menu.html.erb
-    # 4 - views/shared/_search.html.erb
-    # 5 - views/search/_item_selector.html.erb
-    lessons: "课程"
-    # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
-    # 1 - views/dashboard/index.html.erb
     # 2 - views/shared/_menu.html.erb
     # 3 - views/shared/_search.html.erb
-    # 4 - views/media_elements/_title_bar.html.erb
-    # 5 - views/search/_item_selector.html.erb
+    # 4 - views/search/_item_selector.html.erb
+    # 5 - views/dashboard/index.html.erb
+    lessons: "课程"
+    # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
+    # 1 - views/shared/_menu.html.erb
+    # 2 - views/shared/_search.html.erb
+    # 3 - views/media_elements/_title_bar.html.erb
+    # 4 - views/search/_item_selector.html.erb
+    # 5 - views/dashboard/index.html.erb
     media_elements: "单元"
     # Used to refer to the user's personal profile
     # 1 - views/users/_title_bar.html.erb
@@ -1396,7 +1415,7 @@ cn:
       virtual_classroom: "%{desy} - 虚拟教室"
     # Caption for Virtual Classroom
     # 1 - views/shared/_menu.html.erb
-    # 2 - views/virtual_classroom/index.html.erb
+    # 2 - views/layouts/virtual_classroom.html.erb
     virtual_classroom: "虚拟教室"
     # Used in the login, before the logged user's name
     # 1 - views/admin/_header.html.erb
@@ -1434,46 +1453,74 @@ cn:
   # SECTION 2.3: Captions used inside the Dashboard (main page)
   
   dashboard:
-    # The caption of the link to open the 'contacts' page (the link is on the bottom left of the Dashboard)
-    # 1 - views/dashboard/index.html.erb
-    contact_us: "联系我们"
-    # Caption of the link opening the lesson editor (in each page of lessons inside the Dashboard, after the last lesson there is a button with a 'plus' which opens the lesson editor)
-    # 1 - views/dashboard/_lessons_and_media_elements.html.erb
-    # 2 - views/dashboard/_lessons_and_media_elements.html.erb
-    create_new_lesson: "建立新课程"
-    # Caption of the link opening the lesson editor, containing a prompt for the user (this is used only in the case there are no suggested lessons in the Dashboard: in this case the application invites the user to create a lesson right now)
-    # 1 - views/dashboard/_lessons_empty.html.erb
-    create_new_lesson_now: "现在建立课程"
-    # Caption of the link to download the user guide (bottom right in the page)
-    # 1 - views/dashboard/index.html.erb
-    download_manual: "去回答问题页"
-    # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
-    # 1 - views/dashboard/_lessons_empty.html.erb
-    emptied_lessons: "你已选择所有被推荐的课程"
-    # Caption which appears if for the user there are no suggested lessons inside the database
-    # 1 - views/dashboard/_lessons_empty.html.erb
-    empty_lessons: "这里没有推荐的课程给你"
-    # Caption which appears if there are no suggested elements inside the Dashboard, because the user picked all the elements the application suggested him
-    # 1 - views/dashboard/_media_elements_empty.html.erb
-    emptied_media_elements: "你已选择所有被推荐的单元"
-    # Caption which appears if for the user there are no suggested elements inside the database
-    # 1 - views/dashboard/_media_elements_empty.html.erb
-    empty_media_elements: "这里没有推荐的单元给你"
-    # Title of the link 'Download the user guide' (bottom right in the page)
-    # 1 - views/dashboard/index.html.erb
-    help_using_desy: "需要%{desy}帮助吗？"
-    # Caption of the link opening the window to load a new element (in each page of elements inside the Dashboard, after the last element there is a button with a 'plus' which opens the window)
-    # 1 - views/dashboard/_lessons_and_media_elements.html.erb
-    load_new_media_element: "加载新单元"
-    # Caption of the link opening the window to load new elements, containing a prompt for the user (this is used only in the case there are no suggested elements in the Dashboard: in this case the application invites the user to load an element right now)
-    # 1 - views/dashboard/_media_elements_empty.html.erb
-    load_new_media_element_now: "现在加载新单元"
-    # Caption of the buttons to switch between suggested lessons and elements ('selected for you': lessons - elements)
-    # 1 - views/dashboard/index.html.erb
-    selected_for_you: "已为你选择"
-    # Title of the link 'contact us' (bottom left in the page)
-    # 1 - views/dashboard/index.html.erb
-    talk_with_desy: "你想与%{desy}交谈吗？"
+    # Captions for the link that allows the user to contact the administrator (the variable %{desy} is replaced by the name of the application)
+    contact_us:
+      # 1 - views/dashboard/index.html.erb
+      title: "你想与%{desy}交谈吗？"
+      # 1 - views/dashboard/index.html.erb
+      description: "Your opinion is very important to improve our services" # TODO
+      # 1 - views/dashboard/index.html.erb
+      link: "联系我们"
+    # Captions of buttons to create new items (lessons, media elements, documents)
+    create_new:
+      # 1 - views/dashboard/index.html.erb
+      lesson: "Create a lesson" # TODO
+      # 1 - views/dashboard/index.html.erb
+      document: "Load a document" # TODO
+      # 1 - views/dashboard/index.html.erb
+      media_element: "Load an element" # TODO
+    # Containers showing a standard message in case there are no lessons or media elements
+    empty:
+      lessons:
+        # Title of the container
+        # 1 - views/dashboard/_lessons_empty.html.erb
+        title: "这里没有推荐的课程给你"
+        # Title of the container in case the dashboard is empty because the user picked all the suggested lessons and there are no remaining
+        # 1 - views/dashboard/_lessons_empty.html.erb
+        title_emptied: "你已选择所有被推荐的课程"
+        # Prompt telling the user to create a new lesson
+        # 1 - views/dashboard/_lessons_empty.html.erb
+        prompt: "现在建立课程"
+      media_elements:
+        # Title of the container
+        # 1 - views/dashboard/_media_elements_empty.html.erb
+        title: "这里没有推荐的单元给你"
+        # Title of the container in case the dashboard is empty because the user picked all the suggested elements and there are no remaining
+        # 1 - views/dashboard/_media_elements_empty.html.erb
+        title_emptied: "你已选择所有被推荐的单元"
+        # Prompt telling the user to upload a new media element
+        # 1 - views/dashboard/_media_elements_empty.html.erb
+        prompt: "现在加载新单元"
+    # Captions for the link that allows the user to open the FAQs section (the variable %{desy} is replaced by the name of the application)
+    faqs:
+      # 1 - views/dashboard/index.html.erb
+      title: "需要%{desy}帮助吗？"
+      # 1 - views/dashboard/index.html.erb
+      description: "Do you need our support to understand all the functionalities of %{desy}?" # TODO
+      # 1 - views/dashboard/index.html.erb
+      link: "去回答问题页"
+    # Captions for the link to the search engine (the variable %{desy} is replaced by the name of the application)
+    search:
+      # 1 - views/dashboard/index.html.erb
+      title: "Search for lessons or elements" # TODO
+      # 1 - views/dashboard/index.html.erb
+      description: "Use the search engine of %{desy} to find lessons and elements you need" # TODO
+    # Captions for subsections of the dashboard
+    selected:
+      # Subsection of lessons
+      lessons:
+        # 1 - views/dashboard/index.html.erb
+        title: "New lessons that might interest you" # TODO
+        # The variable %{desy} is replaced by the name of the application
+        # 1 - views/dashboard/index.html.erb
+        description: "Add to your personal list new interesting lessons created by other users" # TODO
+      # Subsection of media elements
+      media_elements:
+        # 1 - views/dashboard/index.html.erb
+        title: "Latest didactic elements" # TODO
+        # The variable %{desy} is replaced by the name of the application
+        # 1 - views/dashboard/index.html.erb
+        description: "The offer of contents inside %{desy} evolves continuously: find out the new multimedia elements available for you" # TODO
   
   
   # SECTION 2.4: Captions used in general media galleries. There are three kinds of galleries: Audio, Image and Video. They are used to pick quickly a media element and use it inside a lesson (or as a component to create a new media element, in Audio, Image and Video Editor)
@@ -1654,6 +1701,9 @@ cn:
     # 6 - views/lesson_editor/edit.html.erb
     # 7 - views/lesson_editor/thumbnails/_cover.html.erb
     author: "作者"
+    # Caption containing the author's name (the variable %{author} is replaced by the name of the author)
+    # 1 - views/lessons/_view_single_expanded.html.erb
+    created_by: "Created by %{author}" # TODO
     # Caption which indicates the date in which a lesson is created
     # 1 - views/lessons/_view_single_compact.html.erb
     created_on: "建立"
@@ -1692,6 +1742,9 @@ cn:
       # Placeholder that appears in the notification sent if the user didn't write any message
       # 1 - models/lesson.rb
       empty_message: "[没有信息给出]"
+    # Caption containing the time passed from the publication (the variable %{published_time} is replaced by an expression o the kind "1 hour ago")
+    # 1 - views/lessons/_view_single_expanded.html.erb
+    published_at: "Published %{published_time}" # TODO
     # Caption for the scholar level of the author of a lesson
     # 1 - views/lessons/_view_single_compact.html.erb
     # 2 - views/lesson_editor/new.html.erb
@@ -1778,31 +1831,6 @@ cn:
     # Caption of the user's notifications window if there are no notifications
     # 1 - views/notifications/_empty.html.erb
     empty: "你没有得到任何的通知"
-    # Time difference to string
-    time_difference:
-      # 1 - models/notification.rb
-      # 2 - models/notification.rb
-      seconds: "几秒钟之前"
-      # 1 - models/notification.rb
-      minute: "几分钟之前"
-      # 1 - models/notification.rb
-      minutes: "%{minutes}分钟之前"
-      # 1 - models/notification.rb
-      hour:  "一小时之前"
-      # 1 - models/notification.rb
-      hours:  "%{hours}小时之前"
-      # 1 - models/notification.rb
-      day: "一天之前"
-      # 1 - models/notification.rb
-      days: "%{days}天之前"
-      # 1 - models/notification.rb
-      month: "一个月之前"
-      # 1 - models/notification.rb
-      months: "%{months}个月之前"
-      # 1 - models/notification.rb
-      year: "一年之前"
-      # 1 - models/notification.rb
-      years: "%{years}年之前"
     documents:
       # Notification sent by a user who destroyed a document attached to a lesson coped by somebody else, to inform all its followers (the variable %{lesson_title} is replaced by the title of the lesson, %{document_title} by the title of the document, and %{link} by the link to the lesson viewer for that lesson)
       # 1 - models/document.rb
@@ -2057,6 +2085,7 @@ cn:
     # Link to open the search engine from the other sections
     # 1 - views/shared/_search.html.erb
     # 2 - views/search/index.html.erb
+    # 3 - views/dashboard/index.html.erb
     label: "高级搜寻"
     # Button to start the research
     # 1 - views/search/lessons/_main.html.erb
@@ -2064,6 +2093,7 @@ cn:
     short_label: "搜寻"
     # Placeholder of the quick search present in all the sections
     # 1 - views/shared/_search.html.erb
+    # 2 - views/dashboard/index.html.erb
     long_label: "在%{desy}中查找"
     # Main title inside the search engine
     # 1 - views/search/index.html.erb
@@ -2494,7 +2524,7 @@ cn:
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       empty: "没有任何的课程增加到你的虚拟教室"
       # Button to open the window from the main bar inside Virtual Classroom
-      # 1 - views/virtual_classroom/_header_buttons.html.erb
+      # 1 - views/layouts/virtual_classroom.html.erb
       label: "增加课程"
       # Instructions
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
@@ -2503,7 +2533,7 @@ cn:
     # 1 - views/virtual_classroom/_empty.html.erb
     empty: "你的虚拟教室是空的"
     # Caption of the button which empties your Virtual Classroom
-    # 1 - views/virtual_classroom/_header_buttons.html.erb
+    # 1 - views/layouts/virtual_classroom.html.erb
     make_it_empty: "清空你的虚拟教室"
     # Captions used for the composition of the playlist
     playlist:
@@ -2690,6 +2720,31 @@ cn:
     # Time format
     # 1 - ..lib/autoload/time_convert.rb
     format: "chinese"
+    # Time difference to string
+    time_difference:
+      # 1 - ..lib/autoload/time_convert.rb
+      # 2 - ..lib/autoload/time_convert.rb
+      seconds: "几秒钟之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      minute: "几分钟之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      minutes: "%{minutes}分钟之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      hour:  "一小时之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      hours:  "%{hours}小时之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      day: "一天之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      days: "%{days}天之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      month: "一个月之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      months: "%{months}个月之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      year: "一年之前"
+      # 1 - ..lib/autoload/time_convert.rb
+      years: "%{years}年之前"
   language_parameters:
     notification:
       # Maximum length of the message inserted by the user to notify the modification of a public lesson

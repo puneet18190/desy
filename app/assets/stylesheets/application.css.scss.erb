@@ -17,7 +17,6 @@
 @import url(//fonts.googleapis.com/css?family=Nunito);
 @import url(//fonts.googleapis.com/css?family=Droid+Sans);
 
-<%# assets urls %>
 <%= Erubis::Eruby.new( Rails.application.config.assets.stylesheets.paths.urls.read ).result binding() %>
 
 <% SETTINGS['colors'].each do |key, value| %>

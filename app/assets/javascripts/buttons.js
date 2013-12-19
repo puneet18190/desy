@@ -192,7 +192,7 @@ function mediaElementButtonsDocumentReady() {
       var redirect_back_to = $("#info_container").data('currenturl');
       var parser = document.createElement('a');
       parser.href = redirect_back_to;
-      window.location = '/videos/' + video_id + '/edit?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+      window.location = '/videos/' + video_id + '/edit?back=' + encodeURIComponent(parser.pathname + parser.search+parser.hash);
       return false;
     }
   });
@@ -203,7 +203,7 @@ function mediaElementButtonsDocumentReady() {
       var redirect_back_to = $("#info_container").data('currenturl');
       var parser = document.createElement('a');
       parser.href = redirect_back_to;
-      window.location = '/audios/' + audio_id + '/edit?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+      window.location = '/audios/' + audio_id + '/edit?back=' + encodeURIComponent(parser.pathname + parser.search+parser.hash);
       return false;
     }
   });
@@ -214,7 +214,7 @@ function mediaElementButtonsDocumentReady() {
       var redirect_back_to = $("#info_container").data('currenturl');
       var parser = document.createElement('a');
       parser.href = redirect_back_to;
-      window.location = '/images/' + image_id + '/edit?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+      window.location = '/images/' + image_id + '/edit?back=' + encodeURIComponent(parser.pathname + parser.search+parser.hash);
       return false;
     }
   });

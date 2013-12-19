@@ -7,7 +7,7 @@ html.virtual_classroom-controller {
   
   body {
     
-    font: 80% Arial, Helvetica, sans-serif;
+    @include arial(80%);
     background-color: #252525;
     margin: 0;
     padding: 0;
@@ -16,10 +16,12 @@ html.virtual_classroom-controller {
     
   }
   
-  .content {
+  .global-content {
+    
     display: inline-block;
     color: #fff;
-    width:100%;
+    width: 100%;
+    
   }
   
   .container {
@@ -34,6 +36,7 @@ html.virtual_classroom-controller {
     
     float: right;
     margin-right: 20px;
+    margin-top: 20px;
     clear: right;
     
   }
@@ -47,74 +50,55 @@ html.virtual_classroom-controller {
   
   .bluBar {
     
-    margin: 0 auto 24px auto;
+    margin: 0 auto 30px auto;
     float: left;
-    width: 96%;
-    padding: 0.4% 2% 0.8% 2%;
-    font: 120% 'Nunito', sans-serif;
+    width: calc(100% - 16px);
+    padding: 8px;
     background-color: $blue;
+    height: 45px;
     
     h1 {
       
+      @include nunito-with-line-height(30px, 45px);
       color: #fff;
       padding: 0;
-      margin-top: 5px;
-      font: 200% 'Nunito', sans-serif;
       float: left;
-      width: 39%;
+      width: 30%;
+      padding-left: 10px;
       
     }
     
-    ul.navlist {
+    .buttons_container {
       
-      margin: 17px 0 10px 10px;
-      padding: 0;
-      white-space: nowrap;
       float: left;
       
-    }
-    
-    .navlist li {
-      
-      display: inline;
-      list-style-type: none;
-      margin-right: 5px;
-      
-      &:last-child {
+      a {
         
-        margin-right: 0px;
+        @include nunito-with-line-height(15px, 45px);
+        float: left;
+        height: 45px;
+        display: block;
+        background-color: #42B9E9;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-right: 8px;
+        color: #fff;
+        
+        &:hover {
+          
+          background-color: #59C9F6;
+          
+        }
+        
+        &.current, &.disabled {
+          
+          background-color: #42B9E9;
+          color: $blue;
+          cursor: default;
+          
+        }
         
       }
-      
-    }
-    
-    .navlist a {
-      
-      padding: 15px 30px;
-      background-color: #42b9e9;
-      color: #fff;
-      
-    }
-    
-    .navlist a:hover {
-      
-      background-color: #59c9f6;
-      
-    }
-    
-    .navlist a.current {
-      
-      background-color: #42b9e9;
-      color: $blue;
-      cursor: default;
-      
-    }
-    
-    .navlist a.disabled {
-      
-      background-color: #42b9e9;
-      color: $blue;
-      cursor: default;
       
     }
     
@@ -317,8 +301,8 @@ html.virtual_classroom-controller {
     
     h1 {
       
+      @include nunito(120%);
       color: $blue;
-      font: 120% 'Nunito', sans-serif;
       
     }
     
@@ -433,9 +417,8 @@ html.virtual_classroom-controller {
       
       h1 {
         
-        font: 12.8px, 'Nunito', sans-serif;
+        @include nunito-with-line-height(12.8px, 12.8px);
         color: #fff;
-        line-height: 12.8px;
         height: 27px;
         padding: 0;
         
@@ -458,10 +441,10 @@ html.virtual_classroom-controller {
     
     .playInVirtualClassroom {
       
+      @include nunito(180%);
       padding: 8px 10px 10px 70px;
       background: #252525 $assets-freccina-play-virtual_png no-repeat 1.6em 0.6em;
       color: #fff;
-      font: 180% 'Nunito', sans-serif;
       margin-bottom: 15px;
       
     }
@@ -496,13 +479,13 @@ html.virtual_classroom-controller {
     
     h1 {
       
-      font: 100% 'Nunito', sans-serif;
+      @include nunito(100%);
       
     }
     
     h2 {
       
-      font: 240% 'Nunito', sans-serif;
+      @include nunito(240%);
       
     }
     
@@ -610,19 +593,6 @@ html.virtual_classroom-controller {
     right: 4px;
     bottom: 2px;
     cursor: pointer;
-    
-  }
-  
-  .dots_pagination_container .dots_pagination a {
-    
-    width: 10px;
-    height: 10px;
-    
-  }
-  
-  .footer {
-    
-    z-index: 900;
     
   }
   

@@ -1,23 +1,15 @@
-<%= render :partial => 'shared/header', :locals => {:notifications => @notifications, :news => @new_notifications, :offset => @offset_notifications, :tot => @tot_notifications, :where => 'virtual_classroom'} %>
-<div class="bluBar">
-  <h1 style="width:30%" class="lower"><%= t('captions.virtual_classroom') %></h1>
-  <%= render :partial => 'virtual_classroom/header_buttons', :locals => {:empty => @lessons.empty?, :emptier => @emptier} %>
-</div>
-<div class="content">
-  <div class="griglia-contenuti">
-    <div class="playListContainer" style="margin-top:<%= @lessons.empty? ? '-70px' : '0' %>">
-      <%= render :partial => 'virtual_classroom/playlist', :locals => {:lessons => @playlist} %>
-    </div>
-    <div class="listContainer">
-      <%= render :partial => 'virtual_classroom/my_virtual_classroom', :locals => {:lessons => @lessons, :covers => @covers} %>
-      <br class="clearfloat">
-      <% if @lessons.any? %>
-        <%= render :partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :force_index_url => nil} %>
-      <% else %>
-        <div class="dots_pagination_container paginatoreCentrato" id="virtual_classroom_pagination"></div>
-      <% end %>
-    </div>
-    <div id="info_container" style="display:none" data-user-trial="<%= current_user.trial? %>" data-currenturl="<%= request.url %>"></div>
+<div class="griglia-contenuti">
+  <div class="playListContainer" style="margin-top:<%= @lessons.empty? ? '-50px' : '20px' %>">
+    <%= render :partial => 'virtual_classroom/playlist', :locals => {:lessons => @playlist} %>
   </div>
-  <br class="clearfloat">
+  <div class="listContainer">
+    <%= render :partial => 'virtual_classroom/my_virtual_classroom', :locals => {:lessons => @lessons, :covers => @covers} %>
+    <br class="clearfloat">
+    <% if @lessons.any? %>
+      <%= render :partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :force_index_url => nil} %>
+    <% else %>
+      <div class="dots_pagination_container paginatoreCentrato" id="virtual_classroom_pagination"></div>
+    <% end %>
+  </div>
+  <div id="info_container" style="display:none" data-user-trial="<%= current_user.trial? %>" data-currenturl="<%= request.url %>"></div>
 </div>

@@ -486,8 +486,8 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
               <div id="method-i-find_locations_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 287</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">find_locations</span>
-  <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
-  <span class="ruby-ivar">@locations</span> = <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> [] <span class="ruby-operator">:</span> <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)
+  <span class="ruby-ivar">@parent</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
+  <span class="ruby-ivar">@locations</span> = <span class="ruby-ivar">@parent</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> [] <span class="ruby-operator">:</span> <span class="ruby-ivar">@parent</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

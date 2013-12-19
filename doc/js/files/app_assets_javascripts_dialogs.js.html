@@ -81,11 +81,13 @@
             
                 <li><a href="../classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="../classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
+                <li><a href="../classes/DashboardAccessories.html">DashboardAccessories</a></li>
             
-                <li><a href="../classes/DashboardGeneral.html">DashboardGeneral</a></li>
+                <li><a href="../classes/DashboardExpandedContents.html">DashboardExpandedContents</a></li>
             
-                <li><a href="../classes/DashboardPagination.html">DashboardPagination</a></li>
+                <li><a href="../classes/DashboardLessonDescriptions.html">DashboardLessonDescriptions</a></li>
+            
+                <li><a href="../classes/DashboardResizing.html">DashboardResizing</a></li>
             
                 <li><a href="../classes/DialogsAccessories.html">DialogsAccessories</a></li>
             
@@ -709,6 +711,9 @@ Dialog containing the media element general information. If the element is priva
 **/
 function showMediaElementInfoPopUp(media_element_id) {
   var obj = $(&#x27;#dialog-media-element-&#x27; + media_element_id);
+  if(obj.length &gt; 0 &amp;&amp; $(&#x27;#dashboard_container .literature_container&#x27;).length &gt; 0) {
+    $(&#x27;#dashboard_container .literature_container, #dashboard_container .lesson_dashboard_thumb&#x27;).css(&#x27;z-index&#x27;, 0);
+  }
   if(!$(&#x27;._media_element_item_id_&#x27; + media_element_id).data(&#x27;preview-loaded&#x27;)) {
     $.ajax({
       type: &#x27;get&#x27;,
@@ -733,6 +738,10 @@ function showMediaElementInfoPopUp(media_element_id) {
           removeCustomOverlayClose();
         },
         close: function() {
+          if(obj.length &gt; 0 &amp;&amp; $(&#x27;#dashboard_container .literature_container&#x27;).length &gt; 0) {
+            $(&#x27;#dashboard_container .literature_container&#x27;).css(&#x27;z-index&#x27;, 12);
+            $(&#x27;#dashboard_container .lesson_dashboard_thumb&#x27;).css(&#x27;z-index&#x27;, 3);
+          }
           resetMediaElementChangeInfo(media_element_id);
           $(this).find(&#x27;._report_form_content&#x27;).hide();
           $(this).find(&#x27;._report_media_element_click&#x27;).removeClass(&#x27;report_light&#x27;);

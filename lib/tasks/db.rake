@@ -134,6 +134,12 @@ namespace :db do
     Notification.send_to an_user_id, I18n.t('notifications.account.renewed', :expiration_date => '1 gennaio 2014')
     Notification.send_to an_user_id, I18n.t('notifications.account.trial', :user_name => 'Luciano Moggi', :desy => 'DESY', :validity => '30', :link => 'www.google.com')
     Notification.send_to an_user_id, I18n.t('notifications.account.upgraded', :expiration_date => '1 gennaio 2014')
+    time_now = Time.zone.now
+    coefficients = [0, 64, 360, 3600, 8640, 86400, 262980, 2629800, 10155760, 31957700, 315577000]
+    summing = false
+    Notification.limit(11).each_with_index do |n, i|
+      Notification.where(:id => n.id).update_all(:created_at => time_now - coefficients[i])
+    end
   end
   
 end

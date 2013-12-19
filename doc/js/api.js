@@ -20,9 +20,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "ButtonsDocumentReady",
         "ButtonsLesson",
         "ButtonsMediaElement",
-        "DashboardDocumentReady",
-        "DashboardGeneral",
-        "DashboardPagination",
+        "DashboardAccessories",
+        "DashboardExpandedContents",
+        "DashboardLessonDescriptions",
+        "DashboardResizing",
         "DialogsAccessories",
         "DialogsConfirmation",
         "DialogsGalleries",
@@ -150,7 +151,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "dashboard",
             "name": "dashboard",
-            "description": "The dashboard is the home page of DESY: the page is divided in two sections, one for <b>suggested elements</b> and one for <b>suggested lessons</b>. Each of these two sections is split into three pages of lessons and elements. When the server loads the dashboard, all the six pages (three for lessons, three for elements) are loaded together, and all the operations are handled with javascript functions.\n<br/><br/>\nThere are two simple functions that switch between the pages for lessons and elements (see both methods of {{#crossLink \"DashboardGeneral\"}}{{/crossLink}}). A bit more complicated are the functions to pass from a page to another (all contained in the class {{#crossLink \"DashboardPagination\"}}{{/crossLink}}): the core of such an asynchronous pagination is the method {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}} that reconstructs the normal pagination without calling the corresponding partial in <i>views/shared/pagination.html.erb</i>: this pagination is unique for both elements and lessons, and it is reloaded each time the user changes page using the functions {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}} and {{#crossLink \"DashboardPagination/reloadMediaElementsDashboardPagination:method\"}}{{/crossLink}}."
+            "description": "The dashboard contains a list of suggested lessons and media elements. The dashboard is the first page shown to the logged user.\n<br/><br/>\nWhen the dashboard is opened at first, it's possible to see two subsections, one containing elements and the other one containing lessons. The number of items shown depends on the browser, this functionality is handled by the class {{#crossLink \"DashboardResizing\"}}{{/crossLink}}. At any time the user resizes the window, the application calls the server that responds with index.js (see {{#crossLink \"DashboardAccessories/dashboardDocumentReady:method\"}}{{/crossLink}}).\n<br/><br/>\nClicking on a special icon, the section of lessons or media elements can be expanded or compressed: this functionality is handled in {{#crossLink \"DashboardExpandedContents\"}}{{/crossLink}}. Finally, a single lesson has its own expansion that opens a div containing description, author and subject: see functions in the class {{#crossLink \"DashboardLessonDescriptions\"}}{{/crossLink}}."
         },
         {
             "displayName": "dialogs",

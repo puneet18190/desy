@@ -81,11 +81,13 @@
             
                 <li><a href="../classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="../classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
+                <li><a href="../classes/DashboardAccessories.html">DashboardAccessories</a></li>
             
-                <li><a href="../classes/DashboardGeneral.html">DashboardGeneral</a></li>
+                <li><a href="../classes/DashboardExpandedContents.html">DashboardExpandedContents</a></li>
             
-                <li><a href="../classes/DashboardPagination.html">DashboardPagination</a></li>
+                <li><a href="../classes/DashboardLessonDescriptions.html">DashboardLessonDescriptions</a></li>
+            
+                <li><a href="../classes/DashboardResizing.html">DashboardResizing</a></li>
             
                 <li><a href="../classes/DialogsAccessories.html">DialogsAccessories</a></li>
             
@@ -330,6 +332,15 @@ So far the only class present in the module is {{#crossLink &quot;JqueryPatchesB
 
 
 /**
+If the browser is Chrome, it returns body, otherwise it returns html
+@method browserDependingScrollToTag
+@for JqueryPatchesBrowsers
+**/
+function browserDependingScrollToTag() {
+  return ($.browser.webkit ? $body : $html);
+}
+
+/**
 Detects if the browser is an iPad, or iPhone, or other mobile browsers, and saves the result in &lt;b&gt;$.browser.[mobile_kind]&lt;/b&gt;.
 @method mobileDetection
 @for JqueryPatchesBrowsers
@@ -340,6 +351,8 @@ Detects if the browser is an iPad, or iPhone, or other mobile browsers, and save
     $.browser.ipad = true;
   } else if(ua.indexOf(&#x27;iphone&#x27;) &gt;= 0) {
     $.browser.iphone = true;
+  } else if(ua.indexOf(&#x27;webkit&#x27;) &gt;= 0) {
+    $.browser.webkit = true;
   }
 })();
 

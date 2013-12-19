@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>DashboardDocumentReady - DESY</title>
+    <title>DashboardResizing - DESY</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -81,11 +81,13 @@
             
                 <li><a href="../classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="../classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
+                <li><a href="../classes/DashboardAccessories.html">DashboardAccessories</a></li>
             
-                <li><a href="../classes/DashboardGeneral.html">DashboardGeneral</a></li>
+                <li><a href="../classes/DashboardExpandedContents.html">DashboardExpandedContents</a></li>
             
-                <li><a href="../classes/DashboardPagination.html">DashboardPagination</a></li>
+                <li><a href="../classes/DashboardLessonDescriptions.html">DashboardLessonDescriptions</a></li>
+            
+                <li><a href="../classes/DashboardResizing.html">DashboardResizing</a></li>
             
                 <li><a href="../classes/DialogsAccessories.html">DialogsAccessories</a></li>
             
@@ -314,7 +316,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>DashboardDocumentReady Class</h1>
+                        <h1>DashboardResizing Class</h1>
 <div class="box meta">
     
 
@@ -362,7 +364,14 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_dashboardDocumentReady">dashboardDocumentReady</a>
+                                <a href="#method_dashboardResizeController">dashboardResizeController</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_resizeLessonsAndMediaElementsInDashboard">resizeLessonsAndMediaElementsInDashboard</a>
 
                                 
                                 
@@ -384,8 +393,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_dashboardDocumentReady" class="method item">
-    <h3 class="name"><code>dashboardDocumentReady</code></h3>
+                    <div id="method_dashboardResizeController" class="method item">
+    <h3 class="name"><code>dashboardResizeController</code></h3>
 
     
         <span class="paren">()</span>
@@ -416,7 +425,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_dashboard.js.html#l12"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:12</code></a>
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l288"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:288</code></a>
         
         </p>
 
@@ -427,10 +436,143 @@
     </div>
 
     <div class="description">
-        <p>Initializer for the animation effects of the Dashboard.</p>
+        <p>This method makes decisions about how to react to a resize event. First it centers the lessons, calculating the maximum number that fits the available horizontal space, and the margin-left to apply. Then, it uses such a margin left to calculate the available space for media elements (these must be aligned with the lessons on both left and right sides). After the correct number of lessons and media elements has been calculated, the method decides if it&#39;s necessary to call the server and fetch new items: if this is not necessary, it&#39;s called {{#crossLink "DashboardResizing/resizeLessonsAndMediaElementsInDashboard:method}}{{/crossLink}}.</p>
 
     </div>
 
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_resizeLessonsAndMediaElementsInDashboard" class="method item">
+    <h3 class="name"><code>resizeLessonsAndMediaElementsInDashboard</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>lessons</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>media_elements</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>with_vertical_margin</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l330"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:330</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>This method resizes lessons and media elements without calling the server to add new ones.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">lessons</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>how many lessons fit horizontally the screen</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">media_elements</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>how many media elements fit horizontally the screen</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">with_vertical_margin</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>if true, sets temporarily the vertical margin to adapt to the new pagination: this is used in case the server is too slow, to visualize in a good way the items while waiting for an answer</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     

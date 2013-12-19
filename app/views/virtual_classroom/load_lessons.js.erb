@@ -20,10 +20,10 @@ $('#my_virtual_classroom').replaceWith('<%= j(render(:partial => "virtual_classr
 <% if @lessons.any? %>
   $('#virtual_classroom_pagination').replaceWith("<%= j(render(:partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :force_index_url => my_virtual_classroom_path})) %>");
   $('#empty_virtual_classroom').removeClass('disabled');
-  $('.playListContainer').css('margin-top', '0');
+  $('.playListContainer').css('margin-top', '20px');
 <% else %>
   $('#virtual_classroom_pagination').html('');
-  $('.playListContainer').css('margin-top', '-70px');
+  $('.playListContainer').css('margin-top', '-50px');
 <% end %>
 initializeVirtualClassroom();
 

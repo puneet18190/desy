@@ -313,13 +313,24 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.like(@les3.id)
     assert @user2.like(@les4.id)
     resp = @user2.suggested_lessons(6)
-    assert_item_extractor [@les1.id, @les2.id, @les3.id, @les4.id], resp
-    assert_status resp, [['preview', 'add', 'like'], ['preview', 'add', 'like'], ['preview', 'add', 'dislike'], ['preview', 'add', 'dislike']]
+    assert_item_extractor [@les1.id, @les2.id, @les3.id, @les4.id], resp[:records]
+    assert_status resp[:records], [['preview', 'add', 'like'], ['preview', 'add', 'like'], ['preview', 'add', 'dislike'], ['preview', 'add', 'dislike']]
     assert @user2.dislike(@les4.id)
     assert @user2.bookmark 'Lesson', @les2.id
     resp = @user2.suggested_lessons(6)
-    assert_item_extractor [@les1.id, @les3.id, @les4.id], resp
-    assert_status resp, [['preview', 'add', 'like'], ['preview', 'add', 'dislike'], ['preview', 'add', 'like']]
+    assert_item_extractor [@les1.id, @les3.id, @les4.id], resp[:records]
+    assert_status resp[:records], [['preview', 'add', 'like'], ['preview', 'add', 'dislike'], ['preview', 'add', 'like']]
+    # test of optimized covers
+    assert_equal 3, resp[:covers].keys.length
+    assert resp[:covers].has_key?(@les1.id)
+    assert_equal Slide, resp[:covers][@les1.id].class
+    assert_equal Slide.where(:kind => 'cover', :lesson_id => @les1.id).first.id, resp[:covers][@les1.id].id
+    assert resp[:covers].has_key?(@les3.id)
+    assert_equal Slide, resp[:covers][@les3.id].class
+    assert_equal Slide.where(:kind => 'cover', :lesson_id => @les3.id).first.id, resp[:covers][@les3.id].id
+    assert resp[:covers].has_key?(@les4.id)
+    assert_equal Slide, resp[:covers][@les4.id].class
+    assert_equal Slide.where(:kind => 'cover', :lesson_id => @les4.id).first.id, resp[:covers][@les4.id].id
   end
   
   test 'suggested_media_elements' do

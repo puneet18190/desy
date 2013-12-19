@@ -81,11 +81,13 @@
             
                 <li><a href="../classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="../classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
+                <li><a href="../classes/DashboardAccessories.html">DashboardAccessories</a></li>
             
-                <li><a href="../classes/DashboardGeneral.html">DashboardGeneral</a></li>
+                <li><a href="../classes/DashboardExpandedContents.html">DashboardExpandedContents</a></li>
             
-                <li><a href="../classes/DashboardPagination.html">DashboardPagination</a></li>
+                <li><a href="../classes/DashboardLessonDescriptions.html">DashboardLessonDescriptions</a></li>
+            
+                <li><a href="../classes/DashboardResizing.html">DashboardResizing</a></li>
             
                 <li><a href="../classes/DialogsAccessories.html">DialogsAccessories</a></li>
             
@@ -332,9 +334,11 @@
 
 
 <div class="box intro">
-    <p>The dashboard is the home page of DESY: the page is divided in two sections, one for <b>suggested elements</b> and one for <b>suggested lessons</b>. Each of these two sections is split into three pages of lessons and elements. When the server loads the dashboard, all the six pages (three for lessons, three for elements) are loaded together, and all the operations are handled with javascript functions.
+    <p>The dashboard contains a list of suggested lessons and media elements. The dashboard is the first page shown to the logged user.
 <br/><br/>
-There are two simple functions that switch between the pages for lessons and elements (see both methods of <a href="../classes/DashboardGeneral.html" class="crosslink">DashboardGeneral</a>). A bit more complicated are the functions to pass from a page to another (all contained in the class <a href="../classes/DashboardPagination.html" class="crosslink">DashboardPagination</a>): the core of such an asynchronous pagination is the method <a href="../classes/DashboardPagination.html#method_getHtmlPagination" class="crosslink">getHtmlPagination</a> that reconstructs the normal pagination without calling the corresponding partial in <i>views/shared/pagination.html.erb</i>: this pagination is unique for both elements and lessons, and it is reloaded each time the user changes page using the functions <a href="../classes/DashboardPagination.html#method_reloadLessonsDashboardPagination" class="crosslink">reloadLessonsDashboardPagination</a> and <a href="../classes/DashboardPagination.html#method_reloadMediaElementsDashboardPagination" class="crosslink">reloadMediaElementsDashboardPagination</a>.</p>
+When the dashboard is opened at first, it&#39;s possible to see two subsections, one containing elements and the other one containing lessons. The number of items shown depends on the browser, this functionality is handled by the class <a href="../classes/DashboardResizing.html" class="crosslink">DashboardResizing</a>. At any time the user resizes the window, the application calls the server that responds with index.js (see <a href="../classes/DashboardAccessories.html#method_dashboardDocumentReady" class="crosslink">dashboardDocumentReady</a>).
+<br/><br/>
+Clicking on a special icon, the section of lessons or media elements can be expanded or compressed: this functionality is handled in <a href="../classes/DashboardExpandedContents.html" class="crosslink">DashboardExpandedContents</a>. Finally, a single lesson has its own expansion that opens a div containing description, author and subject: see functions in the class <a href="../classes/DashboardLessonDescriptions.html" class="crosslink">DashboardLessonDescriptions</a>.</p>
 
 </div>
 
@@ -348,20 +352,26 @@ There are two simple functions that switch between the pages for lessons and ele
             <ul class="module-classes">
             
                 <li class="module-class">
-                    <a href="../classes/DashboardDocumentReady.html">
-                        DashboardDocumentReady
+                    <a href="../classes/DashboardAccessories.html">
+                        DashboardAccessories
                     </a>
                 </li>
             
                 <li class="module-class">
-                    <a href="../classes/DashboardGeneral.html">
-                        DashboardGeneral
+                    <a href="../classes/DashboardExpandedContents.html">
+                        DashboardExpandedContents
                     </a>
                 </li>
             
                 <li class="module-class">
-                    <a href="../classes/DashboardPagination.html">
-                        DashboardPagination
+                    <a href="../classes/DashboardLessonDescriptions.html">
+                        DashboardLessonDescriptions
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="../classes/DashboardResizing.html">
+                        DashboardResizing
                     </a>
                 </li>
             
