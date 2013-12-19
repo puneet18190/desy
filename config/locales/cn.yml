@@ -1439,33 +1439,37 @@ cn:
     # The caption of the link to open the 'contacts' page (the link is on the bottom left of the Dashboard)
     # 1 - views/dashboard/index.html.erb
     contact_us: "联系我们"
-    # Caption of the link opening the lesson editor, containing a prompt for the user (this is used only in the case there are no suggested lessons in the Dashboard: in this case the application invites the user to create a lesson right now)
-    # 1 - views/dashboard/_lessons_empty.html.erb
-    create_new_lesson_now: "现在建立课程"
     # Caption of the link to download the user guide (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
     download_manual: "去回答问题页"
-    # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
-    # 1 - views/dashboard/_lessons_empty.html.erb
-    emptied_lessons: "你已选择所有被推荐的课程"
-    # Caption which appears if for the user there are no suggested lessons inside the database
-    # 1 - views/dashboard/_lessons_empty.html.erb
-    empty_lessons: "这里没有推荐的课程给你"
-    # Caption which appears if there are no suggested elements inside the Dashboard, because the user picked all the elements the application suggested him
-    # 1 - views/dashboard/_media_elements_empty.html.erb
-    emptied_media_elements: "你已选择所有被推荐的单元"
-    # Caption which appears if for the user there are no suggested elements inside the database
-    # 1 - views/dashboard/_media_elements_empty.html.erb
-    empty_media_elements: "这里没有推荐的单元给你"
     # Title of the link 'Download the user guide' (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
     help_using_desy: "需要%{desy}帮助吗？"
-    # Caption of the link opening the window to load new elements, containing a prompt for the user (this is used only in the case there are no suggested elements in the Dashboard: in this case the application invites the user to load an element right now)
-    # 1 - views/dashboard/_media_elements_empty.html.erb
-    load_new_media_element_now: "现在加载新单元"
     # Title of the link 'contact us' (bottom left in the page)
     # 1 - views/dashboard/index.html.erb
     talk_with_desy: "你想与%{desy}交谈吗？"
+    # Containers showing a standard message in case there are no lessons or media elements
+    empty:
+      lessons:
+        # Title of the container
+        # 1 - views/dashboard/_lessons_empty.html.erb
+        title: "这里没有推荐的课程给你"
+        # Title of the container in case the dashboard is empty because the user picked all the suggested lessons and there are no remaining
+        # 1 - views/dashboard/_lessons_empty.html.erb
+        title_emptied: "你已选择所有被推荐的课程"
+        # Prompt telling the user to create a new lesson
+        # 1 - views/dashboard/_lessons_empty.html.erb
+        prompt: "现在建立课程"
+      media_elements:
+        # Title of the container
+        # 1 - views/dashboard/_media_elements_empty.html.erb
+        title: "这里没有推荐的单元给你"
+        # Title of the container in case the dashboard is empty because the user picked all the suggested elements and there are no remaining
+        # 1 - views/dashboard/_media_elements_empty.html.erb
+        title_emptied: "你已选择所有被推荐的单元"
+        # Prompt telling the user to upload a new media element
+        # 1 - views/dashboard/_media_elements_empty.html.erb
+        prompt: "现在加载新单元"
     # Captions of buttons to create new items (lessons, media elements, documents)
     create_new:
       # 1 - views/dashboard/index.html.erb

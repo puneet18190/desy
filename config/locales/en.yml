@@ -1439,33 +1439,37 @@ en:
     # The caption of the link to open the 'contacts' page (the link is on the bottom left of the Dashboard)
     # 1 - views/dashboard/index.html.erb
     contact_us: "Contact us"
-    # Caption of the link opening the lesson editor, containing a prompt for the user (this is used only in the case there are no suggested lessons in the Dashboard: in this case the application invites the user to create a lesson right now)
-    # 1 - views/dashboard/_lessons_empty.html.erb
-    create_new_lesson_now: "Create a lesson now"
     # Caption of the link to download the user guide (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
     download_manual: "Go to the FAQs"
-    # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
-    # 1 - views/dashboard/_lessons_empty.html.erb
-    emptied_lessons: "You chose all the suggested lessons"
-    # Caption which appears if for the user there are no suggested lessons inside the database
-    # 1 - views/dashboard/_lessons_empty.html.erb
-    empty_lessons: "There are no suggested lessons for you"
-    # Caption which appears if there are no suggested elements inside the Dashboard, because the user picked all the elements the application suggested him
-    # 1 - views/dashboard/_media_elements_empty.html.erb
-    emptied_media_elements: "You chose all the suggested elements"
-    # Caption which appears if for the user there are no suggested elements inside the database
-    # 1 - views/dashboard/_media_elements_empty.html.erb
-    empty_media_elements: "There are no suggested elements for you"
     # Title of the link 'Download the user guide' (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
     help_using_desy: "Need help using %{desy}?"
-    # Caption of the link opening the window to load new elements, containing a prompt for the user (this is used only in the case there are no suggested elements in the Dashboard: in this case the application invites the user to load an element right now)
-    # 1 - views/dashboard/_media_elements_empty.html.erb
-    load_new_media_element_now: "Load a new element now"
     # Title of the link 'contact us' (bottom left in the page)
     # 1 - views/dashboard/index.html.erb
     talk_with_desy: "Want to talk with %{desy}?"
+    # Containers showing a standard message in case there are no lessons or media elements
+    empty:
+      lessons:
+        # Title of the container
+        # 1 - views/dashboard/_lessons_empty.html.erb
+        title: "There are no suggested lessons for you"
+        # Title of the container in case the dashboard is empty because the user picked all the suggested lessons and there are no remaining
+        # 1 - views/dashboard/_lessons_empty.html.erb
+        title_emptied: "You chose all the suggested lessons"
+        # Prompt telling the user to create a new lesson
+        # 1 - views/dashboard/_lessons_empty.html.erb
+        prompt: "Create a lesson now"
+      media_elements:
+        # Title of the container
+        # 1 - views/dashboard/_media_elements_empty.html.erb
+        title: "There are no suggested elements for you"
+        # Title of the container in case the dashboard is empty because the user picked all the suggested elements and there are no remaining
+        # 1 - views/dashboard/_media_elements_empty.html.erb
+        title_emptied: "You chose all the suggested elements"
+        # Prompt telling the user to upload a new media element
+        # 1 - views/dashboard/_media_elements_empty.html.erb
+        prompt: "Load a new element now"
     # Captions of buttons to create new items (lessons, media elements, documents)
     create_new:
       # 1 - views/dashboard/index.html.erb
