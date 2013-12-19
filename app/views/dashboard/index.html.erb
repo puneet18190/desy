@@ -69,22 +69,26 @@
       <table>
         <tr>
           <td colspan="2">
-            <input type="text" name="word" value="<%= t('search.long_label', :desy => desy) %>" class="text" id="general_tag_reader_for_search" style="color:#999"> <!-- TODO traduzz -->
+            <input type="text" name="word" value="<%= t('search.long_label', :desy => desy) %>" class="text" id="general_tag_reader_for_search" style="color:#999">
             <%= hidden_field_tag 'word_placeholder', '', :id => 'general_tag_kind_for_search' %>
           </td>
         </tr>
         <tr>
           <td colspan="2">
             <select name="item" id="which_item_to_search">
-              <option value="lessons" <%= @where != 'media_elements' ? "selected=\"selected\"".html_safe : '' %>><%= t('captions.lessons') %></option> <!-- TODO traduzz -->
-              <option value="media_elements" <%= @where == 'media_elements' ? "selected=\"selected\"".html_safe : '' %>><%= t('captions.media_elements') %></option> <!-- TODO traduzz -->
+              <option value="lessons" <%= @where != 'media_elements' ? "selected=\"selected\"".html_safe : '' %>>
+                <%= t('captions.lessons') %>
+              </option>
+              <option value="media_elements" <%= @where == 'media_elements' ? "selected=\"selected\"".html_safe : '' %>>
+                <%= t('captions.media_elements') %>
+              </option>
             </select>
           </td>
         </tr>
       </table>
       <div class="boxAdvancedSearch">
-        <%= link_to t('search.label'), "#{search_items_path}?item=#{@where}", :class =>'advanced fltlft' %> <!-- TODO traduzz -->
-        <a id="search_general_submit" class="cerca current fltrt" title="<%= t('titles.search') %>">&nbsp;</a> <!-- TODO traduzz -->
+        <%= link_to t('search.label'), "#{search_items_path}?item=#{@where}", :class =>'advanced fltlft' %>
+        <a id="search_general_submit" class="cerca current fltrt" title="<%= t('titles.search') %>">&nbsp;</a>
       </div>
     </form>
   </div>

@@ -1033,6 +1033,7 @@ en:
     report: "Report offensive content"
     # Icon with a lens in the main sections
     # 1 - views/shared/_search.html.erb
+    # 2 - views/dashboard/index.html.erb
     search: "Search"
     # Icon to share a lesson throughout social networks
     # 1 - views/lesson_viewer/_social_networks.html.erb
@@ -1354,12 +1355,14 @@ en:
     # 2 - views/shared/_menu.html.erb
     # 3 - views/shared/_search.html.erb
     # 4 - views/search/_item_selector.html.erb
+    # 5 - views/dashboard/index.html.erb
     lessons: "Lessons"
     # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
     # 1 - views/shared/_menu.html.erb
     # 2 - views/shared/_search.html.erb
     # 3 - views/media_elements/_title_bar.html.erb
     # 4 - views/search/_item_selector.html.erb
+    # 5 - views/dashboard/index.html.erb
     media_elements: "Elements"
     # Used to refer to the user's personal profile
     # 1 - views/users/_title_bar.html.erb
@@ -2062,6 +2065,7 @@ en:
     # Link to open the search engine from the other sections
     # 1 - views/shared/_search.html.erb
     # 2 - views/search/index.html.erb
+    # 3 - views/dashboard/index.html.erb
     label: "Advanced search"
     # Button to start the research
     # 1 - views/search/lessons/_main.html.erb
@@ -2069,6 +2073,7 @@ en:
     short_label: "Search"
     # Placeholder of the quick search present in all the sections
     # 1 - views/shared/_search.html.erb
+    # 2 - views/dashboard/index.html.erb
     long_label: "Search in %{desy}"
     # Main title inside the search engine
     # 1 - views/search/index.html.erb
