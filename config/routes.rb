@@ -40,7 +40,7 @@ Desy::Application.routes.draw do
   
   # DOCUMENTS
   resources :documents,                                 :only => :create
-  post      'documents/:document_id/destroy'                  => 'documents#destroy'
+  delete    'documents/:document_id'                          => 'documents#destroy'
   post      'documents/:document_id'                          => 'documents#update',  :as => :document
   
   # NOTIFICATIONS

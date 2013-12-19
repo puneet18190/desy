@@ -76,9 +76,9 @@ function documentsDocumentReadyButtons() {
       $('#dialog-confirm').hide();
       var redirect_url = addDeleteItemToCurrentUrl(current_url, 'document_' + document_id);
       $.ajax({
-        type: 'post',
+        type: 'delete',
         dataType: 'json',
-        url: '/documents/' + document_id + '/destroy',
+        url: '/documents/' + document_id,
         success: function(data) {
           if(data.ok) {
             $.ajax({
