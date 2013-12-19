@@ -1439,20 +1439,6 @@ it:
   # SECTION 2.3: Captions used inside the Dashboard (main page)
   
   dashboard:
-    # Captions for the link to the search engine (the variable %{desy} is replaced by the name of the application)
-    search:
-      # 1 - views/dashboard/index.html.erb
-      title: "Cerca lezioni o elementi"
-      # 1 - views/dashboard/index.html.erb
-      description: "Usa il motore di ricerca di %{desy} per trovare elementi o lezioni di cui hai bisogno"
-    # Captions for the link that allows the user to open the FAQs section (the variable %{desy} is replaced by the name of the application)
-    faqs:
-      # 1 - views/dashboard/index.html.erb
-      title: "Hai bisogno di aiuto per usare %{desy}?"
-      # 1 - views/dashboard/index.html.erb
-      description: "Hai bisogno del nostro supporto per capire tutte le funzionalità di %{desy}?"
-      # 1 - views/dashboard/index.html.erb
-      link: "Vai alle FAQs"
     # Captions for the link that allows the user to contact the administrator (the variable %{desy} is replaced by the name of the application)
     contact_us:
       # 1 - views/dashboard/index.html.erb
@@ -1461,6 +1447,14 @@ it:
       description: "La tua opinione è molto importante per migliorare i nostri servizi"
       # 1 - views/dashboard/index.html.erb
       link: "Contattaci"
+    # Captions of buttons to create new items (lessons, media elements, documents)
+    create_new:
+      # 1 - views/dashboard/index.html.erb
+      lesson: "Crea una lezione"
+      # 1 - views/dashboard/index.html.erb
+      document: "Carica un documento"
+      # 1 - views/dashboard/index.html.erb
+      media_element: "Carica un elemento"
     # Containers showing a standard message in case there are no lessons or media elements
     empty:
       lessons:
@@ -1483,14 +1477,20 @@ it:
         # Prompt telling the user to upload a new media element
         # 1 - views/dashboard/_media_elements_empty.html.erb
         prompt: "Carica un elemento"
-    # Captions of buttons to create new items (lessons, media elements, documents)
-    create_new:
+    # Captions for the link that allows the user to open the FAQs section (the variable %{desy} is replaced by the name of the application)
+    faqs:
       # 1 - views/dashboard/index.html.erb
-      lesson: "Crea una lezione"
+      title: "Hai bisogno di aiuto per usare %{desy}?"
       # 1 - views/dashboard/index.html.erb
-      document: "Carica un documento"
+      description: "Hai bisogno del nostro supporto per capire tutte le funzionalità di %{desy}?"
       # 1 - views/dashboard/index.html.erb
-      media_element: "Carica un elemento"
+      link: "Vai alle FAQs"
+    # Captions for the link to the search engine (the variable %{desy} is replaced by the name of the application)
+    search:
+      # 1 - views/dashboard/index.html.erb
+      title: "Cerca lezioni o elementi"
+      # 1 - views/dashboard/index.html.erb
+      description: "Usa il motore di ricerca di %{desy} per trovare elementi o lezioni di cui hai bisogno"
     # Captions for subsections of the dashboard
     selected:
       # Subsection of lessons
