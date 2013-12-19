@@ -850,6 +850,20 @@ it:
     # 1 - views/media_elements/_popup.html.erb
     # 2 - views/documents/_view_single_compact.html.erb
     close: "Chiudi"
+    # Titles for compressed dashboard
+    dashboard:
+      # Button to compress lessons subsection
+      # 1 - views/dashboard/index.html.erb
+      compress_lessons: "Chiudi lezioni"
+      # Button to compress media elements subsection
+      # 1 - views/dashboard/index.html.erb
+      compress_media_elements: "Chiudi elementi"
+      # Button to expand lessons subsection
+      # 1 - views/dashboard/index.html.erb
+      expand_lessons: "Espandi lezioni"
+      # Button to expand media elements subsection
+      # 1 - views/dashboard/index.html.erb
+      expand_media_elements: "Espandi elementi"
     # Titles for the icons of documents
     documents:
       # Includes .doc, .odt
