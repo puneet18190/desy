@@ -30,10 +30,7 @@ module Export
       VIEW_FOLDER = View::FOLDER
 
       ASSETS_FOLDER = Lesson::FOLDER.join 'ebooks', 'assets'
-      ASSETS_PATHS  = %W(
-        lesson_ebook/application.css
-        pallino.svg
-      )
+      ASSETS_PATHS  = %W( lesson_ebook/application.css )
 
       # STORED or DEFLATED
       COMPRESSION_METHOD = Zip::Entry::STORED

@@ -1,0 +1,98 @@
+html.cover-slide {
+
+body {
+  margin: 0;
+  padding: 1em;
+  min-width: 400px;
+  max-width: 900px;
+}
+
+.image, .subject, .title, .author {
+  width: 100%;
+}
+
+.image, .subject, .title {
+  margin-bottom: 1rem;
+}
+
+/*
+ * Calcolo background-position immagine spalmata
+ *
+ *   o    offset dell'immagine
+ *   hc   altezza del contenitore
+ *   hi   altezza dell'immagine
+ *   s    centro di posizione
+ *   x    valore di background-position in percentuale
+ *
+ *             immagine
+ *   ─   ┌──────────────────┐       ─
+ *       │                  │     
+ *       │                  │     
+ *   o   │                  │     
+ *       │                  │     
+ *       │   contenitore    │     
+ *   ─   ┢━━━━━━━━━━━━━━━━━━┪   ─ 
+ *       ┃                  ┃     
+ *       ┃                  ┃   hc  hi
+ *   s ─ ┃                  ┃     
+ *       ┃                  ┃     
+ *       ┡━━━━━━━━━━━━━━━━━━┩   ─ 
+ *       │                  │     
+ *       │                  │     
+ *       │                  │     
+ *       └──────────────────┘       ─
+ *
+ *   o va da 0 a hi - hc
+ *   il centro di posizione va da 0 a hc
+ *   dunque x : o = hc : (hi - hc)
+ *   x = o * hc / (hi - hc)
+ *   adesso mi serve il rapporto di x / hc moltiplicato per 100 per ottenere la percentuale
+ *   x / hc * 100 = o * hc * 100 / ((hi - hc) * hc) = o * 100 / (hi - hc)
+ *
+ */
+.image {
+  height: 560px;
+  background: none no-repeat scroll 0 0 transparent;
+  background-size: cover;
+}
+
+.title {
+  color: #F29400;
+  font-size: 5em;
+  font-weight: normal;
+  line-height: 100%;
+  margin-top: 0;
+  margin-bottom: 2em;
+}
+
+$i: 931;
+@while $i > 432 {
+  @media all and (width: #{$i}px) {
+    .image {
+      height: #{560 * ($i - 32) / 900}px;
+    }
+  }
+  $i: $i - 1;
+}
+
+$i: 432;
+@media all and (max-width: #{$i}px) {
+  .image {
+    height: #{560 * ($i - 32) / 900}px;
+  }
+}
+
+/* Titolo più piccolo sotto i 500px
+ *
+ * È stato scelto 500px perchè iBook sull'iPad di Franco 
+ * è sopra i 500px quando in orientation landscape e sotto
+ * quando è in orientation portrait
+ *
+ */
+@media all and (max-width: 500px) {
+  .title {
+    font-size: 3em;
+  }
+}
+
+}

@@ -1,0 +1,28 @@
+<%
+  url_type = UrlTypes::EXPORT
+  image    = slide.media_elements_at
+  author   = slide.lesson.user
+  subject  = slide.lesson.subject
+%>
+
+<% if image -%>
+  <%
+  if image.is_horizontal? slide.kind
+    
+  else
+    
+  end
+  %>
+  <style type="text/css">
+  .image {
+    background-image: url("<%= image.media_element.url(url_type) %>");
+    background-position: 0 0;
+    background-size: cover;
+  }
+  </style>
+<% end -%>
+
+<div class="image"></div>
+<div class="subject"><%= subject.description %></div>
+<h1 class="title"><%= slide.lesson.title %></h1>
+<div class="author"><%= author.full_name %></div>
