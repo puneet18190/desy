@@ -49,12 +49,11 @@ Handles 413 status error, file too large.
 function uploadFileTooLarge(selector) {
   var ret = document.getElementById('upload_target').contentWindow.document.title;
   if(ret && ret.match(/413/g)) {
-    var obj_name = selector.replace('-', '_');
     unbindLoader();
     $.ajax({
       type: 'get',
-      url: obj_name + 's/create/fake',
-      data: $('#new_' + obj_name).serialize()
+      url: selector + 's/create/fake',
+      data: $('#new_' + selector).serialize()
     }).always(bindLoader);
   }
 }
@@ -111,7 +110,7 @@ function mediaElementLoaderDocumentReady() {
   $body.on('submit', '#new_media_element', function() {
     document.getElementById('new_media_element').target = 'upload_target';
     document.getElementById('upload_target').onload = function() {
-      uploadFileTooLarge('media-element');
+      uploadFileTooLarge('media_element');
     }
   });
 }
