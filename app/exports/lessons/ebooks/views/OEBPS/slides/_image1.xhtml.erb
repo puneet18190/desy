@@ -5,8 +5,8 @@
 
 <h1 class="title"><%= slide.title.strip %></h1>
 <figure class="image">
-  <%= render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml', locals: { image_media_elements_slide: image, selector: '.image div' } %>
-  <div></div>
+  <% style = render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml', locals: { image_media_elements_slide: image } -%>
+  <div style="<%= style %>"></div>
   <figcaption><%= image.caption if image %></figcaption>
 </figure>
 <div class="text"><%= slide_text.html_safe if slide_text %></div>

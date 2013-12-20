@@ -5,9 +5,8 @@
 <div class="vertical_align">
   <% images.each_with_index do |image, i| -%>
     <figure class="image image<%= i %>">
-      <%= render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml',
-                 locals:  { image_media_elements_slide: image, selector: ".image#{i} div" } %>
-      <div></div>
+      <% style = render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml', locals: { image_media_elements_slide: image } -%>
+      <div style="<%= style %>"></div>
       <figcaption><%= image.caption if image %></figcaption>
     </figure>
   <% end -%>

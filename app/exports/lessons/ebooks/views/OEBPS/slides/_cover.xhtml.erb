@@ -4,9 +4,8 @@
   subject = slide.lesson.subject
 %>
 
-<%= render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml', locals: { image_media_elements_slide: image, selector: '.image' } %>
-
-<div class="image"></div>
+<% style = render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml', locals: { image_media_elements_slide: image } -%>
+<div class="image" style="<%= style %>"></div>
 <div class="subject"><%= subject.description %></div>
 <h1 class="title"><%= slide.lesson.title %></h1>
 <div class="author"><%= author.full_name %></div>

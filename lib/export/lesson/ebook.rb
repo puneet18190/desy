@@ -43,7 +43,7 @@ module Export
 
       def initialize(lesson)
         @lesson = lesson
-        @slides = lesson.slides
+        @slides = lesson.slides.order(:position)
 
         parameterized_title = lesson.title.parameterize
         time                = lesson.updated_at.utc.strftime(WRITE_TIME_FORMAT)

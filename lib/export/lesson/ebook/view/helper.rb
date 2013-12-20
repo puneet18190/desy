@@ -53,7 +53,7 @@ module Export
           end
 
           def slide_title(slide)
-            slide.cover? ? 'Cover' : "Slide #{slide.position-1}"
+            slide.cover? ? 'Copertina' : "Pagina #{slide.position-1}"
           end
 
           def image_path(image)
@@ -85,7 +85,9 @@ module Export
 
             href = media_element_path media_element, format
 
-            properties = media_element.cover_of?(lesson) ? 'cover-image' : nil
+            # TODO fare la cover
+            # properties = media_element.cover_of?(lesson) ? 'cover-image' : nil
+            properties = nil
 
             { id:         id                            ,
               href:       href                          ,

@@ -1,9 +1,9 @@
-<% if image_media_elements_slide -%>
-  <style type="text/css" scoped="scoped">
-  <%= selector %> {
-    background-image:    url("<%= image_path(image_media_elements_slide.media_element) %>") !important;
-    background-position: <%= image_media_elements_slide.background_position %> !important;
-    background-size:     <%= image_media_elements_slide.background_size %> !important;
-  }
-  </style>
-<% end -%>
+<%=
+if image_media_elements_slide
+  %[background-image:    url(&quot;#{image_path(image_media_elements_slide.media_element)}&quot;) !important;
+    background-position: #{image_media_elements_slide.background_position} !important;
+    background-size:     #{image_media_elements_slide.background_size} !important;].gsub("\n", '').html_safe
+else
+  ''
+end 
+%>
