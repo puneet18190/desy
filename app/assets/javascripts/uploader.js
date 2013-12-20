@@ -36,7 +36,7 @@ function uploadDone(selector, callback, errors, fields) {
     if(callback != undefined) {
       callback(errors, fields);
     } else {
-      uploadRedirect(selector);
+      top.uploadRedirect(selector);
     }
   }
 }
@@ -48,7 +48,7 @@ Reloads media elements page after new media element is successfully loaded.
 **/
 function uploadRedirect(selector) {
   // TODO colorare tutta la barra e stoppare l'animazione
-  window.location = '/' + selector.replace('-', '_') + 's';
+  window.location = '/' + selector.replace('load-', '').replace('-', '_') + 's';
 }
 
 
@@ -93,12 +93,7 @@ function mediaElementLoaderDocumentReady() {
     }
   });
   $body.on('submit', '#new_media_element', function() {
-    $('.form_error').removeClass('form_error');
-    $('.too_large').remove();
     document.getElementById('new_media_element').target = 'upload_target';
-    document.getElementById('upload_target').onload = function() {
-      uploadDone('load-media-element');
-    }
   });
 }
 
@@ -139,12 +134,7 @@ function documentsDocumentReadyUploader() {
     }
   });
   $body.on('submit', '#new_document', function() {
-    $('.form_error').removeClass('form_error');
-    $('.too_large').remove();
     document.getElementById('new_document').target = 'upload_target';
-    document.getElementById('upload_target').onload = function() {
-      uploadDone('load-document');
-    }
   });
 }
 
