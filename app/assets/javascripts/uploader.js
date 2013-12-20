@@ -31,6 +31,22 @@ Handles 413 status error, file too large.
 @for UploadCallbacks
 **/
 function uploadDone(selector, callback, errors, fields) {
+  if(callback != undefined) {
+    callback(errors, fields);
+  } else {
+    $('#load-' + selector + ' .barraLoading .loading-internal').data('can-move', false).css('width', '760px');
+    setTimeout(function() {
+      window.location = '/' + selector.replace('-', '_') + 's';
+    }, 500);
+  }
+}
+
+/**
+Handles 413 status error, file too large.
+@method uploadFileTooLarge
+@for UploadCallbacks
+**/
+function uploadFileTooLarge(selector) {
   var ret = document.getElementById('upload_target').contentWindow.document.title;
   if(ret && ret.match(/413/g)) {
     var obj_name = selector.replace('-', '_');
@@ -40,25 +56,7 @@ function uploadDone(selector, callback, errors, fields) {
       url: obj_name + 's/create/fake',
       data: $('#new_' + obj_name).serialize()
     }).always(bindLoader);
-  } else {
-    if(callback != undefined) {
-      callback(errors, fields);
-    } else {
-      top.uploadRedirect(selector);
-    }
   }
-}
-
-/**
-Reloads media elements page after new media element is successfully loaded.
-@method uploadRedirect
-@for UploadCallbacks
-**/
-function uploadRedirect(selector) {
-  $('#load-' + selector + ' .barraLoading .loading-internal').data('can-move', false).css('width', '760px');
-  setTimeout(function() {
-    window.location = '/' + selector.replace('-', '_') + 's';
-  }, 500);
 }
 
 
@@ -112,6 +110,9 @@ function mediaElementLoaderDocumentReady() {
   });
   $body.on('submit', '#new_media_element', function() {
     document.getElementById('new_media_element').target = 'upload_target';
+    document.getElementById('upload_target').onload = function() {
+      uploadFileTooLarge('media-element');
+    }
   });
 }
 
@@ -161,6 +162,9 @@ function documentsDocumentReadyUploader() {
   });
   $body.on('submit', '#new_document', function() {
     document.getElementById('new_document').target = 'upload_target';
+    document.getElementById('upload_target').onload = function() {
+      uploadFileTooLarge('document');
+    }
   });
 }
 
