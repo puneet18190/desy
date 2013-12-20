@@ -30,7 +30,7 @@ Handles 413 status error, file too large.
 @method uploadDone
 @for UploadCallbacks
 **/
-function uploadDone(selector, callback, errors, fields) {
+function uploadDone(selector, errors, fields) {
   if(errors != undefined) {
     top.uploaderErrors(selector, errors, fields);
   } else {
