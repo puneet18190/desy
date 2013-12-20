@@ -120,6 +120,29 @@ class MediaElementsController < ApplicationController
   
   # === Description
   #
+  # This action checks for errors without setting the media on the new element
+  #
+  # === Mode
+  #
+  # Js
+  #
+  def create_fake
+    record = MediaElement.new
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.tags = params[:tags_value]
+    record.user_id = current_user.id
+    record.save_tags = true
+    record.valid?
+    @errors = convert_item_error_messages record.errors
+    @error_fields = []
+    record.errors.messages.keys.each do |f|
+      @error_fields << f.to_s if ![:media, :sti_type].include?(f)
+    end
+  end
+  
+  # === Description
+  #
   # Action that calls the uploader, casts the type, and creates the new element
   #
   # === Mode

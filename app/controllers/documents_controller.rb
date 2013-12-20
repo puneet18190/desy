@@ -78,6 +78,27 @@ class DocumentsController < ApplicationController
   
   # === Description
   #
+  # This action checks for errors without setting the attachment on the new document
+  #
+  # === Mode
+  #
+  # Js
+  #
+  def create_fake
+    record = Document.new
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.user_id = current_user.id
+    record.valid?
+    @errors = convert_item_error_messages record.errors
+    @error_fields = []
+    record.errors.messages.keys.each do |f|
+      @error_fields << f.to_s if f != :attachment
+    end
+  end
+  
+  # === Description
+  #
   # Action that calls the uploader and creates the new document
   #
   # === Mode
