@@ -880,24 +880,15 @@ label.filebutton span input#new_media_element_input {
 
 .barraLoading {
   
-  width: 100%;
+  width: 760px;
   background-color: #fff;
   height: 60px;
   position: relative;
   
   div {
     
-    height: 100%;
-    background-color: $green;
-    width: 0%;
-    
-  }
-  
-  img {
-    
-    position: absolute;
-    top: 0;
-    left: 0;
+    height: 60px;
+    width: 0;
     
   }
   
