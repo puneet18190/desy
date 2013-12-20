@@ -559,7 +559,7 @@ class MediaElement < ActiveRecord::Base
   # Validates the size of the attached file, comparing it to the maximum size configured in megabytes in settings.yml
   def validate_size
     if ( (audio? || video?) && media.try(:value).try(:is_a?, ActionDispatch::Http::UploadedFile) && media.value.tempfile.size > MAX_MEDIA_SIZE ) ||
-       ( image? && media.present? && media.file.size > MAX_MEDIA_SIZE )
+       ( media.present? && media.file.size > MAX_MEDIA_SIZE )
       errors.add(:media, :too_large)
     end
   end
