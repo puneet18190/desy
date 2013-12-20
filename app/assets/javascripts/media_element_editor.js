@@ -69,6 +69,48 @@ function submitMediaElementEditorCacheForm(form) {
 
 
 /**
+Function that checks the conversion of the unconverted media elements in the page.
+@method mediaElementLoaderConversionOverview
+@for MediaElementEditorConversion
+@param list {Array} list of media elements that are being checked
+@param time {Number} time to iterate the loop
+**/
+function mediaElementLoaderConversionOverview(list, time) {
+  $('._media_element_item._disabled').each(function() {
+    var my_id = $(this).find('._Image_button_preview, ._Audio_button_preview, ._Video_button_preview').data('clickparam');
+    if(list.indexOf(my_id) == -1) {
+      list.push(my_id);
+    }
+  });
+  var black_list = $('#info_container').data('media-elements-not-anymore-in-conversion');
+  for(var i = 0; i < black_list.length; i ++) {
+    var j = list.indexOf(black_list[i]);
+    list.splice(j, 1);
+  }
+  if(list.length > 0) {
+    var ajax_url = '/media_elements/conversion/check?';
+    for(var i = 0; i < list.length; i ++) {
+      ajax_url += ('me' + list[i] + '=true');
+      if(i != list.length - 1) {
+        ajax_url += '&';
+      }
+    }
+    unbindLoader();
+    $.ajax({
+      url: ajax_url,
+      type: 'get'
+    }).always(bindLoader);
+  }
+  setTimeout(function() {
+    mediaElementLoaderConversionOverview(list, time);
+  }, time);
+}
+
+
+
+
+
+/**
 Initializes the placeholder of the <b>commit forms</b> used in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "image-editor"}}{{/crossLinkModule}} and {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}.
 @method mediaElementEditorDocumentReady
 @for MediaElementEditorDocumentReady
