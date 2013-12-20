@@ -202,7 +202,7 @@ Update form fields with error labels.
 function uploaderErrorsMediaElements(errors, fields) {
   var item = $('#load-media-element');
   item.find('.barraLoading .loading-internal').data('can-move', false).css('width', '0px');
-  item.find('#new_document_submit').removeClass('disabled');
+  item.find('#new_media_element_submit').removeClass('disabled');
   item.find('._close').removeClass('disabled');
 
 console.log(errors);
