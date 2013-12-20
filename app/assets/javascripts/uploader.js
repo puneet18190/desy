@@ -171,6 +171,10 @@ Update form fields with error labels.
 @param errors {Array} errors list
 **/
 function uploaderErrorsDocuments(errors, fields) {
+  var item = $('#load-documents');
+  item.find('.barraLoading .loading-internal').data('can-move', false).css('width', '0px');
+  item.find('#new_document_submit').removeClass('disabled');
+  item.find('._close').removeClass('disabled');
 
 console.log(errors);
 console.log(fields);
@@ -196,6 +200,10 @@ Update form fields with error labels.
 @param errors {Array} errors list
 **/
 function uploaderErrorsMediaElements(errors, fields) {
+  var item = $('#load-documents');
+  item.find('.barraLoading .loading-internal').data('can-move', false).css('width', '0px');
+  item.find('#new_document_submit').removeClass('disabled');
+  item.find('._close').removeClass('disabled');
 
 console.log(errors);
 console.log(fields);
