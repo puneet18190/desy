@@ -7,16 +7,10 @@ Javascript functions used in the media element and document loader.
 
 
 
-
-
-
-
-
-
 /**
 Initializer for the loading form.
 @method mediaElementLoaderDocumentReady
-@for MediaElementLoaderDocumentReady
+@for UploaderDocumentReady
 **/
 function mediaElementLoaderDocumentReady() {
   $body.on('click', '._load_media_element', function(e) {
@@ -51,7 +45,72 @@ function mediaElementLoaderDocumentReady() {
       $('#load-media-element #description_placeholder').attr('value', '0');
     }
   });
+  $body.on('submit', '#new_media_element', function() {
+    $('.form_error').removeClass('form_error');
+    $('.too_large').remove();
+    document.getElementById('new_media_element').target = 'upload_target';
+    document.getElementById('upload_target').onload = uploadDone;
+  });
 }
+
+/**
+Initializer for the loading form.
+@method documentsDocumentReadyUploader
+@for UploaderDocumentReady
+**/
+function documentsDocumentReadyUploader() {
+  $body.on('click', '._load_document', function() {
+    showLoadDocumentPopUp();
+  });
+  $body.on('change', 'input#new_document_input', function() {
+    var file_name = $(this).val().replace("C:\\fakepath\\", '');
+    if(file_name.length > 20) {
+      file_name = file_name.substring(0, 20) + '...';
+    }
+    $('#document_attachment_show').text(file_name);
+  });
+  $body.on('click', '#load-document ._close', function() {
+    closePopUp('load-document');
+  })
+  $body.on('click', '#new_document_submit', function() {
+    $('input,textarea').removeClass('form_error');
+    $('.barraLoading img').show();
+    $('.barraLoading img').attr('src', '/assets/loadingBar-document.gif');
+    $(this).closest('#new_document').submit();
+  });
+  $body.on('focus', '#load-document #title', function() {
+    if($('#load-document #title_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#load-document #title_placeholder').attr('value', '0');
+    }
+  });
+  $body.on('focus', '#load-document #description', function() {
+    if($('#load-document #description_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#load-document #description_placeholder').attr('value', '0');
+    }
+  });
+  $body.on('submit', '#new_document', function() {
+    $('.form_error').removeClass('form_error');
+    $('.too_large').remove();
+    document.getElementById('new_document').target = 'upload_doc_target';
+    document.getElementById('upload_doc_target').onload = uploadDocumentDone;
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -86,10 +145,6 @@ function uploadMediaElementLoaderDoneRedirect() {
   window.location = '/media_elements';
 }
 
-
-
-
-
 /**
 Update form fields with error labels.
 @method uploadMediaElementLoaderError
@@ -115,24 +170,6 @@ function uploadMediaElementLoaderError(errors) {
   $('.barraLoading img').attr('src', '');
 }
 
-
-
-
-
-/**
-Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.
-@method initMediaElementLoader
-@for MediaElementLoaderGeneral
-**/
-function initMediaElementLoader() {
-  document.getElementById('new_media_element').onsubmit = function() {
-    $('.form_error').removeClass('form_error');
-    $('.too_large').remove();
-    document.getElementById('new_media_element').target = 'upload_target';
-    document.getElementById('upload_target').onload = uploadDone;
-  }
-}
-
 /**
 Resets the media element loading form; used in {{#crossLink "DialogsWithForm/showLoadMediaElementPopUp:method"}}{{/crossLink}}.
 @method resetMediaElementChangeInfo
@@ -152,79 +189,6 @@ function resetMediaElementChangeInfo(media_element_id) {
   });
   container.find('#tags_value').val(container.data('tags'));
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
-Initializer for the loading form.
-@method documentsDocumentReadyUploader
-@for DocumentsDocumentReady
-**/
-function documentsDocumentReadyUploader() {
-  $body.on('click', '._load_document', function() {
-    showLoadDocumentPopUp();
-  });
-  $body.on('change', 'input#new_document_input', function() {
-    var file_name = $(this).val().replace("C:\\fakepath\\", '');
-    if(file_name.length > 20) {
-      file_name = file_name.substring(0, 20) + '...';
-    }
-    $('#document_attachment_show').text(file_name);
-  });
-  $body.on('click', '#load-document ._close', function() {
-    closePopUp('load-document');
-  })
-  $body.on('click', '#new_document_submit', function() {
-    $('input,textarea').removeClass('form_error');
-    $('.barraLoading img').show();
-    $('.barraLoading img').attr('src', '/assets/loadingBar-document.gif');
-    $(this).closest('#new_document').submit();
-  });
-  $body.on('focus', '#load-document #title', function() {
-    if($('#load-document #title_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#load-document #title_placeholder').attr('value', '0');
-    }
-  });
-  $body.on('focus', '#load-document #description', function() {
-    if($('#load-document #description_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#load-document #description_placeholder').attr('value', '0');
-    }
-  });
-}
-
-
-
 
 /**
 Handles 413 status error, file too large.
@@ -275,18 +239,4 @@ function uploadDocumentLoaderError(errors) {
   }
   $('.barraLoading img').hide();
   $('.barraLoading img').attr('src', '');
-}
-
-/**
-Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.
-@method initDocumentLoader
-@for DocumentsUploader
-**/
-function initDocumentLoader() {
-  document.getElementById('new_document').onsubmit = function() {
-    $('.form_error').removeClass('form_error');
-    $('.too_large').remove();
-    document.getElementById('new_document').target = 'upload_doc_target';
-    document.getElementById('upload_doc_target').onload = uploadDocumentDone;
-  }
 }
