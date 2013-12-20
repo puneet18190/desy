@@ -8,9 +8,13 @@ Javascript functions used in the media element and document loader.
 
 
 /**
-Reloads media elements page after new media element is successfully loaded.
+Recursive animation of the loading bar, according to the function h * x / (x + 1). Time is divided by 400 to slow down the animation.
 @method uploadAnimationRecursion
 @for UploadCallbacks
+@param item {Object} the selected loading bar
+@param time {Number} the current time
+@param increment {Number} the increment of time
+@param max_width {Number} the total width in pixels of loading bar
 **/
 function uploadAnimationRecursion(item, time, increment, max_width) {
   if(item.data('can-move')) {
@@ -26,9 +30,12 @@ function uploadAnimationRecursion(item, time, increment, max_width) {
 }
 
 /**
-Handles 413 status error, file too large.
+Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).
 @method uploadDone
 @for UploadCallbacks
+@param selector {String} either 'document' or 'media-element'
+@param errors {Array} an array of strings to be shown on the bottom of the loading popup
+@param fields {Array} an array of fields that must be bordered with red because they correspond to an error
 **/
 function uploadDone(selector, errors, fields) {
   if(errors != undefined) {
@@ -42,10 +49,12 @@ function uploadDone(selector, errors, fields) {
 }
 
 /**
-Update form fields with error labels.
+Handles the errors of loading popup.
 @method uploaderErrors
 @for UploadCallbacks
-@param errors {Array} errors list
+@param selector {String} either 'document' or 'media-element'
+@param errors {Array} an array of strings to be shown on the bottom of the loading popup
+@param fields {Array} an array of fields that must be bordered with red because they correspond to an error
 **/
 function uploaderErrors(selector, errors, fields) {
   var obj_name = selector.replace('-', '_');
@@ -81,6 +90,7 @@ function uploaderErrors(selector, errors, fields) {
 Handles 413 status error, file too large.
 @method uploadFileTooLarge
 @for UploadCallbacks
+@param selector {String} either 'document' or 'media-element'
 **/
 function uploadFileTooLarge(selector) {
   var ret = document.getElementById('upload_target').contentWindow.document.title;
