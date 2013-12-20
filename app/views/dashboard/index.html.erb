@@ -1,6 +1,6 @@
 <% desy = SETTINGS['application_name'] %>
-<%= render :partial => 'media_elements/new_form_popup', :locals => {:load_now => false} %>
-<%= render :partial => 'documents/new_form_popup', :locals => {:load_now => false} %>
+<%= render :partial => 'media_elements/new_form_popup' %>
+<%= render :partial => 'documents/new_form_popup' %>
 <div id="dashboard_container" data-lessons-expanded="false" data-media-elements-expanded="false" data-lessons-in-space="0" data-media-elements-in-space="0">
   <div class="title_lessons">
     <div class="icon"></div>
@@ -118,10 +118,3 @@
 </div>
 <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
 <br class="clearfloat"/>
-
-<script>
-  $(document).ready(function() {
-    initDocumentLoader();
-    initMediaElementLoader();
-  });
-</script>
