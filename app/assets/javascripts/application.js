@@ -40,12 +40,12 @@
 //= require lesson_editor
 //= require lesson_viewer
 //= require media_element_editor
-//= require media_element_loader
 //= require notifications
 //= require players
 //= require profile
 //= require search
 //= require tags
+//= require uploader
 //= require video_editor
 //= require virtual_classroom
 
