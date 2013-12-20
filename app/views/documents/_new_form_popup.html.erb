@@ -2,13 +2,10 @@
   title_max = t('documents.title_placeholder', :num => t('language_parameters.document.length_title').to_s).downcase
   description_max = t('documents.description_placeholder', :num => t('language_parameters.document.length_description').to_s).downcase
 %>
-
 <div id="load-document" class="documentInfoPopUp" style="display:none" data-placeholder-description="<%= description_max %>" data-placeholder-title="<%= title_max %>" data-attachment-too-large="<%= t('documents.upload_form.attachment_too_large') %>" data-placeholder-attachment="<%= t('documents.upload_form.attachment_placeholder').downcase %>">
   <div class="documentPopUpContainer uploadDocuments">
     <div class="ChangeInfoContainerLoading">
-      
       <%= form_tag documents_path, :method => :post, :id => 'new_document', :class => 'formModifyInfo', :multipart => true do %>
-        
         <div class="cols fltlft" style="width:300px">
           <div id="document_attachment_show" class="fk_carica_elemento_file fltrt" style="color:white"></div>
           <label class="filebutton">
@@ -37,11 +34,8 @@
           </div>
         </div>
       <% end %>
-      
     </div>
   </div>
-  
-  <div class="barraLoading" style="overflow:hidden;">
+  <div class="barraLoading">
   </div>
-  
 </div>
