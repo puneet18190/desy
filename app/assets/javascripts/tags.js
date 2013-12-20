@@ -210,7 +210,7 @@ function tagsDocumentReadyChangeMediaElementInfo() {
 }
 
 /**
-Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink "DialogsWithForm/showLoadMediaElementPopUp:method"}}{{/crossLink}} and the module {{#crossLinkModule "media-element-loader"}}{{/crossLinkModule}}).
+Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink "DialogsWithForm/showLoadMediaElementPopUp:method"}}{{/crossLink}} and the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}).
 @method tagsDocumentReadyMediaElementLoader
 @for TagsDocumentReady
 **/

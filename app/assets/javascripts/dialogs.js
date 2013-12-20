@@ -344,7 +344,42 @@ function showLessonNotificationPopUp(lesson_id) {
 }
 
 /**
-Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule "media-element-loader"}}{{/crossLinkModule}}.
+Dialog containing the form to upload a new document. This function interacts with the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}.
+@method showLoadDocumentPopUp
+@for DialogsWithForm
+**/
+function showLoadDocumentPopUp() {
+  var obj = $('#load-document');
+  if(obj.data('dialog')) {
+    obj.dialog('open');
+  } else {
+    obj.show();
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      draggable: false,
+      width: 760,
+      show: 'fade',
+      hide: {effect: 'fade'},
+      open: function(event, ui) {
+        $('#load-document input').blur();
+        $('#load-document #title').val($('#load-document').data('placeholder-title'));
+        $('#load-document #description').val($('#load-document').data('placeholder-description'));
+        $('#load-document #title_placeholder').val('');
+        $('#load-document #description_placeholder').val('');
+        $('#document_attachment_show').text($('#load-document').data('placeholder-attachment'));
+        $('#load-document .form_error').removeClass('form_error');
+        $('#new_document_input').val('');
+      },
+      close: function() {
+        $('#load-document iframe').attr('src', 'about:blank');
+      }
+    });
+  }
+}
+
+/**
+Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}.
 @method showLoadMediaElementPopUp
 @for DialogsWithForm
 **/
