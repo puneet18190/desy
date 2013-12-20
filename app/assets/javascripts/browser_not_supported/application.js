@@ -4,8 +4,8 @@ Browser supoprt checking functions
 **/
 
 /**
-Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML. The supported browsers version is implemented {{#crossLink "GeneralMiscellanea/browserSupport:method"}}here{{/crossLink}}
-@method browserSupport
+Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML.
+@method browserSupportMain
 @for BrowserSupportMain
 **/
 function browserSupport() {

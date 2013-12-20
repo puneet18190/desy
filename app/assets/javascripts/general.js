@@ -384,7 +384,7 @@ function secondsToDateString(seconds) {
 }
 
 /**
-Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink "BrowserSupportMain/browserSupport:method"}}here{{/crossLink}}
+Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink "BrowserSupportMain/browserSupport:method"}}{{/crossLink}}
 @method browserSupport
 @for GeneralMiscellanea
 **/

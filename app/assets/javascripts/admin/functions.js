@@ -47,6 +47,19 @@ function initNotificationsAutocomplete() {
 
 
 /**
+Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink "BrowserSupportMain/browserSupport:method"}}{{/crossLink}}
+@method adminBrowserSupport
+@for AdminBrowserSupport
+**/
+function browserSupport() {
+  // no-op
+}
+
+
+
+
+
+/**
 Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.
 @method openAndLoadNextTr
 @for AdminCollapsed
@@ -509,13 +522,4 @@ function adminUsersDocumentReady() {
       type: 'put'
     });
   });
-}
-
-/**
-Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink "BrowserSupportMain/browserSupport:method"}}here{{/crossLink}}
-@method adminBrowserSupport
-@for browserSupport
-**/
-function browserSupport() {
-  // no-op
 }

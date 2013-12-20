@@ -14,9 +14,9 @@
             "classes": {},
             "fors": {
                 "AdminAutocomplete": 1,
+                "AdminBrowserSupport": 1,
                 "AdminCollapsed": 1,
-                "AdminDocumentReady": 1,
-                "browserSupport": 1
+                "AdminDocumentReady": 1
             },
             "namespaces": {}
         },
@@ -335,15 +335,15 @@
             "submodules": {},
             "classes": {
                 "AdminAutocomplete": 1,
+                "AdminBrowserSupport": 1,
                 "AdminCollapsed": 1,
-                "AdminDocumentReady": 1,
-                "browserSupport": 1
+                "AdminDocumentReady": 1
             },
             "fors": {
                 "AdminAutocomplete": 1,
+                "AdminBrowserSupport": 1,
                 "AdminCollapsed": 1,
-                "AdminDocumentReady": 1,
-                "browserSupport": 1
+                "AdminDocumentReady": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -826,6 +826,17 @@
             "module": "admin",
             "namespace": ""
         },
+        "AdminBrowserSupport": {
+            "name": "AdminBrowserSupport",
+            "shortname": "AdminBrowserSupport",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "admin",
+            "namespace": ""
+        },
         "AdminCollapsed": {
             "name": "AdminCollapsed",
             "shortname": "AdminCollapsed",
@@ -840,17 +851,6 @@
         "AdminDocumentReady": {
             "name": "AdminDocumentReady",
             "shortname": "AdminDocumentReady",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "admin",
-            "namespace": ""
-        },
-        "browserSupport": {
-            "name": "browserSupport",
-            "shortname": "browserSupport",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1841,6 +1841,15 @@
         {
             "file": "app/assets/javascripts/admin/functions.js",
             "line": 49,
+            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}{{/crossLink}}",
+            "itemtype": "method",
+            "name": "adminBrowserSupport",
+            "class": "AdminBrowserSupport",
+            "module": "admin"
+        },
+        {
+            "file": "app/assets/javascripts/admin/functions.js",
+            "line": 62,
             "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
             "itemtype": "method",
             "name": "openAndLoadNextTr",
@@ -1856,7 +1865,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 72,
+            "line": 85,
             "description": "Initializes the browser classes in the tag html. Same functionality as {{#crossLink \"GeneralDocumentReady/browsersDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminBrowsersDocumentReady",
@@ -1865,7 +1874,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 89,
+            "line": 102,
             "description": "Initializes the effects of collapse and change date.",
             "itemtype": "method",
             "name": "adminEffectsDocumentReady",
@@ -1874,7 +1883,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 148,
+            "line": 161,
             "description": "Initializes the locations filling. See similar {{#crossLink \"GeneralDocumentReady/locationsDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminLocationsDocumentReady",
@@ -1883,7 +1892,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 262,
+            "line": 275,
             "description": "Initializes effects for MediaElement.",
             "itemtype": "method",
             "name": "adminMediaElementsDocumentReady",
@@ -1892,7 +1901,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 349,
+            "line": 362,
             "description": "Initializes actions for less important tables, such as Tag, Subject, SchoolLevel",
             "itemtype": "method",
             "name": "adminMiscellaneaDocumentReady",
@@ -1901,7 +1910,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 389,
+            "line": 402,
             "description": "Initializes effects for the administration search engine.",
             "itemtype": "method",
             "name": "adminSearchDocumentReady",
@@ -1910,7 +1919,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 450,
+            "line": 463,
             "description": "Initializes effects for sorting in administration search engine.",
             "itemtype": "method",
             "name": "adminSortingDocumentReady",
@@ -1919,7 +1928,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 494,
+            "line": 507,
             "description": "Initializes effects for User.",
             "itemtype": "method",
             "name": "adminUsersDocumentReady",
@@ -1927,20 +1936,11 @@
             "module": "admin"
         },
         {
-            "file": "app/assets/javascripts/admin/functions.js",
-            "line": 514,
-            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}here{{/crossLink}}",
-            "itemtype": "method",
-            "name": "adminBrowserSupport",
-            "class": "browserSupport",
-            "module": "admin"
-        },
-        {
             "file": "app/assets/javascripts/browser_not_supported/application.js",
             "line": 6,
-            "description": "Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML. The supported browsers version is implemented {{#crossLink \"GeneralMiscellanea/browserSupport:method\"}}here{{/crossLink}}",
+            "description": "Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML.",
             "itemtype": "method",
-            "name": "browserSupport",
+            "name": "browserSupportMain",
             "class": "BrowserSupportMain",
             "module": "browser-support"
         },
@@ -3768,7 +3768,7 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 386,
-            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}here{{/crossLink}}",
+            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "browserSupport",
             "class": "GeneralMiscellanea",

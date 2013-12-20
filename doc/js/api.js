@@ -2,6 +2,7 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "AdminAutocomplete",
+        "AdminBrowserSupport",
         "AdminCollapsed",
         "AdminDocumentReady",
         "AjaxLoaderBinder",
@@ -91,8 +92,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "VirtualClassroomDocumentReady",
         "VirtualClassroomJavaScriptAnimations",
         "VirtualClassroomMultipleLoading",
-        "VirtualClassroomSendLink",
-        "browserSupport"
+        "VirtualClassroomSendLink"
     ],
     "modules": [
         "admin",
