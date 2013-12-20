@@ -13,12 +13,16 @@ Reloads media elements page after new media element is successfully loaded.
 @for UploadCallbacks
 **/
 function uploadAnimationRecursion(item, time, increment, max_width) {
-  var reduced_time = time / 400;
-  var current_width = max_width * reduced_time / (reduced_time + 1);
-  item.css('width', (current_width + 'px'));
-  setTimeout(function() {
-    uploadAnimationRecursion(item, (time + increment), increment, max_width)
-  }, increment);
+  if(item.data('can-move')) {
+    var reduced_time = time / 400;
+    var current_width = max_width * reduced_time / (reduced_time + 1);
+    item.css('width', (current_width + 'px'));
+    setTimeout(function() {
+      uploadAnimationRecursion(item, (time + increment), increment, max_width)
+    }, increment);
+  } else {
+    item.data('can-move', true);
+  }
 }
 
 /**
@@ -47,8 +51,10 @@ Reloads media elements page after new media element is successfully loaded.
 @for UploadCallbacks
 **/
 function uploadRedirect(selector) {
-  // TODO colorare tutta la barra e stoppare l'animazione
-  window.location = '/' + selector.replace('load-', '').replace('-', '_') + 's';
+  $('#load-' + selector + ' .barraLoading .loading-internal').data('can-move', false).css('width', '760px');
+  setTimeout(function() {
+    window.location = '/' + selector.replace('load-', '').replace('-', '_') + 's';
+  }, 500);
 }
 
 
