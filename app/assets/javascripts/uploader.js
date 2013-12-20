@@ -13,13 +13,19 @@ Handles 413 status error, file too large.
 @for UploadCallbacks
 @return {Boolean} false, for some reason
 **/
-function uploadDone(selector) {
+function uploadDone(selector, callback, errors, fields) {
   var ret = document.getElementById('upload_target').contentWindow.document.title;
   if(ret && ret.match(/413/g)) {
     // TODO metti messaggio $('#load-' + selector).data('media-file-too-large')
     // TODO metti in rosso il campo del  file
+    // TODO fai chiamata al server per beccare gli altri errori
+  } else {
+    if(callback != undefined) {
+      callback(errors, fields);
+    } else {
+      uploadRedirect(selector);
+    }
   }
-  return false;
 }
 
 /**
