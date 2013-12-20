@@ -227,7 +227,7 @@ function uploaderErrorsMediaElements(errors, fields) {
   for(var i = 0; i < fields.length; i++) {
     if(fields[i] == 'media') {
       $('#load-media-element #media_element_media_show').addClass('form_error');
-    } else if(error == 'tags') {
+    } else if(fields[i] == 'tags') {
       $('#load-media-element ._tags_container').addClass('form_error');
     } else {
       $('#load-media-element #' + fields[i]).addClass('form_error');
