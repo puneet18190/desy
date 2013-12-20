@@ -73,12 +73,20 @@ function mediaElementLoaderDocumentReady() {
     $('#media_element_media_show').text(file_name);
   });
   $body.on('click', '#load-media-element ._close', function() {
-    closePopUp('load-media-element');
+    if(!$(this).hasClass('disabled')) {
+      closePopUp('load-media-element');
+    }
   })
-  $body.on('click', '#new_media_element_submit', function() {
-    $('input, textarea').removeClass('form_error');
-    uploadAnimationRecursion($('#load-media-element .barraLoading .loading-internal'), 0, 5, 760);
-    $(this).closest('#new_media_element').submit();
+  $body.on('click', '#new_media_element_submit', function(e) {
+    if(!$(this).hasClass('disabled')) {
+      $(this).addClass('disabled');
+      $('#load-media-element ._close').addClass('disabled');
+      $('input, textarea').removeClass('form_error');
+      uploadAnimationRecursion($('#load-media-element .barraLoading .loading-internal'), 0, 5, 760);
+      $(this).closest('#new_media_element').submit();
+    } else {
+      e.preventDefault();
+    }
   });
   $body.on('focus', '#load-media-element #title', function() {
     if($('#load-media-element #title_placeholder').val() == '') {
@@ -114,12 +122,20 @@ function documentsDocumentReadyUploader() {
     $('#document_attachment_show').text(file_name);
   });
   $body.on('click', '#load-document ._close', function() {
-    closePopUp('load-document');
+    if(!$(this).hasClass('disabled')) {
+      closePopUp('load-document');
+    }
   })
-  $body.on('click', '#new_document_submit', function() {
-    $('input,textarea').removeClass('form_error');
-    uploadAnimationRecursion($('#load-document .barraLoading .loading-internal'), 0, 5, 760);
-    $(this).closest('#new_document').submit();
+  $body.on('click', '#new_document_submit', function(e) {
+    if(!$(this).hasClass('disabled')) {
+      $(this).addClass('disabled');
+      $('#load-document ._close').addClass('disabled');
+      $('input,textarea').removeClass('form_error');
+      uploadAnimationRecursion($('#load-document .barraLoading .loading-internal'), 0, 5, 760);
+      $(this).closest('#new_document').submit();
+    } else {
+      e.preventDefault();
+    }
   });
   $body.on('focus', '#load-document #title', function() {
     if($('#load-document #title_placeholder').val() == '') {

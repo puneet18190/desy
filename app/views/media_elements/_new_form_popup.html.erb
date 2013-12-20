@@ -34,8 +34,14 @@
           </div>
           <br>
           <div class="fltrt lower">
-            <div class="fltlft" style="margin-top:5px"><a class="_close buttonForm"><%= t('forms.upload_media_element.cancel') %></a></div> 
-            <div class="fltrt"><%= submit_tag t('forms.upload_media_element.done').downcase, :id => 'new_media_element_submit', :style => 'padding:0px;' %></div>
+            <div class="fltlft" style="margin-top:5px">
+              <a class="_close buttonForm">
+                <%= t('forms.upload_media_element.cancel') %>
+              </a>
+            </div>
+            <div class="fltrt">
+              <%= submit_tag t('forms.upload_media_element.done').downcase, :id => 'new_media_element_submit', :style => 'padding:0px' %>
+            </div>
           </div>
         </div>
       <% end %>
