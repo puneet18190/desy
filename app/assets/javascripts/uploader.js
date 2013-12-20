@@ -77,7 +77,7 @@ function mediaElementLoaderDocumentReady() {
   })
   $body.on('click', '#new_media_element_submit', function() {
     $('input, textarea').removeClass('form_error');
-    // TODO far partire l'animazione della barra colorata
+    uploadAnimationRecursion($('#load-media-element .barraLoading .loading-internal'), 0, 5, 760);
     $(this).closest('#new_media_element').submit();
   });
   $body.on('focus', '#load-media-element #title', function() {
@@ -123,7 +123,7 @@ function documentsDocumentReadyUploader() {
   })
   $body.on('click', '#new_document_submit', function() {
     $('input,textarea').removeClass('form_error');
-    // TODO far partire l'animazione della barra colorata
+    uploadAnimationRecursion($('#load-document .barraLoading .loading-internal'), 0, 5, 760);
     $(this).closest('#new_document').submit();
   });
   $body.on('focus', '#load-document #title', function() {
