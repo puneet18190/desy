@@ -171,26 +171,6 @@ function uploadMediaElementLoaderError(errors) {
 }
 
 /**
-Resets the media element loading form; used in {{#crossLink "DialogsWithForm/showLoadMediaElementPopUp:method"}}{{/crossLink}}.
-@method resetMediaElementChangeInfo
-@for MediaElementLoaderGeneral
-@param media_element_id {Number} id of the element in the database, used to extract the HTML id
-**/
-function resetMediaElementChangeInfo(media_element_id) {
-  var container = $('#dialog-media-element-' + media_element_id + ' ._change_info_container');
-  container.find('#title').val(container.data('title'));
-  container.find('#description').val(container.data('description'));
-  container.find('.form_error').removeClass('form_error');
-  container.find('._error_messages').html('');
-  container.find('._tags_container span').remove();
-  container.find('._tags_placeholder span').each(function() {
-    var copy = $(this)[0].outerHTML;
-    container.find('._tags_container').prepend(copy);
-  });
-  container.find('#tags_value').val(container.data('tags'));
-}
-
-/**
 Handles 413 status error, file too large.
 @method uploadDocumentDone
 @for DocumentsUploader

@@ -417,7 +417,7 @@ function showLoadMediaElementPopUp() {
 }
 
 /**
-Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink "MediaElementLoaderGeneral/resetMediaElementChangeInfo:method"}}{{/crossLink}}).
+Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink "MediaElementEditorForms/resetMediaElementChangeInfo:method"}}{{/crossLink}}).
 @method showMediaElementInfoPopUp
 @for DialogsWithForm
 @param media_element_id {Number} id in the database of the media element

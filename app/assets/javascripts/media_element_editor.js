@@ -157,6 +157,26 @@ function mediaElementEditorDocumentReady() {
 
 
 /**
+Resets the media element loading form; used in {{#crossLink "DialogsWithForm/showLoadMediaElementPopUp:method"}}{{/crossLink}}.
+@method resetMediaElementChangeInfo
+@for MediaElementEditorForms
+@param media_element_id {Number} id of the element in the database, used to extract the HTML id
+**/
+function resetMediaElementChangeInfo(media_element_id) {
+  var container = $('#dialog-media-element-' + media_element_id + ' ._change_info_container');
+  container.find('#title').val(container.data('title'));
+  container.find('#description').val(container.data('description'));
+  container.find('.form_error').removeClass('form_error');
+  container.find('._error_messages').html('');
+  container.find('._tags_container span').remove();
+  container.find('._tags_placeholder span').each(function() {
+    var copy = $(this)[0].outerHTML;
+    container.find('._tags_container').prepend(copy);
+  });
+  container.find('#tags_value').val(container.data('tags'));
+}
+
+/**
 Resets the <b>commit forms</b> used in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "image-editor"}}{{/crossLinkModule}} and {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink "AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method"}}{{/crossLink}}, {{#crossLink "ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method"}}{{/crossLink}} and {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method"}}{{/crossLink}}).
 @method resetMediaElementEditorForms
 @for MediaElementEditorForms
