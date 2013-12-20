@@ -33,9 +33,13 @@ Handles 413 status error, file too large.
 function uploadDone(selector, callback, errors, fields) {
   var ret = document.getElementById('upload_target').contentWindow.document.title;
   if(ret && ret.match(/413/g)) {
-    // TODO metti messaggio $('#load-' + selector).data('media-file-too-large')
-    // TODO metti in rosso il campo del  file
-    // TODO fai chiamata al server per beccare gli altri errori
+    var obj_name = selector.replace('-', '_');
+    unbindLoader();
+    $.ajax({
+      type: 'get',
+      url: obj_name + 's/create/fake'
+      data: $('#new_' + obj_name).serialize()
+    }).always(bindLoader);
   } else {
     if(callback != undefined) {
       callback(errors, fields);
@@ -53,7 +57,7 @@ Reloads media elements page after new media element is successfully loaded.
 function uploadRedirect(selector) {
   $('#load-' + selector + ' .barraLoading .loading-internal').data('can-move', false).css('width', '760px');
   setTimeout(function() {
-    window.location = '/' + selector.replace('load-', '').replace('-', '_') + 's';
+    window.location = '/' + selector.replace('-', '_') + 's';
   }, 500);
 }
 

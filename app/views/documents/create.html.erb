@@ -1,9 +1,9 @@
 <script>
   window.onload = function() {
     <% if @errors %>
-      top.uploadDone('load-document', top.uploaderErrorsDocuments, <%= @errors.to_json.html_safe %>, <%= @error_fields.to_json.html_safe %>);
+      top.uploadDone('document', top.uploaderErrorsDocuments, <%= @errors.to_json.html_safe %>, <%= @error_fields.to_json.html_safe %>);
     <% else %>
-      top.uploadDone('load-document');
+      top.uploadDone('document');
     <% end %>
   }
 </script>

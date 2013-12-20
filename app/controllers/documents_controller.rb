@@ -90,11 +90,12 @@ class DocumentsController < ApplicationController
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
     record.user_id = current_user.id
     record.valid?
-    @errors = convert_item_error_messages record.errors
+    @errors = convert_item_error_messages(record.errors) + [t('documents.upload_form.attachment_too_large')] # TODO traduzz
     @error_fields = []
     record.errors.messages.keys.each do |f|
       @error_fields << f.to_s if f != :attachment
     end
+    @error_fields << :attachment
   end
   
   # === Description
