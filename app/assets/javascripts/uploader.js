@@ -31,13 +31,49 @@ Handles 413 status error, file too large.
 @for UploadCallbacks
 **/
 function uploadDone(selector, callback, errors, fields) {
-  if(callback != undefined) {
-    callback(errors, fields);
+  if(errors != undefined) {
+    top.uploaderErrors(selector, errors, fields);
   } else {
     $('#load-' + selector + ' .barraLoading .loading-internal').data('can-move', false).css('width', '760px');
     setTimeout(function() {
       window.location = '/' + selector.replace('-', '_') + 's';
     }, 500);
+  }
+}
+
+/**
+Update form fields with error labels.
+@method uploaderErrors
+@for UploadCallbacks
+@param errors {Array} errors list
+**/
+function uploaderErrors(selector, errors, fields) {
+  var obj_name = selector.replace('-', '_');
+  var item = $('#load-' + selector);
+  var loading = item.find('.barraLoading');
+  loading.find('.loading-internal').data('can-move', false).css('width', '0px');
+  item.find('#new_' + obj_name + '_submit').removeClass('disabled');
+  item.find('._close').removeClass('disabled');
+  loading.append('<img class="appended" src="/assets/puntoesclamativo.png" />');
+  errors_appended = '';
+  for(var i = 0; i < errors.length; i++) {
+    if(i == errors.length - 1) {
+      errors_appended += (errors[i] + '');
+    } else {
+      errors_appended += (errors[i] + '; ');
+    }
+  }
+  loading.append('<span class="lower appended">' + errors_appended + '</span>');
+  for(var i = 0; i < fields.length; i++) {
+    if(fields[i] == 'media') {
+      item.find('#media_element_media_show').addClass('form_error');
+    } else if(fields[i] == 'tags') {
+      item.find('._tags_container').addClass('form_error');
+    } else if(fields[i] == 'attachment') {
+      item.find('#document_attachment_show').addClass('form_error');
+    } else {
+      item.find('#' + fields[i]).addClass('form_error');
+    }
   }
 }
 
@@ -165,72 +201,4 @@ function documentsDocumentReadyUploader() {
       uploadFileTooLarge('document');
     }
   });
-}
-
-
-
-
-
-/**
-Update form fields with error labels.
-@method uploaderErrorsDocuments
-@for UploaderErrors
-@param errors {Array} errors list
-**/
-function uploaderErrorsDocuments(errors, fields) {
-  var item = $('#load-document');
-  var loading = item.find('.barraLoading');
-  loading.find('.loading-internal').data('can-move', false).css('width', '0px');
-  item.find('#new_document_submit').removeClass('disabled');
-  item.find('._close').removeClass('disabled');
-  loading.append('<img class="appended" src="/assets/puntoesclamativo.png" />');
-  errors_appended = '';
-  for(var i = 0; i < errors.length; i++) {
-    if(i == errors.length - 1) {
-      errors_appended += (errors[i] + '');
-    } else {
-      errors_appended += (errors[i] + '; ');
-    }
-  }
-  loading.append('<span class="lower appended">' + errors_appended + '</span>');
-  for(var i = 0; i < fields.length; i++) {
-    if(fields[i] == 'attachment') {
-      $('#load-document #document_attachment_show').addClass('form_error');
-    } else {
-      $('#load-document #' + fields[i]).addClass('form_error');
-    }
-  }
-}
-
-/**
-Update form fields with error labels.
-@method uploaderErrorsMediaElements
-@for UploaderErrors
-@param errors {Array} errors list
-**/
-function uploaderErrorsMediaElements(errors, fields) {
-  var item = $('#load-media-element');
-  var loading = item.find('.barraLoading');
-  loading.find('.loading-internal').data('can-move', false).css('width', '0px');
-  item.find('#new_media_element_submit').removeClass('disabled');
-  item.find('._close').removeClass('disabled');
-  loading.append('<img class="appended" src="/assets/puntoesclamativo.png" />');
-  errors_appended = '';
-  for(var i = 0; i < errors.length; i++) {
-    if(i == errors.length - 1) {
-      errors_appended += (errors[i] + '');
-    } else {
-      errors_appended += (errors[i] + '; ');
-    }
-  }
-  loading.append('<span class="lower appended">' + errors_appended + '</span>');
-  for(var i = 0; i < fields.length; i++) {
-    if(fields[i] == 'media') {
-      $('#load-media-element #media_element_media_show').addClass('form_error');
-    } else if(fields[i] == 'tags') {
-      $('#load-media-element ._tags_container').addClass('form_error');
-    } else {
-      $('#load-media-element #' + fields[i]).addClass('form_error');
-    }
-  }
 }
