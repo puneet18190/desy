@@ -93,8 +93,8 @@ function documentsDocumentReadyUploader() {
   $body.on('submit', '#new_document', function() {
     $('.form_error').removeClass('form_error');
     $('.too_large').remove();
-    document.getElementById('new_document').target = 'upload_doc_target';
-    document.getElementById('upload_doc_target').onload = uploadDocumentDone;
+    document.getElementById('new_document').target = 'upload_target';
+    document.getElementById('upload_target').onload = uploadDocumentDone;
   });
 }
 
@@ -177,8 +177,8 @@ Handles 413 status error, file too large.
 @return {Boolean} false, for some reason
 **/
 function uploadDocumentDone() {
-  $('#upload_doc_target').css('height', '60px');
-  var ret = document.getElementById('upload_doc_target').contentWindow.document.title;
+  $('#upload_target').css('height', '60px');
+  var ret = document.getElementById('upload_target').contentWindow.document.title;
   if(ret && ret.match(/413/g)) {
     $('.barraLoading img').hide();
     $('iframe').before('<p class="too_large" style="padding: 20px 0 0 40px;"><img src="/assets/puntoesclamativo.png" style="margin: 20px 5px 0 20px;"><span class="lower" style="color:black">' + $('#load-document').data('attachment-too-large') + '</span></p>');
