@@ -1,37 +1,10 @@
-<style>
-  *{
-    margin: 0;
-    padding: 0;
-    color: white;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
+<script>
+  window.onload = function() {
+    <% if @errors %>
+      top.uploaderErrorsDocuments(<%= @errors.to_json.html_safe %>, <%= @error_fields.to_json.html_safe %>);
+    <% else %>
+      top.uploadRedirect('load-document');
+    <% end %>
+    top.uploadDone('load-document');
   }
-  .lower {
-    text-transform: lowercase;
-  }
-</style>
-
-<% if @errors %>
-  
-  <p style="padding: 20px 0 0 20px;"><%= standard_form_error_messages(@errors, 'black') %></p>
-  <script>
-    
-    window.onload = function() {
-      top.uploadDocumentLoaderError(<%= @error_fields.to_json.html_safe %>);
-      if(top.uploadDocumentDone) top.uploadDocumentDone();
-    }
-    
-  </script>
-  
-<% else %>
-  
-  <script>
-    
-    window.onload = function() {
-      top.uploadDocumentLoaderDoneRedirect();
-      if(top.uploadDocumentDone) top.uploadDocumentDone();
-    }
-    
-  </script>
-  
-<% end %>
+</script>

@@ -8,6 +8,38 @@ Javascript functions used in the media element and document loader.
 
 
 /**
+Handles 413 status error, file too large.
+@method uploadDone
+@for UploadCallbacks
+@return {Boolean} false, for some reason
+**/
+function uploadDone(selector) {
+  var ret = document.getElementById('upload_target').contentWindow.document.title;
+  if(ret && ret.match(/413/g)) {
+    $('.barraLoading img').hide();
+    $('iframe').before('<p class="too_large" style="padding: 20px 0 0 40px;"><img src="/assets/puntoesclamativo.png" style="margin: 20px 5px 0 20px;"><span class="lower" style="color:black">' + $('#load-media-element').data('media-file-too-large') + '</span></p>');
+    $('#media_element_media_show').text($('#load-media-element').data('placeholder-media'));
+  }
+  return false;
+}
+
+/**
+Reloads media elements page after new media element is successfully loaded.
+@method uploadRedirect
+@for UploadCallbacks
+**/
+function uploadRedirect(selector) {
+  $('.barraLoading').css('background-color', '#41A62A');
+  $('.barraLoading img').hide();
+  $('.barraLoading img').attr('src', '');
+  window.location = '/media_elements';
+}
+
+
+
+
+
+/**
 Initializer for the loading form.
 @method mediaElementLoaderDocumentReady
 @for UploaderDocumentReady
@@ -49,7 +81,9 @@ function mediaElementLoaderDocumentReady() {
     $('.form_error').removeClass('form_error');
     $('.too_large').remove();
     document.getElementById('new_media_element').target = 'upload_target';
-    document.getElementById('upload_target').onload = uploadDone;
+    document.getElementById('upload_target').onload = function() {
+      uploadDone('load-media-element');
+    }
   });
 }
 
@@ -94,7 +128,9 @@ function documentsDocumentReadyUploader() {
     $('.form_error').removeClass('form_error');
     $('.too_large').remove();
     document.getElementById('new_document').target = 'upload_target';
-    document.getElementById('upload_target').onload = uploadDocumentDone;
+    document.getElementById('upload_target').onload = function() {
+      uploadDone('load-document');
+    }
   });
 }
 
@@ -102,56 +138,35 @@ function documentsDocumentReadyUploader() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
-Handles 413 status error, file too large.
-@method uploadDone
-@for MediaElementLoaderDone
-@return {Boolean} false, for some reason
+Update form fields with error labels.
+@method uploaderErrorsDocuments
+@for UploaderErrors
+@param errors {Array} errors list
 **/
-function uploadDone() {
-  $('#upload_target').css('height', '60px');
-  var ret = document.getElementById('upload_target').contentWindow.document.title;
-  if(ret && ret.match(/413/g)) {
-    $('.barraLoading img').hide();
-    $('iframe').before('<p class="too_large" style="padding: 20px 0 0 40px;"><img src="/assets/puntoesclamativo.png" style="margin: 20px 5px 0 20px;"><span class="lower" style="color:black">' + $('#load-media-element').data('media-file-too-large') + '</span></p>');
-    $('#media_element_media_show').text($('#load-media-element').data('placeholder-media'));
+function uploaderErrorsDocuments(errors, fields) {
+  for (var i = 0; i < errors.length; i++) {
+    var error = errors[i];
+    if(error == 'attachment') {
+      $('#load-document #document_attachment_show').addClass('form_error');
+    } else {
+      $('#load-document #' + error).addClass('form_error');
+      if($('#load-document #' + error + '_placeholder').val() == '') {
+        $('#load-document #' + error).val('');
+      }
+    }
   }
-  return false;
-}
-
-/**
-Reloads media elements page after new media element is successfully loaded.
-@method uploadMediaElementLoaderDoneRedirect
-@for MediaElementLoaderDone
-**/
-function uploadMediaElementLoaderDoneRedirect() {
-  $('.barraLoading').css('background-color', '#41A62A');
   $('.barraLoading img').hide();
   $('.barraLoading img').attr('src', '');
-  window.location = '/media_elements';
 }
 
 /**
 Update form fields with error labels.
-@method uploadMediaElementLoaderError
-@for MediaElementLoaderErrors
+@method uploaderErrorsMediaElements
+@for UploaderErrors
 @param errors {Array} errors list
 **/
-function uploadMediaElementLoaderError(errors) {
+function uploaderErrorsMediaElements(errors, fields) {
   for (var i = 0; i < errors.length; i++) {
     var error = errors[i];
     if(error == 'media') {
@@ -163,57 +178,6 @@ function uploadMediaElementLoaderError(errors) {
       $('#load-media-element #' + error).addClass('form_error');
       if($('#load-media-element #' + error + '_placeholder').val() == '') {
         $('#load-media-element #' + error).val('');
-      }
-    }
-  }
-  $('.barraLoading img').hide();
-  $('.barraLoading img').attr('src', '');
-}
-
-/**
-Handles 413 status error, file too large.
-@method uploadDocumentDone
-@for DocumentsUploader
-@return {Boolean} false, for some reason
-**/
-function uploadDocumentDone() {
-  $('#upload_target').css('height', '60px');
-  var ret = document.getElementById('upload_target').contentWindow.document.title;
-  if(ret && ret.match(/413/g)) {
-    $('.barraLoading img').hide();
-    $('iframe').before('<p class="too_large" style="padding: 20px 0 0 40px;"><img src="/assets/puntoesclamativo.png" style="margin: 20px 5px 0 20px;"><span class="lower" style="color:black">' + $('#load-document').data('attachment-too-large') + '</span></p>');
-    $('#document_attachment_show').text($('#load-document').data('placeholder-attachment'));
-  }
-  return false;
-}
-
-/**
-Reloads documents page after new document is successfully loaded.
-@method uploadDocumentLoaderDoneRedirect
-@for DocumentsUploader
-**/
-function uploadDocumentLoaderDoneRedirect() {
-  $('.barraLoading').css('background-color', '#5D5C5C');
-  $('.barraLoading img').hide();
-  $('.barraLoading img').attr('src', '');
-  window.location = '/documents';
-}
-
-/**
-Update form fields with error labels.
-@method uploadDocumentLoaderError
-@for DocumentsUploader
-@param errors {Array} errors list
-**/
-function uploadDocumentLoaderError(errors) {
-  for (var i = 0; i < errors.length; i++) {
-    var error = errors[i];
-    if(error == 'attachment') {
-      $('#load-document #document_attachment_show').addClass('form_error');
-    } else {
-      $('#load-document #' + error).addClass('form_error');
-      if($('#load-document #' + error + '_placeholder').val() == '') {
-        $('#load-document #' + error).val('');
       }
     }
   }

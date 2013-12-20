@@ -1,37 +1,10 @@
-<style>
-  *{
-    margin: 0;
-    padding: 0;
-    color: white;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
+<script>
+  window.onload = function() {
+    <% if @errors %>
+      top.uploaderErrorsMediaElements(<%= @errors.to_json.html_safe %>, <%= @error_fields.to_json.html_safe %>);
+    <% else %>
+      top.uploadRedirect('load-media-element');
+    <% end %>
+    top.uploadDone('load-media-element');
   }
-  .lower {
-    text-transform: lowercase;
-  }
-</style>
-
-<% if @errors %>
-  
-  <p style="padding: 20px 0 0 20px;"><%= standard_form_error_messages(@errors, 'black') %></p>
-  <script>
-    
-    window.onload = function() {
-      top.uploadMediaElementLoaderError(<%= @error_fields.to_json.html_safe %>);
-      if(top.uploadDone) top.uploadDone();
-    }
-    
-  </script>
-  
-<% else %>
-  
-  <script>
-    
-    window.onload = function() {
-      top.uploadMediaElementLoaderDoneRedirect();
-      if(top.uploadDone) top.uploadDone();
-    }
-    
-  </script>
-  
-<% end %>
+</script>
