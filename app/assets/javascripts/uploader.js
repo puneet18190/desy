@@ -29,7 +29,7 @@ Reloads media elements page after new media element is successfully loaded.
 **/
 function uploadRedirect(selector) {
   // TODO colorare tutta la barra e stoppare l'animazione
-  window.location = '/media_elements';
+  window.location = '/' + selector.replace('-', '_') + 's';
 }
 
 

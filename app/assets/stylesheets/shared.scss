@@ -885,12 +885,24 @@ label.filebutton span input#new_media_element_input {
   height: 60px;
   position: relative;
   
-  div {
+  .loading-internal {
     
     height: 60px;
     width: 0;
     
   }
+  
+}
+
+#load-document .barraLoading .loading-internal {
+  
+  background-color: $black;
+  
+}
+
+#load-media-element .barraLoading .loading-internal {
+  
+  background-color: $green;
   
 }
 
