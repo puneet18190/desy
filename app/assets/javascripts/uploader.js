@@ -179,25 +179,26 @@ Update form fields with error labels.
 **/
 function uploaderErrorsDocuments(errors, fields) {
   var item = $('#load-documents');
+  var loading = item.find('.loadingBar');
   item.find('.barraLoading .loading-internal').data('can-move', false).css('width', '0px');
   item.find('#new_document_submit').removeClass('disabled');
   item.find('._close').removeClass('disabled');
-
-console.log(errors);
-console.log(fields);
-
-//  for (var i = 0; i < errors.length; i++) {
-//    var error = errors[i];
-//    if(error == 'attachment') {
-//      $('#load-document #document_attachment_show').addClass('form_error');
-//    } else {
-//      $('#load-document #' + error).addClass('form_error');
-//      if($('#load-document #' + error + '_placeholder').val() == '') {
-//        $('#load-document #' + error).val('');
-//      }
-//    }
-//  }
-//  // TODO interrompere animazione e togliere colore alla barra
+  loading.append('<img class="appended" src="/assets/puntoesclamativo.png" />');
+  for(var i = 0; i < errors.length; i++) {
+    if(i == errors.length - 1) {
+      errors_appended += (errors[i] + '');
+    } else {
+      errors_appended += (errors[i] + '; ');
+    }
+  }
+  loading.append('<span class="lower appended">' + errors_appended + '</span>');
+  for(var i = 0; i < fields.length; i++) {
+    if(fields[i] == 'attachment') {
+      $('#load-document #document_attachment_show').addClass('form_error');
+    } else {
+      $('#load-document #' + fields[i]).addClass('form_error');
+    }
+  }
 }
 
 /**
@@ -229,5 +230,4 @@ console.log(fields);
 //      }
 //    }
 //  }
-//  // TODO interrompere animazione e togliere colore alla barra
 }
