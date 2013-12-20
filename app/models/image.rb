@@ -25,31 +25,21 @@ class Image < MediaElement
   before_create :set_converted_to_true
   
   attr_reader :edit_mode
-
-  # Horizontal detection values
-  IS_HORIZONTAL_VALUES_BY_KIND = {
-    Slide::COVER              => 1.6  ,
-    Slide::IMAGE1             => 1    ,
-    Slide::IMAGE2             => 0.75 ,
-    Slide::IMAGE3             => 1.55 ,
-    Slide::IMAGE4             => 1.55 ,
-    'video_component'         => 1.77 ,
-    'video_component_preview' => 1.77
-  }
   
   # Container size
   CONTAINER_SIZE_BY_KIND = {
     Slide::COVER              => [900, 560] ,
     Slide::IMAGE1             => [420, 420] ,
-    Slide::IMAGE2             => [550, 420] ,
-    Slide::IMAGE3             => [550, 860] ,
-    Slide::IMAGE4             => [265, 420] ,
-    'video_component'         => [88 , 156] ,
-    'video_component_preview' => [360, 640]
+    Slide::IMAGE2             => [420, 550] ,
+    Slide::IMAGE3             => [860, 550] ,
+    Slide::IMAGE4             => [420, 265] ,
+    'video_component'         => [156, 88 ] ,
+    'video_component_preview' => [640, 360]
   }
 
-  CONTAINER_WIDTH_BY_KIND  = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, v| [ k, v[0] ] } ]
-  CONTAINER_HEIGHT_BY_KIND = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, v| [ k, v[1] ] } ]
+  CONTAINER_WIDTH_BY_KIND  = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, (w, _)| [ k, w ] } ]
+  CONTAINER_HEIGHT_BY_KIND = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, (_, h)| [ k, h ] } ]
+  CONTAINER_RATIOS_BY_KIND = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, (w, h)| [ k, Rational(w, h) ] } ]
 
   # === Description
   #
@@ -145,7 +135,7 @@ class Image < MediaElement
   
   # Used to give an orientation on images
   def is_horizontal?(kind)
-    ( width.to_f / height.to_f ) >= IS_HORIZONTAL_VALUES_BY_KIND[kind]
+    ( width.to_f / height.to_f ) >= CONTAINER_RATIOS_BY_KIND[kind]
   end
   
   # Resizes the width of an image
