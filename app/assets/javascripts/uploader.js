@@ -214,6 +214,8 @@ function uploaderErrorsMediaElements(errors, fields) {
   loading.find('.loading-internal').data('can-move', false).css('width', '0px');
   item.find('#new_media_element_submit').removeClass('disabled');
   item.find('._close').removeClass('disabled');
+  loading.append('<img class="appended" src="/assets/puntoesclamativo.png" />');
+  errors_appended = '';
   for(var i = 0; i < errors.length; i++) {
     if(i == errors.length - 1) {
       errors_appended += (errors[i] + '');
