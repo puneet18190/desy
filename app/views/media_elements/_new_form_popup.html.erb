@@ -3,7 +3,7 @@
   description_max = t('forms.placeholders.description', :num => t('language_parameters.media_element.length_description').to_s).downcase
   tags_max = t('forms.placeholders.tags', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
-<div id="load-media-element" class="mediaElementInfoPopUp" style="display:none;" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>" data-media-file-too-large="<%= t('forms.error_captions.media_file_too_large') %>" data-placeholder-media="<%= t('forms.placeholders.media').downcase %>">
+<div id="load-media-element" class="mediaElementInfoPopUp" style="display:none;" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>" data-placeholder-media="<%= t('forms.placeholders.media').downcase %>">
   <div class="MediaElementPopUpContainer">
     <div class="ChangeInfoContainerLoading">
       <%= form_tag media_elements_path, :method => :post, :id => 'new_media_element', :class => 'formModifyInfo', :multipart => true do %>

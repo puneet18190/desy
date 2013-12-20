@@ -668,7 +668,7 @@ it:
       # 1 - controllers/application_controller.rb
       media_generic_error: "File non valido o danneggiato"
       # The user tried to load a file exceeding the maximum size
-      # 1 - views/media_elements/_new_form_popup.html.erb
+      # 1 - controllers/media_elements_controller.rb
       media_file_too_large: "File troppo grande"
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
@@ -2608,7 +2608,7 @@ it:
       # 1 - views/documents/_new_form_popup.html.erb
       attachment_placeholder: "Seleziona un file"
       # Error when the file uploaded is too large
-      # 1 - views/documents/_new_form_popup.html.erb
+      # 1 - controllers/documents_controller.rb
       attachment_too_large: "L'allegato è troppo grande"
       # Caption to cancel the uploading
       # 1 - views/documents/_new_form_popup.html.erb
