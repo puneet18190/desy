@@ -37,7 +37,7 @@ function uploadDone(selector, callback, errors, fields) {
     unbindLoader();
     $.ajax({
       type: 'get',
-      url: obj_name + 's/create/fake'
+      url: obj_name + 's/create/fake',
       data: $('#new_' + obj_name).serialize()
     }).always(bindLoader);
   } else {
