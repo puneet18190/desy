@@ -27,19 +27,17 @@ class Image < MediaElement
   attr_reader :edit_mode
   
   # Container size
-  CONTAINER_SIZE_BY_KIND = {
-    Slide::COVER              => [900, 560] ,
-    Slide::IMAGE1             => [420, 420] ,
-    Slide::IMAGE2             => [420, 550] ,
-    Slide::IMAGE3             => [860, 550] ,
-    Slide::IMAGE4             => [420, 265] ,
-    'video_component'         => [156, 88 ] ,
-    'video_component_preview' => [640, 360]
-  }
+  CONTAINER_SIZE_BY_KIND = { Slide::COVER              => [900, 560] ,
+                             Slide::IMAGE1             => [420, 420] ,
+                             Slide::IMAGE2             => [420, 550] ,
+                             Slide::IMAGE3             => [860, 550] ,
+                             Slide::IMAGE4             => [420, 265] ,
+                             'video_component'         => [156, 88 ] ,
+                             'video_component_preview' => [640, 360] }
 
-  CONTAINER_WIDTH_BY_KIND  = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, (w, _)| [ k, w ] } ]
-  CONTAINER_HEIGHT_BY_KIND = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, (_, h)| [ k, h ] } ]
-  CONTAINER_RATIOS_BY_KIND = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, (w, h)| [ k, Rational(w, h) ] } ]
+  CONTAINER_WIDTHS_BY_KIND  = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, (w, _)| [ k, w ] } ]
+  CONTAINER_HEIGHTS_BY_KIND = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, (_, h)| [ k, h ] } ]
+  CONTAINER_RATIOS_BY_KIND  = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, (w, h)| [ k, Rational(w, h) ] } ]
 
   # === Description
   #
@@ -140,12 +138,12 @@ class Image < MediaElement
   
   # Resizes the width of an image
   def resize_width(kind)
-    ( width.to_f  * CONTAINER_HEIGHT_BY_KIND[kind] / height ).to_i + 1
+    ( width.to_f  * CONTAINER_HEIGHTS_BY_KIND[kind] / height ).to_i + 1
   end
   
   # Resizes the height of an image
   def resize_height(kind)
-    ( height.to_f * CONTAINER_WIDTH_BY_KIND[kind] / width ).to_i + 1
+    ( height.to_f * CONTAINER_WIDTHS_BY_KIND[kind] / width ).to_i + 1
   end
   
   # === Description

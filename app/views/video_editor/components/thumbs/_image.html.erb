@@ -1,7 +1,7 @@
 <%
   kind = 'video_component'
 
-  max_width, max_height = Image::CONTAINER_WIDTH_BY_KIND[kind], Image::CONTAINER_HEIGHT_BY_KIND[kind]
+  max_width, max_height = Image::CONTAINER_WIDTHS_BY_KIND[kind], Image::CONTAINER_HEIGHTS_BY_KIND[kind]
 
   style =
     if image.is_horizontal?(kind)
