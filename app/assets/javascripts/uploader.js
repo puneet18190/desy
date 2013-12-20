@@ -8,10 +8,23 @@ Javascript functions used in the media element and document loader.
 
 
 /**
+Reloads media elements page after new media element is successfully loaded.
+@method uploadAnimationRecursion
+@for UploadCallbacks
+**/
+function uploadAnimationRecursion(item, time, increment, max_width) {
+  var reduced_time = time / 400;
+  var current_width = max_width * reduced_time / (reduced_time + 1);
+  item.css('width', (current_width + 'px'));
+  setTimeout(function() {
+    uploadAnimationRecursion(item, (time + increment), increment, max_width)
+  }, increment);
+}
+
+/**
 Handles 413 status error, file too large.
 @method uploadDone
 @for UploadCallbacks
-@return {Boolean} false, for some reason
 **/
 function uploadDone(selector, callback, errors, fields) {
   var ret = document.getElementById('upload_target').contentWindow.document.title;
