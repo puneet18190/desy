@@ -34,6 +34,7 @@ module Export
             PACKAGE_ID
           end
 
+          # TODO rimuovere
           def render_slide(slide, locals = {})
             render partial: "lesson_viewer/slides/#{slide.kind}",
                    locals:  { slide: slide }.merge(locals)
@@ -52,9 +53,7 @@ module Export
           end
 
           def slide_title(slide)
-            title =  "Slide #{slide.position-1}"
-            title << " - #{slide.title}" if slide.title.present?
-            title
+            slide.cover? ? 'Cover' : "Slide #{slide.position-1}"
           end
 
           def image_path(image)

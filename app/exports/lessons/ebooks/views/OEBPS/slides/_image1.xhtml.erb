@@ -1,7 +1,12 @@
-<%= 
-  render_slide slide, 
-               { loaded:             true                                                                       ,
-                 url_type:           UrlTypes::EXPORT                                                           ,
-                 show_documents:     false                                                                      ,
-                 slide_text_options: { math_images_path_relative_from_folder: math_images_archive_folder_name } }
-%>
+<%
+  image      = slide.media_elements_at
+  slide_text = slide.text(math_images_path_relative_from_folder: math_images_archive_folder_name)
+-%>
+
+<h1 class="title"><%= slide.title.strip %></h1>
+<figure class="image">
+  <%= render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml', locals: { image_media_elements_slide: image, selector: '.image div' } %>
+  <div></div>
+  <figcaption><%= image.caption if image %></figcaption>
+</figure>
+<div class="text"><%= slide_text.html_safe if slide_text %></div>

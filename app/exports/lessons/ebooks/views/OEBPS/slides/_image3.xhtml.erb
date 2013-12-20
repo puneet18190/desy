@@ -1,5 +1,9 @@
-<%= 
-  render_slide slide,
-               { loaded:   true             ,
-                 url_type: UrlTypes::EXPORT }
+<%
+  image = slide.media_elements_at
 %>
+
+<%= render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml', locals: { image_media_elements_slide: image, selector: '.image div' } %>
+<figure class="vertical_align image">
+  <div></div>
+  <figcaption><%= image.caption if image %></figcaption>
+</figure>

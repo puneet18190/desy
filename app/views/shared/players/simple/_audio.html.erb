@@ -7,11 +7,11 @@
   else
     audio_class = '_empty_audio_player'
   end
-%>
+-%>
 
 <div class="<%= audio_class %>">
   <% if audio -%>
-    <audio controls="controls" autoplay="autoplay">
+    <audio controls="controls">
       <source src="<%= m4a %>" type="audio/m4a"/>
       <source src="<%= ogg %>" type="audio/ogg"/>
       <p><%= audio.title %></p>

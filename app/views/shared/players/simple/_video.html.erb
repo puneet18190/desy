@@ -12,7 +12,7 @@
 
 <div class="<%= video_class %>">
   <% if video -%>
-      <video controls="controls" autoplay="autoplay" poster="<%= cover %>">
+      <video controls="controls" poster="<%= cover %>">
         <source src="<%= mp4 %>" type="video/mp4"/>
         <source src="<%= webm %>" type="video/webm"/>
         <img src="<%= cover %>" alt="<%= video.title %>"/>
