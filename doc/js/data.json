@@ -112,8 +112,7 @@
             },
             "classes": {},
             "fors": {
-                "DocumentsDocumentReady": 1,
-                "DocumentsUploader": 1
+                "DocumentsDocumentReady": 1
             },
             "namespaces": {}
         },
@@ -211,24 +210,10 @@
             "classes": {},
             "fors": {
                 "MediaElementEditorCache": 1,
+                "MediaElementEditorConversion": 1,
                 "MediaElementEditorDocumentReady": 1,
                 "MediaElementEditorForms": 1,
                 "MediaElementEditorHorizontalTimelines": 1
-            },
-            "namespaces": {}
-        },
-        "app/assets/javascripts/media_element_loader.js": {
-            "name": "app/assets/javascripts/media_element_loader.js",
-            "modules": {
-                "media-element-loader": 1
-            },
-            "classes": {},
-            "fors": {
-                "MediaElementLoaderConversion": 1,
-                "MediaElementLoaderDocumentReady": 1,
-                "MediaElementLoaderDone": 1,
-                "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1
             },
             "namespaces": {}
         },
@@ -293,6 +278,18 @@
                 "TagsAccessories": 1,
                 "TagsDocumentReady": 1,
                 "TagsInitializers": 1
+            },
+            "namespaces": {}
+        },
+        "app/assets/javascripts/uploader.js": {
+            "name": "app/assets/javascripts/uploader.js",
+            "modules": {
+                "uploader": 1
+            },
+            "classes": {},
+            "fors": {
+                "UploadCallbacks": 1,
+                "UploaderDocumentReady": 1
             },
             "namespaces": {}
         },
@@ -486,12 +483,10 @@
             "name": "documents",
             "submodules": {},
             "classes": {
-                "DocumentsDocumentReady": 1,
-                "DocumentsUploader": 1
+                "DocumentsDocumentReady": 1
             },
             "fors": {
-                "DocumentsDocumentReady": 1,
-                "DocumentsUploader": 1
+                "DocumentsDocumentReady": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -634,12 +629,14 @@
             "submodules": {},
             "classes": {
                 "MediaElementEditorCache": 1,
+                "MediaElementEditorConversion": 1,
                 "MediaElementEditorDocumentReady": 1,
                 "MediaElementEditorForms": 1,
                 "MediaElementEditorHorizontalTimelines": 1
             },
             "fors": {
                 "MediaElementEditorCache": 1,
+                "MediaElementEditorConversion": 1,
                 "MediaElementEditorDocumentReady": 1,
                 "MediaElementEditorForms": 1,
                 "MediaElementEditorHorizontalTimelines": 1
@@ -649,29 +646,6 @@
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 1,
             "description": "This module contains javascript functions common to all the editors ({{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})."
-        },
-        "media-element-loader": {
-            "name": "media-element-loader",
-            "submodules": {},
-            "classes": {
-                "MediaElementLoaderConversion": 1,
-                "MediaElementLoaderDocumentReady": 1,
-                "MediaElementLoaderDone": 1,
-                "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1
-            },
-            "fors": {
-                "MediaElementLoaderConversion": 1,
-                "MediaElementLoaderDocumentReady": 1,
-                "MediaElementLoaderDone": 1,
-                "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1
-            },
-            "namespaces": {},
-            "tag": "module",
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 1,
-            "description": "Javascript functions used in the media element loader."
         },
         "notifications": {
             "name": "notifications",
@@ -765,6 +739,23 @@
             "file": "app/assets/javascripts/tags.js",
             "line": 1,
             "description": "The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>), and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink \"AdminAutocomplete/initNotificationsAutocomplete:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink \"TagsInitializers/initSearchTagsAutocomplete:method\"}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink \"TagsDocumentReady/tagsDocumentReady:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging</b> autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an 'x' to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a <b>container</b> div that contains a list of tag <b>boxes</b> (implemented with span, see {{#crossLink \"TagsAccessories/createTagSpan:method\"}}{{/crossLink}}) and an <b>tag input</b> where the user writes; when he inserts a new tag and presses <i>enter</i> or <i>comma</i>, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see {{#crossLink \"TagsAccessories/disableTagsInputTooHigh:method\"}}{{/crossLink}}). During this whole process, a <b>hidden input</b> gets updated with a string representing the current tags separated by comma ({{#crossLink \"TagsAccessories/addToTagsValue:method\"}}{{/crossLink}}, {{#crossLink \"TagsAccessories/removeFromTagsValue:method\"}}{{/crossLink}}).\n<br/><br/>\nThe system also checks if the inserted tag is not repeated (using {{#crossLink \"TagsAccessories/checkNoTagDuplicates:method\"}}{{/crossLink}}), and assigns a different color for tags already in the database and for new ones ({{#crossLink \"TagsAccessories/addTagWithoutSuggestion:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging autocomplete mode</b> is initialized for six standard forms (see initializers in the class {{#crossLink \"TagsDocumentReady\"}}{{/crossLink}})."
+        },
+        "uploader": {
+            "name": "uploader",
+            "submodules": {},
+            "classes": {
+                "UploadCallbacks": 1,
+                "UploaderDocumentReady": 1
+            },
+            "fors": {
+                "UploadCallbacks": 1,
+                "UploaderDocumentReady": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 1,
+            "description": "Javascript functions used in the media element and document loader."
         },
         "video-editor": {
             "name": "video-editor",
@@ -1154,17 +1145,6 @@
             "module": "documents",
             "namespace": ""
         },
-        "DocumentsUploader": {
-            "name": "DocumentsUploader",
-            "shortname": "DocumentsUploader",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "documents",
-            "namespace": ""
-        },
         "GalleriesAccessories": {
             "name": "GalleriesAccessories",
             "shortname": "GalleriesAccessories",
@@ -1462,6 +1442,17 @@
             "module": "media-element-editor",
             "namespace": ""
         },
+        "MediaElementEditorConversion": {
+            "name": "MediaElementEditorConversion",
+            "shortname": "MediaElementEditorConversion",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "media-element-editor",
+            "namespace": ""
+        },
         "MediaElementEditorDocumentReady": {
             "name": "MediaElementEditorDocumentReady",
             "shortname": "MediaElementEditorDocumentReady",
@@ -1493,61 +1484,6 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "media-element-editor",
-            "namespace": ""
-        },
-        "MediaElementLoaderConversion": {
-            "name": "MediaElementLoaderConversion",
-            "shortname": "MediaElementLoaderConversion",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "MediaElementLoaderDocumentReady": {
-            "name": "MediaElementLoaderDocumentReady",
-            "shortname": "MediaElementLoaderDocumentReady",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "MediaElementLoaderDone": {
-            "name": "MediaElementLoaderDone",
-            "shortname": "MediaElementLoaderDone",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "MediaElementLoaderErrors": {
-            "name": "MediaElementLoaderErrors",
-            "shortname": "MediaElementLoaderErrors",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "MediaElementLoaderGeneral": {
-            "name": "MediaElementLoaderGeneral",
-            "shortname": "MediaElementLoaderGeneral",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
             "namespace": ""
         },
         "NotificationsAccessories": {
@@ -1702,6 +1638,28 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "tags",
+            "namespace": ""
+        },
+        "UploadCallbacks": {
+            "name": "UploadCallbacks",
+            "shortname": "UploadCallbacks",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "uploader",
+            "namespace": ""
+        },
+        "UploaderDocumentReady": {
+            "name": "UploaderDocumentReady",
+            "shortname": "UploaderDocumentReady",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "uploader",
             "namespace": ""
         },
         "VideoEditorAddComponents": {
@@ -3410,7 +3368,16 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 346,
-            "description": "Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule \"media-element-loader\"}}{{/crossLinkModule}}.",
+            "description": "Dialog containing the form to upload a new document. This function interacts with the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}.",
+            "itemtype": "method",
+            "name": "showLoadDocumentPopUp",
+            "class": "DialogsWithForm",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 381,
+            "description": "Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "showLoadMediaElementPopUp",
             "class": "DialogsWithForm",
@@ -3418,8 +3385,8 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 384,
-            "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementLoaderGeneral/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
+            "line": 419,
+            "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "showMediaElementInfoPopUp",
             "params": [
@@ -3434,7 +3401,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 440,
+            "line": 471,
             "description": "Dialog containing the form to send the public link of a lesson. Used in {{#crossLink \"VirtualClassroomSendLink\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showSendLessonLinkPopUp",
@@ -3450,7 +3417,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 484,
+            "line": 515,
             "description": "Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink \"VirtualClassroomMultipleLoading\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showVirtualClassroomQuickSelectPopUp",
@@ -3498,71 +3465,6 @@
             "itemtype": "method",
             "name": "documentsDocumentReadySearch",
             "class": "DocumentsDocumentReady",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 169,
-            "description": "Initializer for the loading form.",
-            "itemtype": "method",
-            "name": "documentsDocumentReadyUploader",
-            "class": "DocumentsDocumentReady",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 212,
-            "description": "Dialog containing the form to upload a new document.",
-            "itemtype": "method",
-            "name": "showLoadDocumentPopUp",
-            "class": "DocumentsUploader",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 247,
-            "description": "Handles 413 status error, file too large.",
-            "itemtype": "method",
-            "name": "uploadDocumentDone",
-            "return": {
-                "description": "false, for some reason",
-                "type": "Boolean"
-            },
-            "class": "DocumentsUploader",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 263,
-            "description": "Reloads documents page after new document is successfully loaded.",
-            "itemtype": "method",
-            "name": "uploadDocumentLoaderDoneRedirect",
-            "class": "DocumentsUploader",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 275,
-            "description": "Update form fields with error labels.",
-            "itemtype": "method",
-            "name": "uploadDocumentLoaderError",
-            "params": [
-                {
-                    "name": "errors",
-                    "description": "errors list",
-                    "type": "Array"
-                }
-            ],
-            "class": "DocumentsUploader",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 297,
-            "description": "Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.",
-            "itemtype": "method",
-            "name": "initDocumentLoader",
-            "class": "DocumentsUploader",
             "module": "documents"
         },
         {
@@ -5200,6 +5102,27 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 71,
+            "description": "Function that checks the conversion of the unconverted media elements in the page.",
+            "itemtype": "method",
+            "name": "mediaElementLoaderConversionOverview",
+            "params": [
+                {
+                    "name": "list",
+                    "description": "list of media elements that are being checked",
+                    "type": "Array"
+                },
+                {
+                    "name": "time",
+                    "description": "time to iterate the loop",
+                    "type": "Number"
+                }
+            ],
+            "class": "MediaElementEditorConversion",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 113,
             "description": "Initializes the placeholder of the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "mediaElementEditorDocumentReady",
@@ -5208,7 +5131,23 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 117,
+            "line": 159,
+            "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "resetMediaElementChangeInfo",
+            "params": [
+                {
+                    "name": "media_element_id",
+                    "description": "id of the element in the database, used to extract the HTML id",
+                    "type": "Number"
+                }
+            ],
+            "class": "MediaElementEditorForms",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 179,
             "description": "Resets the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method\"}}{{/crossLink}}, {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method\"}}{{/crossLink}} and {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "resetMediaElementEditorForms",
@@ -5217,7 +5156,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 157,
+            "line": 219,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>left</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollLeft",
@@ -5242,7 +5181,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 173,
+            "line": 235,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>right</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollRight",
@@ -5267,7 +5206,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 185,
+            "line": 247,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the absolute position to be assigned to <b>a div that must be aligned to the component</b> after having been moved to first position.",
             "itemtype": "method",
             "name": "getAbsolutePositionTimelineHorizontalScrollPane",
@@ -5302,7 +5241,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 207,
+            "line": 269,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: gets how many components are hidden to the left of the scroll pane.",
             "itemtype": "method",
             "name": "getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane",
@@ -5327,7 +5266,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 220,
+            "line": 282,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: exactly the same as {{#crossLink \"MediaElementEditorHorizontalTimelines/getAbsolutePositionTimelineHorizontalScrollPane:method\"}}{{/crossLink}}, but <b>it returns the position of the scroll pane</b> instead of the absolute pixels for an external div.",
             "itemtype": "method",
             "name": "getNormalizedPositionTimelineHorizontalScrollPane",
@@ -5359,99 +5298,6 @@
             },
             "class": "MediaElementEditorHorizontalTimelines",
             "module": "media-element-editor"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 10,
-            "description": "Function that checks the conversion of the unconverted media elements in the page.",
-            "itemtype": "method",
-            "name": "mediaElementLoaderConversionOverview",
-            "params": [
-                {
-                    "name": "list",
-                    "description": "list of media elements that are being checked",
-                    "type": "Array"
-                },
-                {
-                    "name": "time",
-                    "description": "time to iterate the loop",
-                    "type": "Number"
-                }
-            ],
-            "class": "MediaElementLoaderConversion",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 52,
-            "description": "Initializer for the loading form.",
-            "itemtype": "method",
-            "name": "mediaElementLoaderDocumentReady",
-            "class": "MediaElementLoaderDocumentReady",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 96,
-            "description": "Handles 413 status error, file too large.",
-            "itemtype": "method",
-            "name": "uploadDone",
-            "return": {
-                "description": "false, for some reason",
-                "type": "Boolean"
-            },
-            "class": "MediaElementLoaderDone",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 112,
-            "description": "Reloads media elements page after new media element is successfully loaded.",
-            "itemtype": "method",
-            "name": "uploadMediaElementLoaderDoneRedirect",
-            "class": "MediaElementLoaderDone",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 128,
-            "description": "Update form fields with error labels.",
-            "itemtype": "method",
-            "name": "uploadMediaElementLoaderError",
-            "params": [
-                {
-                    "name": "errors",
-                    "description": "errors list",
-                    "type": "Array"
-                }
-            ],
-            "class": "MediaElementLoaderErrors",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 157,
-            "description": "Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.",
-            "itemtype": "method",
-            "name": "initMediaElementLoader",
-            "class": "MediaElementLoaderGeneral",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 171,
-            "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "resetMediaElementChangeInfo",
-            "params": [
-                {
-                    "name": "media_element_id",
-                    "description": "id of the element in the database, used to extract the HTML id",
-                    "type": "Number"
-                }
-            ],
-            "class": "MediaElementLoaderGeneral",
-            "module": "media-element-loader"
         },
         {
             "file": "app/assets/javascripts/notifications.js",
@@ -5564,7 +5410,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 131,
-            "description": "Global initializer for notifications and help. The function {{#crossLink \"NotificationsDocumentReady/notificationsDocumentReadyLoop:method\"}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink \"MediaElementLoaderConversion/mediaElementLoaderConversionOverview:method\"}}{{/crossLink}}.",
+            "description": "Global initializer for notifications and help. The function {{#crossLink \"NotificationsDocumentReady/notificationsDocumentReadyLoop:method\"}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink \"MediaElementEditorConversion/mediaElementLoaderConversionOverview:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "notificationsDocumentReady",
             "class": "NotificationsDocumentReady",
@@ -6256,7 +6102,7 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 212,
-            "description": "Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}} and the module {{#crossLinkModule \"media-element-loader\"}}{{/crossLinkModule}}).",
+            "description": "Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}} and the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyMediaElementLoader",
             "class": "TagsDocumentReady",
@@ -6329,6 +6175,123 @@
             ],
             "class": "TagsInitializers",
             "module": "tags"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 10,
+            "description": "Recursive animation of the loading bar, according to the function h * x / (x + 1). Time is divided by 400 to slow down the animation.",
+            "itemtype": "method",
+            "name": "uploadAnimationRecursion",
+            "params": [
+                {
+                    "name": "item",
+                    "description": "the selected loading bar",
+                    "type": "Object"
+                },
+                {
+                    "name": "time",
+                    "description": "the current time",
+                    "type": "Number"
+                },
+                {
+                    "name": "increment",
+                    "description": "the increment of time",
+                    "type": "Number"
+                },
+                {
+                    "name": "max_width",
+                    "description": "the total width in pixels of loading bar",
+                    "type": "Number"
+                }
+            ],
+            "class": "UploadCallbacks",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 32,
+            "description": "Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).",
+            "itemtype": "method",
+            "name": "uploadDone",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "either 'document' or 'media-element'",
+                    "type": "String"
+                },
+                {
+                    "name": "errors",
+                    "description": "an array of strings to be shown on the bottom of the loading popup",
+                    "type": "Array"
+                },
+                {
+                    "name": "fields",
+                    "description": "an array of fields that must be bordered with red because they correspond to an error",
+                    "type": "Array"
+                }
+            ],
+            "class": "UploadCallbacks",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 51,
+            "description": "Handles the errors of loading popup.",
+            "itemtype": "method",
+            "name": "uploaderErrors",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "either 'document' or 'media-element'",
+                    "type": "String"
+                },
+                {
+                    "name": "errors",
+                    "description": "an array of strings to be shown on the bottom of the loading popup",
+                    "type": "Array"
+                },
+                {
+                    "name": "fields",
+                    "description": "an array of fields that must be bordered with red because they correspond to an error",
+                    "type": "Array"
+                }
+            ],
+            "class": "UploadCallbacks",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 89,
+            "description": "Handles 413 status error, file too large.",
+            "itemtype": "method",
+            "name": "uploadFileTooLarge",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "either 'document' or 'media-element'",
+                    "type": "String"
+                }
+            ],
+            "class": "UploadCallbacks",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 111,
+            "description": "Initializer for the loading form.",
+            "itemtype": "method",
+            "name": "mediaElementLoaderDocumentReady",
+            "class": "UploaderDocumentReady",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 164,
+            "description": "Initializer for the loading form.",
+            "itemtype": "method",
+            "name": "documentsDocumentReadyUploader",
+            "class": "UploaderDocumentReady",
+            "module": "uploader"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",

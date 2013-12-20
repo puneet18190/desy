@@ -101,8 +101,6 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -157,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -200,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -265,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -276,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -398,9 +392,9 @@ function documentsDocumentReadyButtons() {
       $(&#x27;#dialog-confirm&#x27;).hide();
       var redirect_url = addDeleteItemToCurrentUrl(current_url, &#x27;document_&#x27; + document_id);
       $.ajax({
-        type: &#x27;post&#x27;,
+        type: &#x27;delete&#x27;,
         dataType: &#x27;json&#x27;,
-        url: &#x27;/documents/&#x27; + document_id + &#x27;/destroy&#x27;,
+        url: &#x27;/documents/&#x27; + document_id,
         success: function(data) {
           if(data.ok) {
             $.ajax({
@@ -486,148 +480,6 @@ function documentsDocumentReadySearch() {
       }, 1500);
     }
   });
-}
-
-/**
-Initializer for the loading form.
-@method documentsDocumentReadyUploader
-@for DocumentsDocumentReady
-**/
-function documentsDocumentReadyUploader() {
-  $body.on(&#x27;click&#x27;, &#x27;._load_document&#x27;, function() {
-    showLoadDocumentPopUp();
-  });
-  $body.on(&#x27;change&#x27;, &#x27;input#new_document_input&#x27;, function() {
-    var file_name = $(this).val().replace(&quot;C:\\fakepath\\&quot;, &#x27;&#x27;);
-    if(file_name.length &gt; 20) {
-      file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
-    }
-    $(&#x27;#document_attachment_show&#x27;).text(file_name);
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#load-document ._close&#x27;, function() {
-    closePopUp(&#x27;load-document&#x27;);
-  })
-  $body.on(&#x27;click&#x27;, &#x27;#new_document_submit&#x27;, function() {
-    $(&#x27;input,textarea&#x27;).removeClass(&#x27;form_error&#x27;);
-    $(&#x27;.barraLoading img&#x27;).show();
-    $(&#x27;.barraLoading img&#x27;).attr(&#x27;src&#x27;, &#x27;/assets/loadingBar-document.gif&#x27;);
-    $(this).closest(&#x27;#new_document&#x27;).submit();
-  });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-document #title&#x27;, function() {
-    if($(&#x27;#load-document #title_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-document #title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
-    }
-  });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-document #description&#x27;, function() {
-    if($(&#x27;#load-document #description_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-document #description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
-    }
-  });
-}
-
-
-
-
-
-/**
-Dialog containing the form to upload a new document.
-@method showLoadDocumentPopUp
-@for DocumentsUploader
-**/
-function showLoadDocumentPopUp() {
-  var obj = $(&#x27;#load-document&#x27;);
-  if(obj.data(&#x27;dialog&#x27;)) {
-    obj.dialog(&#x27;open&#x27;);
-  } else {
-    obj.show();
-    obj.dialog({
-      modal: true,
-      resizable: false,
-      draggable: false,
-      width: 760,
-      show: &#x27;fade&#x27;,
-      hide: {effect: &#x27;fade&#x27;},
-      open: function(event, ui) {
-        $(&#x27;#load-document input&#x27;).blur();
-        $(&#x27;#load-document #title&#x27;).val($(&#x27;#load-document&#x27;).data(&#x27;placeholder-title&#x27;));
-        $(&#x27;#load-document #description&#x27;).val($(&#x27;#load-document&#x27;).data(&#x27;placeholder-description&#x27;));
-        $(&#x27;#load-document #title_placeholder&#x27;).val(&#x27;&#x27;);
-        $(&#x27;#load-document #description_placeholder&#x27;).val(&#x27;&#x27;);
-        $(&#x27;#document_attachment_show&#x27;).text($(&#x27;#load-document&#x27;).data(&#x27;placeholder-attachment&#x27;));
-        $(&#x27;#load-document .form_error&#x27;).removeClass(&#x27;form_error&#x27;);
-        $(&#x27;#new_document_input&#x27;).val(&#x27;&#x27;);
-      },
-      close: function() {
-        $(&#x27;#load-document iframe&#x27;).attr(&#x27;src&#x27;, &#x27;about:blank&#x27;);
-      }
-    });
-  }
-}
-
-/**
-Handles 413 status error, file too large.
-@method uploadDocumentDone
-@for DocumentsUploader
-@return {Boolean} false, for some reason
-**/
-function uploadDocumentDone() {
-  var ret = document.getElementById(&#x27;upload_target&#x27;).contentWindow.document.title;
-  if(ret &amp;&amp; ret.match(/413/g)) {
-    $(&#x27;.barraLoading img&#x27;).hide();
-    $(&#x27;iframe&#x27;).before(&#x27;&lt;p class=&quot;too_large&quot; style=&quot;padding: 20px 0 0 40px;&quot;&gt;&lt;img src=&quot;/assets/puntoesclamativo.png&quot; style=&quot;margin: 20px 5px 0 20px;&quot;&gt;&lt;span class=&quot;lower&quot; style=&quot;color:black&quot;&gt;&#x27; + $(&#x27;#load-document&#x27;).data(&#x27;attachment-too-large&#x27;) + &#x27;&lt;/span&gt;&lt;/p&gt;&#x27;);
-    $(&#x27;#document_attachment_show&#x27;).text($(&#x27;#load-document&#x27;).data(&#x27;placeholder-attachment&#x27;));
-  }
-  return false;
-}
-
-/**
-Reloads documents page after new document is successfully loaded.
-@method uploadDocumentLoaderDoneRedirect
-@for DocumentsUploader
-**/
-function uploadDocumentLoaderDoneRedirect() {
-  $(&#x27;.barraLoading&#x27;).css(&#x27;background-color&#x27;, &#x27;#5D5C5C&#x27;);
-  $(&#x27;.barraLoading img&#x27;).hide();
-  $(&#x27;.barraLoading img&#x27;).attr(&#x27;src&#x27;, &#x27;&#x27;);
-  window.location = &#x27;/documents&#x27;;
-}
-
-/**
-Update form fields with error labels.
-@method uploadDocumentLoaderError
-@for DocumentsUploader
-@param errors {Array} errors list
-**/
-function uploadDocumentLoaderError(errors) {
-  for (var i = 0; i &lt; errors.length; i++) {
-    var error = errors[i];
-    if(error == &#x27;attachment&#x27;) {
-      $(&#x27;#load-document #document_attachment_show&#x27;).addClass(&#x27;form_error&#x27;);
-    } else {
-      $(&#x27;#load-document #&#x27; + error).addClass(&#x27;form_error&#x27;);
-      if($(&#x27;#load-document #&#x27; + error + &#x27;_placeholder&#x27;).val() == &#x27;&#x27;) {
-        $(&#x27;#load-document #&#x27; + error).val(&#x27;&#x27;);
-      }
-    }
-  }
-  $(&#x27;.barraLoading img&#x27;).hide();
-  $(&#x27;.barraLoading img&#x27;).attr(&#x27;src&#x27;, &#x27;&#x27;);
-}
-
-/**
-Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that &lt;b&gt;upload target&lt;/b&gt; is the HTML id of the frame.
-@method initDocumentLoader
-@for DocumentsUploader
-**/
-function initDocumentLoader() {
-  document.getElementById(&#x27;new_document&#x27;).onsubmit = function() {
-    $(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
-    $(&#x27;.too_large&#x27;).remove();
-    document.getElementById(&#x27;new_document&#x27;).target = &#x27;upload_target&#x27;;
-    document.getElementById(&#x27;upload_target&#x27;).onload = uploadDocumentDone;
-  }
 }
 
     </pre>

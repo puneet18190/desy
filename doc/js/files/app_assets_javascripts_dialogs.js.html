@@ -101,8 +101,6 @@
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
             
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -157,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -200,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -265,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -276,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -666,7 +660,42 @@ function showLessonNotificationPopUp(lesson_id) {
 }
 
 /**
-Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule &quot;media-element-loader&quot;}}{{/crossLinkModule}}.
+Dialog containing the form to upload a new document. This function interacts with the module {{#crossLinkModule &quot;uploader&quot;}}{{/crossLinkModule}}.
+@method showLoadDocumentPopUp
+@for DialogsWithForm
+**/
+function showLoadDocumentPopUp() {
+  var obj = $(&#x27;#load-document&#x27;);
+  if(obj.data(&#x27;dialog&#x27;)) {
+    obj.dialog(&#x27;open&#x27;);
+  } else {
+    obj.show();
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      draggable: false,
+      width: 760,
+      show: &#x27;fade&#x27;,
+      hide: {effect: &#x27;fade&#x27;},
+      open: function(event, ui) {
+        $(&#x27;#load-document input&#x27;).blur();
+        $(&#x27;#load-document #title&#x27;).val($(&#x27;#load-document&#x27;).data(&#x27;placeholder-title&#x27;));
+        $(&#x27;#load-document #description&#x27;).val($(&#x27;#load-document&#x27;).data(&#x27;placeholder-description&#x27;));
+        $(&#x27;#load-document #title_placeholder&#x27;).val(&#x27;&#x27;);
+        $(&#x27;#load-document #description_placeholder&#x27;).val(&#x27;&#x27;);
+        $(&#x27;#document_attachment_show&#x27;).text($(&#x27;#load-document&#x27;).data(&#x27;placeholder-attachment&#x27;));
+        $(&#x27;#load-document .form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+        $(&#x27;#new_document_input&#x27;).val(&#x27;&#x27;);
+      },
+      close: function() {
+        $(&#x27;#load-document iframe&#x27;).attr(&#x27;src&#x27;, &#x27;about:blank&#x27;);
+      }
+    });
+  }
+}
+
+/**
+Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule &quot;uploader&quot;}}{{/crossLinkModule}}.
 @method showLoadMediaElementPopUp
 @for DialogsWithForm
 **/
@@ -704,7 +733,7 @@ function showLoadMediaElementPopUp() {
 }
 
 /**
-Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink &quot;MediaElementLoaderGeneral/resetMediaElementChangeInfo:method&quot;}}{{/crossLink}}).
+Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink &quot;MediaElementEditorForms/resetMediaElementChangeInfo:method&quot;}}{{/crossLink}}).
 @method showMediaElementInfoPopUp
 @for DialogsWithForm
 @param media_element_id {Number} id in the database of the media element
@@ -738,10 +767,6 @@ function showMediaElementInfoPopUp(media_element_id) {
           removeCustomOverlayClose();
         },
         close: function() {
-          if(obj.length &gt; 0 &amp;&amp; $(&#x27;#dashboard_container .literature_container&#x27;).length &gt; 0) {
-            $(&#x27;#dashboard_container .literature_container&#x27;).css(&#x27;z-index&#x27;, 12);
-            $(&#x27;#dashboard_container .lesson_dashboard_thumb&#x27;).css(&#x27;z-index&#x27;, 3);
-          }
           resetMediaElementChangeInfo(media_element_id);
           $(this).find(&#x27;._report_form_content&#x27;).hide();
           $(this).find(&#x27;._report_media_element_click&#x27;).removeClass(&#x27;report_light&#x27;);
