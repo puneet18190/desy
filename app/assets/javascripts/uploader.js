@@ -178,12 +178,13 @@ Update form fields with error labels.
 @param errors {Array} errors list
 **/
 function uploaderErrorsDocuments(errors, fields) {
-  var item = $('#load-documents');
-  var loading = item.find('.loadingBar');
-  item.find('.barraLoading .loading-internal').data('can-move', false).css('width', '0px');
+  var item = $('#load-document');
+  var loading = item.find('.barraLoading');
+  loading.find('.loading-internal').data('can-move', false).css('width', '0px');
   item.find('#new_document_submit').removeClass('disabled');
   item.find('._close').removeClass('disabled');
   loading.append('<img class="appended" src="/assets/puntoesclamativo.png" />');
+  errors_appended = '';
   for(var i = 0; i < errors.length; i++) {
     if(i == errors.length - 1) {
       errors_appended += (errors[i] + '');
