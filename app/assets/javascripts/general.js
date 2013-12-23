@@ -95,7 +95,7 @@ function resizeExpandedMediaElements(for_row) {
       $(this).css('margin-top', '0');
     }
     counter += 1;
-  }
+  });
 }
 
 
@@ -185,9 +185,12 @@ function globalDocumentReady() {
     $(this).find('.plus').removeClass('encendido');
   });
   $('#user_school_level_id').selectbox(); // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
-  if(my_login.length > 0 && $(e.target).parents('#login_form_container').length == 0 && !$(e.target).hasClass('_show_login_form_container')) {
-    $('._show_login_form_container').click();
-  } // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
+  $(document).bind('click', function (e) {
+    var my_login = $('#login_form_container:visible');
+    if(my_login.length > 0 && $(e.target).parents('#login_form_container').length == 0 && !$(e.target).hasClass('_show_login_form_container')) {
+      $('._show_login_form_container').click();
+    } // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
+  });
   $body.on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
     var myself = $(this);
     var len = myself.val().length;
@@ -338,7 +341,6 @@ function sectionNotificationsDocumentReady() {
   $(document).bind('click', function (e) {
     var click_id = $(e.target).attr('id');
     var my_report = $('.tooltipForm:visible');
-    var my_login = $('#login_form_container:visible');
     if($('#tooltip_content').length > 0) {
       if($('#tooltip_content').is(':visible')) {
         if(click_id != 'tooltip_content' && click_id != 'expanded_notification' && click_id != 'notifications_button' && $(e.target).parents('#tooltip_content').length == 0 && $(e.target).parents('#expanded_notification').length == 0) {
