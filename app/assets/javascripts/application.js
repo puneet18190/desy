@@ -51,13 +51,12 @@
 
 
 $(document).ready(function() {
-  window.$html = $('html');
-  window.$loaderVisible = true;
-  window.$loading = $('#loading');
-  window.$body = $('body');
-  window.$captions = $('#popup_captions_container');
-  window.$parameters = $('#popup_parameters_container');
+  initializeGlobalVariables();
   browsersDocumentReady();
+  
+  
+  
+  
   ajaxLoaderDocumentReady();
   audioEditorDocumentReady();
   automaticLoginDocumentReady();

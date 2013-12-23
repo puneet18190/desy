@@ -11,7 +11,7 @@
     <%= render :partial => 'media_elements/title_bar', :locals => {:filter => @filter, :display => @display} %>
     <br class="clearfloat">
     <%= render :partial => 'media_elements/my_media_elements', :locals => {:media_elements => @media_elements, :filter => @filter, :display => @display} %>
-    <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
+    <div id="info_container" style="display:none" data-currenturl="<%= request.url %>" data-in-space="0"></div>
     <br class="clearfloat">
     <% if @media_elements.any? %>
       <%= render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount} %>

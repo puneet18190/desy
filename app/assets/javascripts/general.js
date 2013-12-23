@@ -59,12 +59,13 @@ Same structure of {{#crossLink "DashboardResizing/dashboardResizeController:meth
 **/
 function mediaElementsResizeController() {
   var container = $('#my_media_elements');
+  var info = $('#info_container');
   var width = container.width();
   var in_space = parseInt((width - 20) / 220);
   var margin = (width - in_space * 200) / (in_space + 1);
   var tot_width = in_space * (200 + margin) - margin;
-  if(in_space <= 50 && in_space != container.data('in-space')) {
-    container.data('in-space', in_space);
+  if(in_space <= 50 && in_space != info.data('in-space')) {
+    info.data('in-space', in_space);
     resizeExpandedMediaElements(in_space);
     unbindLoader();
     $.ajax({
@@ -348,6 +349,20 @@ function reportsDocumentReady() {
 
 
 
+
+/**
+Initializes global variables used throughout the javascripts.
+@method initializeGlobalVariables
+@for GeneralMiscellanea
+**/
+function initializeGlobalVariables() {
+  window.$html = $('html');
+  window.$loaderVisible = true;
+  window.$loading = $('#loading');
+  window.$body = $('body');
+  window.$captions = $('#popup_captions_container');
+  window.$parameters = $('#popup_parameters_container');
+}
 
 /**
 Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}} and in {{#crossLinkModule "image-editor"}}{{/crossLinkModule}}.
