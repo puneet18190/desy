@@ -158,6 +158,12 @@ function mediaElementLoaderDocumentReady() {
       uploadFileTooLarge('media_element');
     }
   });
+  $body.on('change', '.medload_title, .medload_description, #new_media_element_input', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('change', '.medload_tags', function() {
+    $(this).parent().removeClass('form_error');
+  });
 }
 
 /**
@@ -208,5 +214,8 @@ function documentsDocumentReadyUploader() {
     document.getElementById('upload_target').onload = function() {
       uploadFileTooLarge('document');
     }
+  });
+  $body.on('change', '.docload_title, .docload_description, #new_document_input', function() {
+    $(this).removeClass('form_error');
   });
 }
