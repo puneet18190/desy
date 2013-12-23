@@ -216,30 +216,30 @@ Initializer for tagging autocomplete in the form to <b>upload a new media elemen
 **/
 function tagsDocumentReadyMediaElementLoader() {
   $body.on('click', '#load-media-element ._tags_container .remove', function() {
-    removeFromTagsValue($(this).parent().text(), '#load-media-element ._tags_container #tags_value');
+    removeFromTagsValue($(this).parent().text(), '#load-media-element ._tags_container .medload_tags_value');
     $(this).parent().remove();
-    if($('#load-media-element #tags').not(':visible')) {
-      $('#load-media-element #tags').show();
-      disableTagsInputTooHigh('#load-media-element ._tags_container', '#load-media-element #tags');
+    if($('#load-media-element .medload_tags').not(':visible')) {
+      $('#load-media-element .medload_tags').show();
+      disableTagsInputTooHigh('#load-media-element ._tags_container', '#load-media-element .medload_tags');
     }
   });
   $body.on('focus', '#load-media-element ._tags_container', function() {
     $(this).find('._placeholder').hide();
   });
   $body.on('click', '#load-media-element ._tags_container', function() {
-    $('#load-media-element #tags').focus();
+    $('#load-media-element .medload_tags').focus();
     $(this).find('._placeholder').hide();
   });
-  $body.on('keydown', '#load-media-element #tags', function(e) {
+  $body.on('keydown', '#load-media-element .medload_tags', function(e) {
     if(e.which === 13 || e.which === 188) {
       e.preventDefault();
-      addTagWithoutSuggestion(this, '#load-media-element ._tags_container', '#tags_value');
+      addTagWithoutSuggestion(this, '#load-media-element ._tags_container', '.medload_tags_value');
     } else if(e.which == 8 && $(this).val() == '') {
       $(this).prev().find('.remove').trigger('click');
     }
   });
-  $body.on('blur', '#load-media-element #tags', function(e) {
-    addTagWithoutSuggestion(this, '#load-media-element ._tags_container', '#tags_value');
+  $body.on('blur', '#load-media-element .medload_tags', function(e) {
+    addTagWithoutSuggestion(this, '#load-media-element ._tags_container', '.medload_tags_value');
   });
   initTagsAutocomplete('#load-media-element');
 }
