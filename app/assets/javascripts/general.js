@@ -102,22 +102,25 @@ function resizeExpandedMediaElements(for_row) {
 
 
 
-
-
-
-
-
-
-
-
-function globalDocumentReady() {
-  $body.on('click', '._close_on_click_out', function() {
-    $('.ui-dialog-content:visible').each(function() {
-      closePopUp($(this).attr('id'));
-    });
-  });
+/**
+This function guesses the browser and writes it in a class of the tag 'html'.
+@method browsersDocumentReady
+@for GeneralDocumentReady
+**/
+function browsersDocumentReady() {
+  var name = $.grep(_.keys($.browser), function(el, i) {
+    return el !== 'version';
+  })[0];
+  if(name) {
+    $html.addClass(name);
+  }
 }
 
+/**
+Initializer for functionalities which are common to sections containing media elements.
+@method commonMediaElementsDocumentReady
+@for GeneralDocumentReady
+**/
 function commonMediaElementsDocumentReady() {
   $body.on('click', '._close_media_element_preview_popup', function() {
     var param = $(this).data('param');
@@ -140,6 +143,11 @@ function commonMediaElementsDocumentReady() {
   });
 }
 
+/**
+Initializer for functionalities which are common to sections containing lessons.
+@method commonLessonsDocumentReady
+@for GeneralDocumentReady
+**/
 function commonLessonsDocumentReady() {
   $body.on('click','._lesson_compact', function() {
     if(!$(this).parent().hasClass('_disabled')) {
@@ -159,141 +167,33 @@ function commonLessonsDocumentReady() {
   });
 }
 
-function sectionSearchDocumentReady() {
-  $('._which_item_to_search_switch[checked]').first().attr('checked', 'checked');
-  $('#filter_search_lessons option[selected]').first().attr('selected', 'selected');
-  $('#filter_search_media_elements option[selected]').first().attr('selected', 'selected');
-  $('#filter_search_lessons_subject option[selected]').first().attr('selected', 'selected');
-  $('._order_lessons_radio_input[checked]').first().attr('checked', 'checked');
-  $('._order_media_elements_radio_input[checked]').first().attr('checked', 'checked');
-}
-
-function sectionMediaElementsDocumentReady() {
-  $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
-  $body.on('change', '#filter_media_elements', function() {
-    var filter = $('#filter_media_elements option:selected').val();
-    var display = 'compact';
-    if($('#display_expanded_media_elements').hasClass('current')) {
-      display = 'expanded';
-    }
-    var redirect_url = '/media_elements?display=' + display + '&filter=' + filter;
-    $.get(redirect_url);
-  });
-  $body.on('click', '#display_expanded_media_elements', function() {
-    if(!$(this).hasClass('current')) {
-      $.ajax({
-        type: 'get',
-        url: '/media_elements?display=expanded'
-      });
-    }
-  });
-  $body.on('click', '#display_compact_media_elements', function() {
-    if(!$(this).hasClass('current')) {
-      $.ajax({
-        type: 'get',
-        url: '/media_elements?display=compact'
-      });
-    }
-  });
-}
-
-function sectionLessonsDocumentReady() {
-  $('#filter_lessons option[selected]').first().attr('selected', 'selected');
-  $body.on('change', '#filter_lessons', function() {
-    var filter = $('#filter_lessons option:selected').val();
-    var redirect_url = '/lessons?filter=' + filter;
-    $.get(redirect_url);
-  });
-}
-
-function sectionDocumentsDocumentReady() {
-  $('#order_documents option[selected]').first().attr('selected', 'selected');
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
-This function guesses the browser and writes it in a class of the tag 'html'.
-@method browsersDocumentReady
+Initializer for global functionalities, used throughout the application.
+@method globalDocumentReady
 @for GeneralDocumentReady
 **/
-function browsersDocumentReady() {
-  var name = $.grep(_.keys($.browser), function(el, i) {
-    return el !== 'version';
-  })[0];
-  if(name) {
-    $html.addClass(name);
-  }
-}
-
-/**
-Initializer for all javascript and JQuery plugins.
-@method javaScriptAnimationsDocumentReady
-@for GeneralDocumentReady
-**/
-function javaScriptAnimationsDocumentReady() {
+function globalDocumentReady() {
+  $body.on('click', '._close_on_click_out', function() {
+    $('.ui-dialog-content:visible').each(function() {
+      closePopUp($(this).attr('id'));
+    });
+  });
   $body.on('mouseenter', '.empty-situation-container a', function() {
     $(this).find('.plus').addClass('encendido');
   });
   $body.on('mouseleave', '.empty-situation-container a', function() {
     $(this).find('.plus').removeClass('encendido');
   });
-  $('#notifications_list').jScrollPane({
-    autoReinitialise: true
-  });
-  $('#which_item_to_search').selectbox();
-  $('#filter_lessons').selectbox();
-  $('#order_documents').selectbox();
-  $('#filter_search_lessons').selectbox();
-  $('#filter_search_lessons_subject').selectbox();
-  $('#filter_search_lessons_school_level').selectbox();
-  $('#filter_media_elements').selectbox();
-  $('#filter_search_media_elements').selectbox();
-  $('#user_school_level_id').selectbox();
+  $('#user_school_level_id').selectbox(); // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
+  if(my_login.length > 0 && $(e.target).parents('#login_form_container').length == 0 && !$(e.target).hasClass('_show_login_form_container')) {
+    $('._show_login_form_container').click();
+  } // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
   $body.on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
     var myself = $(this);
     var len = myself.val().length;
     var maxlength = myself.attr('maxlength')
     if (maxlength && len > maxlength) {
       myself.val(myself.val().slice(0, maxlength));
-    }
-  });
-  $(document).bind('click', function (e) {
-    var click_id = $(e.target).attr('id');
-    var my_report = $('.tooltipForm:visible');
-    var my_login = $('#login_form_container:visible');
-    if($('#tooltip_content').length > 0) {
-      if($('#tooltip_content').is(':visible')) {
-        if(click_id != 'tooltip_content' && click_id != 'expanded_notification' && click_id != 'notifications_button' && $(e.target).parents('#tooltip_content').length == 0 && $(e.target).parents('#expanded_notification').length == 0) {
-          $('#notifications_button').trigger('click');
-        }
-      }
-    }
-    if($('#tooltip_help').length > 0) {
-      if($('#tooltip_help').is(':visible')) {
-        if(click_id != 'tooltip_help' && click_id != 'help' && $(e.target).parents('#tooltip_help').length == 0) {
-          $('#help').trigger('click');
-        }
-      }
-    }
-    if(my_report.length > 0 && $(e.target).parents('#' + my_report.attr('id')).length == 0) {
-      my_report.parent().find('.report_light, ._reportable_lesson_icon').click();
-    }
-    if(my_login.length > 0 && $(e.target).parents('#login_form_container').length == 0 && !$(e.target).hasClass('_show_login_form_container')) {
-      $('._show_login_form_container').click();
     }
   });
 }
@@ -364,6 +264,120 @@ function reportsDocumentReady() {
   $body.on('click', '._report_form_content ._send', function(e) {
     $(this).closest('form').submit();
   });
+}
+
+/**
+Functionalities necessary only for the section 'my documents'.
+@method sectionDocumentsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionDocumentsDocumentReady() {
+  $('#order_documents option[selected]').first().attr('selected', 'selected');
+  $('#order_documents').selectbox();
+}
+
+/**
+Functionalities necessary only for the section 'my lessons'.
+@method sectionLessonsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionLessonsDocumentReady() {
+  $('#filter_lessons option[selected]').first().attr('selected', 'selected');
+  $body.on('change', '#filter_lessons', function() {
+    var filter = $('#filter_lessons option:selected').val();
+    var redirect_url = '/lessons?filter=' + filter;
+    $.get(redirect_url);
+  });
+  $('#filter_lessons').selectbox();
+}
+
+/**
+Functionalities necessary only for the section 'my media elements'.
+@method sectionMediaElementsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionMediaElementsDocumentReady() {
+  $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
+  $body.on('change', '#filter_media_elements', function() {
+    var filter = $('#filter_media_elements option:selected').val();
+    var display = 'compact';
+    if($('#display_expanded_media_elements').hasClass('current')) {
+      display = 'expanded';
+    }
+    var redirect_url = '/media_elements?display=' + display + '&filter=' + filter;
+    $.get(redirect_url);
+  });
+  $body.on('click', '#display_expanded_media_elements', function() {
+    if(!$(this).hasClass('current')) {
+      $.ajax({
+        type: 'get',
+        url: '/media_elements?display=expanded'
+      });
+    }
+  });
+  $body.on('click', '#display_compact_media_elements', function() {
+    if(!$(this).hasClass('current')) {
+      $.ajax({
+        type: 'get',
+        url: '/media_elements?display=compact'
+      });
+    }
+  });
+  $('#filter_media_elements').selectbox();
+}
+
+/**
+Functionalities necessary only for the sections containing notifications.
+@method sectionNotificationsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionNotificationsDocumentReady() {
+  $('#notifications_list').jScrollPane({
+    autoReinitialise: true
+  });
+  $(document).bind('click', function (e) {
+    var click_id = $(e.target).attr('id');
+    var my_report = $('.tooltipForm:visible');
+    var my_login = $('#login_form_container:visible');
+    if($('#tooltip_content').length > 0) {
+      if($('#tooltip_content').is(':visible')) {
+        if(click_id != 'tooltip_content' && click_id != 'expanded_notification' && click_id != 'notifications_button' && $(e.target).parents('#tooltip_content').length == 0 && $(e.target).parents('#expanded_notification').length == 0) {
+          $('#notifications_button').trigger('click');
+        }
+      }
+    }
+    if($('#tooltip_help').length > 0) {
+      if($('#tooltip_help').is(':visible')) {
+        if(click_id != 'tooltip_help' && click_id != 'help' && $(e.target).parents('#tooltip_help').length == 0) {
+          $('#help').trigger('click');
+        }
+      }
+    }
+    if(my_report.length > 0 && $(e.target).parents('#' + my_report.attr('id')).length == 0) {
+      my_report.parent().find('.report_light, ._reportable_lesson_icon').click();
+    }
+  });
+}
+
+/**
+Functionalities necessary only for the section 'search'.
+@method sectionSearchDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionSearchDocumentReady() {
+  $('._which_item_to_search_switch[checked]').first().attr('checked', 'checked');
+  $('._order_lessons_radio_input[checked]').first().attr('checked', 'checked');
+  $('._order_media_elements_radio_input[checked]').first().attr('checked', 'checked');
+  $('#which_item_to_search option[selected]').first().attr('selected', 'selected');
+  $('#filter_search_lessons option[selected]').first().attr('selected', 'selected');
+  $('#filter_search_media_elements option[selected]').first().attr('selected', 'selected');
+  $('#filter_search_lessons_subject option[selected]').first().attr('selected', 'selected');
+  $('#filter_search_lessons_school_level option[selected]').first().attr('selected', 'selected');
+  $('#which_item_to_search').selectbox();
+  $('#filter_search_lessons').selectbox();
+  $('#filter_search_media_elements').selectbox();
+  $('#filter_search_lessons_subject').selectbox();
+  $('#filter_search_lessons_school_level').selectbox();
 }
 
 

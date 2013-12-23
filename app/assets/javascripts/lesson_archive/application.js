@@ -33,11 +33,8 @@
 $(document).ready(function() {
   initializeGlobalVariables();
   browsersDocumentReady();
-  
-  
-  
-  
-  javaScriptAnimationsDocumentReady();
+  globalDocumentReady();
+  // TODO ottimizz a partire da qui non è ottimizzato
   playersDocumentReady();
   lessonViewerDocumentReady();
   var scrolls = $('#left_scroll, #right_scroll');

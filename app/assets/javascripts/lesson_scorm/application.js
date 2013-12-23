@@ -33,11 +33,8 @@
 $(document).ready(function() {
   initializeGlobalVariables();
   browsersDocumentReady();
-  
-  
-  
-  
-  javaScriptAnimationsDocumentReady();
+  globalDocumentReady();
+  // TODO ottimizz a partire da qui non è ottimizzato
   playersDocumentReady();
   lessonViewerDocumentReady();
   $('.lesson-scorm-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');

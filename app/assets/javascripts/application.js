@@ -53,10 +53,8 @@
 $(document).ready(function() {
   initializeGlobalVariables();
   browsersDocumentReady();
-  
-  
-  
-  
+  globalDocumentReady();
+  // TODO ottimizz a partire da qui non è ottimizzato
   ajaxLoaderDocumentReady();
   audioEditorDocumentReady();
   automaticLoginDocumentReady();
@@ -64,7 +62,6 @@ $(document).ready(function() {
   documentsDocumentReady();
   galleriesDocumentReady();
   imageEditorDocumentReady();
-  javaScriptAnimationsDocumentReady();
   lessonButtonsDocumentReady();
   lessonEditorDocumentReady();
   lessonViewerDocumentReady();
