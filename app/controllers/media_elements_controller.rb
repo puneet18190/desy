@@ -375,7 +375,7 @@ class MediaElementsController < ApplicationController
   def initialize_paginator
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
     @display = [MediaElement::DISPLAY_MODES[:compact], MediaElement::DISPLAY_MODES[:expanded]].include?(params[:display]) ? params[:display] : MediaElement::DISPLAY_MODES[:expanded]
-    @for_page = (@display == MediaElement::DISPLAY_MODES[:expanded]) ? 'boh' : FOR_PAGE # TODO
+    @for_page = (@display == MediaElement::DISPLAY_MODES[:expanded]) ? 18 : FOR_PAGE # TODO
     @filter = params[:filter]
     @filter = Filters::ALL_MEDIA_ELEMENTS if !Filters::MEDIA_ELEMENTS_SET.include?(@filter)
   end
