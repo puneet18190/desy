@@ -65,7 +65,6 @@ function uploaderErrors(selector, errors, fields) {
   item.find('.barraLoading .loading-internal').data('can-move', false).css('width', '0px').hide();
   item.find('#new_' + obj_name + '_submit').removeClass('disabled');
   item.find('._close').removeClass('disabled');
-  loading_errors.append('<img class="appended" src="/assets/puntoesclamativo.png" />');
   errors_appended = '';
   for(var i = 0; i < errors.length; i++) {
     if(i == errors.length - 1) {
@@ -74,7 +73,7 @@ function uploaderErrors(selector, errors, fields) {
       errors_appended += (errors[i] + '; ');
     }
   }
-  loading_errors.append('<span class="lower appended">' + errors_appended + '</span>');
+  loading_errors.html('<span class="lower">' + errors_appended + '</span>');
   for(var i = 0; i < fields.length; i++) {
     if(fields[i] == 'media') {
       item.find('#media_element_media_show').addClass('form_error');

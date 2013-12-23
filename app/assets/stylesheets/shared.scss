@@ -892,6 +892,14 @@ label.filebutton span input#new_media_element_input {
     
   }
   
+  .loading-errors {
+    
+    @include arial-with-line-height(13px, 17px);
+    padding: 13px;
+    color: #B40404;
+    
+  }
+  
 }
 
 #load-document .barraLoading .loading-internal {
