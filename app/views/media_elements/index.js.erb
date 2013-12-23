@@ -28,16 +28,14 @@ $('#info_container').data('currenturl', <%= manipulate_url(remove_query_param: "
 
 <% if @display == MediaElement::DISPLAY_MODES[:expanded] %>
   if($('#display_compact_media_elements').hasClass('current')) {
-    $('#media_elements_title_bar').replaceWith('<%= j(render(:partial => 'media_elements/title_bar')) %>');
-    $("#for_page_media_elements").selectbox();
+    $('#media_elements_title_bar').replaceWith("<%= j(render(:partial => 'media_elements/title_bar', :locals => {:filter => @filter, :display => @display})) %>");
     $("#filter_media_elements").selectbox();
   }
 <% end %>
 
 <% if @display == MediaElement::DISPLAY_MODES[:compact] %>
   if($('#display_expanded_media_elements').hasClass('current')) {
-    $('#media_elements_title_bar').replaceWith('<%= j(render(:partial => 'media_elements/title_bar')) %>');
-    $("#for_page_media_elements").selectbox();
+    $('#media_elements_title_bar').replaceWith("<%= j(render(:partial => 'media_elements/title_bar', :locals => {:filter => @filter, :display => @display})) %>");
     $("#filter_media_elements").selectbox();
   }
 <% end %>

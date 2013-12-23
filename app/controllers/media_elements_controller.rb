@@ -14,16 +14,7 @@
 class MediaElementsController < ApplicationController
   
   # Default number of elements in compact mode to be shown in a single page (configured in settings.yml)
-  FOR_PAGE_COMPACT = SETTINGS['compact_media_element_pagination']
-  
-  # Options of possible elements in compact mode to be shown in a single page (configured in settings.yml)
-  FOR_PAGE_COMPACT_OPTIONS = SETTINGS['compact_media_element_pagination_options']
-  
-  # Default number of elements in expanded mode to be shown in a single page (configured in settings.yml)
-  FOR_PAGE_EXPANDED = SETTINGS['expanded_media_element_pagination']
-  
-  # Options of possible elements in expanded mode to be shown in a single page (configured in settings.yml)
-  FOR_PAGE_EXPANDED_OPTIONS = SETTINGS['expanded_media_element_pagination_options']
+  FOR_PAGE = SETTINGS['compact_media_element_pagination']
   
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
@@ -384,16 +375,7 @@ class MediaElementsController < ApplicationController
   def initialize_paginator
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
     @display = [MediaElement::DISPLAY_MODES[:compact], MediaElement::DISPLAY_MODES[:expanded]].include?(params[:display]) ? params[:display] : MediaElement::DISPLAY_MODES[:expanded]
-    @for_page_options = @display == MediaElement::DISPLAY_MODES[:compact] ? FOR_PAGE_COMPACT_OPTIONS : FOR_PAGE_EXPANDED_OPTIONS
-    @for_page = (@display == MediaElement::DISPLAY_MODES[:expanded]) ? FOR_PAGE_EXPANDED : FOR_PAGE_COMPACT
-    if correct_integer?(params[:for_page])
-      @for_page = 
-        if @display == MediaElement::DISPLAY_MODES[:expanded]
-          FOR_PAGE_EXPANDED_OPTIONS.include?(params[:for_page].to_i) ? params[:for_page].to_i : @for_page
-        else
-          FOR_PAGE_COMPACT_OPTIONS.include?(params[:for_page].to_i) ? params[:for_page].to_i : @for_page
-        end
-    end
+    @for_page = (@display == MediaElement::DISPLAY_MODES[:expanded]) ? 'boh' : FOR_PAGE # TODO
     @filter = params[:filter]
     @filter = Filters::ALL_MEDIA_ELEMENTS if !Filters::MEDIA_ELEMENTS_SET.include?(@filter)
   end

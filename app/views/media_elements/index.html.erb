@@ -8,7 +8,7 @@
 <br class="clearfloat">
 <div class="griglia-contenuti">
   <div class="elements-content">
-    <%= render :partial => 'media_elements/title_bar' %>
+    <%= render :partial => 'media_elements/title_bar', :locals => {:filter => @filter, :display => @display} %>
     <br class="clearfloat">
     <%= render :partial => 'media_elements/my_media_elements', :locals => {:media_elements => @media_elements, :filter => @filter, :display => @display} %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>

@@ -59,12 +59,6 @@ seconds_for_saving_cache: 60000
 compact_lesson_pagination: 18
 # Pagination of compact media elements, in sections (1) Elements and (2) Search engine
 compact_media_element_pagination: 18
-# Options for pagination of compact media elements, in sections (1) Elements and (2) Search engine
-compact_media_element_pagination_options: [18, 27, 36]
-# Pagination of expanded media elements, in sections (1) Elements and (2) Search engine
-expanded_media_element_pagination: 14
-# Options for pagination of expanded media elements, in sections (1) Elements and (2) Search engine
-expanded_media_element_pagination_options: [14, 21, 28]
 # Pagination of documents, in section my documents
 documents_pagination: 18
 # Number of notifications loaded together (pagination of notifications done with infinite scroll)
