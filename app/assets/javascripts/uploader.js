@@ -122,10 +122,12 @@ function mediaElementLoaderDocumentReady() {
   });
   $body.on('change', 'input#new_media_element_input', function() {
     var file_name = $(this).val().replace("C:\\fakepath\\", '');
-    if(file_name.length > 20) {
-      file_name = file_name.substring(0, 20) + '...';
+    if(file_name.replace(/^[\s\t]+/, '') != '') {
+      if(file_name.length > 20) {
+        file_name = file_name.substring(0, 20) + '...';
+      }
+      $('#media_element_media_show').text(file_name).removeClass('form_error');
     }
-    $('#media_element_media_show').text(file_name);
   });
   $body.on('click', '#load-media-element ._close', function() {
     if(!$(this).hasClass('disabled')) {
@@ -162,9 +164,6 @@ function mediaElementLoaderDocumentReady() {
       uploadFileTooLarge('media_element');
     }
   });
-  $body.on('change', '#new_media_element_input', function() {
-    $('#media_element_media_show').removeClass('form_error');
-  });
   $body.on('keydown', '.medload_title, .medload_description', function() {
     $(this).removeClass('form_error');
   });
@@ -184,10 +183,12 @@ function documentsDocumentReadyUploader() {
   });
   $body.on('change', 'input#new_document_input', function() {
     var file_name = $(this).val().replace("C:\\fakepath\\", '');
-    if(file_name.length > 20) {
-      file_name = file_name.substring(0, 20) + '...';
+    if(file_name.replace(/^[\s\t]+/, '') != '') {
+      if(file_name.length > 20) {
+        file_name = file_name.substring(0, 20) + '...';
+      }
+      $('#document_attachment_show').text(file_name).removeClass('form_error');
     }
-    $('#document_attachment_show').text(file_name);
   });
   $body.on('click', '#load-document ._close', function() {
     if(!$(this).hasClass('disabled')) {
@@ -223,9 +224,6 @@ function documentsDocumentReadyUploader() {
     document.getElementById('upload_target').onload = function() {
       uploadFileTooLarge('document');
     }
-  });
-  $body.on('change', '#new_document_input', function() {
-    $('#document_attachment_show').removeClass('form_error');
   });
   $body.on('keydown', '.docload_title, .docload_description', function() {
     $(this).removeClass('form_error');
