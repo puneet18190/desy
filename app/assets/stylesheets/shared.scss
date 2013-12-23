@@ -1209,19 +1209,19 @@ label.filebutton span input#new_media_element_input {
     
     &.destroy:hover {
       
-      @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 25px, 2, 10, 1, 0, 1, none);
+      @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 30px, 2, 10, 1, 0, 1, none);
       
     }
     
     &.edit:hover {
       
-      @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 25px, 2, 10, 1, 0, 6, none);
+      @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 30px, 2, 10, 1, 0, 6, none);
       
     }
     
     &.preview:hover {
       
-      @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 25px, 2, 10, 1, 0, 7, none);
+      @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 30px, 2, 10, 1, 0, 7, none);
       
     }
     
