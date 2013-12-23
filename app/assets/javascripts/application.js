@@ -61,10 +61,7 @@ $(document).ready(function() {
   audioEditorDocumentReady();
   automaticLoginDocumentReady();
   if ( $html.hasClass('dashboard-controller index-action') ) dashboardDocumentReady();
-  defaultValueJavaScriptAnimationsDocumentReady();
   documentsDocumentReady();
-  expandedItemsDocumentReady();
-  filtersDocumentReady();
   galleriesDocumentReady();
   imageEditorDocumentReady();
   javaScriptAnimationsDocumentReady();

@@ -102,75 +102,23 @@ function resizeExpandedMediaElements(for_row) {
 
 
 
-/**
-This function guesses the browser and writes it in a class of the tag 'html'.
-@method browsersDocumentReady
-@for GeneralDocumentReady
-**/
-function browsersDocumentReady() {
-  var name = $.grep(_.keys($.browser), function(el, i) {
-    return el !== 'version';
-  })[0];
-  if(name) {
-    $html.addClass(name);
-  }
+
+
+
+
+
+
+
+
+function globalDocumentReady() {
+  $body.on('click', '._close_on_click_out', function() {
+    $('.ui-dialog-content:visible').each(function() {
+      closePopUp($(this).attr('id'));
+    });
+  });
 }
 
-/**
-This function sets the default values of SelectBoxe all around the application. This function is necessary because otherwise the original value wouldn't be set, since we use a JQuery plugin to design selects.
-@method defaultValueJavaScriptAnimationsDocumentReady
-@for GeneralDocumentReady
-**/
-function defaultValueJavaScriptAnimationsDocumentReady() {
-  $('._which_item_to_search_switch[checked]').first().attr('checked', 'checked');
-  $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
-  $('#filter_lessons option[selected]').first().attr('selected', 'selected');
-  $('#order_documents option[selected]').first().attr('selected', 'selected');
-  $('#filter_search_lessons option[selected]').first().attr('selected', 'selected');
-  $('#filter_search_media_elements option[selected]').first().attr('selected', 'selected');
-  $('#filter_search_lessons_subject option[selected]').first().attr('selected', 'selected');
-  $('._order_lessons_radio_input[checked]').first().attr('checked', 'checked');
-  $('._order_media_elements_radio_input[checked]').first().attr('checked', 'checked');
-}
-
-/**
-Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink "DialogsWithForm/showMediaElementInfoPopUp:method"}}{{/crossLink}}).
-@method expandedItemsDocumentReady
-@for GeneralDocumentReady
-**/
-function expandedItemsDocumentReady() {
-  $body.on('click','._lesson_compact', function() {
-    if(!$(this).parent().hasClass('_disabled')) {
-      var my_id = $(this).parent().attr('id');
-      var my_expanded = $('#' + my_id + ' ._lesson_expanded');
-      if(my_expanded.is(':visible')) {
-        my_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
-        my_expanded.hide('blind', {}, 500, function() {
-          my_expanded.hide();
-        });
-      } else {
-        my_expanded.show('blind', {}, 500, function() {
-          my_expanded.show();
-        });
-      }
-    }
-  });
-  $body.on('click', '#display_expanded_media_elements', function() {
-    if(!$(this).hasClass('current')) {
-      $.ajax({
-        type: 'get',
-        url: '/media_elements?display=expanded'
-      });
-    }
-  });
-  $body.on('click', '#display_compact_media_elements', function() {
-    if(!$(this).hasClass('current')) {
-      $.ajax({
-        type: 'get',
-        url: '/media_elements?display=compact'
-      });
-    }
-  });
+function commonMediaElementsDocumentReady() {
   $body.on('click', '._close_media_element_preview_popup', function() {
     var param = $(this).data('param');
     closePopUp('dialog-media-element-' + param);
@@ -190,24 +138,38 @@ function expandedItemsDocumentReady() {
     $(this).addClass('change_info_light');
     $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').hide();
   });
-  $body.on('click', '._close_on_click_out', function() {
-    $('.ui-dialog-content:visible').each(function() {
-      closePopUp($(this).attr('id'));
-    });
+}
+
+function commonLessonsDocumentReady() {
+  $body.on('click','._lesson_compact', function() {
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_id = $(this).parent().attr('id');
+      var my_expanded = $('#' + my_id + ' ._lesson_expanded');
+      if(my_expanded.is(':visible')) {
+        my_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
+        my_expanded.hide('blind', {}, 500, function() {
+          my_expanded.hide();
+        });
+      } else {
+        my_expanded.show('blind', {}, 500, function() {
+          my_expanded.show();
+        });
+      }
+    }
   });
 }
 
-/**
-Similar to {{#crossLink "GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method"}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.
-@method filtersDocumentReady
-@for GeneralDocumentReady
-**/
-function filtersDocumentReady() {
-  $body.on('change', '#filter_lessons', function() {
-    var filter = $('#filter_lessons option:selected').val();
-    var redirect_url = '/lessons?filter=' + filter;
-    $.get(redirect_url);
-  });
+function sectionSearchDocumentReady() {
+  $('._which_item_to_search_switch[checked]').first().attr('checked', 'checked');
+  $('#filter_search_lessons option[selected]').first().attr('selected', 'selected');
+  $('#filter_search_media_elements option[selected]').first().attr('selected', 'selected');
+  $('#filter_search_lessons_subject option[selected]').first().attr('selected', 'selected');
+  $('._order_lessons_radio_input[checked]').first().attr('checked', 'checked');
+  $('._order_media_elements_radio_input[checked]').first().attr('checked', 'checked');
+}
+
+function sectionMediaElementsDocumentReady() {
+  $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
   $body.on('change', '#filter_media_elements', function() {
     var filter = $('#filter_media_elements option:selected').val();
     var display = 'compact';
@@ -217,6 +179,64 @@ function filtersDocumentReady() {
     var redirect_url = '/media_elements?display=' + display + '&filter=' + filter;
     $.get(redirect_url);
   });
+  $body.on('click', '#display_expanded_media_elements', function() {
+    if(!$(this).hasClass('current')) {
+      $.ajax({
+        type: 'get',
+        url: '/media_elements?display=expanded'
+      });
+    }
+  });
+  $body.on('click', '#display_compact_media_elements', function() {
+    if(!$(this).hasClass('current')) {
+      $.ajax({
+        type: 'get',
+        url: '/media_elements?display=compact'
+      });
+    }
+  });
+}
+
+function sectionLessonsDocumentReady() {
+  $('#filter_lessons option[selected]').first().attr('selected', 'selected');
+  $body.on('change', '#filter_lessons', function() {
+    var filter = $('#filter_lessons option:selected').val();
+    var redirect_url = '/lessons?filter=' + filter;
+    $.get(redirect_url);
+  });
+}
+
+function sectionDocumentsDocumentReady() {
+  $('#order_documents option[selected]').first().attr('selected', 'selected');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+This function guesses the browser and writes it in a class of the tag 'html'.
+@method browsersDocumentReady
+@for GeneralDocumentReady
+**/
+function browsersDocumentReady() {
+  var name = $.grep(_.keys($.browser), function(el, i) {
+    return el !== 'version';
+  })[0];
+  if(name) {
+    $html.addClass(name);
+  }
 }
 
 /**

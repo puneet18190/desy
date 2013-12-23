@@ -37,9 +37,6 @@ $(document).ready(function() {
   
   
   
-  defaultValueJavaScriptAnimationsDocumentReady();
-  filtersDocumentReady();
-  expandedItemsDocumentReady();
   javaScriptAnimationsDocumentReady();
   playersDocumentReady();
   lessonViewerDocumentReady();
