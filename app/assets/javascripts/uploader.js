@@ -61,6 +61,7 @@ function uploaderErrors(selector, errors, fields) {
   var item = $('#load-' + selector);
   var input_selector = '.' + selector.substr(0, 3) + 'load_';
   var loading_errors = item.find('.barraLoading .loading-errors');
+  item.find('.form_error').removeClass('form_error');
   item.find('.barraLoading .loading-internal').data('can-move', false).css('width', '0px');
   item.find('#new_' + obj_name + '_submit').removeClass('disabled');
   item.find('._close').removeClass('disabled');
