@@ -77,7 +77,6 @@ This function sets the default values of SelectBoxe all around the application. 
 **/
 function defaultValueJavaScriptAnimationsDocumentReady() {
   $('._which_item_to_search_switch[checked]').first().attr('checked', 'checked');
-  $('#for_page_media_elements option[selected]').first().attr('selected', 'selected');
   $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
   $('#filter_lessons option[selected]').first().attr('selected', 'selected');
   $('#order_documents option[selected]').first().attr('selected', 'selected');
@@ -165,12 +164,11 @@ function filtersDocumentReady() {
   });
   $body.on('change', '#filter_media_elements', function() {
     var filter = $('#filter_media_elements option:selected').val();
-    var redirect_url = getCompleteMediaElementsUrlWithoutFilter() + '&filter=' + filter;
-    $.get(redirect_url);
-  });
-  $body.on('change', '#for_page_media_elements', function() {
-    var for_page = $('#for_page_media_elements option:selected').val();
-    var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + '&for_page=' + for_page;
+    var display = 'compact';
+    if($('#display_expanded_media_elements').hasClass('current')) {
+      display = 'expanded';
+    }
+    var redirect_url = '/media_elements?display=' + display + '&filter=' + filter;
     $.get(redirect_url);
   });
 }
@@ -196,7 +194,6 @@ function javaScriptAnimationsDocumentReady() {
   $('#filter_search_lessons').selectbox();
   $('#filter_search_lessons_subject').selectbox();
   $('#filter_search_lessons_school_level').selectbox();
-  $('#for_page_media_elements').selectbox();
   $('#filter_media_elements').selectbox();
   $('#filter_search_media_elements').selectbox();
   $('#user_school_level_id').selectbox();
@@ -308,19 +305,6 @@ function reportsDocumentReady() {
 
 
 /**
-Gets the requested format to visualize media elements.
-@method getMediaElementsFormat
-@for GeneralMiscellanea
-**/
-function getMediaElementsFormat() {
-  var param = 'display=compact';
-  if($('#display_expanded_media_elements').hasClass('current')) {
-    param = 'display=expanded';
-  }
-  return param
-}
-
-/**
 Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}} and in {{#crossLinkModule "image-editor"}}{{/crossLinkModule}}.
 @method redError
 @for GeneralMiscellanea
@@ -368,31 +352,7 @@ function browserSupport() {
 }
 
 /**
-This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
-@method getCompleteMediaElementsUrlWithoutForPage
-@for GeneralUrls
-@return {String} the current url without the parameter 'for_page'
-**/
-function getCompleteMediaElementsUrlWithoutForPage() {
-  var param_format = getMediaElementsFormat();
-  var param_filter = 'filter=' + $('#filter_media_elements option:selected').val();
-  return '/media_elements?' + param_format + '&' + param_filter;
-}
-
-/**
-This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
-@method getCompleteMediaElementsUrlWithoutFilter
-@for GeneralUrls
-@return {String} the current url without the parameter 'filter'
-**/
-function getCompleteMediaElementsUrlWithoutFilter() {
-  var param_format = getMediaElementsFormat();
-  var param_for_page = 'for_page=' + $('#for_page_media_elements option:selected').val();
-  return '/media_elements?' + param_format + '&' + param_for_page;
-}
-
-/**
-This function returns an url for documents without the parameter 'order'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
+This function returns an url for documents without the parameter 'order'.
 @method getCompleteDocumentsUrlWithoutOrder
 @for GeneralUrls
 @return {String} the current url without the parameter 'order'
