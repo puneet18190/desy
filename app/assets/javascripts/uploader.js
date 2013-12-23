@@ -135,6 +135,7 @@ function mediaElementLoaderDocumentReady() {
     if(!$(this).hasClass('disabled')) {
       $(this).addClass('disabled');
       $('#load-media-element ._close').addClass('disabled');
+      $('#load-media-element .barraLoading .loading-errors').html('');
       uploadAnimationRecursion($('#load-media-element .barraLoading .loading-internal'), 0, 5, 760);
       $(this).closest('#new_media_element').submit();
     } else {
@@ -195,6 +196,7 @@ function documentsDocumentReadyUploader() {
     if(!$(this).hasClass('disabled')) {
       $(this).addClass('disabled');
       $('#load-document ._close').addClass('disabled');
+      $('#load-document .barraLoading .loading-errors').html('');
       uploadAnimationRecursion($('#load-document .barraLoading .loading-internal'), 0, 5, 760);
       $(this).closest('#new_document').submit();
     } else {
