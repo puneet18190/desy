@@ -1309,7 +1309,7 @@ it:
         # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
         title: "Ripristino password"
         # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
-        description: "Abbiamo inviato, all'indirizzo da te fornitoci, una email contenente il link per cambiare la tua password"
+        description: "Abbiamo inviato, all'indirizzo che hai inserito, una email contenente il link per cambiare la tua password"
       # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
       received:
         # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
@@ -3956,7 +3956,7 @@ it:
         ["Posso eliminare un elemento che ho reso pubblico?", "No, non puoi far tornare privato o eliminare un elemento che hai già condiviso. Ricorda che anche quando rendi pubblica una lezione, tutti gli elementi didattici in essa contenuti vengono automaticamente condivisi nell'archivio e, a differenza della lezione, non potranno più essere cancellati o resi privati. Puoi comunque inviare una segnalazione alla redazione che provvederà alla rimozione dell'elemento.<br/>Un elemento privato verrà automaticamente condiviso anche al momento del suo inserimento in una lezione già pubblica."],
         ["Ho caricato un video, ma vorrei usarne solo una parte...", "Nessun problema. Grazie agli speciali strumenti di editing di DESY puoi tagliare e combinare video, immagini e audio per creare nuovi elementi multimediali più adatti alle tue esigenze didattiche."],
         ["Posso usare o modificare elementi di altri utenti?", "Sì, per utilizzare elementi di altri utenti è sufficiente utilizzare il motore di ricerca e aggiungere gli elementi che preferisci al tuo archivio personale. Successivamente potrai aggiungerli alle tue lezioni, modificarli o combinarli con gli speciali editor multimediali di DESY."],
-        ["Ho trovato un contenuto inappropriato...", "La redazione di DESY tiene in costante controllo la qualità dei contenuti caricati dagli utenti, ma se dovessi imbatterti in un contenuto che ritieni inappropriato segnalano alla redazione."]
+        ["Ho trovato un contenuto inappropriato...", "La redazione di DESY tiene in costante controllo la qualità dei contenuti caricati dagli utenti, ma se dovessi imbatterti in un contenuto che ritieni inappropriato segnalalo alla redazione."]
       ]
     # FAQS about the Virtual Classroom (all of them have a common description which is visible on the gray header)
     virtual_classroom:
