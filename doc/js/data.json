@@ -3376,7 +3376,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 379,
+            "line": 381,
             "description": "Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "showLoadMediaElementPopUp",
@@ -3385,7 +3385,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 415,
+            "line": 419,
             "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "showMediaElementInfoPopUp",
@@ -3401,7 +3401,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 467,
+            "line": 471,
             "description": "Dialog containing the form to send the public link of a lesson. Used in {{#crossLink \"VirtualClassroomSendLink\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showSendLessonLinkPopUp",
@@ -3417,7 +3417,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 511,
+            "line": 515,
             "description": "Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink \"VirtualClassroomMultipleLoading\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showVirtualClassroomQuickSelectPopUp",
@@ -3460,7 +3460,7 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 145,
+            "line": 146,
             "description": "Initializer for documents functionality (search and placeholders javascripts).",
             "itemtype": "method",
             "name": "documentsDocumentReadySearch",
@@ -3653,15 +3653,31 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 55,
-            "description": "Recenters the media elements according to their number and the screen resolution.",
+            "description": "Same structure of {{#crossLink \"DashboardResizing/dashboardResizeController:method\"}}{{/crossLink}}.",
             "itemtype": "method",
-            "name": "recenterMyMediaElements",
+            "name": "mediaElementsResizeController",
             "class": "GeneralCentering",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 70,
+            "line": 80,
+            "description": "Same structure of {{#crossLink \"DashboardResizing/resizeLessonsAndMediaElementsInDashboard:method\"}}{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "resizeExpandedMediaElements",
+            "params": [
+                {
+                    "name": "for_row",
+                    "description": "how many media elements fit horizontally the screen",
+                    "type": "Number"
+                }
+            ],
+            "class": "GeneralCentering",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 105,
             "description": "This function guesses the browser and writes it in a class of the tag 'html'.",
             "itemtype": "method",
             "name": "browsersDocumentReady",
@@ -3670,52 +3686,34 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 84,
-            "description": "This function sets the default values of SelectBoxe all around the application. This function is necessary because otherwise the original value wouldn't be set, since we use a JQuery plugin to design selects.",
+            "line": 119,
+            "description": "Initializer for functionalities which are common to sections containing media elements.",
             "itemtype": "method",
-            "name": "defaultValueJavaScriptAnimationsDocumentReady",
+            "name": "commonMediaElementsDocumentReady",
             "class": "GeneralDocumentReady",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 102,
-            "description": "Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
+            "line": 146,
+            "description": "Initializer for functionalities which are common to sections containing lessons.",
             "itemtype": "method",
-            "name": "expandedItemsDocumentReady",
+            "name": "commonLessonsDocumentReady",
             "class": "GeneralDocumentReady",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 166,
-            "description": "Similar to {{#crossLink \"GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method\"}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.",
+            "line": 170,
+            "description": "Initializer for global functionalities, used throughout the application.",
             "itemtype": "method",
-            "name": "filtersDocumentReady",
+            "name": "globalDocumentReady",
             "class": "GeneralDocumentReady",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 189,
-            "description": "Initializer for consequences of window resizing.",
-            "itemtype": "method",
-            "name": "generalWindowResizeDocumentReady",
-            "class": "GeneralDocumentReady",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 202,
-            "description": "Initializer for all javascript and JQuery plugins.",
-            "itemtype": "method",
-            "name": "javaScriptAnimationsDocumentReady",
-            "class": "GeneralDocumentReady",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 262,
+            "line": 201,
             "description": "Initializer for locations automatic filling.",
             "itemtype": "method",
             "name": "locationsDocumentReady",
@@ -3724,7 +3722,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 285,
+            "line": 224,
             "description": "Initializes reports forms for both lessons and media elements.",
             "itemtype": "method",
             "name": "reportsDocumentReady",
@@ -3733,16 +3731,61 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 334,
-            "description": "Gets the requested format to visualize media elements.",
+            "line": 269,
+            "description": "Functionalities necessary only for the section 'my documents'.",
             "itemtype": "method",
-            "name": "getMediaElementsFormat",
+            "name": "sectionDocumentsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 279,
+            "description": "Functionalities necessary only for the section 'my lessons'.",
+            "itemtype": "method",
+            "name": "sectionLessonsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 294,
+            "description": "Functionalities necessary only for the section 'my media elements'.",
+            "itemtype": "method",
+            "name": "sectionMediaElementsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 329,
+            "description": "Functionalities necessary only for the sections containing notifications.",
+            "itemtype": "method",
+            "name": "sectionNotificationsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 362,
+            "description": "Functionalities necessary only for the section 'search'.",
+            "itemtype": "method",
+            "name": "sectionSearchDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 387,
+            "description": "Initializes global variables used throughout the javascripts.",
+            "itemtype": "method",
+            "name": "initializeGlobalVariables",
             "class": "GeneralMiscellanea",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 347,
+            "line": 401,
             "description": "Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "redError",
@@ -3751,7 +3794,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 358,
+            "line": 412,
             "description": "Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3767,7 +3810,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 386,
+            "line": 440,
             "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "browserSupport",
@@ -3776,46 +3819,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 394,
-            "description": "This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "getCompleteMediaElementsUrlWithoutForPage",
-            "return": {
-                "description": "the current url without the parameter 'for_page'",
-                "type": "String"
-            },
-            "class": "GeneralUrls",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 406,
-            "description": "This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "getCompleteMediaElementsUrlWithoutFilter",
-            "return": {
-                "description": "the current url without the parameter 'filter'",
-                "type": "String"
-            },
-            "class": "GeneralUrls",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 418,
-            "description": "This function returns an url for documents without the parameter 'order'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "getCompleteDocumentsUrlWithoutOrder",
-            "return": {
-                "description": "the current url without the parameter 'order'",
-                "type": "String"
-            },
-            "class": "GeneralUrls",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 429,
+            "line": 448,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3840,7 +3844,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 455,
+            "line": 474,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",

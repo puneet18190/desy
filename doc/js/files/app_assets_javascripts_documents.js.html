@@ -421,9 +421,10 @@ Initializer for documents functionality (general javascripts).
 function documentsDocumentReadyGeneral() {
   $body.on(&#x27;change&#x27;, &#x27;#order_documents&#x27;, function() {
     var order = $(&#x27;#order_documents option:selected&#x27;).val();
-    var redirect_url = getCompleteDocumentsUrlWithoutOrder() + &#x27;&amp;order=&#x27; + order;
+    var word = $(&#x27;#search_documents ._word_input&#x27;).val();
+    var word_placeholder = $(&#x27;#search_documents_placeholder&#x27;).val();
     $(&#x27;#search_documents_hidden_order&#x27;).val(order);
-    $.get(redirect_url);
+    $.get(&#x27;/documents?word=&#x27; + word + &#x27;&amp;word_placeholder=&#x27; + word_placeholder + &#x27;&amp;order=&#x27; + order);
   });
   $body.on(&#x27;focus&#x27;, &#x27;._document_change_info_container ._doc_description&#x27;, function() {
     var placeholder = $(&#x27;#dialog-document-&#x27; + $(this).data(&#x27;document-id&#x27;) + &#x27; ._doc_description_placeholder&#x27;);
