@@ -389,7 +389,6 @@ Browser support checking, supported browsers version. It is empty. The not suppo
 @for GeneralMiscellanea
 **/
 function browserSupport() {
-  // no-op
 }
 
 /**

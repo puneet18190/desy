@@ -52,7 +52,6 @@ Browser support checking, supported browsers version. It is empty. The not suppo
 @for AdminBrowserSupport
 **/
 function browserSupport() {
-  // no-op
 }
 
 

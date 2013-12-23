@@ -364,7 +364,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/browser_not_supported/application.js",
             "line": 1,
-            "description": "Browser supoprt checking functions"
+            "description": "Browser support checking functions"
         },
         "ajax-loader": {
             "name": "ajax-loader",
@@ -1849,7 +1849,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 62,
+            "line": 61,
             "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
             "itemtype": "method",
             "name": "openAndLoadNextTr",
@@ -1865,7 +1865,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 85,
+            "line": 84,
             "description": "Initializes the browser classes in the tag html. Same functionality as {{#crossLink \"GeneralDocumentReady/browsersDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminBrowsersDocumentReady",
@@ -1874,7 +1874,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 102,
+            "line": 101,
             "description": "Initializes the effects of collapse and change date.",
             "itemtype": "method",
             "name": "adminEffectsDocumentReady",
@@ -1883,7 +1883,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 161,
+            "line": 160,
             "description": "Initializes the locations filling. See similar {{#crossLink \"GeneralDocumentReady/locationsDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminLocationsDocumentReady",
@@ -1892,7 +1892,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 275,
+            "line": 274,
             "description": "Initializes effects for MediaElement.",
             "itemtype": "method",
             "name": "adminMediaElementsDocumentReady",
@@ -1901,7 +1901,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 362,
+            "line": 361,
             "description": "Initializes actions for less important tables, such as Tag, Subject, SchoolLevel",
             "itemtype": "method",
             "name": "adminMiscellaneaDocumentReady",
@@ -1910,7 +1910,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 402,
+            "line": 401,
             "description": "Initializes effects for the administration search engine.",
             "itemtype": "method",
             "name": "adminSearchDocumentReady",
@@ -1919,7 +1919,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 463,
+            "line": 462,
             "description": "Initializes effects for sorting in administration search engine.",
             "itemtype": "method",
             "name": "adminSortingDocumentReady",
@@ -1928,7 +1928,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 507,
+            "line": 506,
             "description": "Initializes effects for User.",
             "itemtype": "method",
             "name": "adminUsersDocumentReady",
@@ -1938,7 +1938,7 @@
         {
             "file": "app/assets/javascripts/browser_not_supported/application.js",
             "line": 6,
-            "description": "Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML.",
+            "description": "Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML. Implements two empty functions, one in {{#crossLink \"AdminBrowserSupport/adminBrowserSupport:method\"}}{{/crossLink}}, and one in {{#crossLink \"GeneralMiscellanea/browserSupport:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "browserSupportMain",
             "class": "BrowserSupportMain",
@@ -3776,7 +3776,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 395,
+            "line": 394,
             "description": "This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutForPage",
@@ -3789,7 +3789,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 407,
+            "line": 406,
             "description": "This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteMediaElementsUrlWithoutFilter",
@@ -3802,7 +3802,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 419,
+            "line": 418,
             "description": "This function returns an url for documents without the parameter 'order'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getCompleteDocumentsUrlWithoutOrder",
@@ -3815,7 +3815,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 430,
+            "line": 429,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3840,7 +3840,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 456,
+            "line": 455,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",

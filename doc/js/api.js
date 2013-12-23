@@ -138,7 +138,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "browser-support",
             "name": "browser-support",
-            "description": "Browser supoprt checking functions"
+            "description": "Browser support checking functions"
         },
         {
             "displayName": "buttons",
