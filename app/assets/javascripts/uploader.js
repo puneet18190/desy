@@ -63,6 +63,7 @@ function uploaderErrors(selector, errors, fields) {
   var loading_errors = item.find('.barraLoading .loading-errors');
   item.find('.form_error').removeClass('form_error');
   item.find('.barraLoading .loading-internal').data('can-move', false).css('width', '0px').hide();
+  loading_errors.show();
   item.find('#new_' + obj_name + '_submit').removeClass('disabled');
   item.find('._close').removeClass('disabled');
   errors_appended = '';
@@ -135,7 +136,7 @@ function mediaElementLoaderDocumentReady() {
     if(!$(this).hasClass('disabled')) {
       $(this).addClass('disabled');
       $('#load-media-element ._close').addClass('disabled');
-      $('#load-media-element .barraLoading .loading-errors').html('');
+      $('#load-media-element .barraLoading .loading-errors').html('').hide();
       $('#load-media-element .barraLoading .loading-internal').show();
       uploadAnimationRecursion($('#load-media-element .barraLoading .loading-internal'), 0, 5, 760);
       $(this).closest('#new_media_element').submit();
@@ -197,7 +198,7 @@ function documentsDocumentReadyUploader() {
     if(!$(this).hasClass('disabled')) {
       $(this).addClass('disabled');
       $('#load-document ._close').addClass('disabled');
-      $('#load-document .barraLoading .loading-errors').html('');
+      $('#load-document .barraLoading .loading-errors').html('').hide();
       $('#load-document .barraLoading .loading-internal').show();
       uploadAnimationRecursion($('#load-document .barraLoading .loading-internal'), 0, 5, 760);
       $(this).closest('#new_document').submit();
