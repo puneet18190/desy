@@ -359,6 +359,8 @@ function sectionNotificationsDocumentReady() {
       my_report.parent().find('.report_light, ._reportable_lesson_icon').click();
     }
   });
+  $('#which_item_to_search option[selected]').first().attr('selected', 'selected');
+  $('#which_item_to_search').selectbox();
 }
 
 /**
@@ -370,12 +372,10 @@ function sectionSearchDocumentReady() {
   $('._which_item_to_search_switch[checked]').first().attr('checked', 'checked');
   $('._order_lessons_radio_input[checked]').first().attr('checked', 'checked');
   $('._order_media_elements_radio_input[checked]').first().attr('checked', 'checked');
-  $('#which_item_to_search option[selected]').first().attr('selected', 'selected');
   $('#filter_search_lessons option[selected]').first().attr('selected', 'selected');
   $('#filter_search_media_elements option[selected]').first().attr('selected', 'selected');
   $('#filter_search_lessons_subject option[selected]').first().attr('selected', 'selected');
   $('#filter_search_lessons_school_level option[selected]').first().attr('selected', 'selected');
-  $('#which_item_to_search').selectbox();
   $('#filter_search_lessons').selectbox();
   $('#filter_search_media_elements').selectbox();
   $('#filter_search_lessons_subject').selectbox();
