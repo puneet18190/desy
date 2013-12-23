@@ -3376,7 +3376,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 381,
+            "line": 379,
             "description": "Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "showLoadMediaElementPopUp",
@@ -3385,7 +3385,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 419,
+            "line": 415,
             "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "showMediaElementInfoPopUp",
@@ -3401,7 +3401,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 471,
+            "line": 467,
             "description": "Dialog containing the form to send the public link of a lesson. Used in {{#crossLink \"VirtualClassroomSendLink\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showSendLessonLinkPopUp",
@@ -3417,7 +3417,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 515,
+            "line": 511,
             "description": "Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink \"VirtualClassroomMultipleLoading\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showVirtualClassroomQuickSelectPopUp",
@@ -6261,7 +6261,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 89,
+            "line": 91,
             "description": "Handles 413 status error, file too large.",
             "itemtype": "method",
             "name": "uploadFileTooLarge",
@@ -6277,7 +6277,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 111,
+            "line": 113,
             "description": "Initializer for the loading form.",
             "itemtype": "method",
             "name": "mediaElementLoaderDocumentReady",
@@ -6286,7 +6286,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 164,
+            "line": 177,
             "description": "Initializer for the loading form.",
             "itemtype": "method",
             "name": "documentsDocumentReadyUploader",

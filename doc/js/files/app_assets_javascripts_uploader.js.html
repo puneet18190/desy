@@ -375,11 +375,13 @@ Handles the errors of loading popup.
 function uploaderErrors(selector, errors, fields) {
   var obj_name = selector.replace(&#x27;-&#x27;, &#x27;_&#x27;);
   var item = $(&#x27;#load-&#x27; + selector);
-  var loading = item.find(&#x27;.barraLoading&#x27;);
-  loading.find(&#x27;.loading-internal&#x27;).data(&#x27;can-move&#x27;, false).css(&#x27;width&#x27;, &#x27;0px&#x27;);
+  var input_selector = &#x27;.&#x27; + selector.substr(0, 3) + &#x27;load_&#x27;;
+  var loading_errors = item.find(&#x27;.barraLoading .loading-errors&#x27;);
+  item.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+  item.find(&#x27;.barraLoading .loading-internal&#x27;).data(&#x27;can-move&#x27;, false).css(&#x27;width&#x27;, &#x27;0px&#x27;).hide();
+  loading_errors.show();
   item.find(&#x27;#new_&#x27; + obj_name + &#x27;_submit&#x27;).removeClass(&#x27;disabled&#x27;);
   item.find(&#x27;._close&#x27;).removeClass(&#x27;disabled&#x27;);
-  loading.append(&#x27;&lt;img class=&quot;appended&quot; src=&quot;/assets/puntoesclamativo.png&quot; /&gt;&#x27;);
   errors_appended = &#x27;&#x27;;
   for(var i = 0; i &lt; errors.length; i++) {
     if(i == errors.length - 1) {
@@ -388,7 +390,7 @@ function uploaderErrors(selector, errors, fields) {
       errors_appended += (errors[i] + &#x27;; &#x27;);
     }
   }
-  loading.append(&#x27;&lt;span class=&quot;lower appended&quot;&gt;&#x27; + errors_appended + &#x27;&lt;/span&gt;&#x27;);
+  loading_errors.html(&#x27;&lt;span class=&quot;lower&quot;&gt;&#x27; + errors_appended + &#x27;&lt;/span&gt;&#x27;);
   for(var i = 0; i &lt; fields.length; i++) {
     if(fields[i] == &#x27;media&#x27;) {
       item.find(&#x27;#media_element_media_show&#x27;).addClass(&#x27;form_error&#x27;);
@@ -397,7 +399,7 @@ function uploaderErrors(selector, errors, fields) {
     } else if(fields[i] == &#x27;attachment&#x27;) {
       item.find(&#x27;#document_attachment_show&#x27;).addClass(&#x27;form_error&#x27;);
     } else {
-      item.find(&#x27;#&#x27; + fields[i]).addClass(&#x27;form_error&#x27;);
+      item.find(input_selector + fields[i]).addClass(&#x27;form_error&#x27;);
     }
   }
 }
@@ -436,10 +438,14 @@ function mediaElementLoaderDocumentReady() {
   });
   $body.on(&#x27;change&#x27;, &#x27;input#new_media_element_input&#x27;, function() {
     var file_name = $(this).val().replace(&quot;C:\\fakepath\\&quot;, &#x27;&#x27;);
-    if(file_name.length &gt; 20) {
-      file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
+    if(file_name.replace(/^[\s\t]+/, &#x27;&#x27;) != &#x27;&#x27;) {
+      if(file_name.length &gt; 20) {
+        file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
+      }
+      $(&#x27;#media_element_media_show&#x27;).text(file_name).removeClass(&#x27;form_error&#x27;);
+    } else {
+      $(&#x27;#media_element_media_show&#x27;).text($(&#x27;#load-media-element&#x27;).data(&#x27;placeholder-media&#x27;)).removeClass(&#x27;form_error&#x27;);
     }
-    $(&#x27;#media_element_media_show&#x27;).text(file_name);
   });
   $body.on(&#x27;click&#x27;, &#x27;#load-media-element ._close&#x27;, function() {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
@@ -450,23 +456,24 @@ function mediaElementLoaderDocumentReady() {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       $(this).addClass(&#x27;disabled&#x27;);
       $(&#x27;#load-media-element ._close&#x27;).addClass(&#x27;disabled&#x27;);
-      $(&#x27;input, textarea&#x27;).removeClass(&#x27;form_error&#x27;);
+      $(&#x27;#load-media-element .barraLoading .loading-errors&#x27;).html(&#x27;&#x27;).hide();
+      $(&#x27;#load-media-element .barraLoading .loading-internal&#x27;).show();
       uploadAnimationRecursion($(&#x27;#load-media-element .barraLoading .loading-internal&#x27;), 0, 5, 760);
       $(this).closest(&#x27;#new_media_element&#x27;).submit();
     } else {
       e.preventDefault();
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element #title&#x27;, function() {
-    if($(&#x27;#load-media-element #title_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element .medload_title&#x27;, function() {
+    if($(&#x27;#load-media-element .medload_title_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-media-element #title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(&#x27;#load-media-element .medload_title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element #description&#x27;, function() {
-    if($(&#x27;#load-media-element #description_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element .medload_description&#x27;, function() {
+    if($(&#x27;#load-media-element .medload_description_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-media-element #description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(&#x27;#load-media-element .medload_description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     }
   });
   $body.on(&#x27;submit&#x27;, &#x27;#new_media_element&#x27;, function() {
@@ -474,6 +481,12 @@ function mediaElementLoaderDocumentReady() {
     document.getElementById(&#x27;upload_target&#x27;).onload = function() {
       uploadFileTooLarge(&#x27;media_element&#x27;);
     }
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;.medload_title, .medload_description&#x27;, function() {
+    $(this).removeClass(&#x27;form_error&#x27;);
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;.medload_tags&#x27;, function() {
+    $(this).parent().removeClass(&#x27;form_error&#x27;);
   });
 }
 
@@ -488,10 +501,14 @@ function documentsDocumentReadyUploader() {
   });
   $body.on(&#x27;change&#x27;, &#x27;input#new_document_input&#x27;, function() {
     var file_name = $(this).val().replace(&quot;C:\\fakepath\\&quot;, &#x27;&#x27;);
-    if(file_name.length &gt; 20) {
-      file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
+    if(file_name.replace(/^[\s\t]+/, &#x27;&#x27;) != &#x27;&#x27;) {
+      if(file_name.length &gt; 20) {
+        file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
+      }
+      $(&#x27;#document_attachment_show&#x27;).text(file_name).removeClass(&#x27;form_error&#x27;);
+    } else {
+      $(&#x27;#document_attachment_show&#x27;).text($(&#x27;#load-document&#x27;).data(&#x27;placeholder-attachment&#x27;)).removeClass(&#x27;form_error&#x27;);
     }
-    $(&#x27;#document_attachment_show&#x27;).text(file_name);
   });
   $body.on(&#x27;click&#x27;, &#x27;#load-document ._close&#x27;, function() {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
@@ -502,23 +519,24 @@ function documentsDocumentReadyUploader() {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       $(this).addClass(&#x27;disabled&#x27;);
       $(&#x27;#load-document ._close&#x27;).addClass(&#x27;disabled&#x27;);
-      $(&#x27;input,textarea&#x27;).removeClass(&#x27;form_error&#x27;);
+      $(&#x27;#load-document .barraLoading .loading-errors&#x27;).html(&#x27;&#x27;).hide();
+      $(&#x27;#load-document .barraLoading .loading-internal&#x27;).show();
       uploadAnimationRecursion($(&#x27;#load-document .barraLoading .loading-internal&#x27;), 0, 5, 760);
       $(this).closest(&#x27;#new_document&#x27;).submit();
     } else {
       e.preventDefault();
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-document #title&#x27;, function() {
-    if($(&#x27;#load-document #title_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;focus&#x27;, &#x27;#load-document .docload_title&#x27;, function() {
+    if($(&#x27;#load-document .docload_title_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-document #title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(&#x27;#load-document .docload_title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-document #description&#x27;, function() {
-    if($(&#x27;#load-document #description_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;focus&#x27;, &#x27;#load-document .docload_description&#x27;, function() {
+    if($(&#x27;#load-document .docload_description_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-document #description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(&#x27;#load-document .docload_description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     }
   });
   $body.on(&#x27;submit&#x27;, &#x27;#new_document&#x27;, function() {
@@ -526,6 +544,9 @@ function documentsDocumentReadyUploader() {
     document.getElementById(&#x27;upload_target&#x27;).onload = function() {
       uploadFileTooLarge(&#x27;document&#x27;);
     }
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;.docload_title, .docload_description&#x27;, function() {
+    $(this).removeClass(&#x27;form_error&#x27;);
   });
 }
 

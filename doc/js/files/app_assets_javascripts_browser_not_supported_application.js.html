@@ -332,7 +332,7 @@ function browserSupport() {
     if (window.XMLHttpRequest) {
       xmlhttp = new XMLHttpRequest();
     } else {
-      xmlhttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+      xmlhttp = new ActiveXObject(&#x27;Microsoft.XMLHTTP&#x27;);
     }
     xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState === 4 &amp;&amp; xmlhttp.status === 200) {
@@ -341,7 +341,7 @@ function browserSupport() {
       }
     }
     var csrfToken = document.getElementsByName(&#x27;csrf-token&#x27;)[0].content;
-    xmlhttp.open(&quot;POST&quot;, &quot;/browser_not_supported?authenticity_token=&quot;+csrfToken, true);
+    xmlhttp.open(&#x27;POST&#x27;, &#x27;/browser_not_supported?authenticity_token=&#x27; + csrfToken, true);
     xmlhttp.send();
     return false;
   }
