@@ -854,16 +854,16 @@ cn:
     dashboard:
       # Button to compress lessons subsection
       # 1 - views/dashboard/index.html.erb
-      compress_lessons: "Close lessons" # TODO
+      compress_lessons: "关闭课程"
       # Button to compress media elements subsection
       # 1 - views/dashboard/index.html.erb
-      compress_media_elements: "Close elements" # TODO
+      compress_media_elements: "关闭单元"
       # Button to expand lessons subsection
       # 1 - views/dashboard/index.html.erb
-      expand_lessons: "Expand lessons" # TODO
+      expand_lessons: "展开课程"
       # Button to expand media elements subsection
       # 1 - views/dashboard/index.html.erb
-      expand_media_elements: "Expand elements" # TODO
+      expand_media_elements: "展开单元"
     # Titles for the icons of documents
     documents:
       # Includes .doc, .odt
@@ -988,10 +988,10 @@ cn:
       save_and_exit: "保存并退出"
       # Button that inscribes the image inside the available space
       # 1 - views/lesson_editor/slides/parts/_image.html.erb
-      inscribe_image: "Inscribe this image inside the available space" # TODO
+      inscribe_image: "在这个空间内剪切图像"
       # Button that undoes the inscription of the image
       # 1 - views/lesson_editor/slides/parts/_image.html.erb
-      deinscribe_image: "Expand this image to fit to the available space" # TODO
+      deinscribe_image: "调整图像到适合的位置"
     media_elements:
       # Icon to upload the file attached to a new media element
       # 1 - views/media_elements/_new_form_popup.html.erb
@@ -1349,7 +1349,7 @@ cn:
     back_to_dashboard: "回到版面"
     # Caption of the dashboard in the menu
     # 1 - views/shared/_menu.html.erb
-    dashboard: "Dashboard" # TODO
+    dashboard: "仪表盘"
     # Used to refer to the user's documents
     # 1 - views/shared/_menu.html.erb
     # 2 - views/documents/index.html.erb
@@ -1458,17 +1458,17 @@ cn:
       # 1 - views/dashboard/index.html.erb
       title: "你想与%{desy}交谈吗？"
       # 1 - views/dashboard/index.html.erb
-      description: "Your opinion is very important to improve our services" # TODO
+      description: "你的意见对于改善我们的服务非常的重要"
       # 1 - views/dashboard/index.html.erb
       link: "联系我们"
     # Captions of buttons to create new items (lessons, media elements, documents)
     create_new:
       # 1 - views/dashboard/index.html.erb
-      lesson: "Create a lesson" # TODO
+      lesson: "建立课程"
       # 1 - views/dashboard/index.html.erb
-      document: "Load a document" # TODO
+      document: "载入文档"
       # 1 - views/dashboard/index.html.erb
-      media_element: "Load an element" # TODO
+      media_element: "载入一单元"
     # Containers showing a standard message in case there are no lessons or media elements
     empty:
       lessons:
@@ -1496,31 +1496,31 @@ cn:
       # 1 - views/dashboard/index.html.erb
       title: "需要%{desy}帮助吗？"
       # 1 - views/dashboard/index.html.erb
-      description: "Do you need our support to understand all the functionalities of %{desy}?" # TODO
+      description: "需要%{desy}帮助吗？"
       # 1 - views/dashboard/index.html.erb
       link: "去回答问题页"
     # Captions for the link to the search engine (the variable %{desy} is replaced by the name of the application)
     search:
       # 1 - views/dashboard/index.html.erb
-      title: "Search for lessons or elements" # TODO
+      title: "搜索课程或单元"
       # 1 - views/dashboard/index.html.erb
-      description: "Use the search engine of %{desy} to find lessons and elements you need" # TODO
+      description: "使用%{desy}搜素引擎搜素你需要的课程和单元"
     # Captions for subsections of the dashboard
     selected:
       # Subsection of lessons
       lessons:
         # 1 - views/dashboard/index.html.erb
-        title: "New lessons that might interest you" # TODO
+        title: "你感兴趣的新课程"
         # The variable %{desy} is replaced by the name of the application
         # 1 - views/dashboard/index.html.erb
-        description: "Add to your personal list new interesting lessons created by other users" # TODO
+        description: "增加由其他人建立的有趣课程到你的个人列表"
       # Subsection of media elements
       media_elements:
         # 1 - views/dashboard/index.html.erb
-        title: "Latest didactic elements" # TODO
+        title: "最新的训练单元"
         # The variable %{desy} is replaced by the name of the application
         # 1 - views/dashboard/index.html.erb
-        description: "The offer of contents inside %{desy} evolves continuously: find out the new multimedia elements available for you" # TODO
+        description: "在%{desy}内提供的内容不断改善: 为你提供多媒体单元"
   
   
   # SECTION 2.4: Captions used in general media galleries. There are three kinds of galleries: Audio, Image and Video. They are used to pick quickly a media element and use it inside a lesson (or as a component to create a new media element, in Audio, Image and Video Editor)
@@ -1703,7 +1703,7 @@ cn:
     author: "作者"
     # Caption containing the author's name (the variable %{author} is replaced by the name of the author)
     # 1 - views/lessons/_view_single_expanded.html.erb
-    created_by: "Created by %{author}" # TODO
+    created_by: "由%{author}创建"
     # Caption which indicates the date in which a lesson is created
     # 1 - views/lessons/_view_single_compact.html.erb
     created_on: "建立"
@@ -1744,7 +1744,7 @@ cn:
       empty_message: "[没有信息给出]"
     # Caption containing the time passed from the publication (the variable %{published_time} is replaced by an expression o the kind "1 hour ago")
     # 1 - views/lessons/_view_single_expanded.html.erb
-    published_at: "Published %{published_time}" # TODO
+    published_at: "已发布%{published_time}"
     # Caption for the scholar level of the author of a lesson
     # 1 - views/lessons/_view_single_compact.html.erb
     # 2 - views/lesson_editor/new.html.erb
