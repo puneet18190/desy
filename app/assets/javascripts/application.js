@@ -67,7 +67,6 @@ $(document).ready(function() {
   expandedItemsDocumentReady();
   filtersDocumentReady();
   galleriesDocumentReady();
-  generalWindowResizeDocumentReady();
   imageEditorDocumentReady();
   javaScriptAnimationsDocumentReady();
   lessonButtonsDocumentReady();

@@ -8,9 +8,7 @@
   <% else %>
     <% if display == MediaElement::DISPLAY_MODES[:expanded] %>
       <% media_elements.each do |me| %>
-        <div class="_boxViewExpandedMediaElementWrapper">
-          <%= render :partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => (me.instances.to_i > 0)} %>
-        </div>
+        <%= render :partial => 'media_elements/view_single_expanded', :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => (me.instances.to_i > 0)} %>
       <% end %>
     <% else %>
       <% media_elements.each do |me| %>

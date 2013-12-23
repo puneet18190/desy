@@ -52,17 +52,6 @@ function centerThisInContainer(div, container) {
   centerDiv.css('left', (contW/2 - centerDiv.width()/2) + $(container).position().left);
 }
 
-/**
-Recenters the media elements according to their number and the screen resolution.
-@method recenterMyMediaElements
-@for GeneralCentering
-**/
-function recenterMyMediaElements() {
-  var WW = $(window).width();
-  var elNumber = WW / 220;
-  $('._boxViewExpandedMediaElementWrapper').css('width', (100 / parseInt(elNumber)) + '%');
-}
-
 
 
 
@@ -183,19 +172,6 @@ function filtersDocumentReady() {
     var for_page = $('#for_page_media_elements option:selected').val();
     var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + '&for_page=' + for_page;
     $.get(redirect_url);
-  });
-}
-
-/**
-Initializer for consequences of window resizing.
-@method generalWindowResizeDocumentReady
-@for GeneralDocumentReady
-**/
-function generalWindowResizeDocumentReady() {
-  $(window).resize(function() {
-    if($('#my_media_elements').length > 0 || $('#media_elements_in_dashboard').length > 0) {
-      recenterMyMediaElements();
-    }
   });
 }
 
