@@ -6,7 +6,7 @@
 <div id="load-media-element" class="mediaElementInfoPopUp" style="display:none;" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>" data-placeholder-media="<%= t('forms.placeholders.media').downcase %>">
   <div class="MediaElementPopUpContainer">
     <div class="ChangeInfoContainerLoading">
-      <%= form_tag media_elements_path, :method => :post, :id => 'new_media_element', :class => 'formModifyInfo', :multipart => true do %>
+      <%= form_tag media_elements_path, :method => :post, :id => 'new_media_element', :class => 'formModifyInfo', :multipart => true, :autocomplete => 'off' do %>
         <div class="cols fltlft">
           <div id="media_element_media_show" class="fk_carica_elemento_file fltrt basta_caos_porca_miseria"></div>
           <label class="filebutton">

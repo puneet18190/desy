@@ -5,7 +5,7 @@
 <div id="load-document" class="documentInfoPopUp" style="display:none" data-placeholder-description="<%= description_max %>" data-placeholder-title="<%= title_max %>" data-placeholder-attachment="<%= t('documents.upload_form.attachment_placeholder').downcase %>">
   <div class="documentPopUpContainer uploadDocuments">
     <div class="ChangeInfoContainerLoading">
-      <%= form_tag documents_path, :method => :post, :id => 'new_document', :class => 'formModifyInfo', :multipart => true do %>
+      <%= form_tag documents_path, :method => :post, :id => 'new_document', :class => 'formModifyInfo', :multipart => true, :autocomplete => 'off' do %>
         <div class="cols fltlft" style="width:300px">
           <div id="document_attachment_show" class="fk_carica_elemento_file fltrt" style="color:white"></div>
           <label class="filebutton">
