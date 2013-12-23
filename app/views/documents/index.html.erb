@@ -10,7 +10,7 @@
       <h1 class="lower"><%= t('captions.documents') %></h1>
       <div class="sort">
         <h2><%= t('captions.sort') %></h2>
-        <select name="ricerca" id="order_documents">
+        <select id="order_documents">
           <% SearchOrders::DOCUMENTS_SET.each do |so| %>
             <option value="<%= so %>" <%= (@order == so) ? "selected=\"selected\"".html_safe : '' %>><%= t("orders.#{so}") %></option>
           <% end %>

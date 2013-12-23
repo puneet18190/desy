@@ -9,7 +9,7 @@
       <h1 class="lower"><%= t('captions.lessons') %></h1>
       <div class="filter">
         <h2><%= t('captions.show') %></h2>
-        <select name="ricerca" id="filter_lessons">
+        <select id="filter_lessons">
           <% Filters::LESSONS_SET.each do |f| %>
             <option value="<%= f %>" <%= (@filter == f) ? "selected=\"selected\"".html_safe : '' %>><%= Lesson.filter(f) %></option>
           <% end %>
