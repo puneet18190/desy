@@ -159,10 +159,13 @@ function mediaElementLoaderDocumentReady() {
       uploadFileTooLarge('media_element');
     }
   });
-  $body.on('change', '.medload_title, .medload_description, #new_media_element_input', function() {
+  $body.on('change', '#new_media_element_input', function() {
+    $('#media_element_media_show').removeClass('form_error');
+  });
+  $body.on('keydown', '.medload_title, .medload_description', function() {
     $(this).removeClass('form_error');
   });
-  $body.on('change', '.medload_tags', function() {
+  $body.on('keydown', '.medload_tags', function() {
     $(this).parent().removeClass('form_error');
   });
 }
@@ -216,7 +219,10 @@ function documentsDocumentReadyUploader() {
       uploadFileTooLarge('document');
     }
   });
-  $body.on('change', '.docload_title, .docload_description, #new_document_input', function() {
+  $body.on('change', '#new_document_input', function() {
+    $('#document_attachment_show').removeClass('form_error');
+  });
+  $body.on('keydown', '.docload_title, .docload_description', function() {
     $(this).removeClass('form_error');
   });
 }
