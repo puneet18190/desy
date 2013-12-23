@@ -47,7 +47,7 @@ function initNotificationsAutocomplete() {
 
 
 /**
-Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink "BrowserSupportMain/browserSupport:method"}}{{/crossLink}}
+Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink "BrowserSupportMain/browserSupportMain:method"}}{{/crossLink}}
 @method adminBrowserSupport
 @for AdminBrowserSupport
 **/

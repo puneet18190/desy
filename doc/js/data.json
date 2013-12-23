@@ -1841,7 +1841,7 @@
         {
             "file": "app/assets/javascripts/admin/functions.js",
             "line": 49,
-            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}{{/crossLink}}",
+            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "adminBrowserSupport",
             "class": "AdminBrowserSupport",
@@ -3768,7 +3768,7 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 386,
-            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}{{/crossLink}}",
+            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "browserSupport",
             "class": "GeneralMiscellanea",
