@@ -59,11 +59,11 @@ Handles the errors of loading popup.
 function uploaderErrors(selector, errors, fields) {
   var obj_name = selector.replace('-', '_');
   var item = $('#load-' + selector);
-  var loading = item.find('.barraLoading');
-  loading.find('.loading-internal').data('can-move', false).css('width', '0px');
+  var loading_errors = item.find('.barraLoading .loading-errors');
+  item.find('.barraLoading .loading-internal').data('can-move', false).css('width', '0px');
   item.find('#new_' + obj_name + '_submit').removeClass('disabled');
   item.find('._close').removeClass('disabled');
-  loading.append('<img class="appended" src="/assets/puntoesclamativo.png" />');
+  loading_errors.append('<img class="appended" src="/assets/puntoesclamativo.png" />');
   errors_appended = '';
   for(var i = 0; i < errors.length; i++) {
     if(i == errors.length - 1) {
@@ -72,7 +72,7 @@ function uploaderErrors(selector, errors, fields) {
       errors_appended += (errors[i] + '; ');
     }
   }
-  loading.append('<span class="lower appended">' + errors_appended + '</span>');
+  loading_errors.append('<span class="lower appended">' + errors_appended + '</span>');
   for(var i = 0; i < fields.length; i++) {
     if(fields[i] == 'media') {
       item.find('#media_element_media_show').addClass('form_error');
