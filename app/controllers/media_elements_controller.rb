@@ -14,7 +14,7 @@
 class MediaElementsController < ApplicationController
   
   # Default number of elements in compact mode to be shown in a single page (configured in settings.yml)
-  FOR_PAGE = SETTINGS['compact_media_element_pagination']
+  FOR_PAGE = SETTINGS['media_element_pagination']
   
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy

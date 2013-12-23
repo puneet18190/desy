@@ -56,9 +56,9 @@ seconds_for_timeout_dialogs: 2500
 # Seconds between each ajax call that saves the cache in Video Editor and Audio Editor
 seconds_for_saving_cache: 60000
 # Pagination of lessons, in sections (1) Lessons and (2) Search engine
-compact_lesson_pagination: 18
+lesson_pagination: 18
 # Pagination of compact media elements, in sections (1) Elements and (2) Search engine
-compact_media_element_pagination: 18
+media_element_pagination: 18
 # Pagination of documents, in section my documents
 documents_pagination: 18
 # Number of notifications loaded together (pagination of notifications done with infinite scroll)
