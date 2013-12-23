@@ -127,6 +127,8 @@ function mediaElementLoaderDocumentReady() {
         file_name = file_name.substring(0, 20) + '...';
       }
       $('#media_element_media_show').text(file_name).removeClass('form_error');
+    } else {
+      $('#media_element_media_show').text($('#load-media-element').data('placeholder-media'));
     }
   });
   $body.on('click', '#load-media-element ._close', function() {
@@ -188,6 +190,8 @@ function documentsDocumentReadyUploader() {
         file_name = file_name.substring(0, 20) + '...';
       }
       $('#document_attachment_show').text(file_name).removeClass('form_error');
+    } else {
+      $('#document_attachment_show').text($('#load-document').data('placeholder-media'));
     }
   });
   $body.on('click', '#load-document ._close', function() {
