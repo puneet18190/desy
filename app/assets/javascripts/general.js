@@ -52,6 +52,51 @@ function centerThisInContainer(div, container) {
   centerDiv.css('left', (contW/2 - centerDiv.width()/2) + $(container).position().left);
 }
 
+/**
+Same structure of {{#crossLink "DashboardResizing/dashboardResizeController:method"}}{{/crossLink}}.
+@method mediaElementsResizeController
+@for GeneralCentering
+**/
+function mediaElementsResizeController() {
+  var container = $('#my_media_elements');
+  var width = container.width();
+  var in_space = parseInt((width - 20) / 220);
+  var margin = (width - in_space * 200) / (in_space + 1);
+  var tot_width = in_space * (200 + margin) - margin;
+  if(in_space <= 50 && in_space != container.data('in-space')) {
+    container.data('in-space', in_space);
+    resizeExpandedMediaElements(in_space);
+    unbindLoader();
+    $.ajax({
+      type: 'get',
+      url: '/media_elements?&for_row=' + in_space // TODO meddia manca currenturl
+    }).always(bindLoader);
+  } else {
+    resizeExpandedMediaElements(in_space);
+  }
+}
+
+/**
+Same structure of {{#crossLink "DashboardResizing/resizeLessonsAndMediaElementsInDashboard:method"}}{{/crossLink}}.
+@method resizeExpandedMediaElements
+@for GeneralCentering
+@param for_row {Number} how many media elements fit horizontally the screen
+**/
+function resizeExpandedMediaElements(for_row) {
+  var container = $('#my_media_elements');
+  var margin = (container.width() - for_row * 200) / (for_row + 1);
+  var counter = 1;
+  container.find('._media_element_item').each(function() {
+    $(this).css('margin-left', (margin + 'px'));
+    if(counter > for_row) {
+      $(this).css('margin-top', '30px');
+    } else {
+      $(this).css('margin-top', '0');
+    }
+    counter += 1;
+  }
+}
+
 
 
 
