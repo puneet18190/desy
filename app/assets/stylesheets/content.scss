@@ -397,7 +397,7 @@
     
   }
   
-  .filter, .for-page {
+  .filter {
     
     float: right;
     
@@ -408,30 +408,6 @@
       color: white;
       margin-right: 10px;
       padding-top: 5px;
-      
-    }
-    
-  }
-  
-  .for-page {
-    
-    margin-left: 20px;
-    
-    .sbHolder {
-      
-      width: 60px;
-      
-      .sbSelector {
-        
-        width: 60px;
-        
-      }
-      
-      .sbOptions {
-        
-        width: 60px;
-        
-      }
       
     }
     

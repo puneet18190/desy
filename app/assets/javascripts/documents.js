@@ -105,9 +105,10 @@ Initializer for documents functionality (general javascripts).
 function documentsDocumentReadyGeneral() {
   $body.on('change', '#order_documents', function() {
     var order = $('#order_documents option:selected').val();
-    var redirect_url = getCompleteDocumentsUrlWithoutOrder() + '&order=' + order;
+    var word = $('#search_documents ._word_input').val();
+    var word_placeholder = $('#search_documents_placeholder').val();
     $('#search_documents_hidden_order').val(order);
-    $.get(redirect_url);
+    $.get('/documents?word=' + word + '&word_placeholder=' + word_placeholder + '&order=' + order);
   });
   $body.on('focus', '._document_change_info_container ._doc_description', function() {
     var placeholder = $('#dialog-document-' + $(this).data('document-id') + ' ._doc_description_placeholder');

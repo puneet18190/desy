@@ -352,17 +352,6 @@ function browserSupport() {
 }
 
 /**
-This function returns an url for documents without the parameter 'order'.
-@method getCompleteDocumentsUrlWithoutOrder
-@for GeneralUrls
-@return {String} the current url without the parameter 'order'
-**/
-function getCompleteDocumentsUrlWithoutOrder() {
-  var param_word = 'word=' + $('#search_documents ._word_input').val() + '&word_placeholder=' + $('#search_documents_placeholder').val();
-  return '/documents?' + param_word;
-}
-
-/**
 Removes a parameter from an url.
 @method removeURLParameter
 @for GeneralUrls
