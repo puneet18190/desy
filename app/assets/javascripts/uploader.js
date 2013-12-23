@@ -59,6 +59,7 @@ Handles the errors of loading popup.
 function uploaderErrors(selector, errors, fields) {
   var obj_name = selector.replace('-', '_');
   var item = $('#load-' + selector);
+  var input_selector = '.' + selector.substr(0, 3) + 'load_';
   var loading_errors = item.find('.barraLoading .loading-errors');
   item.find('.barraLoading .loading-internal').data('can-move', false).css('width', '0px');
   item.find('#new_' + obj_name + '_submit').removeClass('disabled');
@@ -81,7 +82,7 @@ function uploaderErrors(selector, errors, fields) {
     } else if(fields[i] == 'attachment') {
       item.find('#document_attachment_show').addClass('form_error');
     } else {
-      item.find('#' + fields[i]).addClass('form_error');
+      item.find(input_selector + fields[i]).addClass('form_error');
     }
   }
 }
