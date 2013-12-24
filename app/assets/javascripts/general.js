@@ -319,12 +319,12 @@ function sectionMediaElementsDocumentReady() {
   $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
   $body.on('change', '#filter_media_elements', function() {
     var filter = $('#filter_media_elements option:selected').val();
-    var display = 'compact';
     if($('#display_expanded_media_elements').hasClass('current')) {
-      display = 'expanded';
+      $('#info_container').data('in-space', 0);
+      mediaElementsResizeController(false, true);
+    } else {
+      $.get('/media_elements?display=compact&filter=' + filter);
     }
-    var redirect_url = '/media_elements?display=' + display + '&filter=' + filter;
-    $.get(redirect_url);
   });
   $body.on('click', '#display_expanded_media_elements', function() {
     if(!$(this).hasClass('current')) {
