@@ -56,8 +56,10 @@ function centerThisInContainer(div, container) {
 Same structure of {{#crossLink "DashboardResizing/dashboardResizeController:method"}}{{/crossLink}}.
 @method mediaElementsResizeController
 @for GeneralCentering
+@param resize_before {Boolean} if true, it resizes the elements also before calling the server
+@param with_fadde {Boolean} if true, it resizes with a fade
 **/
-function mediaElementsResizeController() {
+function mediaElementsResizeController(resize_before, with_fade) {
   if(!$('#display_expanded_media_elements').hasClass('current')) {
     return
   }
@@ -67,11 +69,14 @@ function mediaElementsResizeController() {
   var in_space = parseInt((width - 200) / 207) + 1;
   if(in_space <= 50 && in_space != info.data('in-space')) {
     info.data('in-space', in_space);
-    resizeExpandedMediaElements(in_space);
+    if(resize_before) {
+      resizeExpandedMediaElements(in_space);
+    }
+    var additional_param = with_fade ? '' : '&resizing=true';
     unbindLoader();
     $.ajax({
       type: 'get',
-      url: '/media_elements?display=expanded&filter=' + $('#filter_media_elements option:selected').val() + '&for_row=' + in_space + '&resizing=true'
+      url: '/media_elements?display=expanded&filter=' + $('#filter_media_elements option:selected').val() + '&for_row=' + in_space + additional_param
     }).always(bindLoader);
   } else {
     resizeExpandedMediaElements(in_space);
@@ -325,7 +330,7 @@ function sectionMediaElementsDocumentReady() {
     if(!$(this).hasClass('current')) {
       $(this).addClass('current');
       $('#info_container').data('in-space', 0);
-      mediaElementsResizeController();
+      mediaElementsResizeController(false, true);
     }
   });
   $body.on('click', '#display_compact_media_elements', function() {
@@ -337,9 +342,9 @@ function sectionMediaElementsDocumentReady() {
     }
   });
   $('#filter_media_elements').selectbox();
-  mediaElementsResizeController();
+  mediaElementsResizeController(false, false);
   $(window).resize(function() {
-    mediaElementsResizeController();
+    mediaElementsResizeController(true, false);
   });
 }
 
