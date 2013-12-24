@@ -62,7 +62,7 @@ function mediaElementsResizeController() {
     return
   }
   var info = $('#info_container');
-  var width = $('#media_elements_title_bar').width();
+  var width = $('#media_elements_title_bar').outerWidth();
   width = width - (width * 6 / 1000);
   var in_space = parseInt((width - 200) / 207) + 1;
   if(in_space <= 50 && in_space != info.data('in-space')) {
@@ -85,11 +85,16 @@ Same structure of {{#crossLink "DashboardResizing/resizeLessonsAndMediaElementsI
 @param for_row {Number} how many media elements fit horizontally the screen
 **/
 function resizeExpandedMediaElements(for_row) {
-  var container = $('#my_media_elements');
-  var margin = (container.width() - for_row * 200) / (for_row + 1);
+  var width = $('#media_elements_title_bar').outerWidth();
+  var percent_margin_width = width * 3 / 1000;
+  var margin = (width - 2 * percent_margin_width - for_row * 200) / (for_row - 1);
   var counter = 1;
-  container.find('._media_element_item').each(function() {
-    $(this).css('margin-left', (margin + 'px'));
+  $('#my_media_elements ._media_element_item').each(function() {
+    if(counter == 1 || counter == (for_row + 1)) {
+      $(this).css('margin-left', (percent_margin_width + 'px'));
+    } else {
+      $(this).css('margin-left', (margin + 'px'));
+    }
     if(counter > for_row) {
       $(this).css('margin-top', '15px');
     } else {
