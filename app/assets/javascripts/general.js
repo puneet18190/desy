@@ -90,7 +90,7 @@ function resizeExpandedMediaElements(for_row) {
   container.find('._media_element_item').each(function() {
     $(this).css('margin-left', (margin + 'px'));
     if(counter > for_row) {
-      $(this).css('margin-top', '30px');
+      $(this).css('margin-top', '15px');
     } else {
       $(this).css('margin-top', '0');
     }

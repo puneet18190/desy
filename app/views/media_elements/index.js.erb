@@ -30,6 +30,9 @@
     <% end %>
   });
 <% end %>
+<% if @display == MediaElement::DISPLAY_MODES[:expanded] %>
+  resizeExpandedMediaElements(<%= @for_row %>);
+<% end %>
 <% url_manipulated_once = manipulate_url(remove_query_param: 'delete_item', page: @page) %>
 $('#info_container').data('currenturl', <%= manipulate_url(remove_query_param: 'resizing', path: url_manipulated_once).to_json.html_safe %>);
 $('#media_elements_title_bar').replaceWith("<%= j(render(:partial => 'media_elements/title_bar', :locals => {:filter => @filter, :display => @display})) %>");

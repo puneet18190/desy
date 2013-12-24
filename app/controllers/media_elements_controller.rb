@@ -376,7 +376,8 @@ class MediaElementsController < ApplicationController
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
     @display = [MediaElement::DISPLAY_MODES[:compact], MediaElement::DISPLAY_MODES[:expanded]].include?(params[:display]) ? params[:display] : MediaElement::DISPLAY_MODES[:expanded]
     if @display == MediaElement::DISPLAY_MODES[:expanded]
-      @for_page = correct_integer?(params[:for_row]) ? (params[:for_row].to_i * 2) : 1
+      @for_row = correct_integer?(params[:for_row]) ? params[:for_row].to_i : 1
+      @for_page = @for_row * 2
     else
       @for_page = FOR_PAGE
     end
