@@ -329,12 +329,15 @@ function sectionMediaElementsDocumentReady() {
   $body.on('click', '#display_expanded_media_elements', function() {
     if(!$(this).hasClass('current')) {
       $(this).addClass('current');
+      $('#display_compact_media_elements').removeClass('current');
       $('#info_container').data('in-space', 0);
       mediaElementsResizeController(false, true);
     }
   });
   $body.on('click', '#display_compact_media_elements', function() {
     if(!$(this).hasClass('current')) {
+      $(this).addClass('current');
+      $('#display_expanded_media_elements').removeClass('current');
       $.ajax({
         type: 'get',
         url: '/media_elements?display=compact'
