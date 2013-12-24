@@ -57,9 +57,10 @@ Same structure of {{#crossLink "DashboardResizing/dashboardResizeController:meth
 @method mediaElementsResizeController
 @for GeneralCentering
 @param resize_before {Boolean} if true, it resizes the elements also before calling the server
-@param with_fadde {Boolean} if true, it resizes with a fade
+@param with_fade {Boolean} if true, it resizes with a fade
+@param new_page {Number} forced page if any
 **/
-function mediaElementsResizeController(resize_before, with_fade) {
+function mediaElementsResizeController(resize_before, with_fade, new_page) {
   if(!$('#display_expanded_media_elements').hasClass('current')) {
     return
   }
@@ -67,16 +68,20 @@ function mediaElementsResizeController(resize_before, with_fade) {
   var width = $('#media_elements_title_bar').outerWidth();
   width = width - (width * 6 / 1000);
   var in_space = parseInt((width - 200) / 207) + 1;
+  if(new_page == undefined) {
+    var current_page = $('#general_pagination').first().data('page') + 1;
+    var new_page = calculateTheNewVisiblePage(info.data('in-space') * 2, current_page, in_space * 2);
+  }
   if(in_space <= 50 && in_space != info.data('in-space')) {
     info.data('in-space', in_space);
     if(resize_before) {
       resizeExpandedMediaElements(in_space);
     }
-    var additional_param = with_fade ? '' : '&resizing=true';
+    var additional = with_fade ? '' : '&resizing=true';
     unbindLoader();
     $.ajax({
       type: 'get',
-      url: '/media_elements?display=expanded&filter=' + $('#filter_media_elements option:selected').val() + '&for_row=' + in_space + additional_param
+      url: '/media_elements?display=expanded&filter=' + $('#filter_media_elements option:selected').val() + '&page=' + new_page + '&for_row=' + in_space + additional
     }).always(bindLoader);
   } else {
     resizeExpandedMediaElements(in_space);
@@ -321,7 +326,7 @@ function sectionMediaElementsDocumentReady() {
     var filter = $('#filter_media_elements option:selected').val();
     if($('#display_expanded_media_elements').hasClass('current')) {
       $('#info_container').data('in-space', 0);
-      mediaElementsResizeController(false, true);
+      mediaElementsResizeController(false, true, 1);
     } else {
       $.get('/media_elements?display=compact&filter=' + filter);
     }
@@ -331,7 +336,7 @@ function sectionMediaElementsDocumentReady() {
       $(this).addClass('current');
       $('#display_compact_media_elements').removeClass('current');
       $('#info_container').data('in-space', 0);
-      mediaElementsResizeController(false, true);
+      mediaElementsResizeController(false, true, 1);
     }
   });
   $body.on('click', '#display_compact_media_elements', function() {
