@@ -58,12 +58,13 @@ Same structure of {{#crossLink "DashboardResizing/dashboardResizeController:meth
 @for GeneralCentering
 **/
 function mediaElementsResizeController() {
-  var container = $('#my_media_elements');
+  if($('#display_compact_media_elements').hasClass('current')) {
+    return
+  }
   var info = $('#info_container');
-  var width = container.width();
-  var in_space = parseInt((width - 20) / 220);
-  var margin = (width - in_space * 200) / (in_space + 1);
-  var tot_width = in_space * (200 + margin) - margin;
+  var width = $('#media_elements_title_bar').width();
+  width = width - (width * 6 / 1000);
+  var in_space = parseInt((width - 200) / 207) + 1;
   if(in_space <= 50 && in_space != info.data('in-space')) {
     info.data('in-space', in_space);
     resizeExpandedMediaElements(in_space);
@@ -327,12 +328,10 @@ function sectionMediaElementsDocumentReady() {
     }
   });
   $('#filter_media_elements').selectbox();
-  if($('#display_expanded_media_elements').hasClass('current')) {
+  mediaElementsResizeController();
+  $(window).resize(function() {
     mediaElementsResizeController();
-    $(window).resize(function() {
-      mediaElementsResizeController();
-    });
-  }
+  });
 }
 
 /**
