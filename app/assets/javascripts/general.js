@@ -96,7 +96,7 @@ function resizeExpandedMediaElements(for_row) {
       $(this).css('margin-left', (margin + 'px'));
     }
     if(counter > for_row) {
-      $(this).css('margin-top', '15px');
+      $(this).css('margin-top', '30px');
     } else {
       $(this).css('margin-top', '0');
     }
