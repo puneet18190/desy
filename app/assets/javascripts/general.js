@@ -58,7 +58,7 @@ Same structure of {{#crossLink "DashboardResizing/dashboardResizeController:meth
 @for GeneralCentering
 **/
 function mediaElementsResizeController() {
-  if($('#display_compact_media_elements').hasClass('current')) {
+  if(!$('#display_expanded_media_elements').hasClass('current')) {
     return
   }
   var info = $('#info_container');
@@ -323,10 +323,9 @@ function sectionMediaElementsDocumentReady() {
   });
   $body.on('click', '#display_expanded_media_elements', function() {
     if(!$(this).hasClass('current')) {
-      $.ajax({
-        type: 'get',
-        url: '/media_elements?display=expanded'
-      });
+      $(this).addClass('current');
+      $('#info_container').data('in-space', 0);
+      mediaElementsResizeController();
     }
   });
   $body.on('click', '#display_compact_media_elements', function() {
