@@ -34,4 +34,4 @@
   $('#empty_virtual_classroom').addClass('disabled');
 <% end %>
 
-$('#info_container').data('currenturl', <%= manipulate_url(remove_query_param: "delete_item", page: @page).to_json.html_safe %>);
+$('#info_container').data('currenturl', <%= manipulate_url(remove_query_param: ["delete_item"], page: @page).to_json.html_safe %>);
