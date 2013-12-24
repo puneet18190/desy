@@ -69,7 +69,7 @@ function mediaElementsResizeController(resize_before, with_fade, new_page) {
   width = width - (width * 6 / 1000);
   var in_space = parseInt((width - 200) / 207) + 1;
   if(new_page == undefined) {
-    var current_page = $('#general_pagination').first().data('page') + 1;
+    var current_page = $('#general_pagination .pages a').first().data('page') + 1;
     var new_page = calculateTheNewVisiblePage(info.data('in-space') * 2, current_page, in_space * 2);
   }
   if(in_space <= 50 && in_space != info.data('in-space')) {
