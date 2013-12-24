@@ -89,6 +89,7 @@ function resizeExpandedMediaElements(for_row) {
   var percent_margin_width = width * 3 / 1000;
   var margin = (width - 2 * percent_margin_width - for_row * 200) / (for_row - 1);
   var counter = 1;
+  var one_row = ($('#my_media_elements ._media_element_item').length <= for_row);
   $('#my_media_elements ._media_element_item').each(function() {
     if(counter == 1 || counter == (for_row + 1)) {
       $(this).css('margin-left', (percent_margin_width + 'px'));
@@ -97,8 +98,12 @@ function resizeExpandedMediaElements(for_row) {
     }
     if(counter > for_row) {
       $(this).css('margin-top', '30px');
+      $(this).css('margin-bottom', '10px');
     } else {
       $(this).css('margin-top', '0');
+      if(one_row) {
+        $(this).css('margin-bottom', '10px');
+      }
     }
     counter += 1;
   });
