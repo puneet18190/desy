@@ -20,12 +20,12 @@
   
   $(document).ready(function() {
     var prevPage = function(prevPage) {
-      var url = <%= manipulate_url(remove_query_param: 'delete_item', page: page - 1).to_json.html_safe %>;
+      var url = <%= manipulate_url(remove_query_param: ['delete_item', 'resizing'], page: page - 1).to_json.html_safe %>;
       $.get(url);
       return true;
     }
     var nextPage = function(nextPage) {
-      var url = <%= manipulate_url(remove_query_param: 'delete_item', page: page + 1).to_json.html_safe %>;
+      var url = <%= manipulate_url(remove_query_param: ['delete_item', 'resizing'], page: page + 1).to_json.html_safe %>;
       $.get(url);
       return true;
     }
