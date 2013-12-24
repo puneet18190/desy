@@ -70,7 +70,7 @@ function mediaElementsResizeController() {
     unbindLoader();
     $.ajax({
       type: 'get',
-      url: '/media_elements?&for_row=' + in_space // TODO meddia manca currenturl
+      url: '/media_elements?display=expanded&filter=' + $('#filter_media_elements option:selected').val() + '&for_row=' + in_space + '&resizing=true'
     }).always(bindLoader);
   } else {
     resizeExpandedMediaElements(in_space);
@@ -327,6 +327,12 @@ function sectionMediaElementsDocumentReady() {
     }
   });
   $('#filter_media_elements').selectbox();
+  if($('#display_expanded_media_elements').hasClass('current')) {
+    mediaElementsResizeController();
+    $(window).resize(function() {
+      mediaElementsResizeController();
+    });
+  }
 }
 
 /**
