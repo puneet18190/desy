@@ -355,6 +355,8 @@ function sectionMediaElementsDocumentReady() {
       $(this).addClass('current');
       $('#display_compact_media_elements').removeClass('current');
       $('#info_container').data('in-space', 0);
+      browserDependingScrollToTag().animate({scrollTop: ((1150 - $(window).height() + $('.global-footer').height()) + 'px')}, 500);
+      $('.boxViewCompactMediaElement').last().animate({'margin-bottom': '102px'}, 500);
       $('.elements-content').animate({height: '767px'}, 500, function() {
         $(this).removeClass('fixed-compact-height').addClass('fixed-expanded-height');
       });
