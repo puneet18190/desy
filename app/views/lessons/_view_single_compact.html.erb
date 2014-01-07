@@ -1,4 +1,10 @@
 <%
+  forced_margin ||= nil
+  if forced_margin.nil?
+    forced_margin = '' 
+  else
+    forced_margin = "style=\"margin-bottom:#{(71 * forced_margin)}px\""
+  end
   likes_general_count ||= nil
   likes_general_count = lesson.likes.count if likes_general_count.nil?
   cover ||= nil
@@ -12,7 +18,7 @@
 %>
 
 
-<div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson <%= current_class %> <%= additional_class %>">
+<div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson <%= current_class %> <%= additional_class %>" <%= forced_margin.html_safe %>>
   
   <div class="contentInterno _lesson_compact">
     <h3><%= lesson.title %></h3>
