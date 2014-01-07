@@ -5,7 +5,7 @@ application_full_name: 'DESY - Digital Education System'
 # extended name of the application
 application_extended_name: 'Digital Education System'
 # Copyright of the application (it's displayed in the HTML footer)
-application_copyright: '©2013 DESY. All rights reserved'
+application_copyright: '©2014 DESY. All rights reserved'
 application:
   # Whether to use SSL or not (only for production environment)
   force_ssl: false
