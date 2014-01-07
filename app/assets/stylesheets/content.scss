@@ -282,26 +282,26 @@
   
 }
 
+.fixed-expanded-height {
+  
+  height: 767px;
+  
+}
+
+.fixed-compact-height {
+  
+  height: 665px;
+  
+}
+
 .elements-content {
   
   width: 100%;
   
-  &.fixed-expanded-height {
-    
-    height: 767px;
-    
-  }
-  
-  &.fixed-compact-height {
-    
-    height: 767px;
-    
-  }
-  
   .boxViewSingleMediaElement {
     
-    background-color: #fbfafb;
-    color: #c0c0c0;
+    background-color: #FBFAFB;
+    color: #C0C0C0;
     position: relative;
     
   }

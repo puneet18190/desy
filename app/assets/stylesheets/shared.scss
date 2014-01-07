@@ -147,9 +147,10 @@ a.cerca.current {
     background-color: #E8E8E8;
     -webkit-box-shadow: inset 0px 3px 4px #D3D3D3;
     box-shadow: inset 0px 3px 4px #D3D3D3;
-    padding: 1% 5% 1% 1%;
+    padding: 18px;
+    height: 162px;
     float: left;
-    width: 94%;
+    width: calc(100% - 36px);
     cursor: auto;
     
     h1 {

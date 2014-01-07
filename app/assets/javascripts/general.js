@@ -172,6 +172,7 @@ Initializer for functionalities which are common to sections containing lessons.
 function commonLessonsDocumentReady() {
   $body.on('click','._lesson_compact', function() {
     if(!$(this).parent().hasClass('_disabled')) {
+      var lessons_content = $('.lessons-content');
       var my_id = $(this).parent().attr('id');
       var my_expanded = $('#' + my_id + ' ._lesson_expanded');
       if(my_expanded.is(':visible')) {
@@ -179,10 +180,16 @@ function commonLessonsDocumentReady() {
         my_expanded.hide('blind', {}, 500, function() {
           my_expanded.hide();
         });
+        lessons_content.animate({height: '665px'}, 500);
       } else {
+        var there_is_expanded = $('._lesson_expanded:visible');
+        if(there_is_expanded.length > 0) {
+          there_is_expanded.parent().find('._lesson_compact').click();
+        }
         my_expanded.show('blind', {}, 500, function() {
           my_expanded.show();
         });
+        lessons_content.animate({height: '863px'}, 500);
       }
     }
   });
