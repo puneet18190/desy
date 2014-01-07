@@ -3656,12 +3656,29 @@
             "description": "Same structure of {{#crossLink \"DashboardResizing/dashboardResizeController:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "mediaElementsResizeController",
+            "params": [
+                {
+                    "name": "resize_before",
+                    "description": "if true, it resizes the elements also before calling the server",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "with_fade",
+                    "description": "if true, it resizes with a fade",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "new_page",
+                    "description": "forced page if any",
+                    "type": "Number"
+                }
+            ],
             "class": "GeneralCentering",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 80,
+            "line": 91,
             "description": "Same structure of {{#crossLink \"DashboardResizing/resizeLessonsAndMediaElementsInDashboard:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "resizeExpandedMediaElements",
@@ -3677,7 +3694,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 105,
+            "line": 126,
             "description": "This function guesses the browser and writes it in a class of the tag 'html'.",
             "itemtype": "method",
             "name": "browsersDocumentReady",
@@ -3686,7 +3703,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 119,
+            "line": 140,
             "description": "Initializer for functionalities which are common to sections containing media elements.",
             "itemtype": "method",
             "name": "commonMediaElementsDocumentReady",
@@ -3695,7 +3712,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 146,
+            "line": 167,
             "description": "Initializer for functionalities which are common to sections containing lessons.",
             "itemtype": "method",
             "name": "commonLessonsDocumentReady",
@@ -3704,7 +3721,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 170,
+            "line": 210,
             "description": "Initializer for global functionalities, used throughout the application.",
             "itemtype": "method",
             "name": "globalDocumentReady",
@@ -3713,7 +3730,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 201,
+            "line": 244,
             "description": "Initializer for locations automatic filling.",
             "itemtype": "method",
             "name": "locationsDocumentReady",
@@ -3722,7 +3739,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 224,
+            "line": 267,
             "description": "Initializes reports forms for both lessons and media elements.",
             "itemtype": "method",
             "name": "reportsDocumentReady",
@@ -3731,7 +3748,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 269,
+            "line": 312,
             "description": "Functionalities necessary only for the section 'my documents'.",
             "itemtype": "method",
             "name": "sectionDocumentsDocumentReady",
@@ -3740,7 +3757,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 279,
+            "line": 322,
             "description": "Functionalities necessary only for the section 'my lessons'.",
             "itemtype": "method",
             "name": "sectionLessonsDocumentReady",
@@ -3749,7 +3766,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 294,
+            "line": 337,
             "description": "Functionalities necessary only for the section 'my media elements'.",
             "itemtype": "method",
             "name": "sectionMediaElementsDocumentReady",
@@ -3758,7 +3775,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 329,
+            "line": 389,
             "description": "Functionalities necessary only for the sections containing notifications.",
             "itemtype": "method",
             "name": "sectionNotificationsDocumentReady",
@@ -3767,7 +3784,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 362,
+            "line": 423,
             "description": "Functionalities necessary only for the section 'search'.",
             "itemtype": "method",
             "name": "sectionSearchDocumentReady",
@@ -3776,7 +3793,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 387,
+            "line": 446,
             "description": "Initializes global variables used throughout the javascripts.",
             "itemtype": "method",
             "name": "initializeGlobalVariables",
@@ -3785,7 +3802,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 401,
+            "line": 460,
             "description": "Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "redError",
@@ -3794,7 +3811,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 412,
+            "line": 471,
             "description": "Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3810,7 +3827,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 440,
+            "line": 499,
             "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "browserSupport",
@@ -3819,7 +3836,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 448,
+            "line": 507,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3844,7 +3861,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 474,
+            "line": 533,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",

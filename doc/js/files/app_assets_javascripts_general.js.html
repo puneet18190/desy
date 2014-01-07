@@ -372,21 +372,32 @@ function centerThisInContainer(div, container) {
 Same structure of {{#crossLink &quot;DashboardResizing/dashboardResizeController:method&quot;}}{{/crossLink}}.
 @method mediaElementsResizeController
 @for GeneralCentering
+@param resize_before {Boolean} if true, it resizes the elements also before calling the server
+@param with_fade {Boolean} if true, it resizes with a fade
+@param new_page {Number} forced page if any
 **/
-function mediaElementsResizeController() {
-  var container = $(&#x27;#my_media_elements&#x27;);
+function mediaElementsResizeController(resize_before, with_fade, new_page) {
+  if(!$(&#x27;#display_expanded_media_elements&#x27;).hasClass(&#x27;current&#x27;)) {
+    return;
+  }
   var info = $(&#x27;#info_container&#x27;);
-  var width = container.width();
-  var in_space = parseInt((width - 20) / 220);
-  var margin = (width - in_space * 200) / (in_space + 1);
-  var tot_width = in_space * (200 + margin) - margin;
+  var width = $(&#x27;#media_elements_title_bar&#x27;).outerWidth();
+  width = width - (width * 6 / 1000);
+  var in_space = parseInt((width - 200) / 207) + 1;
+  if(new_page == undefined) {
+    var current_page = $(&#x27;#general_pagination .pages a&#x27;).first().data(&#x27;page&#x27;) + 1;
+    var new_page = calculateTheNewVisiblePage(info.data(&#x27;in-space&#x27;) * 2, current_page, in_space * 2);
+  }
   if(in_space &lt;= 50 &amp;&amp; in_space != info.data(&#x27;in-space&#x27;)) {
     info.data(&#x27;in-space&#x27;, in_space);
-    resizeExpandedMediaElements(in_space);
+    if(resize_before) {
+      resizeExpandedMediaElements(in_space);
+    }
+    var additional = with_fade ? &#x27;&#x27; : &#x27;&amp;resizing=true&#x27;;
     unbindLoader();
     $.ajax({
       type: &#x27;get&#x27;,
-      url: &#x27;/media_elements?&amp;for_row=&#x27; + in_space // TODO meddia manca currenturl
+      url: &#x27;/media_elements?display=expanded&amp;filter=&#x27; + $(&#x27;#filter_media_elements option:selected&#x27;).val() + &#x27;&amp;page=&#x27; + new_page + &#x27;&amp;for_row=&#x27; + in_space + additional
     }).always(bindLoader);
   } else {
     resizeExpandedMediaElements(in_space);
@@ -400,18 +411,28 @@ Same structure of {{#crossLink &quot;DashboardResizing/resizeLessonsAndMediaElem
 @param for_row {Number} how many media elements fit horizontally the screen
 **/
 function resizeExpandedMediaElements(for_row) {
-  var container = $(&#x27;#my_media_elements&#x27;);
-  var margin = (container.width() - for_row * 200) / (for_row + 1);
+  var width = $(&#x27;#media_elements_title_bar&#x27;).outerWidth();
+  var percent_margin_width = width * 3 / 1000;
+  var margin = (width - 2 * percent_margin_width - for_row * 200) / (for_row - 1);
   var counter = 1;
-  container.find(&#x27;._media_element_item&#x27;).each(function() {
-    $(this).css(&#x27;margin-left&#x27;, (margin + &#x27;px&#x27;));
+  var one_row = ($(&#x27;#my_media_elements ._media_element_item&#x27;).length &lt;= for_row);
+  $(&#x27;#my_media_elements ._media_element_item&#x27;).each(function() {
+    if(counter == 1 || counter == (for_row + 1)) {
+      $(this).css(&#x27;margin-left&#x27;, (percent_margin_width + &#x27;px&#x27;));
+    } else {
+      $(this).css(&#x27;margin-left&#x27;, (margin + &#x27;px&#x27;));
+    }
     if(counter &gt; for_row) {
       $(this).css(&#x27;margin-top&#x27;, &#x27;30px&#x27;);
+      $(this).css(&#x27;margin-bottom&#x27;, &#x27;10px&#x27;);
     } else {
       $(this).css(&#x27;margin-top&#x27;, &#x27;0&#x27;);
+      if(one_row) {
+        $(this).css(&#x27;margin-bottom&#x27;, &#x27;355px&#x27;);
+      }
     }
     counter += 1;
-  }
+  });
 }
 
 
@@ -467,6 +488,8 @@ Initializer for functionalities which are common to sections containing lessons.
 function commonLessonsDocumentReady() {
   $body.on(&#x27;click&#x27;,&#x27;._lesson_compact&#x27;, function() {
     if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
+      var lessons_content = $(&#x27;.lessons-content&#x27;);
+      var advanced_search_content = $(&#x27;.advanced-search-content&#x27;);
       var my_id = $(this).parent().attr(&#x27;id&#x27;);
       var my_expanded = $(&#x27;#&#x27; + my_id + &#x27; ._lesson_expanded&#x27;);
       if(my_expanded.is(&#x27;:visible&#x27;)) {
@@ -474,10 +497,27 @@ function commonLessonsDocumentReady() {
         my_expanded.hide(&#x27;blind&#x27;, {}, 500, function() {
           my_expanded.hide();
         });
+        if(lessons_content.length &gt; 0) {
+          lessons_content.animate({height: &#x27;665px&#x27;}, 500);
+        } else {
+          advanced_search_content.animate({height: &#x27;805px&#x27;}, 500);
+        }
       } else {
+        var there_is_expanded = $(&#x27;._lesson_expanded:visible&#x27;);
+        if(there_is_expanded.length &gt; 0) {
+          there_is_expanded.find(&#x27;.tooltipForm:visible&#x27;).parent().find(&#x27;._reportable_lesson_icon&#x27;).click();
+          there_is_expanded.hide(&#x27;blind&#x27;, {}, 500, function() {
+            there_is_expanded.hide();
+          });
+        }
         my_expanded.show(&#x27;blind&#x27;, {}, 500, function() {
           my_expanded.show();
         });
+        if(lessons_content.length &gt; 0) {
+          lessons_content.animate({height: &#x27;863px&#x27;}, 500);
+        } else {
+          advanced_search_content.animate({height: &#x27;1003px&#x27;}, 500);
+        }
       }
     }
   });
@@ -501,9 +541,12 @@ function globalDocumentReady() {
     $(this).find(&#x27;.plus&#x27;).removeClass(&#x27;encendido&#x27;);
   });
   $(&#x27;#user_school_level_id&#x27;).selectbox(); // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
-  if(my_login.length &gt; 0 &amp;&amp; $(e.target).parents(&#x27;#login_form_container&#x27;).length == 0 &amp;&amp; !$(e.target).hasClass(&#x27;_show_login_form_container&#x27;)) {
-    $(&#x27;._show_login_form_container&#x27;).click();
-  } // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
+  $(document).bind(&#x27;click&#x27;, function (e) {
+    var my_login = $(&#x27;#login_form_container:visible&#x27;);
+    if(my_login.length &gt; 0 &amp;&amp; $(e.target).parents(&#x27;#login_form_container&#x27;).length == 0 &amp;&amp; !$(e.target).hasClass(&#x27;_show_login_form_container&#x27;)) {
+      $(&#x27;._show_login_form_container&#x27;).click();
+    } // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
+  });
   $body.on(&#x27;keyup blur&#x27;, &#x27;input[maxlength], textarea[maxlength]&#x27;, function () {
     var myself = $(this);
     var len = myself.val().length;
@@ -616,30 +659,47 @@ function sectionMediaElementsDocumentReady() {
   $(&#x27;#filter_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $body.on(&#x27;change&#x27;, &#x27;#filter_media_elements&#x27;, function() {
     var filter = $(&#x27;#filter_media_elements option:selected&#x27;).val();
-    var display = &#x27;compact&#x27;;
     if($(&#x27;#display_expanded_media_elements&#x27;).hasClass(&#x27;current&#x27;)) {
-      display = &#x27;expanded&#x27;;
+      $(&#x27;#info_container&#x27;).data(&#x27;in-space&#x27;, 0);
+      mediaElementsResizeController(false, true, 1);
+    } else {
+      $.get(&#x27;/media_elements?display=compact&amp;filter=&#x27; + filter);
     }
-    var redirect_url = &#x27;/media_elements?display=&#x27; + display + &#x27;&amp;filter=&#x27; + filter;
-    $.get(redirect_url);
   });
   $body.on(&#x27;click&#x27;, &#x27;#display_expanded_media_elements&#x27;, function() {
     if(!$(this).hasClass(&#x27;current&#x27;)) {
-      $.ajax({
-        type: &#x27;get&#x27;,
-        url: &#x27;/media_elements?display=expanded&#x27;
+      $(this).addClass(&#x27;current&#x27;);
+      $(&#x27;#display_compact_media_elements&#x27;).removeClass(&#x27;current&#x27;);
+      $(&#x27;#info_container&#x27;).data(&#x27;in-space&#x27;, 0);
+      browserDependingScrollToTag().animate({scrollTop: ((1150 - $(window).height() + $(&#x27;.global-footer&#x27;).height()) + &#x27;px&#x27;)}, 500);
+      var last_item_compact = $(&#x27;.boxViewCompactMediaElement&#x27;).last();
+      last_item_compact.animate({&#x27;margin-bottom&#x27;: (102 + parseInt(last_item_compact.css(&#x27;margin-bottom&#x27;))) + &#x27;px&#x27;}, 500);
+      $(&#x27;.elements-content&#x27;).animate({height: &#x27;767px&#x27;}, 500, function() {
+        $(this).removeClass(&#x27;fixed-compact-height&#x27;).addClass(&#x27;fixed-expanded-height&#x27;);
       });
+      mediaElementsResizeController(false, true, 1);
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;#display_compact_media_elements&#x27;, function() {
     if(!$(this).hasClass(&#x27;current&#x27;)) {
+      $(this).addClass(&#x27;current&#x27;);
+      $(&#x27;#display_expanded_media_elements&#x27;).removeClass(&#x27;current&#x27;);
       $.ajax({
         type: &#x27;get&#x27;,
-        url: &#x27;/media_elements?display=compact&#x27;
+        url: &#x27;/media_elements?display=compact&#x27;,
+        success: function (r) {
+          $(&#x27;.elements-content&#x27;).animate({height: &#x27;665px&#x27;}, 500, function() {
+            $(this).removeClass(&#x27;fixed-expanded-height&#x27;).addClass(&#x27;fixed-compact-height&#x27;)
+          });
+        }
       });
     }
   });
   $(&#x27;#filter_media_elements&#x27;).selectbox();
+  mediaElementsResizeController(false, false);
+  $(window).resize(function() {
+    mediaElementsResizeController(true, false);
+  });
 }
 
 /**
@@ -654,7 +714,6 @@ function sectionNotificationsDocumentReady() {
   $(document).bind(&#x27;click&#x27;, function (e) {
     var click_id = $(e.target).attr(&#x27;id&#x27;);
     var my_report = $(&#x27;.tooltipForm:visible&#x27;);
-    var my_login = $(&#x27;#login_form_container:visible&#x27;);
     if($(&#x27;#tooltip_content&#x27;).length &gt; 0) {
       if($(&#x27;#tooltip_content&#x27;).is(&#x27;:visible&#x27;)) {
         if(click_id != &#x27;tooltip_content&#x27; &amp;&amp; click_id != &#x27;expanded_notification&#x27; &amp;&amp; click_id != &#x27;notifications_button&#x27; &amp;&amp; $(e.target).parents(&#x27;#tooltip_content&#x27;).length == 0 &amp;&amp; $(e.target).parents(&#x27;#expanded_notification&#x27;).length == 0) {
@@ -673,6 +732,8 @@ function sectionNotificationsDocumentReady() {
       my_report.parent().find(&#x27;.report_light, ._reportable_lesson_icon&#x27;).click();
     }
   });
+  $(&#x27;#which_item_to_search option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#which_item_to_search&#x27;).selectbox();
 }
 
 /**
@@ -684,12 +745,10 @@ function sectionSearchDocumentReady() {
   $(&#x27;._which_item_to_search_switch[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
   $(&#x27;._order_lessons_radio_input[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
   $(&#x27;._order_media_elements_radio_input[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
-  $(&#x27;#which_item_to_search option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $(&#x27;#filter_search_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $(&#x27;#filter_search_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $(&#x27;#filter_search_lessons_subject option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $(&#x27;#filter_search_lessons_school_level option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;#which_item_to_search&#x27;).selectbox();
   $(&#x27;#filter_search_lessons&#x27;).selectbox();
   $(&#x27;#filter_search_media_elements&#x27;).selectbox();
   $(&#x27;#filter_search_lessons_subject&#x27;).selectbox();
