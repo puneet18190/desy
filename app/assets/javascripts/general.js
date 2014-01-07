@@ -239,6 +239,7 @@ function globalDocumentReady() {
       myself.val(myself.val().slice(0, maxlength));
     }
   });
+  ajaxLoaderDocumentReady();
 }
 
 /**

@@ -54,10 +54,12 @@ $(document).ready(function() {
   initializeGlobalVariables();
   browsersDocumentReady();
   globalDocumentReady();
+  var in_audio_editor = ($('#audio_editor').length > 0);
   var in_dashboard = ($('#dashboard_container').length > 0);
   var in_documents = ($('#my_documents').length > 0);
   var in_lessons = ($('#my_lessons').length > 0);
   var in_media_elements = ($('#my_media_elements').length > 0);
+  var in_prelogin = ($html.hasClass('prelogin-layout'));
   var in_profile = ($('#profile_title_bar').length > 0);
   var in_search = ($('#search_lessons_main_page').length > 0 && $('#search_media_elements_main_page').length > 0);
   var in_virtual_classroom = ($('#my_virtual_classroom').length > 0);
@@ -85,10 +87,13 @@ $(document).ready(function() {
   if(in_dashboard || in_lessons || in_search) {
     commonLessonsDocumentReady();
   }
+  if(in_audio_editor) {
+    audioEditorDocumentReady();
+  }
+  if(in_prelogin) {
+    preloginDocumentReady();
+  }
   // TODO ottimizz a partire da qui non è ottimizzato
-  ajaxLoaderDocumentReady();
-  audioEditorDocumentReady();
-  automaticLoginDocumentReady();
   documentsDocumentReady();
   galleriesDocumentReady();
   imageEditorDocumentReady();
@@ -101,7 +106,6 @@ $(document).ready(function() {
   mediaElementLoaderDocumentReady();
   notificationsDocumentReady();
   playersDocumentReady();
-  preloginDocumentReady();
   profileDocumentReady();
   purchaseCodeRegistrationDocumentReady();
   reportsDocumentReady();

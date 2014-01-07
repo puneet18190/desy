@@ -8,20 +8,6 @@ This module contains the initialization methods for <b>profiling</b> and <b>regi
 
 
 /**
-Initializes the action that shows automaticly the login form when somebody opens the maing page of the application without being logged.
-@method automaticLoginDocumentReady
-@for ProfilePrelogin
-**/
-function automaticLoginDocumentReady() {
-  if( $html.hasClass('prelogin-controller home-action') ) {
-    var parsedLocation = UrlParser.parse(window.location.href);
-    if(_.contains(_.keys(parsedLocation.searchObj), 'login')) {
-      $('._show_login_form_container').click();
-    }
-  }
-}
-
-/**
 Initializes the handler of the login form.
 @method preloginDocumentReady
 @for ProfilePrelogin
@@ -49,6 +35,10 @@ function preloginDocumentReady() {
   $body.on('click', '.checkAllSubjects', function() {
     $(this).parent().find('.checkboxElement label.unchecked').click();
   });
+  var parsedLocation = UrlParser.parse(window.location.href);
+  if(_.contains(_.keys(parsedLocation.searchObj), 'login')) {
+    $('._show_login_form_container').click();
+  }
 }
 
 /**
