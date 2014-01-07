@@ -62,7 +62,7 @@ Same structure of {{#crossLink "DashboardResizing/dashboardResizeController:meth
 **/
 function mediaElementsResizeController(resize_before, with_fade, new_page) {
   if(!$('#display_expanded_media_elements').hasClass('current')) {
-    return
+    return;
   }
   var info = $('#info_container');
   var width = $('#media_elements_title_bar').outerWidth();
@@ -355,6 +355,9 @@ function sectionMediaElementsDocumentReady() {
       $(this).addClass('current');
       $('#display_compact_media_elements').removeClass('current');
       $('#info_container').data('in-space', 0);
+      $('.elements-content').animate({height: '767px'}, 500, function() {
+        $(this).removeClass('fixed-compact-height').addClass('fixed-expanded-height');
+      });
       mediaElementsResizeController(false, true, 1);
     }
   });
@@ -364,7 +367,12 @@ function sectionMediaElementsDocumentReady() {
       $('#display_expanded_media_elements').removeClass('current');
       $.ajax({
         type: 'get',
-        url: '/media_elements?display=compact'
+        url: '/media_elements?display=compact',
+        success: function (r) {
+          $('.elements-content').animate({height: '665px'}, 500, function() {
+            $(this).removeClass('fixed-expanded-height').addClass('fixed-compact-height')
+          });
+        }
       });
     }
   });
