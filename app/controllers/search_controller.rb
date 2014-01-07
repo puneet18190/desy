@@ -11,10 +11,10 @@
 class SearchController < ApplicationController
   
   # How many lessons in a page
-  LESSONS_FOR_PAGE = 18
+  LESSONS_FOR_PAGE = 8
   
   # How many elements in a page
-  MEDIA_ELEMENTS_FOR_PAGE = 18
+  MEDIA_ELEMENTS_FOR_PAGE = 8
   
   before_filter :initialize_layout, :initialize_paginator_and_filters
   

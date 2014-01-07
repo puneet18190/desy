@@ -14,7 +14,7 @@
 class MediaElementsController < ApplicationController
   
   # Default number of elements in compact mode to be shown in a single page
-  FOR_PAGE = 18
+  FOR_PAGE = 8
   
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
