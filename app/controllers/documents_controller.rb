@@ -1,7 +1,7 @@
 class DocumentsController < ApplicationController
   
   # Number of documents for each page
-  FOR_PAGE = SETTINGS['documents_pagination']
+  FOR_PAGE = 18
   
   before_filter :initialize_document, :only => [:destroy, :update]
   before_filter :initialize_layout, :initialize_paginator, :only => :index

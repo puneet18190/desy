@@ -13,7 +13,7 @@
 class LessonsController < ApplicationController
   
   # Number of compact lessons for each page
-  FOR_PAGE = SETTINGS['lesson_pagination']
+  FOR_PAGE = 18
   
   before_filter :check_available_for_user, :only => [:copy, :publish]
   before_filter :initialize_lesson, :only => [:add, :copy, :like, :remove, :dislike]

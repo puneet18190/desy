@@ -286,7 +286,13 @@
   
   width: 100%;
   
-  &.fixed-height {
+  &.fixed-expanded-height {
+    
+    height: 767px;
+    
+  }
+  
+  &.fixed-compact-height {
     
     height: 767px;
     
