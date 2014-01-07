@@ -7,28 +7,36 @@
   tag_details = render :partial => "search/#{@search_item}/tag_details", :locals => {:tags => @tags, :specific_tag => @specific_tag}
 %>
 
-
-<% if @delete_item.blank? %>
-  $('#found_<%= @search_item %>').hide('fade', {}, 500, function() {
-    $('#found_<%= @search_item %>').replaceWith('<%= j results %>');
-    $('#general_pagination').replaceWith('<%= j pagination %>');
-  });
-<% else %>
-  var to_delete = $('#<%= @delete_item %>');
-  to_delete.hide('fade', {}, 500, function() {
-    $('#found_<%= @search_item %>').replaceWith('<%= j results %>');
-    $('#general_pagination').replaceWith('<%= j pagination %>');
-    <% if items_amount > 0 %>
-      $('#<%= @search_item %>_search_amount').replaceWith('<%= j amount %>');
-      <% if @tags.present? %>
-        $('#<%= @search_item %>_tag_details').replaceWith('<%= j tag_details %>');
+var my_callback = function() {
+  <% if @delete_item.blank? %>
+    $('#found_<%= @search_item %>').hide('fade', {}, 500, function() {
+      $('#found_<%= @search_item %>').replaceWith('<%= j results %>');
+      $('#general_pagination').replaceWith('<%= j pagination %>');
+    });
+  <% else %>
+    var to_delete = $('#<%= @delete_item %>');
+    to_delete.hide('fade', {}, 500, function() {
+      $('#found_<%= @search_item %>').replaceWith('<%= j results %>');
+      $('#general_pagination').replaceWith('<%= j pagination %>');
+      <% if items_amount > 0 %>
+        $('#<%= @search_item %>_search_amount').replaceWith('<%= j amount %>');
+        <% if @tags.present? %>
+          $('#<%= @search_item %>_tag_details').replaceWith('<%= j tag_details %>');
+        <% end %>
+      <% else %>
+        $('#<%= @search_item %>_search_amount').remove();
+        $('#<%= @search_item %>_tag_details').remove();
+        $('#general_pagination').html('');
       <% end %>
-    <% else %>
-      $('#<%= @search_item %>_search_amount').remove();
-      $('#<%= @search_item %>_tag_details').remove();
-      $('#general_pagination').html('');
-    <% end %>
-  });
-<% end %>
+    });
+  <% end %>
+  $('#info_container').data('currenturl', <%= manipulate_url(remove_query_param: ["delete_item"], page: @page).to_json.html_safe %>);
+}
 
-$('#info_container').data('currenturl', <%= manipulate_url(remove_query_param: ["delete_item"], page: @page).to_json.html_safe %>);
+var there_is_expanded = $('._lesson_expanded:visible');
+if(there_is_expanded.length > 0) {
+  there_is_expanded.parent().find('._lesson_compact').click();
+  setTimeout(my_callback, 500);
+} else {
+  my_callback();
+}
