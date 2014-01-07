@@ -1,3 +1,8 @@
+var there_is_expanded = $('._lesson_expanded:visible');
+if(there_is_expanded.length > 0) {
+  there_is_expanded.parent().find('._lesson_compact').click();
+}
+
 <% if @delete_item.blank? %>
   $('#my_lessons').hide('fade', {}, 500, function() {
     $('#my_lessons').replaceWith("<%= j(render(:partial => 'lessons/my_lessons', :locals => {:lessons => @lessons, :filter => @filter, :covers => @covers})) %>");
@@ -24,4 +29,4 @@
   });
 <% end %>
 
-$('#info_container').data('currenturl', <%= manipulate_url(remove_query_param: "delete_item", page: @page).to_json.html_safe %>);
+$('#info_container').data('currenturl', <%= manipulate_url(remove_query_param: ["delete_item"], page: @page).to_json.html_safe %>);

@@ -129,7 +129,7 @@ function initializeScrollAtBottomNewBlockNotification() {
 }
 
 /**
-Global initializer for notifications and help. The function {{#crossLink "NotificationsDocumentReady/notificationsDocumentReadyLoop:method"}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink "MediaElementLoaderConversion/mediaElementLoaderConversionOverview:method"}}{{/crossLink}}.
+Global initializer for notifications and help. The function {{#crossLink "NotificationsDocumentReady/notificationsDocumentReadyLoop:method"}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink "MediaElementEditorConversion/mediaElementLoaderConversionOverview:method"}}{{/crossLink}}.
 @method notificationsDocumentReady
 @for NotificationsDocumentReady
 **/

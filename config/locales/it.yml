@@ -668,7 +668,7 @@ it:
       # 1 - controllers/application_controller.rb
       media_generic_error: "File non valido o danneggiato"
       # The user tried to load a file exceeding the maximum size
-      # 1 - views/media_elements/_new_form_popup.html.erb
+      # 1 - controllers/media_elements_controller.rb
       media_file_too_large: "File troppo grande"
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
@@ -850,6 +850,20 @@ it:
     # 1 - views/media_elements/_popup.html.erb
     # 2 - views/documents/_view_single_compact.html.erb
     close: "Chiudi"
+    # Titles for compressed dashboard
+    dashboard:
+      # Button to compress lessons subsection
+      # 1 - views/dashboard/index.html.erb
+      compress_lessons: "Chiudi lezioni"
+      # Button to compress media elements subsection
+      # 1 - views/dashboard/index.html.erb
+      compress_media_elements: "Chiudi elementi"
+      # Button to expand lessons subsection
+      # 1 - views/dashboard/index.html.erb
+      expand_lessons: "Espandi lezioni"
+      # Button to expand media elements subsection
+      # 1 - views/dashboard/index.html.erb
+      expand_media_elements: "Espandi elementi"
     # Titles for the icons of documents
     documents:
       # Includes .doc, .odt
@@ -1013,14 +1027,15 @@ it:
       # 3 - views/shared/_popups.html.erb
       # 4 - views/virtual_classroom/_pagination.html.erb
       # 5 - views/virtual_classroom/_pagination.html.erb
+      # 6 - views/dashboard/_pagination.html.erb
       prev: "Vai alla pagina precedente"
       # Go to next page
-      # 1 - views/dashboard/_pagination.html.erb
+      # 1 - views/shared/_pagination.html.erb
       # 2 - views/shared/_pagination.html.erb
-      # 3 - views/shared/_pagination.html.erb
-      # 4 - views/shared/_popups.html.erb
+      # 3 - views/shared/_popups.html.erb
+      # 4 - views/virtual_classroom/_pagination.html.erb
       # 5 - views/virtual_classroom/_pagination.html.erb
-      # 6 - views/virtual_classroom/_pagination.html.erb
+      # 6 - views/dashboard/_pagination.html.erb
       next: "Vai alla pagina successiva"
     # Titles for the user profile
     profile:
@@ -1032,6 +1047,7 @@ it:
     report: "Segnala contenuti non appropriati"
     # Icon with a lens in the main sections
     # 1 - views/shared/_search.html.erb
+    # 2 - views/dashboard/index.html.erb
     search: "Cerca"
     # Icon to share a lesson throughout social networks
     # 1 - views/lesson_viewer/_social_networks.html.erb
@@ -1293,7 +1309,7 @@ it:
         # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
         title: "Ripristino password"
         # 1 - views/users/fullpage_notifications/reset_password/email_sent.html.erb
-        description: "Abbiamo inviato, all'indirizzo da te fornitoci, una email contenente il link per cambiare la tua password"
+        description: "Abbiamo inviato, all'indirizzo che hai inserito, una email contenente il link per cambiare la tua password"
       # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
       received:
         # 1 - views/users/fullpage_notifications/reset_password/received.html.erb
@@ -1331,6 +1347,9 @@ it:
     # Used in the general footer of the application, to redirect to the main page
     # 1 - views/shared/_footer.html.erb
     back_to_dashboard: "Torna alla Bacheca"
+    # Caption of the dashboard in the menu
+    # 1 - views/shared/_menu.html.erb
+    dashboard: "Bacheca"
     # Used to refer to the user's documents
     # 1 - views/shared/_menu.html.erb
     # 2 - views/documents/index.html.erb
@@ -1347,17 +1366,17 @@ it:
     dont_support_audio: "Il tuo browser non supporta gli audio"
     # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for instance, in the search engine when the application asks where to search, or in the main page to separate suggested lessons by suggested elements)
     # 1 - views/lessons/index.html.erb
-    # 2 - views/dashboard/index.html.erb
-    # 3 - views/shared/_menu.html.erb
-    # 4 - views/shared/_search.html.erb
-    # 5 - views/search/_item_selector.html.erb
-    lessons: "Lezioni"
-    # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
-    # 1 - views/dashboard/index.html.erb
     # 2 - views/shared/_menu.html.erb
     # 3 - views/shared/_search.html.erb
-    # 4 - views/media_elements/_title_bar.html.erb
-    # 5 - views/search/_item_selector.html.erb
+    # 4 - views/search/_item_selector.html.erb
+    # 5 - views/dashboard/index.html.erb
+    lessons: "Lezioni"
+    # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
+    # 1 - views/shared/_menu.html.erb
+    # 2 - views/shared/_search.html.erb
+    # 3 - views/media_elements/_title_bar.html.erb
+    # 4 - views/search/_item_selector.html.erb
+    # 5 - views/dashboard/index.html.erb
     media_elements: "Elementi"
     # Used to refer to the user's personal profile
     # 1 - views/users/_title_bar.html.erb
@@ -1396,7 +1415,7 @@ it:
       virtual_classroom: "%{desy} - virtual classroom"
     # Caption for Virtual Classroom
     # 1 - views/shared/_menu.html.erb
-    # 2 - views/virtual_classroom/index.html.erb
+    # 2 - views/layouts/virtual_classroom.html.erb
     virtual_classroom: "Playlist" # FIXME "Virtual Classroom"
     # Used in the login, before the logged user's name
     # 1 - views/admin/_header.html.erb
@@ -1434,46 +1453,74 @@ it:
   # SECTION 2.3: Captions used inside the Dashboard (main page)
   
   dashboard:
-    # The caption of the link to open the 'contacts' page (the link is on the bottom left of the Dashboard)
-    # 1 - views/dashboard/index.html.erb
-    contact_us: "Contattaci"
-    # Caption of the link opening the lesson editor (in each page of lessons inside the Dashboard, after the last lesson there is a button with a 'plus' which opens the lesson editor)
-    # 1 - views/dashboard/_lessons_and_media_elements.html.erb
-    # 2 - views/dashboard/_lessons_and_media_elements.html.erb
-    create_new_lesson: "Crea una nuova lezione"
-    # Caption of the link opening the lesson editor, containing a prompt for the user (this is used only in the case there are no suggested lessons in the Dashboard: in this case the application invites the user to create a lesson right now)
-    # 1 - views/dashboard/_lessons_empty.html.erb
-    create_new_lesson_now: "Crea una lezione ora"
-    # Caption of the link to download the user guide (bottom right in the page)
-    # 1 - views/dashboard/index.html.erb
-    download_manual: "Vai alle FAQs"
-    # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
-    # 1 - views/dashboard/_lessons_empty.html.erb
-    emptied_lessons: "Hai scelto tutte le lezioni suggerite"
-    # Caption which appears if for the user there are no suggested lessons inside the database
-    # 1 - views/dashboard/_lessons_empty.html.erb
-    empty_lessons: "Non ci sono lezioni suggerite per te"
-    # Caption which appears if there are no suggested elements inside the Dashboard, because the user picked all the elements the application suggested him
-    # 1 - views/dashboard/_media_elements_empty.html.erb
-    emptied_media_elements: "Hai scelto tutti gli elementi didattici suggeriti"
-    # Caption which appears if for the user there are no suggested elements inside the database
-    # 1 - views/dashboard/_media_elements_empty.html.erb
-    empty_media_elements: "Non ci sono elementi didattici suggeriti per te"
-    # Title of the link 'Download the user guide' (bottom right in the page)
-    # 1 - views/dashboard/index.html.erb
-    help_using_desy: "Hai bisogno di aiuto per usare %{desy}?"
-    # Caption of the link opening the window to load a new element (in each page of elements inside the Dashboard, after the last element there is a button with a 'plus' which opens the window)
-    # 1 - views/dashboard/_lessons_and_media_elements.html.erb
-    load_new_media_element: "Carica un nuovo elemento"
-    # Caption of the link opening the window to load new elements, containing a prompt for the user (this is used only in the case there are no suggested elements in the Dashboard: in this case the application invites the user to load an element right now)
-    # 1 - views/dashboard/_media_elements_empty.html.erb
-    load_new_media_element_now: "Carica un elemento"
-    # Caption of the buttons to switch between suggested lessons and elements ('selected for you': lessons - elements)
-    # 1 - views/dashboard/index.html.erb
-    selected_for_you: "Scelti per te"
-    # Title of the link 'contact us' (bottom left in the page)
-    # 1 - views/dashboard/index.html.erb
-    talk_with_desy: "Vuoi parlare con %{desy}?"
+    # Captions for the link that allows the user to contact the administrator (the variable %{desy} is replaced by the name of the application)
+    contact_us:
+      # 1 - views/dashboard/index.html.erb
+      title: "Vuoi parlare con %{desy}?"
+      # 1 - views/dashboard/index.html.erb
+      description: "La tua opinione è molto importante per migliorare i nostri servizi"
+      # 1 - views/dashboard/index.html.erb
+      link: "Contattaci"
+    # Captions of buttons to create new items (lessons, media elements, documents)
+    create_new:
+      # 1 - views/dashboard/index.html.erb
+      lesson: "Crea una lezione"
+      # 1 - views/dashboard/index.html.erb
+      document: "Carica un documento"
+      # 1 - views/dashboard/index.html.erb
+      media_element: "Carica un elemento"
+    # Containers showing a standard message in case there are no lessons or media elements
+    empty:
+      lessons:
+        # Title of the container
+        # 1 - views/dashboard/_lessons_empty.html.erb
+        title: "Non ci sono lezioni suggerite per te"
+        # Title of the container in case the dashboard is empty because the user picked all the suggested lessons and there are no remaining
+        # 1 - views/dashboard/_lessons_empty.html.erb
+        title_emptied: "Hai scelto tutte le lezioni suggerite"
+        # Prompt telling the user to create a new lesson
+        # 1 - views/dashboard/_lessons_empty.html.erb
+        prompt: "Crea una lezione ora"
+      media_elements:
+        # Title of the container
+        # 1 - views/dashboard/_media_elements_empty.html.erb
+        title: "Non ci sono elementi didattici suggeriti per te"
+        # Title of the container in case the dashboard is empty because the user picked all the suggested elements and there are no remaining
+        # 1 - views/dashboard/_media_elements_empty.html.erb
+        title_emptied: "Hai scelto tutti gli elementi didattici suggeriti"
+        # Prompt telling the user to upload a new media element
+        # 1 - views/dashboard/_media_elements_empty.html.erb
+        prompt: "Carica un elemento"
+    # Captions for the link that allows the user to open the FAQs section (the variable %{desy} is replaced by the name of the application)
+    faqs:
+      # 1 - views/dashboard/index.html.erb
+      title: "Hai bisogno di aiuto per usare %{desy}?"
+      # 1 - views/dashboard/index.html.erb
+      description: "Hai bisogno del nostro supporto per capire tutte le funzionalità di %{desy}?"
+      # 1 - views/dashboard/index.html.erb
+      link: "Vai alle FAQs"
+    # Captions for the link to the search engine (the variable %{desy} is replaced by the name of the application)
+    search:
+      # 1 - views/dashboard/index.html.erb
+      title: "Cerca lezioni o elementi"
+      # 1 - views/dashboard/index.html.erb
+      description: "Usa il motore di ricerca di %{desy} per trovare elementi o lezioni di cui hai bisogno"
+    # Captions for subsections of the dashboard
+    selected:
+      # Subsection of lessons
+      lessons:
+        # 1 - views/dashboard/index.html.erb
+        title: "Nuove lezioni che potrebbero interessarti"
+        # The variable %{desy} is replaced by the name of the application
+        # 1 - views/dashboard/index.html.erb
+        description: "Aggiungi alla tua lista personale interessanti lezioni realizzate da altri utenti"
+      # Subsection of media elements
+      media_elements:
+        # 1 - views/dashboard/index.html.erb
+        title: "Ultimi elementi didattici"
+        # The variable %{desy} is replaced by the name of the application
+        # 1 - views/dashboard/index.html.erb
+        description: "L'offerta dei contenuti che ti propone %{desy} è in continua evoluzione: scopri i nuovi elementi multimediali a tua disposizione"
   
   
   # SECTION 2.4: Captions used in general media galleries. There are three kinds of galleries: Audio, Image and Video. They are used to pick quickly a media element and use it inside a lesson (or as a component to create a new media element, in Audio, Image and Video Editor)
@@ -1654,6 +1701,9 @@ it:
     # 6 - views/lesson_editor/edit.html.erb
     # 7 - views/lesson_editor/thumbnails/_cover.html.erb
     author: "Autore"
+    # Caption containing the author's name (the variable %{author} is replaced by the name of the author)
+    # 1 - views/lessons/_view_single_expanded.html.erb
+    created_by: "Creata da %{author}"
     # Caption which indicates the date in which a lesson is created
     # 1 - views/lessons/_view_single_compact.html.erb
     created_on: "Creata il"
@@ -1692,6 +1742,9 @@ it:
       # Placeholder that appears in the notification sent if the user didn't write any message
       # 1 - models/lesson.rb
       empty_message: "[nessun messaggio]"
+    # Caption containing the time passed from the publication (the variable %{published_time} is replaced by an expression o the kind "1 hour ago")
+    # 1 - views/lessons/_view_single_expanded.html.erb
+    published_at: "Pubblicata %{published_time}"
     # Caption for the scholar level of the author of a lesson
     # 1 - views/lessons/_view_single_compact.html.erb
     # 2 - views/lesson_editor/new.html.erb
@@ -1725,9 +1778,6 @@ it:
   # SECTION 2.9: Caption used in the section 'my elements'
   
   media_elements:
-    # Used as a caption to select how many elements to show inside each page
-    # 1 - views/media_elements/_title_bar.html.erb
-    display: "Visualizza"
     # Caption of the buttons used to choose between size display (compact or extended mode)
     display_mode:
       # 1 - views/media_elements/_title_bar.html.erb
@@ -1778,31 +1828,6 @@ it:
     # Caption of the user's notifications window if there are no notifications
     # 1 - views/notifications/_empty.html.erb
     empty: "Non hai notifiche"
-    # Time difference to string
-    time_difference:
-      # 1 - models/notification.rb
-      # 2 - models/notification.rb
-      seconds: "Pochi secondi fa"
-      # 1 - models/notification.rb
-      minute: "Un minuto fa"
-      # 1 - models/notification.rb
-      minutes: "%{minutes} minuti fa"
-      # 1 - models/notification.rb
-      hour:  "Un'ora fa"
-      # 1 - models/notification.rb
-      hours:  "%{hours} ore fa"
-      # 1 - models/notification.rb
-      day: "Un giorno fa"
-      # 1 - models/notification.rb
-      days: "%{days} giorni fa"
-      # 1 - models/notification.rb
-      month: "Un mese fa"
-      # 1 - models/notification.rb
-      months: "%{months} mesi fa"
-      # 1 - models/notification.rb
-      year: "Un anno fa"
-      # 1 - models/notification.rb
-      years: "%{years} anni fa"
     documents:
       # Notification sent by a user who destroyed a document attached to a lesson coped by somebody else, to inform all its followers (the variable %{lesson_title} is replaced by the title of the lesson, %{document_title} by the title of the document, and %{link} by the link to the lesson viewer for that lesson)
       # 1 - models/document.rb
@@ -2057,6 +2082,7 @@ it:
     # Link to open the search engine from the other sections
     # 1 - views/shared/_search.html.erb
     # 2 - views/search/index.html.erb
+    # 3 - views/dashboard/index.html.erb
     label: "Ricerca avanzata"
     # Button to start the research
     # 1 - views/search/lessons/_main.html.erb
@@ -2064,6 +2090,7 @@ it:
     short_label: "Ricerca"
     # Placeholder of the quick search present in all the sections
     # 1 - views/shared/_search.html.erb
+    # 2 - views/dashboard/index.html.erb
     long_label: "Cerca in %{desy}"
     # Main title inside the search engine
     # 1 - views/search/index.html.erb
@@ -2494,7 +2521,7 @@ it:
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       empty: "Non ci sono lezioni da aggiungere alla Playlist" # FIXME "Non ci sono lezioni da aggiungere alla Virtual Classroom"
       # Button to open the window from the main bar inside Virtual Classroom
-      # 1 - views/virtual_classroom/_header_buttons.html.erb
+      # 1 - views/layouts/virtual_classroom.html.erb
       label: "Aggiungi lezioni"
       # Instructions
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
@@ -2503,7 +2530,7 @@ it:
     # 1 - views/virtual_classroom/_empty.html.erb
     empty: "La tua Playlist è vuota" # FIXME "La tua Virtual Classroom è vuota"
     # Caption of the button which empties your Virtual Classroom
-    # 1 - views/virtual_classroom/_header_buttons.html.erb
+    # 1 - views/layouts/virtual_classroom.html.erb
     make_it_empty: "Svuota la tua Playlist" # FIXME "Svuota la tua Virtual Classroom"
     # Captions used for the composition of the playlist
     playlist:
@@ -2578,7 +2605,7 @@ it:
       # 1 - views/documents/_new_form_popup.html.erb
       attachment_placeholder: "Seleziona un file"
       # Error when the file uploaded is too large
-      # 1 - views/documents/_new_form_popup.html.erb
+      # 1 - controllers/documents_controller.rb
       attachment_too_large: "L'allegato è troppo grande"
       # Caption to cancel the uploading
       # 1 - views/documents/_new_form_popup.html.erb
@@ -2690,6 +2717,31 @@ it:
     # Time format
     # 1 - ..lib/autoload/time_convert.rb
     format: "italian"
+    # Time difference to string
+    time_difference:
+      # 1 - ..lib/autoload/time_convert.rb
+      # 2 - ..lib/autoload/time_convert.rb
+      seconds: "Pochi secondi fa"
+      # 1 - ..lib/autoload/time_convert.rb
+      minute: "Un minuto fa"
+      # 1 - ..lib/autoload/time_convert.rb
+      minutes: "%{minutes} minuti fa"
+      # 1 - ..lib/autoload/time_convert.rb
+      hour:  "Un'ora fa"
+      # 1 - ..lib/autoload/time_convert.rb
+      hours:  "%{hours} ore fa"
+      # 1 - ..lib/autoload/time_convert.rb
+      day: "Un giorno fa"
+      # 1 - ..lib/autoload/time_convert.rb
+      days: "%{days} giorni fa"
+      # 1 - ..lib/autoload/time_convert.rb
+      month: "Un mese fa"
+      # 1 - ..lib/autoload/time_convert.rb
+      months: "%{months} mesi fa"
+      # 1 - ..lib/autoload/time_convert.rb
+      year: "Un anno fa"
+      # 1 - ..lib/autoload/time_convert.rb
+      years: "%{years} anni fa"
   language_parameters:
     notification:
       # Maximum length of the message inserted by the user to notify the modification of a public lesson
@@ -3901,7 +3953,7 @@ it:
         ["Posso eliminare un elemento che ho reso pubblico?", "No, non puoi far tornare privato o eliminare un elemento che hai già condiviso. Ricorda che anche quando rendi pubblica una lezione, tutti gli elementi didattici in essa contenuti vengono automaticamente condivisi nell'archivio e, a differenza della lezione, non potranno più essere cancellati o resi privati. Puoi comunque inviare una segnalazione alla redazione che provvederà alla rimozione dell'elemento.<br/>Un elemento privato verrà automaticamente condiviso anche al momento del suo inserimento in una lezione già pubblica."],
         ["Ho caricato un video, ma vorrei usarne solo una parte...", "Nessun problema. Grazie agli speciali strumenti di editing di DESY puoi tagliare e combinare video, immagini e audio per creare nuovi elementi multimediali più adatti alle tue esigenze didattiche."],
         ["Posso usare o modificare elementi di altri utenti?", "Sì, per utilizzare elementi di altri utenti è sufficiente utilizzare il motore di ricerca e aggiungere gli elementi che preferisci al tuo archivio personale. Successivamente potrai aggiungerli alle tue lezioni, modificarli o combinarli con gli speciali editor multimediali di DESY."],
-        ["Ho trovato un contenuto inappropriato...", "La redazione di DESY tiene in costante controllo la qualità dei contenuti caricati dagli utenti, ma se dovessi imbatterti in un contenuto che ritieni inappropriato segnalano alla redazione."]
+        ["Ho trovato un contenuto inappropriato...", "La redazione di DESY tiene in costante controllo la qualità dei contenuti caricati dagli utenti, ma se dovessi imbatterti in un contenuto che ritieni inappropriato segnalalo alla redazione."]
       ]
     # FAQS about the Virtual Classroom (all of them have a common description which is visible on the gray header)
     virtual_classroom:

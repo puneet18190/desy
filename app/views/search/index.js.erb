@@ -7,6 +7,10 @@
   tag_details = render :partial => "search/#{@search_item}/tag_details", :locals => {:tags => @tags, :specific_tag => @specific_tag}
 %>
 
+var there_is_expanded = $('._lesson_expanded:visible');
+if(there_is_expanded.length > 0) {
+  there_is_expanded.parent().find('._lesson_compact').click();
+}
 
 <% if @delete_item.blank? %>
   $('#found_<%= @search_item %>').hide('fade', {}, 500, function() {
@@ -31,4 +35,4 @@
   });
 <% end %>
 
-$('#info_container').data('currenturl', <%= manipulate_url(remove_query_param: "delete_item", page: @page).to_json.html_safe %>);
+$('#info_container').data('currenturl', <%= manipulate_url(remove_query_param: ["delete_item"], page: @page).to_json.html_safe %>);

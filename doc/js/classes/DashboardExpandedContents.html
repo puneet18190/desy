@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>media-element-loader - DESY</title>
+    <title>DashboardExpandedContents - DESY</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -69,8 +71,6 @@
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
             
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
-            
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
                 <li><a href="../classes/ButtonsAccessories.html">ButtonsAccessories</a></li>
@@ -81,11 +81,13 @@
             
                 <li><a href="../classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="../classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
+                <li><a href="../classes/DashboardAccessories.html">DashboardAccessories</a></li>
             
-                <li><a href="../classes/DashboardGeneral.html">DashboardGeneral</a></li>
+                <li><a href="../classes/DashboardExpandedContents.html">DashboardExpandedContents</a></li>
             
-                <li><a href="../classes/DashboardPagination.html">DashboardPagination</a></li>
+                <li><a href="../classes/DashboardLessonDescriptions.html">DashboardLessonDescriptions</a></li>
+            
+                <li><a href="../classes/DashboardResizing.html">DashboardResizing</a></li>
             
                 <li><a href="../classes/DialogsAccessories.html">DialogsAccessories</a></li>
             
@@ -98,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -155,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -198,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -263,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -274,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -314,16 +310,18 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>media-element-loader Module</h1>
-<div class="box clearfix meta">
+                        <h1>DashboardExpandedContents Class</h1>
+<div class="box meta">
     
 
     
 
     
-        <div class="foundat">
-            Defined in: <a href="../files/app_assets_javascripts_media_element_loader.js.html#l1"><code>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_loader.js:1</code></a>
-        </div>
+
+    
+        
+            Module: <a href="../modules/dashboard.html">dashboard</a>
+        
     
 
     
@@ -332,54 +330,444 @@
 
 
 <div class="box intro">
-    <p>Javascript functions used in the media element loader.</p>
-
+    
 </div>
 
 
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
 
-            <ul class="module-classes">
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
             
-                <li class="module-class">
-                    <a href="../classes/MediaElementLoaderConversion.html">
-                        MediaElementLoaderConversion
-                    </a>
-                </li>
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#method_compressLessonsInDashboard">compressLessonsInDashboard</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_compressMediaElementsInDashboard">compressMediaElementsInDashboard</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_expandLessonsInDashboard">expandLessonsInDashboard</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_expandMediaElementsInDashboard">expandMediaElementsInDashboard</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_initializeDashboardPagination">initializeDashboardPagination</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
             
-                <li class="module-class">
-                    <a href="../classes/MediaElementLoaderDocumentReady.html">
-                        MediaElementLoaderDocumentReady
-                    </a>
-                </li>
+
             
-                <li class="module-class">
-                    <a href="../classes/MediaElementLoaderDone.html">
-                        MediaElementLoaderDone
-                    </a>
-                </li>
+
             
-                <li class="module-class">
-                    <a href="../classes/MediaElementLoaderErrors.html">
-                        MediaElementLoaderErrors
-                    </a>
-                </li>
+
             
-                <li class="module-class">
-                    <a href="../classes/MediaElementLoaderGeneral.html">
-                        MediaElementLoaderGeneral
-                    </a>
-                </li>
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_compressLessonsInDashboard" class="method item">
+    <h3 class="name"><code>compressLessonsInDashboard</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-            </ul>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l99"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:99</code></a>
+        
+        </p>
+
+
+        
+
         
     </div>
 
-    <div class="yui3-u-1-2">
+    <div class="description">
+        <p>Compresses the section &#39;lessons&#39;, using animate to have a graphical effect.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_compressMediaElementsInDashboard" class="method item">
+    <h3 class="name"><code>compressMediaElementsInDashboard</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l123"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:123</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Compresses the section &#39;media elements&#39;, using animate to have a graphical effect.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_expandLessonsInDashboard" class="method item">
+    <h3 class="name"><code>expandLessonsInDashboard</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l147"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:147</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Expands the section &#39;lessons&#39;, using animate to have a graphical effect.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_expandMediaElementsInDashboard" class="method item">
+    <h3 class="name"><code>expandMediaElementsInDashboard</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l167"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:167</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Expands the section &#39;media elements&#39;, using animate to have a graphical effect. The variable &#39;scroll_height&#39; is calculated as follows: if the section lessons has been expanded (see <a href="../classes/DashboardExpandedContents.html#method_expandLessonsInDashboard" class="crosslink">expandLessonsInDashboard</a>) the overall height is 72px (header) + 61px (header menu) + 50px (margin of global content) + 70px (header of lessons) + 660px (height of lessons) + 40px (pagination of lessons) + 50px (margin of the section elements) + 70px (header of elements) + 660px (height of section elements, once it is expanded) + 40px (pagination of elements) + 50px (padding between main content and footer) = 1823px; if lessons are not expanded, the height of lessons is only 315, and it&#39;s not calculated the height of lessons pagination, obtaining a total of 1438px. The scroll is launched with a delay of 150 ms, to avoid overlapping with the expansion effect.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_initializeDashboardPagination" class="method item">
+    <h3 class="name"><code>initializeDashboardPagination</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>selector</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>pos</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>pages_amount</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l191"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:191</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>This function is used to initialize the paginator in the dashboard. It replaces the paginator, copying and pasting it from a hidden div. The method is called only for an expanded section, otherwise there is no pagination.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">selector</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>either &#39;lessons&#39; or &#39;media_elements&#39;</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">pos</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the current page</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">pages_amount</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the total amount of pages</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+
         
     </div>
 </div>

@@ -2,6 +2,7 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "AdminAutocomplete",
+        "AdminBrowserSupport",
         "AdminCollapsed",
         "AdminDocumentReady",
         "AjaxLoaderBinder",
@@ -20,16 +21,16 @@ YUI.add("yuidoc-meta", function(Y) {
         "ButtonsDocumentReady",
         "ButtonsLesson",
         "ButtonsMediaElement",
-        "DashboardDocumentReady",
-        "DashboardGeneral",
-        "DashboardPagination",
+        "DashboardAccessories",
+        "DashboardExpandedContents",
+        "DashboardLessonDescriptions",
+        "DashboardResizing",
         "DialogsAccessories",
         "DialogsConfirmation",
         "DialogsGalleries",
         "DialogsTimed",
         "DialogsWithForm",
         "DocumentsDocumentReady",
-        "DocumentsUploader",
         "GalleriesAccessories",
         "GalleriesDocumentReady",
         "GalleriesInitializers",
@@ -57,14 +58,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "LessonViewerPlaylist",
         "LessonViewerSlidesNavigation",
         "MediaElementEditorCache",
+        "MediaElementEditorConversion",
         "MediaElementEditorDocumentReady",
         "MediaElementEditorForms",
         "MediaElementEditorHorizontalTimelines",
-        "MediaElementLoaderConversion",
-        "MediaElementLoaderDocumentReady",
-        "MediaElementLoaderDone",
-        "MediaElementLoaderErrors",
-        "MediaElementLoaderGeneral",
         "NotificationsAccessories",
         "NotificationsDocumentReady",
         "NotificationsGraphics",
@@ -79,6 +76,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "TagsAccessories",
         "TagsDocumentReady",
         "TagsInitializers",
+        "UploadCallbacks",
+        "UploaderDocumentReady",
         "VideoEditorAddComponents",
         "VideoEditorComponents",
         "VideoEditorCutters",
@@ -93,8 +92,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "VirtualClassroomDocumentReady",
         "VirtualClassroomJavaScriptAnimations",
         "VirtualClassroomMultipleLoading",
-        "VirtualClassroomSendLink",
-        "browserSupport"
+        "VirtualClassroomSendLink"
     ],
     "modules": [
         "admin",
@@ -112,12 +110,12 @@ YUI.add("yuidoc-meta", function(Y) {
         "lesson-editor",
         "lesson-viewer",
         "media-element-editor",
-        "media-element-loader",
         "notifications",
         "players",
         "profile",
         "search",
         "tags",
+        "uploader",
         "video-editor",
         "virtual-classroom"
     ],
@@ -140,7 +138,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "browser-support",
             "name": "browser-support",
-            "description": "Browser supoprt checking functions"
+            "description": "Browser support checking functions"
         },
         {
             "displayName": "buttons",
@@ -150,7 +148,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "dashboard",
             "name": "dashboard",
-            "description": "The dashboard is the home page of DESY: the page is divided in two sections, one for <b>suggested elements</b> and one for <b>suggested lessons</b>. Each of these two sections is split into three pages of lessons and elements. When the server loads the dashboard, all the six pages (three for lessons, three for elements) are loaded together, and all the operations are handled with javascript functions.\n<br/><br/>\nThere are two simple functions that switch between the pages for lessons and elements (see both methods of {{#crossLink \"DashboardGeneral\"}}{{/crossLink}}). A bit more complicated are the functions to pass from a page to another (all contained in the class {{#crossLink \"DashboardPagination\"}}{{/crossLink}}): the core of such an asynchronous pagination is the method {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}} that reconstructs the normal pagination without calling the corresponding partial in <i>views/shared/pagination.html.erb</i>: this pagination is unique for both elements and lessons, and it is reloaded each time the user changes page using the functions {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}} and {{#crossLink \"DashboardPagination/reloadMediaElementsDashboardPagination:method\"}}{{/crossLink}}."
+            "description": "The dashboard contains a list of suggested lessons and media elements. The dashboard is the first page shown to the logged user.\n<br/><br/>\nWhen the dashboard is opened at first, it's possible to see two subsections, one containing elements and the other one containing lessons. The number of items shown depends on the browser, this functionality is handled by the class {{#crossLink \"DashboardResizing\"}}{{/crossLink}}. At any time the user resizes the window, the application calls the server that responds with index.js (see {{#crossLink \"DashboardAccessories/dashboardDocumentReady:method\"}}{{/crossLink}}).\n<br/><br/>\nClicking on a special icon, the section of lessons or media elements can be expanded or compressed: this functionality is handled in {{#crossLink \"DashboardExpandedContents\"}}{{/crossLink}}. Finally, a single lesson has its own expansion that opens a div containing description, author and subject: see functions in the class {{#crossLink \"DashboardLessonDescriptions\"}}{{/crossLink}}."
         },
         {
             "displayName": "dialogs",
@@ -198,11 +196,6 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "This module contains javascript functions common to all the editors ({{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})."
         },
         {
-            "displayName": "media-element-loader",
-            "name": "media-element-loader",
-            "description": "Javascript functions used in the media element loader."
-        },
-        {
             "displayName": "notifications",
             "name": "notifications",
             "description": "Javascript functions used to handle notifications."
@@ -226,6 +219,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "tags",
             "name": "tags",
             "description": "The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>), and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink \"AdminAutocomplete/initNotificationsAutocomplete:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink \"TagsInitializers/initSearchTagsAutocomplete:method\"}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink \"TagsDocumentReady/tagsDocumentReady:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging</b> autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an 'x' to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a <b>container</b> div that contains a list of tag <b>boxes</b> (implemented with span, see {{#crossLink \"TagsAccessories/createTagSpan:method\"}}{{/crossLink}}) and an <b>tag input</b> where the user writes; when he inserts a new tag and presses <i>enter</i> or <i>comma</i>, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see {{#crossLink \"TagsAccessories/disableTagsInputTooHigh:method\"}}{{/crossLink}}). During this whole process, a <b>hidden input</b> gets updated with a string representing the current tags separated by comma ({{#crossLink \"TagsAccessories/addToTagsValue:method\"}}{{/crossLink}}, {{#crossLink \"TagsAccessories/removeFromTagsValue:method\"}}{{/crossLink}}).\n<br/><br/>\nThe system also checks if the inserted tag is not repeated (using {{#crossLink \"TagsAccessories/checkNoTagDuplicates:method\"}}{{/crossLink}}), and assigns a different color for tags already in the database and for new ones ({{#crossLink \"TagsAccessories/addTagWithoutSuggestion:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging autocomplete mode</b> is initialized for six standard forms (see initializers in the class {{#crossLink \"TagsDocumentReady\"}}{{/crossLink}})."
+        },
+        {
+            "displayName": "uploader",
+            "name": "uploader",
+            "description": "Javascript functions used in the media element and document loader."
         },
         {
             "displayName": "video-editor",

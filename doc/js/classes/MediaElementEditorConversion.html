@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>MediaElementLoaderErrors - DESY</title>
+    <title>MediaElementEditorConversion - DESY</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -69,8 +71,6 @@
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
             
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
-            
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
                 <li><a href="../classes/ButtonsAccessories.html">ButtonsAccessories</a></li>
@@ -81,11 +81,13 @@
             
                 <li><a href="../classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="../classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
+                <li><a href="../classes/DashboardAccessories.html">DashboardAccessories</a></li>
             
-                <li><a href="../classes/DashboardGeneral.html">DashboardGeneral</a></li>
+                <li><a href="../classes/DashboardExpandedContents.html">DashboardExpandedContents</a></li>
             
-                <li><a href="../classes/DashboardPagination.html">DashboardPagination</a></li>
+                <li><a href="../classes/DashboardLessonDescriptions.html">DashboardLessonDescriptions</a></li>
+            
+                <li><a href="../classes/DashboardResizing.html">DashboardResizing</a></li>
             
                 <li><a href="../classes/DialogsAccessories.html">DialogsAccessories</a></li>
             
@@ -98,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -155,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -198,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -263,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -274,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -314,7 +310,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>MediaElementLoaderErrors Class</h1>
+                        <h1>MediaElementEditorConversion Class</h1>
 <div class="box meta">
     
 
@@ -324,7 +320,7 @@
 
     
         
-            Module: <a href="../modules/media-element-loader.html">media-element-loader</a>
+            Module: <a href="../modules/media-element-editor.html">media-element-editor</a>
         
     
 
@@ -362,7 +358,7 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_uploadMediaElementLoaderError">uploadMediaElementLoaderError</a>
+                                <a href="#method_mediaElementLoaderConversionOverview">mediaElementLoaderConversionOverview</a>
 
                                 
                                 
@@ -384,8 +380,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_uploadMediaElementLoaderError" class="method item">
-    <h3 class="name"><code>uploadMediaElementLoaderError</code></h3>
+                    <div id="method_mediaElementLoaderConversionOverview" class="method item">
+    <h3 class="name"><code>mediaElementLoaderConversionOverview</code></h3>
 
     
         <div class="args">
@@ -393,7 +389,13 @@
             
                 <li class="arg">
                     
-                        <code>errors</code>
+                        <code>list</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>time</code>
                     
                 </li>
             
@@ -426,7 +428,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_media_element_loader.js.html#l128"><code>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_loader.js:128</code></a>
+        <a href="../files/app_assets_javascripts_media_element_editor.js.html#l71"><code>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_editor.js:71</code></a>
         
         </p>
 
@@ -437,7 +439,7 @@
     </div>
 
     <div class="description">
-        <p>Update form fields with error labels.</p>
+        <p>Function that checks the conversion of the unconverted media elements in the page.</p>
 
     </div>
 
@@ -449,14 +451,30 @@
             
                 <li class="param">
                     
-                        <code class="param-name">errors</code>
+                        <code class="param-name">list</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>errors list</p>
+                        <p>list of media elements that are being checked</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">time</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>time to iterate the loop</p>
 
                     </div>
 

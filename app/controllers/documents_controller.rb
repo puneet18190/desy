@@ -1,7 +1,7 @@
 class DocumentsController < ApplicationController
   
   # Number of documents for each page
-  FOR_PAGE = SETTINGS['documents_pagination']
+  FOR_PAGE = 8
   
   before_filter :initialize_document, :only => [:destroy, :update]
   before_filter :initialize_layout, :initialize_paginator, :only => :index
@@ -74,6 +74,28 @@ class DocumentsController < ApplicationController
         @error_fields = @document.errors.messages.keys
       end
     end
+  end
+  
+  # === Description
+  #
+  # This action checks for errors without setting the attachment on the new document
+  #
+  # === Mode
+  #
+  # Js
+  #
+  def create_fake
+    record = Document.new
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.user_id = current_user.id
+    record.valid?
+    @errors = convert_item_error_messages(record.errors) + [t('documents.upload_form.attachment_too_large')]
+    @error_fields = []
+    record.errors.messages.keys.each do |f|
+      @error_fields << f.to_s if f != :attachment
+    end
+    @error_fields << :attachment
   end
   
   # === Description

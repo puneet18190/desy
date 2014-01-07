@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -69,8 +71,6 @@
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
             
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
-            
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
                 <li><a href="../classes/ButtonsAccessories.html">ButtonsAccessories</a></li>
@@ -81,11 +81,13 @@
             
                 <li><a href="../classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="../classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
+                <li><a href="../classes/DashboardAccessories.html">DashboardAccessories</a></li>
             
-                <li><a href="../classes/DashboardGeneral.html">DashboardGeneral</a></li>
+                <li><a href="../classes/DashboardExpandedContents.html">DashboardExpandedContents</a></li>
             
-                <li><a href="../classes/DashboardPagination.html">DashboardPagination</a></li>
+                <li><a href="../classes/DashboardLessonDescriptions.html">DashboardLessonDescriptions</a></li>
+            
+                <li><a href="../classes/DashboardResizing.html">DashboardResizing</a></li>
             
                 <li><a href="../classes/DialogsAccessories.html">DialogsAccessories</a></li>
             
@@ -98,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -155,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -198,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -263,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -274,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -319,9 +315,11 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
-The dashboard is the home page of DESY: the page is divided in two sections, one for &lt;b&gt;suggested elements&lt;/b&gt; and one for &lt;b&gt;suggested lessons&lt;/b&gt;. Each of these two sections is split into three pages of lessons and elements. When the server loads the dashboard, all the six pages (three for lessons, three for elements) are loaded together, and all the operations are handled with javascript functions.
+The dashboard contains a list of suggested lessons and media elements. The dashboard is the first page shown to the logged user.
 &lt;br/&gt;&lt;br/&gt;
-There are two simple functions that switch between the pages for lessons and elements (see both methods of {{#crossLink &quot;DashboardGeneral&quot;}}{{/crossLink}}). A bit more complicated are the functions to pass from a page to another (all contained in the class {{#crossLink &quot;DashboardPagination&quot;}}{{/crossLink}}): the core of such an asynchronous pagination is the method {{#crossLink &quot;DashboardPagination/getHtmlPagination:method&quot;}}{{/crossLink}} that reconstructs the normal pagination without calling the corresponding partial in &lt;i&gt;views/shared/pagination.html.erb&lt;/i&gt;: this pagination is unique for both elements and lessons, and it is reloaded each time the user changes page using the functions {{#crossLink &quot;DashboardPagination/reloadLessonsDashboardPagination:method&quot;}}{{/crossLink}} and {{#crossLink &quot;DashboardPagination/reloadMediaElementsDashboardPagination:method&quot;}}{{/crossLink}}.
+When the dashboard is opened at first, it&#x27;s possible to see two subsections, one containing elements and the other one containing lessons. The number of items shown depends on the browser, this functionality is handled by the class {{#crossLink &quot;DashboardResizing&quot;}}{{/crossLink}}. At any time the user resizes the window, the application calls the server that responds with index.js (see {{#crossLink &quot;DashboardAccessories/dashboardDocumentReady:method&quot;}}{{/crossLink}}).
+&lt;br/&gt;&lt;br/&gt;
+Clicking on a special icon, the section of lessons or media elements can be expanded or compressed: this functionality is handled in {{#crossLink &quot;DashboardExpandedContents&quot;}}{{/crossLink}}. Finally, a single lesson has its own expansion that opens a div containing description, author and subject: see functions in the class {{#crossLink &quot;DashboardLessonDescriptions&quot;}}{{/crossLink}}.
 @module dashboard
 **/
 
@@ -330,75 +328,84 @@ There are two simple functions that switch between the pages for lessons and ele
 
 
 /**
-Initializer for the animation effects of the Dashboard.
+Initializes the dashboard, and reactions to window resizing. To handle hover sensitive lessons and show a div containing the description, the method calls functions in {{#crossLink &quot;DashboardLessonDescriptions&quot;}}{{/crossLink}}.
 @method dashboardDocumentReady
-@for DashboardDocumentReady
+@for DashboardAccessories
 **/
 function dashboardDocumentReady() {
-  $(&#x27;#switch_to_lessons&#x27;).click(function() {
-    switchToSuggestedLessons();
+  dashboardResizeController();
+  $(window).resize(function() {
+    dashboardResizeController();
   });
-  $(&#x27;#switch_to_media_elements&#x27;).click(function() {
-    switchToSuggestedMediaElements();
+  $body.on(&#x27;mouseenter&#x27;, &#x27;.lesson_dashboard_hover_sensitive&#x27;, function() {
+    var item = $(this).find(&#x27;.literature_container&#x27;);
+    item.data(&#x27;delaying&#x27;, true);
+    setTimeout(function() {
+      if(item.data(&#x27;delaying&#x27;)) {
+        openDescriptionDashboardLayer(item);
+      }
+    }, 500);
   });
-  realignDashboardLessons();
-}
-
-
-
-
-
-/**
-Assigns a class to leave the correct space between the two columns of lessons
-@method realignDashboardLessons
-@for DashboardGeneral
-**/
-function realignDashboardLessons() {
-  var left = true;
-  $(&#x27;#lessons_in_dashboard .boxViewExpandedLesson&#x27;).each(function() {
-    if(left) {
-      $(this).addClass(&#x27;lefth&#x27;);
+  $body.on(&#x27;mouseleave&#x27;, &#x27;.lesson_dashboard_hover_sensitive&#x27;, function() {
+    var item = $(this).find(&#x27;.literature_container&#x27;);
+    item.data(&#x27;delaying&#x27;, false);
+    if(item.data(&#x27;moving&#x27;)) {
+      item.data(&#x27;moving&#x27;, false);
     } else {
-      $(this).addClass(&#x27;righth&#x27;);
+      item.animate({height: &#x27;80px&#x27;}, 200, function() {
+        item.find(&#x27;.description&#x27;).hide();
+      });
     }
-    left = !left;
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#dashboard_container .title_lessons .expand_icon.off&#x27;, function() {
+    if(!$(this).data(&#x27;moving&#x27;)) {
+      expandLessonsInDashboard();
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#dashboard_container .title_media_elements .expand_icon.off&#x27;, function() {
+    if(!$(this).data(&#x27;moving&#x27;)) {
+      expandMediaElementsInDashboard();
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#dashboard_container .title_lessons .expand_icon.on&#x27;, function() {
+    if(!$(this).data(&#x27;moving&#x27;)) {
+      compressLessonsInDashboard();
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#dashboard_container .title_media_elements .expand_icon.on&#x27;, function() {
+    if(!$(this).data(&#x27;moving&#x27;)) {
+      compressMediaElementsInDashboard();
+    }
   });
 }
 
 /**
-This function switches to the page of suggested lessons, and reloads the pagination (if there are no suggested lessons the pagination is removed).
-@method switchToSuggestedLessons
-@for DashboardGeneral
+Empties the pages, before loading new contents. This is used in the action index.js.erb.
+@method emptyAllPagesInDashboard
+@for DashboardAccessories
+@param selector {String} either &#x27;lessons&#x27; or &#x27;media_elements&#x27;
 **/
-function switchToSuggestedLessons() {
-  $(&#x27;#media_elements_in_dashboard&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
-    $(this).hide();
-    $(&#x27;#lessons_in_dashboard&#x27;).show();
-    $(&#x27;#switch_to_lessons&#x27;).addClass(&#x27;current&#x27;);
-    $(&#x27;#switch_to_media_elements&#x27;).removeClass(&#x27;current&#x27;);
-    var pagination_div = $(&#x27;#dashboard_pagination&#x27;);
-    var lessons_page = pagination_div.data(&#x27;lessons-page&#x27;);
-    var lessons_tot = pagination_div.data(&#x27;lessons-tot&#x27;);
-    reloadLessonsDashboardPagination(lessons_page, lessons_tot);
-  });
+function emptyAllPagesInDashboard(selector) {
+  var container = $(&#x27;#dashboard_container .space_&#x27; + selector);
+  container.find(&#x27;.page1&#x27;).html(&#x27;&#x27;);
+  container.find(&#x27;.page2&#x27;).html(&#x27;&#x27;);
+  container.find(&#x27;.page3&#x27;).html(&#x27;&#x27;);
+  container.find(&#x27;.page4&#x27;).html(&#x27;&#x27;);
+  container.find(&#x27;.page5&#x27;).html(&#x27;&#x27;);
+  container.find(&#x27;.page6&#x27;).html(&#x27;&#x27;);
 }
 
 /**
-This function switches to the page of suggested elements, and reloads the pagination (if there are no suggested elements the pagination is removed).
-@method switchToSuggestedMediaElements
-@for DashboardGeneral
+Resets all the pages to invisible, and sets as visible the one selected by the user.
+@method resetVisibilityOfAllPagesInDashboard
+@for DashboardAccessories
+@param selector {String} either &#x27;lessons&#x27; or &#x27;media_elements&#x27;
+@param visible {Number} the number of the page to be shown
 **/
-function switchToSuggestedMediaElements() {
-  $(&#x27;#lessons_in_dashboard&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
-    $(this).hide();
-    $(&#x27;#media_elements_in_dashboard&#x27;).show();
-    $(&#x27;#switch_to_media_elements&#x27;).addClass(&#x27;current&#x27;);
-    $(&#x27;#switch_to_lessons&#x27;).removeClass(&#x27;current&#x27;);
-    var pagination_div = $(&#x27;#dashboard_pagination&#x27;);
-    var media_elements_page = pagination_div.data(&#x27;media-elements-page&#x27;);
-    var media_elements_tot = pagination_div.data(&#x27;media-elements-tot&#x27;);
-    reloadMediaElementsDashboardPagination(media_elements_page, media_elements_tot);
-  });
+function resetVisibilityOfAllPagesInDashboard(selector, visible) {
+  var container = $(&#x27;#dashboard_container .space_&#x27; + selector);
+  container.find(&#x27;.dashpage&#x27;).hide();
+  container.find(&#x27;.page&#x27; + visible).show();
 }
 
 
@@ -406,148 +413,292 @@ function switchToSuggestedMediaElements() {
 
 
 /**
-This function changes page of the section containing suggested lessons. As already mentioned, the method reloads the pagination using {{#crossLink &quot;DashboardPagination/reloadLessonsDashboardPagination:method&quot;}}{{/crossLink}}.
-@method changePageDashboardLessons
-@for DashboardPagination
-@param old_pos {Number} old page
-@param pos {Number} new page
-@param poges_amount {Number} amount of pages of lessons
+Compresses the section &#x27;lessons&#x27;, using animate to have a graphical effect.
+@method compressLessonsInDashboard
+@for DashboardExpandedContents
 **/
-function changePageDashboardLessons(old_pos, pos, pages_amount) {
-  $(&#x27;#suggested_lessons_&#x27; + (old_pos)).hide(&#x27;fade&#x27;, {}, 500, function() {
-    $(this).hide();
-    $(&#x27;#suggested_lessons_&#x27; + (pos)).show();
-    reloadLessonsDashboardPagination(pos, pages_amount);
+function compressLessonsInDashboard() {
+  var container = $(&#x27;#dashboard_container&#x27;);
+  container.find(&#x27;.title_lessons .expand_icon.on&#x27;).hide();
+  container.find(&#x27;.title_lessons .expand_icon.off&#x27;).show().data(&#x27;moving&#x27;, true);
+  $(&#x27;#dashboard_container .pagination_lessons&#x27;).animate({height: &#x27;0px&#x27;}, 40, function() {
+    $(&#x27;#dashboard_container .space_lessons&#x27;).animate({height: &#x27;315px&#x27;}, 500, function() {
+      container.data(&#x27;lessons-expanded&#x27;, false);
+      unbindLoader();
+      $.ajax({
+        type: &#x27;get&#x27;,
+        url: &#x27;/dashboard/lessons?for_row=&#x27; + container.data(&#x27;lessons-in-space&#x27;)
+      }).always(bindLoader);
+      if(container.find(&#x27;.space_lessons .page1 .lesson_in_dashboard&#x27;).length &lt;= container.data(&#x27;lessons-in-space&#x27;)) {
+        $(&#x27;#dashboard_container .title_lessons .expand_icon.off&#x27;).removeClass(&#x27;off&#x27;).addClass(&#x27;disabled&#x27;);
+      }
+    });
   });
 }
 
 /**
-This function changes page of the section containing suggested elements. As already mentioned, the method reloads the pagination using {{#crossLink &quot;DashboardPagination/reloadMediaElementsDashboardPagination:method&quot;}}{{/crossLink}}.
-@method changePageDashboardMediaElements
-@for DashboardPagination
-@param old_pos {Number} old page
-@param pos {Number} new page
-@param poges_amount {Number} amount of pages of elements
+Compresses the section &#x27;media elements&#x27;, using animate to have a graphical effect.
+@method compressMediaElementsInDashboard
+@for DashboardExpandedContents
 **/
-function changePageDashboardMediaElements(old_pos, pos, pages_amount) {
-  $(&#x27;#suggested_media_elements_&#x27; + (old_pos)).hide(&#x27;fade&#x27;, {}, 500, function() {
-    $(this).hide();
-    $(&#x27;#suggested_media_elements_&#x27; + (pos)).show();
-    reloadMediaElementsDashboardPagination(pos, pages_amount);
+function compressMediaElementsInDashboard() {
+  var container = $(&#x27;#dashboard_container&#x27;);
+  container.find(&#x27;.title_media_elements .expand_icon.on&#x27;).hide();
+  container.find(&#x27;.title_media_elements .expand_icon.off&#x27;).show().data(&#x27;moving&#x27;, true);
+  $(&#x27;#dashboard_container .pagination_media_elements&#x27;).animate({height: &#x27;0px&#x27;}, 40, function() {
+    $(&#x27;#dashboard_container .space_media_elements&#x27;).animate({height: &#x27;315px&#x27;}, 500, function() {
+      container.data(&#x27;media-elements-expanded&#x27;, false);
+      unbindLoader();
+      $.ajax({
+        type: &#x27;get&#x27;,
+        url: &#x27;/dashboard/media_elements?for_row=&#x27; + container.data(&#x27;media-elements-in-space&#x27;)
+      }).always(bindLoader);
+      if(container.find(&#x27;.space_media_elements .page1 .boxViewExpandedMediaElement&#x27;).length &lt;= container.data(&#x27;media-elements-in-space&#x27;)) {
+        $(&#x27;#dashboard_container .title_media_elements .expand_icon.off&#x27;).removeClass(&#x27;off&#x27;).addClass(&#x27;disabled&#x27;);
+      }
+    });
   });
 }
 
 /**
-This function generates HTML code with the same functionality of the one defined in the partial &lt;i&gt;views/shared/pagination.html.erb&lt;/i&gt;.
-@method getHtmlPagination
-@for DashboardPagination
-@param pos {Number} selected page
-@param pages_amount {Number} total amount of pages
-@return {Object} JQuery HTML element to be attached to the document
+Expands the section &#x27;lessons&#x27;, using animate to have a graphical effect.
+@method expandLessonsInDashboard
+@for DashboardExpandedContents
 **/
-function getHtmlPagination(pos, pages_amount) {
-  var prev_attrs = {};
-  var next_attrs = {};
-  if(pos &lt;= 1) {
-    prev_attrs[&#x27;class&#x27;] = &#x27;disabled&#x27;;
+function expandLessonsInDashboard() {
+  var container = $(&#x27;#dashboard_container&#x27;);
+  container.find(&#x27;.title_lessons .expand_icon.off&#x27;).hide();
+  container.find(&#x27;.title_lessons .expand_icon.on&#x27;).show().data(&#x27;moving&#x27;, true);
+  $(&#x27;#dashboard_container .space_lessons&#x27;).animate({height: &#x27;660px&#x27;}, 500, function() {
+    container.data(&#x27;lessons-expanded&#x27;, true);
+    $(&#x27;#dashboard_container .pagination_lessons&#x27;).animate({height: &#x27;40px&#x27;}, 40);
+    unbindLoader();
+    $.ajax({
+      type: &#x27;get&#x27;,
+      url: &#x27;/dashboard/lessons?for_row=&#x27; + container.data(&#x27;lessons-in-space&#x27;) + &#x27;&amp;expanded=true&#x27;
+    }).always(bindLoader);
+  });
+}
+
+/**
+Expands the section &#x27;media elements&#x27;, using animate to have a graphical effect. The variable &#x27;scroll_height&#x27; is calculated as follows: if the section lessons has been expanded (see {{#crossLink &quot;DashboardExpandedContents/expandLessonsInDashboard:method&quot;}}{{/crossLink}}) the overall height is 72px (header) + 61px (header menu) + 50px (margin of global content) + 70px (header of lessons) + 660px (height of lessons) + 40px (pagination of lessons) + 50px (margin of the section elements) + 70px (header of elements) + 660px (height of section elements, once it is expanded) + 40px (pagination of elements) + 50px (padding between main content and footer) = 1823px; if lessons are not expanded, the height of lessons is only 315, and it&#x27;s not calculated the height of lessons pagination, obtaining a total of 1438px. The scroll is launched with a delay of 150 ms, to avoid overlapping with the expansion effect.
+@method expandMediaElementsInDashboard
+@for DashboardExpandedContents
+**/
+function expandMediaElementsInDashboard() {
+  var container = $(&#x27;#dashboard_container&#x27;);
+  container.find(&#x27;.title_media_elements .expand_icon.off&#x27;).hide();
+  container.find(&#x27;.title_media_elements .expand_icon.on&#x27;).show().data(&#x27;moving&#x27;, true);
+  var scroll_height = (container.data(&#x27;lessons-expanded&#x27;) ? 1823 : 1438) - $(window).height() + $(&#x27;.global-footer&#x27;).height();
+  setTimeout(function() {
+    browserDependingScrollToTag().animate({scrollTop: (scroll_height + &#x27;px&#x27;)}, 500);
+  }, 150);
+  $(&#x27;#dashboard_container .space_media_elements&#x27;).animate({height: &#x27;660px&#x27;}, 500, function() {
+    container.data(&#x27;media-elements-expanded&#x27;, true);
+    $(&#x27;#dashboard_container .pagination_media_elements&#x27;).animate({height: &#x27;40px&#x27;}, 40);
+    unbindLoader();
+    $.ajax({
+      type: &#x27;get&#x27;,
+      url: &#x27;/dashboard/media_elements?for_row=&#x27; + container.data(&#x27;media-elements-in-space&#x27;) + &#x27;&amp;expanded=true&#x27;
+    }).always(bindLoader);
+  });
+}
+
+/**
+This function is used to initialize the paginator in the dashboard. It replaces the paginator, copying and pasting it from a hidden div. The method is called only for an expanded section, otherwise there is no pagination.
+@method initializeDashboardPagination
+@for DashboardExpandedContents
+@param selector {String}  either &#x27;lessons&#x27; or &#x27;media_elements&#x27;
+@param pos {Number} the current page
+@param pages_amount {Number} the total amount of pages
+**/
+function initializeDashboardPagination(selector, pos, pages_amount) {
+  $(&#x27;#dashboard_container .pagination_&#x27; + selector + &#x27; .dots_pagination_container&#x27;).replaceWith($(&#x27;#hidden_dashboard_pagination&#x27;).html());
+  var space = $(&#x27;#dashboard_container .space_&#x27; + selector);
+  var info = $(&#x27;#info_container&#x27;);
+  var paginator = $(&#x27;#dashboard_container .pagination_&#x27; + selector + &#x27; .dots_pagination_container&#x27;);
+  var first_page = paginator.find(&#x27;.pages a&#x27;).first();
+  var second_page = $(paginator.find(&#x27;.pages a&#x27;)[1]);
+  var third_page = paginator.find(&#x27;.pages a&#x27;).last();
+  first_page.data(&#x27;page&#x27;, (pos - 1));
+  second_page.data(&#x27;page&#x27;, pos);
+  third_page.data(&#x27;page&#x27;, (pos + 1));
+  var next_space = $(&#x27;#dashboard_container .space_&#x27; + selector + &#x27; .page&#x27; + (pos + 1));
+  if(pos != 1) {
+    first_page.removeClass(&#x27;disabled&#x27;).attr(&#x27;title&#x27;, paginator.data(&#x27;title-prev&#x27;));
+  }
+  if(next_space.length != 0 &amp;&amp; next_space.find(&#x27;div&#x27;).length != 0) {
+    third_page.removeClass(&#x27;disabled&#x27;).attr(&#x27;title&#x27;, paginator.data(&#x27;title-next&#x27;));
+  }
+  var prevPage = function(prevPage) {
+    space.find(&#x27;.page&#x27; + pos).hide(&#x27;fade&#x27;, {}, 500, function() {
+      space.find(&#x27;.page&#x27; + (pos - 1)).show();
+      info.data(&#x27;currenturl&#x27;, updateURLParameter(info.data(&#x27;currenturl&#x27;), (selector + &#x27;_expanded&#x27;), (pos - 1)));
+      initializeDashboardPagination(selector, pos - 1, pages_amount);
+    });
+    return true;
+  }
+  var nextPage = function(nextPage) {
+    space.find(&#x27;.page&#x27; + pos).hide(&#x27;fade&#x27;, {}, 500, function() {
+      space.find(&#x27;.page&#x27; + (pos + 1)).show();
+      info.data(&#x27;currenturl&#x27;, updateURLParameter(info.data(&#x27;currenturl&#x27;), (selector + &#x27;_expanded&#x27;), (pos + 1)));
+      initializeDashboardPagination(selector, pos + 1, pages_amount);
+    });
+    return true;
+  }
+  new DotsPagination(paginator.find(&#x27;.pages&#x27;), pages_amount, { &#x27;complete&#x27;: { &#x27;prev&#x27;: prevPage, &#x27;next&#x27;: nextPage } });
+}
+
+
+
+
+
+/**
+This method calls {{#crossLink &quot;DashboardLessonDescriptions/openDescriptionDashboardRecursionLayer:method&quot;}}{{/crossLink}} after a certain delay of ms (this procedure is similar to the one defined in {{#crossLink &quot;VideoEditorComponents/startVideoEditorPreviewClipWithDelay:method&quot;}}{{/crossLink}}, in the module {{#crossLinkModule &quot;video-editor&quot;}}{{/crossLinkModule}}.
+@method openDescriptionDashboardLayer
+@for DashboardLessonDescriptions
+@param item {Object} the div that expands, containing a hidden description
+**/
+function openDescriptionDashboardLayer(item) {
+  var tot_time = 200;
+  var h_i = item.height();
+  var h_f = 263 - h_i;
+  var k = h_f / (tot_time * tot_time);
+  item.find(&#x27;.description&#x27;).show();
+  item.data(&#x27;moving&#x27;, true);
+  openDescriptionDashboardRecursionLayer(item, 0, h_i, h_f, tot_time);
+}
+
+/**
+This method is used to open the special div containing description, author and subject of a lesson. It doesn&#x27;t use animate so it&#x27;s possible to reverse the expansion just firing mouseleave on the lesson.
+@method openDescriptionDashboardRecursionLayer
+@for DashboardLessonDescriptions
+@param item {Object} the div that expands, containing a hidden description
+@param t {Number} the current time in the animation
+@param h_i {Number} the current height
+@param h_f {Number} the final height of the div
+@param tot_time {Number} the total time available to achieve the animation
+**/
+function openDescriptionDashboardRecursionLayer(item, t, h_i, h_f, tot_time) {
+  var height = h_i + ((t * h_f) / tot_time);
+  item.css(&#x27;height&#x27;, (height + &#x27;px&#x27;));
+  if(t &lt; tot_time) {
+    if(item.data(&#x27;moving&#x27;)) {
+      setTimeout(function() {
+        openDescriptionDashboardRecursionLayer(item, (t + 5), h_i, h_f, tot_time);
+      }, 5);
+    } else {
+      item.animate({height: &#x27;80px&#x27;}, t, function() {
+        item.find(&#x27;.description&#x27;).hide();
+      });
+    }
   } else {
-    prev_attrs.data = {
-      page: pos - 1
-    };
-    prev_attrs.title = $captions.data(&#x27;title-pagination-left&#x27;);
+    item.data(&#x27;moving&#x27;, false);
   }
-  if(pos &gt;= pages_amount) {
-    next_attrs[&#x27;class&#x27;] = &#x27;disabled&#x27;;
+}
+
+
+
+
+
+/**
+This method makes decisions about how to react to a resize event. First it centers the lessons, calculating the maximum number that fits the available horizontal space, and the margin-left to apply. Then, it uses such a margin left to calculate the available space for media elements (these must be aligned with the lessons on both left and right sides). After the correct number of lessons and media elements has been calculated, the method decides if it&#x27;s necessary to call the server and fetch new items: if this is not necessary, it&#x27;s called {{#crossLink &quot;DashboardResizing/resizeLessonsAndMediaElementsInDashboard:method}}{{/crossLink}}.
+@method dashboardResizeController
+@for DashboardResizing
+**/
+function dashboardResizeController() {
+  var container = $(&#x27;#dashboard_container&#x27;);
+  var width = container.width();
+  var lessons_in_space = parseInt((width - 20) / 320);
+  var media_elements_in_space = parseInt((width - 20) / 222);
+  var lessons_margin = (width - lessons_in_space * 300) / (lessons_in_space + 1);
+  var lessons_width = lessons_in_space * (300 + lessons_margin) - lessons_margin;
+  media_elements_in_space = parseInt((lessons_width - 207) / 207) + 1;
+  var condition_lessons = (lessons_in_space &lt;= 50 &amp;&amp; lessons_in_space != container.data(&#x27;lessons-in-space&#x27;));
+  var condition_media_elements = (media_elements_in_space &lt;= 50 &amp;&amp; media_elements_in_space != container.data(&#x27;media-elements-in-space&#x27;));
+  if(condition_lessons || condition_media_elements) {
+    var dashboard_url = &#x27;/dashboard?media_elements_for_row=&#x27; + media_elements_in_space + &#x27;&amp;lessons_for_row=&#x27; + lessons_in_space;
+    if(container.data(&#x27;lessons-expanded&#x27;)) {
+      var current_lessons_page = container.find(&#x27;.pagination_lessons .pages a&#x27;).first().data(&#x27;page&#x27;) + 1;
+      var new_lessons_page = calculateTheNewVisiblePage(container.data(&#x27;lessons-in-space&#x27;) * 2, current_lessons_page, lessons_in_space * 2);
+      resetVisibilityOfAllPagesInDashboard(&#x27;lessons&#x27;, new_lessons_page);
+      dashboard_url += &#x27;&amp;lessons_expanded=&#x27; + new_lessons_page;
+    }
+    if(container.data(&#x27;media-elements-expanded&#x27;)) {
+      var current_media_elements_page = container.find(&#x27;.pagination_media_elements .pages a&#x27;).first().data(&#x27;page&#x27;) + 1;
+      var new_media_elements_page = calculateTheNewVisiblePage(container.data(&#x27;media-elements-in-space&#x27;) * 2, current_media_elements_page, media_elements_in_space * 2);
+      resetVisibilityOfAllPagesInDashboard(&#x27;media_elements&#x27;, new_media_elements_page);
+      dashboard_url += &#x27;&amp;media_elements_expanded=&#x27; + new_media_elements_page;
+    }
+    container.data(&#x27;lessons-in-space&#x27;, lessons_in_space);
+    container.data(&#x27;media-elements-in-space&#x27;, media_elements_in_space);
+    resizeLessonsAndMediaElementsInDashboard(lessons_in_space, media_elements_in_space, true);
+    unbindLoader();
+    $.ajax({
+      type: &#x27;get&#x27;,
+      url: dashboard_url
+    }).always(bindLoader);
   } else {
-    next_attrs.data = {
-      page: pos + 1
-    };
-    next_attrs.title = $captions.data(&#x27;title-pagination-right&#x27;);
+    resizeLessonsAndMediaElementsInDashboard(lessons_in_space, media_elements_in_space, false);
   }
-  var pagination = $(&#x27;&lt;span/&gt;&#x27;, {
-    &#x27;class&#x27;: &#x27;dots_pagination&#x27;
-  });
-  pagination.append($(&#x27;&lt;span/&gt;&#x27;, {
-    &#x27;class&#x27;: &#x27;pages&#x27;
-  }).append($(&#x27;&lt;a/&gt;&#x27;, prev_attrs)).append($(&#x27;&lt;a/&gt;&#x27;, {
-    &#x27;class&#x27;: &#x27;current&#x27;,
-    data: {
-      page: pos
-    }
-  })).append($(&#x27;&lt;a/&gt;&#x27;, next_attrs)));
-  return pagination;
 }
 
 /**
-This function sets the current pages of lessons and elements, without loading the pagination. It&#x27;s only used in the index.js.erb for pagination.
-@method reloadDashboardPages
-@for DashboardPagination
-@param lessons_page {Number} page to be selected for lessons
-@param media_elements_page {Number} page to be selected for media elements
+This method resizes lessons and media elements without calling the server to add new ones.
+@method resizeLessonsAndMediaElementsInDashboard
+@for DashboardResizing
+@param lessons {Number} how many lessons fit horizontally the screen
+@param media_elements {Number} how many media elements fit horizontally the screen
+@param with_vertical_margin {Boolean} if true, sets temporarily the vertical margin to adapt to the new pagination: this is used in case the server is too slow, to visualize in a good way the items while waiting for an answer
 **/
-function reloadDashboardPages(lessons_page, media_elements_page) {
-  $(&#x27;#suggested_media_elements_1&#x27;).hide();
-  $(&#x27;#suggested_media_elements_&#x27; + media_elements_page).show();
-  $(&#x27;#suggested_lessons_1&#x27;).hide();
-  $(&#x27;#suggested_lessons_&#x27; + lessons_page).show();
-}
-
-/**
-This function reloads the pagination for lessons (it uses {{#crossLink &quot;DashboardPagination/getHtmlPagination:method&quot;}}{{/crossLink}}).
-@method reloadLessonsDashboardPagination
-@for DashboardPagination
-@param pos {Number} current page
-@param poges_amount {Number} amount of pages for lessons
-**/
-function reloadLessonsDashboardPagination(pos, pages_amount) {
-  if(pages_amount == 0) {
-    $(&#x27;#dashboard_pagination&#x27;).empty().data({ &#x27;lessons-tot&#x27;: 0, &#x27;lessons-page&#x27;: 0 });
-    return;
+function resizeLessonsAndMediaElementsInDashboard(lessons, media_elements, with_vertical_margin) {
+  var container = $(&#x27;#dashboard_container&#x27;);
+  var lessons_margin = (container.width() - lessons * 300) / (lessons + 1);
+  container.find(&#x27;.space_lessons .lesson_in_dashboard&#x27;).css(&#x27;margin-left&#x27;, lessons_margin + &#x27;px&#x27;);
+  container.find(&#x27;.title_lessons .icon&#x27;).css(&#x27;margin-left&#x27;, lessons_margin + &#x27;px&#x27;);
+  if(with_vertical_margin) {
+    container.find(&#x27;.space_lessons .dashpage&#x27;).each(function() {
+      var second_row_lesson = $($(this).find(&#x27;.lesson_in_dashboard&#x27;)[lessons]);
+      var first_row_lesson = second_row_lesson.prev();
+      while(second_row_lesson.length != 0) {
+        second_row_lesson.css(&#x27;margin-top&#x27;, &#x27;30px&#x27;);
+        second_row_lesson = second_row_lesson.next();
+      }
+      while(first_row_lesson.length != 0) {
+        first_row_lesson.css(&#x27;margin-top&#x27;, &#x27;0px&#x27;);
+        first_row_lesson = first_row_lesson.prev();
+      }
+    });
+    container.find(&#x27;.space_media_elements .dashpage&#x27;).each(function() {
+      var second_row_media_element = $($(this).find(&#x27;.boxViewExpandedMediaElement&#x27;)[media_elements]);
+      var first_row_media_element = second_row_media_element.prev();
+      while(second_row_media_element.length != 0) {
+        second_row_media_element.css(&#x27;margin-top&#x27;, &#x27;30px&#x27;);
+        second_row_media_element = second_row_media_element.next();
+      }
+      while(first_row_media_element.length != 0) {
+        first_row_media_element.css(&#x27;margin-top&#x27;, &#x27;0px&#x27;);
+        first_row_media_element = first_row_media_element.prev();
+      }
+    });
   }
-  $(&#x27;#dashboard_pagination&#x27;)
-    .html(getHtmlPagination(pos, pages_amount))
-    .data({ &#x27;lessons-tot&#x27;: pages_amount,&#x27;lessons-page&#x27;: pos });
-  $(document).ready(function() {
-    var prevPage = function(prevPage) {
-      changePageDashboardLessons(pos, (pos - 1), pages_amount);
-      return true;
-    }
-    var nextPage = function(nextPage) {
-      changePageDashboardLessons(pos, (pos + 1), pages_amount);
-      return true;
-    }
-    new DotsPagination($(&#x27;.pages&#x27;), pages_amount, { &#x27;complete&#x27;: { &#x27;prev&#x27;: prevPage, &#x27;next&#x27;: nextPage } });
+  var new_calc = 2 * lessons_margin + 90;
+  container.find(&#x27;.title_lessons .icon&#x27;).next().css(&#x27;width&#x27;, &#x27;calc(100% - &#x27; + new_calc + &#x27;px)&#x27;);
+  container.find(&#x27;.space_media_elements .dashpage&#x27;).each(function() {
+    var first_media_element = $(this).find(&#x27;.boxViewExpandedMediaElement&#x27;).first();
+    first_media_element.css(&#x27;margin-left&#x27;, lessons_margin + &#x27;px&#x27;);
+    var first_media_element_of_second_row = $($(this).find(&#x27;.boxViewExpandedMediaElement&#x27;)[media_elements]);
+    first_media_element_of_second_row.css(&#x27;margin-left&#x27;, lessons_margin + &#x27;px&#x27;);
+    var media_elements_margin = (container.width() - (2 * lessons_margin) - media_elements * 202) / (media_elements - 1);
+    $(this).find(&#x27;.boxViewExpandedMediaElement&#x27;).each(function() {
+      if($(this).attr(&#x27;id&#x27;) != first_media_element.attr(&#x27;id&#x27;) &amp;&amp; $(this).attr(&#x27;id&#x27;) != first_media_element_of_second_row.attr(&#x27;id&#x27;)) {
+        $(this).css(&#x27;margin-left&#x27;, media_elements_margin + &#x27;px&#x27;);
+      }
+    });
   });
-}
-
-/**
-This function reloads the pagination for media elements (it uses {{#crossLink &quot;DashboardPagination/getHtmlPagination:method&quot;}}{{/crossLink}}).
-@method reloadMediaElementsDashboardPagination
-@for DashboardPagination
-@param pos {Number} current page
-@param poges_amount {Number} amount of pages for elements
-**/
-function reloadMediaElementsDashboardPagination(pos, pages_amount) {
-  if(pages_amount == 0) {
-    $(&#x27;#dashboard_pagination&#x27;).html(&#x27;&#x27;);
-    $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-tot&#x27;, 0);
-    $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-page&#x27;, 0);
-    return;
-  }
-  $(&#x27;#dashboard_pagination&#x27;).html(getHtmlPagination(pos, pages_amount));
-  $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-tot&#x27;, pages_amount);
-  $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-page&#x27;, pos);
-  $(document).ready(function() {
-    var prevPage = function(prevPage) {
-      changePageDashboardMediaElements(pos, (pos - 1), pages_amount);
-      return true;
-    }
-    var nextPage = function(nextPage) {
-      changePageDashboardMediaElements(pos, (pos + 1), pages_amount);
-      return true;
-    }
-    new DotsPagination($(&#x27;.pages&#x27;), pages_amount, { &#x27;complete&#x27;: { &#x27;prev&#x27;: prevPage, &#x27;next&#x27;: nextPage } });
-  });
+  container.find(&#x27;.title_media_elements .icon&#x27;).css(&#x27;margin-left&#x27;, lessons_margin + &#x27;px&#x27;);
+  var new_calc = 2 * lessons_margin + 90;
+  container.find(&#x27;.title_media_elements .icon&#x27;).next().css(&#x27;width&#x27;, &#x27;calc(100% - &#x27; + new_calc + &#x27;px)&#x27;);
 }
 
     </pre>

@@ -10,11 +10,11 @@
 #
 class SearchController < ApplicationController
   
-  # How many lessons in a page (configured in settings.yml)
-  LESSONS_FOR_PAGE = SETTINGS['compact_lesson_pagination']
+  # How many lessons in a page
+  LESSONS_FOR_PAGE = 8
   
-  # How many elements in a page (configured in settings.yml)
-  MEDIA_ELEMENTS_FOR_PAGE = SETTINGS['compact_media_element_pagination']
+  # How many elements in a page
+  MEDIA_ELEMENTS_FOR_PAGE = 8
   
   before_filter :initialize_layout, :initialize_paginator_and_filters
   

@@ -5,7 +5,7 @@ html.prelogin-layout {
   
   body {
     
-    font: 80% Arial, Helvetica, sans-serif;
+    @include arial(80%);
     background-color: #9bc3eb;
     background-image: $assets-bg-register_jpg;
     background-repeat: repeat-x ;
@@ -88,24 +88,36 @@ html.prelogin-layout {
       line-height: 100%;
       
     }
+    
     .verticalScroll {
-      overflow-x:hidden; 
-      overflow-y:auto; 
-      height:140px;
+      
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: 140px;
+      
       p {
-        padding-right:10px
+        
+        padding-right: 10px;
+        
       }
+      
       .jspDrag {
-        background:#83a5c8;
+        
+        background: #83A5C8;
+        
       }
-    }
-    .validationOk {
-      padding:0; 
-      margin:0; 
-      font-size:35px; 
-      color:green;
       
     }
+    
+    .validationOk {
+      
+      padding: 0;
+      margin: 0;
+      font-size: 35px;
+      color: green;
+      
+    }
+    
     .logoDesyPrelogin {
       
       position: relative;
@@ -113,11 +125,11 @@ html.prelogin-layout {
       
       p {
         
+        @include nunito(9px);
         position: absolute;
         top: 40px;
         left: 2px;
-        color: #dad7d7;
-        font: 9px 'Nunito', sans-serif;
+        color: #DAD7D7;
         
       }
       
@@ -195,28 +207,40 @@ html.prelogin-layout {
       padding: 0px;
       margin-top: 20px;
       margin-bottom: 20px;
+      
       .cathegorySubjectContainer {
+        
         float: left;
         width: 100%;
-        padding:15px 0;
+        padding: 15px 0;
         border-bottom: 1px solid #83a5c8;
         margin-bottom: 20px;
-
+        
         .cathegorySubjectName {
-          color:#434244;
-          font-size:14px;
-          padding:10px 0px;
+          
+          color: #434244;
+          font-size: 14px;
+          padding: 10px 0px;
+          
         }
+        
         a.checkAllSubjects {
-          background-color:#bad7f3;
-          color:#434244;
-          padding:5px 40px;
-          font-size:11px;
+          
+          background-color: #bad7f3;
+          color: #434244;
+          padding: 5px 40px;
+          font-size: 11px;
+          
           &:hover {
-            color:#7096bd;
+            
+            color: #7096bd;
+            
           }
+          
         }
+        
       }
+      
       .inputElement {
         
         float: left;
@@ -463,7 +487,7 @@ html.prelogin-layout {
         border-top: 7px solid #fdb525;
         float: left;
         background-color: #fff;
-        color: #cecdcd;
+        color: #CECDCD;
         font-size: 75%;
         text-transform: lowercase;
         position: relative;
@@ -497,9 +521,8 @@ html.prelogin-layout {
     
     input[type="submit"] {
       
+      @include nunito(20px);
       background-color: #9bc3eb;
-      font-size: 20px;
-      font-family: 'Nunito', sans-serif;
       text-transform: none;
       margin: 0 0 20px 0;
       padding: 0px;

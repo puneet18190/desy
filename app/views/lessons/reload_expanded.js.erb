@@ -3,14 +3,11 @@
     showOkPopUp('<%= j @ok_msg %>');
   <% end %>
   var target = $('#<%= @destination %>_<%= @lesson_id %>');
-  var left = target.hasClass('lefth');
-  <% js_content = j(render(:partial => "lessons/view_single_expanded", :locals => {:lesson => @lesson, :destination => @destination})) %>
+  var margin_left = target.css('margin-left');
+  var margin_top = target.css('margin-top');
+  <% js_content = j(render(:partial => "lessons/view_single_expanded", :locals => {:lesson => @lesson})) %>
   target.replaceWith("<%= js_content %>");
-  if(left) {
-    $('#<%= @destination %>_<%= @lesson_id %>').addClass('lefth');
-  } else {
-    $('#<%= @destination %>_<%= @lesson_id %>').addClass('righth');
-  }
+  $('#<%= @destination %>_<%= @lesson_id %>').css('margin-left', margin_left).css('margin-top', margin_top);
 <% else %>
   showErrorPopUp('<%= j @error %>');
 <% end %>

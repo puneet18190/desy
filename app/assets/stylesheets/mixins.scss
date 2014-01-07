@@ -1,3 +1,31 @@
+@mixin nunito($size) {
+  
+  font-size: $size;
+  font-family: "Nunito", "Arial Rounded MT Bold", Helvetica, sans-serif;
+  
+}
+
+@mixin nunito-with-line-height($size, $line-height) {
+  
+  @include nunito($size);
+  line-height: $line-height;
+  
+}
+
+@mixin arial($size) {
+  
+  font-size: $size;
+  font-family: Arial, Helvetica, sans-serif;
+  
+}
+
+@mixin arial-with-line-height($size, $line-height) {
+  
+  @include arial($size);
+  line-height: $line-height;
+  
+}
+
 @mixin ulGallery {
   
   .pseudo-ul {
@@ -49,20 +77,27 @@
 }
 
 @mixin slideshow($slidesAmount, $slideshowSel: ".slideshow", $slidesSel: ".slides", $slideSel: ".slide") {
+  
   #{$slideshowSel} {
-    /*margin: 0 auto;*/
+    
     overflow: hidden;
-
+    
     #{$slidesSel} {
+      
       width: calc(100% * #{$slidesAmount}); /* calc(100% * n) dove n è il numero di slides */
       position: relative;
       
       #{$slideSel} {
+        
         float: left;
         width: calc(100% / #{$slidesAmount}); /* calc(100% / n) dove n è il numero di slides */
+        
       }
+      
     }
+    
   }
+  
 }
 
 @mixin slide-miniature {
@@ -123,126 +158,171 @@
   
   /* in content.css è < body, td, pre > */
   /* è anche stato rimosso html overflow: hidden che è stato messo solo per IE */
+  @include arial-with-line-height(13px, 14px);
   color: $black;
-  font-size: 13px;
-  font-family: Arial, Verdana, Helvetica, sans-serif;
-  line-height: 14px;
   text-align: left;
   
   td, pre {
+    
+    @include arial-with-line-height(13px, 14px);
     color: $black;
-    font-size: 13px;
-    font-family: Arial, Verdana, Helvetica, sans-serif;
     margin: 8px;
-    line-height: 14px;
     text-align: left;
+    
   }
   
   p, ol, ul {
+    
     margin: 0 0 10px 0;
+    
   }
   
   ol, ul {
+    
     padding-left: 40px;
+    
   }
   
   ul {
+    
     list-style-image: $assets-pallino_svg; /* questo ha nome diverso, esistono due duplicati del pallino */
+    
   }
   
   strong, b {
+    
     font-weight: bold;
+    
   }
   
   i, cite, em, var, address, dfn {
+    
     font-style: italic;
+    
   }
   
   a {
+    
     color: $orange;
     text-decoration: none;
+    
   }
   
   a:hover {
+    
     text-decoration: underline;
     cursor: pointer;
+    
   }
   
   .size1 {
+    
     font-size: 13px;
     line-height: 14px;
+    
   }
   
   .size2 {
+    
     font-size: 17px;
     line-height: 19px;
+    
   }
   
   .size3 {
+    
     font-size: 21px;
     line-height: 23px;
+    
   }
   
   .size4 {
+    
     font-size: 25px;
     line-height: 27px;
+    
   }
   
   .size5 {
+    
     font-size: 29px;
     line-height: 32px;
+    
   }
   
   .size6 {
+    
     font-size: 35px;
     line-height: 39px;
+    
   }
   
   body {
+    
     background-color: #FFF;
+    
   }
   
   body.mceForceColors {
+    
     background-color: #FFF;
     color: #000;
+    
   }
   
   body.mceBrowserDefaults {
+    
     background-color: transparent;
     color: inherit;
     font-size: inherit;
     font-family: inherit;
+    
   }
   
   h1 {
+    
     font-size: 2em;
+    
   }
   
   h2 {
+    
     font-size: 1.5em;
+    
   }
   
   h3 {
+    
     font-size: 1.17em;
+    
   }
   
   h4 {
+    
     font-size: 1em;
+    
   }
   
   h5 {
+    
     font-size: .83em;
+    
   }
   
   h6 {
+    
     font-size: .75em;
+    
   }
   
   .mceItemTable, .mceItemTable td, .mceItemTable th, .mceItemTable caption, .mceItemVisualAid {
+    
     border: 1px dashed #BBB;
+    
   }
   
   a.mceItemAnchor {
+    
     display: inline-block;
     -webkit-user-select: all;
     -webkit-user-modify: read-only;
@@ -251,54 +331,76 @@
     width: 11px !important;
     height: 11px !important;
     background: $assets-tiny-items_gif no-repeat center center; /* questo ha nome diverso, esistono due duplicati di questa icona */
+    
   }
   
   span.mceItemNbsp {
+    
     background-color: #DDD;
+    
   }
   
   td.mceSelected, th.mceSelected {
+    
     background-color: #3399ff !important;
+    
   }
   
   img {
+    
     border: 0;
+    
   }
   
   table, img, hr, .mceItemAnchor {
+    
     cursor: default;
+    
   }
   
   table td, table th {
+    
     cursor: text;
+    
   }
   
   ins {
+    
     border-bottom: 1px solid green;
     text-decoration: none;
     color: green;
+    
   }
   
   del {
+    
     color: red;
     text-decoration: line-through;
+    
   }
   
   cite {
+    
     border-bottom: 1px dashed blue;
+    
   }
   
   acronym {
+    
     border-bottom: 1px dotted #CCC;
     cursor: help;
+    
   }
   
   abbr {
+    
     border-bottom: 1px dashed #CCC;
     cursor: help;
+    
   }
   
   * html body {
+    
     scrollbar-3dlight-color: #F0F0EE;
     scrollbar-arrow-color: #676662;
     scrollbar-base-color: #F0F0EE;
@@ -307,32 +409,37 @@
     scrollbar-highlight-color: #F0F0EE;
     scrollbar-shadow-color: #F0F0EE;
     scrollbar-track-color: #F5F5F5;
+    
   }
   
   img:-moz-broken {
+    
     -moz-force-broken-image-icon: 1;
     width: 24px;
     height: 24px;
+    
   }
   
   font[face=mceinline] {
+    
     font-family: inherit !important;
+    
   }
   
   *[contentEditable]:focus {
+    
     outline: 0;
+    
   }
   
 }
 
 @mixin slide-title-common {
   
-  font-size: $slide-title-font-size;
+  @include nunito-with-line-height($slide-title-font-size, $slide-title-line-height);
   width: $slide-title-inner-width;
   height: $slide-title-inner-height;
   padding: $slide-title-padding;
-  line-height: $slide-title-line-height;
-  font-family: "Nunito", "Arial Rounded MT Bold", Helvetica, sans-serif;
   border: $slide-title-border solid #EFEFEF;
   color: $orange;
   letter-spacing: -4px;
@@ -351,7 +458,7 @@
 
 @mixin image-caption {
   
-  font-family: "Nunito", "Arial Rounded MT Bold", Helvetica, sans-serif;
+  @include nunito-with-line-height($image-caption-font-size, $image-caption-line-height);
   background-color: rgba(50, 50, 50, 0.7);
   color: #FAFAFA;
   height: $image-caption-height;
@@ -359,8 +466,6 @@
   position: absolute;
   left: auto;
   bottom: 0;
-  line-height: $image-caption-line-height;
-  font-size: $image-caption-font-size;
   
 }
 
@@ -381,28 +486,6 @@
   background-size: ($shared-editor-player-icon-size * 3) ($shared-editor-player-icon-size * 4);
   padding: 0;
   font-size: $font-size;
-  
-}
-
-@mixin contentLayout {
-  
-  margin-bottom: 1%;
-  -webkit-box-shadow: 0px 3px 4px #d3d3d3;
-  box-shadow: 0px 3px 4px #d3d3d3;
-  
-  h1 {
-    
-    font:  110% 'Nunito', "Arial Rounded MT Bold", sans-serif;
-    color: $orange;
-    padding: 0px;
-    
-  }
-  
-  h2 {
-    
-    font: 140% 'Nunito', "Arial Rounded MT Bold", sans-serif;
-    
-  }
   
 }
 
@@ -429,15 +512,14 @@
 
 @mixin tagContainer {
   
+  @include arial-with-line-height(13px, 20px);
   display: block;
+  cursor: text;
   resize: none;
-  line-height: 20px;
   border-radius: 10px;
   padding: 0;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2) inset;
   color: #fff;
-  font-size: 13px;
-  font-family: Arial, sans-serif;
   outline: none;
   overflow: auto;
   position: relative;
@@ -560,9 +642,8 @@
   
   body {
     
+    @include arial(13px);
     direction: ltr;
-    font-family: Arial, Verdana, sans-serif;
-    font-size: 13px;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -597,11 +678,13 @@
   }
   
   .top {
+    
     margin-bottom: -220px;
     background-color: transparent;
     width: 1px;
     height: 40%;
     float: left;
+    
   }
   
   .container {

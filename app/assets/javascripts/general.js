@@ -3,6 +3,26 @@ Generic javascript functions user throughout the application.
 @module general
 **/
 
+
+
+
+
+/**
+Calculates in which page the user is going to be redirected when he is watching a paginated list of items, and he resizes the screen. Used for example in the dashboard, and in the section of media elements.
+@method calculateTheNewVisiblePage
+@for GeneralCentering
+@param for_page {Number} items for page before resizing
+@param page {Number} page the user was visualizing before resizing
+@param new_for_page {Number} items for page after resizing
+**/
+function calculateTheNewVisiblePage(for_page, page, new_for_page) {
+  if(page == 1) {
+    return 1;
+  }
+  var selected_item = for_page * (page - 1) + 1;
+  return parseInt(selected_item / new_for_page) + 1;
+}
+
 /**
 Centers a div into the current window.
 @method centerThis
@@ -33,14 +53,70 @@ function centerThisInContainer(div, container) {
 }
 
 /**
-Recenters the media elements according to their number and the screen resolution.
-@method recenterMyMediaElements
+Same structure of {{#crossLink "DashboardResizing/dashboardResizeController:method"}}{{/crossLink}}.
+@method mediaElementsResizeController
 @for GeneralCentering
+@param resize_before {Boolean} if true, it resizes the elements also before calling the server
+@param with_fade {Boolean} if true, it resizes with a fade
+@param new_page {Number} forced page if any
 **/
-function recenterMyMediaElements() {
-  var WW = $(window).width();
-  var elNumber = WW / 220;
-  $('._boxViewExpandedMediaElementWrapper').css('width', (100 / parseInt(elNumber)) + '%');
+function mediaElementsResizeController(resize_before, with_fade, new_page) {
+  if(!$('#display_expanded_media_elements').hasClass('current')) {
+    return;
+  }
+  var info = $('#info_container');
+  var width = $('#media_elements_title_bar').outerWidth();
+  width = width - (width * 6 / 1000);
+  var in_space = parseInt((width - 200) / 207) + 1;
+  if(new_page == undefined) {
+    var current_page = $('#general_pagination .pages a').first().data('page') + 1;
+    var new_page = calculateTheNewVisiblePage(info.data('in-space') * 2, current_page, in_space * 2);
+  }
+  if(in_space <= 50 && in_space != info.data('in-space')) {
+    info.data('in-space', in_space);
+    if(resize_before) {
+      resizeExpandedMediaElements(in_space);
+    }
+    var additional = with_fade ? '' : '&resizing=true';
+    unbindLoader();
+    $.ajax({
+      type: 'get',
+      url: '/media_elements?display=expanded&filter=' + $('#filter_media_elements option:selected').val() + '&page=' + new_page + '&for_row=' + in_space + additional
+    }).always(bindLoader);
+  } else {
+    resizeExpandedMediaElements(in_space);
+  }
+}
+
+/**
+Same structure of {{#crossLink "DashboardResizing/resizeLessonsAndMediaElementsInDashboard:method"}}{{/crossLink}}.
+@method resizeExpandedMediaElements
+@for GeneralCentering
+@param for_row {Number} how many media elements fit horizontally the screen
+**/
+function resizeExpandedMediaElements(for_row) {
+  var width = $('#media_elements_title_bar').outerWidth();
+  var percent_margin_width = width * 3 / 1000;
+  var margin = (width - 2 * percent_margin_width - for_row * 200) / (for_row - 1);
+  var counter = 1;
+  var one_row = ($('#my_media_elements ._media_element_item').length <= for_row);
+  $('#my_media_elements ._media_element_item').each(function() {
+    if(counter == 1 || counter == (for_row + 1)) {
+      $(this).css('margin-left', (percent_margin_width + 'px'));
+    } else {
+      $(this).css('margin-left', (margin + 'px'));
+    }
+    if(counter > for_row) {
+      $(this).css('margin-top', '30px');
+      $(this).css('margin-bottom', '10px');
+    } else {
+      $(this).css('margin-top', '0');
+      if(one_row) {
+        $(this).css('margin-bottom', '355px');
+      }
+    }
+    counter += 1;
+  });
 }
 
 
@@ -62,61 +138,11 @@ function browsersDocumentReady() {
 }
 
 /**
-This function sets the default values of SelectBoxe all around the application. This function is necessary because otherwise the original value wouldn't be set, since we use a JQuery plugin to design selects.
-@method defaultValueJavaScriptAnimationsDocumentReady
+Initializer for functionalities which are common to sections containing media elements.
+@method commonMediaElementsDocumentReady
 @for GeneralDocumentReady
 **/
-function defaultValueJavaScriptAnimationsDocumentReady() {
-  $('._which_item_to_search_switch[checked]').first().attr('checked', 'checked');
-  $('#for_page_media_elements option[selected]').first().attr('selected', 'selected');
-  $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
-  $('#filter_lessons option[selected]').first().attr('selected', 'selected');
-  $('#order_documents option[selected]').first().attr('selected', 'selected');
-  $('#filter_search_lessons option[selected]').first().attr('selected', 'selected');
-  $('#filter_search_media_elements option[selected]').first().attr('selected', 'selected');
-  $('#filter_search_lessons_subject option[selected]').first().attr('selected', 'selected');
-  $('._order_lessons_radio_input[checked]').first().attr('checked', 'checked');
-  $('._order_media_elements_radio_input[checked]').first().attr('checked', 'checked');
-}
-
-/**
-Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink "DialogsWithForm/showMediaElementInfoPopUp:method"}}{{/crossLink}}).
-@method expandedItemsDocumentReady
-@for GeneralDocumentReady
-**/
-function expandedItemsDocumentReady() {
-  $body.on('click','._lesson_compact', function() {
-    if(!$(this).parent().hasClass('_disabled')) {
-      var my_id = $(this).parent().attr('id');
-      var my_expanded = $('#' + my_id + ' ._lesson_expanded');
-      if(my_expanded.is(':visible')) {
-        my_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
-        my_expanded.hide('blind', {}, 500, function() {
-          my_expanded.hide();
-        });
-      } else {
-        my_expanded.show('blind', {}, 500, function() {
-          my_expanded.show();
-        });
-      }
-    }
-  });
-  $body.on('click', '#display_expanded_media_elements', function() {
-    if(!$(this).hasClass('current')) {
-      $.ajax({
-        type: 'get',
-        url: '/media_elements?display=expanded'
-      });
-    }
-  });
-  $body.on('click', '#display_compact_media_elements', function() {
-    if(!$(this).hasClass('current')) {
-      $.ajax({
-        type: 'get',
-        url: '/media_elements?display=compact'
-      });
-    }
-  });
+function commonMediaElementsDocumentReady() {
   $body.on('click', '._close_media_element_preview_popup', function() {
     var param = $(this).data('param');
     closePopUp('dialog-media-element-' + param);
@@ -136,105 +162,81 @@ function expandedItemsDocumentReady() {
     $(this).addClass('change_info_light');
     $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').hide();
   });
-  $body.on('click', '._close_on_click_out', function() {
-    $('.ui-dialog-content:visible').each(function() {
-      closePopUp($(this).attr('id'));
-    });
-  });
 }
 
 /**
-Similar to {{#crossLink "GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method"}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.
-@method filtersDocumentReady
+Initializer for functionalities which are common to sections containing lessons.
+@method commonLessonsDocumentReady
 @for GeneralDocumentReady
 **/
-function filtersDocumentReady() {
-  $body.on('change', '#filter_lessons', function() {
-    var filter = $('#filter_lessons option:selected').val();
-    var redirect_url = '/lessons?filter=' + filter;
-    $.get(redirect_url);
-  });
-  $body.on('change', '#filter_media_elements', function() {
-    var filter = $('#filter_media_elements option:selected').val();
-    var redirect_url = getCompleteMediaElementsUrlWithoutFilter() + '&filter=' + filter;
-    $.get(redirect_url);
-  });
-  $body.on('change', '#for_page_media_elements', function() {
-    var for_page = $('#for_page_media_elements option:selected').val();
-    var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + '&for_page=' + for_page;
-    $.get(redirect_url);
-  });
-}
-
-/**
-Initializer for consequences of window resizing.
-@method generalWindowResizeDocumentReady
-@for GeneralDocumentReady
-**/
-function generalWindowResizeDocumentReady() {
-  $(window).resize(function() {
-    if($('#my_media_elements').length > 0 || $('#media_elements_in_dashboard').length > 0) {
-      recenterMyMediaElements();
+function commonLessonsDocumentReady() {
+  $body.on('click','._lesson_compact', function() {
+    if(!$(this).parent().hasClass('_disabled')) {
+      var lessons_content = $('.lessons-content');
+      var advanced_search_content = $('.advanced-search-content');
+      var my_id = $(this).parent().attr('id');
+      var my_expanded = $('#' + my_id + ' ._lesson_expanded');
+      if(my_expanded.is(':visible')) {
+        my_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
+        my_expanded.hide('blind', {}, 500, function() {
+          my_expanded.hide();
+        });
+        if(lessons_content.length > 0) {
+          lessons_content.animate({height: '665px'}, 500);
+        } else {
+          advanced_search_content.animate({height: '805px'}, 500);
+        }
+      } else {
+        var there_is_expanded = $('._lesson_expanded:visible');
+        if(there_is_expanded.length > 0) {
+          there_is_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
+          there_is_expanded.hide('blind', {}, 500, function() {
+            there_is_expanded.hide();
+          });
+        }
+        my_expanded.show('blind', {}, 500, function() {
+          my_expanded.show();
+        });
+        if(lessons_content.length > 0) {
+          lessons_content.animate({height: '863px'}, 500);
+        } else {
+          advanced_search_content.animate({height: '1003px'}, 500);
+        }
+      }
     }
   });
 }
 
 /**
-Initializer for all javascript and JQuery plugins.
-@method javaScriptAnimationsDocumentReady
+Initializer for global functionalities, used throughout the application.
+@method globalDocumentReady
 @for GeneralDocumentReady
 **/
-function javaScriptAnimationsDocumentReady() {
+function globalDocumentReady() {
+  $body.on('click', '._close_on_click_out', function() {
+    $('.ui-dialog-content:visible').each(function() {
+      closePopUp($(this).attr('id'));
+    });
+  });
   $body.on('mouseenter', '.empty-situation-container a', function() {
     $(this).find('.plus').addClass('encendido');
   });
   $body.on('mouseleave', '.empty-situation-container a', function() {
     $(this).find('.plus').removeClass('encendido');
   });
-  $('#notifications_list').jScrollPane({
-    autoReinitialise: true
+  $('#user_school_level_id').selectbox(); // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
+  $(document).bind('click', function (e) {
+    var my_login = $('#login_form_container:visible');
+    if(my_login.length > 0 && $(e.target).parents('#login_form_container').length == 0 && !$(e.target).hasClass('_show_login_form_container')) {
+      $('._show_login_form_container').click();
+    } // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
   });
-  $('#which_item_to_search').selectbox();
-  $('#filter_lessons').selectbox();
-  $('#order_documents').selectbox();
-  $('#filter_search_lessons').selectbox();
-  $('#filter_search_lessons_subject').selectbox();
-  $('#filter_search_lessons_school_level').selectbox();
-  $('#for_page_media_elements').selectbox();
-  $('#filter_media_elements').selectbox();
-  $('#filter_search_media_elements').selectbox();
-  $('#user_school_level_id').selectbox();
   $body.on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
     var myself = $(this);
     var len = myself.val().length;
     var maxlength = myself.attr('maxlength')
     if (maxlength && len > maxlength) {
       myself.val(myself.val().slice(0, maxlength));
-    }
-  });
-  $(document).bind('click', function (e) {
-    var click_id = $(e.target).attr('id');
-    var my_report = $('.tooltipForm:visible');
-    var my_login = $('#login_form_container:visible');
-    if($('#tooltip_content').length > 0) {
-      if($('#tooltip_content').is(':visible')) {
-        if(click_id != 'tooltip_content' && click_id != 'expanded_notification' && click_id != 'notifications_button' && $(e.target).parents('#tooltip_content').length == 0 && $(e.target).parents('#expanded_notification').length == 0) {
-          $('#notifications_button').trigger('click');
-        }
-      }
-    }
-    if($('#tooltip_help').length > 0) {
-      if($('#tooltip_help').is(':visible')) {
-        if(click_id != 'tooltip_help' && click_id != 'help' && $(e.target).parents('#tooltip_help').length == 0) {
-          $('#help').trigger('click');
-        }
-      }
-    }
-    if(my_report.length > 0 && $(e.target).parents('#' + my_report.attr('id')).length == 0) {
-      my_report.parent().find('.report_light, ._reportable_lesson_icon').click();
-    }
-    if(my_login.length > 0 && $(e.target).parents('#login_form_container').length == 0 && !$(e.target).hasClass('_show_login_form_container')) {
-      $('._show_login_form_container').click();
     }
   });
 }
@@ -307,21 +309,152 @@ function reportsDocumentReady() {
   });
 }
 
+/**
+Functionalities necessary only for the section 'my documents'.
+@method sectionDocumentsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionDocumentsDocumentReady() {
+  $('#order_documents option[selected]').first().attr('selected', 'selected');
+  $('#order_documents').selectbox();
+}
+
+/**
+Functionalities necessary only for the section 'my lessons'.
+@method sectionLessonsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionLessonsDocumentReady() {
+  $('#filter_lessons option[selected]').first().attr('selected', 'selected');
+  $body.on('change', '#filter_lessons', function() {
+    var filter = $('#filter_lessons option:selected').val();
+    var redirect_url = '/lessons?filter=' + filter;
+    $.get(redirect_url);
+  });
+  $('#filter_lessons').selectbox();
+}
+
+/**
+Functionalities necessary only for the section 'my media elements'.
+@method sectionMediaElementsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionMediaElementsDocumentReady() {
+  $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
+  $body.on('change', '#filter_media_elements', function() {
+    var filter = $('#filter_media_elements option:selected').val();
+    if($('#display_expanded_media_elements').hasClass('current')) {
+      $('#info_container').data('in-space', 0);
+      mediaElementsResizeController(false, true, 1);
+    } else {
+      $.get('/media_elements?display=compact&filter=' + filter);
+    }
+  });
+  $body.on('click', '#display_expanded_media_elements', function() {
+    if(!$(this).hasClass('current')) {
+      $(this).addClass('current');
+      $('#display_compact_media_elements').removeClass('current');
+      $('#info_container').data('in-space', 0);
+      browserDependingScrollToTag().animate({scrollTop: ((1150 - $(window).height() + $('.global-footer').height()) + 'px')}, 500);
+      var last_item_compact = $('.boxViewCompactMediaElement').last();
+      last_item_compact.animate({'margin-bottom': (102 + parseInt(last_item_compact.css('margin-bottom'))) + 'px'}, 500);
+      $('.elements-content').animate({height: '767px'}, 500, function() {
+        $(this).removeClass('fixed-compact-height').addClass('fixed-expanded-height');
+      });
+      mediaElementsResizeController(false, true, 1);
+    }
+  });
+  $body.on('click', '#display_compact_media_elements', function() {
+    if(!$(this).hasClass('current')) {
+      $(this).addClass('current');
+      $('#display_expanded_media_elements').removeClass('current');
+      $.ajax({
+        type: 'get',
+        url: '/media_elements?display=compact',
+        success: function (r) {
+          $('.elements-content').animate({height: '665px'}, 500, function() {
+            $(this).removeClass('fixed-expanded-height').addClass('fixed-compact-height')
+          });
+        }
+      });
+    }
+  });
+  $('#filter_media_elements').selectbox();
+  mediaElementsResizeController(false, false);
+  $(window).resize(function() {
+    mediaElementsResizeController(true, false);
+  });
+}
+
+/**
+Functionalities necessary only for the sections containing notifications.
+@method sectionNotificationsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionNotificationsDocumentReady() {
+  $('#notifications_list').jScrollPane({
+    autoReinitialise: true
+  });
+  $(document).bind('click', function (e) {
+    var click_id = $(e.target).attr('id');
+    var my_report = $('.tooltipForm:visible');
+    if($('#tooltip_content').length > 0) {
+      if($('#tooltip_content').is(':visible')) {
+        if(click_id != 'tooltip_content' && click_id != 'expanded_notification' && click_id != 'notifications_button' && $(e.target).parents('#tooltip_content').length == 0 && $(e.target).parents('#expanded_notification').length == 0) {
+          $('#notifications_button').trigger('click');
+        }
+      }
+    }
+    if($('#tooltip_help').length > 0) {
+      if($('#tooltip_help').is(':visible')) {
+        if(click_id != 'tooltip_help' && click_id != 'help' && $(e.target).parents('#tooltip_help').length == 0) {
+          $('#help').trigger('click');
+        }
+      }
+    }
+    if(my_report.length > 0 && $(e.target).parents('#' + my_report.attr('id')).length == 0) {
+      my_report.parent().find('.report_light, ._reportable_lesson_icon').click();
+    }
+  });
+  $('#which_item_to_search option[selected]').first().attr('selected', 'selected');
+  $('#which_item_to_search').selectbox();
+}
+
+/**
+Functionalities necessary only for the section 'search'.
+@method sectionSearchDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionSearchDocumentReady() {
+  $('._which_item_to_search_switch[checked]').first().attr('checked', 'checked');
+  $('._order_lessons_radio_input[checked]').first().attr('checked', 'checked');
+  $('._order_media_elements_radio_input[checked]').first().attr('checked', 'checked');
+  $('#filter_search_lessons option[selected]').first().attr('selected', 'selected');
+  $('#filter_search_media_elements option[selected]').first().attr('selected', 'selected');
+  $('#filter_search_lessons_subject option[selected]').first().attr('selected', 'selected');
+  $('#filter_search_lessons_school_level option[selected]').first().attr('selected', 'selected');
+  $('#filter_search_lessons').selectbox();
+  $('#filter_search_media_elements').selectbox();
+  $('#filter_search_lessons_subject').selectbox();
+  $('#filter_search_lessons_school_level').selectbox();
+}
+
 
 
 
 
 /**
-Gets the requested format to visualize media elements.
-@method getMediaElementsFormat
+Initializes global variables used throughout the javascripts.
+@method initializeGlobalVariables
 @for GeneralMiscellanea
 **/
-function getMediaElementsFormat() {
-  var param = 'display=compact';
-  if($('#display_expanded_media_elements').hasClass('current')) {
-    param = 'display=expanded';
-  }
-  return param
+function initializeGlobalVariables() {
+  window.$html = $('html');
+  window.$loaderVisible = true;
+  window.$loading = $('#loading');
+  window.$body = $('body');
+  window.$captions = $('#popup_captions_container');
+  window.$parameters = $('#popup_parameters_container');
 }
 
 /**
@@ -364,47 +497,11 @@ function secondsToDateString(seconds) {
 }
 
 /**
-Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink "BrowserSupportMain/browserSupport:method"}}here{{/crossLink}}
+Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink "BrowserSupportMain/browserSupportMain:method"}}{{/crossLink}}
 @method browserSupport
 @for GeneralMiscellanea
 **/
 function browserSupport() {
-  // no-op
-}
-
-/**
-This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
-@method getCompleteMediaElementsUrlWithoutForPage
-@for GeneralUrls
-@return {String} the current url without the parameter 'for_page'
-**/
-function getCompleteMediaElementsUrlWithoutForPage() {
-  var param_format = getMediaElementsFormat();
-  var param_filter = 'filter=' + $('#filter_media_elements option:selected').val();
-  return '/media_elements?' + param_format + '&' + param_filter;
-}
-
-/**
-This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
-@method getCompleteMediaElementsUrlWithoutFilter
-@for GeneralUrls
-@return {String} the current url without the parameter 'filter'
-**/
-function getCompleteMediaElementsUrlWithoutFilter() {
-  var param_format = getMediaElementsFormat();
-  var param_for_page = 'for_page=' + $('#for_page_media_elements option:selected').val();
-  return '/media_elements?' + param_format + '&' + param_for_page;
-}
-
-/**
-This function returns an url for documents without the parameter 'order'. The original url is extracted by the method {{#crossLink "GeneralMiscellanea/getMediaElementsFormat:method"}}{{/crossLink}}.
-@method getCompleteDocumentsUrlWithoutOrder
-@for GeneralUrls
-@return {String} the current url without the parameter 'order'
-**/
-function getCompleteDocumentsUrlWithoutOrder() {
-  var param_word = 'word=' + $('#search_documents ._word_input').val() + '&word_placeholder=' + $('#search_documents_placeholder').val();
-  return '/documents?' + param_word;
 }
 
 /**

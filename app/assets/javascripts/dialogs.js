@@ -344,7 +344,42 @@ function showLessonNotificationPopUp(lesson_id) {
 }
 
 /**
-Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule "media-element-loader"}}{{/crossLinkModule}}.
+Dialog containing the form to upload a new document. This function interacts with the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}.
+@method showLoadDocumentPopUp
+@for DialogsWithForm
+**/
+function showLoadDocumentPopUp() {
+  var obj = $('#load-document');
+  if(obj.data('dialog')) {
+    obj.dialog('open');
+  } else {
+    obj.show();
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      draggable: false,
+      width: 760,
+      show: 'fade',
+      hide: {effect: 'fade'},
+      open: function(event, ui) {
+        setTimeout(function() {
+          obj.find('input').blur();
+          obj.find('.docload_title').val(obj.data('placeholder-title'));
+          obj.find('.docload_description').val(obj.data('placeholder-description'));
+          obj.find('.docload_title_placeholder').val('');
+          obj.find('.docload_description_placeholder').val('');
+          $('#document_attachment_show').text(obj.data('placeholder-attachment'));
+          obj.find('.form_error').removeClass('form_error');
+          $('#new_document_input').val('');
+          obj.find('.barraLoading .loading-errors').html('');
+        }, 100);
+      }
+    });
+  }
+}
+
+/**
+Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}.
 @method showLoadMediaElementPopUp
 @for DialogsWithForm
 **/
@@ -362,33 +397,36 @@ function showLoadMediaElementPopUp() {
       show: 'fade',
       hide: {effect: 'fade'},
       open: function(event, ui) {
-        $('#load-media-element input').blur();
-        $('#load-media-element #title').val($('#load-media-element').data('placeholder-title'));
-        $('#load-media-element #description').val($('#load-media-element').data('placeholder-description'));
-        $('#load-media-element #title_placeholder').val('');
-        $('#load-media-element #description_placeholder').val('');
-        $('#load-media-element #tags_value').val('');
-        $('#load-media-element ._tags_container span').remove();
-        $('#load-media-element ._tags_container ._placeholder').show();
-        $('#media_element_media_show').text($('#load-media-element').data('placeholder-media'));
-        $('#load-media-element .form_error').removeClass('form_error');
-        $('#new_media_element_input').val('');
-      },
-      close: function() {
-        $('#load-media-element iframe').attr('src', 'about:blank');
+        setTimeout(function() {
+          obj.find('input').blur();
+          obj.find('.medload_title').val(obj.data('placeholder-title'));
+          obj.find('.medload_description').val(obj.data('placeholder-description'));
+          obj.find('.medload_title_placeholder').val('');
+          obj.find('.medload_description_placeholder').val('');
+          obj.find('.medload_tags_value').val('');
+          obj.find('._tags_container span').remove();
+          obj.find('._tags_container ._placeholder').show();
+          $('#media_element_media_show').text(obj.data('placeholder-media'));
+          obj.find('.form_error').removeClass('form_error');
+          $('#new_media_element_input').val('');
+          obj.find('.barraLoading .loading-errors').html('');
+        }, 100);
       }
     });
   }
 }
 
 /**
-Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink "MediaElementLoaderGeneral/resetMediaElementChangeInfo:method"}}{{/crossLink}}).
+Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink "MediaElementEditorForms/resetMediaElementChangeInfo:method"}}{{/crossLink}}).
 @method showMediaElementInfoPopUp
 @for DialogsWithForm
 @param media_element_id {Number} id in the database of the media element
 **/
 function showMediaElementInfoPopUp(media_element_id) {
   var obj = $('#dialog-media-element-' + media_element_id);
+  if(obj.length > 0 && $('#dashboard_container .literature_container').length > 0) {
+    $('#dashboard_container .literature_container, #dashboard_container .lesson_dashboard_thumb').css('z-index', 0);
+  }
   if(!$('._media_element_item_id_' + media_element_id).data('preview-loaded')) {
     $.ajax({
       type: 'get',

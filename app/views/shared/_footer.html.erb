@@ -1,16 +1,15 @@
-<div class="footer">
-  <div class="footer_content">
-    <% if controller_name != "dashboard" %>
-    <div class="fltrt dashboard">
-      <%= link_to t('captions.back_to_dashboard'), dashboard_path %> <%= image_tag 'lesson-editor-logo-footer.png' %>
-    </div>
+<div class="global-footer">
+  <div class="global-footer-content">
+    <% if controller_name != 'dashboard' %>
+      <%= image_tag 'lesson-editor-logo-footer.png', :class => 'back-to-dashboard' %>
+      <%= link_to t('captions.back_to_dashboard'), dashboard_path, :class => 'back-to-dashboard' %>
     <% end %>
   </div>
-  <div class="footer_logo_content">
-    <div class="fltlft" style="padding:10px">
+  <div class="global-footer-logo">
+    <div class="partner">
       <%= image_tag 'partner_logo.jpg' %>
     </div>
-    <div class="fltrt" style="padding-top:30px">
+    <div class="copyright">
       <%= SETTINGS['application_copyright'] %>
     </div>
   </div>

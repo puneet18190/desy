@@ -4,7 +4,6 @@
 .profile-content {
   
   width: 100%;
-  margin-bottom: 3%;
   font-size: 85%;
   
   .sbHolderDeselect {
@@ -25,10 +24,8 @@
   
 }
 
-.contentForm {
+.contentFormInProfile {
   
-  padding-bottom: 150px;
-  float: left;
   width: 100%;
   
   header {
@@ -39,7 +36,7 @@
   
   h2 {
     
-    font: 25px 'Nunito', sans-serif;
+    @include nunito(25px);
     color:  #7d7d7d;
     text-transform: lowercase;
     text-shadow: #ccc 1px 1px 0px;
@@ -81,7 +78,7 @@
     
     .inputElement {
       
-      font: 100% 'Nunito', sans-serif;
+      @include nunito(100%);
       float: left;
       width: 227px;
       margin-right: 5%;
@@ -112,7 +109,7 @@
     
     .text, select, option {
       
-      font: 13px 'Nunito', sans-serif;
+      @include nunito(13px);
       width: 216px;
       height: 29px;
       
@@ -141,8 +138,8 @@
     
     .sbHolder, .sbOptions, .sbSelector {
       
+      @include nunito(13px);
       color: #7d7d7d;
-      font: 13px 'Nunito', sans-serif;
       width: 226px;
       
     }
@@ -269,9 +266,9 @@
     
     span {
       
+      @include nunito(14px);
       padding: 15px 0 0 60px;
       display: block;
-      font: 14px 'Nunito', sans-serif;
       
     }
     
@@ -330,10 +327,10 @@
     
     h3 {
       
+      @include nunito(20px);
       padding: 15px 20px;
       margin-top: 10px;
       width: auto;
-      font: 20px 'Nunito', sans-serif;
       color: white;
       background-color: #7d7d7d;
       
@@ -562,7 +559,7 @@
   
   h2 {
     
-    font: 120% 'Nunito', sans-serif;
+    @include nunito(120%);
     color: $black;
     padding: 5px 10px;
     background-color: #fff;
@@ -596,9 +593,9 @@
   
   table, th, td {
     
+    @include nunito(95%);
     border: 1px solid #e0e0e0;
-    font: 95% 'Nunito', sans-serif;
-    color: #7d7d7d;
+    color: #7D7D7D;
     
     h3 {
       
@@ -623,7 +620,7 @@
     
     h2 {
       
-      font: 160% 'Nunito', sans-serif;
+      @include nunito(160%);
       padding: 5px 15px;
       color: $black;
       
@@ -636,15 +633,14 @@
 .checkboxElement {
   
   @include border-formatting;
+  @include nunito(16px);
   padding: 8px;
   width: 211px;
   float: left;
   margin-right: 5%;
   margin-bottom: 30px;
   display: block;
-  font-family: 'Nunito', sans-serif;
-  font-size: 16px;
-  color: #7d7d7d;
+  color: #7D7D7D;
   
   .regular-checkbox:checked + label, label {
     

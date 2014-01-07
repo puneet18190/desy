@@ -786,11 +786,17 @@ class User < ActiveRecord::Base
     UsersSubject.where(:user_id => self.id).each do |us|
       subject_ids << us.subject_id
     end
-    resp = Lesson.preload(:subject).select("lessons.*, 0 AS bookmarks_count, 0 AS virtuals_count, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count").where('is_public = ? AND user_id != ? AND subject_id IN (?) AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)', true, self.id, subject_ids, 'Lesson', self.id).order('updated_at DESC').limit(n)
+    resp = Lesson.preload(:subject, :user).select("lessons.*, 0 AS bookmarks_count, 0 AS virtuals_count, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count").where('is_public = ? AND user_id != ? AND subject_id IN (?) AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)', true, self.id, subject_ids, 'Lesson', self.id).order('updated_at DESC').limit(n)
+    ids = []
     resp.each do |l|
+      ids << l.id
       l.set_status self.id, {:bookmarked => :bookmarks_count, :in_vc => :virtuals_count, :liked => :likes_count}
     end
-    resp
+    covers = {}
+    Slide.where(:lesson_id => ids, :kind => 'cover').preload(:media_elements_slides, {:media_elements_slides => :media_element}).each do |cov|
+      covers[cov.lesson_id] = cov
+    end
+    {:records => resp, :covers => covers}
   end
   
   # === Description

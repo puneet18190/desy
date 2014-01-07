@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -69,8 +71,6 @@
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
             
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
-            
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
                 <li><a href="../classes/ButtonsAccessories.html">ButtonsAccessories</a></li>
@@ -81,11 +81,13 @@
             
                 <li><a href="../classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="../classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
+                <li><a href="../classes/DashboardAccessories.html">DashboardAccessories</a></li>
             
-                <li><a href="../classes/DashboardGeneral.html">DashboardGeneral</a></li>
+                <li><a href="../classes/DashboardExpandedContents.html">DashboardExpandedContents</a></li>
             
-                <li><a href="../classes/DashboardPagination.html">DashboardPagination</a></li>
+                <li><a href="../classes/DashboardLessonDescriptions.html">DashboardLessonDescriptions</a></li>
+            
+                <li><a href="../classes/DashboardResizing.html">DashboardResizing</a></li>
             
                 <li><a href="../classes/DialogsAccessories.html">DialogsAccessories</a></li>
             
@@ -98,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -155,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -198,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -263,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -274,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -389,6 +385,48 @@ function submitMediaElementEditorCacheForm(form) {
 
 
 /**
+Function that checks the conversion of the unconverted media elements in the page.
+@method mediaElementLoaderConversionOverview
+@for MediaElementEditorConversion
+@param list {Array} list of media elements that are being checked
+@param time {Number} time to iterate the loop
+**/
+function mediaElementLoaderConversionOverview(list, time) {
+  $(&#x27;._media_element_item._disabled&#x27;).each(function() {
+    var my_id = $(this).find(&#x27;._Image_button_preview, ._Audio_button_preview, ._Video_button_preview&#x27;).data(&#x27;clickparam&#x27;);
+    if(list.indexOf(my_id) == -1) {
+      list.push(my_id);
+    }
+  });
+  var black_list = $(&#x27;#info_container&#x27;).data(&#x27;media-elements-not-anymore-in-conversion&#x27;);
+  for(var i = 0; i &lt; black_list.length; i ++) {
+    var j = list.indexOf(black_list[i]);
+    list.splice(j, 1);
+  }
+  if(list.length &gt; 0) {
+    var ajax_url = &#x27;/media_elements/conversion/check?&#x27;;
+    for(var i = 0; i &lt; list.length; i ++) {
+      ajax_url += (&#x27;me&#x27; + list[i] + &#x27;=true&#x27;);
+      if(i != list.length - 1) {
+        ajax_url += &#x27;&amp;&#x27;;
+      }
+    }
+    unbindLoader();
+    $.ajax({
+      url: ajax_url,
+      type: &#x27;get&#x27;
+    }).always(bindLoader);
+  }
+  setTimeout(function() {
+    mediaElementLoaderConversionOverview(list, time);
+  }, time);
+}
+
+
+
+
+
+/**
 Initializes the placeholder of the &lt;b&gt;commit forms&lt;/b&gt; used in {{#crossLinkModule &quot;audio-editor&quot;}}{{/crossLinkModule}}, {{#crossLinkModule &quot;image-editor&quot;}}{{/crossLinkModule}} and {{#crossLinkModule &quot;video-editor&quot;}}{{/crossLinkModule}}.
 @method mediaElementEditorDocumentReady
 @for MediaElementEditorDocumentReady
@@ -433,6 +471,26 @@ function mediaElementEditorDocumentReady() {
 
 
 
+
+/**
+Resets the media element loading form; used in {{#crossLink &quot;DialogsWithForm/showLoadMediaElementPopUp:method&quot;}}{{/crossLink}}.
+@method resetMediaElementChangeInfo
+@for MediaElementEditorForms
+@param media_element_id {Number} id of the element in the database, used to extract the HTML id
+**/
+function resetMediaElementChangeInfo(media_element_id) {
+  var container = $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._change_info_container&#x27;);
+  container.find(&#x27;#title&#x27;).val(container.data(&#x27;title&#x27;));
+  container.find(&#x27;#description&#x27;).val(container.data(&#x27;description&#x27;));
+  container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+  container.find(&#x27;._error_messages&#x27;).html(&#x27;&#x27;);
+  container.find(&#x27;._tags_container span&#x27;).remove();
+  container.find(&#x27;._tags_placeholder span&#x27;).each(function() {
+    var copy = $(this)[0].outerHTML;
+    container.find(&#x27;._tags_container&#x27;).prepend(copy);
+  });
+  container.find(&#x27;#tags_value&#x27;).val(container.data(&#x27;tags&#x27;));
+}
 
 /**
 Resets the &lt;b&gt;commit forms&lt;/b&gt; used in {{#crossLinkModule &quot;audio-editor&quot;}}{{/crossLinkModule}}, {{#crossLinkModule &quot;image-editor&quot;}}{{/crossLinkModule}} and {{#crossLinkModule &quot;video-editor&quot;}}{{/crossLinkModule}}. This method is associated to the button &#x27;cancel&#x27; in these forms (see {{#crossLink &quot;AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method&quot;}}{{/crossLink}}, {{#crossLink &quot;ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method&quot;}}{{/crossLink}} and {{#crossLink &quot;VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method&quot;}}{{/crossLink}}).

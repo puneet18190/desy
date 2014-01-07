@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>DashboardPagination - DESY</title>
+    <title>DashboardLessonDescriptions - DESY</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -69,8 +71,6 @@
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
             
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
-            
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
                 <li><a href="../classes/ButtonsAccessories.html">ButtonsAccessories</a></li>
@@ -81,11 +81,13 @@
             
                 <li><a href="../classes/ButtonsMediaElement.html">ButtonsMediaElement</a></li>
             
-                <li><a href="../classes/DashboardDocumentReady.html">DashboardDocumentReady</a></li>
+                <li><a href="../classes/DashboardAccessories.html">DashboardAccessories</a></li>
             
-                <li><a href="../classes/DashboardGeneral.html">DashboardGeneral</a></li>
+                <li><a href="../classes/DashboardExpandedContents.html">DashboardExpandedContents</a></li>
             
-                <li><a href="../classes/DashboardPagination.html">DashboardPagination</a></li>
+                <li><a href="../classes/DashboardLessonDescriptions.html">DashboardLessonDescriptions</a></li>
+            
+                <li><a href="../classes/DashboardResizing.html">DashboardResizing</a></li>
             
                 <li><a href="../classes/DialogsAccessories.html">DialogsAccessories</a></li>
             
@@ -98,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -155,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -198,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -263,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -274,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -314,7 +310,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>DashboardPagination Class</h1>
+                        <h1>DashboardLessonDescriptions Class</h1>
 <div class="box meta">
     
 
@@ -362,42 +358,14 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_changePageDashboardLessons">changePageDashboardLessons</a>
+                                <a href="#method_openDescriptionDashboardLayer">openDescriptionDashboardLayer</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_changePageDashboardMediaElements">changePageDashboardMediaElements</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_getHtmlPagination">getHtmlPagination</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_reloadDashboardPages">reloadDashboardPages</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_reloadLessonsDashboardPagination">reloadLessonsDashboardPagination</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_reloadMediaElementsDashboardPagination">reloadMediaElementsDashboardPagination</a>
+                                <a href="#method_openDescriptionDashboardRecursionLayer">openDescriptionDashboardRecursionLayer</a>
 
                                 
                                 
@@ -419,8 +387,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_changePageDashboardLessons" class="method item">
-    <h3 class="name"><code>changePageDashboardLessons</code></h3>
+                    <div id="method_openDescriptionDashboardLayer" class="method item">
+    <h3 class="name"><code>openDescriptionDashboardLayer</code></h3>
 
     
         <div class="args">
@@ -428,19 +396,7 @@
             
                 <li class="arg">
                     
-                        <code>old_pos</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>pos</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>poges_amount</code>
+                        <code>item</code>
                     
                 </li>
             
@@ -473,7 +429,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_dashboard.js.html#l88"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:88</code></a>
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l240"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:240</code></a>
         
         </p>
 
@@ -484,7 +440,7 @@
     </div>
 
     <div class="description">
-        <p>This function changes page of the section containing suggested lessons. As already mentioned, the method reloads the pagination using <a href="../classes/DashboardPagination.html#method_reloadLessonsDashboardPagination" class="crosslink">reloadLessonsDashboardPagination</a>.</p>
+        <p>This method calls <a href="../classes/DashboardLessonDescriptions.html#method_openDescriptionDashboardRecursionLayer" class="crosslink">openDescriptionDashboardRecursionLayer</a> after a certain delay of ms (this procedure is similar to the one defined in <a href="../classes/VideoEditorComponents.html#method_startVideoEditorPreviewClipWithDelay" class="crosslink">startVideoEditorPreviewClipWithDelay</a>, in the module <a href="../modules/video-editor.html">video-editor</a>.</p>
 
     </div>
 
@@ -496,46 +452,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">old_pos</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                        <code class="param-name">item</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>old page</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">pos</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>new page</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">poges_amount</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>amount of pages of lessons</p>
+                        <p>the div that expands, containing a hidden description</p>
 
                     </div>
 
@@ -552,8 +476,8 @@
 </div>
 
                 
-                    <div id="method_changePageDashboardMediaElements" class="method item">
-    <h3 class="name"><code>changePageDashboardMediaElements</code></h3>
+                    <div id="method_openDescriptionDashboardRecursionLayer" class="method item">
+    <h3 class="name"><code>openDescriptionDashboardRecursionLayer</code></h3>
 
     
         <div class="args">
@@ -561,19 +485,31 @@
             
                 <li class="arg">
                     
-                        <code>old_pos</code>
+                        <code>item</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>pos</code>
+                        <code>t</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>poges_amount</code>
+                        <code>h_i</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>h_f</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>tot_time</code>
                     
                 </li>
             
@@ -606,7 +542,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_dashboard.js.html#l104"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:104</code></a>
+        <a href="../files/app_assets_javascripts_dashboard.js.html#l256"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:256</code></a>
         
         </p>
 
@@ -617,7 +553,7 @@
     </div>
 
     <div class="description">
-        <p>This function changes page of the section containing suggested elements. As already mentioned, the method reloads the pagination using <a href="../classes/DashboardPagination.html#method_reloadMediaElementsDashboardPagination" class="crosslink">reloadMediaElementsDashboardPagination</a>.</p>
+        <p>This method is used to open the special div containing description, author and subject of a lesson. It doesn&#39;t use animate so it&#39;s possible to reverse the expansion just firing mouseleave on the lesson.</p>
 
     </div>
 
@@ -629,14 +565,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">old_pos</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                        <code class="param-name">item</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>old page</p>
+                        <p>the div that expands, containing a hidden description</p>
 
                     </div>
 
@@ -645,14 +581,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">pos</code>
+                        <code class="param-name">t</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>new page</p>
+                        <p>the current time in the animation</p>
 
                     </div>
 
@@ -661,113 +597,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">poges_amount</code>
+                        <code class="param-name">h_i</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>amount of pages of elements</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_getHtmlPagination" class="method item">
-    <h3 class="name"><code>getHtmlPagination</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>pos</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>pages_amount</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_dashboard.js.html#l120"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:120</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>This function generates HTML code with the same functionality of the one defined in the partial <i>views/shared/pagination.html.erb</i>.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">pos</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>selected page</p>
+                        <p>the current height</p>
 
                     </div>
 
@@ -776,123 +613,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">pages_amount</code>
+                        <code class="param-name">h_f</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>total amount of pages</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    <p>JQuery HTML element to be attached to the document</p>
-
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_reloadDashboardPages" class="method item">
-    <h3 class="name"><code>reloadDashboardPages</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>lessons_page</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>media_elements_page</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_dashboard.js.html#l161"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:161</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>This function sets the current pages of lessons and elements, without loading the pagination. It&#39;s only used in the index.js.erb for pagination.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">lessons_page</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>page to be selected for lessons</p>
+                        <p>the final height of the div</p>
 
                     </div>
 
@@ -901,236 +629,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">media_elements_page</code>
+                        <code class="param-name">tot_time</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>page to be selected for media elements</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_reloadLessonsDashboardPagination" class="method item">
-    <h3 class="name"><code>reloadLessonsDashboardPagination</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>pos</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>poges_amount</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_dashboard.js.html#l175"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:175</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>This function reloads the pagination for lessons (it uses <a href="../classes/DashboardPagination.html#method_getHtmlPagination" class="crosslink">getHtmlPagination</a>).</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">pos</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>current page</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">poges_amount</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>amount of pages for lessons</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_reloadMediaElementsDashboardPagination" class="method item">
-    <h3 class="name"><code>reloadMediaElementsDashboardPagination</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>pos</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>poges_amount</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_dashboard.js.html#l203"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:203</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>This function reloads the pagination for media elements (it uses <a href="../classes/DashboardPagination.html#method_getHtmlPagination" class="crosslink">getHtmlPagination</a>).</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">pos</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>current page</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">poges_amount</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>amount of pages for elements</p>
+                        <p>the total time available to achieve the animation</p>
 
                     </div>
 

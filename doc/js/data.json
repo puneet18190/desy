@@ -14,9 +14,9 @@
             "classes": {},
             "fors": {
                 "AdminAutocomplete": 1,
+                "AdminBrowserSupport": 1,
                 "AdminCollapsed": 1,
-                "AdminDocumentReady": 1,
-                "browserSupport": 1
+                "AdminDocumentReady": 1
             },
             "namespaces": {}
         },
@@ -83,9 +83,10 @@
             },
             "classes": {},
             "fors": {
-                "DashboardDocumentReady": 1,
-                "DashboardGeneral": 1,
-                "DashboardPagination": 1
+                "DashboardAccessories": 1,
+                "DashboardExpandedContents": 1,
+                "DashboardLessonDescriptions": 1,
+                "DashboardResizing": 1
             },
             "namespaces": {}
         },
@@ -111,8 +112,7 @@
             },
             "classes": {},
             "fors": {
-                "DocumentsDocumentReady": 1,
-                "DocumentsUploader": 1
+                "DocumentsDocumentReady": 1
             },
             "namespaces": {}
         },
@@ -210,24 +210,10 @@
             "classes": {},
             "fors": {
                 "MediaElementEditorCache": 1,
+                "MediaElementEditorConversion": 1,
                 "MediaElementEditorDocumentReady": 1,
                 "MediaElementEditorForms": 1,
                 "MediaElementEditorHorizontalTimelines": 1
-            },
-            "namespaces": {}
-        },
-        "app/assets/javascripts/media_element_loader.js": {
-            "name": "app/assets/javascripts/media_element_loader.js",
-            "modules": {
-                "media-element-loader": 1
-            },
-            "classes": {},
-            "fors": {
-                "MediaElementLoaderConversion": 1,
-                "MediaElementLoaderDocumentReady": 1,
-                "MediaElementLoaderDone": 1,
-                "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1
             },
             "namespaces": {}
         },
@@ -295,6 +281,18 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/uploader.js": {
+            "name": "app/assets/javascripts/uploader.js",
+            "modules": {
+                "uploader": 1
+            },
+            "classes": {},
+            "fors": {
+                "UploadCallbacks": 1,
+                "UploaderDocumentReady": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/video_editor.js": {
             "name": "app/assets/javascripts/video_editor.js",
             "modules": {
@@ -337,15 +335,15 @@
             "submodules": {},
             "classes": {
                 "AdminAutocomplete": 1,
+                "AdminBrowserSupport": 1,
                 "AdminCollapsed": 1,
-                "AdminDocumentReady": 1,
-                "browserSupport": 1
+                "AdminDocumentReady": 1
             },
             "fors": {
                 "AdminAutocomplete": 1,
+                "AdminBrowserSupport": 1,
                 "AdminCollapsed": 1,
-                "AdminDocumentReady": 1,
-                "browserSupport": 1
+                "AdminDocumentReady": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -366,7 +364,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/browser_not_supported/application.js",
             "line": 1,
-            "description": "Browser supoprt checking functions"
+            "description": "Browser support checking functions"
         },
         "ajax-loader": {
             "name": "ajax-loader",
@@ -441,20 +439,22 @@
             "name": "dashboard",
             "submodules": {},
             "classes": {
-                "DashboardDocumentReady": 1,
-                "DashboardGeneral": 1,
-                "DashboardPagination": 1
+                "DashboardAccessories": 1,
+                "DashboardExpandedContents": 1,
+                "DashboardLessonDescriptions": 1,
+                "DashboardResizing": 1
             },
             "fors": {
-                "DashboardDocumentReady": 1,
-                "DashboardGeneral": 1,
-                "DashboardPagination": 1
+                "DashboardAccessories": 1,
+                "DashboardExpandedContents": 1,
+                "DashboardLessonDescriptions": 1,
+                "DashboardResizing": 1
             },
             "namespaces": {},
             "tag": "module",
             "file": "app/assets/javascripts/dashboard.js",
             "line": 1,
-            "description": "The dashboard is the home page of DESY: the page is divided in two sections, one for <b>suggested elements</b> and one for <b>suggested lessons</b>. Each of these two sections is split into three pages of lessons and elements. When the server loads the dashboard, all the six pages (three for lessons, three for elements) are loaded together, and all the operations are handled with javascript functions.\n<br/><br/>\nThere are two simple functions that switch between the pages for lessons and elements (see both methods of {{#crossLink \"DashboardGeneral\"}}{{/crossLink}}). A bit more complicated are the functions to pass from a page to another (all contained in the class {{#crossLink \"DashboardPagination\"}}{{/crossLink}}): the core of such an asynchronous pagination is the method {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}} that reconstructs the normal pagination without calling the corresponding partial in <i>views/shared/pagination.html.erb</i>: this pagination is unique for both elements and lessons, and it is reloaded each time the user changes page using the functions {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}} and {{#crossLink \"DashboardPagination/reloadMediaElementsDashboardPagination:method\"}}{{/crossLink}}."
+            "description": "The dashboard contains a list of suggested lessons and media elements. The dashboard is the first page shown to the logged user.\n<br/><br/>\nWhen the dashboard is opened at first, it's possible to see two subsections, one containing elements and the other one containing lessons. The number of items shown depends on the browser, this functionality is handled by the class {{#crossLink \"DashboardResizing\"}}{{/crossLink}}. At any time the user resizes the window, the application calls the server that responds with index.js (see {{#crossLink \"DashboardAccessories/dashboardDocumentReady:method\"}}{{/crossLink}}).\n<br/><br/>\nClicking on a special icon, the section of lessons or media elements can be expanded or compressed: this functionality is handled in {{#crossLink \"DashboardExpandedContents\"}}{{/crossLink}}. Finally, a single lesson has its own expansion that opens a div containing description, author and subject: see functions in the class {{#crossLink \"DashboardLessonDescriptions\"}}{{/crossLink}}."
         },
         "dialogs": {
             "name": "dialogs",
@@ -483,12 +483,10 @@
             "name": "documents",
             "submodules": {},
             "classes": {
-                "DocumentsDocumentReady": 1,
-                "DocumentsUploader": 1
+                "DocumentsDocumentReady": 1
             },
             "fors": {
-                "DocumentsDocumentReady": 1,
-                "DocumentsUploader": 1
+                "DocumentsDocumentReady": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -631,12 +629,14 @@
             "submodules": {},
             "classes": {
                 "MediaElementEditorCache": 1,
+                "MediaElementEditorConversion": 1,
                 "MediaElementEditorDocumentReady": 1,
                 "MediaElementEditorForms": 1,
                 "MediaElementEditorHorizontalTimelines": 1
             },
             "fors": {
                 "MediaElementEditorCache": 1,
+                "MediaElementEditorConversion": 1,
                 "MediaElementEditorDocumentReady": 1,
                 "MediaElementEditorForms": 1,
                 "MediaElementEditorHorizontalTimelines": 1
@@ -646,29 +646,6 @@
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 1,
             "description": "This module contains javascript functions common to all the editors ({{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})."
-        },
-        "media-element-loader": {
-            "name": "media-element-loader",
-            "submodules": {},
-            "classes": {
-                "MediaElementLoaderConversion": 1,
-                "MediaElementLoaderDocumentReady": 1,
-                "MediaElementLoaderDone": 1,
-                "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1
-            },
-            "fors": {
-                "MediaElementLoaderConversion": 1,
-                "MediaElementLoaderDocumentReady": 1,
-                "MediaElementLoaderDone": 1,
-                "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1
-            },
-            "namespaces": {},
-            "tag": "module",
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 1,
-            "description": "Javascript functions used in the media element loader."
         },
         "notifications": {
             "name": "notifications",
@@ -763,6 +740,23 @@
             "line": 1,
             "description": "The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>), and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink \"AdminAutocomplete/initNotificationsAutocomplete:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink \"TagsInitializers/initSearchTagsAutocomplete:method\"}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink \"TagsDocumentReady/tagsDocumentReady:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging</b> autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an 'x' to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a <b>container</b> div that contains a list of tag <b>boxes</b> (implemented with span, see {{#crossLink \"TagsAccessories/createTagSpan:method\"}}{{/crossLink}}) and an <b>tag input</b> where the user writes; when he inserts a new tag and presses <i>enter</i> or <i>comma</i>, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see {{#crossLink \"TagsAccessories/disableTagsInputTooHigh:method\"}}{{/crossLink}}). During this whole process, a <b>hidden input</b> gets updated with a string representing the current tags separated by comma ({{#crossLink \"TagsAccessories/addToTagsValue:method\"}}{{/crossLink}}, {{#crossLink \"TagsAccessories/removeFromTagsValue:method\"}}{{/crossLink}}).\n<br/><br/>\nThe system also checks if the inserted tag is not repeated (using {{#crossLink \"TagsAccessories/checkNoTagDuplicates:method\"}}{{/crossLink}}), and assigns a different color for tags already in the database and for new ones ({{#crossLink \"TagsAccessories/addTagWithoutSuggestion:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging autocomplete mode</b> is initialized for six standard forms (see initializers in the class {{#crossLink \"TagsDocumentReady\"}}{{/crossLink}})."
         },
+        "uploader": {
+            "name": "uploader",
+            "submodules": {},
+            "classes": {
+                "UploadCallbacks": 1,
+                "UploaderDocumentReady": 1
+            },
+            "fors": {
+                "UploadCallbacks": 1,
+                "UploaderDocumentReady": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 1,
+            "description": "Javascript functions used in the media element and document loader."
+        },
         "video-editor": {
             "name": "video-editor",
             "submodules": {},
@@ -832,6 +826,17 @@
             "module": "admin",
             "namespace": ""
         },
+        "AdminBrowserSupport": {
+            "name": "AdminBrowserSupport",
+            "shortname": "AdminBrowserSupport",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "admin",
+            "namespace": ""
+        },
         "AdminCollapsed": {
             "name": "AdminCollapsed",
             "shortname": "AdminCollapsed",
@@ -846,17 +851,6 @@
         "AdminDocumentReady": {
             "name": "AdminDocumentReady",
             "shortname": "AdminDocumentReady",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "admin",
-            "namespace": ""
-        },
-        "browserSupport": {
-            "name": "browserSupport",
-            "shortname": "browserSupport",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1041,9 +1035,9 @@
             "module": "buttons",
             "namespace": ""
         },
-        "DashboardDocumentReady": {
-            "name": "DashboardDocumentReady",
-            "shortname": "DashboardDocumentReady",
+        "DashboardAccessories": {
+            "name": "DashboardAccessories",
+            "shortname": "DashboardAccessories",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1052,9 +1046,9 @@
             "module": "dashboard",
             "namespace": ""
         },
-        "DashboardGeneral": {
-            "name": "DashboardGeneral",
-            "shortname": "DashboardGeneral",
+        "DashboardExpandedContents": {
+            "name": "DashboardExpandedContents",
+            "shortname": "DashboardExpandedContents",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1063,9 +1057,20 @@
             "module": "dashboard",
             "namespace": ""
         },
-        "DashboardPagination": {
-            "name": "DashboardPagination",
-            "shortname": "DashboardPagination",
+        "DashboardLessonDescriptions": {
+            "name": "DashboardLessonDescriptions",
+            "shortname": "DashboardLessonDescriptions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "dashboard",
+            "namespace": ""
+        },
+        "DashboardResizing": {
+            "name": "DashboardResizing",
+            "shortname": "DashboardResizing",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1132,17 +1137,6 @@
         "DocumentsDocumentReady": {
             "name": "DocumentsDocumentReady",
             "shortname": "DocumentsDocumentReady",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "documents",
-            "namespace": ""
-        },
-        "DocumentsUploader": {
-            "name": "DocumentsUploader",
-            "shortname": "DocumentsUploader",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1448,6 +1442,17 @@
             "module": "media-element-editor",
             "namespace": ""
         },
+        "MediaElementEditorConversion": {
+            "name": "MediaElementEditorConversion",
+            "shortname": "MediaElementEditorConversion",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "media-element-editor",
+            "namespace": ""
+        },
         "MediaElementEditorDocumentReady": {
             "name": "MediaElementEditorDocumentReady",
             "shortname": "MediaElementEditorDocumentReady",
@@ -1479,61 +1484,6 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "media-element-editor",
-            "namespace": ""
-        },
-        "MediaElementLoaderConversion": {
-            "name": "MediaElementLoaderConversion",
-            "shortname": "MediaElementLoaderConversion",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "MediaElementLoaderDocumentReady": {
-            "name": "MediaElementLoaderDocumentReady",
-            "shortname": "MediaElementLoaderDocumentReady",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "MediaElementLoaderDone": {
-            "name": "MediaElementLoaderDone",
-            "shortname": "MediaElementLoaderDone",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "MediaElementLoaderErrors": {
-            "name": "MediaElementLoaderErrors",
-            "shortname": "MediaElementLoaderErrors",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "MediaElementLoaderGeneral": {
-            "name": "MediaElementLoaderGeneral",
-            "shortname": "MediaElementLoaderGeneral",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
             "namespace": ""
         },
         "NotificationsAccessories": {
@@ -1688,6 +1638,28 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "tags",
+            "namespace": ""
+        },
+        "UploadCallbacks": {
+            "name": "UploadCallbacks",
+            "shortname": "UploadCallbacks",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "uploader",
+            "namespace": ""
+        },
+        "UploaderDocumentReady": {
+            "name": "UploaderDocumentReady",
+            "shortname": "UploaderDocumentReady",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "uploader",
             "namespace": ""
         },
         "VideoEditorAddComponents": {
@@ -1869,6 +1841,15 @@
         {
             "file": "app/assets/javascripts/admin/functions.js",
             "line": 49,
+            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}",
+            "itemtype": "method",
+            "name": "adminBrowserSupport",
+            "class": "AdminBrowserSupport",
+            "module": "admin"
+        },
+        {
+            "file": "app/assets/javascripts/admin/functions.js",
+            "line": 61,
             "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
             "itemtype": "method",
             "name": "openAndLoadNextTr",
@@ -1884,7 +1865,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 72,
+            "line": 84,
             "description": "Initializes the browser classes in the tag html. Same functionality as {{#crossLink \"GeneralDocumentReady/browsersDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminBrowsersDocumentReady",
@@ -1893,7 +1874,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 89,
+            "line": 101,
             "description": "Initializes the effects of collapse and change date.",
             "itemtype": "method",
             "name": "adminEffectsDocumentReady",
@@ -1902,7 +1883,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 148,
+            "line": 160,
             "description": "Initializes the locations filling. See similar {{#crossLink \"GeneralDocumentReady/locationsDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminLocationsDocumentReady",
@@ -1911,7 +1892,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 262,
+            "line": 274,
             "description": "Initializes effects for MediaElement.",
             "itemtype": "method",
             "name": "adminMediaElementsDocumentReady",
@@ -1920,7 +1901,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 349,
+            "line": 361,
             "description": "Initializes actions for less important tables, such as Tag, Subject, SchoolLevel",
             "itemtype": "method",
             "name": "adminMiscellaneaDocumentReady",
@@ -1929,7 +1910,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 389,
+            "line": 401,
             "description": "Initializes effects for the administration search engine.",
             "itemtype": "method",
             "name": "adminSearchDocumentReady",
@@ -1938,7 +1919,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 450,
+            "line": 462,
             "description": "Initializes effects for sorting in administration search engine.",
             "itemtype": "method",
             "name": "adminSortingDocumentReady",
@@ -1947,7 +1928,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 494,
+            "line": 506,
             "description": "Initializes effects for User.",
             "itemtype": "method",
             "name": "adminUsersDocumentReady",
@@ -1955,20 +1936,11 @@
             "module": "admin"
         },
         {
-            "file": "app/assets/javascripts/admin/functions.js",
-            "line": 514,
-            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}here{{/crossLink}}",
-            "itemtype": "method",
-            "name": "adminBrowserSupport",
-            "class": "browserSupport",
-            "module": "admin"
-        },
-        {
             "file": "app/assets/javascripts/browser_not_supported/application.js",
             "line": 6,
-            "description": "Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML. The supported browsers version is implemented {{#crossLink \"GeneralMiscellanea/browserSupport:method\"}}here{{/crossLink}}",
+            "description": "Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML. Implements two empty functions, one in {{#crossLink \"AdminBrowserSupport/adminBrowserSupport:method\"}}{{/crossLink}}, and one in {{#crossLink \"GeneralMiscellanea/browserSupport:method\"}}{{/crossLink}}.",
             "itemtype": "method",
-            "name": "browserSupport",
+            "name": "browserSupportMain",
             "class": "BrowserSupportMain",
             "module": "browser-support"
         },
@@ -2966,178 +2938,197 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 12,
-            "description": "Initializer for the animation effects of the Dashboard.",
+            "line": 14,
+            "description": "Initializes the dashboard, and reactions to window resizing. To handle hover sensitive lessons and show a div containing the description, the method calls functions in {{#crossLink \"DashboardLessonDescriptions\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "dashboardDocumentReady",
-            "class": "DashboardDocumentReady",
-            "module": "dashboard"
-        },
-        {
-            "file": "app/assets/javascripts/dashboard.js",
-            "line": 31,
-            "description": "Assigns a class to leave the correct space between the two columns of lessons",
-            "itemtype": "method",
-            "name": "realignDashboardLessons",
-            "class": "DashboardGeneral",
-            "module": "dashboard"
-        },
-        {
-            "file": "app/assets/javascripts/dashboard.js",
-            "line": 48,
-            "description": "This function switches to the page of suggested lessons, and reloads the pagination (if there are no suggested lessons the pagination is removed).",
-            "itemtype": "method",
-            "name": "switchToSuggestedLessons",
-            "class": "DashboardGeneral",
+            "class": "DashboardAccessories",
             "module": "dashboard"
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
             "line": 66,
-            "description": "This function switches to the page of suggested elements, and reloads the pagination (if there are no suggested elements the pagination is removed).",
+            "description": "Empties the pages, before loading new contents. This is used in the action index.js.erb.",
             "itemtype": "method",
-            "name": "switchToSuggestedMediaElements",
-            "class": "DashboardGeneral",
+            "name": "emptyAllPagesInDashboard",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "either 'lessons' or 'media_elements'",
+                    "type": "String"
+                }
+            ],
+            "class": "DashboardAccessories",
             "module": "dashboard"
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 88,
-            "description": "This function changes page of the section containing suggested lessons. As already mentioned, the method reloads the pagination using {{#crossLink \"DashboardPagination/reloadLessonsDashboardPagination:method\"}}{{/crossLink}}.",
+            "line": 82,
+            "description": "Resets all the pages to invisible, and sets as visible the one selected by the user.",
             "itemtype": "method",
-            "name": "changePageDashboardLessons",
+            "name": "resetVisibilityOfAllPagesInDashboard",
             "params": [
                 {
-                    "name": "old_pos",
-                    "description": "old page",
-                    "type": "Number"
+                    "name": "selector",
+                    "description": "either 'lessons' or 'media_elements'",
+                    "type": "String"
                 },
                 {
-                    "name": "pos",
-                    "description": "new page",
-                    "type": "Number"
-                },
-                {
-                    "name": "poges_amount",
-                    "description": "amount of pages of lessons",
+                    "name": "visible",
+                    "description": "the number of the page to be shown",
                     "type": "Number"
                 }
             ],
-            "class": "DashboardPagination",
+            "class": "DashboardAccessories",
             "module": "dashboard"
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 104,
-            "description": "This function changes page of the section containing suggested elements. As already mentioned, the method reloads the pagination using {{#crossLink \"DashboardPagination/reloadMediaElementsDashboardPagination:method\"}}{{/crossLink}}.",
+            "line": 99,
+            "description": "Compresses the section 'lessons', using animate to have a graphical effect.",
             "itemtype": "method",
-            "name": "changePageDashboardMediaElements",
-            "params": [
-                {
-                    "name": "old_pos",
-                    "description": "old page",
-                    "type": "Number"
-                },
-                {
-                    "name": "pos",
-                    "description": "new page",
-                    "type": "Number"
-                },
-                {
-                    "name": "poges_amount",
-                    "description": "amount of pages of elements",
-                    "type": "Number"
-                }
-            ],
-            "class": "DashboardPagination",
+            "name": "compressLessonsInDashboard",
+            "class": "DashboardExpandedContents",
             "module": "dashboard"
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 120,
-            "description": "This function generates HTML code with the same functionality of the one defined in the partial <i>views/shared/pagination.html.erb</i>.",
+            "line": 123,
+            "description": "Compresses the section 'media elements', using animate to have a graphical effect.",
             "itemtype": "method",
-            "name": "getHtmlPagination",
+            "name": "compressMediaElementsInDashboard",
+            "class": "DashboardExpandedContents",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 147,
+            "description": "Expands the section 'lessons', using animate to have a graphical effect.",
+            "itemtype": "method",
+            "name": "expandLessonsInDashboard",
+            "class": "DashboardExpandedContents",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 167,
+            "description": "Expands the section 'media elements', using animate to have a graphical effect. The variable 'scroll_height' is calculated as follows: if the section lessons has been expanded (see {{#crossLink \"DashboardExpandedContents/expandLessonsInDashboard:method\"}}{{/crossLink}}) the overall height is 72px (header) + 61px (header menu) + 50px (margin of global content) + 70px (header of lessons) + 660px (height of lessons) + 40px (pagination of lessons) + 50px (margin of the section elements) + 70px (header of elements) + 660px (height of section elements, once it is expanded) + 40px (pagination of elements) + 50px (padding between main content and footer) = 1823px; if lessons are not expanded, the height of lessons is only 315, and it's not calculated the height of lessons pagination, obtaining a total of 1438px. The scroll is launched with a delay of 150 ms, to avoid overlapping with the expansion effect.",
+            "itemtype": "method",
+            "name": "expandMediaElementsInDashboard",
+            "class": "DashboardExpandedContents",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 191,
+            "description": "This function is used to initialize the paginator in the dashboard. It replaces the paginator, copying and pasting it from a hidden div. The method is called only for an expanded section, otherwise there is no pagination.",
+            "itemtype": "method",
+            "name": "initializeDashboardPagination",
             "params": [
                 {
+                    "name": "selector",
+                    "description": "either 'lessons' or 'media_elements'",
+                    "type": "String"
+                },
+                {
                     "name": "pos",
-                    "description": "selected page",
+                    "description": "the current page",
                     "type": "Number"
                 },
                 {
                     "name": "pages_amount",
-                    "description": "total amount of pages",
+                    "description": "the total amount of pages",
                     "type": "Number"
                 }
             ],
-            "return": {
-                "description": "JQuery HTML element to be attached to the document",
-                "type": "Object"
-            },
-            "class": "DashboardPagination",
+            "class": "DashboardExpandedContents",
             "module": "dashboard"
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 161,
-            "description": "This function sets the current pages of lessons and elements, without loading the pagination. It's only used in the index.js.erb for pagination.",
+            "line": 240,
+            "description": "This method calls {{#crossLink \"DashboardLessonDescriptions/openDescriptionDashboardRecursionLayer:method\"}}{{/crossLink}} after a certain delay of ms (this procedure is similar to the one defined in {{#crossLink \"VideoEditorComponents/startVideoEditorPreviewClipWithDelay:method\"}}{{/crossLink}}, in the module {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
-            "name": "reloadDashboardPages",
+            "name": "openDescriptionDashboardLayer",
             "params": [
                 {
-                    "name": "lessons_page",
-                    "description": "page to be selected for lessons",
-                    "type": "Number"
-                },
-                {
-                    "name": "media_elements_page",
-                    "description": "page to be selected for media elements",
-                    "type": "Number"
+                    "name": "item",
+                    "description": "the div that expands, containing a hidden description",
+                    "type": "Object"
                 }
             ],
-            "class": "DashboardPagination",
+            "class": "DashboardLessonDescriptions",
             "module": "dashboard"
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 175,
-            "description": "This function reloads the pagination for lessons (it uses {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}}).",
+            "line": 256,
+            "description": "This method is used to open the special div containing description, author and subject of a lesson. It doesn't use animate so it's possible to reverse the expansion just firing mouseleave on the lesson.",
             "itemtype": "method",
-            "name": "reloadLessonsDashboardPagination",
+            "name": "openDescriptionDashboardRecursionLayer",
             "params": [
                 {
-                    "name": "pos",
-                    "description": "current page",
+                    "name": "item",
+                    "description": "the div that expands, containing a hidden description",
+                    "type": "Object"
+                },
+                {
+                    "name": "t",
+                    "description": "the current time in the animation",
                     "type": "Number"
                 },
                 {
-                    "name": "poges_amount",
-                    "description": "amount of pages for lessons",
+                    "name": "h_i",
+                    "description": "the current height",
+                    "type": "Number"
+                },
+                {
+                    "name": "h_f",
+                    "description": "the final height of the div",
+                    "type": "Number"
+                },
+                {
+                    "name": "tot_time",
+                    "description": "the total time available to achieve the animation",
                     "type": "Number"
                 }
             ],
-            "class": "DashboardPagination",
+            "class": "DashboardLessonDescriptions",
             "module": "dashboard"
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 203,
-            "description": "This function reloads the pagination for media elements (it uses {{#crossLink \"DashboardPagination/getHtmlPagination:method\"}}{{/crossLink}}).",
+            "line": 288,
+            "description": "This method makes decisions about how to react to a resize event. First it centers the lessons, calculating the maximum number that fits the available horizontal space, and the margin-left to apply. Then, it uses such a margin left to calculate the available space for media elements (these must be aligned with the lessons on both left and right sides). After the correct number of lessons and media elements has been calculated, the method decides if it's necessary to call the server and fetch new items: if this is not necessary, it's called {{#crossLink \"DashboardResizing/resizeLessonsAndMediaElementsInDashboard:method}}{{/crossLink}}.",
             "itemtype": "method",
-            "name": "reloadMediaElementsDashboardPagination",
+            "name": "dashboardResizeController",
+            "class": "DashboardResizing",
+            "module": "dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 330,
+            "description": "This method resizes lessons and media elements without calling the server to add new ones.",
+            "itemtype": "method",
+            "name": "resizeLessonsAndMediaElementsInDashboard",
             "params": [
                 {
-                    "name": "pos",
-                    "description": "current page",
+                    "name": "lessons",
+                    "description": "how many lessons fit horizontally the screen",
                     "type": "Number"
                 },
                 {
-                    "name": "poges_amount",
-                    "description": "amount of pages for elements",
+                    "name": "media_elements",
+                    "description": "how many media elements fit horizontally the screen",
                     "type": "Number"
+                },
+                {
+                    "name": "with_vertical_margin",
+                    "description": "if true, sets temporarily the vertical margin to adapt to the new pagination: this is used in case the server is too slow, to visualize in a good way the items while waiting for an answer",
+                    "type": "Boolean"
                 }
             ],
-            "class": "DashboardPagination",
+            "class": "DashboardResizing",
             "module": "dashboard"
         },
         {
@@ -3377,7 +3368,16 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 346,
-            "description": "Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule \"media-element-loader\"}}{{/crossLinkModule}}.",
+            "description": "Dialog containing the form to upload a new document. This function interacts with the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}.",
+            "itemtype": "method",
+            "name": "showLoadDocumentPopUp",
+            "class": "DialogsWithForm",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 381,
+            "description": "Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "showLoadMediaElementPopUp",
             "class": "DialogsWithForm",
@@ -3385,8 +3385,8 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 384,
-            "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementLoaderGeneral/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
+            "line": 419,
+            "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "showMediaElementInfoPopUp",
             "params": [
@@ -3401,7 +3401,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 433,
+            "line": 471,
             "description": "Dialog containing the form to send the public link of a lesson. Used in {{#crossLink \"VirtualClassroomSendLink\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showSendLessonLinkPopUp",
@@ -3417,7 +3417,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 477,
+            "line": 515,
             "description": "Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink \"VirtualClassroomMultipleLoading\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showVirtualClassroomQuickSelectPopUp",
@@ -3460,76 +3460,11 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 145,
+            "line": 146,
             "description": "Initializer for documents functionality (search and placeholders javascripts).",
             "itemtype": "method",
             "name": "documentsDocumentReadySearch",
             "class": "DocumentsDocumentReady",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 169,
-            "description": "Initializer for the loading form.",
-            "itemtype": "method",
-            "name": "documentsDocumentReadyUploader",
-            "class": "DocumentsDocumentReady",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 212,
-            "description": "Dialog containing the form to upload a new document.",
-            "itemtype": "method",
-            "name": "showLoadDocumentPopUp",
-            "class": "DocumentsUploader",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 247,
-            "description": "Handles 413 status error, file too large.",
-            "itemtype": "method",
-            "name": "uploadDocumentDone",
-            "return": {
-                "description": "false, for some reason",
-                "type": "Boolean"
-            },
-            "class": "DocumentsUploader",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 263,
-            "description": "Reloads documents page after new document is successfully loaded.",
-            "itemtype": "method",
-            "name": "uploadDocumentLoaderDoneRedirect",
-            "class": "DocumentsUploader",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 275,
-            "description": "Update form fields with error labels.",
-            "itemtype": "method",
-            "name": "uploadDocumentLoaderError",
-            "params": [
-                {
-                    "name": "errors",
-                    "description": "errors list",
-                    "type": "Array"
-                }
-            ],
-            "class": "DocumentsUploader",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 297,
-            "description": "Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.",
-            "itemtype": "method",
-            "name": "initDocumentLoader",
-            "class": "DocumentsUploader",
             "module": "documents"
         },
         {
@@ -3654,7 +3589,33 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 6,
+            "line": 10,
+            "description": "Calculates in which page the user is going to be redirected when he is watching a paginated list of items, and he resizes the screen. Used for example in the dashboard, and in the section of media elements.",
+            "itemtype": "method",
+            "name": "calculateTheNewVisiblePage",
+            "params": [
+                {
+                    "name": "for_page",
+                    "description": "items for page before resizing",
+                    "type": "Number"
+                },
+                {
+                    "name": "page",
+                    "description": "page the user was visualizing before resizing",
+                    "type": "Number"
+                },
+                {
+                    "name": "new_for_page",
+                    "description": "items for page after resizing",
+                    "type": "Number"
+                }
+            ],
+            "class": "GeneralCentering",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 26,
             "description": "Centers a div into the current window.",
             "itemtype": "method",
             "name": "centerThis",
@@ -3670,7 +3631,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 20,
+            "line": 40,
             "description": "Centers a div into a given container.",
             "itemtype": "method",
             "name": "centerThisInContainer",
@@ -3691,16 +3652,49 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 35,
-            "description": "Recenters the media elements according to their number and the screen resolution.",
+            "line": 55,
+            "description": "Same structure of {{#crossLink \"DashboardResizing/dashboardResizeController:method\"}}{{/crossLink}}.",
             "itemtype": "method",
-            "name": "recenterMyMediaElements",
+            "name": "mediaElementsResizeController",
+            "params": [
+                {
+                    "name": "resize_before",
+                    "description": "if true, it resizes the elements also before calling the server",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "with_fade",
+                    "description": "if true, it resizes with a fade",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "new_page",
+                    "description": "forced page if any",
+                    "type": "Number"
+                }
+            ],
             "class": "GeneralCentering",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 50,
+            "line": 91,
+            "description": "Same structure of {{#crossLink \"DashboardResizing/resizeLessonsAndMediaElementsInDashboard:method\"}}{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "resizeExpandedMediaElements",
+            "params": [
+                {
+                    "name": "for_row",
+                    "description": "how many media elements fit horizontally the screen",
+                    "type": "Number"
+                }
+            ],
+            "class": "GeneralCentering",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 126,
             "description": "This function guesses the browser and writes it in a class of the tag 'html'.",
             "itemtype": "method",
             "name": "browsersDocumentReady",
@@ -3709,52 +3703,34 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 64,
-            "description": "This function sets the default values of SelectBoxe all around the application. This function is necessary because otherwise the original value wouldn't be set, since we use a JQuery plugin to design selects.",
+            "line": 140,
+            "description": "Initializer for functionalities which are common to sections containing media elements.",
             "itemtype": "method",
-            "name": "defaultValueJavaScriptAnimationsDocumentReady",
+            "name": "commonMediaElementsDocumentReady",
             "class": "GeneralDocumentReady",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 82,
-            "description": "Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
+            "line": 167,
+            "description": "Initializer for functionalities which are common to sections containing lessons.",
             "itemtype": "method",
-            "name": "expandedItemsDocumentReady",
+            "name": "commonLessonsDocumentReady",
             "class": "GeneralDocumentReady",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 146,
-            "description": "Similar to {{#crossLink \"GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method\"}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.",
+            "line": 210,
+            "description": "Initializer for global functionalities, used throughout the application.",
             "itemtype": "method",
-            "name": "filtersDocumentReady",
+            "name": "globalDocumentReady",
             "class": "GeneralDocumentReady",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 169,
-            "description": "Initializer for consequences of window resizing.",
-            "itemtype": "method",
-            "name": "generalWindowResizeDocumentReady",
-            "class": "GeneralDocumentReady",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 182,
-            "description": "Initializer for all javascript and JQuery plugins.",
-            "itemtype": "method",
-            "name": "javaScriptAnimationsDocumentReady",
-            "class": "GeneralDocumentReady",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 242,
+            "line": 244,
             "description": "Initializer for locations automatic filling.",
             "itemtype": "method",
             "name": "locationsDocumentReady",
@@ -3763,7 +3739,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 265,
+            "line": 267,
             "description": "Initializes reports forms for both lessons and media elements.",
             "itemtype": "method",
             "name": "reportsDocumentReady",
@@ -3772,16 +3748,61 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 314,
-            "description": "Gets the requested format to visualize media elements.",
+            "line": 312,
+            "description": "Functionalities necessary only for the section 'my documents'.",
             "itemtype": "method",
-            "name": "getMediaElementsFormat",
+            "name": "sectionDocumentsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 322,
+            "description": "Functionalities necessary only for the section 'my lessons'.",
+            "itemtype": "method",
+            "name": "sectionLessonsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 337,
+            "description": "Functionalities necessary only for the section 'my media elements'.",
+            "itemtype": "method",
+            "name": "sectionMediaElementsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 389,
+            "description": "Functionalities necessary only for the sections containing notifications.",
+            "itemtype": "method",
+            "name": "sectionNotificationsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 423,
+            "description": "Functionalities necessary only for the section 'search'.",
+            "itemtype": "method",
+            "name": "sectionSearchDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 446,
+            "description": "Initializes global variables used throughout the javascripts.",
+            "itemtype": "method",
+            "name": "initializeGlobalVariables",
             "class": "GeneralMiscellanea",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 327,
+            "line": 460,
             "description": "Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "redError",
@@ -3790,7 +3811,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 338,
+            "line": 471,
             "description": "Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3806,8 +3827,8 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 366,
-            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}here{{/crossLink}}",
+            "line": 499,
+            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "browserSupport",
             "class": "GeneralMiscellanea",
@@ -3815,46 +3836,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 375,
-            "description": "This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "getCompleteMediaElementsUrlWithoutForPage",
-            "return": {
-                "description": "the current url without the parameter 'for_page'",
-                "type": "String"
-            },
-            "class": "GeneralUrls",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 387,
-            "description": "This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "getCompleteMediaElementsUrlWithoutFilter",
-            "return": {
-                "description": "the current url without the parameter 'filter'",
-                "type": "String"
-            },
-            "class": "GeneralUrls",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 399,
-            "description": "This function returns an url for documents without the parameter 'order'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "getCompleteDocumentsUrlWithoutOrder",
-            "return": {
-                "description": "the current url without the parameter 'order'",
-                "type": "String"
-            },
-            "class": "GeneralUrls",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 410,
+            "line": 507,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3879,7 +3861,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 436,
+            "line": 533,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -4086,6 +4068,15 @@
         {
             "file": "app/assets/javascripts/jquery_patches.js",
             "line": 12,
+            "description": "If the browser is Chrome, it returns body, otherwise it returns html",
+            "itemtype": "method",
+            "name": "browserDependingScrollToTag",
+            "class": "JqueryPatchesBrowsers",
+            "module": "jquery-patches"
+        },
+        {
+            "file": "app/assets/javascripts/jquery_patches.js",
+            "line": 21,
             "description": "Detects if the browser is an iPad, or iPhone, or other mobile browsers, and saves the result in <b>$.browser.[mobile_kind]</b>.",
             "itemtype": "method",
             "name": "mobileDetection",
@@ -4094,7 +4085,7 @@
         },
         {
             "file": "app/assets/javascripts/jquery_patches.js",
-            "line": 26,
+            "line": 37,
             "description": "Checks if the application must autoplay media",
             "itemtype": "method",
             "name": "mustAutoplayMediaInLessonViewer",
@@ -4103,7 +4094,7 @@
         },
         {
             "file": "app/assets/javascripts/jquery_patches.js",
-            "line": 35,
+            "line": 46,
             "description": "Checks if the application must react to swipe",
             "itemtype": "method",
             "name": "mustReactToSwipe",
@@ -4761,7 +4752,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1493,
+            "line": 1495,
             "description": "TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink \"LessonEditorTinyMCE/initTinymce:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "handleTinyMCEOveflow",
@@ -4782,7 +4773,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1516,
+            "line": 1518,
             "description": "Function to strip tags in a text pasted inside TinyMCE.",
             "itemtype": "method",
             "name": "stripTagsForCutAndPaste",
@@ -4812,7 +4803,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 45,
+            "line": 49,
             "description": "Initializer for functionalities of attached documents.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadyDocuments",
@@ -4821,7 +4812,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 59,
+            "line": 63,
             "description": "Initializer for functionalities of the playlist menu.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadyPlaylist",
@@ -4830,7 +4821,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 95,
+            "line": 99,
             "description": "Initializer for slides navigation.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadySlidesNavigation",
@@ -4839,7 +4830,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 129,
+            "line": 133,
             "description": "Initializer for functionality of sharing the lesson in social networks.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadySocialNetworks",
@@ -4848,7 +4839,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 182,
+            "line": 186,
             "description": "Used only in the exported lesson, to convert the src of Wiris images (this function is not called by {{#crossLink \"LessonViewerDocumentReady/lessonViewerDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadyWirisConvertSrc",
@@ -4857,7 +4848,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 198,
+            "line": 202,
             "description": "Gets the HTML id of the current slide (marked with the class <b>lesson viewer current slide</b>).",
             "itemtype": "method",
             "name": "getLessonViewerCurrentSlide",
@@ -4870,7 +4861,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 208,
+            "line": 212,
             "description": "Hides the documents.",
             "itemtype": "method",
             "name": "hideDocumentsInLessonViewer",
@@ -4879,7 +4870,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 218,
+            "line": 222,
             "description": "Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink \"LessonViewerDocumentReady/lessonViewerDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "initializeLessonViewer",
@@ -4888,7 +4879,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 241,
+            "line": 245,
             "description": "Shows the documents.",
             "itemtype": "method",
             "name": "showDocumentsInLessonViewer",
@@ -4897,7 +4888,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 254,
+            "line": 258,
             "description": "Stops media playing in current slide.",
             "itemtype": "method",
             "name": "stopMediaInLessonViewer",
@@ -4906,7 +4897,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 276,
+            "line": 280,
             "description": "Hides slides navigation arrows.",
             "itemtype": "method",
             "name": "hideArrowsInLessonViewer",
@@ -4915,7 +4906,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 285,
+            "line": 289,
             "description": "Shows slides navigation arrows.",
             "itemtype": "method",
             "name": "showArrowsInLessonViewer",
@@ -4924,7 +4915,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 298,
+            "line": 302,
             "description": "Closes the playlist menu and executes a callback.",
             "itemtype": "method",
             "name": "closePlaylistMenuInLessonViewer",
@@ -4940,7 +4931,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 313,
+            "line": 317,
             "description": "Opposite of {{#crossLink \"LessonViewerPlaylist/closePlaylistMenuInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "openPlaylistMenuInLessonViewer",
@@ -4949,7 +4940,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 325,
+            "line": 329,
             "description": "Huge method that replaces missing functionalities of the bad plugin JScrollPain. The aim of this method is to select a lesson in the menu, adapt the size of the scroll pane, and if required scroll and execute a callback.",
             "itemtype": "method",
             "name": "selectComponentInLessonViewerPlaylistMenu",
@@ -4970,7 +4961,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 415,
+            "line": 419,
             "description": "This method can be used in two ways:\n<ul>\n  <li><b>with callback</b>, if the user clicks on a lesson in the menu</li>\n  <li><b>without callback</b>, if the user gets to a new lesson while navigating normally (he clicks only on <i>next slide</i> and <i>prev slide</i>, see {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewerWithLessonSwitch:method\"}}{{/crossLink}})</li>\n</ul>",
             "itemtype": "method",
             "name": "switchLessonInPlaylistMenuLessonViewer",
@@ -4991,7 +4982,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 438,
+            "line": 442,
             "description": "Goes to next slide using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "goToNextSlideInLessonViewer",
@@ -5007,7 +4998,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 453,
+            "line": 457,
             "description": "Goes to previous slide using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "goToPrevSlideInLessonViewer",
@@ -5023,7 +5014,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 468,
+            "line": 472,
             "description": "Loads the slide without making any ajax call.",
             "itemtype": "method",
             "name": "loadSlideInLessonViewer",
@@ -5032,7 +5023,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 500,
+            "line": 504,
             "description": "Function to attach to the arrows",
             "itemtype": "method",
             "name": "moveToAdhiacentSlideInLessonViewer",
@@ -5053,7 +5044,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 517,
+            "line": 521,
             "description": "Goes to a given slide. If the new slide contains a media and the browser is not a mobile the media is automaticly played.",
             "itemtype": "method",
             "name": "slideToInLessonViewer",
@@ -5074,7 +5065,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 568,
+            "line": 572,
             "description": "Goes to a slide (using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}) and updates the lesson in playlist menu (using {{#crossLink \"LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method\"}}{{/crossLink}} without callbacks).",
             "itemtype": "method",
             "name": "slideToInLessonViewerWithLessonSwitch",
@@ -5132,6 +5123,27 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 71,
+            "description": "Function that checks the conversion of the unconverted media elements in the page.",
+            "itemtype": "method",
+            "name": "mediaElementLoaderConversionOverview",
+            "params": [
+                {
+                    "name": "list",
+                    "description": "list of media elements that are being checked",
+                    "type": "Array"
+                },
+                {
+                    "name": "time",
+                    "description": "time to iterate the loop",
+                    "type": "Number"
+                }
+            ],
+            "class": "MediaElementEditorConversion",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 113,
             "description": "Initializes the placeholder of the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "mediaElementEditorDocumentReady",
@@ -5140,7 +5152,23 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 117,
+            "line": 159,
+            "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "resetMediaElementChangeInfo",
+            "params": [
+                {
+                    "name": "media_element_id",
+                    "description": "id of the element in the database, used to extract the HTML id",
+                    "type": "Number"
+                }
+            ],
+            "class": "MediaElementEditorForms",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 179,
             "description": "Resets the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method\"}}{{/crossLink}}, {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method\"}}{{/crossLink}} and {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "resetMediaElementEditorForms",
@@ -5149,7 +5177,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 157,
+            "line": 219,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>left</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollLeft",
@@ -5174,7 +5202,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 173,
+            "line": 235,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>right</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollRight",
@@ -5199,7 +5227,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 185,
+            "line": 247,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the absolute position to be assigned to <b>a div that must be aligned to the component</b> after having been moved to first position.",
             "itemtype": "method",
             "name": "getAbsolutePositionTimelineHorizontalScrollPane",
@@ -5234,7 +5262,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 207,
+            "line": 269,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: gets how many components are hidden to the left of the scroll pane.",
             "itemtype": "method",
             "name": "getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane",
@@ -5259,7 +5287,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 220,
+            "line": 282,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: exactly the same as {{#crossLink \"MediaElementEditorHorizontalTimelines/getAbsolutePositionTimelineHorizontalScrollPane:method\"}}{{/crossLink}}, but <b>it returns the position of the scroll pane</b> instead of the absolute pixels for an external div.",
             "itemtype": "method",
             "name": "getNormalizedPositionTimelineHorizontalScrollPane",
@@ -5291,99 +5319,6 @@
             },
             "class": "MediaElementEditorHorizontalTimelines",
             "module": "media-element-editor"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 10,
-            "description": "Function that checks the conversion of the unconverted media elements in the page.",
-            "itemtype": "method",
-            "name": "mediaElementLoaderConversionOverview",
-            "params": [
-                {
-                    "name": "list",
-                    "description": "list of media elements that are being checked",
-                    "type": "Array"
-                },
-                {
-                    "name": "time",
-                    "description": "time to iterate the loop",
-                    "type": "Number"
-                }
-            ],
-            "class": "MediaElementLoaderConversion",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 52,
-            "description": "Initializer for the loading form.",
-            "itemtype": "method",
-            "name": "mediaElementLoaderDocumentReady",
-            "class": "MediaElementLoaderDocumentReady",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 96,
-            "description": "Handles 413 status error, file too large.",
-            "itemtype": "method",
-            "name": "uploadDone",
-            "return": {
-                "description": "false, for some reason",
-                "type": "Boolean"
-            },
-            "class": "MediaElementLoaderDone",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 112,
-            "description": "Reloads media elements page after new media element is successfully loaded.",
-            "itemtype": "method",
-            "name": "uploadMediaElementLoaderDoneRedirect",
-            "class": "MediaElementLoaderDone",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 128,
-            "description": "Update form fields with error labels.",
-            "itemtype": "method",
-            "name": "uploadMediaElementLoaderError",
-            "params": [
-                {
-                    "name": "errors",
-                    "description": "errors list",
-                    "type": "Array"
-                }
-            ],
-            "class": "MediaElementLoaderErrors",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 157,
-            "description": "Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.",
-            "itemtype": "method",
-            "name": "initMediaElementLoader",
-            "class": "MediaElementLoaderGeneral",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 171,
-            "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "resetMediaElementChangeInfo",
-            "params": [
-                {
-                    "name": "media_element_id",
-                    "description": "id of the element in the database, used to extract the HTML id",
-                    "type": "Number"
-                }
-            ],
-            "class": "MediaElementLoaderGeneral",
-            "module": "media-element-loader"
         },
         {
             "file": "app/assets/javascripts/notifications.js",
@@ -5496,7 +5431,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 131,
-            "description": "Global initializer for notifications and help. The function {{#crossLink \"NotificationsDocumentReady/notificationsDocumentReadyLoop:method\"}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink \"MediaElementLoaderConversion/mediaElementLoaderConversionOverview:method\"}}{{/crossLink}}.",
+            "description": "Global initializer for notifications and help. The function {{#crossLink \"NotificationsDocumentReady/notificationsDocumentReadyLoop:method\"}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink \"MediaElementEditorConversion/mediaElementLoaderConversionOverview:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "notificationsDocumentReady",
             "class": "NotificationsDocumentReady",
@@ -6188,7 +6123,7 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 212,
-            "description": "Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}} and the module {{#crossLinkModule \"media-element-loader\"}}{{/crossLinkModule}}).",
+            "description": "Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}} and the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyMediaElementLoader",
             "class": "TagsDocumentReady",
@@ -6261,6 +6196,123 @@
             ],
             "class": "TagsInitializers",
             "module": "tags"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 10,
+            "description": "Recursive animation of the loading bar, according to the function h * x / (x + 1). Time is divided by 400 to slow down the animation.",
+            "itemtype": "method",
+            "name": "uploadAnimationRecursion",
+            "params": [
+                {
+                    "name": "item",
+                    "description": "the selected loading bar",
+                    "type": "Object"
+                },
+                {
+                    "name": "time",
+                    "description": "the current time",
+                    "type": "Number"
+                },
+                {
+                    "name": "increment",
+                    "description": "the increment of time",
+                    "type": "Number"
+                },
+                {
+                    "name": "max_width",
+                    "description": "the total width in pixels of loading bar",
+                    "type": "Number"
+                }
+            ],
+            "class": "UploadCallbacks",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 32,
+            "description": "Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).",
+            "itemtype": "method",
+            "name": "uploadDone",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "either 'document' or 'media-element'",
+                    "type": "String"
+                },
+                {
+                    "name": "errors",
+                    "description": "an array of strings to be shown on the bottom of the loading popup",
+                    "type": "Array"
+                },
+                {
+                    "name": "fields",
+                    "description": "an array of fields that must be bordered with red because they correspond to an error",
+                    "type": "Array"
+                }
+            ],
+            "class": "UploadCallbacks",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 51,
+            "description": "Handles the errors of loading popup.",
+            "itemtype": "method",
+            "name": "uploaderErrors",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "either 'document' or 'media-element'",
+                    "type": "String"
+                },
+                {
+                    "name": "errors",
+                    "description": "an array of strings to be shown on the bottom of the loading popup",
+                    "type": "Array"
+                },
+                {
+                    "name": "fields",
+                    "description": "an array of fields that must be bordered with red because they correspond to an error",
+                    "type": "Array"
+                }
+            ],
+            "class": "UploadCallbacks",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 91,
+            "description": "Handles 413 status error, file too large.",
+            "itemtype": "method",
+            "name": "uploadFileTooLarge",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "either 'document' or 'media-element'",
+                    "type": "String"
+                }
+            ],
+            "class": "UploadCallbacks",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 113,
+            "description": "Initializer for the loading form.",
+            "itemtype": "method",
+            "name": "mediaElementLoaderDocumentReady",
+            "class": "UploaderDocumentReady",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 177,
+            "description": "Initializer for the loading form.",
+            "itemtype": "method",
+            "name": "documentsDocumentReadyUploader",
+            "class": "UploaderDocumentReady",
+            "module": "uploader"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",

@@ -3,11 +3,15 @@ Desy::Application.routes.draw do
   root :to => 'prelogin#home'
   
   # MAIN SECTIONS
-  get  'dashboard'         => 'dashboard#index',         :as => :dashboard
-  get  'lessons'           => 'lessons#index',           :as => :my_lessons
-  get  'media_elements'    => 'media_elements#index',    :as => :my_media_elements
-  get  'virtual_classroom' => 'virtual_classroom#index', :as => :my_virtual_classroom
-  get  'documents'         => 'documents#index',         :as => :documents
+  get 'dashboard'         => 'dashboard#index',         :as => :dashboard
+  get 'lessons'           => 'lessons#index',           :as => :my_lessons
+  get 'media_elements'    => 'media_elements#index',    :as => :my_media_elements
+  get 'virtual_classroom' => 'virtual_classroom#index', :as => :my_virtual_classroom
+  get 'documents'         => 'documents#index',         :as => :documents
+  
+  # DASHBOARD
+  get 'dashboard/lessons'        => 'dashboard#lessons',        :as => :dashboard_lessons
+  get 'dashboard/media_elements' => 'dashboard#media_elements', :as => :dashboard_media_elements
   
   # LESSONS
   post 'lessons/:lesson_id/add'                      => 'lessons#add'
@@ -25,6 +29,7 @@ Desy::Application.routes.draw do
   
   # MEDIA ELEMENTS
   resources :media_elements,                          :only => :create
+  get       'media_elements/create/fake'                    => 'media_elements#create_fake'
   get       'media_elements/new'                            => 'media_elements#new',             :as => :new_media_elements_editor
   post      'media_elements/:media_element_id'              => 'media_elements#update',          :as => :media_element
   post      'media_elements/:media_element_id/add'          => 'media_elements#add'
@@ -36,7 +41,8 @@ Desy::Application.routes.draw do
   
   # DOCUMENTS
   resources :documents,                                 :only => :create
-  post      'documents/:document_id/destroy'                  => 'documents#destroy'
+  get       'documents/create/fake'                           => 'documents#create_fake'
+  delete    'documents/:document_id'                          => 'documents#destroy'
   post      'documents/:document_id'                          => 'documents#update',  :as => :document
   
   # NOTIFICATIONS
@@ -50,7 +56,7 @@ Desy::Application.routes.draw do
   post 'reports/media_element' => 'reports#media_element'
   
   # LESSON EDITOR
-  get  'lessons/new'                                           => 'lesson_editor#new'
+  get  'lessons/new'                                           => 'lesson_editor#new',                   :as => :new_lesson
   post 'lessons/create'                                        => 'lesson_editor#create'
   get  'lessons/:lesson_id/slides/edit'                        => 'lesson_editor#index',                 :as => :lesson_editor
   get  'lessons/:lesson_id/edit'                               => 'lesson_editor#edit',                  :as => :edit_lesson

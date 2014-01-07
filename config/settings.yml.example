@@ -5,7 +5,7 @@ application_full_name: 'DESY - Digital Education System'
 # extended name of the application
 application_extended_name: 'Digital Education System'
 # Copyright of the application (it's displayed in the HTML footer)
-application_copyright: '©2013 DESY. All rights reserved'
+application_copyright: '©2014 DESY. All rights reserved'
 application:
   # Whether to use SSL or not (only for production environment)
   force_ssl: false
@@ -55,26 +55,6 @@ languages:
 seconds_for_timeout_dialogs: 2500
 # Seconds between each ajax call that saves the cache in Video Editor and Audio Editor
 seconds_for_saving_cache: 60000
-# Lessons for page in dashboard
-lessons_for_page_in_dashboard: 6
-# Pages of lessons in dashboard
-lesson_pages_in_dashboard: 3
-# Media elements for page in dashboard
-media_elements_for_page_in_dashboard: 14
-# Pages of media elements in dashboard
-media_element_pages_in_dashboard: 3
-# Pagination of lessons, in sections (1) Lessons and (2) Search engine
-compact_lesson_pagination: 18
-# Pagination of compact media elements, in sections (1) Elements and (2) Search engine
-compact_media_element_pagination: 18
-# Options for pagination of compact media elements, in sections (1) Elements and (2) Search engine
-compact_media_element_pagination_options: [18, 27, 36]
-# Pagination of expanded media elements, in sections (1) Elements and (2) Search engine
-expanded_media_element_pagination: 14
-# Options for pagination of expanded media elements, in sections (1) Elements and (2) Search engine
-expanded_media_element_pagination_options: [14, 21, 28]
-# Pagination of documents, in section my documents
-documents_pagination: 18
 # Number of notifications loaded together (pagination of notifications done with infinite scroll)
 notifications_loaded_together: 8
 # Maximum number of slides in a lesson

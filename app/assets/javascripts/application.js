@@ -40,36 +40,58 @@
 //= require lesson_editor
 //= require lesson_viewer
 //= require media_element_editor
-//= require media_element_loader
 //= require notifications
 //= require players
 //= require profile
 //= require search
 //= require tags
+//= require uploader
 //= require video_editor
 //= require virtual_classroom
 
 
 $(document).ready(function() {
-  window.$html = $('html');
-  window.$loaderVisible = true;
-  window.$loading = $('#loading');
-  window.$body = $('body');
-  window.$captions = $('#popup_captions_container');
-  window.$parameters = $('#popup_parameters_container');
+  initializeGlobalVariables();
   browsersDocumentReady();
+  globalDocumentReady();
+  var in_dashboard = ($('#dashboard_container').length > 0);
+  var in_documents = ($('#my_documents').length > 0);
+  var in_lessons = ($('#my_lessons').length > 0);
+  var in_media_elements = ($('#my_media_elements').length > 0);
+  var in_profile = ($('#profile_title_bar').length > 0);
+  var in_search = ($('#search_lessons_main_page').length > 0 && $('#search_media_elements_main_page').length > 0);
+  var in_virtual_classroom = ($('#my_virtual_classroom').length > 0);
+  if(in_dashboard) {
+    dashboardDocumentReady();
+  }
+  if(in_documents) {
+    sectionDocumentsDocumentReady();
+  }
+  if(in_lessons) {
+    sectionLessonsDocumentReady();
+  }
+  if(in_media_elements) {
+    sectionMediaElementsDocumentReady();
+  }
+  if(in_search) {
+    sectionSearchDocumentReady();
+  }
+  if(in_dashboard || in_documents || in_lessons || in_media_elements || in_profile || in_search || in_virtual_classroom) {
+    sectionNotificationsDocumentReady();
+  }
+  if(in_dashboard || in_media_elements || in_search) {
+    commonMediaElementsDocumentReady();
+  }
+  if(in_dashboard || in_lessons || in_search) {
+    commonLessonsDocumentReady();
+  }
+  // TODO ottimizz a partire da qui non è ottimizzato
   ajaxLoaderDocumentReady();
   audioEditorDocumentReady();
   automaticLoginDocumentReady();
-  if ( $html.hasClass('dashboard-controller index-action') ) dashboardDocumentReady();
-  defaultValueJavaScriptAnimationsDocumentReady();
   documentsDocumentReady();
-  expandedItemsDocumentReady();
-  filtersDocumentReady();
   galleriesDocumentReady();
-  generalWindowResizeDocumentReady();
   imageEditorDocumentReady();
-  javaScriptAnimationsDocumentReady();
   lessonButtonsDocumentReady();
   lessonEditorDocumentReady();
   lessonViewerDocumentReady();

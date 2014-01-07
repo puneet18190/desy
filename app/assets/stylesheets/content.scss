@@ -25,10 +25,17 @@
   
 }
 
-.content {
+.global-content {
   
-  padding: 20px 0 43px 0;
+  padding: 0 0 135px 0;
   color: #939393;
+  
+  .dots_pagination_container {
+    
+    margin-top: 25px;
+    height: 12px;
+    
+  }
   
 }
 
@@ -49,7 +56,7 @@
   
   p {
     
-    font: 180% 'Nunito', "Arial Rounded MT Bold", sans-serif;
+    @include nunito(180%);
     
   }
   
@@ -63,7 +70,7 @@
 
 #lessons_search_amount {
   
-  font: 120% 'Nunito', "Arial Rounded MT Bold", sans-serif;
+  @include nunito(120%);
   
   p {
     
@@ -77,7 +84,7 @@
 
 #media_elements_search_amount {
   
-  font: 120% 'Nunito', "Arial Rounded MT Bold", sans-serif;
+  @include nunito(120%);
   
   p {
     
@@ -92,7 +99,7 @@
 
 #found_lessons, #found_media_elements {
   
-  margin-top: 16px;
+  margin-top: 15px;
   display: block;
   
 }
@@ -115,13 +122,13 @@
     
     &:hover {
       
-      background-color: #fbb23f;
+      background-color: #FBB23F;
       
     }
     
     &.current {
       
-      background-color: #fbb23f;
+      background-color: #FBB23F;
       
     }
     
@@ -180,7 +187,7 @@
   
   h1 {
     
-    font: 180% 'Nunito', "Arial Rounded MT Bold", sans-serif;
+    @include nunito(180%);
     
   }
   
@@ -188,11 +195,11 @@
 
 .empty-situation-container {
   
+  @include nunito(100%);
   width: 100%;
   height: 200px;
   margin-top: 70px;
   text-align: center;
-  font: 100% 'Nunito', "Arial Rounded MT Bold", sans-serif;
   
   a {
     
@@ -231,9 +238,9 @@
       
       .reason {
         
+        @include arial(13px);
         height: 13px;
         padding: 5px 0 0 10px;
-        font: 13px Arial,Helvetica,sans-serif;
         color: #939393;
         
       }
@@ -266,7 +273,6 @@
 .lessons-content {
   
   width: 100%;
-  margin-bottom: 3%;
   
   .current {
     
@@ -276,15 +282,32 @@
   
 }
 
+.fixed-expanded-height {
+  
+  height: 767px;
+  
+}
+
+.fixed-compact-height {
+  
+  height: 665px;
+  
+}
+
+.advanced-search-content.fixed-compact-height {
+  
+  height: 805px;
+  
+}
+
 .elements-content {
   
   width: 100%;
-  margin-bottom: 3%;
   
   .boxViewSingleMediaElement {
     
-    background-color: #fbfafb;
-    color: #c0c0c0;
+    background-color: #FBFAFB;
+    color: #C0C0C0;
     position: relative;
     
   }
@@ -313,11 +336,10 @@
     
     h2 {
       
+      @include nunito-with-line-height(15px, 15px);
       float: left;
-      font: 15px 'Nunito',sans-serif;
       color: white;
       margin-right: 10px;
-      line-height: 15px;
       padding-top: 5px;
       
     }
@@ -366,13 +388,12 @@
   
   #format_media_elements {
     
+    @include arial-with-line-height(13px, 13px);
     float: right;
-    font: 13px Arial,Helvetica,sans-serif;
-    line-height: 13px;
     padding: 6px 0 6px 0;
     margin-right: 20px;
     position: absolute;
-    left: 40%;
+    left: 45%;
     
     a {
       
@@ -395,42 +416,17 @@
     
   }
   
-  .filter, .for-page {
+  .filter {
     
     float: right;
     
     h2 {
       
+      @include nunito-with-line-height(15px, 15px);
       float: left;
-      font: 15px 'Nunito',sans-serif;
-      line-height: 15px;
       color: white;
       margin-right: 10px;
       padding-top: 5px;
-      
-    }
-    
-  }
-  
-  .for-page {
-    
-    margin-left: 20px;
-    
-    .sbHolder {
-      
-      width: 60px;
-      
-      .sbSelector {
-        
-        width: 60px;
-        
-      }
-      
-      .sbOptions {
-        
-        width: 60px;
-        
-      }
       
     }
     
@@ -482,11 +478,10 @@
     
     h2 {
       
+      @include nunito-with-line-height(15px, 15px);
       float: left;
-      font: 15px 'Nunito',sans-serif;
       color: white;
       margin-right: 10px;
-      line-height: 15px;
       padding-top: 5px;
       
     }
@@ -567,8 +562,7 @@
   
   h1 {
     
-    font: 30px 'Nunito', sans-serif;
-    line-height: 40px;
+    @include nunito-with-line-height(30px, 40px);
     
   }
   
@@ -585,7 +579,7 @@
       
       a {
         
-        font: 14px 'Nunito', sans-serif;
+        @include nunito(14px);
         text-transform: lowercase;
         background-color: #999;
         color: #fff;
@@ -621,26 +615,26 @@
   color: #fff;
   padding: 10px 16px;
   height: 25px;
+  margin-bottom: 15px;
   
   h1 {
     
+    @include nunito-with-line-height(25px, 25px);
     color: #fff;
     padding: 0;
     margin: 0;
-    font: 25px 'Nunito', sans-serif;
-    line-height: 25px;
     float: left;
     
   }
   
   .sbHolder {
     
+    @include nunito(11px);
     width: 180px;
     height: 19px;
     padding: 3px 0 3px 0;
     border-radius: 2px;
     -webkit-border-radius: 2px;
-    font: 11px 'Nunito', sans-serif;
     font-weight: normal;
     
     .sbSelector {
@@ -700,6 +694,834 @@
       }
       
     }
+    
+  }
+  
+}
+
+.dashboard-controller {
+  
+  #dashboard_toolbar {
+    
+    width: 225px;
+    padding:15px;
+    float: right;
+    
+    .boxText {
+      
+      @include nunito(11px);
+      color: #A7A9AC;
+      margin-bottom: 40px;
+      
+      span {
+        
+        color: #373737;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        
+      }
+      
+      p {
+        
+        padding: 10px 0 10px 0;
+        
+      }
+      
+      a {
+        
+        font-size: 14px;
+        font-weight: bold;
+        color: #2EAADC;
+        
+        &:hover {
+          
+          text-decoration: underline;
+          
+        }
+        
+      }
+      
+    }
+    
+    .searchBox {
+      
+      margin: 0px;
+      
+      input.text {
+        
+        margin-bottom: 10px;
+        width: 200px;
+        background-color: #F5F5F5;
+        
+      }
+      
+      a {
+        
+        color: #999999;
+        font-size: 11px;
+        
+      }
+      
+      .sbHolder {
+        
+        width: 220px;
+        background-color: #F5F5F5;
+        
+        .sbSelector {
+          
+          width: 220px;
+          box-shadow: 0 3px 5px rgba(50, 50, 50, 0.2);
+          
+        }
+        
+        .sbOptions {
+          
+          width: 220px;
+          
+          a:hover, a:focus, a.sbFocus {
+            
+            background-color: #F5F5F5;
+            color: #999999;
+            
+          }
+          
+        }
+        
+      }
+      
+      .boxAdvancedSearch {
+        
+        display: inline-block;
+        width: 202px;
+        margin-top: 10px;
+        padding: 10px;
+        
+        a {
+          
+          padding-top: 10px;
+          
+          &:hover {
+            
+            text-decoration: underline;
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+    .buttonPlus {
+      
+      width: 222px;
+      margin-top: 28px;
+      margin-bottom: 40px;
+      display: inline-block;
+      
+      a {
+        
+        color: white;
+        margin-bottom: 10px;
+        
+        &:hover .iconPlus, &:hover p {
+          
+          opacity: 0.5;
+          
+        }
+        
+      }
+      
+      p {
+        
+        padding: 8px 0 0 10px;
+        float: left;
+        
+      }
+      
+      .createLessonBtn {
+        
+        background-color: $orange;
+        width: 202px;
+        padding: 10px;
+        
+        p {
+          
+          text-shadow: #d68300 0px 2px 0px;
+          
+        }
+        
+      }
+      
+      .uploadResourceBtn {
+        
+        background-color: $green;
+        width: 202px;
+        padding: 10px;
+        
+        p {
+          
+          text-shadow: #368a23 0px 2px 0px;
+          
+        }
+        
+      }
+      
+      .uploadDocumentBtn {
+        
+        background-color: #5d5c5c;
+        width: 202px;
+        padding: 10px;
+        
+        p {
+          
+          text-shadow: #4e4d4d 0px 2px 0px;
+          
+        }
+        
+      }
+      
+      .iconPlus {
+        
+        @include svg-circle-icon-handler-without-hover($assets-icone-player_svg, 32px, 5, 4, 1, 4, 2);
+        
+      }
+      
+    }
+    
+  }
+  
+  #dashboard_container {
+    
+    width: calc(100% - 256px);
+    float: left;
+    position: relative;
+    border-right:1px solid #f7f7f7;
+    
+    .title_lessons {
+      
+      height: 70px;
+      width: 100%;
+      
+      .icon {
+        
+        @include svg-circle-icon-handler-without-hover($assets-dashboard-lessons-and-elements_svg, 50px, 2, 1, 1, 1, 0);
+        margin: 10px 10px 10px 0;
+        
+      }
+      
+      .content {
+        
+        height: 50px;
+        width: calc(100% - 110px);
+        float: left;
+        color: #939393;
+        padding: 15px 0 5px 0;
+        
+        .title {
+          
+          @include nunito-with-line-height(13px, 17px);
+          color: $orange;
+          height: 17px;
+          
+        }
+        
+        .description {
+          
+          @include nunito-with-line-height(11px, 12px);
+          color: #939393;
+          height: 24px;
+          
+        }
+        
+      }
+      
+      .expand_icon {
+        
+        cursor: pointer;
+        margin-top: 10px;
+        
+        &.on {
+          
+          @include svg-circle-icon-handler($assets-expand-dashboard_png, 30px, 2, 4, 1, 1, 0, 1, 1, 2);
+          
+        }
+        
+        &.off {
+          
+          @include svg-circle-icon-handler($assets-expand-dashboard_png, 30px, 2, 4, 1, 1, 1, 1, 1, 3);
+          
+        }
+        
+        &.disabled {
+          
+          @include svg-circle-icon-handler-without-hover($assets-expand-dashboard_png, 30px, 2, 4, 0.5, 1, 1);
+          cursor: default;
+          
+        }
+        
+      }
+      
+    }
+    
+    .title_media_elements {
+      
+      height: 70px;
+      width: 100%;
+      margin-top: 50px;
+      
+      .icon {
+        
+        @include svg-circle-icon-handler-without-hover($assets-dashboard-lessons-and-elements_svg, 50px, 2, 1, 1, 0, 0);
+        margin: 10px 10px 10px 0;
+        
+      }
+      
+      .content {
+        
+        height: 50px;
+        width: calc(100% - 110px);
+        float: left;
+        color: #939393;
+        padding: 15px 0 5px 0;
+        
+        .title {
+          
+          @include nunito-with-line-height(13px, 17px);
+          color: $green;
+          height: 17px;
+          
+        }
+        
+        .description {
+          
+          @include nunito-with-line-height(11px, 12px);
+          color: #939393;
+          height: 24px;
+          
+        }
+        
+      }
+      
+      .expand_icon {
+        
+        cursor: pointer;
+        margin-top: 10px;
+        
+        &.on {
+          
+          @include svg-circle-icon-handler($assets-expand-dashboard_png, 30px, 2, 4, 1, 0, 0, 1, 0, 2);
+          
+        }
+        
+        &.off {
+          
+          @include svg-circle-icon-handler($assets-expand-dashboard_png, 30px, 2, 4, 1, 0, 1, 1, 0, 3);
+          
+        }
+        
+        &.disabled {
+          
+          @include svg-circle-icon-handler-without-hover($assets-expand-dashboard_png, 30px, 2, 4, 0.5, 0, 1);
+          cursor: default;
+          
+        }
+        
+      }
+      
+    }
+    
+    .pagination_lessons, .pagination_media_elements {
+      
+      height: 0;
+      width: 100%;
+      overflow: hidden;
+      
+    }
+    
+    .space_lessons {
+      
+      height: 315px;
+      width: 100%;
+      overflow: hidden;
+      
+      .page1, .page2, .page3, .page4, .page5, .page6 {
+        
+        width: 100%;
+        height: 100%;
+        
+      }
+      
+      .lesson_in_dashboard {
+        
+        width: 298px;
+        height: 313px;
+        border: 1px solid #F2F1F2;
+        background-color: #FBFAFB;
+        float: left;
+        
+        .lesson_dashboard_hover_sensitive {
+          
+          height: 263px;
+          width: 298px;
+          padding-top: 9px;
+          position: relative;
+          
+          .lesson_dashboard_thumb {
+            
+            width: 280px;
+            height: 174px;
+            margin: 0 9px 9px 9px;
+            overflow: hidden;
+            position: relative;
+            background-color: white;
+            
+            img {
+              
+              position: absolute;
+              
+            }
+            
+            .text {
+              
+              @include nunito(13px);
+              position: absolute;
+              opacity: 0.95;
+              background-color: $orange;
+              bottom: 0;
+              height: 25px;
+              width: 265px;
+              padding: 8px 5px 7px 10px;
+              color: white;
+              
+            }
+            
+          }
+          
+          .literature_container {
+            
+            height: 80px;
+            padding-left: 10px;
+            padding-right: 10px;
+            width: 278px;
+            position: absolute;
+            bottom: 0;
+            background-color: #FBFAFB;
+            overflow: hidden;
+            
+            .subject {
+              
+              @include nunito-with-line-height(11px, 17px);
+              font-weight: bold;
+              height: 17px;
+              padding-top: 2px;
+              color: $orange;
+              
+            }
+            
+            .title {
+              
+              @include nunito-with-line-height(19px, 20px);
+              color: $black;
+              margin-top: 4px;
+              
+            }
+            
+            .description {
+              
+              @include arial-with-line-height(12px, 17px);
+              margin-top: 10px;
+              
+            }
+            
+          }
+          
+        }
+        
+        .lesson_dashboard_buttons {
+          
+          background-color: white;
+          height: 40px;
+          width: 298px;
+          border-top: 1px solid #F2F1F2;
+          
+          .author_and_creation {
+            
+            @include arial-with-line-height(9px, 14px);
+            color: #2FAADC;
+            float: left;
+            font-weight: bold;
+            margin-top: 6px;
+            margin-left: 10px;
+            height: 28px;
+            
+          }
+          
+          .buttoncitos {
+            
+            float: right;
+            width: 115px;
+            height: 40px;
+            
+            a {
+              
+              margin-top: 5px;
+              margin-right: 8px;
+              
+            }
+            
+            .add {
+              
+              @include svg-circle-icon-handler($assets-action-buttons_svg, 30px, 2, 10, 1, 0, 9, 1, 1, 9);
+              
+            }
+            
+            .dislike {
+              
+              @include svg-circle-icon-handler-without-hover($assets-action-buttons_svg, 30px, 2, 10, 1, 1, 3);
+              
+            }
+            
+            .like {
+              
+              @include svg-circle-icon-handler($assets-action-buttons_svg, 30px, 2, 10, 1, 0, 3, 1, 1, 3);
+              
+            }
+            
+            .preview {
+              
+              @include svg-circle-icon-handler($assets-action-buttons_svg, 30px, 2, 10, 1, 0, 7, 1, 1, 7);
+              
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+    .space_media_elements {
+      
+      height: 315px;
+      width: 100%;
+      overflow: hidden;
+      
+      .page1, .page2, .page3, .page4, .page5, .page6 {
+        
+        width: 100%;
+        height: 100%;
+        
+      }
+      
+      .boxViewExpandedMediaElement {
+        
+        height: 313px;
+        border: 1px solid #F2F1F2;
+        box-shadow: none;
+        float: left;
+        margin-bottom: 0;
+        
+        .contentInterno {
+          
+          height: 272px;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+}
+
+.dashboard-lessons-empty-situation-container, .dashboard-media-elements-empty-situation-container {
+  
+  width: 100%;
+  height: 115px;
+  text-align: center;
+  padding-top: 85px;
+  
+  a {
+    
+    display: inline-block;
+    
+  }
+  
+  .prompts {
+    
+    height: 55px;
+    
+    .reason {
+      
+      @include nunito(13px);
+      color: #262626;
+      
+    }
+    
+    .big-prompt {
+      
+      @include nunito-with-line-height(30px, 25px);
+      letter-spacing: -1px;
+      
+    }
+    
+  }
+  
+}
+
+.dashboard-lessons-empty-situation-container {
+  
+  a {
+    
+    @include svg-circle-icon-handler($assets-icone-player_svg, 90px, 5, 4, 1, 4, 3, 0.7, 4, 3, none);
+    
+  }
+  
+  .prompts {
+    
+    .big-prompt {
+      
+      color: $orange;
+      
+    }
+    
+  }
+  
+}
+
+.dashboard-media-elements-empty-situation-container {
+  
+  a {
+    
+    @include svg-circle-icon-handler($assets-icone-player_svg, 90px, 5, 4, 1, 4, 0, 0.7, 4, 0, none);
+    
+  }
+  
+  .prompts {
+    
+    .big-prompt {
+      
+      color: $green;
+      
+    }
+    
+  }
+  
+}
+
+.documentInfoPopUp {
+  
+  .documentPopUpContainer {
+    
+    height: 300px;
+    padding: 2.750em 1.875em 1.875em;
+    color: #C2C1C2;
+    
+    .ChangeInfoContainerLoading {
+      
+      z-index: 10;
+      position: absolute;
+      width: 705px;
+      height: 320px;
+      padding: 0px;
+      
+      .fk_carica_elemento_file {
+        
+        left: 77px;
+        
+      }
+      
+      textarea {
+        
+        margin-bottom: 0;
+        
+      }
+      
+      input[type="submit"], .buttonForm {
+        
+        background-color: #fff;
+        color: #333;
+        
+        &:hover {
+          
+          background-color: #908f8f;
+          
+        }
+        
+      }
+      
+      label.filebutton span input#new_document_input {
+        
+        z-index: 999;
+        line-height: 0;
+        font-size: 50px;
+        position: absolute;
+        top: -2px;
+        left: -700px;
+        opacity: 0;
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+        
+      }
+      
+      .filebutton {
+        
+        @include svg-circle-icon-handler($assets-bottone-add-document_svg, 64px, 1, 1, 1, 0, 0, 0.5, 0, 0)
+        
+      }
+      
+    }
+    
+    .cols {
+      
+      width: 224px;
+      
+      p {
+        
+        padding-top: 1.250em;
+        
+      }
+      
+    }
+    
+    img {
+      
+      width: 110px;
+      height: 110px;
+      
+    }
+    
+    h1 {
+      
+      @include nunito(180%);
+      color: #fff;
+      padding: 0;
+      
+    }
+    
+    h2 {
+      
+      @include nunito(17px);
+      color: #fff;
+      
+    }
+    
+    ._error_messages {
+      
+      width: 258px;
+      padding-top: 0px;
+      height: auto;
+      float: left;
+      
+      img {
+        
+        width: 17px;
+        height: 17px;
+        
+      }
+      
+    }
+    
+    .documentPopUpChangeInfoContainer {
+      
+      z-index: 10;
+      position: absolute;
+      background-color: #373737;
+      width: 534px;
+      
+      .buttonForm {
+        
+        padding: 5px 30px;
+        
+      }
+      
+    }
+    
+    .formDocuments {
+      
+      padding-top: 0.5em;
+      float: left;
+      width: 100%;
+      
+      input[type="text"] {
+        
+        @include arial(1.063em);
+        border-radius: 10px;
+        box-shadow: 0px 2px 2px rgba(10, 10, 10, 0.2) inset;
+        background-color: #454343;
+        padding: 2% 4%;
+        width: 92%;
+        color: #fff;
+        
+      }
+      
+      input[type="submit"] {
+        
+        @include nunito(18px);
+        padding: 5px 30px ;
+        width: 130px;
+        height: 34px;
+        color: #fff;
+        background-color: $black;
+        border: 0px solid #4fc356;
+        
+        &:hover {
+          
+          background-color: #908f8f;
+          cursor: pointer;
+          
+        }
+        
+      }
+      
+      textarea {
+        
+        @include arial(95%);
+        border-color: #373737;
+        border-radius: 10px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2) inset;
+        background-color: #454343;
+        padding: 2% 4%;
+        width: 92%;
+        height: 137px;
+        color: #c6c5c6;
+        resize: none;
+        margin-bottom: 0.625em;
+        
+        &.form_error {
+          
+          border: 3px solid rgba(250, 0, 0, 0.5);
+          
+        }
+        
+      }
+      
+      .buttonForm {
+        
+        color: $black;
+        
+        &:hover {
+          
+          color: white;
+          background-color: #908f8f;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  .uploadDocuments {
+    
+    height: 345px;
+    padding: 20px 28px;
     
   }
   

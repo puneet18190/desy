@@ -31,18 +31,10 @@
 //= require ../players
 
 $(document).ready(function() {
-  window.$html = $('html');
-  window.$loaderVisible = true;
-  window.$loading = $('#loading');
-  window.$body = $('body');
-  window.$captions = $('#popup_captions_container');
-  window.$parameters = $('#popup_parameters_container');
+  initializeGlobalVariables();
   browsersDocumentReady();
-  generalWindowResizeDocumentReady();
-  defaultValueJavaScriptAnimationsDocumentReady();
-  filtersDocumentReady();
-  expandedItemsDocumentReady();
-  javaScriptAnimationsDocumentReady();
+  globalDocumentReady();
+  // TODO ottimizz a partire da qui non è ottimizzato
   playersDocumentReady();
   lessonViewerDocumentReady();
   $('.lesson-scorm-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');

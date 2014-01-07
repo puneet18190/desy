@@ -87,10 +87,10 @@
 
 .document_gallery {
   
+  @include nunito(13px);
   height: 590px;
   width: 900px;
   background-color: #252323;
-  font: 13px 'Nunito', sans-serif;
   position: relative;
   
   .jspVerticalBar {
@@ -396,10 +396,10 @@
       
       .filterByInput {
         
+        @include nunito(13px);
         float: left;
         width: 134px;
         margin-left: 15px;
-        font: 13px 'Nunito', sans-serif;
         font-weight: bold;
         border-radius: 4px;
         padding: 4px;
@@ -690,10 +690,10 @@
 
 ._texts {
   
+  @include nunito(90%);
   @include boxShadow;
   height: 486px;
   display: block;
-  font: 90% 'Nunito', sans-serif;
   
   .contentInsertText {
     
@@ -709,7 +709,8 @@
     
     textarea {
       
-      font: 230% 'Droid Sans', sans-serif;
+      font-family: 'Droid Sans', sans-serif;
+      font-size: 230%;
       padding-top: 147px;
       background-color: transparent;
       text-align: center;

@@ -3,6 +3,7 @@
 
 .ui-button {
   
+  @include nunito(100%);
   display: inline-block;
   position: relative;
   padding: 0;
@@ -14,7 +15,6 @@
   border: none;
   background-color: $orange;
   color: #fff;
-  font: 100% 'Nunito', sans-serif;
   -webkit-border-radius: 4px;
   border-radius: 4px;
   z-index: 999;
@@ -60,9 +60,8 @@
       
       textarea {
         
+        @include arial(12px);
         background-color: #fff;
-        font-family: Arial, sans-serif;
-        font-size: 12px;
         margin-bottom: 25px;
         padding: 10px;
         width: 323px;
@@ -76,12 +75,11 @@
       
       input[type="submit"] {
         
+        @include nunito(12px);
         cursor: pointer;
         background-color: $black;
         color: white;
         padding: 10px;
-        font-family: 'Nunito', sans-serif;
-        font-size: 12px;
         white-space: normal;
         
       }
@@ -248,12 +246,11 @@
         
         input {
           
+          @include nunito(12px);
           width: 300px;
           height: 10px;
           float: left;
           background-color: #fff;
-          font-family: 'Nunito', sans-serif;
-          font-size: 12px;
           padding: 10px;
           border-radius: 4px 4px 4px 4px;
           box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
@@ -278,10 +275,9 @@
         
         .sbHolder {
           
+          @include nunito(12px);
           width: 354px;
           height: 30px;
-          font-size: 12px;
-          font-family: 'Nunito', sans-serif;
           padding: 0;
           box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
           
@@ -326,16 +322,14 @@
         
         textarea {
           
+          @include nunito-with-line-height(12px, 10px);
           width: 334px;
           height: 84px;
           background-color: #fff;
-          font-family: 'Nunito', sans-serif;
-          font-size: 12px;
           padding: 10px;
           border-radius: 4px 4px 4px 4px;
           box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
           color: #999999;
-          line-height: 10px;
           
         }
         
@@ -369,11 +363,10 @@
           
           &.muttonForm {
             
+            @include nunito-with-line-height(18px, 35px);
             background-color: $black;
-            font: 18px 'Nunito', "Arial Rounded MT Bold", sans-serif;
             padding: 0 30px;
             display: block;
-            line-height: 35px;
             float: right;
             
             &._no {
@@ -467,7 +460,7 @@
     
   }
   
-  .form_error,textarea.form_error, input.form_error {
+  .form_error, textarea.form_error, input.form_error {
     
     border: 3px solid rgba(250, 0, 0, 0.5);
     

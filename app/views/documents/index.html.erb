@@ -1,15 +1,16 @@
 <%= render :partial => 'documents/new_form_popup' %>
+<%= render :partial => 'shared/upload_target' %>
 <div class="gray-bar">
   <a id="upload_document" class="navlist-item b-document _load_document lower"><%= t('documents.upload') %></a>
 </div>
 <br class="clearfloat">
 <div class="griglia-contenuti">
-  <div class="documents-content">
+  <div class="documents-content fixed-compact-height">
     <div id="documents_title_bar" class="title-bar">
       <h1 class="lower"><%= t('captions.documents') %></h1>
       <div class="sort">
         <h2><%= t('captions.sort') %></h2>
-        <select name="ricerca" id="order_documents">
+        <select id="order_documents">
           <% SearchOrders::DOCUMENTS_SET.each do |so| %>
             <option value="<%= so %>" <%= (@order == so) ? "selected=\"selected\"".html_safe : '' %>><%= t("orders.#{so}") %></option>
           <% end %>
@@ -24,7 +25,6 @@
         </form>
       </div>
     </div>
-    <br class="clearfloat">
     <%= render :partial => 'documents/my_documents', :locals => {:documents => @documents, :word => @word} %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
     <br class="clearfloat">
