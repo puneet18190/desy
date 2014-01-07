@@ -112,7 +112,7 @@ function resizeExpandedMediaElements(for_row) {
     } else {
       $(this).css('margin-top', '0');
       if(one_row) {
-        $(this).css('margin-bottom', '10px');
+        $(this).css('margin-bottom', '355px');
       }
     }
     counter += 1;
