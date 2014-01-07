@@ -16,7 +16,6 @@
         </select>
       </div>
     </div>
-    <br class="clearfloat">
     <%= render :partial => 'lessons/my_lessons', :locals => {:lessons => @lessons, :filter => @filter, :covers => @covers} %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
     <br class="clearfloat">
