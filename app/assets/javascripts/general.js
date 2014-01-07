@@ -184,7 +184,10 @@ function commonLessonsDocumentReady() {
       } else {
         var there_is_expanded = $('._lesson_expanded:visible');
         if(there_is_expanded.length > 0) {
-          there_is_expanded.parent().find('._lesson_compact').click();
+          there_is_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
+          there_is_expanded.hide('blind', {}, 500, function() {
+            there_is_expanded.hide();
+          });
         }
         my_expanded.show('blind', {}, 500, function() {
           my_expanded.show();
