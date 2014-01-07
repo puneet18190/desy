@@ -132,7 +132,7 @@ html.virtual_classroom-controller {
       
       &:hover {
         
-        background-color: #59c9f6;
+        background-color: #59C9F6;
         
       }
       
@@ -140,9 +140,12 @@ html.virtual_classroom-controller {
     
   }
   
-  .boxViewSingleLesson {
+  .boxViewSingleVCLesson {
     
     float: left;
+    color: #C0C0C0;
+    position: relative;
+    padding: 0;
     width: 270px;
     margin: 20px 20px 0 0;
     -webkit-box-shadow: none;
@@ -505,13 +508,13 @@ html.virtual_classroom-controller {
       
     }
     
-    .boxViewSingleLesson .contentInterno .img_expanded {
+    .boxViewSingleVCLesson .contentInterno .img_expanded {
       
       cursor: pointer;
       
     }
     
-    .boxViewSingleLesson .contentInterno .currentInserted {
+    .boxViewSingleVCLesson .contentInterno .currentInserted {
       
       background-color: #373737;
       opacity: 0.85;
