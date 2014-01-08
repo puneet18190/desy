@@ -195,15 +195,15 @@ module Export
           def scorm_math_images(slide)
             resp = ''
             slide.math_images.each do |mi|
-              resp = "#{resp}<file href=\"html/math_images/#{mi.code}.png\"/>" # TODO farlo sul serio
+              resp = "#{resp}<file href=\"html/math_images/#{mi.code}.png\"/>" # TODO schorm farlo sul serio
             end
             resp
           end
           
           def scorm_slide_dependencies(slide)
             resp = "<dependency identifierref=\"common\"/>"
-            resp = "#{resp}<dependency identifierref=\"tinyMCE\"/>" if [AUDIO, IMAGE1, TEXT, VIDEO1].include?(slide.kind)
-            resp = "#{resp}<dependency identifierref=\"players\"/>" if [AUDIO, VIDEO1, VIDEO2].include?(slide.kind)
+            resp = "#{resp}<dependency identifierref=\"tinyMCE\"/>" if [Slide::AUDIO, Slide::IMAGE1, Slide::TEXT, Slide::VIDEO1].include?(slide.kind)
+            resp = "#{resp}<dependency identifierref=\"players\"/>" if [Slide::AUDIO, Slide::VIDEO1, Slide::VIDEO2].include?(slide.kind)
             resp = "#{resp}<dependency identifierref=\"documents\"/>" if slide.documents_slides.any?
             resp
           end

@@ -14,7 +14,7 @@
       <general>
         <identifier>
           <catalog>URI</catalog>
-          <entry><%= lesson_viewer_url lesson.id %></entry>
+          <entry><%= 'www.pippo.org' %></entry> <!-- TODO schorm lesson_viewer_url lesson.id -->
         </identifier>
         <title>
           <string language="<%= scorm_locale %>"><%= lesson.title %></string>
@@ -103,7 +103,7 @@
             <dependency identifierref="media_element_<%= mes.media_element_id %>"/>
             <%
               my_media_elements_slides << mes.media_element_id
-              media_elements[mes.media_element_id] = true
+              media_elements[mes.media_element] = true
             %>
           <% end %>
         <% end %>
@@ -113,7 +113,7 @@
             <dependency identifierref="document_<%= ds.document_id %>"/>
             <%
               my_documents_slides << ds.document_id
-              documents[ds.document_id] = true
+              documents[ds.document] = true
             %>
           <% end %>
         <% end %>
