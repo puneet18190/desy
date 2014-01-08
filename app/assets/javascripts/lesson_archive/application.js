@@ -33,7 +33,6 @@
 $(document).ready(function() {
   initializeGlobalVariables();
   browsersDocumentReady();
-  globalDocumentReady();
   initializeLessonViewer();
   lessonViewerDocumentReadySlidesNavigation();
   lessonViewerDocumentReadyWirisConvertSrc();
