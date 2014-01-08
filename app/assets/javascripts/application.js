@@ -71,6 +71,7 @@ $(document).ready(function() {
     mediaElementLoaderDocumentReady();
     notificationsDocumentReady();
     playersDocumentReadyGeneral();
+    reportsDocumentReady();
     sectionNotificationsDocumentReady();
   }
   if($('#my_documents').length > 0) { // in section documents
@@ -95,6 +96,7 @@ $(document).ready(function() {
     lessonButtonsDocumentReady();
     notificationsDocumentReady();
     notificationsDocumentReadyLessonModification();
+    reportsDocumentReady();
     sectionLessonsDocumentReady();
     sectionNotificationsDocumentReady();
   }
@@ -113,12 +115,14 @@ $(document).ready(function() {
     mediaElementLoaderDocumentReady();
     notificationsDocumentReady();
     playersDocumentReadyGeneral();
+    reportsDocumentReady();
     sectionMediaElementsDocumentReady();
     sectionNotificationsDocumentReady();
   }
   if($html.hasClass('prelogin-layout')) { // in prelogin
     locationsDocumentReady();
     preloginDocumentReady();
+    purchaseCodeRegistrationDocumentReady();
   }
   if($('#profile_title_bar').length > 0) { // in section profile
     locationsDocumentReady();
@@ -134,6 +138,7 @@ $(document).ready(function() {
     notificationsDocumentReady();
     notificationsDocumentReadyLessonModification();
     playersDocumentReadyGeneral();
+    reportsDocumentReady();
     sectionNotificationsDocumentReady();
     sectionSearchDocumentReady();
   }
@@ -149,8 +154,6 @@ $(document).ready(function() {
   }
   
   // TODO ottimizz a partire da qui non è ottimizzato
-  purchaseCodeRegistrationDocumentReady();
-  reportsDocumentReady();
   searchDocumentReady();
   tagsDocumentReady();
   videoEditorDocumentReady();
