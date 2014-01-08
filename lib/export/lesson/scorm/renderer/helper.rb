@@ -26,24 +26,6 @@ module Export
             SCORM_LOCALE
           end
           
-          def scorm_author(author, date, type)
-            "
-              <contribute>
-                <role>
-                  <source>LOMv1.0</source>
-                  <value>author</value>
-                </role>
-                <entity>BEGIN:VCARD&#13;&#10;VERSION:2.1&#13;&#10;FN:#{author}&#13;&#10;END:VCARD</entity>
-                <date>
-                  <dateTime>#{date.strftime('%Y-%m-%d')}</dateTime>
-                  <description>
-                    <string language=\"en\">#{type}</string>
-                  </description>
-                </date>
-              </contribute>
-            "
-          end
-          
           def scorm_metametadata
             '
               <metaMetadata>
