@@ -74,7 +74,7 @@ $(document).ready(function() {
     galleriesDocumentReady();
     imageEditorDocumentReady();
   }
-  if($('#slide-numbers').length > 0) { // in lesson editor
+  if($('.lesson-editor-container').length > 0) { // in lesson editor
     galleriesDocumentReady();
     lessonEditorDocumentReady();
   }

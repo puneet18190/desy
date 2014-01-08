@@ -409,6 +409,7 @@ function lessonEditorDocumentReadyJqueryAnimations() {
   $('#nav_list_menu').jScrollPane({
     autoReinitialise: false
   });
+  $('#lesson_subject').selectbox();
   initLessonEditorPositions();
 }
 

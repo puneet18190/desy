@@ -225,7 +225,6 @@ function globalDocumentReady() {
     $(this).find('.plus').removeClass('encendido');
   });
   $('#user_school_level_id').selectbox();
-  $('#lesson_subject').selectbox();
   $body.on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
     var myself = $(this);
     var len = myself.val().length;
