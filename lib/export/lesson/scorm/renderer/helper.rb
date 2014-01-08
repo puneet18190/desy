@@ -208,7 +208,7 @@ module Export
             resp
           end
           
-          def scorm_document_file(document) # TODO schorm sistema url documento
+          def scorm_document_file(document) # TODO schorm sistema url documento con replace
             "
               <file href=\"html/documents/#{document.id}/#{document.url}\">
                 <metadata>
@@ -247,27 +247,38 @@ module Export
             "
           end
           
+          def scorm_media_element_files(media_element) # TODO schorm sistema urls con replace + estrai anche estensione, invece di mettere quella finta
+            case media_element.sti_type
+            when 'Video'
+              return "
+                <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url}\">
+                  #{scorm_media_element_file_metadata(media_element, 'mp4')}
+                </file>
+                <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.webm_url}\">
+                  #{scorm_media_element_file_metadata(media_element, 'webm')}
+                </file>
+              "
+            when 'Image'
+              return "
+                <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.url}\">
+                  #{scorm_media_element_file_metadata(media_element, 'jpeg')}
+                </file>
+              "
+            when 'Audio'
+              return "
+                <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.m4a_url}\">
+                  #{scorm_media_element_file_metadata(media_element, 'm4a')}
+                </file>
+                <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.ogg_url}\">
+                  #{scorm_media_element_file_metadata(media_element, 'ogg')}
+                </file>
+              "
+            end
+          end
           
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          # TODO giunto qui
-          
-          def scorm_media_element_file_metadata(media_element, extension) # TODO sistemare i metodi url
-            my_duration = (media_element.sti_type == 'Image' || extension == 'jpeg') ? '' : media_element.min_duration
-            my_url = case extension # TODO mancano le thumb etc etc -- il cambio va esteso alla chiamata di tale metodo in caso di image oppure video!!!
+          def scorm_media_element_file_metadata(media_element, extension) # TODO schorm sistemare i metodi url con replace + metodo size
+            my_duration = (media_element.sti_type == 'Image' || extension == 'jpeg') ? '' : media_element.min_duration # TODO schorm riempi la duration con modello pagina 103, wrappalo dentro una tag apposita
+            my_url = case extension
             when 'mp4'
               media_element.mp4_url
             when 'webm'
@@ -276,6 +287,8 @@ module Export
               media_element.m4a_url
             when 'ogg'
               media_element.ogg_url
+            when 'jpeg' # TODO schorm metti anche altre possibili estensioni
+              media_element.url
             end
             "
               <metadata>
@@ -288,42 +301,13 @@ module Export
                   </general>
                   <technical>
                     <format>#{media_element.sti_type.downcase}/#{extension}</format>
-                    <size>#{media_element.size}</size>
+                    <size>#{'123456'}</size>
                     <location>#{my_url}</location>
                     #{my_duration}
                   </technical>
                 </lom>
               </metadata>
             "
-          end
-          
-          def scorm_media_element_files(media_element) # TODO ricontrollarne i metodi e riempire quelli che mancano
-            case media_element.sti_type
-            when 'Video'
-              return "
-                <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
-                  #{scorm_media_element_file_metadata(media_element, 'mp4')}
-                </file>
-                <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
-                  #{scorm_media_element_file_metadata(media_element, 'webm')}
-                </file>
-              "
-            when 'Image'
-              return "
-                <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
-                  #{scorm_media_element_file_metadata(media_element, 'jpeg')}
-                </file>
-              "
-            when 'Audio'
-              return "
-                <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
-                  #{scorm_media_element_file_metadata(media_element, 'm4a')}
-                </file>
-                <file href=\"html/media_elements/videos/#{media_element.id}/#{media_element.mp4_url.gsub('bla', '')}\">
-                  #{scorm_media_element_file_metadata(media_element, 'ogg')}
-                </file>
-              "
-            end
           end
           
           def scorm_base_packages
