@@ -165,9 +165,48 @@ module Export
             "
           end
           
+          def scorm_slide_title(slide)
+            return 'Cover' if slide.cover?
+            resp = "Slide #{slide.position - 1}"
+            resp = "#{resp} - #{slide.title}" if slide.title.present?
+            resp
+          end
           
+          def scorm_slide_metadata(slide)
+            "
+              <metadata>
+                <lom>
+                  <general>
+                    <title>
+                      <string language=\"#{scorm_locale}\">#{scorm_slide_title slide}</string>
+                    </title>
+                    <language>#{scorm_locale}</language>
+                    <aggregationLevel>
+                      <source>LOMv1.0</source>
+                      <value>1</value>
+                    </aggregationLevel>
+                  </general>
+                  #{scorm_metametadata}
+                </lom>
+              </metadata>
+            "
+          end
           
+          def scorm_math_images(slide)
+            resp = ''
+            slide.math_images.each do |mi|
+              resp = "#{resp}<file href=\"html/math_images/#{mi.code}.png\"/>" # TODO farlo sul serio
+            end
+            resp
+          end
           
+          def scorm_slide_dependencies(slide)
+            resp = "<dependency identifierref=\"common\"/>"
+            resp = "#{resp}<dependency identifierref=\"tinyMCE\"/>" if [AUDIO, IMAGE1, TEXT, VIDEO1].include?(slide.kind)
+            resp = "#{resp}<dependency identifierref=\"players\"/>" if [AUDIO, VIDEO1, VIDEO2].include?(slide.kind)
+            resp = "#{resp}<dependency identifierref=\"documents\"/>" if slide.documents_slides.any?
+            resp
+          end
           
           
           
@@ -280,49 +319,6 @@ module Export
                 </metadata>
               </file>
             "
-          end
-          
-          def scorm_slide_title(slide)
-            return 'Cover' if slide.cover?
-            resp = "Slide #{slide.position - 1}"
-            resp = "#{resp} - #{slide.title}" if slide.title.present?
-            resp
-          end
-          
-          def scorm_slide_metadata(slide)
-            "
-              <metadata>
-                <lom>
-                  <general>
-                    <title>
-                      <string language=\"#{scorm_locale}\">#{scorm_slide_title slide}</string>
-                    </title>
-                    <language>#{scorm_locale}</language>
-                    <aggregationLevel>
-                      <source>LOMv1.0</source>
-                      <value>1</value>
-                    </aggregationLevel>
-                  </general>
-                  #{scorm_metametadata}
-                </lom>
-              </metadata>
-            "
-          end
-          
-          def scorm_math_images(slide)
-            resp = ''
-            slide.math_images.each do |mi|
-              resp = "#{resp}<file href=\"html/math_images/#{mi.code}.png\"/>" # TODO farlo sul serio
-            end
-            resp
-          end
-          
-          def scorm_slide_dependencies(slide)
-            resp = "<dependency identifierref=\"common\"/>"
-            resp = "#{resp}<dependency identifierref=\"tinyMCE\"/>" if [AUDIO, IMAGE1, TEXT, VIDEO1].include?(slide.kind)
-            resp = "#{resp}<dependency identifierref=\"players\"/>" if [AUDIO, VIDEO1, VIDEO2].include?(slide.kind)
-            resp = "#{resp}<dependency identifierref=\"documents\"/>" if slide.documents_slides.any?
-            resp
           end
           
           def scorm_base_packages

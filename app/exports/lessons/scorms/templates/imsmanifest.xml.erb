@@ -102,7 +102,7 @@
           <% if !my_media_elements_slides.include?(mes.media_element_id) %>
             <dependency identifierref="media_element_<%= mes.media_element_id %>"/>
             <%
-              my_media_elements_slides.push(mes.media_element_id)
+              my_media_elements_slides << mes.media_element_id
               media_elements[mes.media_element_id] = true
             %>
           <% end %>
@@ -112,7 +112,7 @@
           <% if !my_documents_slides.include?(ds.document_id) %>
             <dependency identifierref="document_<%= ds.document_id %>"/>
             <%
-              my_documents_slides.push(ds.document_id)
+              my_documents_slides << ds.document_id
               documents[ds.document_id] = true
             %>
           <% end %>
