@@ -117,7 +117,7 @@
             %>
           <% end %>
         <% end %>
-        <%= scorm_slide_dependencies slide %>
+        <%= render_with_default_context :partial => 'slide_dependencies.xml', :locals => {:slide => slide} %>
         <metadata>
           <lom>
             <general>
@@ -144,7 +144,7 @@
     <% end %>
     <% documents.keys.each do |document| %>
       <resource identifier="document_<%= document.id %>" type="webcontent" adlcp:scormType="asset">
-        <%= scorm_document_file document %>
+        <%= render_with_default_context :partial => 'document_file.xml', :locals => {:document => document} %>
         <file href="html/assets/documents/<%= document.type %>.svg"/>
         <metadata>
           <lom>
@@ -183,7 +183,7 @@
         </metadata>
       </resource>
     <% end %>
-    <%= scorm_base_packages %>
+    <%= render_with_default_context :partial => 'base_packages.xml' %>
   </resources>
   
 </manifest>
