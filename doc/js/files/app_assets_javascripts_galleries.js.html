@@ -371,52 +371,11 @@ function resizedWidthForImageGallery(width, height) {
 
 
 /**
-Initializer for effects in galleries.
+Initializer for effects of opening a gallery and opening the individual dialog of an element in a gallery: this method calls methods belonging to the class {{#crossLink &quot;DialogsGalleries&quot;}}{{/crossLink}}.
 @method galleriesDocumentReady
 @for GalleriesDocumentReady
 **/
 function galleriesDocumentReady() {
-  galleriesDocumentReadyOpen();
-  galleriesDocumentReadyClose();
-}
-
-/**
-Initializer for effects of closing a gallery. Typically, when closing a gallery the system closes all the media inside it using {{#crossLink &quot;PlayersGeneral/stopMedia:method&quot;}}{{/crossLink}}.
-@method galleriesDocumentReadyClose
-@for GalleriesDocumentReady
-**/
-function galleriesDocumentReadyClose() {
-  $body.on(&#x27;click&#x27;, &#x27;._close_mixed_gallery_in_video_editor&#x27;, function() {
-    closeGalleryInVideoEditor(&#x27;mixed&#x27;);
-  });
-  $body.on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_video_editor&#x27;, function() {
-    closeGalleryInVideoEditor(&#x27;audio&#x27;);
-    var expanded_audio = $(&#x27;._audio_expanded_in_gallery&#x27;);
-    if(expanded_audio.length &gt; 0) {
-      expanded_audio.removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
-      var audio_id = expanded_audio.attr(&#x27;id&#x27;);
-      stopMedia(&#x27;#&#x27; + audio_id + &#x27; audio&#x27;);
-      $(&#x27;#&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
-    }
-  });
-  $body.on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_audio_editor&#x27;, function() {
-    closeGalleryInAudioEditor();
-    var expanded_audio = $(&#x27;._audio_expanded_in_gallery&#x27;);
-    if(expanded_audio.length &gt; 0) {
-      expanded_audio.removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
-      var audio_id = expanded_audio.attr(&#x27;id&#x27;);
-      stopMedia(&#x27;#&#x27; + audio_id + &#x27; audio&#x27;);
-      $(&#x27;#&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
-    }
-  });
-}
-
-/**
-Initializer for effects of opening a gallery and opening the individual dialog of an element in a gallery: this method calls methods belonging to the class {{#crossLink &quot;DialogsGalleries&quot;}}{{/crossLink}}.
-@method galleriesDocumentReadyOpen
-@for GalleriesDocumentReady
-**/
-function galleriesDocumentReadyOpen() {
   $body.on(&#x27;click&#x27;,&#x27;._image_gallery_thumb&#x27;, function(e) {
     e.preventDefault();
     showImageInGalleryPopUp($(this).data(&#x27;image-id&#x27;));

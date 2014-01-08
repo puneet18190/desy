@@ -17,12 +17,11 @@
 //= require admin/functions
 
 $(document).ready(function() {
-  window.$html = $('html');
+  window.$body = $('body');
   window.$loaderVisible = true;
   window.$loading = $('#loading');
-  window.$body = $('body');
-  window.$captions = $('#popup_captions_container');
-  window.$parameters = $('#popup_parameters_container');
+  window.$window = $(window);
+  adminBrowsersDocumentReady();
   ajaxLoaderDocumentReady();
   adminSearchDocumentReady();
   adminSortingDocumentReady();
@@ -30,6 +29,5 @@ $(document).ready(function() {
   adminMediaElementsDocumentReady();
   adminMiscellaneaDocumentReady();
   adminEffectsDocumentReady();
-  adminBrowsersDocumentReady();
   adminLocationsDocumentReady();
 });

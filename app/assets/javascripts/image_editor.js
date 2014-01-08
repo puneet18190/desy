@@ -158,7 +158,7 @@ Initializer for the general graphical properties of the editor: position and res
 **/
 function imageEditorDocumentReadyGeneral() {
   $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
-  $('#image_gallery_for_image_editor .gallery-header').css('left', ($(window).width()/2) - 420);
+  $('#image_gallery_for_image_editor .gallery-header').css('left', ($window.width()/2) - 420);
   $body.on('click', '._add_image_to_image_editor', function() {
     var parser = document.createElement('a');
     parser.href = $('._exit_url').attr('href');
@@ -217,7 +217,7 @@ function imageEditorDocumentReadyTexts() {
     offlightTextareas();
     enlightTextarea($(this).parent().attr('id').split('_')[3]);
   });
-  $body.on('click', 'a._delete', function() {
+  $body.on('click', '#image_editor a._delete', function() {
     var id = $(this).parent().attr('id').split('_')[4];
     $('#image_editor_text_' + id).remove();
     if($('._image_editor_text').length == 0) {

@@ -33,16 +33,13 @@
 $(document).ready(function() {
   initializeGlobalVariables();
   browsersDocumentReady();
-  globalDocumentReady();
-  // TODO ottimizz a partire da qui non è ottimizzato
-  playersDocumentReady();
-  lessonViewerDocumentReady();
-  $('.lesson-scorm-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
-  $(window).resize(function() {
-    $('.lesson-scorm-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
-  });
-  $body.on('click', 'a.target_blank_mce', function(e) {
-    e.preventDefault();
-    window.open($(this).attr('href'), '_blank').focus();
+  initializeLessonViewer('lesson-scorm');
+  lessonViewerDocumentReadyWirisConvertSrc();
+  lessonViewerDocumentReadyDocuments();
+  playersDocumentReadyGeneral();
+  var footer = $('#footer');
+  footer.css('top', ($window.height() - 40) + 'px').css('width', ($window.width() - 24) + 'px');
+  $window.resize(function() {
+    footer.css('top', ($window.height() - 40) + 'px').css('width', ($window.width() - 24) + 'px');
   });
 });

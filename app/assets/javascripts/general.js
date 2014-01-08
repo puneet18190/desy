@@ -30,8 +30,8 @@ Centers a div into the current window.
 @param div {String} HTML selector to be centered
 **/
 function centerThis(div) {
-  var winH = $(window).height();
-  var winW = $(window).width();
+  var winH = $window.height();
+  var winW = $window.width();
   var centerDiv = $(div);
   centerDiv.css('top', winH/2 - centerDiv.height()/2);
   centerDiv.css('left', winW/2 - centerDiv.width()/2);
@@ -224,13 +224,7 @@ function globalDocumentReady() {
   $body.on('mouseleave', '.empty-situation-container a', function() {
     $(this).find('.plus').removeClass('encendido');
   });
-  $('#user_school_level_id').selectbox(); // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
-  $(document).bind('click', function (e) {
-    var my_login = $('#login_form_container:visible');
-    if(my_login.length > 0 && $(e.target).parents('#login_form_container').length == 0 && !$(e.target).hasClass('_show_login_form_container')) {
-      $('._show_login_form_container').click();
-    } // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
-  });
+  $('#user_school_level_id').selectbox();
   $body.on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
     var myself = $(this);
     var len = myself.val().length;
@@ -239,6 +233,7 @@ function globalDocumentReady() {
       myself.val(myself.val().slice(0, maxlength));
     }
   });
+  ajaxLoaderDocumentReady();
 }
 
 /**
@@ -355,7 +350,7 @@ function sectionMediaElementsDocumentReady() {
       $(this).addClass('current');
       $('#display_compact_media_elements').removeClass('current');
       $('#info_container').data('in-space', 0);
-      browserDependingScrollToTag().animate({scrollTop: ((1150 - $(window).height() + $('.global-footer').height()) + 'px')}, 500);
+      browserDependingScrollToTag().animate({scrollTop: ((1150 - $window.height() + $('.global-footer').height()) + 'px')}, 500);
       var last_item_compact = $('.boxViewCompactMediaElement').last();
       last_item_compact.animate({'margin-bottom': (102 + parseInt(last_item_compact.css('margin-bottom'))) + 'px'}, 500);
       $('.elements-content').animate({height: '767px'}, 500, function() {
@@ -381,7 +376,7 @@ function sectionMediaElementsDocumentReady() {
   });
   $('#filter_media_elements').selectbox();
   mediaElementsResizeController(false, false);
-  $(window).resize(function() {
+  $window.resize(function() {
     mediaElementsResizeController(true, false);
   });
 }
@@ -395,7 +390,7 @@ function sectionNotificationsDocumentReady() {
   $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });
-  $(document).bind('click', function (e) {
+  $document.bind('click', function (e) {
     var click_id = $(e.target).attr('id');
     var my_report = $('.tooltipForm:visible');
     if($('#tooltip_content').length > 0) {
@@ -449,12 +444,14 @@ Initializes global variables used throughout the javascripts.
 @for GeneralMiscellanea
 **/
 function initializeGlobalVariables() {
+  window.$body = $('body');
+  window.$captions = $('#popup_captions_container');
+  window.$document = $(document);
   window.$html = $('html');
   window.$loaderVisible = true;
   window.$loading = $('#loading');
-  window.$body = $('body');
-  window.$captions = $('#popup_captions_container');
   window.$parameters = $('#popup_parameters_container');
+  window.$window = $(window);
 }
 
 /**

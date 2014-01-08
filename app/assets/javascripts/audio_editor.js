@@ -472,6 +472,16 @@ function audioEditorDocumentReadyGeneral() {
   if($.browser === 'msie') {
     $('._audio_editor_component ._double_slider .ui-slider-range').css('opacity', 0.4);
   }
+  $body.on('click', '._close_audio_gallery_in_audio_editor', function() {
+    closeGalleryInAudioEditor();
+    var expanded_audio = $('._audio_expanded_in_gallery');
+    if(expanded_audio.length > 0) {
+      expanded_audio.removeClass('_audio_expanded_in_gallery');
+      var audio_id = expanded_audio.attr('id');
+      stopMedia('#' + audio_id + ' audio');
+      $('#' + audio_id + ' ._expanded').hide();
+    }
+  });
   $body.on('mouseover', '._audio_editor_component ._box_ghost', function() {
     $(this).parent().find('._sort_handle').addClass('current');
   });
@@ -584,7 +594,7 @@ Sets the correct position of the gallery: used while showing and closing the aud
 @for AudioEditorGalleries
 **/
 function calculateNewPositionGalleriesInAudioEditor() {
-  $('#audio_editor_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
+  $('#audio_editor_gallery_container').css('left', (($window.width() - 940) / 2) + 'px');
 }
 
 /**

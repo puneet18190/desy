@@ -317,7 +317,7 @@
 /**
 The Lesson Editor is used to add and edit slides to a private lesson.
 &lt;br/&gt;&lt;br/&gt;
-When opening the Editor on a lesson, all its slides are appended to a queue, of which it&#x27;s visible only the portion that surrounds the &lt;b&gt;current slide&lt;/b&gt; (the width of such a portion depends on the screen resolution, see {{#crossLink &quot;LessonEditorSlidesNavigation/initLessonEditorPositions:method&quot;}}{{/crossLink}}, {{#crossLink &quot;LessonEditorDocumentReady/lessonEditorDocumentReadyResize:method&quot;}}{{/crossLink}} and {{#crossLink &quot;LessonEditorDocumentReady/lessonEditorDocumentReadyGeneral:method&quot;}}{{/crossLink}}). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see {{#crossLink &quot;LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method&quot;}}{{/crossLink}} and the methods in {{#crossLink &quot;LessonEditorSlidesNavigation&quot;}}{{/crossLink}}): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in {{#crossLink &quot;LessonEditorSlideLoading&quot;}}{{/crossLink}}).
+When opening the Editor on a lesson, all its slides are appended to a queue, of which it&#x27;s visible only the portion that surrounds the &lt;b&gt;current slide&lt;/b&gt; (the width of such a portion depends on the screen resolution, see {{#crossLink &quot;LessonEditorSlidesNavigation/initLessonEditorPositions:method&quot;}}{{/crossLink}} and {{#crossLink &quot;LessonEditorDocumentReady/lessonEditorDocumentReadyResize:method&quot;}}{{/crossLink}}). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see {{#crossLink &quot;LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method&quot;}}{{/crossLink}} and the methods in {{#crossLink &quot;LessonEditorSlidesNavigation&quot;}}{{/crossLink}}): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in {{#crossLink &quot;LessonEditorSlideLoading&quot;}}{{/crossLink}}).
 &lt;br/&gt;&lt;br/&gt;
 On the right side of each slide the user finds a list of &lt;b&gt;buttons&lt;/b&gt; (initialized in {{#crossLink &quot;LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method&quot;}}{{/crossLink}}): each button corresponds either to an action that can be performed on the slide, either to an action that can be performed to the whole lesson (for instance, save and exit, or edit title description and tags).
 &lt;br/&gt;&lt;br/&gt;
@@ -437,7 +437,6 @@ General initialization of Lesson Editor.
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReady() {
-  lessonEditorDocumentReadyGeneral();
   lessonEditorDocumentReadyJqueryAnimations();
   lessonEditorDocumentReadyResize();
   lessonEditorDocumentReadySlidesNavigator();
@@ -689,16 +688,6 @@ function lessonEditorDocumentReadyGalleries() {
 }
 
 /**
-General initialization of position (used together with {{#crossLink &quot;LessonEditorSlidesNavigation/initLessonEditorPositions:method&quot;}}{{/crossLink}}).
-@method lessonEditorDocumentReadyGeneral
-@for LessonEditorDocumentReady
-**/
-function lessonEditorDocumentReadyGeneral() {
-  $(&#x27;html.lesson-editor-layout ul#slides&#x27;).css(&#x27;margin-top&#x27;, ((($(window).height() - 590) / 2) - 40) + &#x27;px&#x27;);
-  $(&#x27;html.lesson-editor-layout ul#slides.new&#x27;).css(&#x27;margin-top&#x27;, ((($(window).height() - 590) / 2)) + &#x27;px&#x27;);
-}
-
-/**
 Initializer for dynamics of inscriptions and deinscriptions of images (it uses {{#crossLink &quot;LessonEditorJqueryAnimations/lessonEditorInscribeImage:method&quot;}}{{/crossLink}} and {{#crossLink &quot;LessonEditorJqueryAnimations/lessonEditorDeinscribeImage:method&quot;}}{{/crossLink}}).
 @method lessonEditorDocumentReadyInitializeImageInscription
 @for LessonEditorDocumentReady
@@ -815,14 +804,16 @@ Initializer for window resize.
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyResize() {
-  $(window).resize(function() {
-    $(&#x27;html.lesson-editor-layout ul#slides&#x27;).css(&#x27;margin-top&#x27;, ((($(window).height() - 590) / 2) - 40) + &#x27;px&#x27;);
-    $(&#x27;html.lesson-editor-layout ul#slides.new&#x27;).css(&#x27;margin-top&#x27;, ((($(window).height() - 590) / 2)) + &#x27;px&#x27;);
+  $(&#x27;.lesson-editor-layout ul#slides&#x27;).css(&#x27;margin-top&#x27;, ((($window.height() - 590) / 2) - 40) + &#x27;px&#x27;);
+  $(&#x27;.lesson-editor-layout ul#slides.new&#x27;).css(&#x27;margin-top&#x27;, ((($window.height() - 590) / 2)) + &#x27;px&#x27;);
+  $window.resize(function() {
+    $(&#x27;.lesson-editor-layout ul#slides&#x27;).css(&#x27;margin-top&#x27;, ((($window.height() - 590) / 2) - 40) + &#x27;px&#x27;);
+    $(&#x27;.lesson-editor-layout ul#slides.new&#x27;).css(&#x27;margin-top&#x27;, ((($window.height() - 590) / 2)) + &#x27;px&#x27;);
     if(WW &gt; 1000) {
-      $(&#x27;ul#slides li:first&#x27;).css(&#x27;margin-left&#x27;, (($(window).width() - 900) / 2) + &#x27;px&#x27;);
-      $(&#x27;ul#slides.new li:first&#x27;).css(&#x27;margin-left&#x27;, (($(window).width() - 900) / 2) + &#x27;px&#x27;);
+      $(&#x27;ul#slides li:first&#x27;).css(&#x27;margin-left&#x27;, (($window.width() - 900) / 2) + &#x27;px&#x27;);
+      $(&#x27;ul#slides.new li:first&#x27;).css(&#x27;margin-left&#x27;, (($window.width() - 900) / 2) + &#x27;px&#x27;);
     }
-    $(&#x27;#footer&#x27;).css(&#x27;top&#x27;, ($(window).height() - 40) + &#x27;px&#x27;).css(&#x27;width&#x27;, ($(window).width() - 24) + &#x27;px&#x27;);
+    $(&#x27;#footer&#x27;).css(&#x27;top&#x27;, ($window.height() - 40) + &#x27;px&#x27;).css(&#x27;width&#x27;, ($window.width() - 24) + &#x27;px&#x27;);
     var open_gallery = $(&#x27;.lesson_editor_gallery_container:visible&#x27;);
     if(open_gallery.length &gt; 0) {
       centerThis(open_gallery);
@@ -887,7 +878,7 @@ function lessonEditorDocumentReadySlidesNavigator() {
   $body.on(&#x27;mouseover&#x27;, &#x27;#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)&#x27;, function(e) {
     var tip = $(this);
     var this_tooltip = tip.children(&#x27;.slide-tooltip&#x27;);
-    if(e.pageX &lt; ($(window).width() / 2)) {
+    if(e.pageX &lt; ($window.width() / 2)) {
       this_tooltip.show();
     } else {
       this_tooltip.addClass(&#x27;slide-tooltip-to-left&#x27;);
@@ -1390,12 +1381,12 @@ Inizializes jQueryUI &lt;b&gt;sortable&lt;/b&gt; function on top navigation numb
 @for LessonEditorJqueryAnimations
 **/
 function initializeSortableNavs() {
-  $(&#x27;#heading, #heading .scroll-pane&#x27;).css(&#x27;width&#x27;, (parseInt($(window).outerWidth()) - 50) + &#x27;px&#x27;);
+  $(&#x27;#heading, #heading .scroll-pane&#x27;).css(&#x27;width&#x27;, (parseInt($window.outerWidth()) - 50) + &#x27;px&#x27;);
   var slides_numbers = $(&#x27;#slide-numbers&#x27;);
   var slides_amount = slides_numbers.find(&#x27;li.navNumbers&#x27;).length;
   slides_numbers.css(&#x27;width&#x27;, &#x27;&#x27; + ((parseInt(slides_amount + 1) * 32) - 28) + &#x27;px&#x27;);
   var add_last_button = $(&#x27;._add_new_slide_options_in_last_position&#x27;);
-  if(parseInt(slides_numbers.css(&#x27;width&#x27;)) &lt; (parseInt($(window).outerWidth()) - 100)) {
+  if(parseInt(slides_numbers.css(&#x27;width&#x27;)) &lt; (parseInt($window.outerWidth()) - 100)) {
     add_last_button.css(&#x27;left&#x27;, &#x27;&#x27; + (slides_numbers.find(&#x27;li.navNumbers&#x27;).last().position().left + 40) + &#x27;px&#x27;);
   }
   slides_numbers.sortable({
@@ -1638,8 +1629,8 @@ Initialize slides position to center.
 @for LessonEditorSlidesNavigation
 **/
 function initLessonEditorPositions() {
-  WW = parseInt($(window).outerWidth());
-  WH = parseInt($(window).outerHeight());
+  WW = parseInt($window.outerWidth());
+  WH = parseInt($window.outerHeight());
   $(&#x27;#main&#x27;).css(&#x27;width&#x27;, WW);
   $(&#x27;ul#slides&#x27;).css(&#x27;width&#x27;, (($(&#x27;ul#slides li&#x27;).length + 2) * 1000));
   $(&#x27;ul#slides&#x27;).css(&#x27;top&#x27;, ((WH / 2) - 295) + &#x27;px&#x27;);

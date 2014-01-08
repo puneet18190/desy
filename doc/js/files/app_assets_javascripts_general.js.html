@@ -346,8 +346,8 @@ Centers a div into the current window.
 @param div {String} HTML selector to be centered
 **/
 function centerThis(div) {
-  var winH = $(window).height();
-  var winW = $(window).width();
+  var winH = $window.height();
+  var winW = $window.width();
   var centerDiv = $(div);
   centerDiv.css(&#x27;top&#x27;, winH/2 - centerDiv.height()/2);
   centerDiv.css(&#x27;left&#x27;, winW/2 - centerDiv.width()/2);
@@ -540,13 +540,7 @@ function globalDocumentReady() {
   $body.on(&#x27;mouseleave&#x27;, &#x27;.empty-situation-container a&#x27;, function() {
     $(this).find(&#x27;.plus&#x27;).removeClass(&#x27;encendido&#x27;);
   });
-  $(&#x27;#user_school_level_id&#x27;).selectbox(); // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
-  $(document).bind(&#x27;click&#x27;, function (e) {
-    var my_login = $(&#x27;#login_form_container:visible&#x27;);
-    if(my_login.length &gt; 0 &amp;&amp; $(e.target).parents(&#x27;#login_form_container&#x27;).length == 0 &amp;&amp; !$(e.target).hasClass(&#x27;_show_login_form_container&#x27;)) {
-      $(&#x27;._show_login_form_container&#x27;).click();
-    } // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
-  });
+  $(&#x27;#user_school_level_id&#x27;).selectbox();
   $body.on(&#x27;keyup blur&#x27;, &#x27;input[maxlength], textarea[maxlength]&#x27;, function () {
     var myself = $(this);
     var len = myself.val().length;
@@ -555,6 +549,7 @@ function globalDocumentReady() {
       myself.val(myself.val().slice(0, maxlength));
     }
   });
+  ajaxLoaderDocumentReady();
 }
 
 /**
@@ -671,7 +666,7 @@ function sectionMediaElementsDocumentReady() {
       $(this).addClass(&#x27;current&#x27;);
       $(&#x27;#display_compact_media_elements&#x27;).removeClass(&#x27;current&#x27;);
       $(&#x27;#info_container&#x27;).data(&#x27;in-space&#x27;, 0);
-      browserDependingScrollToTag().animate({scrollTop: ((1150 - $(window).height() + $(&#x27;.global-footer&#x27;).height()) + &#x27;px&#x27;)}, 500);
+      browserDependingScrollToTag().animate({scrollTop: ((1150 - $window.height() + $(&#x27;.global-footer&#x27;).height()) + &#x27;px&#x27;)}, 500);
       var last_item_compact = $(&#x27;.boxViewCompactMediaElement&#x27;).last();
       last_item_compact.animate({&#x27;margin-bottom&#x27;: (102 + parseInt(last_item_compact.css(&#x27;margin-bottom&#x27;))) + &#x27;px&#x27;}, 500);
       $(&#x27;.elements-content&#x27;).animate({height: &#x27;767px&#x27;}, 500, function() {
@@ -697,7 +692,7 @@ function sectionMediaElementsDocumentReady() {
   });
   $(&#x27;#filter_media_elements&#x27;).selectbox();
   mediaElementsResizeController(false, false);
-  $(window).resize(function() {
+  $window.resize(function() {
     mediaElementsResizeController(true, false);
   });
 }
@@ -711,7 +706,7 @@ function sectionNotificationsDocumentReady() {
   $(&#x27;#notifications_list&#x27;).jScrollPane({
     autoReinitialise: true
   });
-  $(document).bind(&#x27;click&#x27;, function (e) {
+  $document.bind(&#x27;click&#x27;, function (e) {
     var click_id = $(e.target).attr(&#x27;id&#x27;);
     var my_report = $(&#x27;.tooltipForm:visible&#x27;);
     if($(&#x27;#tooltip_content&#x27;).length &gt; 0) {
@@ -765,12 +760,14 @@ Initializes global variables used throughout the javascripts.
 @for GeneralMiscellanea
 **/
 function initializeGlobalVariables() {
+  window.$body = $(&#x27;body&#x27;);
+  window.$captions = $(&#x27;#popup_captions_container&#x27;);
+  window.$document = $(document);
   window.$html = $(&#x27;html&#x27;);
   window.$loaderVisible = true;
   window.$loading = $(&#x27;#loading&#x27;);
-  window.$body = $(&#x27;body&#x27;);
-  window.$captions = $(&#x27;#popup_captions_container&#x27;);
   window.$parameters = $(&#x27;#popup_parameters_container&#x27;);
+  window.$window = $(window);
 }
 
 /**

@@ -135,7 +135,6 @@ Global initializer for notifications and help. The function {{#crossLink "Notifi
 **/
 function notificationsDocumentReady() {
   notificationsDocumentReadyTooltips();
-  notificationsDocumentReadyLessonModification();
   if($('#notifications_main').length > 0) {
     setTimeout(function() {
       notificationsDocumentReadyLoop(5000);

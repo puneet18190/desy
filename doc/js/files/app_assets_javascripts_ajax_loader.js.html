@@ -395,8 +395,8 @@ Shows the loader without binding or unbinding it (it has a timeout of 5000).
 **/
 function showLoader() {
   var loader = $loading.find(&#x27;.containerLoading&#x27;);
-  loader.css(&#x27;top&#x27;, (($(window).height() / 2) - 100) + &#x27;px&#x27;);
-  loader.css(&#x27;left&#x27;, (($(window).width() / 2) - 50) + &#x27;px&#x27;);
+  loader.css(&#x27;top&#x27;, (($window.height() / 2) - 100) + &#x27;px&#x27;);
+  loader.css(&#x27;left&#x27;, (($window.width() / 2) - 50) + &#x27;px&#x27;);
   $loading.show();
   setTimeout(function() {
     hideLoader()
