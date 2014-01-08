@@ -335,34 +335,6 @@ There are &lt;b&gt;three known bugs&lt;/b&gt; due to the bad quality of the plug
 
 
 /**
-Global initializer.
-@method lessonViewerDocumentReady
-@for LessonViewerDocumentReady
-**/
-function lessonViewerDocumentReady() {
-  initializeLessonViewer();
-  lessonViewerDocumentReadyPlaylist();
-  lessonViewerDocumentReadySlidesNavigation();
-  lessonViewerDocumentReadySocialNetworks();
-  lessonViewerDocumentReadyDocuments();
-  $body.on(&#x27;click&#x27;, &#x27;#open_export_lesson&#x27;, function() {
-    $(this).hide();
-    $(&#x27;#export_lesson&#x27;).show();
-  });
-  $body.on(&#x27;mouseleave&#x27;, &#x27;#export_lesson&#x27;, function(e) {
-    $(this).hide();
-    $(&#x27;#open_export_lesson&#x27;).show();
-  });
-  $body.on(&#x27;mouseleave&#x27;, &#x27;.playlistMenu&#x27;, function(e) {
-    closePlaylistMenuInLessonViewer(function() {});
-  });
-  $body.on(&#x27;click&#x27;, &#x27;a.target_blank_mce&#x27;, function(e) {
-    e.preventDefault();
-    window.open($(this).attr(&#x27;href&#x27;), &#x27;_blank&#x27;).focus();
-  });
-}
-
-/**
 Initializer for functionalities of attached documents.
 @method lessonViewerDocumentReadyDocuments
 @for LessonViewerDocumentReady
@@ -382,6 +354,7 @@ Initializer for functionalities of the playlist menu.
 @for LessonViewerDocumentReady
 **/
 function lessonViewerDocumentReadyPlaylist() {
+  selectComponentInLessonViewerPlaylistMenu($(&#x27;._playlist_menu_item&#x27;).first());
   $body.on(&#x27;click&#x27;, &#x27;#carousel_container a&#x27;, function() {
     var me = $(this);
     if(!me.hasClass(&#x27;esciButton&#x27;) &amp;&amp; !me.hasClass(&#x27;_playlist_menu_item&#x27;) &amp;&amp; !me.hasClass(&#x27;_open_playlist&#x27;) &amp;&amp; !me.hasClass(&#x27;_close_playlist&#x27;)) {
@@ -408,6 +381,25 @@ function lessonViewerDocumentReadyPlaylist() {
     openPlaylistMenuInLessonViewer();
   });
   $body.on(&#x27;click&#x27;, &#x27;a._close_playlist&#x27;, function() {
+    closePlaylistMenuInLessonViewer(function() {});
+  });
+}
+
+/**
+Initializer for functionalities that must be separated in exported lessons.
+@method lessonViewerDocumentReadySeparated
+@for LessonViewerDocumentReady
+**/
+function lessonViewerDocumentReadySeparated() {
+  $body.on(&#x27;click&#x27;, &#x27;#open_export_lesson&#x27;, function() {
+    $(this).hide();
+    $(&#x27;#export_lesson&#x27;).show();
+  });
+  $body.on(&#x27;mouseleave&#x27;, &#x27;#export_lesson&#x27;, function(e) {
+    $(this).hide();
+    $(&#x27;#open_export_lesson&#x27;).show();
+  });
+  $body.on(&#x27;mouseleave&#x27;, &#x27;.playlistMenu&#x27;, function(e) {
     closePlaylistMenuInLessonViewer(function() {});
   });
 }
@@ -500,7 +492,7 @@ function lessonViewerDocumentReadySocialNetworks() {
 }
 
 /**
-Used only in the exported lesson, to convert the src of Wiris images (this function is not called by {{#crossLink &quot;LessonViewerDocumentReady/lessonViewerDocumentReady:method&quot;}}{{/crossLink}}.
+Used only in the exported lesson, to convert the src of Wiris images (this function is not called by the document ready in normal application.js).
 @method lessonViewerDocumentReadyWirisConvertSrc
 @for LessonViewerDocumentReady
 **/
@@ -536,16 +528,15 @@ function hideDocumentsInLessonViewer() {
 }
 
 /**
-Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink &quot;LessonViewerDocumentReady/lessonViewerDocumentReady:method&quot;}}{{/crossLink}}.
+Initializes the positions, and selects the right lesson in the playlist menu.
 @method initializeLessonViewer
 @for LessonViewerGeneral
 **/
 function initializeLessonViewer() {
-  selectComponentInLessonViewerPlaylistMenu($(&#x27;._playlist_menu_item&#x27;).first());
   if($(&#x27;._playlist_menu_item&#x27;).length &lt;= 3) {
     $(&#x27;#playlist_menu&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
   }
-  var height = $(window).height();
+  var height = $window.height();
   var margin_top = (height - 690) / 2;
   if(margin_top &lt; 50) {
     margin_top = 50;
@@ -556,6 +547,10 @@ function initializeLessonViewer() {
   } else {
     $(&#x27;.lesson-viewer-layout&#x27;).css(&#x27;overflow&#x27;, &#x27;default&#x27;);
   }
+  $body.on(&#x27;click&#x27;, &#x27;a.target_blank_mce&#x27;, function(e) {
+    e.preventDefault();
+    window.open($(this).attr(&#x27;href&#x27;), &#x27;_blank&#x27;).focus();
+  });
 }
 
 /**

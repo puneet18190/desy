@@ -334,7 +334,7 @@ Initializes the dashboard, and reactions to window resizing. To handle hover sen
 **/
 function dashboardDocumentReady() {
   dashboardResizeController();
-  $(window).resize(function() {
+  $window.resize(function() {
     dashboardResizeController();
   });
   $body.on(&#x27;mouseenter&#x27;, &#x27;.lesson_dashboard_hover_sensitive&#x27;, function() {
@@ -489,7 +489,7 @@ function expandMediaElementsInDashboard() {
   var container = $(&#x27;#dashboard_container&#x27;);
   container.find(&#x27;.title_media_elements .expand_icon.off&#x27;).hide();
   container.find(&#x27;.title_media_elements .expand_icon.on&#x27;).show().data(&#x27;moving&#x27;, true);
-  var scroll_height = (container.data(&#x27;lessons-expanded&#x27;) ? 1823 : 1438) - $(window).height() + $(&#x27;.global-footer&#x27;).height();
+  var scroll_height = (container.data(&#x27;lessons-expanded&#x27;) ? 1823 : 1438) - $window.height() + $(&#x27;.global-footer&#x27;).height();
   setTimeout(function() {
     browserDependingScrollToTag().animate({scrollTop: (scroll_height + &#x27;px&#x27;)}, 500);
   }, 150);

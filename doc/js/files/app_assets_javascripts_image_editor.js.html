@@ -474,7 +474,7 @@ Initializer for the general graphical properties of the editor: position and res
 **/
 function imageEditorDocumentReadyGeneral() {
   $(&#x27;#image_gallery_for_image_editor ._select_image_from_gallery&#x27;).addClass(&#x27;_add_image_to_image_editor&#x27;);
-  $(&#x27;#image_gallery_for_image_editor .gallery-header&#x27;).css(&#x27;left&#x27;, ($(window).width()/2) - 420);
+  $(&#x27;#image_gallery_for_image_editor .gallery-header&#x27;).css(&#x27;left&#x27;, ($window.width()/2) - 420);
   $body.on(&#x27;click&#x27;, &#x27;._add_image_to_image_editor&#x27;, function() {
     var parser = document.createElement(&#x27;a&#x27;);
     parser.href = $(&#x27;._exit_url&#x27;).attr(&#x27;href&#x27;);
@@ -533,7 +533,7 @@ function imageEditorDocumentReadyTexts() {
     offlightTextareas();
     enlightTextarea($(this).parent().attr(&#x27;id&#x27;).split(&#x27;_&#x27;)[3]);
   });
-  $body.on(&#x27;click&#x27;, &#x27;a._delete&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#image_editor a._delete&#x27;, function() {
     var id = $(this).parent().attr(&#x27;id&#x27;).split(&#x27;_&#x27;)[4];
     $(&#x27;#image_editor_text_&#x27; + id).remove();
     if($(&#x27;._image_editor_text&#x27;).length == 0) {

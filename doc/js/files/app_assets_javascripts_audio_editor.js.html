@@ -788,6 +788,16 @@ function audioEditorDocumentReadyGeneral() {
   if($.browser === &#x27;msie&#x27;) {
     $(&#x27;._audio_editor_component ._double_slider .ui-slider-range&#x27;).css(&#x27;opacity&#x27;, 0.4);
   }
+  $body.on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_audio_editor&#x27;, function() {
+    closeGalleryInAudioEditor();
+    var expanded_audio = $(&#x27;._audio_expanded_in_gallery&#x27;);
+    if(expanded_audio.length &gt; 0) {
+      expanded_audio.removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
+      var audio_id = expanded_audio.attr(&#x27;id&#x27;);
+      stopMedia(&#x27;#&#x27; + audio_id + &#x27; audio&#x27;);
+      $(&#x27;#&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
+    }
+  });
   $body.on(&#x27;mouseover&#x27;, &#x27;._audio_editor_component ._box_ghost&#x27;, function() {
     $(this).parent().find(&#x27;._sort_handle&#x27;).addClass(&#x27;current&#x27;);
   });
@@ -900,7 +910,7 @@ Sets the correct position of the gallery: used while showing and closing the aud
 @for AudioEditorGalleries
 **/
 function calculateNewPositionGalleriesInAudioEditor() {
-  $(&#x27;#audio_editor_gallery_container&#x27;).css(&#x27;left&#x27;, (($(window).width() - 940) / 2) + &#x27;px&#x27;);
+  $(&#x27;#audio_editor_gallery_container&#x27;).css(&#x27;left&#x27;, (($window.width() - 940) / 2) + &#x27;px&#x27;);
 }
 
 /**

@@ -317,7 +317,7 @@
 /**
 The functions in this module handle two different functionalities of &lt;b&gt;autocomplete&lt;/b&gt; for tags: suggestions for a research (&lt;b&gt;search autocomplete&lt;/b&gt;), and suggestions for tagging lessons and media elements (&lt;b&gt;tagging autocomplete&lt;/b&gt;). Both modes use the same JQuery plugin called &lt;i&gt;JQueryAutocomplete&lt;/i&gt; (the same used in {{#crossLink &quot;AdminAutocomplete/initNotificationsAutocomplete:method&quot;}}{{/crossLink}}).
 &lt;br/&gt;&lt;br/&gt;
-The &lt;b&gt;search&lt;/b&gt; autocomplete mode requires a simple initializer (method {{#crossLink &quot;TagsInitializers/initSearchTagsAutocomplete:method&quot;}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink &quot;TagsDocumentReady/tagsDocumentReady:method&quot;}}{{/crossLink}}).
+The &lt;b&gt;search&lt;/b&gt; autocomplete mode requires a simple initializer (method {{#crossLink &quot;TagsInitializers/initSearchTagsAutocomplete:method&quot;}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink &quot;TagsDocumentReady&quot;}}{{/crossLink}}).
 &lt;br/&gt;&lt;br/&gt;
 The &lt;b&gt;tagging&lt;/b&gt; autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an &#x27;x&#x27; to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a &lt;b&gt;container&lt;/b&gt; div that contains a list of tag &lt;b&gt;boxes&lt;/b&gt; (implemented with span, see {{#crossLink &quot;TagsAccessories/createTagSpan:method&quot;}}{{/crossLink}}) and an &lt;b&gt;tag input&lt;/b&gt; where the user writes; when he inserts a new tag and presses &lt;i&gt;enter&lt;/i&gt; or &lt;i&gt;comma&lt;/i&gt;, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see {{#crossLink &quot;TagsAccessories/disableTagsInputTooHigh:method&quot;}}{{/crossLink}}). During this whole process, a &lt;b&gt;hidden input&lt;/b&gt; gets updated with a string representing the current tags separated by comma ({{#crossLink &quot;TagsAccessories/addToTagsValue:method&quot;}}{{/crossLink}}, {{#crossLink &quot;TagsAccessories/removeFromTagsValue:method&quot;}}{{/crossLink}}).
 &lt;br/&gt;&lt;br/&gt;
@@ -464,20 +464,14 @@ function removeFromTagsValue(word, value_selector) {
 
 
 /**
-Global initializer for all instances of search autocomplete and tagging autocomplete.
-@method tagsDocumentReady
+Initializer for search autocomplete.
+@method tagsDocumentReadyAutocomplete
 @for TagsDocumentReady
 **/
-function tagsDocumentReady() {
+function tagsDocumentReadyAutocomplete() {
   initSearchTagsAutocomplete(&#x27;#general_tag_reader_for_search&#x27;);
   initSearchTagsAutocomplete(&#x27;#lessons_tag_reader_for_search&#x27;);
   initSearchTagsAutocomplete(&#x27;#media_elements_tag_reader_for_search&#x27;);
-  tagsDocumentReadyChangeMediaElementInfo();
-  tagsDocumentReadyMediaElementLoader();
-  tagsDocumentReadyOvervriteMediaElement();
-  tagsDocumentReadyNewMediaElement();
-  tagsDocumentReadyNewLesson();
-  tagsDocumentReadyUpdateLesson();
 }
 
 /**
