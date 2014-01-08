@@ -84,6 +84,14 @@ $(document).ready(function() {
     sectionLessonsDocumentReady();
     sectionNotificationsDocumentReady();
   }
+  if($('.lesson-viewer.layout').length > 0) { // in lesson viewer
+    initializeLessonViewer();
+    lessonViewerDocumentReadyPlaylist();
+    lessonViewerDocumentReadySlidesNavigation();
+    lessonViewerDocumentReadySocialNetworks();
+    lessonViewerDocumentReadyDocuments();
+    lessonviewerDocumentReadySeparated();
+  }
   if($('#my_media_elements').length > 0) { // in section elements
     commonMediaElementsDocumentReady();
     sectionMediaElementsDocumentReady();
@@ -110,7 +118,6 @@ $(document).ready(function() {
   }
   
   // TODO ottimizz a partire da qui non è ottimizzato
-  lessonViewerDocumentReady();
   locationsDocumentReady();
   mediaElementButtonsDocumentReady();
   mediaElementEditorDocumentReady();

@@ -36,7 +36,16 @@ $(document).ready(function() {
   globalDocumentReady();
   // TODO ottimizz a partire da qui non è ottimizzato
   playersDocumentReady();
-  lessonViewerDocumentReady();
+  
+  
+  
+  initializeLessonViewer();
+  lessonViewerDocumentReadyPlaylist();
+  lessonViewerDocumentReadySlidesNavigation();
+  lessonViewerDocumentReadySocialNetworks();
+  lessonViewerDocumentReadyDocuments();
+  lessonviewerDocumentReadySeparated();
+  lessonViewerDocumentReadyWirisConvertSrc();
   $('.lesson-scorm-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
   $(window).resize(function() {
     $('.lesson-scorm-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');

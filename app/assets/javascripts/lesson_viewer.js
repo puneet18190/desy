@@ -19,34 +19,6 @@ There are <b>three known bugs</b> due to the bad quality of the plugin <b>JScrol
 
 
 /**
-Global initializer.
-@method lessonViewerDocumentReady
-@for LessonViewerDocumentReady
-**/
-function lessonViewerDocumentReady() {
-  initializeLessonViewer();
-  lessonViewerDocumentReadyPlaylist();
-  lessonViewerDocumentReadySlidesNavigation();
-  lessonViewerDocumentReadySocialNetworks();
-  lessonViewerDocumentReadyDocuments();
-  $body.on('click', '#open_export_lesson', function() {
-    $(this).hide();
-    $('#export_lesson').show();
-  });
-  $body.on('mouseleave', '#export_lesson', function(e) {
-    $(this).hide();
-    $('#open_export_lesson').show();
-  });
-  $body.on('mouseleave', '.playlistMenu', function(e) {
-    closePlaylistMenuInLessonViewer(function() {});
-  });
-  $body.on('click', 'a.target_blank_mce', function(e) {
-    e.preventDefault();
-    window.open($(this).attr('href'), '_blank').focus();
-  });
-}
-
-/**
 Initializer for functionalities of attached documents.
 @method lessonViewerDocumentReadyDocuments
 @for LessonViewerDocumentReady
@@ -93,6 +65,29 @@ function lessonViewerDocumentReadyPlaylist() {
   });
   $body.on('click', 'a._close_playlist', function() {
     closePlaylistMenuInLessonViewer(function() {});
+  });
+}
+
+/**
+Initializer for functionalities that must be separated in exported lessons.
+@method lessonViewerDocumentReadySeparated
+@for LessonViewerDocumentReady
+**/
+function lessonViewerDocumentReadySeparated() {
+  $body.on('click', '#open_export_lesson', function() {
+    $(this).hide();
+    $('#export_lesson').show();
+  });
+  $body.on('mouseleave', '#export_lesson', function(e) {
+    $(this).hide();
+    $('#open_export_lesson').show();
+  });
+  $body.on('mouseleave', '.playlistMenu', function(e) {
+    closePlaylistMenuInLessonViewer(function() {});
+  });
+  $body.on('click', 'a.target_blank_mce', function(e) {
+    e.preventDefault();
+    window.open($(this).attr('href'), '_blank').focus();
   });
 }
 
@@ -184,7 +179,7 @@ function lessonViewerDocumentReadySocialNetworks() {
 }
 
 /**
-Used only in the exported lesson, to convert the src of Wiris images (this function is not called by {{#crossLink "LessonViewerDocumentReady/lessonViewerDocumentReady:method"}}{{/crossLink}}.
+Used only in the exported lesson, to convert the src of Wiris images (this function is not called by the document ready in normal application.js).
 @method lessonViewerDocumentReadyWirisConvertSrc
 @for LessonViewerDocumentReady
 **/
@@ -220,7 +215,7 @@ function hideDocumentsInLessonViewer() {
 }
 
 /**
-Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink "LessonViewerDocumentReady/lessonViewerDocumentReady:method"}}{{/crossLink}}.
+Initializes the positions, and selects the right lesson in the playlist menu.
 @method initializeLessonViewer
 @for LessonViewerGeneral
 **/

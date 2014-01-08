@@ -36,7 +36,16 @@ $(document).ready(function() {
   globalDocumentReady();
   // TODO ottimizz a partire da qui non è ottimizzato
   playersDocumentReady();
-  lessonViewerDocumentReady();
+  
+  
+  
+  initializeLessonViewer();
+  lessonViewerDocumentReadyPlaylist();
+  lessonViewerDocumentReadySlidesNavigation();
+  lessonViewerDocumentReadySocialNetworks();
+  lessonViewerDocumentReadyDocuments();
+  lessonviewerDocumentReadySeparated();
+  lessonViewerDocumentReadyWirisConvertSrc();
   var scrolls = $('#left_scroll, #right_scroll');
   $('.lesson-archive-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
   $(window).resize(function() {
@@ -52,7 +61,6 @@ $(document).ready(function() {
       moveToAdhiacentSlideInLessonViewer(scrolls, goToNextSlideInLessonViewer);
     }
   });
-  lessonViewerDocumentReadyWirisConvertSrc();
   $('#footer').css('top', (parseInt($(window).outerHeight()) - 40) + 'px').css('width', (parseInt($(window).outerWidth()) - 24) + 'px');
   $(window).resize(function() {
     $('#footer').css('top', ($(window).height() - 40) + 'px').css('width', ($(window).width() - 24) + 'px');
