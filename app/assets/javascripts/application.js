@@ -58,6 +58,8 @@ $(document).ready(function() {
     audioEditorDocumentReady();
     galleriesDocumentReady();
     mediaElementEditorDocumentReady();
+    playersDocumentReadyAudioEditor();
+    playersDocumentReadyGeneral();
   }
   if($('#dashboard_container').length > 0) { // in dashboard
     commonLessonsDocumentReady();
@@ -68,6 +70,7 @@ $(document).ready(function() {
     mediaElementButtonsDocumentReady();
     mediaElementLoaderDocumentReady();
     notificationsDocumentReady();
+    playersDocumentReadyGeneral();
     sectionNotificationsDocumentReady();
   }
   if($('#my_documents').length > 0) { // in section documents
@@ -85,6 +88,7 @@ $(document).ready(function() {
   if($('.lesson-editor-container').length > 0) { // in lesson editor
     galleriesDocumentReady();
     lessonEditorDocumentReady();
+    playersDocumentReadyGeneral();
   }
   if($('#my_lessons').length > 0) { // in section lessons
     commonLessonsDocumentReady();
@@ -101,12 +105,14 @@ $(document).ready(function() {
     lessonViewerDocumentReadySocialNetworks();
     lessonViewerDocumentReadyDocuments();
     lessonviewerDocumentReadySeparated();
+    playersDocumentReadyGeneral();
   }
   if($('#my_media_elements').length > 0) { // in section elements
     commonMediaElementsDocumentReady();
     mediaElementButtonsDocumentReady();
     mediaElementLoaderDocumentReady();
     notificationsDocumentReady();
+    playersDocumentReadyGeneral();
     sectionMediaElementsDocumentReady();
     sectionNotificationsDocumentReady();
   }
@@ -126,12 +132,15 @@ $(document).ready(function() {
     mediaElementButtonsDocumentReady();
     notificationsDocumentReady();
     notificationsDocumentReadyLessonModification();
+    playersDocumentReadyGeneral();
     sectionNotificationsDocumentReady();
     sectionSearchDocumentReady();
   }
   if($('#video_editor').length > 0) { // in video editor
     galleriesDocumentReady();
     mediaElementEditorDocumentReady();
+    playersDocumentReadyGeneral();
+    playersDocumentReadyVideoEditor();
   }
   if($('#my_virtual_classroom').length > 0) { // in virtual classroom
     notificationsDocumentReady();
@@ -139,7 +148,6 @@ $(document).ready(function() {
   }
   
   // TODO ottimizz a partire da qui non è ottimizzato
-  playersDocumentReady();
   profileDocumentReady();
   purchaseCodeRegistrationDocumentReady();
   reportsDocumentReady();

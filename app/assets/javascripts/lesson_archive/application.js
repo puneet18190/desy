@@ -39,6 +39,5 @@ $(document).ready(function() {
   lessonViewerDocumentReadyWirisConvertSrc();
   lessonViewerDocumentReadySocialNetworks();
   lessonViewerDocumentReadyDocuments();
-  // TODO ottimizz a partire da qui non è ottimizzato
-  playersDocumentReady();
+  playersDocumentReadyGeneral();
 });

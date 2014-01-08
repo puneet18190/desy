@@ -299,17 +299,6 @@ function validSeek(media, seek) {
 
 
 /**
-Global initializer for players.
-@method playersDocumentReady
-@for PlayersDocumentReady
-**/
-function playersDocumentReady() {
-  playersDocumentReadyGeneral();
-  playersDocumentReadyVideoEditor();
-  playersDocumentReadyAudioEditor();
-}
-
-/**
 Initializer for buttons inside a cutter in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}.
 @method playersDocumentReadyAudioEditor
 @for PlayersDocumentReady
