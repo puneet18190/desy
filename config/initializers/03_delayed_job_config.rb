@@ -5,11 +5,12 @@ require 'eventmachine' unless WINDOWS
 
 # Detect whether we are in a Delayed::Job process
 DELAYED_JOB = begin
-  basename  = File.basename $0
-  arguments = $*
+  basename        = File.basename $0
+  arguments       = $*
+  rake_args_regex = /\Ajobs:/
 
-  ( basename == 'delayed_job' )                                ||
-  ( basename == 'rake' && arguments.grep(/\Ajobs:/).present? )
+  ( basename == 'delayed_job' ) ||
+  ( basename == 'rake' && arguments.find{ |v| v =~ rake_args_regex } )
 end
 
 if DELAYED_JOB

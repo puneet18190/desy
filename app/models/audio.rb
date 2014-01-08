@@ -107,7 +107,7 @@ class Audio < MediaElement
   # === Usage
   #
   #   <% if audio.converted? %>
-  #     <%= render :partial => 'shared/players/audio', :locals => {:audio => audio} %>
+  #     <%= render :partial => 'shared/players/custom/audio', :locals => {:audio => audio} %>
   #   <% else %>
   #     <%= image_tag audio.placeholder_url(:lesson_viewer) %>
   #   <% end %>

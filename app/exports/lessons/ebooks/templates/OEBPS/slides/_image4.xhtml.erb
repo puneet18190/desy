@@ -1,9 +1,0 @@
-<% slide.media_elements_at.each do |media_element_slide| -%>
-  <% if media_element_slide -%>
-    <% image = media_element_slide.media_element -%>
-    <img src="<%= media_element_path(image) %>" alt="<%= image.title %>"/>
-    <% if media_element_slide.caption.present? -%>
-      <p><%= media_element_slide.caption %></p>
-    <% end -%>
-  <% end -%>
-<% end -%>

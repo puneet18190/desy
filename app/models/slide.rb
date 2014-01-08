@@ -135,7 +135,26 @@ class Slide < ActiveRecord::Base
   before_create :init_math_images_copy
   after_create :copy_math_images
   before_destroy :stop_if_cover, :remove_math_images_folder
-  
+
+  def text(options = {})
+    if math_images_folder = options[:math_images_path_relative_from_folder]
+      text = read_attribute :text
+
+      return text if text.blank?
+      
+      fragment = Nokogiri::XML::DocumentFragment.parse(text)
+      
+      fragment.css(Slide::MathImages::CSS_SELECTOR).each do |el|
+        math_image_filename = CGI.parse(URI("http://www.example.com/#{el[:src]}").query)['formula'].first
+        el[:src] = File.join math_images_folder, File.basename(math_image_filename)
+      end
+      
+      fragment.to_s.html_safe
+    else
+      read_attribute :text
+    end
+  end
+
   # Getter for math images
   def math_images
     return metadata.math_images = MathImages.new([], id) unless metadata.math_images

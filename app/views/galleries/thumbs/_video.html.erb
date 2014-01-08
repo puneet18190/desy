@@ -15,7 +15,7 @@
   <% else %>
     <a><%= image_tag video.cover_url, :width => '250', :height => '140', :title => video.title %></a>
     <div class="videoInGalleryPopUp" id="dialog-video-gallery-<%= video.id %>" data-video-id="<%= video.id %>">
-      <%= render :partial => 'shared/players/video', :locals => {:video => nil, :initialize_now => false} %>
+      <%= render :partial => "shared/players/custom/video", :locals => {:video => nil, :initialize_now => false} %>
       <div class="caption">
         <p><%= video.title %></p>
       </div>

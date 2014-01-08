@@ -13,13 +13,13 @@ module Media
   require 'media/config'
 
   # MIME types of the generated media
-  MIME_TYPES = { '.jpg'  => 'image/jpeg' ,
-                 '.jpeg' => 'image/jpeg' ,
-                 '.png'  => 'image/png'  ,
-                 '.mp4'  => 'video/mp4'  ,
-                 '.webm' => 'video/webm' ,
-                 '.m4a'  => 'audio/mp4'  ,
-                 '.ogg'  => 'audio/ogg'  }
+  MIME_TYPES = { '.jpg'  => 'image/jpeg'  ,
+                 '.jpeg' => 'image/jpeg'  ,
+                 '.png'  => 'image/png'   ,
+                 '.mp4'  => 'video/mp4'   ,
+                 '.webm' => 'video/webm'  ,
+                 '.m4a'  => 'audio/x-m4a' ,
+                 '.ogg'  => 'audio/ogg'   }
 
 end
 

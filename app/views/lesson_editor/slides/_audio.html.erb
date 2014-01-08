@@ -19,7 +19,7 @@
           <input class="audio-id" type="hidden" value="" name="media_element_1" autocomplete="off"/>
         <% end %>
         <div class="mask <%= audio.nil? ? 'hidden' : 'visible' %>">
-          <%= render(:partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true}) %>
+          <%= render(:partial => 'shared/players/custom/audio', :locals => {:audio => audio, :initialize_now => true}) %>
           <span class="add" data-position="1" title="<%= t('titles.lesson_editor.change_audio') %>"></span>
           <br/>
           <div class="title"><%= audio_title %></div>

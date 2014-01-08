@@ -13,6 +13,16 @@
 }
 
 .slide-content {
+
+  &.simple_player {
+    .audio {
+      line-height: 71px;
+      audio {
+        vertical-align: middle;
+        width: 100%;
+      }
+    }
+  }
   
   height: $slide-inner-height;
   width: $slide-inner-width;

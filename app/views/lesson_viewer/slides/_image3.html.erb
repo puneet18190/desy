@@ -17,19 +17,19 @@
         %>
         <% if image.is_horizontal?(slide.kind) %>
           <% if image.inscribed %>
-            <img style="top:<%= image.alignment %>px; height:<%= image_height %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>>
+            <img style="top:<%= image.alignment %>px; height:<%= image_height %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>/>
           <% else %>
-            <img style="left:<%= image.alignment %>px; width:<%= image_width %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>>
+            <img style="left:<%= image.alignment %>px; width:<%= image_width %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>/>
           <% end %>
         <% else %>
           <% if image.inscribed %>
-            <img style="left:<%= image.alignment %>px; width:<%= image_width %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>>
+            <img style="left:<%= image.alignment %>px; width:<%= image_width %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>/>
           <% else %>
-            <img style="top:<%= image.alignment %>px; height:<%= image_height %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>>
+            <img style="top:<%= image.alignment %>px; height:<%= image_height %>px" data-url="<%= url %>" alt="<%= image.media_element.title %>" <%= effective_url %>/>
           <% end %>
         <% end %>
         <% if image.caption.present? %>
-          <input class="caption" type="text" value="<%= image.caption %>" disabled="disabled">
+          <input class="caption" type="text" value="<%= image.caption %>" disabled="disabled"/>
         <% end %>
       <% end %>
     </div>

@@ -74,6 +74,17 @@ server {
     break;
   }
 
+  # Documents: max expiration cache
+  #            always served as attachments
+  location ~ ^/documents/(|(development|test)/)[0-9]+/(.+)$ {
+    expires max;
+    add_header Cache-Control public;
+    add_header ETag "";
+    set $filename $3;
+    add_header Content-Disposition "attachment;filename=$filename";
+    break;
+  }
+
   # Rails app
   location @app {
     # an HTTP header important enough to have its own Wikipedia entry:

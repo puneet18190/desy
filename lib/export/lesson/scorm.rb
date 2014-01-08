@@ -72,7 +72,7 @@ module Export
       private
 
       def assets_compiled?
-        ASSETS_FOLDER.exist? && !ASSETS_FOLDER.entries.empty?
+        ASSETS_FOLDER.exist? && ASSETS_FOLDER.entries.present?
       end
 
       def assets_files

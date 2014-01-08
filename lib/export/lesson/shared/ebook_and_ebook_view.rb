@@ -1,5 +1,3 @@
-require 'action_view/lookup_context'
-
 require 'export'
 require 'export/lesson'
 require 'export/lesson/shared'
@@ -7,13 +5,9 @@ require 'export/lesson/shared'
 module Export
   module Lesson
     module Shared
-      module EbookAndEbookRenderer
-        require 'export/lesson/ebook/renderer'
+      module EbookAndEbookView
+        require 'export/lesson/ebook/view'
 
-        TEMPLATES_FOLDER                                 = Lesson::FOLDER.join 'ebooks', 'templates'
-        LOOKUP_CONTEXT                                   = ActionView::LookupContext.new TEMPLATES_FOLDER
-        VIEW_RENDERER                                    = Ebook::Renderer.new LOOKUP_CONTEXT
-        CONTEXT                                          = VIEW_RENDERER
         DOCUMENT_FALLBACKS_RELATIVE_FROM_CONTENTS_FOLDER = File.join DocumentUploader::STORE_DIR, 'fallbacks'
 
         def slide_item_id(slide)

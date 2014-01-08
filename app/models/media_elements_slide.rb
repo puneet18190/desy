@@ -61,6 +61,22 @@ class MediaElementsSlide < ActiveRecord::Base
   
   # === Description
   #
+  # Returns media_element.background_position. media_element must be an Image.
+  #
+  # === Returns
+  #
+  # A value compliant to background-position
+  #
+  def background_position
+    media_element.background_position slide.kind, alignment
+  end
+
+  def background_size
+    inscribed ? 'contain' : 'cover'
+  end
+
+  # === Description
+  #
   # Method to check that it's horizontal
   #
   # === Args

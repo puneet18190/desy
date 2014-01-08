@@ -8,7 +8,7 @@
   
   <div class="mask <%= video.nil? ? 'hidden' : 'visible' %>">
     <div class="alignable" data-rolloverable="true">
-      <%= render(:partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true}) %>
+      <%= render(:partial => "shared/players/custom/video", :locals => {:video => video, :initialize_now => true}) %>
     </div>
     <span class="add hidden" data-position="1" title="<%= t('titles.lesson_editor.change_video') %>"></span>
   </div>

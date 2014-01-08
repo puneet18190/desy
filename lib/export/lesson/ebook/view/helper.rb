@@ -8,16 +8,16 @@ require 'slide/math_images'
 require 'export'
 require 'export/lesson'
 require 'export/lesson/ebook'
-require 'export/lesson/ebook/renderer'
+require 'export/lesson/ebook/view'
 require 'export/lesson/shared'
-require 'export/lesson/shared/ebook_and_ebook_renderer'
+require 'export/lesson/shared/ebook_and_ebook_view'
 
 module Export
   module Lesson
     class Ebook
-      class Renderer
-        # TODO provare a memoizzare per vedere l'effetto che fa
+      class View
         module Helper
+
           # TODO spostarlo in SETTINGS
           PACKAGE_ID                      = 'DESYLesson'
           DCTERMS_MODIFIED_FORMAT         = '%Y-%m-%dT%H:%M:%SZ'
@@ -25,8 +25,20 @@ module Export
           MEDIA_ELEMENT_MIME_TYPES        = Media::MIME_TYPES
           MATH_IMAGES_ARCHIVE_FOLDER_NAME = Shared::MATH_IMAGES_ARCHIVE_FOLDER_NAME
 
-          include ActionView::Helpers::TranslationHelper
           include ApplicationHelper
+
+          require 'export/lesson/shared/ebook_and_ebook_view'
+          include Shared::EbookAndEbookView
+
+          def package_id
+            PACKAGE_ID
+          end
+
+          # TODO rimuovere
+          def render_slide(slide, locals = {})
+            render partial: "lesson_viewer/slides/#{slide.kind}",
+                   locals:  { slide: slide }.merge(locals)
+          end
 
           def stylesheet_path
             File.join 'assets', File.basename( ASSETS_PATHS.find { |path| File.extname(path) == '.css' } )
@@ -41,13 +53,7 @@ module Export
           end
 
           def slide_title(slide)
-            title =  "Slide #{slide.position-1}"
-            title << " - #{slide.title}" if slide.title.present?
-            title
-          end
-
-          def document_fallback_title(document, position)
-            "Document #{position} - #{document.title}"
+            slide.cover? ? 'Copertina' : "Pagina #{slide.position-1}"
           end
 
           def image_path(image)
@@ -68,24 +74,6 @@ module Export
             MIME::Types.of(path.to_s).first.try(:content_type) || UNKNOWN_MIME_TYPE
           end
 
-          def document_path(document)
-            document.url UrlTypes::EXPORT
-          end
-
-          def document_item_attributes(document)
-            href = document_path(document)
-
-            { id:         document_item_id(document)          ,
-              href:       href                                ,
-              fallback:   document_item_fallback_id(document) ,
-              media_type: mime_type(href)                     }
-          end
-
-          def document_item_fallback_attributes(document)
-            { id:   document_item_fallback_id(document)                     ,
-              href: document_fallbacks_relative_from_content_path(document) }
-          end
-
           def media_element_path(media_element, format = nil)
             href_method = format ? :"#{format}_url" : :url
             media_element.send href_method, UrlTypes::EXPORT
@@ -95,9 +83,11 @@ module Export
             id =  "#{media_element.class.to_s.downcase}_#{media_element.id}"
             id << "_#{format}" if format
 
-            href = media_element_path(media_element, format)
+            href = media_element_path media_element, format
 
-            properties  = media_element.cover_of?(lesson) ? 'cover-image' : nil
+            # TODO fare la cover
+            # properties = media_element.cover_of?(lesson) ? 'cover-image' : nil
+            properties = nil
 
             { id:         id                            ,
               href:       href                          ,
@@ -106,20 +96,15 @@ module Export
           end
 
           def slide_content(slide)
-            return nil unless slide.text
-            
-            fragment = Nokogiri::XML::DocumentFragment.parse(slide.text)
-            
-            fragment.css(Slide::MathImages::CSS_SELECTOR).each do |el|
-              math_image_basename = File.basename CGI.parse(URI("http://www.example.com/#{el[:src]}").query)['formula'].first
-              el[:src] = math_image_path_relative_from_contents_folder math_image_basename
-            end
-            
-            fragment.to_s.html_safe
+            slide.text(math_images_path_relative_from_folder: math_images_archive_folder_name)
           end
 
           def math_image_item_id(i)
             "math_image_#{i}"
+          end
+
+          def math_images_archive_folder_name
+            self.class::MATH_IMAGES_ARCHIVE_FOLDER_NAME
           end
 
           def math_image_item_href(math_image)

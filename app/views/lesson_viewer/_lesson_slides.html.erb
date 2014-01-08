@@ -12,7 +12,7 @@
         <%
           slide.text = '' if slide.text.blank?
           class_cover = slide.cover? ? "_cover_bookmark_for_lesson_viewer_#{slide.lesson_id}" : ''
-          loaded = ([1, 2, slides.length].include? overall_counter)
+          loaded = [1, 2, slides.length].include?(overall_counter)
         %>
         <li id="slide_in_lesson_viewer_<%= slide.id %>" class="_slide_in_lesson_viewer cover slide <%= class_current %> <%= class_cover %>" data-overall-counter="<%= overall_counter %>" data-lesson-id="<%= slide.lesson_id %>" data-loaded="<%= loaded %>" data-slide-id="<%= slide.id %>" <%= style_current %>>
           <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {slide: slide, url_type: url_type, loaded: loaded} %>

@@ -1,0 +1,9 @@
+<%
+  image = slide.media_elements_at
+%>
+
+<figure class="vertical_align image">
+  <% style = render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml', locals: { image_media_elements_slide: image } -%>
+  <div style="<%= style %>"></div>
+  <figcaption><%= image.caption if image %></figcaption>
+</figure>
