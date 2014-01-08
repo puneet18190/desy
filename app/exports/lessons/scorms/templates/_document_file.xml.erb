@@ -1,4 +1,4 @@
-<file href="html/documents/#{document.id}/#{document.url}"> <!-- TODO schorm sistema url documento con replace -->
+<file href="html/documents/<%= document.id %>/<%= File.basename document.url %>">
   <metadata>
     <lom>
       <general>

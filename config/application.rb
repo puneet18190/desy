@@ -76,7 +76,7 @@ module Desy
     config.assets.version = '1.0'
 
     # Options used by url_for when used in email contexts
-    config.action_mailer.default_url_options = SETTINGS['application']['mailer_default_url_options']
+    config.action_mailer.default_url_options = SETTINGS['application']['default_url_options']
 
     # More than one language
     config.more_than_one_language = ::SETTINGS['languages'].size > 1
