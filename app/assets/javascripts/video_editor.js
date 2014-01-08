@@ -927,6 +927,19 @@ Initializer for galleries.
 @for VideoEditorDocumentReady
 **/
 function videoEditorDocumentReadyGalleries() {
+  $body.on('click', '._close_mixed_gallery_in_video_editor', function() {
+    closeGalleryInVideoEditor('mixed');
+  });
+  $body.on('click', '._close_audio_gallery_in_video_editor', function() {
+    closeGalleryInVideoEditor('audio');
+    var expanded_audio = $('._audio_expanded_in_gallery');
+    if(expanded_audio.length > 0) {
+      expanded_audio.removeClass('_audio_expanded_in_gallery');
+      var audio_id = expanded_audio.attr('id');
+      stopMedia('#' + audio_id + ' audio');
+      $('#' + audio_id + ' ._expanded').hide();
+    }
+  });
   $body.on('click', '._new_component_in_video_editor_button', function() {
     var father = $(this).parent().parent().parent().parent();
     var infos = $('#info_container');

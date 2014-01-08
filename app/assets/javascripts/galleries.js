@@ -55,52 +55,11 @@ function resizedWidthForImageGallery(width, height) {
 
 
 /**
-Initializer for effects in galleries.
+Initializer for effects of opening a gallery and opening the individual dialog of an element in a gallery: this method calls methods belonging to the class {{#crossLink "DialogsGalleries"}}{{/crossLink}}.
 @method galleriesDocumentReady
 @for GalleriesDocumentReady
 **/
 function galleriesDocumentReady() {
-  galleriesDocumentReadyOpen();
-  galleriesDocumentReadyClose();
-}
-
-/**
-Initializer for effects of closing a gallery. Typically, when closing a gallery the system closes all the media inside it using {{#crossLink "PlayersGeneral/stopMedia:method"}}{{/crossLink}}.
-@method galleriesDocumentReadyClose
-@for GalleriesDocumentReady
-**/
-function galleriesDocumentReadyClose() {
-  $body.on('click', '._close_mixed_gallery_in_video_editor', function() {
-    closeGalleryInVideoEditor('mixed');
-  });
-  $body.on('click', '._close_audio_gallery_in_video_editor', function() {
-    closeGalleryInVideoEditor('audio');
-    var expanded_audio = $('._audio_expanded_in_gallery');
-    if(expanded_audio.length > 0) {
-      expanded_audio.removeClass('_audio_expanded_in_gallery');
-      var audio_id = expanded_audio.attr('id');
-      stopMedia('#' + audio_id + ' audio');
-      $('#' + audio_id + ' ._expanded').hide();
-    }
-  });
-  $body.on('click', '._close_audio_gallery_in_audio_editor', function() {
-    closeGalleryInAudioEditor();
-    var expanded_audio = $('._audio_expanded_in_gallery');
-    if(expanded_audio.length > 0) {
-      expanded_audio.removeClass('_audio_expanded_in_gallery');
-      var audio_id = expanded_audio.attr('id');
-      stopMedia('#' + audio_id + ' audio');
-      $('#' + audio_id + ' ._expanded').hide();
-    }
-  });
-}
-
-/**
-Initializer for effects of opening a gallery and opening the individual dialog of an element in a gallery: this method calls methods belonging to the class {{#crossLink "DialogsGalleries"}}{{/crossLink}}.
-@method galleriesDocumentReadyOpen
-@for GalleriesDocumentReady
-**/
-function galleriesDocumentReadyOpen() {
   $body.on('click','._image_gallery_thumb', function(e) {
     e.preventDefault();
     showImageInGalleryPopUp($(this).data('image-id'));
