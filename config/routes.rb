@@ -29,6 +29,7 @@ Desy::Application.routes.draw do
   
   # MEDIA ELEMENTS
   resources :media_elements,                          :only => :create
+  get       'media_elements/create/fake'                    => 'media_elements#create_fake'
   get       'media_elements/new'                            => 'media_elements#new',             :as => :new_media_elements_editor
   post      'media_elements/:media_element_id'              => 'media_elements#update',          :as => :media_element
   post      'media_elements/:media_element_id/add'          => 'media_elements#add'
@@ -40,7 +41,8 @@ Desy::Application.routes.draw do
   
   # DOCUMENTS
   resources :documents,                                 :only => :create
-  post      'documents/:document_id/destroy'                  => 'documents#destroy'
+  get       'documents/create/fake'                           => 'documents#create_fake'
+  delete    'documents/:document_id'                          => 'documents#destroy'
   post      'documents/:document_id'                          => 'documents#update',  :as => :document
   
   # NOTIFICATIONS

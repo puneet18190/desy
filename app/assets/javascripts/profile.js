@@ -8,20 +8,6 @@ This module contains the initialization methods for <b>profiling</b> and <b>regi
 
 
 /**
-Initializes the action that shows automaticly the login form when somebody opens the maing page of the application without being logged.
-@method automaticLoginDocumentReady
-@for ProfilePrelogin
-**/
-function automaticLoginDocumentReady() {
-  if( $html.hasClass('prelogin-controller home-action') ) {
-    var parsedLocation = UrlParser.parse(window.location.href);
-    if(_.contains(_.keys(parsedLocation.searchObj), 'login')) {
-      $('._show_login_form_container').click();
-    }
-  }
-}
-
-/**
 Initializes the handler of the login form.
 @method preloginDocumentReady
 @for ProfilePrelogin
@@ -34,6 +20,12 @@ function preloginDocumentReady() {
       $('#email').focus();
     } else {
       form.hide('fade', {}, 500);
+    }
+  });
+  $document.bind('click', function (e) {
+    var my_login = $('#login_form_container:visible');
+    if(my_login.length > 0 && $(e.target).parents('#login_form_container').length == 0 && !$(e.target).hasClass('_show_login_form_container')) {
+      $('._show_login_form_container').click();
     }
   });
   $body.on('click', '#submit_login_form', function() {
@@ -49,6 +41,11 @@ function preloginDocumentReady() {
   $body.on('click', '.checkAllSubjects', function() {
     $(this).parent().find('.checkboxElement label.unchecked').click();
   });
+  $('.policy-verticalScroll').jScrollPane();
+  var parsedLocation = UrlParser.parse(window.location.href);
+  if(_.contains(_.keys(parsedLocation.searchObj), 'login')) {
+    $('._show_login_form_container').click();
+  }
 }
 
 /**
@@ -99,12 +96,12 @@ Initializes the javascript effects of the registration / modify profile form.
 @for ProfileUsers
 **/
 function profileDocumentReady() {
-  $body.on('keypress','#mailing_lists_accordion .group-title', function(event) {
+  $body.on('keypress', '#mailing_lists_accordion .group-title', function(event) {
     if (event.keyCode == 10 || event.keyCode == 13){
       event.preventDefault();
     }
   });
-  $body.on('keypress','#mailing_lists_accordion .group-title', function(event) {
+  $body.on('keypress', '#mailing_lists_accordion .group-title', function(event) {
      if(event.which === 32){
        event.stopPropagation();
      }
@@ -124,8 +121,5 @@ function profileDocumentReady() {
       $(this).val('');
       $(this).data('placeholder', false);
     }
-  });
-  $('.verticalScroll').jScrollPane({
-    autoReinitialise: true
   });
 }

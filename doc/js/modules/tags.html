@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -68,8 +70,6 @@
                 <li><a href="../classes/AudioEditorPreview.html">AudioEditorPreview</a></li>
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
-            
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
             
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
@@ -100,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -157,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -200,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -265,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -276,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -336,7 +330,7 @@
 <div class="box intro">
     <p>The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>), and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in <a href="../classes/AdminAutocomplete.html#method_initNotificationsAutocomplete" class="crosslink">initNotificationsAutocomplete</a>).
 <br/><br/>
-The <b>search</b> autocomplete mode requires a simple initializer (method <a href="../classes/TagsInitializers.html#method_initSearchTagsAutocomplete" class="crosslink">initSearchTagsAutocomplete</a>), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see <a href="../classes/TagsDocumentReady.html#method_tagsDocumentReady" class="crosslink">tagsDocumentReady</a>).
+The <b>search</b> autocomplete mode requires a simple initializer (method <a href="../classes/TagsInitializers.html#method_initSearchTagsAutocomplete" class="crosslink">initSearchTagsAutocomplete</a>), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see <a href="../classes/TagsDocumentReady.html" class="crosslink">TagsDocumentReady</a>).
 <br/><br/>
 The <b>tagging</b> autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an &#39;x&#39; to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a <b>container</b> div that contains a list of tag <b>boxes</b> (implemented with span, see <a href="../classes/TagsAccessories.html#method_createTagSpan" class="crosslink">createTagSpan</a>) and an <b>tag input</b> where the user writes; when he inserts a new tag and presses <i>enter</i> or <i>comma</i>, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see <a href="../classes/TagsAccessories.html#method_disableTagsInputTooHigh" class="crosslink">disableTagsInputTooHigh</a>). During this whole process, a <b>hidden input</b> gets updated with a string representing the current tags separated by comma (<a href="../classes/TagsAccessories.html#method_addToTagsValue" class="crosslink">addToTagsValue</a>, <a href="../classes/TagsAccessories.html#method_removeFromTagsValue" class="crosslink">removeFromTagsValue</a>).
 <br/><br/>

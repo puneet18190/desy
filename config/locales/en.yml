@@ -668,7 +668,7 @@ en:
       # 1 - controllers/application_controller.rb
       media_generic_error: "Invalid or damaged file"
       # The user tried to load a file exceeding the maximum size
-      # 1 - views/media_elements/_new_form_popup.html.erb
+      # 1 - controllers/media_elements_controller.rb
       media_file_too_large: "File too large"
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
@@ -1778,9 +1778,6 @@ en:
   # SECTION 2.9: Caption used in the section 'my elements'
   
   media_elements:
-    # Used as a caption to select how many elements to show inside each page
-    # 1 - views/media_elements/_title_bar.html.erb
-    display: "Display"
     # Caption of the buttons used to choose between size display (compact or extended mode)
     display_mode:
       # 1 - views/media_elements/_title_bar.html.erb
@@ -1849,7 +1846,7 @@ en:
       # 1 - models/lesson.rb
       # 2 - models/lesson.rb
       # 3 - models/document.rb
-      modified: "<div class=\"title\">News for you!</div><div class=\"content\">The lesson <span class=\"variable\">%{lesson_title}</span> has undergone some changes by the author: the detail of the changes are<br/><br/><span class=\"message\">\"%{message}\"</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
+      modified: "<div class=\"title\">News for you!</div><div class=\"content\">The lesson <span class=\"variable\">%{lesson_title}</span> has undergone some changes by the author: the details of the changes are<br/><br/><span class=\"message\">\"%{message}\"</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
       # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted) (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb
       unpublished: "<div class=\"title\">Warning!</div><div class=\"content\">The user <span class=\"variable\">%{user_name}</span>, author of <span class=\"variable\">%{lesson_title}</span>, changed to private the status of his lesson: hence, you lost the link to that lesson.</div>"
@@ -2608,7 +2605,7 @@ en:
       # 1 - views/documents/_new_form_popup.html.erb
       attachment_placeholder: "Select a file to load"
       # Error when the file uploaded is too large
-      # 1 - views/documents/_new_form_popup.html.erb
+      # 1 - controllers/documents_controller.rb
       attachment_too_large: "Attachment too large"
       # Caption to cancel the uploading
       # 1 - views/documents/_new_form_popup.html.erb

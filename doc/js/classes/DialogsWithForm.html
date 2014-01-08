@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -68,8 +70,6 @@
                 <li><a href="../classes/AudioEditorPreview.html">AudioEditorPreview</a></li>
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
-            
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
             
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
@@ -100,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -157,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -200,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -265,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -276,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -365,6 +359,13 @@
                         
                             <li class="index-item method">
                                 <a href="#method_showLessonNotificationPopUp">showLessonNotificationPopUp</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_showLoadDocumentPopUp">showLoadDocumentPopUp</a>
 
                                 
                                 
@@ -503,8 +504,8 @@
 </div>
 
                 
-                    <div id="method_showLoadMediaElementPopUp" class="method item">
-    <h3 class="name"><code>showLoadMediaElementPopUp</code></h3>
+                    <div id="method_showLoadDocumentPopUp" class="method item">
+    <h3 class="name"><code>showLoadDocumentPopUp</code></h3>
 
     
         <span class="paren">()</span>
@@ -546,7 +547,62 @@
     </div>
 
     <div class="description">
-        <p>Dialog containing the form to upload a new media element. This function interacts with the module <a href="../modules/media-element-loader.html">media-element-loader</a>.</p>
+        <p>Dialog containing the form to upload a new document. This function interacts with the module <a href="../modules/uploader.html">uploader</a>.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_showLoadMediaElementPopUp" class="method item">
+    <h3 class="name"><code>showLoadMediaElementPopUp</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_dialogs.js.html#l381"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dialogs.js:381</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Dialog containing the form to upload a new media element. This function interacts with the module <a href="../modules/uploader.html">uploader</a>.</p>
 
     </div>
 
@@ -600,7 +656,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_dialogs.js.html#l384"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dialogs.js:384</code></a>
+        <a href="../files/app_assets_javascripts_dialogs.js.html#l419"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dialogs.js:419</code></a>
         
         </p>
 
@@ -611,7 +667,7 @@
     </div>
 
     <div class="description">
-        <p>Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method <a href="../classes/MediaElementLoaderGeneral.html#method_resetMediaElementChangeInfo" class="crosslink">resetMediaElementChangeInfo</a>).</p>
+        <p>Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method <a href="../classes/MediaElementEditorForms.html#method_resetMediaElementChangeInfo" class="crosslink">resetMediaElementChangeInfo</a>).</p>
 
     </div>
 
@@ -689,7 +745,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_dialogs.js.html#l440"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dialogs.js:440</code></a>
+        <a href="../files/app_assets_javascripts_dialogs.js.html#l471"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dialogs.js:471</code></a>
         
         </p>
 
@@ -778,7 +834,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_dialogs.js.html#l484"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dialogs.js:484</code></a>
+        <a href="../files/app_assets_javascripts_dialogs.js.html#l515"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dialogs.js:515</code></a>
         
         </p>
 

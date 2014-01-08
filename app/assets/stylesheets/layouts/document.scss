@@ -12,12 +12,12 @@ html.documents-controller {
       width: 99.4%;
       margin-left: 0.3%;
       padding: 0;
-      color: #c0c0c0;
-      margin-bottom: 1%;
-      -webkit-box-shadow: 0px 3px 4px #d3d3d3;
-      box-shadow: 0px 3px 4px #d3d3d3;
+      color: #C0C0C0;
+      margin-bottom: 15px;
       background-color: #FBFAFB;
       float: left;
+      box-shadow: 0px 3px 4px #D3D3D3;
+      -webkit-box-shadow: 0px 3px 4px #D3D3D3;
       
       h1 {
         
@@ -37,7 +37,8 @@ html.documents-controller {
         
         float: left;
         width: 99%;
-        padding: 0.3% 0% 0.3% 1%;
+        padding: 9px 0 9px 1%;
+        height: 38px;
         
         div {
           
@@ -57,7 +58,7 @@ html.documents-controller {
         
         .documentsIcon {
           
-          width: 48%;
+          width: 45.35%;
           float: left;
           padding: 4px 0px 2px 0px;
           display: inline-block;

@@ -13,17 +13,8 @@
 #
 class MediaElementsController < ApplicationController
   
-  # Default number of elements in compact mode to be shown in a single page (configured in settings.yml)
-  FOR_PAGE_COMPACT = SETTINGS['compact_media_element_pagination']
-  
-  # Options of possible elements in compact mode to be shown in a single page (configured in settings.yml)
-  FOR_PAGE_COMPACT_OPTIONS = SETTINGS['compact_media_element_pagination_options']
-  
-  # Default number of elements in expanded mode to be shown in a single page (configured in settings.yml)
-  FOR_PAGE_EXPANDED = SETTINGS['expanded_media_element_pagination']
-  
-  # Options of possible elements in expanded mode to be shown in a single page (configured in settings.yml)
-  FOR_PAGE_EXPANDED_OPTIONS = SETTINGS['expanded_media_element_pagination_options']
+  # Default number of elements in compact mode to be shown in a single page
+  FOR_PAGE = 8
   
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
@@ -116,6 +107,30 @@ class MediaElementsController < ApplicationController
   #
   def new
     render :layout => 'media_element_editor'
+  end
+  
+  # === Description
+  #
+  # This action checks for errors without setting the media on the new element
+  #
+  # === Mode
+  #
+  # Js
+  #
+  def create_fake
+    record = MediaElement.new
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.tags = params[:tags_value]
+    record.user_id = current_user.id
+    record.save_tags = true
+    record.valid?
+    @errors = convert_item_error_messages(record.errors) + [t('forms.error_captions.media_file_too_large')]
+    @error_fields = []
+    record.errors.messages.keys.each do |f|
+      @error_fields << f.to_s if ![:media, :sti_type].include?(f)
+    end
+    @error_fields << :media
   end
   
   # === Description
@@ -360,18 +375,16 @@ class MediaElementsController < ApplicationController
   def initialize_paginator
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
     @display = [MediaElement::DISPLAY_MODES[:compact], MediaElement::DISPLAY_MODES[:expanded]].include?(params[:display]) ? params[:display] : MediaElement::DISPLAY_MODES[:expanded]
-    @for_page_options = @display == MediaElement::DISPLAY_MODES[:compact] ? FOR_PAGE_COMPACT_OPTIONS : FOR_PAGE_EXPANDED_OPTIONS
-    @for_page = (@display == MediaElement::DISPLAY_MODES[:expanded]) ? FOR_PAGE_EXPANDED : FOR_PAGE_COMPACT
-    if correct_integer?(params[:for_page])
-      @for_page = 
-        if @display == MediaElement::DISPLAY_MODES[:expanded]
-          FOR_PAGE_EXPANDED_OPTIONS.include?(params[:for_page].to_i) ? params[:for_page].to_i : @for_page
-        else
-          FOR_PAGE_COMPACT_OPTIONS.include?(params[:for_page].to_i) ? params[:for_page].to_i : @for_page
-        end
+    if @display == MediaElement::DISPLAY_MODES[:expanded]
+      @for_row = correct_integer?(params[:for_row]) ? params[:for_row].to_i : 1
+      @for_row = 1 if @for_row > 50
+      @for_page = @for_row * 2
+    else
+      @for_page = FOR_PAGE
     end
     @filter = params[:filter]
     @filter = Filters::ALL_MEDIA_ELEMENTS if !Filters::MEDIA_ELEMENTS_SET.include?(@filter)
+    @just_resizing = params[:resizing].present?
   end
   
 end

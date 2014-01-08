@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -68,8 +70,6 @@
                 <li><a href="../classes/AudioEditorPreview.html">AudioEditorPreview</a></li>
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
-            
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
             
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
@@ -100,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -157,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -200,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -265,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -276,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -352,8 +346,8 @@ Centers a div into the current window.
 @param div {String} HTML selector to be centered
 **/
 function centerThis(div) {
-  var winH = $(window).height();
-  var winW = $(window).width();
+  var winH = $window.height();
+  var winW = $window.width();
   var centerDiv = $(div);
   centerDiv.css(&#x27;top&#x27;, winH/2 - centerDiv.height()/2);
   centerDiv.css(&#x27;left&#x27;, winW/2 - centerDiv.width()/2);
@@ -375,14 +369,70 @@ function centerThisInContainer(div, container) {
 }
 
 /**
-Recenters the media elements according to their number and the screen resolution.
-@method recenterMyMediaElements
+Same structure of {{#crossLink &quot;DashboardResizing/dashboardResizeController:method&quot;}}{{/crossLink}}.
+@method mediaElementsResizeController
 @for GeneralCentering
+@param resize_before {Boolean} if true, it resizes the elements also before calling the server
+@param with_fade {Boolean} if true, it resizes with a fade
+@param new_page {Number} forced page if any
 **/
-function recenterMyMediaElements() {
-  var WW = $(window).width();
-  var elNumber = WW / 220;
-  $(&#x27;._boxViewExpandedMediaElementWrapper&#x27;).css(&#x27;width&#x27;, (100 / parseInt(elNumber)) + &#x27;%&#x27;);
+function mediaElementsResizeController(resize_before, with_fade, new_page) {
+  if(!$(&#x27;#display_expanded_media_elements&#x27;).hasClass(&#x27;current&#x27;)) {
+    return;
+  }
+  var info = $(&#x27;#info_container&#x27;);
+  var width = $(&#x27;#media_elements_title_bar&#x27;).outerWidth();
+  width = width - (width * 6 / 1000);
+  var in_space = parseInt((width - 200) / 207) + 1;
+  if(new_page == undefined) {
+    var current_page = $(&#x27;#general_pagination .pages a&#x27;).first().data(&#x27;page&#x27;) + 1;
+    var new_page = calculateTheNewVisiblePage(info.data(&#x27;in-space&#x27;) * 2, current_page, in_space * 2);
+  }
+  if(in_space &lt;= 50 &amp;&amp; in_space != info.data(&#x27;in-space&#x27;)) {
+    info.data(&#x27;in-space&#x27;, in_space);
+    if(resize_before) {
+      resizeExpandedMediaElements(in_space);
+    }
+    var additional = with_fade ? &#x27;&#x27; : &#x27;&amp;resizing=true&#x27;;
+    unbindLoader();
+    $.ajax({
+      type: &#x27;get&#x27;,
+      url: &#x27;/media_elements?display=expanded&amp;filter=&#x27; + $(&#x27;#filter_media_elements option:selected&#x27;).val() + &#x27;&amp;page=&#x27; + new_page + &#x27;&amp;for_row=&#x27; + in_space + additional
+    }).always(bindLoader);
+  } else {
+    resizeExpandedMediaElements(in_space);
+  }
+}
+
+/**
+Same structure of {{#crossLink &quot;DashboardResizing/resizeLessonsAndMediaElementsInDashboard:method&quot;}}{{/crossLink}}.
+@method resizeExpandedMediaElements
+@for GeneralCentering
+@param for_row {Number} how many media elements fit horizontally the screen
+**/
+function resizeExpandedMediaElements(for_row) {
+  var width = $(&#x27;#media_elements_title_bar&#x27;).outerWidth();
+  var percent_margin_width = width * 3 / 1000;
+  var margin = (width - 2 * percent_margin_width - for_row * 200) / (for_row - 1);
+  var counter = 1;
+  var one_row = ($(&#x27;#my_media_elements ._media_element_item&#x27;).length &lt;= for_row);
+  $(&#x27;#my_media_elements ._media_element_item&#x27;).each(function() {
+    if(counter == 1 || counter == (for_row + 1)) {
+      $(this).css(&#x27;margin-left&#x27;, (percent_margin_width + &#x27;px&#x27;));
+    } else {
+      $(this).css(&#x27;margin-left&#x27;, (margin + &#x27;px&#x27;));
+    }
+    if(counter &gt; for_row) {
+      $(this).css(&#x27;margin-top&#x27;, &#x27;30px&#x27;);
+      $(this).css(&#x27;margin-bottom&#x27;, &#x27;10px&#x27;);
+    } else {
+      $(this).css(&#x27;margin-top&#x27;, &#x27;0&#x27;);
+      if(one_row) {
+        $(this).css(&#x27;margin-bottom&#x27;, &#x27;355px&#x27;);
+      }
+    }
+    counter += 1;
+  });
 }
 
 
@@ -404,61 +454,11 @@ function browsersDocumentReady() {
 }
 
 /**
-This function sets the default values of SelectBoxe all around the application. This function is necessary because otherwise the original value wouldn&#x27;t be set, since we use a JQuery plugin to design selects.
-@method defaultValueJavaScriptAnimationsDocumentReady
+Initializer for functionalities which are common to sections containing media elements.
+@method commonMediaElementsDocumentReady
 @for GeneralDocumentReady
 **/
-function defaultValueJavaScriptAnimationsDocumentReady() {
-  $(&#x27;._which_item_to_search_switch[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
-  $(&#x27;#for_page_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;#filter_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;#filter_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;#order_documents option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;#filter_search_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;#filter_search_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;#filter_search_lessons_subject option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;._order_lessons_radio_input[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
-  $(&#x27;._order_media_elements_radio_input[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
-}
-
-/**
-Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink &quot;DialogsWithForm/showMediaElementInfoPopUp:method&quot;}}{{/crossLink}}).
-@method expandedItemsDocumentReady
-@for GeneralDocumentReady
-**/
-function expandedItemsDocumentReady() {
-  $body.on(&#x27;click&#x27;,&#x27;._lesson_compact&#x27;, function() {
-    if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
-      var my_id = $(this).parent().attr(&#x27;id&#x27;);
-      var my_expanded = $(&#x27;#&#x27; + my_id + &#x27; ._lesson_expanded&#x27;);
-      if(my_expanded.is(&#x27;:visible&#x27;)) {
-        my_expanded.find(&#x27;.tooltipForm:visible&#x27;).parent().find(&#x27;._reportable_lesson_icon&#x27;).click();
-        my_expanded.hide(&#x27;blind&#x27;, {}, 500, function() {
-          my_expanded.hide();
-        });
-      } else {
-        my_expanded.show(&#x27;blind&#x27;, {}, 500, function() {
-          my_expanded.show();
-        });
-      }
-    }
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#display_expanded_media_elements&#x27;, function() {
-    if(!$(this).hasClass(&#x27;current&#x27;)) {
-      $.ajax({
-        type: &#x27;get&#x27;,
-        url: &#x27;/media_elements?display=expanded&#x27;
-      });
-    }
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#display_compact_media_elements&#x27;, function() {
-    if(!$(this).hasClass(&#x27;current&#x27;)) {
-      $.ajax({
-        type: &#x27;get&#x27;,
-        url: &#x27;/media_elements?display=compact&#x27;
-      });
-    }
-  });
+function commonMediaElementsDocumentReady() {
   $body.on(&#x27;click&#x27;, &#x27;._close_media_element_preview_popup&#x27;, function() {
     var param = $(this).data(&#x27;param&#x27;);
     closePopUp(&#x27;dialog-media-element-&#x27; + param);
@@ -478,73 +478,68 @@ function expandedItemsDocumentReady() {
     $(this).addClass(&#x27;change_info_light&#x27;);
     $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).hide();
   });
-  $body.on(&#x27;click&#x27;, &#x27;._close_on_click_out&#x27;, function() {
-    $(&#x27;.ui-dialog-content:visible&#x27;).each(function() {
-      closePopUp($(this).attr(&#x27;id&#x27;));
-    });
-  });
 }
 
 /**
-Similar to {{#crossLink &quot;GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method&quot;}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.
-@method filtersDocumentReady
+Initializer for functionalities which are common to sections containing lessons.
+@method commonLessonsDocumentReady
 @for GeneralDocumentReady
 **/
-function filtersDocumentReady() {
-  $body.on(&#x27;change&#x27;, &#x27;#filter_lessons&#x27;, function() {
-    var filter = $(&#x27;#filter_lessons option:selected&#x27;).val();
-    var redirect_url = &#x27;/lessons?filter=&#x27; + filter;
-    $.get(redirect_url);
-  });
-  $body.on(&#x27;change&#x27;, &#x27;#filter_media_elements&#x27;, function() {
-    var filter = $(&#x27;#filter_media_elements option:selected&#x27;).val();
-    var redirect_url = getCompleteMediaElementsUrlWithoutFilter() + &#x27;&amp;filter=&#x27; + filter;
-    $.get(redirect_url);
-  });
-  $body.on(&#x27;change&#x27;, &#x27;#for_page_media_elements&#x27;, function() {
-    var for_page = $(&#x27;#for_page_media_elements option:selected&#x27;).val();
-    var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + &#x27;&amp;for_page=&#x27; + for_page;
-    $.get(redirect_url);
-  });
-}
-
-/**
-Initializer for consequences of window resizing.
-@method generalWindowResizeDocumentReady
-@for GeneralDocumentReady
-**/
-function generalWindowResizeDocumentReady() {
-  $(window).resize(function() {
-    if($(&#x27;#my_media_elements&#x27;).length &gt; 0 || $(&#x27;#media_elements_in_dashboard&#x27;).length &gt; 0) {
-      recenterMyMediaElements();
+function commonLessonsDocumentReady() {
+  $body.on(&#x27;click&#x27;,&#x27;._lesson_compact&#x27;, function() {
+    if(!$(this).parent().hasClass(&#x27;_disabled&#x27;)) {
+      var lessons_content = $(&#x27;.lessons-content&#x27;);
+      var advanced_search_content = $(&#x27;.advanced-search-content&#x27;);
+      var my_id = $(this).parent().attr(&#x27;id&#x27;);
+      var my_expanded = $(&#x27;#&#x27; + my_id + &#x27; ._lesson_expanded&#x27;);
+      if(my_expanded.is(&#x27;:visible&#x27;)) {
+        my_expanded.find(&#x27;.tooltipForm:visible&#x27;).parent().find(&#x27;._reportable_lesson_icon&#x27;).click();
+        my_expanded.hide(&#x27;blind&#x27;, {}, 500, function() {
+          my_expanded.hide();
+        });
+        if(lessons_content.length &gt; 0) {
+          lessons_content.animate({height: &#x27;665px&#x27;}, 500);
+        } else {
+          advanced_search_content.animate({height: &#x27;805px&#x27;}, 500);
+        }
+      } else {
+        var there_is_expanded = $(&#x27;._lesson_expanded:visible&#x27;);
+        if(there_is_expanded.length &gt; 0) {
+          there_is_expanded.find(&#x27;.tooltipForm:visible&#x27;).parent().find(&#x27;._reportable_lesson_icon&#x27;).click();
+          there_is_expanded.hide(&#x27;blind&#x27;, {}, 500, function() {
+            there_is_expanded.hide();
+          });
+        }
+        my_expanded.show(&#x27;blind&#x27;, {}, 500, function() {
+          my_expanded.show();
+        });
+        if(lessons_content.length &gt; 0) {
+          lessons_content.animate({height: &#x27;863px&#x27;}, 500);
+        } else {
+          advanced_search_content.animate({height: &#x27;1003px&#x27;}, 500);
+        }
+      }
     }
   });
 }
 
 /**
-Initializer for all javascript and JQuery plugins.
-@method javaScriptAnimationsDocumentReady
+Initializer for global functionalities, used throughout the application.
+@method globalDocumentReady
 @for GeneralDocumentReady
 **/
-function javaScriptAnimationsDocumentReady() {
+function globalDocumentReady() {
+  $body.on(&#x27;click&#x27;, &#x27;._close_on_click_out&#x27;, function() {
+    $(&#x27;.ui-dialog-content:visible&#x27;).each(function() {
+      closePopUp($(this).attr(&#x27;id&#x27;));
+    });
+  });
   $body.on(&#x27;mouseenter&#x27;, &#x27;.empty-situation-container a&#x27;, function() {
     $(this).find(&#x27;.plus&#x27;).addClass(&#x27;encendido&#x27;);
   });
   $body.on(&#x27;mouseleave&#x27;, &#x27;.empty-situation-container a&#x27;, function() {
     $(this).find(&#x27;.plus&#x27;).removeClass(&#x27;encendido&#x27;);
   });
-  $(&#x27;#notifications_list&#x27;).jScrollPane({
-    autoReinitialise: true
-  });
-  $(&#x27;#which_item_to_search&#x27;).selectbox();
-  $(&#x27;#filter_lessons&#x27;).selectbox();
-  $(&#x27;#order_documents&#x27;).selectbox();
-  $(&#x27;#filter_search_lessons&#x27;).selectbox();
-  $(&#x27;#filter_search_lessons_subject&#x27;).selectbox();
-  $(&#x27;#filter_search_lessons_school_level&#x27;).selectbox();
-  $(&#x27;#for_page_media_elements&#x27;).selectbox();
-  $(&#x27;#filter_media_elements&#x27;).selectbox();
-  $(&#x27;#filter_search_media_elements&#x27;).selectbox();
   $(&#x27;#user_school_level_id&#x27;).selectbox();
   $body.on(&#x27;keyup blur&#x27;, &#x27;input[maxlength], textarea[maxlength]&#x27;, function () {
     var myself = $(this);
@@ -554,31 +549,7 @@ function javaScriptAnimationsDocumentReady() {
       myself.val(myself.val().slice(0, maxlength));
     }
   });
-  $(document).bind(&#x27;click&#x27;, function (e) {
-    var click_id = $(e.target).attr(&#x27;id&#x27;);
-    var my_report = $(&#x27;.tooltipForm:visible&#x27;);
-    var my_login = $(&#x27;#login_form_container:visible&#x27;);
-    if($(&#x27;#tooltip_content&#x27;).length &gt; 0) {
-      if($(&#x27;#tooltip_content&#x27;).is(&#x27;:visible&#x27;)) {
-        if(click_id != &#x27;tooltip_content&#x27; &amp;&amp; click_id != &#x27;expanded_notification&#x27; &amp;&amp; click_id != &#x27;notifications_button&#x27; &amp;&amp; $(e.target).parents(&#x27;#tooltip_content&#x27;).length == 0 &amp;&amp; $(e.target).parents(&#x27;#expanded_notification&#x27;).length == 0) {
-          $(&#x27;#notifications_button&#x27;).trigger(&#x27;click&#x27;);
-        }
-      }
-    }
-    if($(&#x27;#tooltip_help&#x27;).length &gt; 0) {
-      if($(&#x27;#tooltip_help&#x27;).is(&#x27;:visible&#x27;)) {
-        if(click_id != &#x27;tooltip_help&#x27; &amp;&amp; click_id != &#x27;help&#x27; &amp;&amp; $(e.target).parents(&#x27;#tooltip_help&#x27;).length == 0) {
-          $(&#x27;#help&#x27;).trigger(&#x27;click&#x27;);
-        }
-      }
-    }
-    if(my_report.length &gt; 0 &amp;&amp; $(e.target).parents(&#x27;#&#x27; + my_report.attr(&#x27;id&#x27;)).length == 0) {
-      my_report.parent().find(&#x27;.report_light, ._reportable_lesson_icon&#x27;).click();
-    }
-    if(my_login.length &gt; 0 &amp;&amp; $(e.target).parents(&#x27;#login_form_container&#x27;).length == 0 &amp;&amp; !$(e.target).hasClass(&#x27;_show_login_form_container&#x27;)) {
-      $(&#x27;._show_login_form_container&#x27;).click();
-    }
-  });
+  ajaxLoaderDocumentReady();
 }
 
 /**
@@ -649,21 +620,154 @@ function reportsDocumentReady() {
   });
 }
 
+/**
+Functionalities necessary only for the section &#x27;my documents&#x27;.
+@method sectionDocumentsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionDocumentsDocumentReady() {
+  $(&#x27;#order_documents option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#order_documents&#x27;).selectbox();
+}
+
+/**
+Functionalities necessary only for the section &#x27;my lessons&#x27;.
+@method sectionLessonsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionLessonsDocumentReady() {
+  $(&#x27;#filter_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $body.on(&#x27;change&#x27;, &#x27;#filter_lessons&#x27;, function() {
+    var filter = $(&#x27;#filter_lessons option:selected&#x27;).val();
+    var redirect_url = &#x27;/lessons?filter=&#x27; + filter;
+    $.get(redirect_url);
+  });
+  $(&#x27;#filter_lessons&#x27;).selectbox();
+}
+
+/**
+Functionalities necessary only for the section &#x27;my media elements&#x27;.
+@method sectionMediaElementsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionMediaElementsDocumentReady() {
+  $(&#x27;#filter_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $body.on(&#x27;change&#x27;, &#x27;#filter_media_elements&#x27;, function() {
+    var filter = $(&#x27;#filter_media_elements option:selected&#x27;).val();
+    if($(&#x27;#display_expanded_media_elements&#x27;).hasClass(&#x27;current&#x27;)) {
+      $(&#x27;#info_container&#x27;).data(&#x27;in-space&#x27;, 0);
+      mediaElementsResizeController(false, true, 1);
+    } else {
+      $.get(&#x27;/media_elements?display=compact&amp;filter=&#x27; + filter);
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#display_expanded_media_elements&#x27;, function() {
+    if(!$(this).hasClass(&#x27;current&#x27;)) {
+      $(this).addClass(&#x27;current&#x27;);
+      $(&#x27;#display_compact_media_elements&#x27;).removeClass(&#x27;current&#x27;);
+      $(&#x27;#info_container&#x27;).data(&#x27;in-space&#x27;, 0);
+      browserDependingScrollToTag().animate({scrollTop: ((1150 - $window.height() + $(&#x27;.global-footer&#x27;).height()) + &#x27;px&#x27;)}, 500);
+      var last_item_compact = $(&#x27;.boxViewCompactMediaElement&#x27;).last();
+      last_item_compact.animate({&#x27;margin-bottom&#x27;: (102 + parseInt(last_item_compact.css(&#x27;margin-bottom&#x27;))) + &#x27;px&#x27;}, 500);
+      $(&#x27;.elements-content&#x27;).animate({height: &#x27;767px&#x27;}, 500, function() {
+        $(this).removeClass(&#x27;fixed-compact-height&#x27;).addClass(&#x27;fixed-expanded-height&#x27;);
+      });
+      mediaElementsResizeController(false, true, 1);
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#display_compact_media_elements&#x27;, function() {
+    if(!$(this).hasClass(&#x27;current&#x27;)) {
+      $(this).addClass(&#x27;current&#x27;);
+      $(&#x27;#display_expanded_media_elements&#x27;).removeClass(&#x27;current&#x27;);
+      $.ajax({
+        type: &#x27;get&#x27;,
+        url: &#x27;/media_elements?display=compact&#x27;,
+        success: function (r) {
+          $(&#x27;.elements-content&#x27;).animate({height: &#x27;665px&#x27;}, 500, function() {
+            $(this).removeClass(&#x27;fixed-expanded-height&#x27;).addClass(&#x27;fixed-compact-height&#x27;)
+          });
+        }
+      });
+    }
+  });
+  $(&#x27;#filter_media_elements&#x27;).selectbox();
+  mediaElementsResizeController(false, false);
+  $window.resize(function() {
+    mediaElementsResizeController(true, false);
+  });
+}
+
+/**
+Functionalities necessary only for the sections containing notifications.
+@method sectionNotificationsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionNotificationsDocumentReady() {
+  $(&#x27;#notifications_list&#x27;).jScrollPane({
+    autoReinitialise: true
+  });
+  $document.bind(&#x27;click&#x27;, function (e) {
+    var click_id = $(e.target).attr(&#x27;id&#x27;);
+    var my_report = $(&#x27;.tooltipForm:visible&#x27;);
+    if($(&#x27;#tooltip_content&#x27;).length &gt; 0) {
+      if($(&#x27;#tooltip_content&#x27;).is(&#x27;:visible&#x27;)) {
+        if(click_id != &#x27;tooltip_content&#x27; &amp;&amp; click_id != &#x27;expanded_notification&#x27; &amp;&amp; click_id != &#x27;notifications_button&#x27; &amp;&amp; $(e.target).parents(&#x27;#tooltip_content&#x27;).length == 0 &amp;&amp; $(e.target).parents(&#x27;#expanded_notification&#x27;).length == 0) {
+          $(&#x27;#notifications_button&#x27;).trigger(&#x27;click&#x27;);
+        }
+      }
+    }
+    if($(&#x27;#tooltip_help&#x27;).length &gt; 0) {
+      if($(&#x27;#tooltip_help&#x27;).is(&#x27;:visible&#x27;)) {
+        if(click_id != &#x27;tooltip_help&#x27; &amp;&amp; click_id != &#x27;help&#x27; &amp;&amp; $(e.target).parents(&#x27;#tooltip_help&#x27;).length == 0) {
+          $(&#x27;#help&#x27;).trigger(&#x27;click&#x27;);
+        }
+      }
+    }
+    if(my_report.length &gt; 0 &amp;&amp; $(e.target).parents(&#x27;#&#x27; + my_report.attr(&#x27;id&#x27;)).length == 0) {
+      my_report.parent().find(&#x27;.report_light, ._reportable_lesson_icon&#x27;).click();
+    }
+  });
+  $(&#x27;#which_item_to_search option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#which_item_to_search&#x27;).selectbox();
+}
+
+/**
+Functionalities necessary only for the section &#x27;search&#x27;.
+@method sectionSearchDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionSearchDocumentReady() {
+  $(&#x27;._which_item_to_search_switch[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
+  $(&#x27;._order_lessons_radio_input[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
+  $(&#x27;._order_media_elements_radio_input[checked]&#x27;).first().attr(&#x27;checked&#x27;, &#x27;checked&#x27;);
+  $(&#x27;#filter_search_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_search_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_search_lessons_subject option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_search_lessons_school_level option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#filter_search_lessons&#x27;).selectbox();
+  $(&#x27;#filter_search_media_elements&#x27;).selectbox();
+  $(&#x27;#filter_search_lessons_subject&#x27;).selectbox();
+  $(&#x27;#filter_search_lessons_school_level&#x27;).selectbox();
+}
+
 
 
 
 
 /**
-Gets the requested format to visualize media elements.
-@method getMediaElementsFormat
+Initializes global variables used throughout the javascripts.
+@method initializeGlobalVariables
 @for GeneralMiscellanea
 **/
-function getMediaElementsFormat() {
-  var param = &#x27;display=compact&#x27;;
-  if($(&#x27;#display_expanded_media_elements&#x27;).hasClass(&#x27;current&#x27;)) {
-    param = &#x27;display=expanded&#x27;;
-  }
-  return param
+function initializeGlobalVariables() {
+  window.$body = $(&#x27;body&#x27;);
+  window.$captions = $(&#x27;#popup_captions_container&#x27;);
+  window.$document = $(document);
+  window.$html = $(&#x27;html&#x27;);
+  window.$loaderVisible = true;
+  window.$loading = $(&#x27;#loading&#x27;);
+  window.$parameters = $(&#x27;#popup_parameters_container&#x27;);
+  window.$window = $(window);
 }
 
 /**
@@ -706,47 +810,11 @@ function secondsToDateString(seconds) {
 }
 
 /**
-Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink &quot;BrowserSupportMain/browserSupport:method&quot;}}here{{/crossLink}}
+Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink &quot;BrowserSupportMain/browserSupportMain:method&quot;}}{{/crossLink}}
 @method browserSupport
 @for GeneralMiscellanea
 **/
 function browserSupport() {
-  // no-op
-}
-
-/**
-This function returns an url for media elements without the parameter &#x27;for_page&#x27;. The original url is extracted by the method {{#crossLink &quot;GeneralMiscellanea/getMediaElementsFormat:method&quot;}}{{/crossLink}}.
-@method getCompleteMediaElementsUrlWithoutForPage
-@for GeneralUrls
-@return {String} the current url without the parameter &#x27;for_page&#x27;
-**/
-function getCompleteMediaElementsUrlWithoutForPage() {
-  var param_format = getMediaElementsFormat();
-  var param_filter = &#x27;filter=&#x27; + $(&#x27;#filter_media_elements option:selected&#x27;).val();
-  return &#x27;/media_elements?&#x27; + param_format + &#x27;&amp;&#x27; + param_filter;
-}
-
-/**
-This function returns an url for media elements without the parameter &#x27;filter&#x27;. The original url is extracted by the method {{#crossLink &quot;GeneralMiscellanea/getMediaElementsFormat:method&quot;}}{{/crossLink}}.
-@method getCompleteMediaElementsUrlWithoutFilter
-@for GeneralUrls
-@return {String} the current url without the parameter &#x27;filter&#x27;
-**/
-function getCompleteMediaElementsUrlWithoutFilter() {
-  var param_format = getMediaElementsFormat();
-  var param_for_page = &#x27;for_page=&#x27; + $(&#x27;#for_page_media_elements option:selected&#x27;).val();
-  return &#x27;/media_elements?&#x27; + param_format + &#x27;&amp;&#x27; + param_for_page;
-}
-
-/**
-This function returns an url for documents without the parameter &#x27;order&#x27;. The original url is extracted by the method {{#crossLink &quot;GeneralMiscellanea/getMediaElementsFormat:method&quot;}}{{/crossLink}}.
-@method getCompleteDocumentsUrlWithoutOrder
-@for GeneralUrls
-@return {String} the current url without the parameter &#x27;order&#x27;
-**/
-function getCompleteDocumentsUrlWithoutOrder() {
-  var param_word = &#x27;word=&#x27; + $(&#x27;#search_documents ._word_input&#x27;).val() + &#x27;&amp;word_placeholder=&#x27; + $(&#x27;#search_documents_placeholder&#x27;).val();
-  return &#x27;/documents?&#x27; + param_word;
 }
 
 /**

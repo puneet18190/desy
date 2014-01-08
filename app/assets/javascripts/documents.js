@@ -16,7 +16,6 @@ function documentsDocumentReady() {
   documentsDocumentReadyGeneral();
   documentsDocumentReadySearch();
   documentsDocumentReadyButtons();
-  documentsDocumentReadyUploader();
 }
 
 /**
@@ -76,9 +75,9 @@ function documentsDocumentReadyButtons() {
       $('#dialog-confirm').hide();
       var redirect_url = addDeleteItemToCurrentUrl(current_url, 'document_' + document_id);
       $.ajax({
-        type: 'post',
+        type: 'delete',
         dataType: 'json',
-        url: '/documents/' + document_id + '/destroy',
+        url: '/documents/' + document_id,
         success: function(data) {
           if(data.ok) {
             $.ajax({
@@ -105,9 +104,10 @@ Initializer for documents functionality (general javascripts).
 function documentsDocumentReadyGeneral() {
   $body.on('change', '#order_documents', function() {
     var order = $('#order_documents option:selected').val();
-    var redirect_url = getCompleteDocumentsUrlWithoutOrder() + '&order=' + order;
+    var word = $('#search_documents ._word_input').val();
+    var word_placeholder = $('#search_documents_placeholder').val();
     $('#search_documents_hidden_order').val(order);
-    $.get(redirect_url);
+    $.get('/documents?word=' + word + '&word_placeholder=' + word_placeholder + '&order=' + order);
   });
   $body.on('focus', '._document_change_info_container ._doc_description', function() {
     var placeholder = $('#dialog-document-' + $(this).data('document-id') + ' ._doc_description_placeholder');
@@ -164,146 +164,4 @@ function documentsDocumentReadySearch() {
       }, 1500);
     }
   });
-}
-
-/**
-Initializer for the loading form.
-@method documentsDocumentReadyUploader
-@for DocumentsDocumentReady
-**/
-function documentsDocumentReadyUploader() {
-  $body.on('click', '._load_document', function() {
-    showLoadDocumentPopUp();
-  });
-  $body.on('change', 'input#new_document_input', function() {
-    var file_name = $(this).val().replace("C:\\fakepath\\", '');
-    if(file_name.length > 20) {
-      file_name = file_name.substring(0, 20) + '...';
-    }
-    $('#document_attachment_show').text(file_name);
-  });
-  $body.on('click', '#load-document ._close', function() {
-    closePopUp('load-document');
-  })
-  $body.on('click', '#new_document_submit', function() {
-    $('input,textarea').removeClass('form_error');
-    $('.barraLoading img').show();
-    $('.barraLoading img').attr('src', '/assets/loadingBar-document.gif');
-    $(this).closest('#new_document').submit();
-  });
-  $body.on('focus', '#load-document #title', function() {
-    if($('#load-document #title_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#load-document #title_placeholder').attr('value', '0');
-    }
-  });
-  $body.on('focus', '#load-document #description', function() {
-    if($('#load-document #description_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#load-document #description_placeholder').attr('value', '0');
-    }
-  });
-}
-
-
-
-
-
-/**
-Dialog containing the form to upload a new document.
-@method showLoadDocumentPopUp
-@for DocumentsUploader
-**/
-function showLoadDocumentPopUp() {
-  var obj = $('#load-document');
-  if(obj.data('dialog')) {
-    obj.dialog('open');
-  } else {
-    obj.show();
-    obj.dialog({
-      modal: true,
-      resizable: false,
-      draggable: false,
-      width: 760,
-      show: 'fade',
-      hide: {effect: 'fade'},
-      open: function(event, ui) {
-        $('#load-document input').blur();
-        $('#load-document #title').val($('#load-document').data('placeholder-title'));
-        $('#load-document #description').val($('#load-document').data('placeholder-description'));
-        $('#load-document #title_placeholder').val('');
-        $('#load-document #description_placeholder').val('');
-        $('#document_attachment_show').text($('#load-document').data('placeholder-attachment'));
-        $('#load-document .form_error').removeClass('form_error');
-        $('#new_document_input').val('');
-      },
-      close: function() {
-        $('#load-document iframe').attr('src', 'about:blank');
-      }
-    });
-  }
-}
-
-/**
-Handles 413 status error, file too large.
-@method uploadDocumentDone
-@for DocumentsUploader
-@return {Boolean} false, for some reason
-**/
-function uploadDocumentDone() {
-  var ret = document.getElementById('upload_target').contentWindow.document.title;
-  if(ret && ret.match(/413/g)) {
-    $('.barraLoading img').hide();
-    $('iframe').before('<p class="too_large" style="padding: 20px 0 0 40px;"><img src="/assets/puntoesclamativo.png" style="margin: 20px 5px 0 20px;"><span class="lower" style="color:black">' + $('#load-document').data('attachment-too-large') + '</span></p>');
-    $('#document_attachment_show').text($('#load-document').data('placeholder-attachment'));
-  }
-  return false;
-}
-
-/**
-Reloads documents page after new document is successfully loaded.
-@method uploadDocumentLoaderDoneRedirect
-@for DocumentsUploader
-**/
-function uploadDocumentLoaderDoneRedirect() {
-  $('.barraLoading').css('background-color', '#5D5C5C');
-  $('.barraLoading img').hide();
-  $('.barraLoading img').attr('src', '');
-  window.location = '/documents';
-}
-
-/**
-Update form fields with error labels.
-@method uploadDocumentLoaderError
-@for DocumentsUploader
-@param errors {Array} errors list
-**/
-function uploadDocumentLoaderError(errors) {
-  for (var i = 0; i < errors.length; i++) {
-    var error = errors[i];
-    if(error == 'attachment') {
-      $('#load-document #document_attachment_show').addClass('form_error');
-    } else {
-      $('#load-document #' + error).addClass('form_error');
-      if($('#load-document #' + error + '_placeholder').val() == '') {
-        $('#load-document #' + error).val('');
-      }
-    }
-  }
-  $('.barraLoading img').hide();
-  $('.barraLoading img').attr('src', '');
-}
-
-/**
-Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.
-@method initDocumentLoader
-@for DocumentsUploader
-**/
-function initDocumentLoader() {
-  document.getElementById('new_document').onsubmit = function() {
-    $('.form_error').removeClass('form_error');
-    $('.too_large').remove();
-    document.getElementById('new_document').target = 'upload_target';
-    document.getElementById('upload_target').onload = uploadDocumentDone;
-  }
 }

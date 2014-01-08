@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -68,8 +70,6 @@
                 <li><a href="../classes/AudioEditorPreview.html">AudioEditorPreview</a></li>
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
-            
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
             
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
@@ -100,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -157,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -200,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -265,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -276,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -364,27 +358,6 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_getCompleteDocumentsUrlWithoutOrder">getCompleteDocumentsUrlWithoutOrder</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_getCompleteMediaElementsUrlWithoutFilter">getCompleteMediaElementsUrlWithoutFilter</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_getCompleteMediaElementsUrlWithoutForPage">getCompleteMediaElementsUrlWithoutForPage</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
                                 <a href="#method_removeURLParameter">removeURLParameter</a>
 
                                 
@@ -412,225 +385,6 @@
         
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_getCompleteDocumentsUrlWithoutOrder" class="method item">
-    <h3 class="name"><code>getCompleteDocumentsUrlWithoutOrder</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_general.js.html#l419"><code>app&#x2F;assets&#x2F;javascripts&#x2F;general.js:419</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>This function returns an url for documents without the parameter &#39;order&#39;. The original url is extracted by the method <a href="../classes/GeneralMiscellanea.html#method_getMediaElementsFormat" class="crosslink">getMediaElementsFormat</a>.</p>
-
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    <p>the current url without the parameter &#39;order&#39;</p>
-
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_getCompleteMediaElementsUrlWithoutFilter" class="method item">
-    <h3 class="name"><code>getCompleteMediaElementsUrlWithoutFilter</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_general.js.html#l407"><code>app&#x2F;assets&#x2F;javascripts&#x2F;general.js:407</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>This function returns an url for media elements without the parameter &#39;filter&#39;. The original url is extracted by the method <a href="../classes/GeneralMiscellanea.html#method_getMediaElementsFormat" class="crosslink">getMediaElementsFormat</a>.</p>
-
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    <p>the current url without the parameter &#39;filter&#39;</p>
-
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_getCompleteMediaElementsUrlWithoutForPage" class="method item">
-    <h3 class="name"><code>getCompleteMediaElementsUrlWithoutForPage</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_general.js.html#l395"><code>app&#x2F;assets&#x2F;javascripts&#x2F;general.js:395</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>This function returns an url for media elements without the parameter &#39;for_page&#39;. The original url is extracted by the method <a href="../classes/GeneralMiscellanea.html#method_getMediaElementsFormat" class="crosslink">getMediaElementsFormat</a>.</p>
-
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    <p>the current url without the parameter &#39;for_page&#39;</p>
-
-                
-            </div>
-        </div>
-    
-
-    
-</div>
 
                 
                     <div id="method_removeURLParameter" class="method item">
@@ -685,7 +439,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_general.js.html#l430"><code>app&#x2F;assets&#x2F;javascripts&#x2F;general.js:430</code></a>
+        <a href="../files/app_assets_javascripts_general.js.html#l504"><code>app&#x2F;assets&#x2F;javascripts&#x2F;general.js:504</code></a>
         
         </p>
 
@@ -820,7 +574,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_general.js.html#l456"><code>app&#x2F;assets&#x2F;javascripts&#x2F;general.js:456</code></a>
+        <a href="../files/app_assets_javascripts_general.js.html#l530"><code>app&#x2F;assets&#x2F;javascripts&#x2F;general.js:530</code></a>
         
         </p>
 

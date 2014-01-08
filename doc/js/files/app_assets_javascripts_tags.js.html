@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -68,8 +70,6 @@
                 <li><a href="../classes/AudioEditorPreview.html">AudioEditorPreview</a></li>
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
-            
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
             
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
@@ -100,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -157,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -200,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -265,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -276,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -323,7 +317,7 @@
 /**
 The functions in this module handle two different functionalities of &lt;b&gt;autocomplete&lt;/b&gt; for tags: suggestions for a research (&lt;b&gt;search autocomplete&lt;/b&gt;), and suggestions for tagging lessons and media elements (&lt;b&gt;tagging autocomplete&lt;/b&gt;). Both modes use the same JQuery plugin called &lt;i&gt;JQueryAutocomplete&lt;/i&gt; (the same used in {{#crossLink &quot;AdminAutocomplete/initNotificationsAutocomplete:method&quot;}}{{/crossLink}}).
 &lt;br/&gt;&lt;br/&gt;
-The &lt;b&gt;search&lt;/b&gt; autocomplete mode requires a simple initializer (method {{#crossLink &quot;TagsInitializers/initSearchTagsAutocomplete:method&quot;}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink &quot;TagsDocumentReady/tagsDocumentReady:method&quot;}}{{/crossLink}}).
+The &lt;b&gt;search&lt;/b&gt; autocomplete mode requires a simple initializer (method {{#crossLink &quot;TagsInitializers/initSearchTagsAutocomplete:method&quot;}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink &quot;TagsDocumentReady&quot;}}{{/crossLink}}).
 &lt;br/&gt;&lt;br/&gt;
 The &lt;b&gt;tagging&lt;/b&gt; autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an &#x27;x&#x27; to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a &lt;b&gt;container&lt;/b&gt; div that contains a list of tag &lt;b&gt;boxes&lt;/b&gt; (implemented with span, see {{#crossLink &quot;TagsAccessories/createTagSpan:method&quot;}}{{/crossLink}}) and an &lt;b&gt;tag input&lt;/b&gt; where the user writes; when he inserts a new tag and presses &lt;i&gt;enter&lt;/i&gt; or &lt;i&gt;comma&lt;/i&gt;, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see {{#crossLink &quot;TagsAccessories/disableTagsInputTooHigh:method&quot;}}{{/crossLink}}). During this whole process, a &lt;b&gt;hidden input&lt;/b&gt; gets updated with a string representing the current tags separated by comma ({{#crossLink &quot;TagsAccessories/addToTagsValue:method&quot;}}{{/crossLink}}, {{#crossLink &quot;TagsAccessories/removeFromTagsValue:method&quot;}}{{/crossLink}}).
 &lt;br/&gt;&lt;br/&gt;
@@ -470,20 +464,14 @@ function removeFromTagsValue(word, value_selector) {
 
 
 /**
-Global initializer for all instances of search autocomplete and tagging autocomplete.
-@method tagsDocumentReady
+Initializer for search autocomplete.
+@method tagsDocumentReadyAutocomplete
 @for TagsDocumentReady
 **/
-function tagsDocumentReady() {
+function tagsDocumentReadyAutocomplete() {
   initSearchTagsAutocomplete(&#x27;#general_tag_reader_for_search&#x27;);
   initSearchTagsAutocomplete(&#x27;#lessons_tag_reader_for_search&#x27;);
   initSearchTagsAutocomplete(&#x27;#media_elements_tag_reader_for_search&#x27;);
-  tagsDocumentReadyChangeMediaElementInfo();
-  tagsDocumentReadyMediaElementLoader();
-  tagsDocumentReadyOvervriteMediaElement();
-  tagsDocumentReadyNewMediaElement();
-  tagsDocumentReadyNewLesson();
-  tagsDocumentReadyUpdateLesson();
 }
 
 /**
@@ -532,36 +520,36 @@ function tagsDocumentReadyChangeMediaElementInfo() {
 }
 
 /**
-Initializer for tagging autocomplete in the form to &lt;b&gt;upload a new media element&lt;/b&gt; (see {{#crossLink &quot;DialogsWithForm/showLoadMediaElementPopUp:method&quot;}}{{/crossLink}} and the module {{#crossLinkModule &quot;media-element-loader&quot;}}{{/crossLinkModule}}).
+Initializer for tagging autocomplete in the form to &lt;b&gt;upload a new media element&lt;/b&gt; (see {{#crossLink &quot;DialogsWithForm/showLoadMediaElementPopUp:method&quot;}}{{/crossLink}} and the module {{#crossLinkModule &quot;uploader&quot;}}{{/crossLinkModule}}).
 @method tagsDocumentReadyMediaElementLoader
 @for TagsDocumentReady
 **/
 function tagsDocumentReadyMediaElementLoader() {
   $body.on(&#x27;click&#x27;, &#x27;#load-media-element ._tags_container .remove&#x27;, function() {
-    removeFromTagsValue($(this).parent().text(), &#x27;#load-media-element ._tags_container #tags_value&#x27;);
+    removeFromTagsValue($(this).parent().text(), &#x27;#load-media-element ._tags_container .medload_tags_value&#x27;);
     $(this).parent().remove();
-    if($(&#x27;#load-media-element #tags&#x27;).not(&#x27;:visible&#x27;)) {
-      $(&#x27;#load-media-element #tags&#x27;).show();
-      disableTagsInputTooHigh(&#x27;#load-media-element ._tags_container&#x27;, &#x27;#load-media-element #tags&#x27;);
+    if($(&#x27;#load-media-element .medload_tags&#x27;).not(&#x27;:visible&#x27;)) {
+      $(&#x27;#load-media-element .medload_tags&#x27;).show();
+      disableTagsInputTooHigh(&#x27;#load-media-element ._tags_container&#x27;, &#x27;#load-media-element .medload_tags&#x27;);
     }
   });
   $body.on(&#x27;focus&#x27;, &#x27;#load-media-element ._tags_container&#x27;, function() {
     $(this).find(&#x27;._placeholder&#x27;).hide();
   });
   $body.on(&#x27;click&#x27;, &#x27;#load-media-element ._tags_container&#x27;, function() {
-    $(&#x27;#load-media-element #tags&#x27;).focus();
+    $(&#x27;#load-media-element .medload_tags&#x27;).focus();
     $(this).find(&#x27;._placeholder&#x27;).hide();
   });
-  $body.on(&#x27;keydown&#x27;, &#x27;#load-media-element #tags&#x27;, function(e) {
+  $body.on(&#x27;keydown&#x27;, &#x27;#load-media-element .medload_tags&#x27;, function(e) {
     if(e.which === 13 || e.which === 188) {
       e.preventDefault();
-      addTagWithoutSuggestion(this, &#x27;#load-media-element ._tags_container&#x27;, &#x27;#tags_value&#x27;);
+      addTagWithoutSuggestion(this, &#x27;#load-media-element ._tags_container&#x27;, &#x27;.medload_tags_value&#x27;);
     } else if(e.which == 8 &amp;&amp; $(this).val() == &#x27;&#x27;) {
       $(this).prev().find(&#x27;.remove&#x27;).trigger(&#x27;click&#x27;);
     }
   });
-  $body.on(&#x27;blur&#x27;, &#x27;#load-media-element #tags&#x27;, function(e) {
-    addTagWithoutSuggestion(this, &#x27;#load-media-element ._tags_container&#x27;, &#x27;#tags_value&#x27;);
+  $body.on(&#x27;blur&#x27;, &#x27;#load-media-element .medload_tags&#x27;, function(e) {
+    addTagWithoutSuggestion(this, &#x27;#load-media-element ._tags_container&#x27;, &#x27;.medload_tags_value&#x27;);
   });
   initTagsAutocomplete(&#x27;#load-media-element&#x27;);
 }

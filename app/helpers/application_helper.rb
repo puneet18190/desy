@@ -39,15 +39,19 @@ module ApplicationHelper
   
   # Manipulates the url, adding or removing parameters
   def manipulate_url(options = {})
-    param_to_remove = options[:remove_query_param]
-    page            = options[:page]
-    l_d_exp         = options[:l_d_exp]
-    me_d_exp        = options[:me_d_exp]
-    escape          = options[:escape]
-    path            = options[:path] || request.path
+    params_to_remove = options[:remove_query_param]
+    page             = options[:page]
+    l_d_exp          = options[:l_d_exp]
+    me_d_exp         = options[:me_d_exp]
+    escape           = options[:escape]
+    path             = options[:path] || request.path
 
     query_params = request.query_parameters.deep_dup
-    query_params.delete(param_to_remove.to_s) if param_to_remove && query_params.present?
+    if params_to_remove && query_params.present?
+      params_to_remove.each do |param|
+        query_params.delete(param.to_s)
+      end
+    end
     query_params[:page] = page if page
     query_params[:lessons_expanded] = l_d_exp if l_d_exp
     query_params[:media_elements_expanded] = me_d_exp if me_d_exp

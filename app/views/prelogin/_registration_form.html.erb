@@ -49,7 +49,7 @@
     <% user.registration_policies.each_with_index do |policy, index| %>
       <% my_policy = t('registration.policies')[index] %>
       <strong><%= my_policy['title'] %></strong><br><br>
-      <div class="verticalScroll">
+      <div class="policy-verticalScroll">
         <%= my_policy['description'].html_safe %>
       </div>
       <div class="checkbox-content">

@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -68,8 +70,6 @@
                 <li><a href="../classes/AudioEditorPreview.html">AudioEditorPreview</a></li>
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
-            
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
             
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
@@ -100,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -157,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -200,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -265,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -276,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -345,7 +339,7 @@ Adds the class &lt;i&gt;close on click out&lt;/i&gt; to the widget overlay: this
 @for DialogsAccessories
 **/
 function customOverlayClose() {
-  $(&#x27;.ui-widget-overlay&#x27;).show().css(&#x27;height&#x27;, (2 * $(window).height()) + &#x27;px&#x27;);
+  $(&#x27;.ui-widget-overlay&#x27;).show().css(&#x27;height&#x27;, (2 * $window.height()) + &#x27;px&#x27;);
   $(&#x27;.ui-widget-overlay&#x27;).addClass(&#x27;_close_on_click_out&#x27;);
 }
 
@@ -666,7 +660,42 @@ function showLessonNotificationPopUp(lesson_id) {
 }
 
 /**
-Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule &quot;media-element-loader&quot;}}{{/crossLinkModule}}.
+Dialog containing the form to upload a new document. This function interacts with the module {{#crossLinkModule &quot;uploader&quot;}}{{/crossLinkModule}}.
+@method showLoadDocumentPopUp
+@for DialogsWithForm
+**/
+function showLoadDocumentPopUp() {
+  var obj = $(&#x27;#load-document&#x27;);
+  if(obj.data(&#x27;dialog&#x27;)) {
+    obj.dialog(&#x27;open&#x27;);
+  } else {
+    obj.show();
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      draggable: false,
+      width: 760,
+      show: &#x27;fade&#x27;,
+      hide: {effect: &#x27;fade&#x27;},
+      open: function(event, ui) {
+        setTimeout(function() {
+          obj.find(&#x27;input&#x27;).blur();
+          obj.find(&#x27;.docload_title&#x27;).val(obj.data(&#x27;placeholder-title&#x27;));
+          obj.find(&#x27;.docload_description&#x27;).val(obj.data(&#x27;placeholder-description&#x27;));
+          obj.find(&#x27;.docload_title_placeholder&#x27;).val(&#x27;&#x27;);
+          obj.find(&#x27;.docload_description_placeholder&#x27;).val(&#x27;&#x27;);
+          $(&#x27;#document_attachment_show&#x27;).text(obj.data(&#x27;placeholder-attachment&#x27;));
+          obj.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+          $(&#x27;#new_document_input&#x27;).val(&#x27;&#x27;);
+          obj.find(&#x27;.barraLoading .loading-errors&#x27;).html(&#x27;&#x27;);
+        }, 100);
+      }
+    });
+  }
+}
+
+/**
+Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule &quot;uploader&quot;}}{{/crossLinkModule}}.
 @method showLoadMediaElementPopUp
 @for DialogsWithForm
 **/
@@ -684,27 +713,27 @@ function showLoadMediaElementPopUp() {
       show: &#x27;fade&#x27;,
       hide: {effect: &#x27;fade&#x27;},
       open: function(event, ui) {
-        $(&#x27;#load-media-element input&#x27;).blur();
-        $(&#x27;#load-media-element #title&#x27;).val($(&#x27;#load-media-element&#x27;).data(&#x27;placeholder-title&#x27;));
-        $(&#x27;#load-media-element #description&#x27;).val($(&#x27;#load-media-element&#x27;).data(&#x27;placeholder-description&#x27;));
-        $(&#x27;#load-media-element #title_placeholder&#x27;).val(&#x27;&#x27;);
-        $(&#x27;#load-media-element #description_placeholder&#x27;).val(&#x27;&#x27;);
-        $(&#x27;#load-media-element #tags_value&#x27;).val(&#x27;&#x27;);
-        $(&#x27;#load-media-element ._tags_container span&#x27;).remove();
-        $(&#x27;#load-media-element ._tags_container ._placeholder&#x27;).show();
-        $(&#x27;#media_element_media_show&#x27;).text($(&#x27;#load-media-element&#x27;).data(&#x27;placeholder-media&#x27;));
-        $(&#x27;#load-media-element .form_error&#x27;).removeClass(&#x27;form_error&#x27;);
-        $(&#x27;#new_media_element_input&#x27;).val(&#x27;&#x27;);
-      },
-      close: function() {
-        $(&#x27;#load-media-element iframe&#x27;).attr(&#x27;src&#x27;, &#x27;about:blank&#x27;);
+        setTimeout(function() {
+          obj.find(&#x27;input&#x27;).blur();
+          obj.find(&#x27;.medload_title&#x27;).val(obj.data(&#x27;placeholder-title&#x27;));
+          obj.find(&#x27;.medload_description&#x27;).val(obj.data(&#x27;placeholder-description&#x27;));
+          obj.find(&#x27;.medload_title_placeholder&#x27;).val(&#x27;&#x27;);
+          obj.find(&#x27;.medload_description_placeholder&#x27;).val(&#x27;&#x27;);
+          obj.find(&#x27;.medload_tags_value&#x27;).val(&#x27;&#x27;);
+          obj.find(&#x27;._tags_container span&#x27;).remove();
+          obj.find(&#x27;._tags_container ._placeholder&#x27;).show();
+          $(&#x27;#media_element_media_show&#x27;).text(obj.data(&#x27;placeholder-media&#x27;));
+          obj.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+          $(&#x27;#new_media_element_input&#x27;).val(&#x27;&#x27;);
+          obj.find(&#x27;.barraLoading .loading-errors&#x27;).html(&#x27;&#x27;);
+        }, 100);
       }
     });
   }
 }
 
 /**
-Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink &quot;MediaElementLoaderGeneral/resetMediaElementChangeInfo:method&quot;}}{{/crossLink}}).
+Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink &quot;MediaElementEditorForms/resetMediaElementChangeInfo:method&quot;}}{{/crossLink}}).
 @method showMediaElementInfoPopUp
 @for DialogsWithForm
 @param media_element_id {Number} id in the database of the media element
@@ -738,10 +767,6 @@ function showMediaElementInfoPopUp(media_element_id) {
           removeCustomOverlayClose();
         },
         close: function() {
-          if(obj.length &gt; 0 &amp;&amp; $(&#x27;#dashboard_container .literature_container&#x27;).length &gt; 0) {
-            $(&#x27;#dashboard_container .literature_container&#x27;).css(&#x27;z-index&#x27;, 12);
-            $(&#x27;#dashboard_container .lesson_dashboard_thumb&#x27;).css(&#x27;z-index&#x27;, 3);
-          }
           resetMediaElementChangeInfo(media_element_id);
           $(this).find(&#x27;._report_form_content&#x27;).hide();
           $(this).find(&#x27;._report_media_element_click&#x27;).removeClass(&#x27;report_light&#x27;);

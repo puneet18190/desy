@@ -31,26 +31,15 @@
 //= require ../players
 
 $(document).ready(function() {
-  window.$html = $('html');
-  window.$loaderVisible = true;
-  window.$loading = $('#loading');
-  window.$body = $('body');
-  window.$captions = $('#popup_captions_container');
-  window.$parameters = $('#popup_parameters_container');
+  initializeGlobalVariables();
   browsersDocumentReady();
-  generalWindowResizeDocumentReady();
-  defaultValueJavaScriptAnimationsDocumentReady();
-  filtersDocumentReady();
-  expandedItemsDocumentReady();
-  javaScriptAnimationsDocumentReady();
-  playersDocumentReady();
-  lessonViewerDocumentReady();
-  $('.lesson-scorm-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
-  $(window).resize(function() {
-    $('.lesson-scorm-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
-  });
-  $body.on('click', 'a.target_blank_mce', function(e) {
-    e.preventDefault();
-    window.open($(this).attr('href'), '_blank').focus();
+  initializeLessonViewer('lesson-scorm');
+  lessonViewerDocumentReadyWirisConvertSrc();
+  lessonViewerDocumentReadyDocuments();
+  playersDocumentReadyGeneral();
+  var footer = $('#footer');
+  footer.css('top', ($window.height() - 40) + 'px').css('width', ($window.width() - 24) + 'px');
+  $window.resize(function() {
+    footer.css('top', ($window.height() - 40) + 'px').css('width', ($window.width() - 24) + 'px');
   });
 });

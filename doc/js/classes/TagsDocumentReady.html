@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -68,8 +70,6 @@
                 <li><a href="../classes/AudioEditorPreview.html">AudioEditorPreview</a></li>
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
-            
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
             
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
@@ -100,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -157,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -200,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -265,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -276,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -364,7 +358,7 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_tagsDocumentReady">tagsDocumentReady</a>
+                                <a href="#method_tagsDocumentReadyAutocomplete">tagsDocumentReadyAutocomplete</a>
 
                                 
                                 
@@ -428,8 +422,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_tagsDocumentReady" class="method item">
-    <h3 class="name"><code>tagsDocumentReady</code></h3>
+                    <div id="method_tagsDocumentReadyAutocomplete" class="method item">
+    <h3 class="name"><code>tagsDocumentReadyAutocomplete</code></h3>
 
     
         <span class="paren">()</span>
@@ -471,7 +465,7 @@
     </div>
 
     <div class="description">
-        <p>Global initializer for all instances of search autocomplete and tagging autocomplete.</p>
+        <p>Initializer for search autocomplete.</p>
 
     </div>
 
@@ -515,7 +509,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l167"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:167</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l161"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:161</code></a>
         
         </p>
 
@@ -570,7 +564,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l212"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:212</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l206"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:206</code></a>
         
         </p>
 
@@ -581,7 +575,7 @@
     </div>
 
     <div class="description">
-        <p>Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see <a href="../classes/DialogsWithForm.html#method_showLoadMediaElementPopUp" class="crosslink">showLoadMediaElementPopUp</a> and the module <a href="../modules/media-element-loader.html">media-element-loader</a>).</p>
+        <p>Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see <a href="../classes/DialogsWithForm.html#method_showLoadMediaElementPopUp" class="crosslink">showLoadMediaElementPopUp</a> and the module <a href="../modules/uploader.html">uploader</a>).</p>
 
     </div>
 
@@ -625,7 +619,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l247"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:247</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l241"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:241</code></a>
         
         </p>
 
@@ -680,7 +674,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l282"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:282</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l276"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:276</code></a>
         
         </p>
 
@@ -735,7 +729,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l321"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:321</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l315"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:315</code></a>
         
         </p>
 
@@ -790,7 +784,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l359"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:359</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l353"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:353</code></a>
         
         </p>
 

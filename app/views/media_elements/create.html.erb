@@ -1,37 +1,9 @@
-<style>
-  *{
-    margin: 0;
-    padding: 0;
-    color: white;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
+<script>
+  window.onload = function() {
+    <% if @errors %>
+      top.uploadDone('media-element', <%= @errors.to_json.html_safe %>, <%= @error_fields.to_json.html_safe %>);
+    <% else %>
+      top.uploadDone('media-element');
+    <% end %>
   }
-  .lower {
-    text-transform: lowercase;
-  }
-</style>
-
-<% if @errors %>
-  
-  <p style="padding: 20px 0 0 20px;"><%= standard_form_error_messages(@errors, 'black') %></p>
-  <script>
-    
-    window.onload = function() {
-      top.uploadMediaElementLoaderError(<%= @error_fields.to_json.html_safe %>);
-      if(top.uploadDone) top.uploadDone(); //top means parent frame.
-    }
-    
-  </script>
-  
-<% else %>
-  
-  <script>
-    
-    window.onload = function() {
-      top.uploadMediaElementLoaderDoneRedirect();
-      if(top.uploadDone) top.uploadDone(); //top means parent frame.
-    }
-    
-  </script>
-  
-<% end %>
+</script>

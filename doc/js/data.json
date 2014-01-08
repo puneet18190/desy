@@ -14,9 +14,9 @@
             "classes": {},
             "fors": {
                 "AdminAutocomplete": 1,
+                "AdminBrowserSupport": 1,
                 "AdminCollapsed": 1,
-                "AdminDocumentReady": 1,
-                "browserSupport": 1
+                "AdminDocumentReady": 1
             },
             "namespaces": {}
         },
@@ -112,8 +112,7 @@
             },
             "classes": {},
             "fors": {
-                "DocumentsDocumentReady": 1,
-                "DocumentsUploader": 1
+                "DocumentsDocumentReady": 1
             },
             "namespaces": {}
         },
@@ -211,24 +210,10 @@
             "classes": {},
             "fors": {
                 "MediaElementEditorCache": 1,
+                "MediaElementEditorConversion": 1,
                 "MediaElementEditorDocumentReady": 1,
                 "MediaElementEditorForms": 1,
                 "MediaElementEditorHorizontalTimelines": 1
-            },
-            "namespaces": {}
-        },
-        "app/assets/javascripts/media_element_loader.js": {
-            "name": "app/assets/javascripts/media_element_loader.js",
-            "modules": {
-                "media-element-loader": 1
-            },
-            "classes": {},
-            "fors": {
-                "MediaElementLoaderConversion": 1,
-                "MediaElementLoaderDocumentReady": 1,
-                "MediaElementLoaderDone": 1,
-                "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1
             },
             "namespaces": {}
         },
@@ -296,6 +281,18 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/uploader.js": {
+            "name": "app/assets/javascripts/uploader.js",
+            "modules": {
+                "uploader": 1
+            },
+            "classes": {},
+            "fors": {
+                "UploadCallbacks": 1,
+                "UploaderDocumentReady": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/video_editor.js": {
             "name": "app/assets/javascripts/video_editor.js",
             "modules": {
@@ -338,15 +335,15 @@
             "submodules": {},
             "classes": {
                 "AdminAutocomplete": 1,
+                "AdminBrowserSupport": 1,
                 "AdminCollapsed": 1,
-                "AdminDocumentReady": 1,
-                "browserSupport": 1
+                "AdminDocumentReady": 1
             },
             "fors": {
                 "AdminAutocomplete": 1,
+                "AdminBrowserSupport": 1,
                 "AdminCollapsed": 1,
-                "AdminDocumentReady": 1,
-                "browserSupport": 1
+                "AdminDocumentReady": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -367,7 +364,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/browser_not_supported/application.js",
             "line": 1,
-            "description": "Browser supoprt checking functions"
+            "description": "Browser support checking functions"
         },
         "ajax-loader": {
             "name": "ajax-loader",
@@ -486,12 +483,10 @@
             "name": "documents",
             "submodules": {},
             "classes": {
-                "DocumentsDocumentReady": 1,
-                "DocumentsUploader": 1
+                "DocumentsDocumentReady": 1
             },
             "fors": {
-                "DocumentsDocumentReady": 1,
-                "DocumentsUploader": 1
+                "DocumentsDocumentReady": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -604,7 +599,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 1,
-            "description": "The Lesson Editor is used to add and edit slides to a private lesson.\n<br/><br/>\nWhen opening the Editor on a lesson, all its slides are appended to a queue, of which it's visible only the portion that surrounds the <b>current slide</b> (the width of such a portion depends on the screen resolution, see {{#crossLink \"LessonEditorSlidesNavigation/initLessonEditorPositions:method\"}}{{/crossLink}}, {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyResize:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyGeneral:method\"}}{{/crossLink}}). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}} and the methods in {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in {{#crossLink \"LessonEditorSlideLoading\"}}{{/crossLink}}).\n<br/><br/>\nOn the right side of each slide the user finds a list of <b>buttons</b> (initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method\"}}{{/crossLink}}): each button corresponds either to an action that can be performed on the slide, either to an action that can be performed to the whole lesson (for instance, save and exit, or edit title description and tags).\n<br/><br/>\nThe <b>tool to navigate the slides</b> is located on the top of the editor: each small square represents a slide (with its position), and passing with the mouse over it the Editor shows a miniature of the corresponding slide (these functionalities are initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}}). Clicking on a slide miniature, the application moves to that slide using the function {{#crossLink \"LessonEditorSlidesNavigation/slideTo:method\"}}{{/crossLink}}. The slides can be sorted dragging with the mouse (using the JQueryUi plugin, initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyJqueryAnimations:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorJqueryAnimations/initializeSortableNavs:method\"}}{{/crossLink}}).\n<br/><br/>\nInside the Editor, there are two operations that require hiding and replacement of the queue of slides: <b>adding a media element to a slide</b> and <b>choosing a new slide</b>. In both these operations, an HTML div is extracted from the main template (where it was hidden), and put in the place of the current slide, hiding the rest of the slides queue, buttons, and slides navigation (operations performed by {{#crossLink \"LessonEditorCurrentSlide/hideEverythingOutCurrentSlide:method\"}}{{/crossLink}}). For the galleries, the extracted div must be filled by an action called via Ajax (see the module {{#crossLinkModule \"galleries\"}}{{/crossLinkModule}}), whereas the div with the list of available slides is already loaded with the Editor (see {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyNewSlideChoice:method\"}}{{/crossLink}}).\n<br/><br/>\nTo add a media element to a slide, the user picks it from its specific gallery: when he clicks on the button 'plus', the system calls the corresponding subfunction in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyAddMediaElement:method\"}}{{/crossLink}}. To avoid troubles due to the replacement of JQuery plugins, video and audio tags, etc, this method always replaces the sources of <b>audio</b> and <b>video</b> tags and calls <i>load()</i>.\n<br/><br/>\nIf the element added is of type <b>image</b>, the user may drag it inside the slide, using {{#crossLink \"LessonEditorJqueryAnimations/makeDraggable:method\"}}{{/crossLink}}. A set of methods (in the class {{#crossLink \"LessonEditorImageResizing\"}}{{/crossLink}}) is available to resize the image and the alignment chosen by the user; more specificly, the method {{#crossLink \"LessonEditorImageResizing/isHorizontalMask:method\"}}{{/crossLink}} is used to understand, depending on the type of slide and on the proportions of the image, if the image is <b>vertical</b> (and then the user can drag it vertically) or <b>horizontal</b> (the user can drag it horizontally).\n<br/><br/>\nEach slide contains a form linked to the action that updates it, there is no global saving for the whole lesson. The slide is automaticly saved (using the method {{#crossLink \"LessonEditorForms/saveCurrentSlide:method\"}}{{/crossLink}}) <i>before moving to another slide</i>, <i>before showing the options to add a new slide</i>, and <i>before changing position of a slide</i>. The same function is called by the user when he clicks on the button 'save' on the right of each slide; the buttons <b>save and exit</b> and <b>edit general info</b> are also linked to slide saving, but in this case it's performed with a callback (see again the buttons initialization in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method\"}}{{/crossLink}}).\n<br/><br/>\nThe text slides are provided of <b>TinyMCE</b> text editor, initialized in the methods of {{#crossLink \"LessonEditorTinyMCE\"}}{{/crossLink}}."
+            "description": "The Lesson Editor is used to add and edit slides to a private lesson.\n<br/><br/>\nWhen opening the Editor on a lesson, all its slides are appended to a queue, of which it's visible only the portion that surrounds the <b>current slide</b> (the width of such a portion depends on the screen resolution, see {{#crossLink \"LessonEditorSlidesNavigation/initLessonEditorPositions:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyResize:method\"}}{{/crossLink}}). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}} and the methods in {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in {{#crossLink \"LessonEditorSlideLoading\"}}{{/crossLink}}).\n<br/><br/>\nOn the right side of each slide the user finds a list of <b>buttons</b> (initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method\"}}{{/crossLink}}): each button corresponds either to an action that can be performed on the slide, either to an action that can be performed to the whole lesson (for instance, save and exit, or edit title description and tags).\n<br/><br/>\nThe <b>tool to navigate the slides</b> is located on the top of the editor: each small square represents a slide (with its position), and passing with the mouse over it the Editor shows a miniature of the corresponding slide (these functionalities are initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}}). Clicking on a slide miniature, the application moves to that slide using the function {{#crossLink \"LessonEditorSlidesNavigation/slideTo:method\"}}{{/crossLink}}. The slides can be sorted dragging with the mouse (using the JQueryUi plugin, initialized in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyJqueryAnimations:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorJqueryAnimations/initializeSortableNavs:method\"}}{{/crossLink}}).\n<br/><br/>\nInside the Editor, there are two operations that require hiding and replacement of the queue of slides: <b>adding a media element to a slide</b> and <b>choosing a new slide</b>. In both these operations, an HTML div is extracted from the main template (where it was hidden), and put in the place of the current slide, hiding the rest of the slides queue, buttons, and slides navigation (operations performed by {{#crossLink \"LessonEditorCurrentSlide/hideEverythingOutCurrentSlide:method\"}}{{/crossLink}}). For the galleries, the extracted div must be filled by an action called via Ajax (see the module {{#crossLinkModule \"galleries\"}}{{/crossLinkModule}}), whereas the div with the list of available slides is already loaded with the Editor (see {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyNewSlideChoice:method\"}}{{/crossLink}}).\n<br/><br/>\nTo add a media element to a slide, the user picks it from its specific gallery: when he clicks on the button 'plus', the system calls the corresponding subfunction in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyAddMediaElement:method\"}}{{/crossLink}}. To avoid troubles due to the replacement of JQuery plugins, video and audio tags, etc, this method always replaces the sources of <b>audio</b> and <b>video</b> tags and calls <i>load()</i>.\n<br/><br/>\nIf the element added is of type <b>image</b>, the user may drag it inside the slide, using {{#crossLink \"LessonEditorJqueryAnimations/makeDraggable:method\"}}{{/crossLink}}. A set of methods (in the class {{#crossLink \"LessonEditorImageResizing\"}}{{/crossLink}}) is available to resize the image and the alignment chosen by the user; more specificly, the method {{#crossLink \"LessonEditorImageResizing/isHorizontalMask:method\"}}{{/crossLink}} is used to understand, depending on the type of slide and on the proportions of the image, if the image is <b>vertical</b> (and then the user can drag it vertically) or <b>horizontal</b> (the user can drag it horizontally).\n<br/><br/>\nEach slide contains a form linked to the action that updates it, there is no global saving for the whole lesson. The slide is automaticly saved (using the method {{#crossLink \"LessonEditorForms/saveCurrentSlide:method\"}}{{/crossLink}}) <i>before moving to another slide</i>, <i>before showing the options to add a new slide</i>, and <i>before changing position of a slide</i>. The same function is called by the user when he clicks on the button 'save' on the right of each slide; the buttons <b>save and exit</b> and <b>edit general info</b> are also linked to slide saving, but in this case it's performed with a callback (see again the buttons initialization in {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method\"}}{{/crossLink}}).\n<br/><br/>\nThe text slides are provided of <b>TinyMCE</b> text editor, initialized in the methods of {{#crossLink \"LessonEditorTinyMCE\"}}{{/crossLink}}."
         },
         "lesson-viewer": {
             "name": "lesson-viewer",
@@ -634,12 +629,14 @@
             "submodules": {},
             "classes": {
                 "MediaElementEditorCache": 1,
+                "MediaElementEditorConversion": 1,
                 "MediaElementEditorDocumentReady": 1,
                 "MediaElementEditorForms": 1,
                 "MediaElementEditorHorizontalTimelines": 1
             },
             "fors": {
                 "MediaElementEditorCache": 1,
+                "MediaElementEditorConversion": 1,
                 "MediaElementEditorDocumentReady": 1,
                 "MediaElementEditorForms": 1,
                 "MediaElementEditorHorizontalTimelines": 1
@@ -649,29 +646,6 @@
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 1,
             "description": "This module contains javascript functions common to all the editors ({{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})."
-        },
-        "media-element-loader": {
-            "name": "media-element-loader",
-            "submodules": {},
-            "classes": {
-                "MediaElementLoaderConversion": 1,
-                "MediaElementLoaderDocumentReady": 1,
-                "MediaElementLoaderDone": 1,
-                "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1
-            },
-            "fors": {
-                "MediaElementLoaderConversion": 1,
-                "MediaElementLoaderDocumentReady": 1,
-                "MediaElementLoaderDone": 1,
-                "MediaElementLoaderErrors": 1,
-                "MediaElementLoaderGeneral": 1
-            },
-            "namespaces": {},
-            "tag": "module",
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 1,
-            "description": "Javascript functions used in the media element loader."
         },
         "notifications": {
             "name": "notifications",
@@ -764,7 +738,24 @@
             "tag": "module",
             "file": "app/assets/javascripts/tags.js",
             "line": 1,
-            "description": "The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>), and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink \"AdminAutocomplete/initNotificationsAutocomplete:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink \"TagsInitializers/initSearchTagsAutocomplete:method\"}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink \"TagsDocumentReady/tagsDocumentReady:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging</b> autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an 'x' to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a <b>container</b> div that contains a list of tag <b>boxes</b> (implemented with span, see {{#crossLink \"TagsAccessories/createTagSpan:method\"}}{{/crossLink}}) and an <b>tag input</b> where the user writes; when he inserts a new tag and presses <i>enter</i> or <i>comma</i>, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see {{#crossLink \"TagsAccessories/disableTagsInputTooHigh:method\"}}{{/crossLink}}). During this whole process, a <b>hidden input</b> gets updated with a string representing the current tags separated by comma ({{#crossLink \"TagsAccessories/addToTagsValue:method\"}}{{/crossLink}}, {{#crossLink \"TagsAccessories/removeFromTagsValue:method\"}}{{/crossLink}}).\n<br/><br/>\nThe system also checks if the inserted tag is not repeated (using {{#crossLink \"TagsAccessories/checkNoTagDuplicates:method\"}}{{/crossLink}}), and assigns a different color for tags already in the database and for new ones ({{#crossLink \"TagsAccessories/addTagWithoutSuggestion:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging autocomplete mode</b> is initialized for six standard forms (see initializers in the class {{#crossLink \"TagsDocumentReady\"}}{{/crossLink}})."
+            "description": "The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>), and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink \"AdminAutocomplete/initNotificationsAutocomplete:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink \"TagsInitializers/initSearchTagsAutocomplete:method\"}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink \"TagsDocumentReady\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging</b> autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an 'x' to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a <b>container</b> div that contains a list of tag <b>boxes</b> (implemented with span, see {{#crossLink \"TagsAccessories/createTagSpan:method\"}}{{/crossLink}}) and an <b>tag input</b> where the user writes; when he inserts a new tag and presses <i>enter</i> or <i>comma</i>, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see {{#crossLink \"TagsAccessories/disableTagsInputTooHigh:method\"}}{{/crossLink}}). During this whole process, a <b>hidden input</b> gets updated with a string representing the current tags separated by comma ({{#crossLink \"TagsAccessories/addToTagsValue:method\"}}{{/crossLink}}, {{#crossLink \"TagsAccessories/removeFromTagsValue:method\"}}{{/crossLink}}).\n<br/><br/>\nThe system also checks if the inserted tag is not repeated (using {{#crossLink \"TagsAccessories/checkNoTagDuplicates:method\"}}{{/crossLink}}), and assigns a different color for tags already in the database and for new ones ({{#crossLink \"TagsAccessories/addTagWithoutSuggestion:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging autocomplete mode</b> is initialized for six standard forms (see initializers in the class {{#crossLink \"TagsDocumentReady\"}}{{/crossLink}})."
+        },
+        "uploader": {
+            "name": "uploader",
+            "submodules": {},
+            "classes": {
+                "UploadCallbacks": 1,
+                "UploaderDocumentReady": 1
+            },
+            "fors": {
+                "UploadCallbacks": 1,
+                "UploaderDocumentReady": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 1,
+            "description": "Javascript functions used in the media element and document loader."
         },
         "video-editor": {
             "name": "video-editor",
@@ -835,6 +826,17 @@
             "module": "admin",
             "namespace": ""
         },
+        "AdminBrowserSupport": {
+            "name": "AdminBrowserSupport",
+            "shortname": "AdminBrowserSupport",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "admin",
+            "namespace": ""
+        },
         "AdminCollapsed": {
             "name": "AdminCollapsed",
             "shortname": "AdminCollapsed",
@@ -849,17 +851,6 @@
         "AdminDocumentReady": {
             "name": "AdminDocumentReady",
             "shortname": "AdminDocumentReady",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "admin",
-            "namespace": ""
-        },
-        "browserSupport": {
-            "name": "browserSupport",
-            "shortname": "browserSupport",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1146,17 +1137,6 @@
         "DocumentsDocumentReady": {
             "name": "DocumentsDocumentReady",
             "shortname": "DocumentsDocumentReady",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "documents",
-            "namespace": ""
-        },
-        "DocumentsUploader": {
-            "name": "DocumentsUploader",
-            "shortname": "DocumentsUploader",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1462,6 +1442,17 @@
             "module": "media-element-editor",
             "namespace": ""
         },
+        "MediaElementEditorConversion": {
+            "name": "MediaElementEditorConversion",
+            "shortname": "MediaElementEditorConversion",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "media-element-editor",
+            "namespace": ""
+        },
         "MediaElementEditorDocumentReady": {
             "name": "MediaElementEditorDocumentReady",
             "shortname": "MediaElementEditorDocumentReady",
@@ -1493,61 +1484,6 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "media-element-editor",
-            "namespace": ""
-        },
-        "MediaElementLoaderConversion": {
-            "name": "MediaElementLoaderConversion",
-            "shortname": "MediaElementLoaderConversion",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "MediaElementLoaderDocumentReady": {
-            "name": "MediaElementLoaderDocumentReady",
-            "shortname": "MediaElementLoaderDocumentReady",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "MediaElementLoaderDone": {
-            "name": "MediaElementLoaderDone",
-            "shortname": "MediaElementLoaderDone",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "MediaElementLoaderErrors": {
-            "name": "MediaElementLoaderErrors",
-            "shortname": "MediaElementLoaderErrors",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
-            "namespace": ""
-        },
-        "MediaElementLoaderGeneral": {
-            "name": "MediaElementLoaderGeneral",
-            "shortname": "MediaElementLoaderGeneral",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "media-element-loader",
             "namespace": ""
         },
         "NotificationsAccessories": {
@@ -1702,6 +1638,28 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "tags",
+            "namespace": ""
+        },
+        "UploadCallbacks": {
+            "name": "UploadCallbacks",
+            "shortname": "UploadCallbacks",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "uploader",
+            "namespace": ""
+        },
+        "UploaderDocumentReady": {
+            "name": "UploaderDocumentReady",
+            "shortname": "UploaderDocumentReady",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "uploader",
             "namespace": ""
         },
         "VideoEditorAddComponents": {
@@ -1883,6 +1841,15 @@
         {
             "file": "app/assets/javascripts/admin/functions.js",
             "line": 49,
+            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}",
+            "itemtype": "method",
+            "name": "adminBrowserSupport",
+            "class": "AdminBrowserSupport",
+            "module": "admin"
+        },
+        {
+            "file": "app/assets/javascripts/admin/functions.js",
+            "line": 61,
             "description": "Open a collapsed table row with extra content, tipically clicking on previous collapsable table row.",
             "itemtype": "method",
             "name": "openAndLoadNextTr",
@@ -1898,7 +1865,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 72,
+            "line": 84,
             "description": "Initializes the browser classes in the tag html. Same functionality as {{#crossLink \"GeneralDocumentReady/browsersDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminBrowsersDocumentReady",
@@ -1907,7 +1874,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 89,
+            "line": 101,
             "description": "Initializes the effects of collapse and change date.",
             "itemtype": "method",
             "name": "adminEffectsDocumentReady",
@@ -1916,7 +1883,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 148,
+            "line": 160,
             "description": "Initializes the locations filling. See similar {{#crossLink \"GeneralDocumentReady/locationsDocumentReady:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "adminLocationsDocumentReady",
@@ -1925,7 +1892,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 262,
+            "line": 274,
             "description": "Initializes effects for MediaElement.",
             "itemtype": "method",
             "name": "adminMediaElementsDocumentReady",
@@ -1934,7 +1901,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 349,
+            "line": 361,
             "description": "Initializes actions for less important tables, such as Tag, Subject, SchoolLevel",
             "itemtype": "method",
             "name": "adminMiscellaneaDocumentReady",
@@ -1943,7 +1910,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 389,
+            "line": 401,
             "description": "Initializes effects for the administration search engine.",
             "itemtype": "method",
             "name": "adminSearchDocumentReady",
@@ -1952,7 +1919,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 450,
+            "line": 462,
             "description": "Initializes effects for sorting in administration search engine.",
             "itemtype": "method",
             "name": "adminSortingDocumentReady",
@@ -1961,7 +1928,7 @@
         },
         {
             "file": "app/assets/javascripts/admin/functions.js",
-            "line": 494,
+            "line": 506,
             "description": "Initializes effects for User.",
             "itemtype": "method",
             "name": "adminUsersDocumentReady",
@@ -1969,20 +1936,11 @@
             "module": "admin"
         },
         {
-            "file": "app/assets/javascripts/admin/functions.js",
-            "line": 514,
-            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}here{{/crossLink}}",
-            "itemtype": "method",
-            "name": "adminBrowserSupport",
-            "class": "browserSupport",
-            "module": "admin"
-        },
-        {
             "file": "app/assets/javascripts/browser_not_supported/application.js",
             "line": 6,
-            "description": "Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML. The supported browsers version is implemented {{#crossLink \"GeneralMiscellanea/browserSupport:method\"}}here{{/crossLink}}",
+            "description": "Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML. Implements two empty functions, one in {{#crossLink \"AdminBrowserSupport/adminBrowserSupport:method\"}}{{/crossLink}}, and one in {{#crossLink \"GeneralMiscellanea/browserSupport:method\"}}{{/crossLink}}.",
             "itemtype": "method",
-            "name": "browserSupport",
+            "name": "browserSupportMain",
             "class": "BrowserSupportMain",
             "module": "browser-support"
         },
@@ -2337,7 +2295,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 547,
+            "line": 557,
             "description": "Initializes the functionalities of the preview (see also {{#crossLink \"AudioEditorPreview\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "audioEditorDocumentReadyPreview",
@@ -2346,7 +2304,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 581,
+            "line": 591,
             "description": "Sets the correct position of the gallery: used while showing and closing the audio gallery (see respectively {{#crossLink \"AudioEditorGalleries/showGalleryInAudioEditor:method\"}}{{/crossLink}} and {{#crossLink \"AudioEditorGalleries/closeGalleryInAudioEditor:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "calculateNewPositionGalleriesInAudioEditor",
@@ -2355,7 +2313,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 590,
+            "line": 600,
             "description": "Closes the gallery.",
             "itemtype": "method",
             "name": "closeGalleryInAudioEditor",
@@ -2364,7 +2322,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 602,
+            "line": 612,
             "description": "Shows the gallery.",
             "itemtype": "method",
             "name": "showGalleryInAudioEditor",
@@ -2373,7 +2331,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 618,
+            "line": 628,
             "description": "Extracts the unique identifier of a component using its HTML id.",
             "itemtype": "method",
             "name": "getAudioComponentIdentifier",
@@ -2393,7 +2351,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 634,
+            "line": 644,
             "description": "Disables the buttons <i>commit</i> and <i>prewiev</i>.",
             "itemtype": "method",
             "name": "disableCommitAndPreviewInAudioEditor",
@@ -2402,7 +2360,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 646,
+            "line": 656,
             "description": "Enables the buttons <i>commit</i> and <i>preview</i>.",
             "itemtype": "method",
             "name": "enableCommitAndPreviewInAudioEditor",
@@ -2411,7 +2369,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 658,
+            "line": 668,
             "description": "Hides the commit form for overwrite or for new element (depending on the parameter).",
             "itemtype": "method",
             "name": "hideCommitAudioEditorForm",
@@ -2427,7 +2385,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 670,
+            "line": 680,
             "description": "Function that sets the correct value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are hidden and need to be shown (for instance {{#crossLink \"AudioEditorGalleries/showGalleryInAudioEditor:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "setBackAllZIndexesInAudioEditor",
@@ -2436,7 +2394,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 684,
+            "line": 694,
             "description": "Function that sets to zero the value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are shown and need to be hidden (for instance {{#crossLink \"AudioEditorGalleries/closeGalleryInAudioEditor:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "setToZeroAllZIndexesInAudioEditor",
@@ -2445,7 +2403,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 698,
+            "line": 708,
             "description": "Shows the commit form for overwrite or for new element (depending on the parameter).",
             "itemtype": "method",
             "name": "showCommitAudioEditorForm",
@@ -2461,7 +2419,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 714,
+            "line": 724,
             "description": "Deselects all the components in preview mode (it corresponds to {{#crossLink \"AudioEditorComponents/deselectAllAudioEditorComponents:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "deselectAllAudioEditorComponentsInPreviewMode",
@@ -2470,7 +2428,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 730,
+            "line": 740,
             "description": "Function that sets all the graphical details that characterize the preview mode. It automatically calls the function {{#crossLink \"AudioEditorPreview/startAudioEditorPreview:method\"}}{{/crossLink}}, passing it as parameter the selected component, or the first one if there is no selected component.",
             "itemtype": "method",
             "name": "enterAudioEditorPreviewMode",
@@ -2479,7 +2437,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 771,
+            "line": 781,
             "description": "Gets the current time in the global preview, using the information relative to the selected component and the position of the cursor inside its cutter.",
             "itemtype": "method",
             "name": "getAudioEditorGlobalPreviewTime",
@@ -2488,7 +2446,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 795,
+            "line": 805,
             "description": "Increases of one second the global preview timer.",
             "itemtype": "method",
             "name": "increaseAudioEditorPreviewTimer",
@@ -2497,7 +2455,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 807,
+            "line": 817,
             "description": "Function that sets back to the regular value all the graphical details that characterize the preview mode.",
             "itemtype": "method",
             "name": "leaveAudioEditorPreviewMode",
@@ -2513,7 +2471,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 840,
+            "line": 850,
             "description": "Selects a component in preview mode (it corresponds to {{#crossLink \"AudioEditorComponents/selectAudioEditorComponent:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "selectAudioEditorComponentInPreviewMode",
@@ -2529,7 +2487,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 855,
+            "line": 865,
             "description": "Starts the preview from a given component.",
             "itemtype": "method",
             "name": "startAudioEditorPreview",
@@ -2545,7 +2503,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 873,
+            "line": 883,
             "description": "Switches all the components in preview mode.",
             "itemtype": "method",
             "name": "switchAudioComponentsToPreviewMode",
@@ -2554,7 +2512,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 887,
+            "line": 897,
             "description": "Switches all the components back to regular mode.",
             "itemtype": "method",
             "name": "switchBackAudioComponentsFromPreviewMode",
@@ -2563,7 +2521,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 905,
+            "line": 915,
             "description": "Function used to keep updated the position of the scroll with the current component played in the global preview. It checks a condition and then uses {{#crossLink \"AudioEditorScrollpain/scrollToFirstSelectedAudioEditorComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "followPreviewComponentsWithVerticalScrollInAudioEditor",
@@ -2572,7 +2530,7 @@
         },
         {
             "file": "app/assets/javascripts/audio_editor.js",
-            "line": 916,
+            "line": 926,
             "description": "Hand made function that simply scrolls to a component and executes a callback. This function needed to be written since the original JScrollPain doesn't provide it (!).",
             "itemtype": "method",
             "name": "scrollToFirstSelectedAudioEditorComponent",
@@ -3410,7 +3368,16 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 346,
-            "description": "Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule \"media-element-loader\"}}{{/crossLinkModule}}.",
+            "description": "Dialog containing the form to upload a new document. This function interacts with the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}.",
+            "itemtype": "method",
+            "name": "showLoadDocumentPopUp",
+            "class": "DialogsWithForm",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 381,
+            "description": "Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "showLoadMediaElementPopUp",
             "class": "DialogsWithForm",
@@ -3418,8 +3385,8 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 384,
-            "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementLoaderGeneral/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
+            "line": 419,
+            "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "showMediaElementInfoPopUp",
             "params": [
@@ -3434,7 +3401,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 440,
+            "line": 471,
             "description": "Dialog containing the form to send the public link of a lesson. Used in {{#crossLink \"VirtualClassroomSendLink\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showSendLessonLinkPopUp",
@@ -3450,7 +3417,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 484,
+            "line": 515,
             "description": "Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink \"VirtualClassroomMultipleLoading\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showVirtualClassroomQuickSelectPopUp",
@@ -3475,7 +3442,7 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 22,
+            "line": 21,
             "description": "Initializer for documents functionality (buttons javascripts).",
             "itemtype": "method",
             "name": "documentsDocumentReadyButtons",
@@ -3484,7 +3451,7 @@
         },
         {
             "file": "app/assets/javascripts/documents.js",
-            "line": 100,
+            "line": 99,
             "description": "Initializer for documents functionality (general javascripts).",
             "itemtype": "method",
             "name": "documentsDocumentReadyGeneral",
@@ -3498,71 +3465,6 @@
             "itemtype": "method",
             "name": "documentsDocumentReadySearch",
             "class": "DocumentsDocumentReady",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 169,
-            "description": "Initializer for the loading form.",
-            "itemtype": "method",
-            "name": "documentsDocumentReadyUploader",
-            "class": "DocumentsDocumentReady",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 212,
-            "description": "Dialog containing the form to upload a new document.",
-            "itemtype": "method",
-            "name": "showLoadDocumentPopUp",
-            "class": "DocumentsUploader",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 247,
-            "description": "Handles 413 status error, file too large.",
-            "itemtype": "method",
-            "name": "uploadDocumentDone",
-            "return": {
-                "description": "false, for some reason",
-                "type": "Boolean"
-            },
-            "class": "DocumentsUploader",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 263,
-            "description": "Reloads documents page after new document is successfully loaded.",
-            "itemtype": "method",
-            "name": "uploadDocumentLoaderDoneRedirect",
-            "class": "DocumentsUploader",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 275,
-            "description": "Update form fields with error labels.",
-            "itemtype": "method",
-            "name": "uploadDocumentLoaderError",
-            "params": [
-                {
-                    "name": "errors",
-                    "description": "errors list",
-                    "type": "Array"
-                }
-            ],
-            "class": "DocumentsUploader",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 297,
-            "description": "Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.",
-            "itemtype": "method",
-            "name": "initDocumentLoader",
-            "class": "DocumentsUploader",
             "module": "documents"
         },
         {
@@ -3589,7 +3491,7 @@
         {
             "file": "app/assets/javascripts/galleries.js",
             "line": 57,
-            "description": "Initializer for effects in galleries.",
+            "description": "Initializer for effects of opening a gallery and opening the individual dialog of an element in a gallery: this method calls methods belonging to the class {{#crossLink \"DialogsGalleries\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "galleriesDocumentReady",
             "class": "GalleriesDocumentReady",
@@ -3597,25 +3499,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 67,
-            "description": "Initializer for effects of closing a gallery. Typically, when closing a gallery the system closes all the media inside it using {{#crossLink \"PlayersGeneral/stopMedia:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "galleriesDocumentReadyClose",
-            "class": "GalleriesDocumentReady",
-            "module": "galleries"
-        },
-        {
-            "file": "app/assets/javascripts/galleries.js",
-            "line": 98,
-            "description": "Initializer for effects of opening a gallery and opening the individual dialog of an element in a gallery: this method calls methods belonging to the class {{#crossLink \"DialogsGalleries\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "galleriesDocumentReadyOpen",
-            "class": "GalleriesDocumentReady",
-            "module": "galleries"
-        },
-        {
-            "file": "app/assets/javascripts/galleries.js",
-            "line": 190,
+            "line": 149,
             "description": "Initialize audio gallery in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInAudioEditor",
@@ -3624,7 +3508,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 208,
+            "line": 167,
             "description": "Initialize audio gallery in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInLessonEditor",
@@ -3633,7 +3517,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 226,
+            "line": 185,
             "description": "Initialize audio gallery in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeAudioGalleryInVideoEditor",
@@ -3642,7 +3526,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 244,
+            "line": 203,
             "description": "Initialize audio gallery in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeDocumentGalleryInLessonEditor",
@@ -3651,7 +3535,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 264,
+            "line": 223,
             "description": "Initialize image gallery in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeImageGalleryInImageEditor",
@@ -3660,7 +3544,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 282,
+            "line": 241,
             "description": "Initialize image gallery in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeImageGalleryInLessonEditor",
@@ -3669,7 +3553,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 300,
+            "line": 259,
             "description": "Initialize mixed gallery in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeMixedGalleryInVideoEditor",
@@ -3678,7 +3562,7 @@
         },
         {
             "file": "app/assets/javascripts/galleries.js",
-            "line": 336,
+            "line": 295,
             "description": "Initialize video gallery in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "initializeVideoGalleryInLessonEditor",
@@ -3751,15 +3635,48 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 55,
-            "description": "Recenters the media elements according to their number and the screen resolution.",
+            "description": "Same structure of {{#crossLink \"DashboardResizing/dashboardResizeController:method\"}}{{/crossLink}}.",
             "itemtype": "method",
-            "name": "recenterMyMediaElements",
+            "name": "mediaElementsResizeController",
+            "params": [
+                {
+                    "name": "resize_before",
+                    "description": "if true, it resizes the elements also before calling the server",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "with_fade",
+                    "description": "if true, it resizes with a fade",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "new_page",
+                    "description": "forced page if any",
+                    "type": "Number"
+                }
+            ],
             "class": "GeneralCentering",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 70,
+            "line": 91,
+            "description": "Same structure of {{#crossLink \"DashboardResizing/resizeLessonsAndMediaElementsInDashboard:method\"}}{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "resizeExpandedMediaElements",
+            "params": [
+                {
+                    "name": "for_row",
+                    "description": "how many media elements fit horizontally the screen",
+                    "type": "Number"
+                }
+            ],
+            "class": "GeneralCentering",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 126,
             "description": "This function guesses the browser and writes it in a class of the tag 'html'.",
             "itemtype": "method",
             "name": "browsersDocumentReady",
@@ -3768,52 +3685,34 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 84,
-            "description": "This function sets the default values of SelectBoxe all around the application. This function is necessary because otherwise the original value wouldn't be set, since we use a JQuery plugin to design selects.",
+            "line": 140,
+            "description": "Initializer for functionalities which are common to sections containing media elements.",
             "itemtype": "method",
-            "name": "defaultValueJavaScriptAnimationsDocumentReady",
+            "name": "commonMediaElementsDocumentReady",
             "class": "GeneralDocumentReady",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 102,
-            "description": "Initialization for all the functionalities of expanded lessons and media element popup (see also {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
+            "line": 167,
+            "description": "Initializer for functionalities which are common to sections containing lessons.",
             "itemtype": "method",
-            "name": "expandedItemsDocumentReady",
+            "name": "commonLessonsDocumentReady",
             "class": "GeneralDocumentReady",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 166,
-            "description": "Similar to {{#crossLink \"GeneralDocumentReady/defaultValueJavaScriptAnimationsDocumentReady:method\"}}{{/crossLink}}, this function initializes the initial value of the raio buttons styled using a javascript plugin.",
+            "line": 210,
+            "description": "Initializer for global functionalities, used throughout the application.",
             "itemtype": "method",
-            "name": "filtersDocumentReady",
+            "name": "globalDocumentReady",
             "class": "GeneralDocumentReady",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 189,
-            "description": "Initializer for consequences of window resizing.",
-            "itemtype": "method",
-            "name": "generalWindowResizeDocumentReady",
-            "class": "GeneralDocumentReady",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 202,
-            "description": "Initializer for all javascript and JQuery plugins.",
-            "itemtype": "method",
-            "name": "javaScriptAnimationsDocumentReady",
-            "class": "GeneralDocumentReady",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 262,
+            "line": 239,
             "description": "Initializer for locations automatic filling.",
             "itemtype": "method",
             "name": "locationsDocumentReady",
@@ -3822,7 +3721,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 285,
+            "line": 262,
             "description": "Initializes reports forms for both lessons and media elements.",
             "itemtype": "method",
             "name": "reportsDocumentReady",
@@ -3831,16 +3730,61 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 334,
-            "description": "Gets the requested format to visualize media elements.",
+            "line": 307,
+            "description": "Functionalities necessary only for the section 'my documents'.",
             "itemtype": "method",
-            "name": "getMediaElementsFormat",
+            "name": "sectionDocumentsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 317,
+            "description": "Functionalities necessary only for the section 'my lessons'.",
+            "itemtype": "method",
+            "name": "sectionLessonsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 332,
+            "description": "Functionalities necessary only for the section 'my media elements'.",
+            "itemtype": "method",
+            "name": "sectionMediaElementsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 384,
+            "description": "Functionalities necessary only for the sections containing notifications.",
+            "itemtype": "method",
+            "name": "sectionNotificationsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 418,
+            "description": "Functionalities necessary only for the section 'search'.",
+            "itemtype": "method",
+            "name": "sectionSearchDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 441,
+            "description": "Initializes global variables used throughout the javascripts.",
+            "itemtype": "method",
+            "name": "initializeGlobalVariables",
             "class": "GeneralMiscellanea",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 347,
+            "line": 457,
             "description": "Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "redError",
@@ -3849,7 +3793,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 358,
+            "line": 468,
             "description": "Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3865,8 +3809,8 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 386,
-            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented {{#crossLink \"BrowserSupportMain/browserSupport:method\"}}here{{/crossLink}}",
+            "line": 496,
+            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "browserSupport",
             "class": "GeneralMiscellanea",
@@ -3874,46 +3818,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 395,
-            "description": "This function returns an url for media elements without the parameter 'for_page'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "getCompleteMediaElementsUrlWithoutForPage",
-            "return": {
-                "description": "the current url without the parameter 'for_page'",
-                "type": "String"
-            },
-            "class": "GeneralUrls",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 407,
-            "description": "This function returns an url for media elements without the parameter 'filter'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "getCompleteMediaElementsUrlWithoutFilter",
-            "return": {
-                "description": "the current url without the parameter 'filter'",
-                "type": "String"
-            },
-            "class": "GeneralUrls",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 419,
-            "description": "This function returns an url for documents without the parameter 'order'. The original url is extracted by the method {{#crossLink \"GeneralMiscellanea/getMediaElementsFormat:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "getCompleteDocumentsUrlWithoutOrder",
-            "return": {
-                "description": "the current url without the parameter 'order'",
-                "type": "String"
-            },
-            "class": "GeneralUrls",
-            "module": "general"
-        },
-        {
-            "file": "app/assets/javascripts/general.js",
-            "line": 430,
+            "line": 504,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3938,7 +3843,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 456,
+            "line": 530,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -4243,7 +4148,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 137,
+            "line": 136,
             "description": "Initializer of the three functionalities to add an element (image, audio, video).",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyAddMediaElement",
@@ -4252,7 +4157,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 263,
+            "line": 262,
             "description": "Initializer for galleries.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyGalleries",
@@ -4261,16 +4166,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 375,
-            "description": "General initialization of position (used together with {{#crossLink \"LessonEditorSlidesNavigation/initLessonEditorPositions:method\"}}{{/crossLink}}).",
-            "itemtype": "method",
-            "name": "lessonEditorDocumentReadyGeneral",
-            "class": "LessonEditorDocumentReady",
-            "module": "lesson-editor"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 385,
+            "line": 374,
             "description": "Initializer for dynamics of inscriptions and deinscriptions of images (it uses {{#crossLink \"LessonEditorJqueryAnimations/lessonEditorInscribeImage:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorJqueryAnimations/lessonEditorDeinscribeImage:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyInitializeImageInscription",
@@ -4279,7 +4175,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 399,
+            "line": 388,
             "description": "Initializer for JQueryUi animations defined in the class {{#crossLink \"LessonEditorJqueryAnimations\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyJqueryAnimations",
@@ -4288,7 +4184,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 416,
+            "line": 405,
             "description": "Initializer for the template that contains the list of possible slides to be added.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyNewSlideChoice",
@@ -4297,7 +4193,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 436,
+            "line": 425,
             "description": "Initializer for the mouseover and mouseout to replace a media element already added.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyReplaceMediaElement",
@@ -4306,7 +4202,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 496,
+            "line": 485,
             "description": "Initializer for window resize.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyResize",
@@ -4315,7 +4211,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 517,
+            "line": 508,
             "description": "Initializer for the buttons on the right side of each slide.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadySlideButtons",
@@ -4324,7 +4220,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 565,
+            "line": 556,
             "description": "Initializer for the scroll and all the actions of the slide navigator (see the class {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadySlidesNavigator",
@@ -4333,7 +4229,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 613,
+            "line": 604,
             "description": "Initializer for the placeholders of text inputs throughout the Lesson Editor.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyTextFields",
@@ -4342,7 +4238,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 655,
+            "line": 646,
             "description": "Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders.",
             "itemtype": "method",
             "name": "saveCurrentSlide",
@@ -4363,7 +4259,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 714,
+            "line": 705,
             "description": "Hides the small popup containing the description of a document inside the document gallery.",
             "itemtype": "method",
             "name": "hidePopuppina",
@@ -4379,7 +4275,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 724,
+            "line": 715,
             "description": "Loads the documents from the slide to the gallery.",
             "itemtype": "method",
             "name": "loadDocumentGalleryContent",
@@ -4395,7 +4291,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 742,
+            "line": 733,
             "description": "Loads the specific gallery for documents relative to a slide. The gallery is supposed to have already been loaded previously, by {{#crossLink \"LessonEditorGalleries/showDocumentGalleryInLessonEditor:method\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "loadDocumentGalleryForSlideInLessonEditor",
@@ -4411,7 +4307,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 754,
+            "line": 745,
             "description": "Hides media gallery for selected type.",
             "itemtype": "method",
             "name": "removeGalleryInLessonEditor",
@@ -4427,7 +4323,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 766,
+            "line": 757,
             "description": "Resets the filter of documents in the gallery.",
             "itemtype": "method",
             "name": "resetDocumentGalleryFilter",
@@ -4448,7 +4344,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 797,
+            "line": 788,
             "description": "Shows document gallery.",
             "itemtype": "method",
             "name": "showDocumentGalleryInLessonEditor",
@@ -4457,7 +4353,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 834,
+            "line": 825,
             "description": "Shows media gallery for selected type.",
             "itemtype": "method",
             "name": "showGalleryInLessonEditor",
@@ -4478,7 +4374,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 860,
+            "line": 851,
             "description": "Shows the small popup containing the description of a document inside the document gallery.",
             "itemtype": "method",
             "name": "showPopuppina",
@@ -4494,7 +4390,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 909,
+            "line": 900,
             "description": "Unloads the documents to the slide.",
             "itemtype": "method",
             "name": "unLoadDocumentGalleryContent",
@@ -4510,7 +4406,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 927,
+            "line": 918,
             "description": "Updates the faded documents and the gallery is locked if three documents are loaded.",
             "itemtype": "method",
             "name": "updateEffectsInsideDocumentGallery",
@@ -4519,7 +4415,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 965,
+            "line": 956,
             "description": "Returns the width of the image space for the kind of slide.",
             "itemtype": "method",
             "name": "getHorizontalStandardSizeOfSlideImage",
@@ -4539,7 +4435,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 989,
+            "line": 980,
             "description": "Returns the height of the image space for the kind of slide.",
             "itemtype": "method",
             "name": "getVerticalStandardSizeOfSlideImage",
@@ -4559,7 +4455,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1013,
+            "line": 1004,
             "description": "Check if image ratio is bigger then kind ratio.",
             "itemtype": "method",
             "name": "isHorizontalMask",
@@ -4589,7 +4485,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1041,
+            "line": 1032,
             "description": "Gets scaled height to slide images.",
             "itemtype": "method",
             "name": "resizeHeight",
@@ -4619,7 +4515,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1054,
+            "line": 1045,
             "description": "Gets scaled width to slide images.",
             "itemtype": "method",
             "name": "resizeWidth",
@@ -4649,7 +4545,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1071,
+            "line": 1062,
             "description": "Inizializes jQueryUI <b>sortable</b> function on top navigation numbers, so that they can be sorted (see also {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "initializeSortableNavs",
@@ -4658,7 +4554,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1116,
+            "line": 1107,
             "description": "Method that deinscribes the image.",
             "itemtype": "method",
             "name": "lessonEditorDeinscribeImage",
@@ -4674,7 +4570,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1157,
+            "line": 1148,
             "description": "Method that inscribes the image.",
             "itemtype": "method",
             "name": "lessonEditorInscribeImage",
@@ -4690,7 +4586,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1198,
+            "line": 1189,
             "description": "Inizializes jQueryUI <b>draggable</b> function on slide image containers.",
             "itemtype": "method",
             "name": "makeDraggable",
@@ -4706,7 +4602,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1287,
+            "line": 1278,
             "description": "Asynchronously loads current slide, previous and following.",
             "itemtype": "method",
             "name": "loadSlideAndAdhiacentInLessonEditor",
@@ -4722,7 +4618,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1300,
+            "line": 1291,
             "description": "Asynchronous slide loading. It checks if the slide has been loaded or not.",
             "itemtype": "method",
             "name": "loadSlideInLessonEditor",
@@ -4738,7 +4634,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1319,
+            "line": 1310,
             "description": "Initialize slides position to center.",
             "itemtype": "method",
             "name": "initLessonEditorPositions",
@@ -4747,7 +4643,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1338,
+            "line": 1329,
             "description": "Re-initialize slides position to center after ajax events.",
             "itemtype": "method",
             "name": "reInitializeSlidePositionsInLessonEditor",
@@ -4756,7 +4652,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1350,
+            "line": 1341,
             "description": "Scrolls navigation scrollPane ({{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}) when moving to another slide.",
             "itemtype": "method",
             "name": "scrollPaneUpdate",
@@ -4776,7 +4672,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1367,
+            "line": 1358,
             "description": "Moves to a slide, update current slide in top navigation.",
             "itemtype": "method",
             "name": "slideTo",
@@ -4797,7 +4693,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1422,
+            "line": 1413,
             "description": "TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first ol, ul, p",
             "itemtype": "method",
             "name": "cleanTinyMCESpanTagsFontSize",
@@ -4813,7 +4709,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1443,
+            "line": 1434,
             "description": "Initialize tinyMCE editor for a single textarea.",
             "itemtype": "method",
             "name": "initTinymce",
@@ -4829,7 +4725,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1495,
+            "line": 1486,
             "description": "TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink \"LessonEditorTinyMCE/initTinymce:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "handleTinyMCEOveflow",
@@ -4850,7 +4746,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1518,
+            "line": 1509,
             "description": "Function to strip tags in a text pasted inside TinyMCE.",
             "itemtype": "method",
             "name": "stripTagsForCutAndPaste",
@@ -4872,15 +4768,6 @@
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 21,
-            "description": "Global initializer.",
-            "itemtype": "method",
-            "name": "lessonViewerDocumentReady",
-            "class": "LessonViewerDocumentReady",
-            "module": "lesson-viewer"
-        },
-        {
-            "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 49,
             "description": "Initializer for functionalities of attached documents.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadyDocuments",
@@ -4889,7 +4776,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 63,
+            "line": 35,
             "description": "Initializer for functionalities of the playlist menu.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadyPlaylist",
@@ -4898,7 +4785,16 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 99,
+            "line": 72,
+            "description": "Initializer for functionalities that must be separated in exported lessons.",
+            "itemtype": "method",
+            "name": "lessonViewerDocumentReadySeparated",
+            "class": "LessonViewerDocumentReady",
+            "module": "lesson-viewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 91,
             "description": "Initializer for slides navigation.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadySlidesNavigation",
@@ -4907,7 +4803,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 133,
+            "line": 125,
             "description": "Initializer for functionality of sharing the lesson in social networks.",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadySocialNetworks",
@@ -4916,8 +4812,8 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 186,
-            "description": "Used only in the exported lesson, to convert the src of Wiris images (this function is not called by {{#crossLink \"LessonViewerDocumentReady/lessonViewerDocumentReady:method\"}}{{/crossLink}}.",
+            "line": 178,
+            "description": "Used only in the exported lesson, to convert the src of Wiris images (this function is not called by the document ready in normal application.js).",
             "itemtype": "method",
             "name": "lessonViewerDocumentReadyWirisConvertSrc",
             "class": "LessonViewerDocumentReady",
@@ -4925,7 +4821,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 202,
+            "line": 194,
             "description": "Gets the HTML id of the current slide (marked with the class <b>lesson viewer current slide</b>).",
             "itemtype": "method",
             "name": "getLessonViewerCurrentSlide",
@@ -4938,7 +4834,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 212,
+            "line": 204,
             "description": "Hides the documents.",
             "itemtype": "method",
             "name": "hideDocumentsInLessonViewer",
@@ -4947,16 +4843,23 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 222,
-            "description": "Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink \"LessonViewerDocumentReady/lessonViewerDocumentReady:method\"}}{{/crossLink}}.",
+            "line": 214,
+            "description": "Initializes the positions, and selects the right lesson in the playlist menu.",
             "itemtype": "method",
             "name": "initializeLessonViewer",
+            "params": [
+                {
+                    "name": "layout_scope",
+                    "description": "the scope of the layout (lesson viewer, lesson archive, lesson scorm)",
+                    "type": "String"
+                }
+            ],
             "class": "LessonViewerGeneral",
             "module": "lesson-viewer"
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 245,
+            "line": 241,
             "description": "Shows the documents.",
             "itemtype": "method",
             "name": "showDocumentsInLessonViewer",
@@ -4965,7 +4868,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 258,
+            "line": 254,
             "description": "Stops media playing in current slide.",
             "itemtype": "method",
             "name": "stopMediaInLessonViewer",
@@ -4974,7 +4877,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 280,
+            "line": 276,
             "description": "Hides slides navigation arrows.",
             "itemtype": "method",
             "name": "hideArrowsInLessonViewer",
@@ -4983,7 +4886,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 289,
+            "line": 285,
             "description": "Shows slides navigation arrows.",
             "itemtype": "method",
             "name": "showArrowsInLessonViewer",
@@ -4992,7 +4895,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 302,
+            "line": 298,
             "description": "Closes the playlist menu and executes a callback.",
             "itemtype": "method",
             "name": "closePlaylistMenuInLessonViewer",
@@ -5008,7 +4911,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 317,
+            "line": 313,
             "description": "Opposite of {{#crossLink \"LessonViewerPlaylist/closePlaylistMenuInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "openPlaylistMenuInLessonViewer",
@@ -5017,7 +4920,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 329,
+            "line": 325,
             "description": "Huge method that replaces missing functionalities of the bad plugin JScrollPain. The aim of this method is to select a lesson in the menu, adapt the size of the scroll pane, and if required scroll and execute a callback.",
             "itemtype": "method",
             "name": "selectComponentInLessonViewerPlaylistMenu",
@@ -5038,7 +4941,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 419,
+            "line": 415,
             "description": "This method can be used in two ways:\n<ul>\n  <li><b>with callback</b>, if the user clicks on a lesson in the menu</li>\n  <li><b>without callback</b>, if the user gets to a new lesson while navigating normally (he clicks only on <i>next slide</i> and <i>prev slide</i>, see {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewerWithLessonSwitch:method\"}}{{/crossLink}})</li>\n</ul>",
             "itemtype": "method",
             "name": "switchLessonInPlaylistMenuLessonViewer",
@@ -5059,7 +4962,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 442,
+            "line": 438,
             "description": "Goes to next slide using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "goToNextSlideInLessonViewer",
@@ -5075,7 +4978,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 457,
+            "line": 453,
             "description": "Goes to previous slide using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "goToPrevSlideInLessonViewer",
@@ -5091,7 +4994,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 472,
+            "line": 468,
             "description": "Loads the slide without making any ajax call.",
             "itemtype": "method",
             "name": "loadSlideInLessonViewer",
@@ -5100,7 +5003,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 504,
+            "line": 500,
             "description": "Function to attach to the arrows",
             "itemtype": "method",
             "name": "moveToAdhiacentSlideInLessonViewer",
@@ -5121,7 +5024,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 521,
+            "line": 517,
             "description": "Goes to a given slide. If the new slide contains a media and the browser is not a mobile the media is automaticly played.",
             "itemtype": "method",
             "name": "slideToInLessonViewer",
@@ -5142,7 +5045,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_viewer.js",
-            "line": 572,
+            "line": 568,
             "description": "Goes to a slide (using {{#crossLink \"LessonViewerSlidesNavigation/slideToInLessonViewer:method\"}}{{/crossLink}}) and updates the lesson in playlist menu (using {{#crossLink \"LessonViewerPlaylist/switchLessonInPlaylistMenuLessonViewer:method\"}}{{/crossLink}} without callbacks).",
             "itemtype": "method",
             "name": "slideToInLessonViewerWithLessonSwitch",
@@ -5200,6 +5103,27 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 71,
+            "description": "Function that checks the conversion of the unconverted media elements in the page.",
+            "itemtype": "method",
+            "name": "mediaElementLoaderConversionOverview",
+            "params": [
+                {
+                    "name": "list",
+                    "description": "list of media elements that are being checked",
+                    "type": "Array"
+                },
+                {
+                    "name": "time",
+                    "description": "time to iterate the loop",
+                    "type": "Number"
+                }
+            ],
+            "class": "MediaElementEditorConversion",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 113,
             "description": "Initializes the placeholder of the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "mediaElementEditorDocumentReady",
@@ -5208,7 +5132,23 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 117,
+            "line": 159,
+            "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "resetMediaElementChangeInfo",
+            "params": [
+                {
+                    "name": "media_element_id",
+                    "description": "id of the element in the database, used to extract the HTML id",
+                    "type": "Number"
+                }
+            ],
+            "class": "MediaElementEditorForms",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 179,
             "description": "Resets the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method\"}}{{/crossLink}}, {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method\"}}{{/crossLink}} and {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "resetMediaElementEditorForms",
@@ -5217,7 +5157,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 157,
+            "line": 219,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>left</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollLeft",
@@ -5242,7 +5182,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 173,
+            "line": 235,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>right</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollRight",
@@ -5267,7 +5207,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 185,
+            "line": 247,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the absolute position to be assigned to <b>a div that must be aligned to the component</b> after having been moved to first position.",
             "itemtype": "method",
             "name": "getAbsolutePositionTimelineHorizontalScrollPane",
@@ -5302,7 +5242,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 207,
+            "line": 269,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: gets how many components are hidden to the left of the scroll pane.",
             "itemtype": "method",
             "name": "getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane",
@@ -5327,7 +5267,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 220,
+            "line": 282,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: exactly the same as {{#crossLink \"MediaElementEditorHorizontalTimelines/getAbsolutePositionTimelineHorizontalScrollPane:method\"}}{{/crossLink}}, but <b>it returns the position of the scroll pane</b> instead of the absolute pixels for an external div.",
             "itemtype": "method",
             "name": "getNormalizedPositionTimelineHorizontalScrollPane",
@@ -5359,99 +5299,6 @@
             },
             "class": "MediaElementEditorHorizontalTimelines",
             "module": "media-element-editor"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 10,
-            "description": "Function that checks the conversion of the unconverted media elements in the page.",
-            "itemtype": "method",
-            "name": "mediaElementLoaderConversionOverview",
-            "params": [
-                {
-                    "name": "list",
-                    "description": "list of media elements that are being checked",
-                    "type": "Array"
-                },
-                {
-                    "name": "time",
-                    "description": "time to iterate the loop",
-                    "type": "Number"
-                }
-            ],
-            "class": "MediaElementLoaderConversion",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 52,
-            "description": "Initializer for the loading form.",
-            "itemtype": "method",
-            "name": "mediaElementLoaderDocumentReady",
-            "class": "MediaElementLoaderDocumentReady",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 96,
-            "description": "Handles 413 status error, file too large.",
-            "itemtype": "method",
-            "name": "uploadDone",
-            "return": {
-                "description": "false, for some reason",
-                "type": "Boolean"
-            },
-            "class": "MediaElementLoaderDone",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 112,
-            "description": "Reloads media elements page after new media element is successfully loaded.",
-            "itemtype": "method",
-            "name": "uploadMediaElementLoaderDoneRedirect",
-            "class": "MediaElementLoaderDone",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 128,
-            "description": "Update form fields with error labels.",
-            "itemtype": "method",
-            "name": "uploadMediaElementLoaderError",
-            "params": [
-                {
-                    "name": "errors",
-                    "description": "errors list",
-                    "type": "Array"
-                }
-            ],
-            "class": "MediaElementLoaderErrors",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 157,
-            "description": "Sets iframe as target for form submit, and adds a callback function to control 413 status error; notice that <b>upload target</b> is the HTML id of the frame.",
-            "itemtype": "method",
-            "name": "initMediaElementLoader",
-            "class": "MediaElementLoaderGeneral",
-            "module": "media-element-loader"
-        },
-        {
-            "file": "app/assets/javascripts/media_element_loader.js",
-            "line": 171,
-            "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "resetMediaElementChangeInfo",
-            "params": [
-                {
-                    "name": "media_element_id",
-                    "description": "id of the element in the database, used to extract the HTML id",
-                    "type": "Number"
-                }
-            ],
-            "class": "MediaElementLoaderGeneral",
-            "module": "media-element-loader"
         },
         {
             "file": "app/assets/javascripts/notifications.js",
@@ -5564,7 +5411,7 @@
         {
             "file": "app/assets/javascripts/notifications.js",
             "line": 131,
-            "description": "Global initializer for notifications and help. The function {{#crossLink \"NotificationsDocumentReady/notificationsDocumentReadyLoop:method\"}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink \"MediaElementLoaderConversion/mediaElementLoaderConversionOverview:method\"}}{{/crossLink}}.",
+            "description": "Global initializer for notifications and help. The function {{#crossLink \"NotificationsDocumentReady/notificationsDocumentReadyLoop:method\"}}{{/crossLink}} is called after a time of 2500 not to be called at the same time of {{#crossLink \"MediaElementEditorConversion/mediaElementLoaderConversionOverview:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "notificationsDocumentReady",
             "class": "NotificationsDocumentReady",
@@ -5572,7 +5419,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 146,
+            "line": 145,
             "description": "Initializes the form for notifying a lesson's modifications. These actions are linked on the button {{#crossLink \"ButtonsLesson/unpublishLesson:method\"}}{{/crossLink}}, provided that it has the class <i>lesson change not notified</i>.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyLessonModification",
@@ -5581,7 +5428,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 174,
+            "line": 173,
             "description": "Initializer for the loop that updates the notifications",
             "itemtype": "method",
             "name": "notificationsDocumentReadyLoop",
@@ -5597,7 +5444,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 191,
+            "line": 190,
             "description": "General initializer for help and notifications tooltips.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyTooltips",
@@ -5606,7 +5453,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 212,
+            "line": 211,
             "description": "Initializes the graphical tools of the <b>help tooltip</b>.",
             "itemtype": "method",
             "name": "initializeHelp",
@@ -5615,7 +5462,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 233,
+            "line": 232,
             "description": "Initializes the graphical tools and the routes attached to the <b>notifications tooltip</b>.",
             "itemtype": "method",
             "name": "initializeNotifications",
@@ -5792,15 +5639,6 @@
         {
             "file": "app/assets/javascripts/players.js",
             "line": 301,
-            "description": "Global initializer for players.",
-            "itemtype": "method",
-            "name": "playersDocumentReady",
-            "class": "PlayersDocumentReady",
-            "module": "players"
-        },
-        {
-            "file": "app/assets/javascripts/players.js",
-            "line": 312,
             "description": "Initializer for buttons inside a cutter in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "playersDocumentReadyAudioEditor",
@@ -5809,7 +5647,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 376,
+            "line": 365,
             "description": "Initializer for buttons inside any player.",
             "itemtype": "method",
             "name": "playersDocumentReadyGeneral",
@@ -5818,7 +5656,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 409,
+            "line": 398,
             "description": "Initializer for buttons inside a cutter in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "playersDocumentReadyVideoEditor",
@@ -5827,7 +5665,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 480,
+            "line": 469,
             "description": "Method that handles the event <b>timeupdate</b> for general audio or video players: if we got to the last second, the method rewinds the media, otherwise sets the time to the slider (this happens even if the slider already had that value, unlike the methods {{#crossLink \"PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method\"}}{{/crossLink}} and {{#crossLink \"PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method\"}}{{/crossLink}} during <b>preview mode</b>).",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdater",
@@ -5848,7 +5686,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 502,
+            "line": 491,
             "description": "Initializes the media player for a generic audio or video.",
             "itemtype": "method",
             "name": "initializeMedia",
@@ -5869,7 +5707,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 530,
+            "line": 519,
             "description": "This is the method that associates {{#crossLink \"PlayersGeneral/initializeActionOfMediaTimeUpdater:method\"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdater",
@@ -5890,7 +5728,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 552,
+            "line": 541,
             "description": "Stops a generic media, logging errors in the console.",
             "itemtype": "method",
             "name": "stopMedia",
@@ -5906,7 +5744,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 584,
+            "line": 573,
             "description": "This method has the same cases of use of {{#crossLink \"PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method\"}}{{/crossLink}}, with a couple of details more due to the more complicated environment present in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}:\n<ul>\n  <li>the passage from a component to another (the method called in this case is {{#crossLink \"VideoEditorPreview/playVideoEditorComponent:method\"}}{{/crossLink}}) must handle a <b>transition</b> of one second</li>\n  <li>it's necessary to hide and show the preview <b>progress bar</b> (see {{#crossLink \"VideoEditorPreviewAccessories/showVideoEditorPreviewComponentProgressBar:method\"}}{{/crossLink}}) positioning it with the help of the methods in {{#crossLink \"MediaElementEditorHorizontalTimelines\"}}{{/crossLink}}</li>\n  <li>the method needs also to update the <b>background audio track</b>, but only if it's present and if the <b>global preview time</b> is not greater than its duration.</li>\n</ul>",
             "itemtype": "method",
             "name": "initializeActionOfMediaTimeUpdaterInVideoEditor",
@@ -5932,7 +5770,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 670,
+            "line": 659,
             "description": "This is the method that associates {{#crossLink \"PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method\"}}{{/crossLink}} to the event of <b>timeupdate</b>. Notice that the method waits until he receives the event <b>loadedmetadata</b> before working.",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdaterInVideoEditor",
@@ -5953,7 +5791,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 696,
+            "line": 685,
             "description": "Initializes two sliders: one (JQueryUi single slider) for the <b>cursor</b>, and one (JQueryUi double slider) for the <b>cutting handles</b>. It also initializes how to handle the event <b>ended</b> associated to the video.",
             "itemtype": "method",
             "name": "initializeVideoInVideoEditorPreview",
@@ -5969,7 +5807,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 775,
+            "line": 764,
             "description": "Method that <b>updates the video cursor</b>, in case one of the two handles passes over the cursor (the cursor must follow the handle).",
             "itemtype": "method",
             "name": "selectVideoComponentCutterHandle",
@@ -5990,7 +5828,7 @@
         },
         {
             "file": "app/assets/javascripts/players.js",
-            "line": 787,
+            "line": 776,
             "description": "Specific method to call if the event <b>ended</b> is fired on the video and we are not in the {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} preview mode (unlike in {{#crossLink \"PlayersAudioEditor\"}}{{/crossLink}}, in this case it's separated by the method {{#crossLink \"PlayersVideoEditor/initializeVideoInVideoEditorPreview:method\"}}{{/crossLink}}, since it's more complicated.",
             "itemtype": "method",
             "name": "stopVideoInVideoEditorPreview",
@@ -6007,15 +5845,6 @@
         {
             "file": "app/assets/javascripts/profile.js",
             "line": 10,
-            "description": "Initializes the action that shows automaticly the login form when somebody opens the maing page of the application without being logged.",
-            "itemtype": "method",
-            "name": "automaticLoginDocumentReady",
-            "class": "ProfilePrelogin",
-            "module": "profile"
-        },
-        {
-            "file": "app/assets/javascripts/profile.js",
-            "line": 24,
             "description": "Initializes the handler of the login form.",
             "itemtype": "method",
             "name": "preloginDocumentReady",
@@ -6024,7 +5853,7 @@
         },
         {
             "file": "app/assets/javascripts/profile.js",
-            "line": 54,
+            "line": 51,
             "description": "Initializes handler of purchase code in prelogin registration.",
             "itemtype": "method",
             "name": "purchaseCodeRegistrationDocumentReady",
@@ -6033,7 +5862,7 @@
         },
         {
             "file": "app/assets/javascripts/profile.js",
-            "line": 96,
+            "line": 93,
             "description": "Initializes the javascript effects of the registration / modify profile form.",
             "itemtype": "method",
             "name": "profileDocumentReady",
@@ -6238,15 +6067,15 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 150,
-            "description": "Global initializer for all instances of search autocomplete and tagging autocomplete.",
+            "description": "Initializer for search autocomplete.",
             "itemtype": "method",
-            "name": "tagsDocumentReady",
+            "name": "tagsDocumentReadyAutocomplete",
             "class": "TagsDocumentReady",
             "module": "tags"
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 167,
+            "line": 161,
             "description": "Initializer for tagging autocomplete in the form to <b>change the general information of a media element</b> (see {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyChangeMediaElementInfo",
@@ -6255,8 +6084,8 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 212,
-            "description": "Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}} and the module {{#crossLinkModule \"media-element-loader\"}}{{/crossLinkModule}}).",
+            "line": 206,
+            "description": "Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}} and the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyMediaElementLoader",
             "class": "TagsDocumentReady",
@@ -6264,7 +6093,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 247,
+            "line": 241,
             "description": "Initializer for tagging autocomplete in the form to <b>create a new lesson</b>.",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewLesson",
@@ -6273,7 +6102,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 282,
+            "line": 276,
             "description": "Initializer for tagging autocomplete in the form to <b>save as new an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewMediaElement",
@@ -6282,7 +6111,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 321,
+            "line": 315,
             "description": "Initializer for tagging autocomplete in the form to <b>overwrite an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyOvervriteMediaElement",
@@ -6291,7 +6120,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 359,
+            "line": 353,
             "description": "Initializer for tagging autocomplete in the form to <b>update the general information of a lesson</b>.",
             "itemtype": "method",
             "name": "tagsDocumentReadyUpdateLesson",
@@ -6300,7 +6129,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 400,
+            "line": 394,
             "description": "Initializer for search autocompĺete.",
             "itemtype": "method",
             "name": "initSearchTagsAutocomplete",
@@ -6316,7 +6145,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 430,
+            "line": 424,
             "description": "Initializer for tagging autocompĺete.",
             "itemtype": "method",
             "name": "initTagsAutocomplete",
@@ -6329,6 +6158,123 @@
             ],
             "class": "TagsInitializers",
             "module": "tags"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 10,
+            "description": "Recursive animation of the loading bar, according to the function h * x / (x + 1). Time is divided by 400 to slow down the animation.",
+            "itemtype": "method",
+            "name": "uploadAnimationRecursion",
+            "params": [
+                {
+                    "name": "item",
+                    "description": "the selected loading bar",
+                    "type": "Object"
+                },
+                {
+                    "name": "time",
+                    "description": "the current time",
+                    "type": "Number"
+                },
+                {
+                    "name": "increment",
+                    "description": "the increment of time",
+                    "type": "Number"
+                },
+                {
+                    "name": "max_width",
+                    "description": "the total width in pixels of loading bar",
+                    "type": "Number"
+                }
+            ],
+            "class": "UploadCallbacks",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 32,
+            "description": "Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).",
+            "itemtype": "method",
+            "name": "uploadDone",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "either 'document' or 'media-element'",
+                    "type": "String"
+                },
+                {
+                    "name": "errors",
+                    "description": "an array of strings to be shown on the bottom of the loading popup",
+                    "type": "Array"
+                },
+                {
+                    "name": "fields",
+                    "description": "an array of fields that must be bordered with red because they correspond to an error",
+                    "type": "Array"
+                }
+            ],
+            "class": "UploadCallbacks",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 51,
+            "description": "Handles the errors of loading popup.",
+            "itemtype": "method",
+            "name": "uploaderErrors",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "either 'document' or 'media-element'",
+                    "type": "String"
+                },
+                {
+                    "name": "errors",
+                    "description": "an array of strings to be shown on the bottom of the loading popup",
+                    "type": "Array"
+                },
+                {
+                    "name": "fields",
+                    "description": "an array of fields that must be bordered with red because they correspond to an error",
+                    "type": "Array"
+                }
+            ],
+            "class": "UploadCallbacks",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 91,
+            "description": "Handles 413 status error, file too large.",
+            "itemtype": "method",
+            "name": "uploadFileTooLarge",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "either 'document' or 'media-element'",
+                    "type": "String"
+                }
+            ],
+            "class": "UploadCallbacks",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 113,
+            "description": "Initializer for the loading form.",
+            "itemtype": "method",
+            "name": "mediaElementLoaderDocumentReady",
+            "class": "UploaderDocumentReady",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 177,
+            "description": "Initializer for the loading form.",
+            "itemtype": "method",
+            "name": "documentsDocumentReadyUploader",
+            "class": "UploaderDocumentReady",
+            "module": "uploader"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
@@ -6714,7 +6660,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 985,
+            "line": 998,
             "description": "Initializer for sorting and other JQueryUi plugins.",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyInitialization",
@@ -6723,7 +6669,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1030,
+            "line": 1043,
             "description": "Initializer for preview mode (see {{#crossLink \"VideoEditorPreview\"}}{{/crossLink}} and {{#crossLink \"VideoEditorPreviewAccessories\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyPreview",
@@ -6732,7 +6678,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1136,
+            "line": 1149,
             "description": "Initializer for the functionality of <b>removing a component</b> from the timeline (is uses {{#crossLink \"VideoEditorComponents/changeDurationVideoEditorComponent:method\"}}{{/crossLink}} passing <i>new duration = 0</i>).",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyRemoveComponent",
@@ -6741,7 +6687,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1167,
+            "line": 1180,
             "description": "Initializes the <b>text component editor</b> (see {{#crossLink \"VideoEditorTextComponentEditor\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "videoEditorDocumentReadyTextComponentEditor",
@@ -6750,7 +6696,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1196,
+            "line": 1209,
             "description": "Centers the gallery when shown.",
             "itemtype": "method",
             "name": "calculateNewPositionGalleriesInVideoEditor",
@@ -6759,7 +6705,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1206,
+            "line": 1219,
             "description": "Opposite of {{#crossLink \"VideoEditorGalleries/showGalleryInVideoEditor:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "closeGalleryInVideoEditor",
@@ -6775,7 +6721,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1220,
+            "line": 1233,
             "description": "Opens a chosen gallery.",
             "itemtype": "method",
             "name": "showGalleryInVideoEditor",
@@ -6791,7 +6737,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1234,
+            "line": 1247,
             "description": "Switches between <b>video gallery</b>, <b>image gallery</b> and <b>text component editor</b> in the component editor.",
             "itemtype": "method",
             "name": "switchToOtherGalleryInMixedGalleryInVideoEditor",
@@ -6807,7 +6753,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1260,
+            "line": 1273,
             "description": "Returns the first component in the timeline.",
             "itemtype": "method",
             "name": "getFirstVideoEditorComponent",
@@ -6820,7 +6766,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1270,
+            "line": 1283,
             "description": "Returns the last component in the timeline.",
             "itemtype": "method",
             "name": "getLastVideoEditorComponent",
@@ -6833,7 +6779,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1281,
+            "line": 1294,
             "description": "Method that extracts the <b>unique identifier</b> of a component, starting indifferently from the component id, the cutter id, or the preview id.",
             "itemtype": "method",
             "name": "getVideoComponentIdentifier",
@@ -6853,7 +6799,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1297,
+            "line": 1310,
             "description": "Checks if the HTML5 video inside a <b>video component</b> has been loaded, and if not it loads it.",
             "itemtype": "method",
             "name": "loadVideoComponentIfNotLoadedYet",
@@ -6869,7 +6815,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1314,
+            "line": 1327,
             "description": "Checks if an optional audio track has been set by the user.",
             "itemtype": "method",
             "name": "videoEditorWithAudioTrack",
@@ -6882,7 +6828,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1328,
+            "line": 1341,
             "description": "Automatic increase for the global preview current time (used when playing image or text components).",
             "itemtype": "method",
             "name": "automaticIncreaseVideoEditorPreviewTimer",
@@ -6908,7 +6854,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1349,
+            "line": 1362,
             "description": "Increases of one step the global preview time (typically used in {{#crossLink \"PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "increaseVideoEditorPreviewTimer",
@@ -6924,7 +6870,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1372,
+            "line": 1385,
             "description": "Opens the preview mode with all its graphical effects. The similar functionality to close the preview mode is initialized in {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "openPreviewModeInVideoEditor",
@@ -6933,7 +6879,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1415,
+            "line": 1428,
             "description": "Plays a component and handles the transition to the next one (if there is any). In case the component is of type <b>image</b> or <b>text</b>, the time increase is handled by {{#crossLink \"VideoEditorPreview/automaticIncreaseVideoEditorPreviewTimer:method\"}}{{/crossLink}}; if the component is of type <b>video</b> the transition is handled by {{#crossLink \"PlayersVideoEditor/initializeActionOfMediaTimeUpdaterInVideoEditor:method\"}}{{/crossLink}} and the time increase by {{#crossLink \"VideoEditorPreview/increaseVideoEditorPreviewTimer:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "playVideoEditorComponent",
@@ -6954,7 +6900,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1487,
+            "line": 1500,
             "description": "Starts the preview from the selected component.",
             "itemtype": "method",
             "name": "startVideoEditorGlobalPreview",
@@ -6963,7 +6909,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1518,
+            "line": 1531,
             "description": "Calculates the amount of seconds before the current position in the global preview (used for {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAudioTrack:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "calculateVideoComponentStartSecondInVideoEditor",
@@ -6983,7 +6929,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1542,
+            "line": 1555,
             "description": "Hides the component progress bar.",
             "itemtype": "method",
             "name": "hideVideoEditorPreviewComponentProgressBar",
@@ -6992,7 +6938,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1552,
+            "line": 1565,
             "description": "Selects a video component with a specific time in preview mode.",
             "itemtype": "method",
             "name": "selectVideoComponentInPreview",
@@ -7013,7 +6959,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1570,
+            "line": 1583,
             "description": "Sets the times of all previous and following components. The normal status of the global preview is with time = 0 for each component which is not selected.",
             "itemtype": "method",
             "name": "setVisualTimesVideoEditorPreview",
@@ -7034,7 +6980,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1601,
+            "line": 1614,
             "description": "Shows the arrows to switch between components in preview mode.",
             "itemtype": "method",
             "name": "showVideoEditorPreviewArrowToComponents",
@@ -7043,7 +6989,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1619,
+            "line": 1632,
             "description": "Shows the progress bar for a given component. This bar is used to set the time of the component (using {{#crossLink \"VideoEditorPreviewAccessories/selectVideoComponentInPreview:method\"}}{{/crossLink}}), and while the preview is playing to show the progress of the component. Remember that the progress bar is the same for each component, and it is initialized and destroyed each time. This method uses {{#crossLink \"MediaElementEditorHorizontalTimelines\"}}{{/crossLink}} for the correct positioning of the progress bar.",
             "itemtype": "method",
             "name": "showVideoEditorPreviewComponentProgressBar",
@@ -7064,7 +7010,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1653,
+            "line": 1666,
             "description": "Replaces a generig component with an image component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "replaceImageComponentInVideoEditor",
@@ -7100,7 +7046,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1693,
+            "line": 1706,
             "description": "Replaces a generic component with a text component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "replaceTextComponentInVideoEditor",
@@ -7141,7 +7087,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1741,
+            "line": 1754,
             "description": "Replaces a generic component with a video component, contructing an empty <b>preview</b>, <b>cutter</b> and editing the <b>component</b> (see the commentaries inside the code). This method is called by {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyAddComponent:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "replaceVideoComponentInVideoEditor",
@@ -7182,7 +7128,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1796,
+            "line": 1809,
             "description": "Method that uses the scroll to keep visible the current component in the timeline. It uses {{#crossLink \"MediaElementEditorHorizontalTimelines\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "followPreviewComponentsWithHorizontalScrollInVideoEditor",
@@ -7191,7 +7137,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1846,
+            "line": 1859,
             "description": "Resets the text component editor when it's closed.",
             "itemtype": "method",
             "name": "resetVideoEditorTextComponent",
@@ -7200,7 +7146,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1861,
+            "line": 1874,
             "description": "Switches to a different background color the text component editor.",
             "itemtype": "method",
             "name": "switchTextComponentBackgroundColor",
@@ -7221,7 +7167,7 @@
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
-            "line": 1875,
+            "line": 1888,
             "description": "Switches to a different text color the text component editor.",
             "itemtype": "method",
             "name": "switchTextComponentTextColor",

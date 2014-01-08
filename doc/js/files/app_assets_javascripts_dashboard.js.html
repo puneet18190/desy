@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -68,8 +70,6 @@
                 <li><a href="../classes/AudioEditorPreview.html">AudioEditorPreview</a></li>
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
-            
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
             
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
@@ -100,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -157,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -200,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -265,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -276,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -340,7 +334,7 @@ Initializes the dashboard, and reactions to window resizing. To handle hover sen
 **/
 function dashboardDocumentReady() {
   dashboardResizeController();
-  $(window).resize(function() {
+  $window.resize(function() {
     dashboardResizeController();
   });
   $body.on(&#x27;mouseenter&#x27;, &#x27;.lesson_dashboard_hover_sensitive&#x27;, function() {
@@ -495,7 +489,7 @@ function expandMediaElementsInDashboard() {
   var container = $(&#x27;#dashboard_container&#x27;);
   container.find(&#x27;.title_media_elements .expand_icon.off&#x27;).hide();
   container.find(&#x27;.title_media_elements .expand_icon.on&#x27;).show().data(&#x27;moving&#x27;, true);
-  var scroll_height = (container.data(&#x27;lessons-expanded&#x27;) ? 1823 : 1438) - $(window).height() + $(&#x27;.global-footer&#x27;).height();
+  var scroll_height = (container.data(&#x27;lessons-expanded&#x27;) ? 1823 : 1438) - $window.height() + $(&#x27;.global-footer&#x27;).height();
   setTimeout(function() {
     browserDependingScrollToTag().animate({scrollTop: (scroll_height + &#x27;px&#x27;)}, 500);
   }, 150);
@@ -620,8 +614,8 @@ function dashboardResizeController() {
   var lessons_margin = (width - lessons_in_space * 300) / (lessons_in_space + 1);
   var lessons_width = lessons_in_space * (300 + lessons_margin) - lessons_margin;
   media_elements_in_space = parseInt((lessons_width - 207) / 207) + 1;
-  var condition_lessons = (lessons_in_space != container.data(&#x27;lessons-in-space&#x27;) &amp;&amp; !container.data(&#x27;lessons-empty&#x27;));
-  var condition_media_elements = (media_elements_in_space != container.data(&#x27;media-elements-in-space&#x27;) &amp;&amp; !container.data(&#x27;media-elements-empty&#x27;));
+  var condition_lessons = (lessons_in_space &lt;= 50 &amp;&amp; lessons_in_space != container.data(&#x27;lessons-in-space&#x27;));
+  var condition_media_elements = (media_elements_in_space &lt;= 50 &amp;&amp; media_elements_in_space != container.data(&#x27;media-elements-in-space&#x27;));
   if(condition_lessons || condition_media_elements) {
     var dashboard_url = &#x27;/dashboard?media_elements_for_row=&#x27; + media_elements_in_space + &#x27;&amp;lessons_for_row=&#x27; + lessons_in_space;
     if(container.data(&#x27;lessons-expanded&#x27;)) {

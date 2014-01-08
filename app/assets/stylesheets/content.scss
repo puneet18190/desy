@@ -33,6 +33,7 @@
   .dots_pagination_container {
     
     margin-top: 25px;
+    height: 12px;
     
   }
   
@@ -98,7 +99,7 @@
 
 #found_lessons, #found_media_elements {
   
-  margin-top: 16px;
+  margin-top: 15px;
   display: block;
   
 }
@@ -121,13 +122,13 @@
     
     &:hover {
       
-      background-color: #fbb23f;
+      background-color: #FBB23F;
       
     }
     
     &.current {
       
-      background-color: #fbb23f;
+      background-color: #FBB23F;
       
     }
     
@@ -281,14 +282,32 @@
   
 }
 
+.fixed-expanded-height {
+  
+  height: 767px;
+  
+}
+
+.fixed-compact-height {
+  
+  height: 665px;
+  
+}
+
+.advanced-search-content.fixed-compact-height {
+  
+  height: 805px;
+  
+}
+
 .elements-content {
   
   width: 100%;
   
   .boxViewSingleMediaElement {
     
-    background-color: #fbfafb;
-    color: #c0c0c0;
+    background-color: #FBFAFB;
+    color: #C0C0C0;
     position: relative;
     
   }
@@ -374,7 +393,7 @@
     padding: 6px 0 6px 0;
     margin-right: 20px;
     position: absolute;
-    left: 40%;
+    left: 45%;
     
     a {
       
@@ -397,7 +416,7 @@
     
   }
   
-  .filter, .for-page {
+  .filter {
     
     float: right;
     
@@ -408,30 +427,6 @@
       color: white;
       margin-right: 10px;
       padding-top: 5px;
-      
-    }
-    
-  }
-  
-  .for-page {
-    
-    margin-left: 20px;
-    
-    .sbHolder {
-      
-      width: 60px;
-      
-      .sbSelector {
-        
-        width: 60px;
-        
-      }
-      
-      .sbOptions {
-        
-        width: 60px;
-        
-      }
       
     }
     
@@ -620,6 +615,7 @@
   color: #fff;
   padding: 10px 16px;
   height: 25px;
+  margin-bottom: 15px;
   
   h1 {
     

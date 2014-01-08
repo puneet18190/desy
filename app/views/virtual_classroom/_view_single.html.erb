@@ -1,6 +1,6 @@
 <% lesson = virtual.lesson %>
 
-<div id="virtual_classroom_lesson_<%= lesson.id %>" class="boxViewSingleLesson _virtual_classroom_lesson" data-lesson-id="<%= lesson.id %>" data-in-playlist="<%= virtual.in_playlist? %>">
+<div id="virtual_classroom_lesson_<%= lesson.id %>" class="boxViewSingleVCLesson _virtual_classroom_lesson" data-lesson-id="<%= lesson.id %>" data-in-playlist="<%= virtual.in_playlist? %>">
   <div class="contentInterno">
     <%= render :partial => 'lessons/thumbnail', :locals => {:lesson => lesson, :cover => cover} %>
     <br class="clearfloat">

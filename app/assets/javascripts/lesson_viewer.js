@@ -19,34 +19,6 @@ There are <b>three known bugs</b> due to the bad quality of the plugin <b>JScrol
 
 
 /**
-Global initializer.
-@method lessonViewerDocumentReady
-@for LessonViewerDocumentReady
-**/
-function lessonViewerDocumentReady() {
-  initializeLessonViewer();
-  lessonViewerDocumentReadyPlaylist();
-  lessonViewerDocumentReadySlidesNavigation();
-  lessonViewerDocumentReadySocialNetworks();
-  lessonViewerDocumentReadyDocuments();
-  $body.on('click', '#open_export_lesson', function() {
-    $(this).hide();
-    $('#export_lesson').show();
-  });
-  $body.on('mouseleave', '#export_lesson', function(e) {
-    $(this).hide();
-    $('#open_export_lesson').show();
-  });
-  $body.on('mouseleave', '.playlistMenu', function(e) {
-    closePlaylistMenuInLessonViewer(function() {});
-  });
-  $body.on('click', 'a.target_blank_mce', function(e) {
-    e.preventDefault();
-    window.open($(this).attr('href'), '_blank').focus();
-  });
-}
-
-/**
 Initializer for functionalities of attached documents.
 @method lessonViewerDocumentReadyDocuments
 @for LessonViewerDocumentReady
@@ -66,6 +38,7 @@ Initializer for functionalities of the playlist menu.
 @for LessonViewerDocumentReady
 **/
 function lessonViewerDocumentReadyPlaylist() {
+  selectComponentInLessonViewerPlaylistMenu($('._playlist_menu_item').first());
   $body.on('click', '#carousel_container a', function() {
     var me = $(this);
     if(!me.hasClass('esciButton') && !me.hasClass('_playlist_menu_item') && !me.hasClass('_open_playlist') && !me.hasClass('_close_playlist')) {
@@ -92,6 +65,25 @@ function lessonViewerDocumentReadyPlaylist() {
     openPlaylistMenuInLessonViewer();
   });
   $body.on('click', 'a._close_playlist', function() {
+    closePlaylistMenuInLessonViewer(function() {});
+  });
+}
+
+/**
+Initializer for functionalities that must be separated in exported lessons.
+@method lessonViewerDocumentReadySeparated
+@for LessonViewerDocumentReady
+**/
+function lessonViewerDocumentReadySeparated() {
+  $body.on('click', '#open_export_lesson', function() {
+    $(this).hide();
+    $('#export_lesson').show();
+  });
+  $body.on('mouseleave', '#export_lesson', function(e) {
+    $(this).hide();
+    $('#open_export_lesson').show();
+  });
+  $body.on('mouseleave', '.playlistMenu', function(e) {
     closePlaylistMenuInLessonViewer(function() {});
   });
 }
@@ -184,7 +176,7 @@ function lessonViewerDocumentReadySocialNetworks() {
 }
 
 /**
-Used only in the exported lesson, to convert the src of Wiris images (this function is not called by {{#crossLink "LessonViewerDocumentReady/lessonViewerDocumentReady:method"}}{{/crossLink}}.
+Used only in the exported lesson, to convert the src of Wiris images (this function is not called by the document ready in normal application.js).
 @method lessonViewerDocumentReadyWirisConvertSrc
 @for LessonViewerDocumentReady
 **/
@@ -220,26 +212,30 @@ function hideDocumentsInLessonViewer() {
 }
 
 /**
-Initializes the positions, and selects the right lesson in the playlist menu. Called in {{#crossLink "LessonViewerDocumentReady/lessonViewerDocumentReady:method"}}{{/crossLink}}.
+Initializes the positions, and selects the right lesson in the playlist menu.
 @method initializeLessonViewer
 @for LessonViewerGeneral
+@param layout_scope {String} the scope of the layout (lesson viewer, lesson archive, lesson scorm)
 **/
-function initializeLessonViewer() {
-  selectComponentInLessonViewerPlaylistMenu($('._playlist_menu_item').first());
+function initializeLessonViewer(layout_scope) {
   if($('._playlist_menu_item').length <= 3) {
     $('#playlist_menu').css('overflow', 'hidden');
   }
-  var height = $(window).height();
+  var height = $window.height();
   var margin_top = (height - 690) / 2;
   if(margin_top < 50) {
     margin_top = 50;
   }
-  $('.lesson-viewer-layout .container').css('margin-top', margin_top + 'px');
+  $('.' + layout_scope + '-layout .container').css('margin-top', margin_top + 'px');
   if(height > 690) {
-    $('.lesson-viewer-layout').css('overflow', 'hidden');
+    $('.' + layout_scope + '-layout').css('overflow', 'hidden');
   } else {
-    $('.lesson-viewer-layout').css('overflow', 'default');
+    $('.' + layout_scope + '-layout').css('overflow', 'default');
   }
+  $body.on('click', 'a.target_blank_mce', function(e) {
+    e.preventDefault();
+    window.open($(this).attr('href'), '_blank').focus();
+  });
 }
 
 /**

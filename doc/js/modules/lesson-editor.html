@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/AdminAutocomplete.html">AdminAutocomplete</a></li>
             
+                <li><a href="../classes/AdminBrowserSupport.html">AdminBrowserSupport</a></li>
+            
                 <li><a href="../classes/AdminCollapsed.html">AdminCollapsed</a></li>
             
                 <li><a href="../classes/AdminDocumentReady.html">AdminDocumentReady</a></li>
@@ -68,8 +70,6 @@
                 <li><a href="../classes/AudioEditorPreview.html">AudioEditorPreview</a></li>
             
                 <li><a href="../classes/AudioEditorScrollpain.html">AudioEditorScrollpain</a></li>
-            
-                <li><a href="../classes/browserSupport.html">browserSupport</a></li>
             
                 <li><a href="../classes/BrowserSupportMain.html">BrowserSupportMain</a></li>
             
@@ -100,8 +100,6 @@
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
                 <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
-                <li><a href="../classes/DocumentsUploader.html">DocumentsUploader</a></li>
             
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
@@ -157,21 +155,13 @@
             
                 <li><a href="../classes/MediaElementEditorCache.html">MediaElementEditorCache</a></li>
             
+                <li><a href="../classes/MediaElementEditorConversion.html">MediaElementEditorConversion</a></li>
+            
                 <li><a href="../classes/MediaElementEditorDocumentReady.html">MediaElementEditorDocumentReady</a></li>
             
                 <li><a href="../classes/MediaElementEditorForms.html">MediaElementEditorForms</a></li>
             
                 <li><a href="../classes/MediaElementEditorHorizontalTimelines.html">MediaElementEditorHorizontalTimelines</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderConversion.html">MediaElementLoaderConversion</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDocumentReady.html">MediaElementLoaderDocumentReady</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderDone.html">MediaElementLoaderDone</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderErrors.html">MediaElementLoaderErrors</a></li>
-            
-                <li><a href="../classes/MediaElementLoaderGeneral.html">MediaElementLoaderGeneral</a></li>
             
                 <li><a href="../classes/NotificationsAccessories.html">NotificationsAccessories</a></li>
             
@@ -200,6 +190,10 @@
                 <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
+            
+                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+            
+                <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -265,8 +259,6 @@
             
                 <li><a href="../modules/media-element-editor.html">media-element-editor</a></li>
             
-                <li><a href="../modules/media-element-loader.html">media-element-loader</a></li>
-            
                 <li><a href="../modules/notifications.html">notifications</a></li>
             
                 <li><a href="../modules/players.html">players</a></li>
@@ -276,6 +268,8 @@
                 <li><a href="../modules/search.html">search</a></li>
             
                 <li><a href="../modules/tags.html">tags</a></li>
+            
+                <li><a href="../modules/uploader.html">uploader</a></li>
             
                 <li><a href="../modules/video-editor.html">video-editor</a></li>
             
@@ -336,7 +330,7 @@
 <div class="box intro">
     <p>The Lesson Editor is used to add and edit slides to a private lesson.
 <br/><br/>
-When opening the Editor on a lesson, all its slides are appended to a queue, of which it&#39;s visible only the portion that surrounds the <b>current slide</b> (the width of such a portion depends on the screen resolution, see <a href="../classes/LessonEditorSlidesNavigation.html#method_initLessonEditorPositions" class="crosslink">initLessonEditorPositions</a>, <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadyResize" class="crosslink">lessonEditorDocumentReadyResize</a> and <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadyGeneral" class="crosslink">lessonEditorDocumentReadyGeneral</a>). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadySlidesNavigator" class="crosslink">lessonEditorDocumentReadySlidesNavigator</a> and the methods in <a href="../classes/LessonEditorSlidesNavigation.html" class="crosslink">LessonEditorSlidesNavigation</a>): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in <a href="../classes/LessonEditorSlideLoading.html" class="crosslink">LessonEditorSlideLoading</a>).
+When opening the Editor on a lesson, all its slides are appended to a queue, of which it&#39;s visible only the portion that surrounds the <b>current slide</b> (the width of such a portion depends on the screen resolution, see <a href="../classes/LessonEditorSlidesNavigation.html#method_initLessonEditorPositions" class="crosslink">initLessonEditorPositions</a> and <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadyResize" class="crosslink">lessonEditorDocumentReadyResize</a>). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadySlidesNavigator" class="crosslink">lessonEditorDocumentReadySlidesNavigator</a> and the methods in <a href="../classes/LessonEditorSlidesNavigation.html" class="crosslink">LessonEditorSlidesNavigation</a>): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in <a href="../classes/LessonEditorSlideLoading.html" class="crosslink">LessonEditorSlideLoading</a>).
 <br/><br/>
 On the right side of each slide the user finds a list of <b>buttons</b> (initialized in <a href="../classes/LessonEditorDocumentReady.html#method_lessonEditorDocumentReadySlideButtons" class="crosslink">lessonEditorDocumentReadySlideButtons</a>): each button corresponds either to an action that can be performed on the slide, either to an action that can be performed to the whole lesson (for instance, save and exit, or edit title description and tags).
 <br/><br/>
