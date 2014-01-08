@@ -123,6 +123,7 @@ $(document).ready(function() {
   if($('#profile_title_bar').length > 0) { // in section profile
     locationsDocumentReady();
     notificationsDocumentReady();
+    profileDocumentReady();
     sectionNotificationsDocumentReady();
   }
   if($('#search_lessons_main_page').length > 0 && $('#search_media_elements_main_page').length > 0) { // in search engine
@@ -148,7 +149,6 @@ $(document).ready(function() {
   }
   
   // TODO ottimizz a partire da qui non è ottimizzato
-  profileDocumentReady();
   purchaseCodeRegistrationDocumentReady();
   reportsDocumentReady();
   searchDocumentReady();

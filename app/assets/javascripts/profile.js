@@ -41,6 +41,7 @@ function preloginDocumentReady() {
   $body.on('click', '.checkAllSubjects', function() {
     $(this).parent().find('.checkboxElement label.unchecked').click();
   });
+  $('.policy-verticalScroll').jScrollPane();
   var parsedLocation = UrlParser.parse(window.location.href);
   if(_.contains(_.keys(parsedLocation.searchObj), 'login')) {
     $('._show_login_form_container').click();
@@ -95,12 +96,12 @@ Initializes the javascript effects of the registration / modify profile form.
 @for ProfileUsers
 **/
 function profileDocumentReady() {
-  $body.on('keypress','#mailing_lists_accordion .group-title', function(event) {
+  $body.on('keypress', '#mailing_lists_accordion .group-title', function(event) {
     if (event.keyCode == 10 || event.keyCode == 13){
       event.preventDefault();
     }
   });
-  $body.on('keypress','#mailing_lists_accordion .group-title', function(event) {
+  $body.on('keypress', '#mailing_lists_accordion .group-title', function(event) {
      if(event.which === 32){
        event.stopPropagation();
      }
@@ -120,8 +121,5 @@ function profileDocumentReady() {
       $(this).val('');
       $(this).data('placeholder', false);
     }
-  });
-  $('.verticalScroll').jScrollPane({
-    autoReinitialise: true
   });
 }
