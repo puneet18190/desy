@@ -109,13 +109,13 @@ $(document).ready(function() {
     sectionNotificationsDocumentReady();
     tagsDocumentReadyAutocomplete();
   }
-  if($('.lesson-viewer.layout').length > 0) { // (7) in lesson viewer
+  if($('.lesson-viewer-layout').length > 0) { // (7) in lesson viewer
     initializeLessonViewer();
     lessonViewerDocumentReadyPlaylist();
     lessonViewerDocumentReadySlidesNavigation();
     lessonViewerDocumentReadySocialNetworks();
     lessonViewerDocumentReadyDocuments();
-    lessonviewerDocumentReadySeparated();
+    lessonViewerDocumentReadySeparated();
     playersDocumentReadyGeneral();
   }
   if($('#my_media_elements').length > 0) { // (8) in section elements
