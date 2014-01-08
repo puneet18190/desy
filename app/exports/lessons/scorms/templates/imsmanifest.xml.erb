@@ -5,7 +5,7 @@
   documents = {}
 %>
 
-<manifest <%= scorm_manifest_header @lesson %>>
+<manifest <%= scorm_manifest_header lesson %>>
   
   <metadata>
     <schema>ADL SCORM</schema>
@@ -14,18 +14,18 @@
       <general>
         <identifier>
           <catalog>URI</catalog>
-          <entry><%= lesson_viewer_url @lesson.id %></entry>
+          <entry><%= lesson_viewer_url lesson.id %></entry>
         </identifier>
         <title>
-          <string language="<%= scorm_locale %>"><%= @lesson.title %></string>
+          <string language="<%= scorm_locale %>"><%= lesson.title %></string>
         </title>
         <language><%= scorm_locale %></language>
         <description>
-          <string language="<%= scorm_locale %>"><%= @lesson.description %></string>
+          <string language="<%= scorm_locale %>"><%= lesson.description %></string>
         </description>
-        <%= scorm_tags @lesson.tags %>
+        <%= scorm_tags lesson.tags %>
         <coverage>
-          <string language="en">Lesson about <%= @lesson.subject.description %></string>
+          <string language="en">Lesson about <%= lesson.subject.description %></string>
         </coverage>
       </general>
       <lifeCycle>
@@ -33,7 +33,7 @@
           <source>LOMv1.0</source>
           <value>final</value>
         </status>
-        <%= scorm_author @lesson.user.full_name, @lesson.updated_at, 'Date of last modification' %>
+        <%= scorm_author lesson.user.full_name, lesson.updated_at, 'Date of last modification' %>
       </lifeCycle>
       <%= scorm_metametadata %>
       <technical>
@@ -54,7 +54,7 @@
         </intendedEndUserRole>
         <context>
           <source>LOMv1.0</source>
-          <value><%= scorm_school_level @lesson.school_level %></value>
+          <value><%= scorm_school_level lesson.school_level %></value>
         </context>
         <language><%= scorm_locale %></language>
       </educational>
@@ -64,8 +64,8 @@
   
   <organizations default="slides">
     <organization identifier="slides">
-      <title><%= @lesson.title %></title>
-      <% @lesson.slides.each do |slide| %>
+      <title><%= lesson.title %></title>
+      <% lesson.slides.each do |slide| %>
         <item identifier="activity_slide_<%= slide.id %>" identifierref="slide_<%= slide.id %>">
           <title><%= scorm_slide_title slide %></title>
           <%= scorm_slide_metadata slide %>
@@ -93,7 +93,7 @@
   </organizations>
   
   <resources>
-    <% @lesson.slides.each do |slide| %>
+    <% lesson.slides.each do |slide| %>
       <resource identifier="slide_<%= slide.id %>" type="webcontent" adlcp:scormType="asset" href="html/slide<%= slide.id %>.html">
         <file href="html/slide<%= slide.id %>.html"/>
         <%= scorm_math_images slide %>
