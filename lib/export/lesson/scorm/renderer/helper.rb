@@ -208,18 +208,27 @@ module Export
             resp
           end
           
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          # TODO giunto qui
+          def scorm_document_file(document) # TODO schorm sistema url documento
+            "
+              <file href=\"html/documents/#{document.id}/#{document.url}\">
+                <metadata>
+                  <lom>
+                    <general>
+                      <identifier>
+                        <catalog>URI</catalog>
+                        <entry>#{document.url}</entry>
+                      </identifier>
+                    </general>
+                    <technical>
+                      <format>document/#{document.extension}</format>
+                      <size>#{document.size}</size>
+                      <location>#{document.url}</location>
+                    </technical>
+                  </lom>
+                </metadata>
+              </file>
+            "
+          end
           
           def scorm_document_general_metadata(document)
             "
@@ -237,6 +246,24 @@ module Export
               </general>
             "
           end
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          # TODO giunto qui
           
           def scorm_media_element_file_metadata(media_element, extension) # TODO sistemare i metodi url
             my_duration = (media_element.sti_type == 'Image' || extension == 'jpeg') ? '' : media_element.min_duration
@@ -297,28 +324,6 @@ module Export
                 </file>
               "
             end
-          end
-          
-          def scorm_document_file(document) # TODO ricontrollarne i metodi e riempire quelli che mancano
-            "
-              <file href=\"html/documents/#{document.id}/#{document.url.gsub('bla', '')}\">
-                <metadata>
-                  <lom>
-                    <general>
-                      <identifier>
-                        <catalog>URI</catalog>
-                        <entry>#{document.url}</entry>
-                      </identifier>
-                    </general>
-                    <technical>
-                      <format>document/#{document.extension}</format>
-                      <size>#{document.size}</size>
-                      <location>#{documen.url}</location>
-                    </technical>
-                  </lom>
-                </metadata>
-              </file>
-            "
           end
           
           def scorm_base_packages
