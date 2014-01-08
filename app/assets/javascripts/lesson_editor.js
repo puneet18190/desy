@@ -378,8 +378,8 @@ General initialization of position (used together with {{#crossLink "LessonEdito
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyGeneral() {
-  $('html.lesson-editor-layout ul#slides').css('margin-top', ((($window.height() - 590) / 2) - 40) + 'px');
-  $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($window.height() - 590) / 2)) + 'px');
+  $html.find('.lesson-editor-layout ul#slides').css('margin-top', ((($window.height() - 590) / 2) - 40) + 'px');
+  $html.find('.lesson-editor-layout ul#slides.new').css('margin-top', ((($window.height() - 590) / 2)) + 'px');
 }
 
 /**
@@ -500,8 +500,8 @@ Initializer for window resize.
 **/
 function lessonEditorDocumentReadyResize() {
   $window.resize(function() {
-    $('html.lesson-editor-layout ul#slides').css('margin-top', ((($window.height() - 590) / 2) - 40) + 'px');
-    $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($window.height() - 590) / 2)) + 'px');
+    $html.find('.lesson-editor-layout ul#slides').css('margin-top', ((($window.height() - 590) / 2) - 40) + 'px');
+    $html.find('.lesson-editor-layout ul#slides.new').css('margin-top', ((($window.height() - 590) / 2)) + 'px');
     if(WW > 1000) {
       $('ul#slides li:first').css('margin-left', (($window.width() - 900) / 2) + 'px');
       $('ul#slides.new li:first').css('margin-left', (($window.width() - 900) / 2) + 'px');
