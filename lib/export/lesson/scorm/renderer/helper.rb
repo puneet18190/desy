@@ -26,14 +26,6 @@ module Export
             SCORM_LOCALE
           end
           
-          def scorm_tags(tags)
-            resp = ''
-            tags.split(',').each do |t|
-              resp = "#{resp}<keyword><string language=\"#{scorm_locale}\">#{t}</string></keyword>"
-            end
-            resp
-          end
-          
           def scorm_author(author, date, type)
             "
               <contribute>

@@ -23,7 +23,7 @@
         <description>
           <string language="<%= scorm_locale %>"><%= lesson.description %></string>
         </description>
-        <%= scorm_tags lesson.tags %>
+        <%= render_with_default_context partial: 'scorm_tags.xml', :locals => {:tags => lesson.tags} %>
         <coverage>
           <string language="en">Lesson about <%= lesson.subject.description %></string>
         </coverage>
@@ -173,7 +173,7 @@
                 <source>LOMv1.0</source>
                 <value>atomic</value>
               </structure>
-              <%= scorm_tags media_element.tags %>
+              <%= render_with_default_context partial: 'scorm_tags.xml', :locals => {:tags => media_element.tags} %>
             </general>
             <lifeCycle>
               <%= scorm_author media_element.user.full_name, media_element.created_at, 'Date of creation' %>
