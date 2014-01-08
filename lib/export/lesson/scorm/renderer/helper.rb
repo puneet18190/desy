@@ -28,14 +28,14 @@ module Export
           
           def scorm_school_level(school_level)
             resp = SCORM_SCHOOL_LEVELS[school_level]
-            resp.nil? ? 'school' : resp
+            resp.nil? ? 'school' : resp.html_safe
           end
           
           def scorm_slide_title(slide)
             return 'Cover' if slide.cover?
             resp = "Slide #{slide.position - 1}"
             resp = "#{resp} - #{slide.title}" if slide.title.present?
-            resp
+            resp.html_safe
           end
           
         end
