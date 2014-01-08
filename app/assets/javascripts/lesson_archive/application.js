@@ -39,4 +39,9 @@ $(document).ready(function() {
   lessonViewerDocumentReadySocialNetworks();
   lessonViewerDocumentReadyDocuments();
   playersDocumentReadyGeneral();
+  var footer = $('#footer');
+  footer.css('top', ($window.height() - 40) + 'px').css('width', ($window.width() - 24) + 'px');
+  $window.resize(function() {
+    footer.css('top', ($window.height() - 40) + 'px').css('width', ($window.width() - 24) + 'px');
+  });
 });
