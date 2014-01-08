@@ -63,6 +63,7 @@ $(document).ready(function() {
     commonMediaElementsDocumentReady();
     dashboardDocumentReady();
     lessonButtonsDocumentReady();
+    mediaElementButtonsDocumentReady();
     sectionNotificationsDocumentReady();
   }
   if($('#my_documents').length > 0) { // in section documents
@@ -94,19 +95,23 @@ $(document).ready(function() {
   }
   if($('#my_media_elements').length > 0) { // in section elements
     commonMediaElementsDocumentReady();
+    mediaElementButtonsDocumentReady();
     sectionMediaElementsDocumentReady();
     sectionNotificationsDocumentReady();
   }
   if($html.hasClass('prelogin-layout')) { // in prelogin
+    locationsDocumentReady();
     preloginDocumentReady();
   }
   if($('#profile_title_bar').length > 0) { // in section profile
+    locationsDocumentReady();
     sectionNotificationsDocumentReady();
   }
   if($('#search_lessons_main_page').length > 0 && $('#search_media_elements_main_page').length > 0) { // in search engine
     commonLessonsDocumentReady();
     commonMediaElementsDocumentReady();
     lessonButtonsDocumentReady();
+    mediaElementButtonsDocumentReady();
     sectionNotificationsDocumentReady();
     sectionSearchDocumentReady();
   }
@@ -118,8 +123,6 @@ $(document).ready(function() {
   }
   
   // TODO ottimizz a partire da qui non è ottimizzato
-  locationsDocumentReady();
-  mediaElementButtonsDocumentReady();
   mediaElementEditorDocumentReady();
   mediaElementLoaderDocumentReady();
   notificationsDocumentReady();
