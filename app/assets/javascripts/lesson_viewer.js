@@ -215,8 +215,9 @@ function hideDocumentsInLessonViewer() {
 Initializes the positions, and selects the right lesson in the playlist menu.
 @method initializeLessonViewer
 @for LessonViewerGeneral
+@param layout_scope {String} the scope of the layout (lesson viewer, lesson archive, lesson scorm)
 **/
-function initializeLessonViewer() {
+function initializeLessonViewer(layout_scope) {
   if($('._playlist_menu_item').length <= 3) {
     $('#playlist_menu').css('overflow', 'hidden');
   }
@@ -225,11 +226,11 @@ function initializeLessonViewer() {
   if(margin_top < 50) {
     margin_top = 50;
   }
-  $('.lesson-viewer-layout .container').css('margin-top', margin_top + 'px');
+  $('.' + layout_scope + '-layout .container').css('margin-top', margin_top + 'px');
   if(height > 690) {
-    $('.lesson-viewer-layout').css('overflow', 'hidden');
+    $('.' + layout_scope + '-layout').css('overflow', 'hidden');
   } else {
-    $('.lesson-viewer-layout').css('overflow', 'default');
+    $('.' + layout_scope + '-layout').css('overflow', 'default');
   }
   $body.on('click', 'a.target_blank_mce', function(e) {
     e.preventDefault();

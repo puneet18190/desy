@@ -110,7 +110,7 @@ $(document).ready(function() {
     tagsDocumentReadyAutocomplete();
   }
   if($('.lesson-viewer-layout').length > 0) { // (7) in lesson viewer
-    initializeLessonViewer();
+    initializeLessonViewer('lesson-viewer');
     lessonViewerDocumentReadyPlaylist();
     lessonViewerDocumentReadySlidesNavigation();
     lessonViewerDocumentReadySocialNetworks();

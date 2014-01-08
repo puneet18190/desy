@@ -33,7 +33,7 @@
 $(document).ready(function() {
   initializeGlobalVariables();
   browsersDocumentReady();
-  initializeLessonViewer();
+  initializeLessonViewer('lesson-archive');
   lessonViewerDocumentReadySlidesNavigation();
   lessonViewerDocumentReadyWirisConvertSrc();
   lessonViewerDocumentReadySocialNetworks();
