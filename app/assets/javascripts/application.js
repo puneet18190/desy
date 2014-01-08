@@ -58,6 +58,7 @@ $(document).ready(function() {
   var in_dashboard = ($('#dashboard_container').length > 0);
   var in_documents = ($('#my_documents').length > 0);
   var in_image_editor = ($('#image_editor').length > 0 || $('#image_gallery_for_image_editor').length > 0);
+  var in_lesson_editor = ($('#slide-numbers').length > 0);
   var in_lessons = ($('#my_lessons').length > 0);
   var in_media_elements = ($('#my_media_elements').length > 0);
   var in_prelogin = ($html.hasClass('prelogin-layout'));
@@ -96,14 +97,11 @@ $(document).ready(function() {
   if(in_prelogin) {
     preloginDocumentReady();
   }
-  
+  if(in_audio_editor || in_image_editor || in_video_editor || in_lesson_editor) {
+    galleriesDocumentReady();
+  }
   
   // TODO ottimizz a partire da qui non è ottimizzato
-  galleriesDocumentReady();
-  // TODO MANCA in_lesson_editor!!!!! e ci metto il galleries
-  
-  
-  
   imageEditorDocumentReady();
   lessonButtonsDocumentReady();
   lessonEditorDocumentReady();
