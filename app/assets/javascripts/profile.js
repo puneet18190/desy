@@ -22,6 +22,12 @@ function preloginDocumentReady() {
       form.hide('fade', {}, 500);
     }
   });
+  $document.bind('click', function (e) {
+    var my_login = $('#login_form_container:visible');
+    if(my_login.length > 0 && $(e.target).parents('#login_form_container').length == 0 && !$(e.target).hasClass('_show_login_form_container')) {
+      $('._show_login_form_container').click();
+    }
+  });
   $body.on('click', '#submit_login_form', function() {
     $('#new_users_session_form').submit();
   });

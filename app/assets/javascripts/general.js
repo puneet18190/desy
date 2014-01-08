@@ -224,13 +224,8 @@ function globalDocumentReady() {
   $body.on('mouseleave', '.empty-situation-container a', function() {
     $(this).find('.plus').removeClass('encendido');
   });
-  $('#user_school_level_id').selectbox(); // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
-  $(document).bind('click', function (e) {
-    var my_login = $('#login_form_container:visible');
-    if(my_login.length > 0 && $(e.target).parents('#login_form_container').length == 0 && !$(e.target).hasClass('_show_login_form_container')) {
-      $('._show_login_form_container').click();
-    } // TODO ottimizz prima o poi toglierla da qui, quando faccio pulizia con il profilo
-  });
+  $('#user_school_level_id').selectbox();
+  $('#lesson_subject').selectbox();
   $body.on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
     var myself = $(this);
     var len = myself.val().length;
@@ -396,7 +391,7 @@ function sectionNotificationsDocumentReady() {
   $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });
-  $(document).bind('click', function (e) {
+  $document.bind('click', function (e) {
     var click_id = $(e.target).attr('id');
     var my_report = $('.tooltipForm:visible');
     if($('#tooltip_content').length > 0) {
@@ -450,11 +445,12 @@ Initializes global variables used throughout the javascripts.
 @for GeneralMiscellanea
 **/
 function initializeGlobalVariables() {
+  window.$body = $('body');
+  window.$captions = $('#popup_captions_container');
+  window.$document = $(document);
   window.$html = $('html');
   window.$loaderVisible = true;
   window.$loading = $('#loading');
-  window.$body = $('body');
-  window.$captions = $('#popup_captions_container');
   window.$parameters = $('#popup_parameters_container');
 }
 

@@ -62,6 +62,7 @@ $(document).ready(function() {
     commonLessonsDocumentReady();
     commonMediaElementsDocumentReady();
     dashboardDocumentReady();
+    lessonButtonsDocumentReady();
     sectionNotificationsDocumentReady();
   }
   if($('#my_documents').length > 0) { // in section documents
@@ -75,9 +76,11 @@ $(document).ready(function() {
   }
   if($('#slide-numbers').length > 0) { // in lesson editor
     galleriesDocumentReady();
+    lessonEditorDocumentReady();
   }
   if($('#my_lessons').length > 0) { // in section lessons
     commonLessonsDocumentReady();
+    lessonButtonsDocumentReady();
     sectionLessonsDocumentReady();
     sectionNotificationsDocumentReady();
   }
@@ -95,6 +98,7 @@ $(document).ready(function() {
   if($('#search_lessons_main_page').length > 0 && $('#search_media_elements_main_page').length > 0) { // in search engine
     commonLessonsDocumentReady();
     commonMediaElementsDocumentReady();
+    lessonButtonsDocumentReady();
     sectionNotificationsDocumentReady();
     sectionSearchDocumentReady();
   }
@@ -106,8 +110,6 @@ $(document).ready(function() {
   }
   
   // TODO ottimizz a partire da qui non è ottimizzato
-  lessonButtonsDocumentReady();
-  lessonEditorDocumentReady();
   lessonViewerDocumentReady();
   locationsDocumentReady();
   mediaElementButtonsDocumentReady();
