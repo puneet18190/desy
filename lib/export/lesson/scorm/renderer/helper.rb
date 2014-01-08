@@ -17,9 +17,40 @@ module Export
     class Scorm
       class Renderer
         module Helper
+          include Rails.application.routes.url_helpers
+          
+          SCORM_LOCALE         = I18n.default_locale
+          SCORM_SCHOOL_LEVELS  = {}
+          
+          def scorm_manifest_header(lesson)
+            "
+              identifier=\"desy.lesson.#{lesson.id}\"
+              xmlns=\"http://www.imsglobal.org/xsd/imscp_v1p1\"
+              xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+              xmlns:adlcp=\"http://www.adlnet.org/xsd/adlcp_v1p3\"
+              xmlns:adlseq=\"http://www.adlnet.org/xsd/adlseq_v1p3\"
+              xmlns:adlnav=\"http://www.adlnet.org/xsd/adlnav_v1p3\"
+              xmlns:imsss=\"http://www.imsglobal.org/xsd/imsss\"
+              xmlns:lom=\"http://ltsc.ieee.org/xsd/LOM\"
+              xsi:schemaLocation=\"http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd
+                                   http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd
+                                   http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd
+                                   http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd
+                                   http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd
+                                   http://ltsc.ieee.org/xsd/LOM lom.xsd\"
+            "
+          end
           
           def scorm_locale
-            'en' # TODO estrarlo in modo migliore
+            SCORM_LOCALE
+          end
+          
+          def scorm_tags(tags)
+            resp = ''
+            tags.split(',').each do |t|
+              resp = "#{resp}<keyword><string language=\"#{scorm_locale}\">#{t}</string></keyword>"
+            end
+            resp
           end
           
           def scorm_author(author, date, type)
@@ -39,6 +70,117 @@ module Export
               </contribute>
             "
           end
+          
+          def scorm_metametadata
+            '
+              <metaMetadata>
+                <metadataSchema>LOMv1.0</metadataSchema>
+                <language>en</language>
+              </metaMetadata>
+            '
+          end
+          
+          def scorm_requirements
+            '
+              <requirement>
+                <orComposite>
+                  <type>
+                    <source>LOMv1.0</source>
+                    <value>browser</value>
+                  </type>
+                  <name>
+                    <source>LOMv1.0</source>
+                    <value>ms-internet explorer</value>
+                  </name>
+                  <minimumVersion>9.0</minimumVersion>
+                </orComposite>
+              </requirement>
+              <requirement>
+                <orComposite>
+                  <type>
+                    <source>LOMv1.0</source>
+                    <value>browser</value>
+                  </type>
+                  <name>
+                    <source>LOMv1.0</source>
+                    <value>webkit</value>
+                  </name>
+                </orComposite>
+              </requirement>
+              <requirement>
+                <orComposite>
+                  <type>
+                    <source>LOMv1.0</source>
+                    <value>browser</value>
+                  </type>
+                  <name>
+                    <source>LOMv1.0</source>
+                    <value>mozilla</value>
+                  </name>
+                </orComposite>
+              </requirement>
+              <requirement>
+                <orComposite>
+                  <type>
+                    <source>LOMv1.0</source>
+                    <value>browser</value>
+                  </type>
+                  <name>
+                    <source>LOMv1.0</source>
+                    <value>safari</value>
+                  </name>
+                </orComposite>
+              </requirement>
+              <requirement>
+                <orComposite>
+                  <type>
+                    <source>LOMv1.0</source>
+                    <value>browser</value>
+                  </type>
+                  <name>
+                    <source>LOMv1.0</source>
+                    <value>opera</value>
+                  </name>
+                </orComposite>
+              </requirement>
+            '
+          end
+          
+          def scorm_school_level(school_level)
+            resp = SCORM_SCHOOL_LEVELS[school_level]
+            resp.nil? ? 'school' : resp
+          end
+          
+          def scorm_copyrights
+            "
+              <rights>
+                <copyrightAndOtherRestrictions>
+                  <source>LOMv1.0</source>
+                  <value>yes</value>
+                </copyrightAndOtherRestrictions>
+                <description>
+                  <string language=\"en\">#{SETTINGS['application_copyright']}. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string>
+                </description>
+              </rights>
+            "
+          end
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          # TODO giunto qui
           
           def scorm_document_general_metadata(document)
             "
@@ -140,107 +282,6 @@ module Export
             "
           end
           
-          def scorm_metametadata
-            '
-              <metaMetadata>
-                <metadataSchema>LOMv1.0</metadataSchema>
-                <language>en</language>
-              </metaMetadata>
-            '
-          end
-          
-          def scorm_requirements
-            '
-              <requirement>
-                <orComposite>
-                  <type>
-                    <source>LOMv1.0</source>
-                    <value>browser</value>
-                  </type>
-                  <name>
-                    <source>LOMv1.0</source>
-                    <value>ms-internet explorer</value>
-                  </name>
-                  <minimumVersion>9.0</minimumVersion>
-                </orComposite>
-              </requirement>
-              <requirement>
-                <orComposite>
-                  <type>
-                    <source>LOMv1.0</source>
-                    <value>browser</value>
-                  </type>
-                  <name>
-                    <source>LOMv1.0</source>
-                    <value>webkit</value>
-                  </name>
-                </orComposite>
-              </requirement>
-              <requirement>
-                <orComposite>
-                  <type>
-                    <source>LOMv1.0</source>
-                    <value>browser</value>
-                  </type>
-                  <name>
-                    <source>LOMv1.0</source>
-                    <value>mozilla</value>
-                  </name>
-                </orComposite>
-              </requirement>
-              <requirement>
-                <orComposite>
-                  <type>
-                    <source>LOMv1.0</source>
-                    <value>browser</value>
-                  </type>
-                  <name>
-                    <source>LOMv1.0</source>
-                    <value>safari</value>
-                  </name>
-                </orComposite>
-              </requirement>
-              <requirement>
-                <orComposite>
-                  <type>
-                    <source>LOMv1.0</source>
-                    <value>browser</value>
-                  </type>
-                  <name>
-                    <source>LOMv1.0</source>
-                    <value>opera</value>
-                  </name>
-                </orComposite>
-              </requirement>
-            '
-          end
-          
-          def scorm_school_level(school_level)
-            'school' # TODO mapparlo in qualche modo
-          end
-          
-          def scorm_tags(tags)
-            resp = ''
-            tags.split(',').each do |t|
-              resp = "#{resp}<keyword><string language=\"#{scorm_locale}\">#{t}</string></keyword>"
-            end
-            resp
-          end
-          
-          def scorm_copyrights
-            "
-              <rights>
-                <copyrightAndOtherRestrictions>
-                  <source>LOMv1.0</source>
-                  <value>yes</value>
-                </copyrightAndOtherRestrictions>
-                <description>
-                  <string language=\"en\">#{SETTINGS['application_copyright']}. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string>
-                </description>
-              </rights>
-            "
-          end
-          
           def scorm_slide_title(slide)
             return 'Cover' if slide.cover?
             resp = "Slide #{slide.position - 1}"
@@ -265,25 +306,6 @@ module Export
                   #{scorm_metametadata}
                 </lom>
               </metadata>
-            "
-          end
-          
-          def scorm_manifest_header(lesson)
-            "
-              identifier=\"desy.lesson.#{lesson.id}\"
-              xmlns=\"http://www.imsglobal.org/xsd/imscp_v1p1\"
-              xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-              xmlns:adlcp=\"http://www.adlnet.org/xsd/adlcp_v1p3\"
-              xmlns:adlseq=\"http://www.adlnet.org/xsd/adlseq_v1p3\"
-              xmlns:adlnav=\"http://www.adlnet.org/xsd/adlnav_v1p3\"
-              xmlns:imsss=\"http://www.imsglobal.org/xsd/imsss\"
-              xmlns:lom=\"http://ltsc.ieee.org/xsd/LOM\"
-              xsi:schemaLocation=\"http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd
-                                   http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd
-                                   http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd
-                                   http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd
-                                   http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd
-                                   http://ltsc.ieee.org/xsd/LOM lom.xsd\"
             "
           end
           
