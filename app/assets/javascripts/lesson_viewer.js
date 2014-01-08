@@ -38,6 +38,7 @@ Initializer for functionalities of the playlist menu.
 @for LessonViewerDocumentReady
 **/
 function lessonViewerDocumentReadyPlaylist() {
+  selectComponentInLessonViewerPlaylistMenu($('._playlist_menu_item').first());
   $body.on('click', '#carousel_container a', function() {
     var me = $(this);
     if(!me.hasClass('esciButton') && !me.hasClass('_playlist_menu_item') && !me.hasClass('_open_playlist') && !me.hasClass('_close_playlist')) {
@@ -84,10 +85,6 @@ function lessonViewerDocumentReadySeparated() {
   });
   $body.on('mouseleave', '.playlistMenu', function(e) {
     closePlaylistMenuInLessonViewer(function() {});
-  });
-  $body.on('click', 'a.target_blank_mce', function(e) {
-    e.preventDefault();
-    window.open($(this).attr('href'), '_blank').focus();
   });
 }
 
@@ -220,7 +217,6 @@ Initializes the positions, and selects the right lesson in the playlist menu.
 @for LessonViewerGeneral
 **/
 function initializeLessonViewer() {
-  selectComponentInLessonViewerPlaylistMenu($('._playlist_menu_item').first());
   if($('._playlist_menu_item').length <= 3) {
     $('#playlist_menu').css('overflow', 'hidden');
   }
@@ -235,6 +231,10 @@ function initializeLessonViewer() {
   } else {
     $('.lesson-viewer-layout').css('overflow', 'default');
   }
+  $body.on('click', 'a.target_blank_mce', function(e) {
+    e.preventDefault();
+    window.open($(this).attr('href'), '_blank').focus();
+  });
 }
 
 /**

@@ -34,24 +34,9 @@ $(document).ready(function() {
   initializeGlobalVariables();
   browsersDocumentReady();
   globalDocumentReady();
+  initializeLessonViewer();
+  lessonViewerDocumentReadyWirisConvertSrc();
+  lessonViewerDocumentReadyDocuments();
   // TODO ottimizz a partire da qui non è ottimizzato
   playersDocumentReady();
-  
-  
-  
-  initializeLessonViewer();
-  lessonViewerDocumentReadyPlaylist();
-  lessonViewerDocumentReadySlidesNavigation();
-  lessonViewerDocumentReadySocialNetworks();
-  lessonViewerDocumentReadyDocuments();
-  lessonviewerDocumentReadySeparated();
-  lessonViewerDocumentReadyWirisConvertSrc();
-  $('.lesson-scorm-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
-  $(window).resize(function() {
-    $('.lesson-scorm-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
-  });
-  $body.on('click', 'a.target_blank_mce', function(e) {
-    e.preventDefault();
-    window.open($(this).attr('href'), '_blank').focus();
-  });
 });

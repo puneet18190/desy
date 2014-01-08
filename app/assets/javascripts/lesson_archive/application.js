@@ -34,39 +34,11 @@ $(document).ready(function() {
   initializeGlobalVariables();
   browsersDocumentReady();
   globalDocumentReady();
-  // TODO ottimizz a partire da qui non è ottimizzato
-  playersDocumentReady();
-  
-  
-  
   initializeLessonViewer();
-  lessonViewerDocumentReadyPlaylist();
   lessonViewerDocumentReadySlidesNavigation();
+  lessonViewerDocumentReadyWirisConvertSrc();
   lessonViewerDocumentReadySocialNetworks();
   lessonViewerDocumentReadyDocuments();
-  lessonviewerDocumentReadySeparated();
-  lessonViewerDocumentReadyWirisConvertSrc();
-  var scrolls = $('#left_scroll, #right_scroll');
-  $('.lesson-archive-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
-  $(window).resize(function() {
-    $('.lesson-archive-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
-  });
-  $('.lesson-archive-layout').on('swiperight', function() {
-    if(mustReactToSwipe()) {
-      moveToAdhiacentSlideInLessonViewer(scrolls, goToPrevSlideInLessonViewer);
-    }
-  });
-  $('.lesson-archive-layout').on('swipeleft', function() {
-    if(mustReactToSwipe()) {
-      moveToAdhiacentSlideInLessonViewer(scrolls, goToNextSlideInLessonViewer);
-    }
-  });
-  $('#footer').css('top', (parseInt($(window).outerHeight()) - 40) + 'px').css('width', (parseInt($(window).outerWidth()) - 24) + 'px');
-  $(window).resize(function() {
-    $('#footer').css('top', ($(window).height() - 40) + 'px').css('width', ($(window).width() - 24) + 'px');
-  });
-  $body.on('click', 'a.target_blank_mce', function(e) {
-    e.preventDefault();
-    window.open($(this).attr('href'), '_blank').focus();
-  });
+  // TODO ottimizz a partire da qui non è ottimizzato
+  playersDocumentReady();
 });
