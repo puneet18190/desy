@@ -67,12 +67,14 @@ $(document).ready(function() {
     lessonButtonsDocumentReady();
     mediaElementButtonsDocumentReady();
     mediaElementLoaderDocumentReady();
+    notificationsDocumentReady();
     sectionNotificationsDocumentReady();
   }
   if($('#my_documents').length > 0) { // in section documents
     documentsDocumentReady();
     documentsDocumentReadyUploader();
     sectionDocumentsDocumentReady();
+    notificationsDocumentReady();
     sectionNotificationsDocumentReady();
   }
   if($('#image_editor').length > 0 || $('#image_gallery_for_image_editor').length > 0) { // in image editor
@@ -87,6 +89,8 @@ $(document).ready(function() {
   if($('#my_lessons').length > 0) { // in section lessons
     commonLessonsDocumentReady();
     lessonButtonsDocumentReady();
+    notificationsDocumentReady();
+    notificationsDocumentReadyLessonModification();
     sectionLessonsDocumentReady();
     sectionNotificationsDocumentReady();
   }
@@ -102,6 +106,7 @@ $(document).ready(function() {
     commonMediaElementsDocumentReady();
     mediaElementButtonsDocumentReady();
     mediaElementLoaderDocumentReady();
+    notificationsDocumentReady();
     sectionMediaElementsDocumentReady();
     sectionNotificationsDocumentReady();
   }
@@ -111,6 +116,7 @@ $(document).ready(function() {
   }
   if($('#profile_title_bar').length > 0) { // in section profile
     locationsDocumentReady();
+    notificationsDocumentReady();
     sectionNotificationsDocumentReady();
   }
   if($('#search_lessons_main_page').length > 0 && $('#search_media_elements_main_page').length > 0) { // in search engine
@@ -118,6 +124,8 @@ $(document).ready(function() {
     commonMediaElementsDocumentReady();
     lessonButtonsDocumentReady();
     mediaElementButtonsDocumentReady();
+    notificationsDocumentReady();
+    notificationsDocumentReadyLessonModification();
     sectionNotificationsDocumentReady();
     sectionSearchDocumentReady();
   }
@@ -126,11 +134,11 @@ $(document).ready(function() {
     mediaElementEditorDocumentReady();
   }
   if($('#my_virtual_classroom').length > 0) { // in virtual classroom
+    notificationsDocumentReady();
     sectionNotificationsDocumentReady();
   }
   
   // TODO ottimizz a partire da qui non è ottimizzato
-  notificationsDocumentReady();
   playersDocumentReady();
   profileDocumentReady();
   purchaseCodeRegistrationDocumentReady();
