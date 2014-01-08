@@ -164,13 +164,11 @@ $(document).ready(function() {
     playersDocumentReadyVideoEditor();
     tagsDocumentReadyOvervriteMediaElement();
     tagsDocumentReadyNewMediaElement();
+    videoEditorDocumentReady();
   }
   if($('#my_virtual_classroom').length > 0) { // (13) in virtual classroom
     notificationsDocumentReady();
     sectionNotificationsDocumentReady();
+    virtualClassroomDocumentReady();
   }
-  
-  // TODO ottimizz a partire da qui non è ottimizzato
-  videoEditorDocumentReady();
-  virtualClassroomDocumentReady();
 });
