@@ -217,7 +217,7 @@ function imageEditorDocumentReadyTexts() {
     offlightTextareas();
     enlightTextarea($(this).parent().attr('id').split('_')[3]);
   });
-  $body.on('click', 'a._delete', function() {
+  $body.on('click', '#image_editor a._delete', function() {
     var id = $(this).parent().attr('id').split('_')[4];
     $('#image_editor_text_' + id).remove();
     if($('._image_editor_text').length == 0) {

@@ -59,31 +59,32 @@ $(document).ready(function() {
     galleriesDocumentReady();
   }
   if($('#dashboard_container').length > 0) { // in dashboard
+    commonLessonsDocumentReady();
+    commonMediaElementsDocumentReady();
     dashboardDocumentReady();
     sectionNotificationsDocumentReady();
-    commonMediaElementsDocumentReady();
-    commonLessonsDocumentReady();
   }
   if($('#my_documents').length > 0) { // in section documents
-    sectionDocumentsDocumentReady();
     documentsDocumentReady();
+    sectionDocumentsDocumentReady();
     sectionNotificationsDocumentReady();
   }
   if($('#image_editor').length > 0 || $('#image_gallery_for_image_editor').length > 0) { // in image editor
     galleriesDocumentReady();
+    imageEditorDocumentReady();
   }
   if($('#slide-numbers').length > 0) { // in lesson editor
     galleriesDocumentReady();
   }
   if($('#my_lessons').length > 0) { // in section lessons
+    commonLessonsDocumentReady();
     sectionLessonsDocumentReady();
     sectionNotificationsDocumentReady();
-    commonLessonsDocumentReady();
   }
   if($('#my_media_elements').length > 0) { // in section elements
+    commonMediaElementsDocumentReady();
     sectionMediaElementsDocumentReady();
     sectionNotificationsDocumentReady();
-    commonMediaElementsDocumentReady();
   }
   if($html.hasClass('prelogin-layout')) { // in prelogin
     preloginDocumentReady();
@@ -92,10 +93,10 @@ $(document).ready(function() {
     sectionNotificationsDocumentReady();
   }
   if($('#search_lessons_main_page').length > 0 && $('#search_media_elements_main_page').length > 0) { // in search engine
-    sectionSearchDocumentReady();
-    commonMediaElementsDocumentReady();
     commonLessonsDocumentReady();
+    commonMediaElementsDocumentReady();
     sectionNotificationsDocumentReady();
+    sectionSearchDocumentReady();
   }
   if($('#video_editor').length > 0) { // in video editor
     galleriesDocumentReady();
@@ -105,7 +106,6 @@ $(document).ready(function() {
   }
   
   // TODO ottimizz a partire da qui non è ottimizzato
-  imageEditorDocumentReady();
   lessonButtonsDocumentReady();
   lessonEditorDocumentReady();
   lessonViewerDocumentReady();
