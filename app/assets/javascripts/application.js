@@ -54,51 +54,54 @@ $(document).ready(function() {
   initializeGlobalVariables();
   browsersDocumentReady();
   globalDocumentReady();
-  var in_audio_editor = ($('#audio_editor').length > 0);
-  var in_dashboard = ($('#dashboard_container').length > 0);
-  var in_documents = ($('#my_documents').length > 0);
-  var in_image_editor = ($('#image_editor').length > 0 || $('#image_gallery_for_image_editor').length > 0);
-  var in_lesson_editor = ($('#slide-numbers').length > 0);
-  var in_lessons = ($('#my_lessons').length > 0);
-  var in_media_elements = ($('#my_media_elements').length > 0);
-  var in_prelogin = ($html.hasClass('prelogin-layout'));
-  var in_profile = ($('#profile_title_bar').length > 0);
-  var in_search = ($('#search_lessons_main_page').length > 0 && $('#search_media_elements_main_page').length > 0);
-  var in_video_editor = ($('#video_editor').length > 0);
-  var in_virtual_classroom = ($('#my_virtual_classroom').length > 0);
-  if(in_dashboard) {
+  if($('#audio_editor').length > 0) { // in audio editor
+    audioEditorDocumentReady();
+    galleriesDocumentReady();
+  }
+  if($('#dashboard_container').length > 0) { // in dashboard
     dashboardDocumentReady();
-  }
-  if(in_documents) {
-    sectionDocumentsDocumentReady();
-    documentsDocumentReady();
-  }
-  if(in_lessons) {
-    sectionLessonsDocumentReady();
-  }
-  if(in_media_elements) {
-    sectionMediaElementsDocumentReady();
-  }
-  if(in_search) {
-    sectionSearchDocumentReady();
-  }
-  if(in_dashboard || in_documents || in_lessons || in_media_elements || in_profile || in_search || in_virtual_classroom) {
     sectionNotificationsDocumentReady();
-  }
-  if(in_dashboard || in_media_elements || in_search) {
     commonMediaElementsDocumentReady();
-  }
-  if(in_dashboard || in_lessons || in_search) {
     commonLessonsDocumentReady();
   }
-  if(in_audio_editor) {
-    audioEditorDocumentReady();
+  if($('#my_documents').length > 0) { // in section documents
+    sectionDocumentsDocumentReady();
+    documentsDocumentReady();
+    sectionNotificationsDocumentReady();
   }
-  if(in_prelogin) {
+  if($('#image_editor').length > 0 || $('#image_gallery_for_image_editor').length > 0) { // in image editor
+    galleriesDocumentReady();
+  }
+  if($('#slide-numbers').length > 0) { // in lesson editor
+    galleriesDocumentReady();
+  }
+  if($('#my_lessons').length > 0) { // in section lessons
+    sectionLessonsDocumentReady();
+    sectionNotificationsDocumentReady();
+    commonLessonsDocumentReady();
+  }
+  if($('#my_media_elements').length > 0) { // in section elements
+    sectionMediaElementsDocumentReady();
+    sectionNotificationsDocumentReady();
+    commonMediaElementsDocumentReady();
+  }
+  if($html.hasClass('prelogin-layout')) { // in prelogin
     preloginDocumentReady();
   }
-  if(in_audio_editor || in_image_editor || in_video_editor || in_lesson_editor) {
+  if($('#profile_title_bar').length > 0) { // in section profile
+    sectionNotificationsDocumentReady();
+  }
+  if($('#search_lessons_main_page').length > 0 && $('#search_media_elements_main_page').length > 0) { // in search engine
+    sectionSearchDocumentReady();
+    commonMediaElementsDocumentReady();
+    commonLessonsDocumentReady();
+    sectionNotificationsDocumentReady();
+  }
+  if($('#video_editor').length > 0) { // in video editor
     galleriesDocumentReady();
+  }
+  if($('#my_virtual_classroom').length > 0) { // in virtual classroom
+    sectionNotificationsDocumentReady();
   }
   
   // TODO ottimizz a partire da qui non è ottimizzato
