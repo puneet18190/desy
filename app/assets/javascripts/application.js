@@ -57,23 +57,28 @@ $(document).ready(function() {
   if($('#audio_editor').length > 0) { // in audio editor
     audioEditorDocumentReady();
     galleriesDocumentReady();
+    mediaElementEditorDocumentReady();
   }
   if($('#dashboard_container').length > 0) { // in dashboard
     commonLessonsDocumentReady();
     commonMediaElementsDocumentReady();
     dashboardDocumentReady();
+    documentsDocumentReadyUploader();
     lessonButtonsDocumentReady();
     mediaElementButtonsDocumentReady();
+    mediaElementLoaderDocumentReady();
     sectionNotificationsDocumentReady();
   }
   if($('#my_documents').length > 0) { // in section documents
     documentsDocumentReady();
+    documentsDocumentReadyUploader();
     sectionDocumentsDocumentReady();
     sectionNotificationsDocumentReady();
   }
   if($('#image_editor').length > 0 || $('#image_gallery_for_image_editor').length > 0) { // in image editor
     galleriesDocumentReady();
     imageEditorDocumentReady();
+    mediaElementEditorDocumentReady();
   }
   if($('.lesson-editor-container').length > 0) { // in lesson editor
     galleriesDocumentReady();
@@ -96,6 +101,7 @@ $(document).ready(function() {
   if($('#my_media_elements').length > 0) { // in section elements
     commonMediaElementsDocumentReady();
     mediaElementButtonsDocumentReady();
+    mediaElementLoaderDocumentReady();
     sectionMediaElementsDocumentReady();
     sectionNotificationsDocumentReady();
   }
@@ -117,14 +123,13 @@ $(document).ready(function() {
   }
   if($('#video_editor').length > 0) { // in video editor
     galleriesDocumentReady();
+    mediaElementEditorDocumentReady();
   }
   if($('#my_virtual_classroom').length > 0) { // in virtual classroom
     sectionNotificationsDocumentReady();
   }
   
   // TODO ottimizz a partire da qui non è ottimizzato
-  mediaElementEditorDocumentReady();
-  mediaElementLoaderDocumentReady();
   notificationsDocumentReady();
   playersDocumentReady();
   profileDocumentReady();

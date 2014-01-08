@@ -16,7 +16,6 @@ function documentsDocumentReady() {
   documentsDocumentReadyGeneral();
   documentsDocumentReadySearch();
   documentsDocumentReadyButtons();
-  documentsDocumentReadyUploader();
 }
 
 /**
