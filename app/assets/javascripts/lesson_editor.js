@@ -1,7 +1,7 @@
 /**
 The Lesson Editor is used to add and edit slides to a private lesson.
 <br/><br/>
-When opening the Editor on a lesson, all its slides are appended to a queue, of which it's visible only the portion that surrounds the <b>current slide</b> (the width of such a portion depends on the screen resolution, see {{#crossLink "LessonEditorSlidesNavigation/initLessonEditorPositions:method"}}{{/crossLink}}, {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyResize:method"}}{{/crossLink}} and {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyGeneral:method"}}{{/crossLink}}). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method"}}{{/crossLink}} and the methods in {{#crossLink "LessonEditorSlidesNavigation"}}{{/crossLink}}): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in {{#crossLink "LessonEditorSlideLoading"}}{{/crossLink}}).
+When opening the Editor on a lesson, all its slides are appended to a queue, of which it's visible only the portion that surrounds the <b>current slide</b> (the width of such a portion depends on the screen resolution, see {{#crossLink "LessonEditorSlidesNavigation/initLessonEditorPositions:method"}}{{/crossLink}} and {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyResize:method"}}{{/crossLink}}). The current slide is illuminated and editable, whereas the adhiacent slides are covered by a layer with opacity that prevents the user from editing them: if the user clicks on this layer, the application takes the slide below it as new current slide and moves it to the center of the screen (see {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method"}}{{/crossLink}} and the methods in {{#crossLink "LessonEditorSlidesNavigation"}}{{/crossLink}}): only after this operation, the user can edit that particular slide. To avoid overloading when there are many slides containing media, the slides are instanced all together but their content is loaded only when the user moves to them (see the methods in {{#crossLink "LessonEditorSlideLoading"}}{{/crossLink}}).
 <br/><br/>
 On the right side of each slide the user finds a list of <b>buttons</b> (initialized in {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadySlideButtons:method"}}{{/crossLink}}): each button corresponds either to an action that can be performed on the slide, either to an action that can be performed to the whole lesson (for instance, save and exit, or edit title description and tags).
 <br/><br/>
@@ -121,7 +121,6 @@ General initialization of Lesson Editor.
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReady() {
-  lessonEditorDocumentReadyGeneral();
   lessonEditorDocumentReadyJqueryAnimations();
   lessonEditorDocumentReadyResize();
   lessonEditorDocumentReadySlidesNavigator();
@@ -373,16 +372,6 @@ function lessonEditorDocumentReadyGalleries() {
 }
 
 /**
-General initialization of position (used together with {{#crossLink "LessonEditorSlidesNavigation/initLessonEditorPositions:method"}}{{/crossLink}}).
-@method lessonEditorDocumentReadyGeneral
-@for LessonEditorDocumentReady
-**/
-function lessonEditorDocumentReadyGeneral() {
-  $html.find('.lesson-editor-layout ul#slides').css('margin-top', ((($window.height() - 590) / 2) - 40) + 'px');
-  $html.find('.lesson-editor-layout ul#slides.new').css('margin-top', ((($window.height() - 590) / 2)) + 'px');
-}
-
-/**
 Initializer for dynamics of inscriptions and deinscriptions of images (it uses {{#crossLink "LessonEditorJqueryAnimations/lessonEditorInscribeImage:method"}}{{/crossLink}} and {{#crossLink "LessonEditorJqueryAnimations/lessonEditorDeinscribeImage:method"}}{{/crossLink}}).
 @method lessonEditorDocumentReadyInitializeImageInscription
 @for LessonEditorDocumentReady
@@ -499,6 +488,8 @@ Initializer for window resize.
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyResize() {
+  $html.find('.lesson-editor-layout ul#slides').css('margin-top', ((($window.height() - 590) / 2) - 40) + 'px');
+  $html.find('.lesson-editor-layout ul#slides.new').css('margin-top', ((($window.height() - 590) / 2)) + 'px');
   $window.resize(function() {
     $html.find('.lesson-editor-layout ul#slides').css('margin-top', ((($window.height() - 590) / 2) - 40) + 'px');
     $html.find('.lesson-editor-layout ul#slides.new').css('margin-top', ((($window.height() - 590) / 2)) + 'px');
