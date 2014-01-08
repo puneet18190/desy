@@ -1212,8 +1212,8 @@ Centers the gallery when shown.
 @for VideoEditorGalleries
 **/
 function calculateNewPositionGalleriesInVideoEditor() {
-  $('#video_editor_mixed_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
-  $('#video_editor_audio_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
+  $('#video_editor_mixed_gallery_container').css('left', (($window.width() - 940) / 2) + 'px');
+  $('#video_editor_audio_gallery_container').css('left', (($window.width() - 940) / 2) + 'px');
 }
 
 /**

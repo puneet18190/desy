@@ -594,7 +594,7 @@ Sets the correct position of the gallery: used while showing and closing the aud
 @for AudioEditorGalleries
 **/
 function calculateNewPositionGalleriesInAudioEditor() {
-  $('#audio_editor_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
+  $('#audio_editor_gallery_container').css('left', (($window.width() - 940) / 2) + 'px');
 }
 
 /**

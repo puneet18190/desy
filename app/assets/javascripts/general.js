@@ -30,8 +30,8 @@ Centers a div into the current window.
 @param div {String} HTML selector to be centered
 **/
 function centerThis(div) {
-  var winH = $(window).height();
-  var winW = $(window).width();
+  var winH = $window.height();
+  var winW = $window.width();
   var centerDiv = $(div);
   centerDiv.css('top', winH/2 - centerDiv.height()/2);
   centerDiv.css('left', winW/2 - centerDiv.width()/2);
@@ -350,7 +350,7 @@ function sectionMediaElementsDocumentReady() {
       $(this).addClass('current');
       $('#display_compact_media_elements').removeClass('current');
       $('#info_container').data('in-space', 0);
-      browserDependingScrollToTag().animate({scrollTop: ((1150 - $(window).height() + $('.global-footer').height()) + 'px')}, 500);
+      browserDependingScrollToTag().animate({scrollTop: ((1150 - $window.height() + $('.global-footer').height()) + 'px')}, 500);
       var last_item_compact = $('.boxViewCompactMediaElement').last();
       last_item_compact.animate({'margin-bottom': (102 + parseInt(last_item_compact.css('margin-bottom'))) + 'px'}, 500);
       $('.elements-content').animate({height: '767px'}, 500, function() {
@@ -376,7 +376,7 @@ function sectionMediaElementsDocumentReady() {
   });
   $('#filter_media_elements').selectbox();
   mediaElementsResizeController(false, false);
-  $(window).resize(function() {
+  $window.resize(function() {
     mediaElementsResizeController(true, false);
   });
 }
@@ -451,6 +451,7 @@ function initializeGlobalVariables() {
   window.$loaderVisible = true;
   window.$loading = $('#loading');
   window.$parameters = $('#popup_parameters_container');
+  window.$window = $(window);
 }
 
 /**

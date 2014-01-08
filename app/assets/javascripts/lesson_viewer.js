@@ -220,7 +220,7 @@ function initializeLessonViewer() {
   if($('._playlist_menu_item').length <= 3) {
     $('#playlist_menu').css('overflow', 'hidden');
   }
-  var height = $(window).height();
+  var height = $window.height();
   var margin_top = (height - 690) / 2;
   if(margin_top < 50) {
     margin_top = 50;

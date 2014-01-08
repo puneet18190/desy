@@ -378,8 +378,8 @@ General initialization of position (used together with {{#crossLink "LessonEdito
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyGeneral() {
-  $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
-  $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
+  $('html.lesson-editor-layout ul#slides').css('margin-top', ((($window.height() - 590) / 2) - 40) + 'px');
+  $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($window.height() - 590) / 2)) + 'px');
 }
 
 /**
@@ -499,14 +499,14 @@ Initializer for window resize.
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyResize() {
-  $(window).resize(function() {
-    $('html.lesson-editor-layout ul#slides').css('margin-top', ((($(window).height() - 590) / 2) - 40) + 'px');
-    $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($(window).height() - 590) / 2)) + 'px');
+  $window.resize(function() {
+    $('html.lesson-editor-layout ul#slides').css('margin-top', ((($window.height() - 590) / 2) - 40) + 'px');
+    $('html.lesson-editor-layout ul#slides.new').css('margin-top', ((($window.height() - 590) / 2)) + 'px');
     if(WW > 1000) {
-      $('ul#slides li:first').css('margin-left', (($(window).width() - 900) / 2) + 'px');
-      $('ul#slides.new li:first').css('margin-left', (($(window).width() - 900) / 2) + 'px');
+      $('ul#slides li:first').css('margin-left', (($window.width() - 900) / 2) + 'px');
+      $('ul#slides.new li:first').css('margin-left', (($window.width() - 900) / 2) + 'px');
     }
-    $('#footer').css('top', ($(window).height() - 40) + 'px').css('width', ($(window).width() - 24) + 'px');
+    $('#footer').css('top', ($window.height() - 40) + 'px').css('width', ($window.width() - 24) + 'px');
     var open_gallery = $('.lesson_editor_gallery_container:visible');
     if(open_gallery.length > 0) {
       centerThis(open_gallery);
@@ -571,7 +571,7 @@ function lessonEditorDocumentReadySlidesNavigator() {
   $body.on('mouseover', '#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)', function(e) {
     var tip = $(this);
     var this_tooltip = tip.children('.slide-tooltip');
-    if(e.pageX < ($(window).width() / 2)) {
+    if(e.pageX < ($window.width() / 2)) {
       this_tooltip.show();
     } else {
       this_tooltip.addClass('slide-tooltip-to-left');
@@ -1074,12 +1074,12 @@ Inizializes jQueryUI <b>sortable</b> function on top navigation numbers, so that
 @for LessonEditorJqueryAnimations
 **/
 function initializeSortableNavs() {
-  $('#heading, #heading .scroll-pane').css('width', (parseInt($(window).outerWidth()) - 50) + 'px');
+  $('#heading, #heading .scroll-pane').css('width', (parseInt($window.outerWidth()) - 50) + 'px');
   var slides_numbers = $('#slide-numbers');
   var slides_amount = slides_numbers.find('li.navNumbers').length;
   slides_numbers.css('width', '' + ((parseInt(slides_amount + 1) * 32) - 28) + 'px');
   var add_last_button = $('._add_new_slide_options_in_last_position');
-  if(parseInt(slides_numbers.css('width')) < (parseInt($(window).outerWidth()) - 100)) {
+  if(parseInt(slides_numbers.css('width')) < (parseInt($window.outerWidth()) - 100)) {
     add_last_button.css('left', '' + (slides_numbers.find('li.navNumbers').last().position().left + 40) + 'px');
   }
   slides_numbers.sortable({
@@ -1322,8 +1322,8 @@ Initialize slides position to center.
 @for LessonEditorSlidesNavigation
 **/
 function initLessonEditorPositions() {
-  WW = parseInt($(window).outerWidth());
-  WH = parseInt($(window).outerHeight());
+  WW = parseInt($window.outerWidth());
+  WH = parseInt($window.outerHeight());
   $('#main').css('width', WW);
   $('ul#slides').css('width', (($('ul#slides li').length + 2) * 1000));
   $('ul#slides').css('top', ((WH / 2) - 295) + 'px');
