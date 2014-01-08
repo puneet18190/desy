@@ -5,7 +5,7 @@
   documents = {}
 %>
 
-<manifest <%= scorm_manifest_header lesson %>>
+<%= render_with_default_context partial: 'manifest_header.xml', :locals => {:lesson => lesson} %>
   
   <metadata>
     <schema>ADL SCORM</schema>
