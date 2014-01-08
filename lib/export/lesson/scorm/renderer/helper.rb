@@ -26,132 +26,15 @@ module Export
             SCORM_LOCALE
           end
           
-          def scorm_metametadata
-            '
-              <metaMetadata>
-                <metadataSchema>LOMv1.0</metadataSchema>
-                <language>en</language>
-              </metaMetadata>
-            '
-          end
-          
-          def scorm_requirements
-            '
-              <requirement>
-                <orComposite>
-                  <type>
-                    <source>LOMv1.0</source>
-                    <value>browser</value>
-                  </type>
-                  <name>
-                    <source>LOMv1.0</source>
-                    <value>ms-internet explorer</value>
-                  </name>
-                  <minimumVersion>9.0</minimumVersion>
-                </orComposite>
-              </requirement>
-              <requirement>
-                <orComposite>
-                  <type>
-                    <source>LOMv1.0</source>
-                    <value>browser</value>
-                  </type>
-                  <name>
-                    <source>LOMv1.0</source>
-                    <value>webkit</value>
-                  </name>
-                </orComposite>
-              </requirement>
-              <requirement>
-                <orComposite>
-                  <type>
-                    <source>LOMv1.0</source>
-                    <value>browser</value>
-                  </type>
-                  <name>
-                    <source>LOMv1.0</source>
-                    <value>mozilla</value>
-                  </name>
-                </orComposite>
-              </requirement>
-              <requirement>
-                <orComposite>
-                  <type>
-                    <source>LOMv1.0</source>
-                    <value>browser</value>
-                  </type>
-                  <name>
-                    <source>LOMv1.0</source>
-                    <value>safari</value>
-                  </name>
-                </orComposite>
-              </requirement>
-              <requirement>
-                <orComposite>
-                  <type>
-                    <source>LOMv1.0</source>
-                    <value>browser</value>
-                  </type>
-                  <name>
-                    <source>LOMv1.0</source>
-                    <value>opera</value>
-                  </name>
-                </orComposite>
-              </requirement>
-            '
-          end
-          
           def scorm_school_level(school_level)
             resp = SCORM_SCHOOL_LEVELS[school_level]
             resp.nil? ? 'school' : resp
-          end
-          
-          def scorm_copyrights
-            "
-              <rights>
-                <copyrightAndOtherRestrictions>
-                  <source>LOMv1.0</source>
-                  <value>yes</value>
-                </copyrightAndOtherRestrictions>
-                <description>
-                  <string language=\"en\">#{SETTINGS['application_copyright']}. For information about copyright contact Morgan S.P.A. via degli Olmetti 36</string>
-                </description>
-              </rights>
-            "
           end
           
           def scorm_slide_title(slide)
             return 'Cover' if slide.cover?
             resp = "Slide #{slide.position - 1}"
             resp = "#{resp} - #{slide.title}" if slide.title.present?
-            resp
-          end
-          
-          def scorm_slide_metadata(slide)
-            "
-              <metadata>
-                <lom>
-                  <general>
-                    <title>
-                      <string language=\"#{scorm_locale}\">#{scorm_slide_title slide}</string>
-                    </title>
-                    <language>#{scorm_locale}</language>
-                    <aggregationLevel>
-                      <source>LOMv1.0</source>
-                      <value>1</value>
-                    </aggregationLevel>
-                  </general>
-                  #{scorm_metametadata}
-                </lom>
-              </metadata>
-            "
-          end
-          
-          def scorm_math_images(slide)
-            resp = ''
-            slide.math_images.each do |mi|
-              resp = "#{resp}<file href=\"html/math_images/#{mi.code}.png\"/>" # TODO schorm farlo sul serio
-            end
             resp
           end
           

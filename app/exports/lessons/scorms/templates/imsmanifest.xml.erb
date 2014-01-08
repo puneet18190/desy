@@ -5,7 +5,7 @@
   documents = {}
 %>
 
-<%= render_with_default_context partial: 'manifest_header.xml', :locals => {:lesson => lesson} %>
+<%= render_with_default_context :partial => 'manifest_header.xml', :locals => {:lesson => lesson} %>
   
   <metadata>
     <schema>ADL SCORM</schema>
@@ -23,7 +23,7 @@
         <description>
           <string language="<%= scorm_locale %>"><%= lesson.description %></string>
         </description>
-        <%= render_with_default_context partial: 'scorm_tags.xml', :locals => {:tags => lesson.tags} %>
+        <%= render_with_default_context :partial => 'scorm_tags.xml', :locals => {:tags => lesson.tags} %>
         <coverage>
           <string language="en">Lesson about <%= lesson.subject.description %></string>
         </coverage>
@@ -33,11 +33,11 @@
           <source>LOMv1.0</source>
           <value>final</value>
         </status>
-        <%= render_with_default_context partial: 'scorm_author.xml', :locals => {:author => lesson.user.full_name, :date => lesson.updated_at, :type => 'Date of last modification'} %>
+        <%= render_with_default_context :partial => 'scorm_author.xml', :locals => {:author => lesson.user.full_name, :date => lesson.updated_at, :type => 'Date of last modification'} %>
       </lifeCycle>
-      <%= scorm_metametadata %>
+      <%= render_with_default_context :partial => 'metametadata.xml' %>
       <technical>
-        <%= scorm_requirements %>
+        <%= render_with_default_context :partial => 'requirements.xml' %>
       </technical>
       <educational>
         <interactivityType>
@@ -58,7 +58,7 @@
         </context>
         <language><%= scorm_locale %></language>
       </educational>
-      <%= scorm_copyrights %>
+      <%= render_with_default_context :partial => 'copyrights.xml' %>
     </lom>
   </metadata>
   
@@ -68,7 +68,7 @@
       <% lesson.slides.each do |slide| %>
         <item identifier="activity_slide_<%= slide.id %>" identifierref="slide_<%= slide.id %>">
           <title><%= scorm_slide_title slide %></title>
-          <%= scorm_slide_metadata slide %>
+          <%= render_with_default_context :partial => 'slide_metadata.xml', :locals => {:slide => slide} %>
         </item>
       <% end %>
       <imsss:sequencing>
@@ -86,7 +86,7 @@
               <value>2</value>
             </aggregationLevel>
           </general>
-          <%= scorm_metametadata %>
+          <%= render_with_default_context :partial => 'metametadata.xml' %>
         </lom>
       </metadata>
     </organization>
@@ -96,7 +96,7 @@
     <% lesson.slides.each do |slide| %>
       <resource identifier="slide_<%= slide.id %>" type="webcontent" adlcp:scormType="asset" href="html/slide<%= slide.id %>.html">
         <file href="html/slide<%= slide.id %>.html"/>
-        <%= scorm_math_images slide %>
+        <%= render_with_default_context :partial => 'math_images.xml', :locals => {:slide => slide} %>
         <% my_media_elements_slides = [] %>
         <% slide.media_elements_slides.each do |mes| %>
           <% if !my_media_elements_slides.include?(mes.media_element_id) %>
@@ -128,7 +128,7 @@
             </general>
             <technical>
               <format>text/html</format>
-              <%= scorm_requirements %>
+              <%= render_with_default_context :partial => 'requirements.xml' %>
             </technical>
             <educational>
               <learningResourceType>
@@ -136,8 +136,8 @@
                 <value>slide</value>
               </learningResourceType>
             </educational>
-            <%= scorm_copyrights %>
-            <%= scorm_metametadata %>
+            <%= render_with_default_context :partial => 'copyrights.xml' %>
+            <%= render_with_default_context :partial => 'metametadata.xml' %>
           </lom>
         </metadata>
       </resource>
@@ -150,9 +150,9 @@
           <lom>
             <%= scorm_document_general_metadata document %>
             <lifeCycle>
-              <%= render_with_default_context partial: 'scorm_author.xml', :locals => {:author => document.user.full_name, :date => document.updated_at, :type => 'Date of last modification'} %>
+              <%= render_with_default_context :partial => 'scorm_author.xml', :locals => {:author => document.user.full_name, :date => document.updated_at, :type => 'Date of last modification'} %>
             </lifeCycle>
-            <%= scorm_metametadata %>
+            <%= render_with_default_context :partial => 'metametadata.xml' %>
           </lom>
         </metadata>
       </resource>
@@ -173,12 +173,12 @@
                 <source>LOMv1.0</source>
                 <value>atomic</value>
               </structure>
-              <%= render_with_default_context partial: 'scorm_tags.xml', :locals => {:tags => media_element.tags} %>
+              <%= render_with_default_context :partial => 'scorm_tags.xml', :locals => {:tags => media_element.tags} %>
             </general>
             <lifeCycle>
-              <%= render_with_default_context partial: 'scorm_author.xml', :locals => {:author => media_element.user.full_name, :date => media_element.updated_at, :type => 'Date of last modification'} %>
+              <%= render_with_default_context :partial => 'scorm_author.xml', :locals => {:author => media_element.user.full_name, :date => media_element.updated_at, :type => 'Date of last modification'} %>
             </lifeCycle>
-            <%= scorm_metametadata %>
+            <%= render_with_default_context :partial => 'metametadata.xml' %>
           </lom>
         </metadata>
       </resource>

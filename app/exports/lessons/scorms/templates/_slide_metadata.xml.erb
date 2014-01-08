@@ -1,0 +1,17 @@
+<metadata>
+  <lom>
+    <general>
+      <title>
+        <string language="<%= scorm_locale %>">
+          <%= scorm_slide_title slide %>
+        </string>
+      </title>
+      <language><%= scorm_locale %></language>
+      <aggregationLevel>
+        <source>LOMv1.0</source>
+        <value>1</value>
+      </aggregationLevel>
+    </general>
+    <%= render_with_default_context :partial => 'metametadata.xml' %>
+  </lom>
+</metadata>
