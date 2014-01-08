@@ -54,14 +54,14 @@ $(document).ready(function() {
   initializeGlobalVariables();
   browsersDocumentReady();
   globalDocumentReady();
-  if($('#audio_editor').length > 0) { // in audio editor
+  if($('#audio_editor').length > 0) { // (1) in audio editor
     audioEditorDocumentReady();
     galleriesDocumentReady();
     mediaElementEditorDocumentReady();
     playersDocumentReadyAudioEditor();
     playersDocumentReadyGeneral();
   }
-  if($('#dashboard_container').length > 0) { // in dashboard
+  if($('#dashboard_container').length > 0) { // (2) in dashboard
     commonLessonsDocumentReady();
     commonMediaElementsDocumentReady();
     dashboardDocumentReady();
@@ -74,24 +74,24 @@ $(document).ready(function() {
     reportsDocumentReady();
     sectionNotificationsDocumentReady();
   }
-  if($('#my_documents').length > 0) { // in section documents
+  if($('#my_documents').length > 0) { // (3) in section documents
     documentsDocumentReady();
     documentsDocumentReadyUploader();
     sectionDocumentsDocumentReady();
     notificationsDocumentReady();
     sectionNotificationsDocumentReady();
   }
-  if($('#image_editor').length > 0 || $('#image_gallery_for_image_editor').length > 0) { // in image editor
+  if($('#image_editor').length > 0 || $('#image_gallery_for_image_editor').length > 0) { // (4) in image editor
     galleriesDocumentReady();
     imageEditorDocumentReady();
     mediaElementEditorDocumentReady();
   }
-  if($('.lesson-editor-container').length > 0) { // in lesson editor
+  if($('.lesson-editor-container').length > 0) { // (5) in lesson editor
     galleriesDocumentReady();
     lessonEditorDocumentReady();
     playersDocumentReadyGeneral();
   }
-  if($('#my_lessons').length > 0) { // in section lessons
+  if($('#my_lessons').length > 0) { // (6) in section lessons
     commonLessonsDocumentReady();
     lessonButtonsDocumentReady();
     notificationsDocumentReady();
@@ -100,7 +100,7 @@ $(document).ready(function() {
     sectionLessonsDocumentReady();
     sectionNotificationsDocumentReady();
   }
-  if($('.lesson-viewer.layout').length > 0) { // in lesson viewer
+  if($('.lesson-viewer.layout').length > 0) { // (7) in lesson viewer
     initializeLessonViewer();
     lessonViewerDocumentReadyPlaylist();
     lessonViewerDocumentReadySlidesNavigation();
@@ -109,7 +109,7 @@ $(document).ready(function() {
     lessonviewerDocumentReadySeparated();
     playersDocumentReadyGeneral();
   }
-  if($('#my_media_elements').length > 0) { // in section elements
+  if($('#my_media_elements').length > 0) { // (8) in section elements
     commonMediaElementsDocumentReady();
     mediaElementButtonsDocumentReady();
     mediaElementLoaderDocumentReady();
@@ -119,18 +119,18 @@ $(document).ready(function() {
     sectionMediaElementsDocumentReady();
     sectionNotificationsDocumentReady();
   }
-  if($html.hasClass('prelogin-layout')) { // in prelogin
+  if($html.hasClass('prelogin-layout')) { // (9) in prelogin
     locationsDocumentReady();
     preloginDocumentReady();
     purchaseCodeRegistrationDocumentReady();
   }
-  if($('#profile_title_bar').length > 0) { // in section profile
+  if($('#profile_title_bar').length > 0) { // (10) in section profile
     locationsDocumentReady();
     notificationsDocumentReady();
     profileDocumentReady();
     sectionNotificationsDocumentReady();
   }
-  if($('#search_lessons_main_page').length > 0 && $('#search_media_elements_main_page').length > 0) { // in search engine
+  if($('#search_lessons_main_page').length > 0 && $('#search_media_elements_main_page').length > 0) { // (11) in search engine
     commonLessonsDocumentReady();
     commonMediaElementsDocumentReady();
     lessonButtonsDocumentReady();
@@ -142,13 +142,13 @@ $(document).ready(function() {
     sectionNotificationsDocumentReady();
     sectionSearchDocumentReady();
   }
-  if($('#video_editor').length > 0) { // in video editor
+  if($('#video_editor').length > 0) { // (12) in video editor
     galleriesDocumentReady();
     mediaElementEditorDocumentReady();
     playersDocumentReadyGeneral();
     playersDocumentReadyVideoEditor();
   }
-  if($('#my_virtual_classroom').length > 0) { // in virtual classroom
+  if($('#my_virtual_classroom').length > 0) { // (13) in virtual classroom
     notificationsDocumentReady();
     sectionNotificationsDocumentReady();
   }
