@@ -65,7 +65,7 @@
   <organizations default="slides">
     <organization identifier="slides">
       <title><%= lesson.title %></title>
-      <% lesson.slides.each do |slide| %>
+      <% lesson.slides.order(:position).each do |slide| %>
         <item identifier="activity_slide_<%= slide.id %>" identifierref="slide_<%= slide.id %>">
           <title><%= scorm_slide_title slide %></title>
           <%= render :partial => 'slide_metadata.xml', :locals => {:slide => slide} %>
@@ -93,7 +93,7 @@
   </organizations>
   
   <resources>
-    <% lesson.slides.each do |slide| %>
+    <% lesson.slides.order(:id).each do |slide| %>
       <resource identifier="slide_<%= slide.id %>" type="webcontent" adlcp:scormType="asset" href="html/slide<%= slide.id %>.html">
         <file href="html/slide<%= slide.id %>.html"/>
         <%= render :partial => 'math_images.xml', :locals => {:slide => slide} %>
