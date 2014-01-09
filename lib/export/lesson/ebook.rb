@@ -92,7 +92,7 @@ module Export
           add_template archive, locals, CONTENTS_FOLDER_NAME.join('toc.xhtml')
 
           slides.each_with_object(CONTENTS_FOLDER_NAME.join 'slide.xhtml') do |slide, slide_view_path|
-            add_template archive, { slide: slide }, CONTENTS_FOLDER_NAME.join(slide_filename slide), slide_view_path
+            add_template archive, { lesson: lesson, slide: slide }, CONTENTS_FOLDER_NAME.join(slide_filename slide), slide_view_path
           end
 
           media_elements_files(exclude_versions: [ :thumb ]).each do |path|

@@ -7,9 +7,15 @@
 
    <metadata>
     <dc:identifier id="<%= package_id %>">urn:uuid:<%= lesson.uuid %></dc:identifier>
-    <meta property="dcterms:modified"><%= dcterms_modified(lesson) %></meta>
     <dc:title><%= lesson.title %></dc:title>
-    <dc:language>en</dc:language>
+    <dc:language><%= I18n.default_locale %></dc:language>
+    <dc:creator><%= lesson.user.full_name %></dc:creator>
+    <dc:date><%= dc_date lesson %></dc:date>
+    <dc:description><%= lesson.description %></dc:description>
+    <dc:publisher><%= SETTINGS['application_name'] %></dc:publisher>
+    <dc:rights><%= SETTINGS['application_copyright'] %></dc:rights>
+    <dc:subject><%= lesson.subject %></dc:subject>
+    <meta property="dcterms:modified"><%= dcterms_modified lesson %></meta>
   </metadata>
 
   <manifest>

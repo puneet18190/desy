@@ -8,6 +8,6 @@
     <link rel="stylesheet" type="text/css" href="assets/application.css"/>
   </head>
   <body>
-    <%= render partial: "OEBPS/slides/#{slide.kind.downcase}.xhtml", locals: { slide: slide } %>
+    <%= render partial: "OEBPS/slides/#{slide.kind.downcase}.xhtml", locals: { lesson: lesson, slide: slide } %>
   </body>
 </html>

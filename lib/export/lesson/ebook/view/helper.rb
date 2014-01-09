@@ -20,7 +20,7 @@ module Export
 
           # TODO spostarlo in SETTINGS
           PACKAGE_ID                      = SETTINGS['ebooks_package_id']
-          DCTERMS_MODIFIED_FORMAT         = '%Y-%m-%dT%H:%M:%SZ'
+          DC_DATE_FORMAT                  = '%Y-%m-%dT%H:%M:%SZ'
           UNKNOWN_MIME_TYPE               = 'application/octet-stream'
           MEDIA_ELEMENT_MIME_TYPES        = Media::MIME_TYPES
           MATH_IMAGES_ARCHIVE_FOLDER_NAME = Shared::MATH_IMAGES_ARCHIVE_FOLDER_NAME
@@ -43,7 +43,11 @@ module Export
           end
 
           def dcterms_modified(lesson)
-            lesson.updated_at.utc.strftime DCTERMS_MODIFIED_FORMAT
+            lesson.updated_at.utc.strftime DC_DATE_FORMAT
+          end
+
+          def dc_date(lesson)
+            lesson.created_at.utc.strftime DC_DATE_FORMAT
           end
 
           def slide_path(slide)
