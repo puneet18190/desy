@@ -19,7 +19,7 @@ module Export
         module Helper
 
           # TODO spostarlo in SETTINGS
-          PACKAGE_ID                      = 'DESYLesson'
+          PACKAGE_ID                      = SETTINGS['ebooks_package_id']
           DCTERMS_MODIFIED_FORMAT         = '%Y-%m-%dT%H:%M:%SZ'
           UNKNOWN_MIME_TYPE               = 'application/octet-stream'
           MEDIA_ELEMENT_MIME_TYPES        = Media::MIME_TYPES
@@ -30,14 +30,12 @@ module Export
           require 'export/lesson/shared/ebook_and_ebook_view'
           include Shared::EbookAndEbookView
 
-          def package_id
-            PACKAGE_ID
+          def image_style(image)
+            render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml', locals: { image_media_elements_slide: image }
           end
 
-          # TODO rimuovere
-          def render_slide(slide, locals = {})
-            render partial: "lesson_viewer/slides/#{slide.kind}",
-                   locals:  { slide: slide }.merge(locals)
+          def package_id
+            PACKAGE_ID
           end
 
           def stylesheet_path

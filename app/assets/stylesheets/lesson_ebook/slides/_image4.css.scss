@@ -63,9 +63,9 @@ $i: 887px;
 @while $i > 431 {
   @media all and (width: $i) {
     .images figure div {
-      $width: ( $i - ( 16 * 3 ) ) / 2;
+      $width: floor( ( $i - ( 16 * 3 ) ) / 2 );
       width: $width;
-      height: 265 * $width / 420;
+      height: floor( 265 * $width / 420 );
     }
   }
   $i: $i - 1;
@@ -73,14 +73,10 @@ $i: 887px;
 
 $i: $i - 1;
 @media all and (max-width: $i) {
-  .images figure {
-    width: 100%;
-    $width: ( $i - ( 16 * 3 ) ) / 2 ;
-    margin-bottom: 1em;
-  }
-
-  .images.images0 {
-    margin-bottom: 0;
+  .images figure div {
+    $width: floor( ( $i - ( 16 * 3 ) ) / 2 );
+    width: $width;
+    height: floor( 265 * $width / 420 );
   }
 }
 

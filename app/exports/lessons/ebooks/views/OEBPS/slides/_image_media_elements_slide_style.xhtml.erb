@@ -1,9 +1,5 @@
-<%=
-if image_media_elements_slide
-  %[background-image:    url(&quot;#{image_path(image_media_elements_slide.media_element)}&quot;) !important;
-    background-position: #{image_media_elements_slide.background_position} !important;
-    background-size:     #{image_media_elements_slide.background_size} !important;].gsub("\n", '').html_safe
-else
-  ''
-end 
+<%= %[ background-image:    url(&quot;#{h image_path(image_media_elements_slide.media_element)}&quot;);
+       background-position: #{h image_media_elements_slide.background_position.to_s};
+       background-size:     #{h image_media_elements_slide.background_size.to_s}
+     ].strip.gsub(/\s+/, ' ').html_safe if image_media_elements_slide
 %>

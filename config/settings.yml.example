@@ -130,3 +130,5 @@ tempfiles_prefix: 'desy'
 purchase_administrator: 'purchases@example.com'
 # Cathegories of subjects (optional)
 subject_cathegories: [["Scienze", [1, 2, 3]], ["Letterature", [4, 5, 6]]]
+# Application ebooks identifier
+ebooks_package_id: DESYLesson
