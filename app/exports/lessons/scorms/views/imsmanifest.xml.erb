@@ -103,7 +103,7 @@
             <dependency identifierref="media_element_<%= mes.media_element_id %>"/>
             <%
               my_media_elements_slides << mes.media_element_id
-              media_elements[mes.media_element] = true
+              media_elements[mes.media_element_id] = true
             %>
           <% end %>
         <% end %>
@@ -113,7 +113,7 @@
             <dependency identifierref="document_<%= ds.document_id %>"/>
             <%
               my_documents_slides << ds.document_id
-              documents[ds.document] = true
+              documents[ds.document_id] = true
             %>
           <% end %>
         <% end %>
@@ -142,7 +142,7 @@
         </metadata>
       </resource>
     <% end %>
-    <% documents.keys.each do |document| %>
+    <% Document.where(:id => documents.keys).order(:id).each do |document| %>
       <resource identifier="document_<%= document.id %>" type="webcontent" adlcp:scormType="asset">
         <%= render :partial => 'document_file.xml', :locals => {:document => document} %>
         <file href="html/assets/documents/<%= document.type %>.svg"/>
@@ -157,7 +157,7 @@
         </metadata>
       </resource>
     <% end %>
-    <% media_elements.keys.each do |media_element| %>
+    <% MediaElement.where(:id => media_elements.keys).order(:id).each do |media_element| %>
       <resource identifier="media_element_<%= media_element.id %>" type="webcontent" adlcp:scormType="asset">
         <%= render :partial => 'media_element_files.xml', :locals => {:media_element => media_element} %>
         <metadata>
