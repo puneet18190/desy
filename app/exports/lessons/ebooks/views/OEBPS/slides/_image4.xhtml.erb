@@ -7,8 +7,7 @@
       <% images_slice.each_with_index do |image, j| -%>
         <% figure_class = "image#{j}" %>
         <figure class="<%= figure_class %>">
-          <% style = render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml', locals: { image_media_elements_slide: image } -%>
-          <div style="<%= style %>"></div>
+          <div style="<%= image_style image %>"></div>
           <figcaption><%= image.caption if image %></figcaption>
         </figure>
       <% end -%>
