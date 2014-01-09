@@ -1,10 +1,4 @@
-<%
-  image   = slide.media_elements_at
-  author  = slide.lesson.user
-  subject = slide.lesson.subject
-%>
-
-<div class="image" style="<%= image_style image %>"></div>
-<div class="subject"><%= subject.description %></div>
-<h1 class="title"><%= slide.lesson.title %></h1>
-<div class="author"><%= author.full_name %></div>
+<div class="image" style="<%= image_style slide.media_elements_at %>"></div>
+<div class="subject"><%= lesson.subject.description %></div>
+<h1 class="title"><%= lesson.title %></h1>
+<div class="author"><%= lesson.user.full_name %></div>

@@ -155,6 +155,11 @@ class Slide < ActiveRecord::Base
     end
   end
 
+  # Returns the math images related to this slide. If +modality+ is +:full_path+ it returns the absolute path, otherwise it returns the file names (the default value is +nil+). The results are unique.
+  def math_images_paths(modality = nil)
+    math_images.to_a(modality).uniq_by{ |v| v.basename }
+  end
+
   # Getter for math images
   def math_images
     return metadata.math_images = MathImages.new([], id) unless metadata.math_images
