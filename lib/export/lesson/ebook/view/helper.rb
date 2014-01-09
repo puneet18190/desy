@@ -19,7 +19,7 @@ module Export
         module Helper
 
           # TODO spostarlo in SETTINGS
-          PACKAGE_ID                      = 'DESYLesson'
+          PACKAGE_ID                      = SETTINGS['ebooks_package_id']
           DCTERMS_MODIFIED_FORMAT         = '%Y-%m-%dT%H:%M:%SZ'
           UNKNOWN_MIME_TYPE               = 'application/octet-stream'
           MEDIA_ELEMENT_MIME_TYPES        = Media::MIME_TYPES
