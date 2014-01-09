@@ -1,8 +1,4 @@
 <%
-  my_duration = ''
-  if ['mp4', 'webm', 'm4a', 'ogg'].include?(extension)
-    my_duration = media_element.min_duration # TODO schorm riempi la duration con modello pagina 103, wrappalo dentro una tag apposita -- usa un apposito helper
-  end
   my_url = case extension
     when 'mp4'
       media_element.mp4_url(UrlTypes::FULL_URL)
@@ -29,7 +25,14 @@
       <format><%= media_element.sti_type.downcase %>/<%= extension %></format>
       <size><%= '123456' %></size> <!--  TODO schorm metodo size -->
       <location><%= my_url %></location>
-      <%= my_duration %>
+      <% if ['mp4', 'webm', 'm4a', 'ogg'].include?(extension) %>
+        <duration>
+          <duration><%= ims_duration(media_element.min_duration) %></duration>
+          <description>
+            <string language="en"><%= "Length of the #{media_element.sti_type.downcase}" %></string>
+          </description>
+        </duration>
+      <% end %>
     </technical>
   </lom>
 </metadata>

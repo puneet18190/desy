@@ -34,6 +34,20 @@ module Export
             resp.html_safe
           end
           
+          def ims_duration(duration)
+            seconds = duration % 60
+            duration = duration / 60
+            minutes = duration % 60
+            hours = duration / 60
+            if hours > 0
+              return "PT#{hours}H#{minutes}M#{seconds}S"
+            elsif minutes > 0
+              return "PT#{minutes}M#{seconds}S"
+            else
+              return "PT#{seconds}S"
+            end
+          end
+          
         end
       end
     end
