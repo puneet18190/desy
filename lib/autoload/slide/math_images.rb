@@ -57,7 +57,7 @@ class Slide::MathImages < Set
 
   def to_a(modality = nil)
     case modality
-    when :with_folder
+    when :full_path
       _folder = folder
       super().map{ |v| _folder.join(v) }
     else

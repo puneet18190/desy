@@ -283,6 +283,11 @@ class Lesson < ActiveRecord::Base
     end
     Bookmark.joins("INNER JOIN lessons ON lessons.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'Lesson'").where('lessons.is_public = ? AND lessons.user_id != ? AND lessons.subject_id IN (?) AND bookmarks.user_id = ?', true, an_user_id, subject_ids, an_user_id).any?
   end
+
+  # Returns the math images related to the slides of the lesson. If +modality+ is +:full_path+ it returns the absolute path, otherwise it returns the file names (the default value is +nil+). The results are unique.
+  def math_images_paths(modality = nil)
+    slides.map{ |r| r.math_images.to_a(modality) }.flatten.uniq_by{ |v| v.basename }
+  end
   
   # === Description
   #
