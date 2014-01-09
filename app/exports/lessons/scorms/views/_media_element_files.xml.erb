@@ -7,7 +7,7 @@
   </file>
 <% elsif media_element.sti_type == 'Image' %>
   <file href="<%= media_element.url(UrlTypes::SCORM) %>">
-    <%= render :partial => 'media_element_file_metadata.xml', :locals => {:media_element => media_element, :extension => 'jpeg'} %> <!-- TODO schorm estrai anche estensione, invece di mettere quella finta -->
+    <%= render :partial => 'media_element_file_metadata.xml', :locals => {:media_element => media_element, :extension => media_element.extension} %>
   </file>
 <% elsif media_element.sti_type == 'Audio' %>
   <file href="<%= media_element.m4a_url(UrlTypes::SCORM) %>">
