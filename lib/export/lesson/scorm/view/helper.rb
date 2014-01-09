@@ -22,6 +22,10 @@ module Export
             SCORM_LOCALE
           end
           
+          def default_url_options
+            SETTINGS['application']['default_url_options']
+          end
+          
           def scorm_school_level(school_level)
             resp = SCORM_SCHOOL_LEVELS[school_level]
             resp.nil? ? 'school' : resp.html_safe

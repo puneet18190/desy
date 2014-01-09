@@ -1,16 +1,17 @@
 <%
-  my_url = case extension
+  array = case extension
     when 'mp4'
-      media_element.mp4_url(UrlTypes::FULL_URL)
+      [media_element.mp4_url(UrlTypes::FULL_URL), media_element.size(:mp4)]
     when 'webm'
-      media_element.webm_url(UrlTypes::FULL_URL)
+      [media_element.webm_url(UrlTypes::FULL_URL), media_element.size(:webm)]
     when 'm4a'
-      media_element.m4a_url(UrlTypes::FULL_URL)
+      [media_element.m4a_url(UrlTypes::FULL_URL), media_element.size(:m4a)]
     when 'ogg'
-      media_element.ogg_url(UrlTypes::FULL_URL)
+      [media_element.ogg_url(UrlTypes::FULL_URL), media_element.size(:ogg)]
     else
-      media_element.url(UrlTypes::FULL_URL)
+      [media_element.url(UrlTypes::FULL_URL), media_element.size]
   end
+  my_url, my_size = array[0], array[1]
 %>
 
 <metadata>
@@ -23,7 +24,7 @@
     </general>
     <technical>
       <format><%= media_element.sti_type.downcase %>/<%= extension %></format>
-      <size><%= '123456' %></size> <!--  TODO schorm metodo size -->
+      <size><%= my_size %></size>
       <location><%= my_url %></location>
       <% if ['mp4', 'webm', 'm4a', 'ogg'].include?(extension) %>
         <duration>
