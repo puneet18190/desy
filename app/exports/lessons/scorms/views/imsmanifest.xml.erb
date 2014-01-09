@@ -150,7 +150,7 @@
           <lom>
             <%= render :partial => 'document_general_metadata.xml', :locals => {:document => document} %>
             <lifeCycle>
-              <%= render :partial => 'scorm_author.xml', :locals => {:author => document.user.full_name, :date => document.updated_at, :type => 'Date of last modification'} %>
+              <%= render :partial => 'scorm_author.xml', :locals => {:author => document.user.full_name, :date => document.updated_at, :type => 'Date of creation'} %>
             </lifeCycle>
             <%= render :partial => 'metametadata.xml' %>
           </lom>
