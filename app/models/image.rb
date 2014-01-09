@@ -394,6 +394,11 @@ class Image < MediaElement
     Media::Image::Editing::Crop.new(current_editing_image, current_editing_image, x1, y1, x2, y2).run
     true
   end
+
+  # Image file extension (without dot)
+  def extension
+    media.try(:file).try(:extension)
+  end
   
   private
   
