@@ -3,6 +3,7 @@
 <%
   media_elements = {}
   documents = {}
+  math_images = []
 %>
 
 <%= render :partial => 'manifest_header.xml', :locals => {:lesson => lesson} %>
@@ -96,7 +97,16 @@
     <% lesson.slides.order(:id).each do |slide| %>
       <resource identifier="slide_<%= slide.id %>" type="webcontent" adlcp:scormType="asset" href="html/slide<%= slide.id %>.html">
         <file href="html/slide<%= slide.id %>.html"/>
-        <%= render :partial => 'math_images.xml', :locals => {:slide => slide} %>
+        <% my_documents_slides = [] %>
+        <% slide.documents_slides.each do |ds| %>
+          <% if !my_documents_slides.include?(ds.document_id) %>
+            <dependency identifierref="document_<%= ds.document_id %>"/>
+            <%
+              my_documents_slides << ds.document_id
+              documents[ds.document_id] = true
+            %>
+          <% end %>
+        <% end %>
         <% my_media_elements_slides = [] %>
         <% slide.media_elements_slides.each do |mes| %>
           <% if !my_media_elements_slides.include?(mes.media_element_id) %>
@@ -107,15 +117,17 @@
             %>
           <% end %>
         <% end %>
-        <% my_documents_slides = [] %>
-        <% slide.documents_slides.each do |ds| %>
-          <% if !my_documents_slides.include?(ds.document_id) %>
-            <dependency identifierref="document_<%= ds.document_id %>"/>
-            <%
-              my_documents_slides << ds.document_id
-              documents[ds.document_id] = true
-            %>
-          <% end %>
+        <% slide.math_images_paths.each do |mi| %>
+          <%
+            math_img_code = math_images.find_index(mi)
+            if math_img_code.nil?
+              math_images << mi
+              math_img_code = math_images.length
+            else
+              math_img_code += 1
+            end
+          %>
+          <dependency identifierref="math_image_<%= math_img_code %>"/>
         <% end %>
         <%= render :partial => 'slide_dependencies.xml', :locals => {:slide => slide} %>
         <metadata>
@@ -181,6 +193,26 @@
             <%= render :partial => 'metametadata.xml' %>
           </lom>
         </metadata>
+      </resource>
+    <% end %>
+    <% math_images.each_with_index do |mi, index| %>
+      <resource identifier="math_image_<%= index + 1 %>" type="webcontent" adlcp:scormType="asset">
+        <file href="html/math_images/<%= mi %>">
+          <metadata>
+            <lom>
+              <general>
+                <identifier>
+                  <catalog>URI</catalog>
+                  <entry>url di questa math image</entry> <!-- TODO schorm -->
+                </identifier>
+              </general>
+              <technical>
+                <format>image/png</format>
+                <location>url di questa math image</location> <!-- TODO schorm -->
+              </technical>
+            </lom>
+          </metadata>
+        </file>
       </resource>
     <% end %>
     <%= render :partial => 'base_packages.xml' %>
