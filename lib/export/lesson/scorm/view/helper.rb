@@ -1,26 +1,22 @@
-require 'pathname'
-
-require 'mime/types'
-
-require 'media'
-require 'slide/math_images'
-
 require 'export'
 require 'export/lesson'
 require 'export/lesson/scorm'
-require 'export/lesson/scorm/renderer'
+require 'export/lesson/scorm/view'
 require 'export/lesson/shared'
-require 'export/lesson/shared/scorm_and_scorm_renderer'
+require 'export/lesson/shared/scorm_and_scorm_view'
 
 module Export
   module Lesson
     class Scorm
-      class Renderer
+      class View
         module Helper
           include Rails.application.routes.url_helpers
           
           SCORM_LOCALE         = I18n.default_locale
           SCORM_SCHOOL_LEVELS  = {}
+          
+          require 'export/lesson/shared/scorm_and_scorm_view'
+          include Shared::ScormAndScormView
           
           def scorm_locale
             SCORM_LOCALE

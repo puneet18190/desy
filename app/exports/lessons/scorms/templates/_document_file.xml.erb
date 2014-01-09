@@ -1,16 +1,16 @@
-<file href="html/documents/<%= document.id %>/<%= File.basename document.url %>">
+<file href="<%= document.url(UrlTypes::SCORM) %>">
   <metadata>
     <lom>
       <general>
         <identifier>
           <catalog>URI</catalog>
-          <entry><%= document.url %></entry> <!-- TODO schorm sistema url documento con replace -->
+          <entry><%= document.url(UrlTypes::FULL_URL) %></entry>
         </identifier>
       </general>
       <technical>
         <format>document/<%= document.extension %></format>
         <size><%= document.size %></size>
-        <location><%= document.url %></location> <!-- TODO schorm sistema url documento con replace -->
+        <location><%= document.url(UrlTypes::FULL_URL) %></location>
       </technical>
     </lom>
   </metadata>

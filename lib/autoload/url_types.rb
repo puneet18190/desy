@@ -2,8 +2,10 @@ require 'pathname'
 
 module UrlTypes
 
-  EXPORT = :export
-
+  EXPORT   = :export
+  FULL_URL = :full_url
+  SCORM    = :scorm
+  
   module InstanceMethods
 
     private
@@ -13,6 +15,10 @@ module UrlTypes
 
       when EXPORT
         Pathname(url).relative_path_from(Pathname('/')).to_s
+      when FULL_URL
+        URI::HTTP.build( SETTINGS['application']['default_url_options'].merge(path: url) ).to_s
+      when SCORM
+        File.join 'html', url
       else
         url
       end
