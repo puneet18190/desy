@@ -117,13 +117,12 @@
             %>
           <% end %>
         <% end %>
-        <% math_images_full_paths_for_slide = slide.math_images_paths(:full_path) %>
-        <% slide.math_images_paths.each_with_index do |mi, j| %>
+        <% slide.math_images_paths.each do |mi| %>
           <%
-            mif = math_images_full_paths_for_slide[j]
-            math_img_code = math_images.find_index([mi, mif])
+            mi = mi.to_s
+            math_img_code = math_images.find_index(mi)
             if math_img_code.nil?
-              math_images << [mi, mif]
+              math_images << mi
               math_img_code = math_images.length
             else
               math_img_code += 1
@@ -199,18 +198,11 @@
     <% end %>
     <% math_images.each_with_index do |mi, index| %>
       <resource identifier="math_image_<%= index + 1 %>" type="webcontent" adlcp:scormType="asset">
-        <file href="html/math_images/<%= mi[0] %>">
+        <file href="html/math_images/<%= mi %>">
           <metadata>
             <lom>
-              <general>
-                <identifier>
-                  <catalog>URI</catalog>
-                  <entry><%= mi[1] %></entry>
-                </identifier>
-              </general>
               <technical>
                 <format>image/png</format>
-                <location><%= mi[1] %></location>
               </technical>
             </lom>
           </metadata>
