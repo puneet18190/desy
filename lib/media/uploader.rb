@@ -80,6 +80,10 @@ module Media
       end
     end
 
+    def size(format)
+      File.size path(format)
+    end
+
     # Filename of the media relative to the supplied format
     def filename(format)
       "#{filename_without_extension}.#{format}"

@@ -399,6 +399,11 @@ class Image < MediaElement
   def extension
     media.try(:file).try(:extension)
   end
+
+  # Image file size
+  def size
+    media.try(:size)
+  end
   
   private
   
