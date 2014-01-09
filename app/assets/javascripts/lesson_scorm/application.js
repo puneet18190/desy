@@ -32,7 +32,6 @@
 
 $(document).ready(function() {
   initializeGlobalVariables();
-  browsersDocumentReady();
   initializeLessonViewer('lesson-scorm');
   lessonViewerDocumentReadyWirisConvertSrc();
   lessonViewerDocumentReadyDocuments();
