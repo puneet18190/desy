@@ -20,7 +20,7 @@ module Export
       end
 
       def math_images
-        lesson.slides.map{ |r| r.math_images.to_a(:with_folder) }.flatten.uniq_by{ |v| v.basename }
+        lesson.math_images_paths(:full_path)
       end
 
       def add_path_entry(archive, path, entry_path)
