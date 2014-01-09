@@ -13,6 +13,8 @@ require 'export/lesson/shared'
 module Export
   module Lesson
     class Scorm
+      require 'export/lesson/scorm/view'
+      require 'export/lesson/shared/scorm_and_scorm_view'
 
       include EnvRelativePath
       include Shared
