@@ -27,7 +27,7 @@
       <location><%= my_url %></location>
       <% if ['mp4', 'webm', 'm4a', 'ogg'].include?(extension) %>
         <duration>
-          <duration><%= ims_duration(media_element.send(:"#{extension}_duration").round(1)) %></duration>
+          <duration><%= ims_duration(media_element, extension) %></duration>
           <description>
             <string language="en"><%= "Length of the #{media_element.sti_type.downcase} in format #{extension}" %></string>
           </description>

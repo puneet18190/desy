@@ -34,17 +34,20 @@ module Export
             resp.html_safe
           end
           
-          def ims_duration(duration)
+          def ims_duration(media_element, extension)
+            duration = media_element.send(:"#{extension}_duration").round(1)
+            float_seconds = ((duration - duration.to_i) * 10).to_i
+            duration = duration.to_i
             seconds = duration % 60
             duration = duration / 60
             minutes = duration % 60
             hours = duration / 60
             if hours > 0
-              return "PT#{hours}H#{minutes}M#{seconds}S"
+              return "PT#{hours}H#{minutes}M#{seconds}.#{float_seconds}S"
             elsif minutes > 0
-              return "PT#{minutes}M#{seconds}S"
+              return "PT#{minutes}M#{seconds}.#{float_seconds}S"
             else
-              return "PT#{seconds}S"
+              return "PT#{seconds}.#{float_seconds}S"
             end
           end
           
