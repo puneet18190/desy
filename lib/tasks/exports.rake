@@ -18,14 +18,15 @@ end
 
 namespace :exports do
   namespace :lessons do
-    
-#    desc "Cleans and recompiles all the types of lesson download"
-#    task :reset => [ # TODO AL MOMENTO NON FUNZIONA, a causa del require che va inserito ancora
-#      'exports:lessons:archives:clean',
-#      'exports:lessons:archives:assets:recompile',
-#      'exports:lessons:scorms:clean',
-#      'exports:lessons:scorms:assets:recompile'
-#    ]
+  
+     # TODO aggiungere gli scorm, al momento non funzionano a causa del require che va inserito ancora
+    desc "Cleans and recompiles all the types of lesson exports"
+    task :reset => [
+      'exports:lessons:archives:clean',
+      'exports:lessons:archives:assets:recompile',
+      'exports:lessons:ebooks:clean',
+      'exports:lessons:ebooks:assets:recompile'
+    ]
     
     namespace :archives do
       
@@ -65,7 +66,45 @@ namespace :exports do
       end
 
     end
-    
+
+    namespace :ebooks do
+      
+      desc "Remove lesson ebooks"
+      task :clean => :environment do
+        require 'export'
+        Export::Lesson::Ebook.remove_folder!
+      end
+
+      namespace :assets do
+
+        def clean_ebooks_assets
+          Export::Lesson::Ebook::Assets.remove_folder!
+        end
+
+        desc "Remove compiled lesson exporting assets"
+        task :clean => :environment do
+          require 'export/lesson/ebook/assets'
+          clean_ebooks_assets
+        end
+
+        desc "Compile lesson exporting assets"
+        task :compile => :environment do
+          continue_or_reboot_rake_task 'exports:lessons:ebooks:assets:compile'
+
+          require 'export/lesson/ebook/assets'
+          Export::Lesson::Ebook::Assets.compile
+        end
+
+        desc "Clean and compile lesson exporting assets"
+        task :recompile => :environment do
+          require 'export/lesson/ebook/assets'
+          clean_ebooks_assets
+          invoke_or_reboot_rake_task 'exports:lessons:ebooks:assets:compile'
+        end
+
+      end
+
+    end    
     
     namespace :scorms do
       
@@ -104,45 +143,6 @@ namespace :exports do
 
       end
 
-    end
-    
-    namespace :ebooks do
-      
-      desc "Remove lesson ebooks"
-      task :clean => :environment do
-        require 'export'
-        Export::Lesson::Ebook.remove_folder!
-      end
-
-      namespace :assets do
-
-        def clean_ebooks_assets
-          Export::Lesson::Ebook::Assets.remove_folder!
-        end
-
-        desc "Remove compiled lesson exporting assets"
-        task :clean => :environment do
-          require 'export/lesson/ebook/assets'
-          clean_ebooks_assets
-        end
-
-        desc "Compile lesson exporting assets"
-        task :compile => :environment do
-          continue_or_reboot_rake_task 'exports:lessons:ebooks:assets:compile'
-
-          require 'export/lesson/ebook/assets'
-          Export::Lesson::Ebook::Assets.compile
-        end
-
-        desc "Clean and compile lesson exporting assets"
-        task :recompile => :environment do
-          require 'export/lesson/ebook/assets'
-          clean_ebooks_assets
-          invoke_or_reboot_rake_task 'exports:lessons:ebooks:assets:compile'
-        end
-
-      end
-      
     end
 
   end
