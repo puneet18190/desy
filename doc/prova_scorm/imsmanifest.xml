@@ -623,7 +623,7 @@
     
     <resource identifier="slide_316" type="webcontent" adlcp:scormType="asset" href="html/slide316.html">
       <file href="html/slide316.html"/>
-      <file href="html/math_images/6c5937c3bf3c625b2819ea267bbe13fd.png"/>
+      <dependency identifierref="math_image_1"/>
       <dependency identifierref="tinyMCE"/>
       <dependency identifierref="common"/>
       <metadata>
@@ -2461,6 +2461,27 @@
           </metaMetadata>
         </lom>
       </metadata>
+    </resource>
+    
+    <!-- math images -->
+    
+    <resource identifier="math_image_1" type="webcontent" adlcp:scormType="asset">
+      <file href="html/math_images/6c5937c3bf3c625b2819ea267bbe13fd.png">
+        <metadata>
+          <lom>
+            <general>
+              <identifier>
+                <catalog>URI</catalog>
+                <entry>url di questa math image</entry>
+              </identifier>
+            </general>
+            <technical>
+              <format>image/jpeg</format> <!-- già definito -->
+              <location>url di questa math image</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
     </resource>
     
     <!-- qui sotto pacchetti di livello più alto -->
