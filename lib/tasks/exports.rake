@@ -106,7 +106,6 @@ namespace :exports do
 
     end
     
-    
     namespace :ebooks do
       
       desc "Remove lesson ebooks"
@@ -115,6 +114,36 @@ namespace :exports do
         Export::Lesson::Ebook.remove_folder!
       end
 
+      namespace :assets do
+
+        def clean_ebooks_assets
+          Export::Lesson::Ebook::Assets.remove_folder!
+        end
+
+        desc "Remove compiled lesson exporting assets"
+        task :clean => :environment do
+          require 'export/lesson/ebook/assets'
+          clean_ebooks_assets
+        end
+
+        desc "Compile lesson exporting assets"
+        task :compile => :environment do
+          continue_or_reboot_rake_task 'exports:lessons:ebooks:assets:compile'
+
+          require 'export/lesson/ebook/assets'
+          Export::Lesson::Ebook::Assets.compile
+        end
+
+        desc "Clean and compile lesson exporting assets"
+        task :recompile => :environment do
+          require 'export/lesson/ebook/assets'
+          clean_ebooks_assets
+          invoke_or_reboot_rake_task 'exports:lessons:ebooks:assets:compile'
+        end
+
+      end
+      
     end
+
   end
 end
