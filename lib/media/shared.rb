@@ -51,6 +51,11 @@ module Media
         @media = nil
       end
 
+      # Media file size
+      def size(format)
+        media.try :size, format
+      end
+
       # Return +true+ if the instance is set as +destroyable_even_if_not_converted+ or if it is not in a conversion state
       def cannot_destroy_while_converting
         destroyable_even_if_not_converted || converted?
