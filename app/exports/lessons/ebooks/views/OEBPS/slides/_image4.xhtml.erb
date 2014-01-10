@@ -5,8 +5,7 @@
     <% row_class = "images#{i}" -%>
     <div class="images <%= row_class %> cf">
       <% images_slice.each_with_index do |image, j| -%>
-        <% figure_class = "image#{j}" %>
-        <figure class="<%= figure_class %>">
+        <figure class="<%= image_figure_classes "image#{j}" %>">
           <div style="<%= image_style image %>"></div>
           <figcaption><%= image.caption if image %></figcaption>
         </figure>
