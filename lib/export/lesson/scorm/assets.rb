@@ -32,8 +32,8 @@ module Export
             pallino.svg
             set-icone-editor.svg
             tiny_items.gif
-            lesson_export/application.css
-            lesson_export/application.js
+            lesson_scorm/application.css
+            lesson_scorm/application.js
           )
         end
         
