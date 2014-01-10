@@ -30,15 +30,16 @@ class LessonExportController < ApplicationController
     rendered_slides = {}
     @lesson.slides.each do |slide|
       rendered_slides[slide.id] = render_to_string({
-        :template => "lesson_viewer/slides/#{record.kind}",
-        :layout   => 'lesson_scorm/slide',
+        :template => "lesson_viewer/slides/_#{slide.kind}",
+        :layout   => 'lesson_scorm',
         :locals   => {
           :slide    => slide,
-          :url_type => UrlTypes::SCORM
+          :url_type => UrlTypes::SCORM,
+          :loaded   => true
         }
       })
     end
-    Export::Lesson::Scorm.new(@lesson, rendered_slides).url
+    redirect_to Export::Lesson::Scorm.new(@lesson, rendered_slides).url
   end
   
   private
