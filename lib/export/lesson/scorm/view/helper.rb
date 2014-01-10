@@ -3,7 +3,6 @@ require 'export/lesson'
 require 'export/lesson/scorm'
 require 'export/lesson/scorm/view'
 require 'export/lesson/shared'
-require 'export/lesson/shared/scorm_and_scorm_view'
 
 module Export
   module Lesson
@@ -14,9 +13,6 @@ module Export
           
           SCORM_LOCALE         = I18n.default_locale
           SCORM_SCHOOL_LEVELS  = {}
-          
-          require 'export/lesson/shared/scorm_and_scorm_view'
-          include Shared::ScormAndScormView
           
           def scorm_locale
             SCORM_LOCALE
