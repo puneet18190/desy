@@ -30,6 +30,11 @@ module Export
           require 'export/lesson/shared/ebook_and_ebook_view'
           include Shared::EbookAndEbookView
 
+          def image_figure_classes(image, *classes)
+            classes << 'no-image' unless image
+            classes.join ' '
+          end
+
           def image_style(image)
             render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml', locals: { image_media_elements_slide: image }
           end

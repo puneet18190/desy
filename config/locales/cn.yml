@@ -893,7 +893,7 @@ cn:
     exit: "出口"
     # Icon to export an offline lesson from lesson viewer
     # 1 - views/lesson_viewer/_export.html.erb
-    export_lesson: "将这个课程输出成zip格式的文件"
+    export_lesson: "将这个课程输出"
     # Same as above, but exit without saving
     # 1 - views/audio_editor/_header.html.erb
     # 2 - views/image_editor/_header.html.erb
@@ -1766,10 +1766,13 @@ cn:
     open_playlist_bar: "打开播放列表栏"
     # Area where it's possible to download offline the lesson
     export_lesson:
+      buttons:
+        # 1 - views/lesson_viewer/_export.html.erb
+        archive: "Html"
+        # 1 - views/lesson_viewer/_export.html.erb
+        ebook: "Epub"
       # 1 - views/lesson_viewer/_export.html.erb
       caption: "点击按钮下载这个课程的离线版本"
-      # 1 - views/lesson_viewer/_export.html.erb
-      button: "下载"
       # Footer of an exported lesson (the variable %{copyright} is replaced by the full name of the application including copyright).
       # 1 - views/layouts/lesson_archive.html.erb
       made_in_desy: "这个课程是%{copyright}的版权"
