@@ -79,9 +79,9 @@ module Export
           rendered_slides.each do |slide_id, rendered_slide|
             add_string_entry file, rendered_slide, FILE_HTML_FOLDER.join("slide#{slide_id}.html")
           end
-#          assets_files.each do |path|
-#            add_path_entry file, path, assets_scorm_folder.join(path.relative_path_from ASSETS_FOLDER)
-#          end
+          assets_files.each do |path|
+            add_path_entry file, path, FILE_ASSETS_FOLDER.join(path.relative_path_from INPUT_ASSETS_FOLDER)
+          end
 #          media_elements_files.each do |path|
 #            add_path_entry file, path, scorm_html_folder.join(path.relative_path_from MEDIA_ELEMENTS_UPFOLDER)
 #          end
