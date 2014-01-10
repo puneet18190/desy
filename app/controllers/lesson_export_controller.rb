@@ -29,6 +29,7 @@ class LessonExportController < ApplicationController
   def scorm
     rendered_slides = {}
     @lesson.slides.each do |slide|
+      @slide_id = slide.id
       rendered_slides[slide.id] = render_to_string({
         :template => "lesson_viewer/slides/_#{slide.kind}",
         :layout   => 'lesson_scorm',
