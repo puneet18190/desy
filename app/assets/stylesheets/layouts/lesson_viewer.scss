@@ -194,9 +194,9 @@ html.lesson-viewer-layout {
   #export_lesson {
     
     @include nunito(1.063em);
-    padding: 20px;
-    width: 172px;
-    height: 134px;
+    padding: 16px;
+    width: 180px;
+    height: 142px;
     background: transparent $assets-tendina-offline_png no-repeat scroll 0 0;
     position: absolute;
     top: 465px;
@@ -208,21 +208,27 @@ html.lesson-viewer-layout {
     
     p {
       
-      margin-bottom: 20px;
+      margin-bottom: 14px;
       text-align: center;
       
     }
     
     a.export_button {
       
-      width: 172px;
-      height: 34px;
+      width: 180px;
+      height: 24px;
       text-align: center;
-      padding-top: 15px;
+      padding-top: 6px;
       color: #C1C0BC;
       background-color: #1C1C1C;
       cursor: pointer;
       display: block;
+      
+      &.archive {
+        
+        margin-bottom: 6px;
+        
+      }
       
       &:hover {
         
