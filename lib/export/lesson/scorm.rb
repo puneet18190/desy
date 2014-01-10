@@ -82,15 +82,15 @@ module Export
           assets_files.each do |path|
             add_path_entry file, path, FILE_ASSETS_FOLDER.join(path.relative_path_from INPUT_ASSETS_FOLDER)
           end
-#          media_elements_files.each do |path|
-#            add_path_entry file, path, scorm_html_folder.join(path.relative_path_from MEDIA_ELEMENTS_UPFOLDER)
-#          end
-#          documents_files.each do |path|
-#            add_path_entry file, path, scorm_html_folder.join(path.relative_path_from DOCUMENTS_UPFOLDER)
-#          end
-#          math_images.each do |path|
-#            add_path_entry file, path, math_images_folder.join(path.basename)
-#          end
+          media_elements_files.each do |path|
+            add_path_entry file, path, FILE_HTML_FOLDER.join(path.relative_path_from MEDIA_ELEMENTS_UPFOLDER)
+          end
+          documents_files.each do |path|
+            add_path_entry file, path, FILE_ASSETS_FOLDER.join(path.relative_path_from DOCUMENTS_UPFOLDER)
+          end
+          math_images.each do |path|
+            add_path_entry file, path, FILE_MATH_IMAGES_FOLDER.join(path.basename)
+          end
         end
         output_path.chmod 0644
       rescue
