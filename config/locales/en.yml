@@ -1775,6 +1775,7 @@ en:
       caption: "Download an offline version of this lesson"
       # Footer of an exported lesson (the variable %{copyright} is replaced by the full name of the application including copyright).
       # 1 - views/layouts/lesson_archive.html.erb
+      # 2 - views/layouts/lesson_scorm.html.erb
       made_in_desy: "Proudly produced in %{copyright}"
   
   

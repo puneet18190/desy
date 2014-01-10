@@ -35,7 +35,7 @@ class LessonExportController < ApplicationController
         :layout   => 'lesson_scorm',
         :locals   => {
           :slide    => slide,
-          :url_type => UrlTypes::SCORM,
+          :url_type => UrlTypes::SCORM_HTML,
           :loaded   => true
         }
       })
