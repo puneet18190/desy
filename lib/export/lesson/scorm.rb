@@ -41,7 +41,7 @@ module Export
       def initialize(lesson, rendered_slides)
         @lesson, @rendered_slides  = lesson, rendered_slides
         parameterized_title        = lesson.title.parameterize
-        filename_without_extension = lesson.id.to_s.tap{ |s| s << "_#{parameterized_title}" if parameterized_title.present? } << '__SCORM'
+        filename_without_extension = lesson.id.to_s.tap{ |s| s << "_#{parameterized_title}" if parameterized_title.present? } << '.scorm'
         @output_folder             = OUTPUT_FOLDER.join lesson.id.to_s, lesson.updated_at.utc.strftime(WRITE_TIME_FORMAT)
         @filename                  = "#{filename_without_extension}.zip"
         @output_path               = output_folder.join filename
