@@ -215,7 +215,8 @@ html.lesson-viewer-layout {
     
     a.export_button {
       
-      width: 180px;
+      width: 140px;
+      margin-left: 20px;
       height: 24px;
       text-align: center;
       padding-top: 6px;
@@ -224,7 +225,7 @@ html.lesson-viewer-layout {
       cursor: pointer;
       display: block;
       
-      &.archive {
+      &.archive, &.ebook {
         
         margin-bottom: 6px;
         

@@ -1771,8 +1771,10 @@ en:
         archive: "Html"
         # 1 - views/lesson_viewer/_export.html.erb
         ebook: "Epub"
+        # 1 - views/lesson_viewer/_export.html.erb
+        scorm: "Scorm"
       # 1 - views/lesson_viewer/_export.html.erb
-      caption: "Download an offline version of this lesson"
+      caption: "Select a format"
       # Footer of an exported lesson (the variable %{copyright} is replaced by the full name of the application including copyright).
       # 1 - views/layouts/lesson_archive.html.erb
       # 2 - views/layouts/lesson_scorm.html.erb

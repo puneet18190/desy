@@ -1771,8 +1771,10 @@ cn:
         archive: "Html"
         # 1 - views/lesson_viewer/_export.html.erb
         ebook: "Epub"
+        # 1 - views/lesson_viewer/_export.html.erb
+        scorm: "Scorm"
       # 1 - views/lesson_viewer/_export.html.erb
-      caption: "点击按钮下载这个课程的离线版本"
+      caption: "選擇一種格式"
       # Footer of an exported lesson (the variable %{copyright} is replaced by the full name of the application including copyright).
       # 1 - views/layouts/lesson_archive.html.erb
       # 2 - views/layouts/lesson_scorm.html.erb
