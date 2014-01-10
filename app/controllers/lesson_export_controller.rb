@@ -27,9 +27,17 @@ class LessonExportController < ApplicationController
   end
   
   def scorm
-    rendered_slides = Hash[ slides.map do |record|
-      [ record.id, render_to_string template: 'lesson_export/scorm/slide.html', layout: 'lesson_scorm/slide' ]
-    end ]
+    rendered_slides = {}
+    @lesson.slides.each do |slide|
+      rendered_slides[slide.id] = render_to_string({
+        :template => "lesson_viewer/slides/#{record.kind}",
+        :layout   => 'lesson_scorm/slide',
+        :locals   => {
+          :slide    => slide,
+          :url_type => UrlTypes::SCORM
+        }
+      })
+    end
     Export::Lesson::Scorm.new(@lesson, rendered_slides).url
   end
   

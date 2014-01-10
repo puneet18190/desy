@@ -2,7 +2,7 @@
 <html class="lesson-scorm-layout lesson_export-controller scorm-action">
   
   <head>
-    <title>DESY - Titolo lezione</title> <!-- TODO schorm titolo della lezione con scritto DESY -->
+    <title><%= "#{SETTINGS['application_name']} - #{@lesson.title}" %></title>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <link href="assets/favicon32x32.png" rel="shortcut icon" type="image/png"/>
