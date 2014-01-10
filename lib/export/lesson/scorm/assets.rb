@@ -15,7 +15,7 @@ module Export
       
       class Assets < Assets
         
-        FOLDER = ASSETS_FOLDER
+        FOLDER = INPUT_ASSETS_FOLDER
         
         def paths
           @paths ||= %W(
