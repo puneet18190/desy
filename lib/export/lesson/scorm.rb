@@ -76,9 +76,9 @@ module Export
           Pathname.glob(INPUT_VIEWS_STATIC_FILES_FOLDER.join('*')).each do |path|
             add_path_entry file, path, FILE_ROOT_FOLDER.join(path.basename)
           end
-#          rendered_slides.each do |slide_id, rendered_slide|
-#            add_string_entry file, rendered_slide, scorm_html_folder.join("slide#{slide_id}.html")
-#          end
+          rendered_slides.each do |slide_id, rendered_slide|
+            add_string_entry file, rendered_slide, FILE_HTML_FOLDER.join("slide#{slide_id}.html")
+          end
 #          assets_files.each do |path|
 #            add_path_entry file, path, assets_scorm_folder.join(path.relative_path_from ASSETS_FOLDER)
 #          end
