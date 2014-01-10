@@ -82,7 +82,7 @@ module Export
           assets_files.each do |path|
             add_path_entry file, path, FILE_ASSETS_FOLDER.join(path.relative_path_from INPUT_ASSETS_FOLDER)
           end
-          media_elements_files.each do |path|
+          media_elements_files(exclude_versions: [ :thumb, :cover ]).each do |path|
             add_path_entry file, path, FILE_HTML_FOLDER.join(path.relative_path_from MEDIA_ELEMENTS_UPFOLDER)
           end
           documents_files.each do |path|
