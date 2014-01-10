@@ -6,7 +6,7 @@
   media_viewer_type = MediaElement::ViewerTypes::SIMPLE
 -%>
 
-<h1 class="title"><%= slide.title.strip %></h1>
+<h1 class="title"><%= slide.title.to_s.stripp %></h1>
 
 <div class="video">
   <% if video -%>
