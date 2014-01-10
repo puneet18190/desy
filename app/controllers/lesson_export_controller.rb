@@ -27,10 +27,10 @@ class LessonExportController < ApplicationController
   end
   
   def scorm
-    #rendered_slides = Hash[ slides.map do |record|
-    #  [ record.id, render_to_string template: 'lesson_export/scorm/slide.html', layout: 'lesson_scorm/slide' ]
-    #end ]
-    #Export::Lesson::Scorm.new(@lesson, rendered_slides).url
+    rendered_slides = Hash[ slides.map do |record|
+      [ record.id, render_to_string template: 'lesson_export/scorm/slide.html', layout: 'lesson_scorm/slide' ]
+    end ]
+    Export::Lesson::Scorm.new(@lesson, rendered_slides).url
   end
   
   private

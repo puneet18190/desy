@@ -1,17 +1,18 @@
 require 'fileutils'
 require 'pathname'
 require 'uri'
-
 require 'sprockets'
-
 require 'export'
 require 'export/lesson'
 require 'export/lesson/scorm'
 require 'export/assets'
 
 module Export
+  
   module Lesson
+    
     class Scorm
+      
       class Assets < Assets
         
         FOLDER = ASSETS_FOLDER
@@ -38,6 +39,9 @@ module Export
         end
         
       end
+      
     end
+    
   end
+  
 end
