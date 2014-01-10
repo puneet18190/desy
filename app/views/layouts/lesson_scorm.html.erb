@@ -15,7 +15,9 @@
       <div id="carousel_container">
         <div id="carousel_inner">
           <ul id="carousel_ul">
-            <%= yield %>
+            <li id="slide_in_lesson_viewer_<%= slide_id %>" class="_lesson_viewer_current_slide cover slide">
+              <%= yield %>
+            </li>
           </ul>
         </div>
       </div>
