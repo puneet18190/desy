@@ -893,7 +893,7 @@ cn:
     exit: "出口"
     # Icon to export an offline lesson from lesson viewer
     # 1 - views/lesson_viewer/_export.html.erb
-    export_lesson: "将这个课程输出成zip格式的文件"
+    export_lesson: "将这个课程输出"
     # Same as above, but exit without saving
     # 1 - views/audio_editor/_header.html.erb
     # 2 - views/image_editor/_header.html.erb
