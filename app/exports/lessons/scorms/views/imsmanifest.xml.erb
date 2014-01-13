@@ -158,7 +158,6 @@
     <% Document.where(:id => documents.keys).order(:id).each do |document| %>
       <resource identifier="document_<%= document.id %>" type="webcontent" adlcp:scormType="asset">
         <%= render :partial => 'document_file.xml', :locals => {:document => document} %>
-        <file href="html/assets/documents/<%= document.type %>.svg"/>
         <metadata>
           <lom>
             <%= render :partial => 'document_general_metadata.xml', :locals => {:document => document} %>
