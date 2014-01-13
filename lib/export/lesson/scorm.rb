@@ -86,7 +86,7 @@ module Export
             add_path_entry file, path, FILE_HTML_FOLDER.join(path.relative_path_from MEDIA_ELEMENTS_UPFOLDER)
           end
           documents_files.each do |path|
-            add_path_entry file, path, FILE_ASSETS_FOLDER.join(path.relative_path_from DOCUMENTS_UPFOLDER)
+            add_path_entry file, path, FILE_HTML_FOLDER.join(path.relative_path_from DOCUMENTS_UPFOLDER)
           end
           math_images.each do |path|
             add_path_entry file, path, FILE_MATH_IMAGES_FOLDER.join(path.basename)
