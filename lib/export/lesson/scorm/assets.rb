@@ -37,7 +37,7 @@ module Export
             documents/ppt.svg
             documents/unknown.svg
             documents/zip.svg
-            bg_tile_editor.gif
+            bg_title_editor.gif
             documents_fondo.png
             favicon32x32.png
             icone-player.svg
