@@ -9,7 +9,7 @@ application_copyright: '©2014 DESY. All rights reserved'
 application:
   # Whether to use SSL or not (only for production environment)
   force_ssl: false
-  # Url options used for any email
+  # Url options used for any url
   default_url_options:
     :protocol: 'http'
     :host: 'www.example.com'
