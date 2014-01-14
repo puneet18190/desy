@@ -429,19 +429,19 @@ Initializer for tagging autocompĺete.
 **/
 function initTagsAutocomplete(scope) {
   var input_selector = scope + ' #tags';
-  if(scope == '#form_info_new_media_element_in_editor') {
-    input_selector = scope + ' #new_tags';
-  }
-  if(scope == '#form_info_update_media_element_in_editor') {
-    input_selector = scope + ' #update_tags';
-  }
   var container_selector = scope + ' ._tags_container';
   var tags_value_selector = '#tags_value';
   if(scope == '#form_info_new_media_element_in_editor') {
+    input_selector = scope + ' #new_tags';
     tags_value_selector = '#new_tags_value';
   }
   if(scope == '#form_info_update_media_element_in_editor') {
+    input_selector = scope + ' #update_tags';
     tags_value_selector = '#update_tags_value';
+  }
+  if(scope == '#load-media-element') {
+    input_selector = scope + ' .medload_tags';
+    tags_value_selector = scope + ' .medload_tags_value';
   }
   $(input_selector).autocomplete({
     source: function(request, response) {
