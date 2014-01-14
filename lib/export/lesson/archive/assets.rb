@@ -14,7 +14,7 @@ module Export
     class Archive
       class Assets < Assets
 
-        FOLDER = ASSETS_FOLDER
+        FOLDER = INPUT_ASSETS_FOLDER
 
         def env
           @sub_env ||= begin

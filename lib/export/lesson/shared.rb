@@ -4,10 +4,10 @@ require 'export/lesson'
 module Export
   module Lesson
     module Shared
-      MEDIA_ELEMENTS_UPFOLDER         = Rails.public_pathname
-      DOCUMENTS_UPFOLDER              = Rails.public_pathname
-      MATH_IMAGES_ARCHIVE_FOLDER_NAME = 'math_images'
-      WRITE_TIME_FORMAT               = '%Y%m%d_%H%M%S_%Z_%N'
+      MEDIA_ELEMENTS_UPFOLDER      = Rails.public_pathname
+      DOCUMENTS_UPFOLDER           = Rails.public_pathname
+      FILE_MATH_IMAGES_FOLDER_NAME = 'math_images'
+      WRITE_TIME_FORMAT            = '%Y%m%d_%H%M%S_%Z_%N'
 
       private
       def media_elements_files(options = {})

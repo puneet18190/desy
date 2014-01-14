@@ -17,22 +17,22 @@ module Export
       include EnvRelativePath
       include Shared
 
-      FOLDER                     = env_relative_pathname Rails.public_pathname, 'lessons', 'exports', 'archives'
+      OUTPUT_FOLDER = env_relative_pathname Rails.public_pathname, 'lessons', 'exports', 'archives'
       
-      ASSETS_FOLDER              = Lesson::FOLDER.join 'archives', 'assets'
-      ASSETS_ARCHIVE_FOLDER_NAME = 'assets'
+      INPUT_ASSETS_FOLDER     = Lesson::FOLDER.join 'archives', 'assets'
+      FILE_ASSETS_FOLDER_NAME = 'assets'
 
       # STORED or DEFLATED
       COMPRESSION_METHOD = Zip::Entry::STORED
 
-      INDEX_PAGE_NAME = 'index.html'
+      FILE_INDEX_FILENAME = 'index.html'
 
       def self.remove_folder!
-        FileUtils.rm_rf FOLDER
+        FileUtils.rm_rf OUTPUT_FOLDER
       end
 
       attr_reader :lesson, :index_page, 
-                  :filename_without_extension, :folder, :filename, :archive_root_folder, :path, :assets_archive_folder, :math_images_archive_folder
+                  :filename_without_extension, :output_folder, :filename, :file_root_folder, :output_path, :file_assets_folder, :file_math_images_folder
 
       # index_page: String
       def initialize(lesson, index_page)
@@ -42,28 +42,28 @@ module Export
         time                = lesson.updated_at.utc.strftime(WRITE_TIME_FORMAT)
 
         @filename_without_extension = lesson.id.to_s.tap{ |s| s << "_#{parameterized_title}" if parameterized_title.present? }
-        @folder                     = FOLDER.join lesson.id.to_s, time
+        @output_folder              = OUTPUT_FOLDER.join lesson.id.to_s, time
         @filename                   = "#{filename_without_extension}.zip"
-        @path                       = folder.join filename
-        @archive_root_folder        = Pathname filename_without_extension
-        @assets_archive_folder      = archive_root_folder.join ASSETS_ARCHIVE_FOLDER_NAME
-        @math_images_archive_folder = archive_root_folder.join MATH_IMAGES_ARCHIVE_FOLDER_NAME
+        @output_path                = output_folder.join filename
+        @file_root_folder           = Pathname filename_without_extension
+        @file_assets_folder         = file_root_folder.join FILE_ASSETS_FOLDER_NAME
+        @file_math_images_folder    = file_root_folder.join FILE_MATH_IMAGES_FOLDER_NAME
       end
 
       def url
         find_or_create
 
-        "/#{path.relative_path_from Rails.public_pathname}"
+        "/#{output_path.relative_path_from Rails.public_pathname}"
       end
 
       def find_or_create
-        return if path.exist?
+        return if output_path.exist?
         
         # raises if export assets are not compiled
         raise "Assets are not compiled. Please create them using rake exports:lessons:archives:assets:compile" unless assets_compiled?
 
-        remove_old_files if folder.exist?
-        folder.mkpath
+        remove_old_files if output_folder.exist?
+        output_folder.mkpath
         create
 
         self
@@ -72,37 +72,37 @@ module Export
       private
 
       def assets_compiled?
-        ASSETS_FOLDER.exist? && ASSETS_FOLDER.entries.present?
+        INPUT_ASSETS_FOLDER.exist? && INPUT_ASSETS_FOLDER.entries.present?
       end
 
       def assets_files
-        Pathname.glob ASSETS_FOLDER.join('**', '*')
+        Pathname.glob INPUT_ASSETS_FOLDER.join('**', '*')
       end
 
       def create
-        Zip::File.open(path, Zip::File::CREATE) do |archive|
-          add_string_entry archive, index_page, archive_root_folder.join(INDEX_PAGE_NAME)
+        Zip::File.open(output_path, Zip::File::CREATE) do |archive|
+          add_string_entry archive, index_page, file_root_folder.join(FILE_INDEX_FILENAME)
 
           assets_files.each do |path|
-            add_path_entry archive, path, assets_archive_folder.join(path.relative_path_from ASSETS_FOLDER)
+            add_path_entry archive, path, file_assets_folder.join(path.relative_path_from INPUT_ASSETS_FOLDER)
           end
 
           media_elements_files(exclude_versions: [ :thumb, :cover ]).each do |path|
-            add_path_entry archive, path, archive_root_folder.join(path.relative_path_from MEDIA_ELEMENTS_UPFOLDER)
+            add_path_entry archive, path, file_root_folder.join(path.relative_path_from MEDIA_ELEMENTS_UPFOLDER)
           end
 
           documents_files.each do |path|
-            add_path_entry archive, path, archive_root_folder.join(path.relative_path_from DOCUMENTS_UPFOLDER)
+            add_path_entry archive, path, file_root_folder.join(path.relative_path_from DOCUMENTS_UPFOLDER)
           end
 
           math_images.each do |path|
-            add_path_entry archive, path, math_images_archive_folder.join(path.basename)
+            add_path_entry archive, path, file_math_images_folder.join(path.basename)
           end
         end
 
-        path.chmod 0644
+        output_path.chmod 0644
       rescue
-        path.unlink if path.exist?
+        output_path.unlink if output_path.exist?
         raise
       end
 
