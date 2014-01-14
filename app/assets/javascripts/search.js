@@ -15,7 +15,6 @@ Global initializer for the search engine.
 function searchDocumentReady() {
   searchDocumentReadyGeneral();
   searchDocumentReadyFilterByTag();
-  searchDocumentReadyPlaceholders();
 }
 
 /**

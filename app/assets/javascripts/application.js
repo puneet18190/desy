@@ -74,6 +74,7 @@ $(document).ready(function() {
     notificationsDocumentReady();
     playersDocumentReadyGeneral();
     reportsDocumentReady();
+    searchDocumentReadyPlaceholders();
     sectionNotificationsDocumentReady();
     tagsDocumentReadyAutocomplete();
     tagsDocumentReadyMediaElementLoader();
@@ -105,6 +106,7 @@ $(document).ready(function() {
     notificationsDocumentReady();
     notificationsDocumentReadyLessonModification();
     reportsDocumentReady();
+    searchDocumentReadyPlaceholders();
     sectionLessonsDocumentReady();
     sectionNotificationsDocumentReady();
     tagsDocumentReadyAutocomplete();
@@ -125,6 +127,7 @@ $(document).ready(function() {
     notificationsDocumentReady();
     playersDocumentReadyGeneral();
     reportsDocumentReady();
+    searchDocumentReadyPlaceholders();
     sectionMediaElementsDocumentReady();
     sectionNotificationsDocumentReady();
     tagsDocumentReadyAutocomplete();
@@ -152,6 +155,7 @@ $(document).ready(function() {
     playersDocumentReadyGeneral();
     reportsDocumentReady();
     searchDocumentReady();
+    searchDocumentReadyPlaceholders();
     sectionNotificationsDocumentReady();
     sectionSearchDocumentReady();
     tagsDocumentReadyAutocomplete();
