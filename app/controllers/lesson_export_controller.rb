@@ -15,10 +15,14 @@ class LessonExportController < ApplicationController
   
   skip_before_filter :authenticate
   before_filter :initialize_and_authenticate_for_lesson_export, :redirect_or_setup
-  layout 'lesson_archive', :only => :archive
+  layout 'lesson_archive', only: :archive
   
   def archive
-    @slides = @lesson.slides.preload(:media_elements_slides, {:media_elements_slides => :media_element}, :documents_slides, {:documents_slides => :document}).order(:position)
+    @slides = @lesson.slides.preload( :media_elements_slides                    ,
+                                      { media_elements_slides: :media_element } ,
+                                      :documents_slides                         ,
+                                      { documents_slides: :document }
+                                    ).order(:position)
     redirect_to Export::Lesson::Archive.new(@lesson, render_to_string).url
   end
   

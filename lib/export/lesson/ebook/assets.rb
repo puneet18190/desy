@@ -14,7 +14,7 @@ module Export
     class Ebook
       class Assets < Assets
 
-        FOLDER = ASSETS_FOLDER
+        FOLDER = INPUT_ASSETS_FOLDER
         PATHS  = ASSETS_PATHS
 
         def paths
