@@ -464,7 +464,7 @@ function browserSupport() {
 
 /**
 Hides the mini thumbnail of a compact media element.
-@method showMiniThumbnailForMediaElementCompact
+@method hideMiniThumbnailForMediaElementCompact
 @for GeneralMiscellanea
 @param item {Object} the compact media element
 **/
@@ -559,14 +559,24 @@ function showMiniThumbnailForMediaElementCompact(item) {
   mini.removeClass('above below').addClass(position).show('fade', {}, 200, function() {
     if(mini.hasClass('audio') || mini.hasClass('video')) {
       type = 'video';
+      type_src_1 = 'mp4';
+      type_src_2 = 'webm';
       if(mini.hasClass('audio')) {
         type = 'audio';
+        type_src_1 = 'm4a';
+        type_src_2 = 'ogg';
       }
-      media = mini.find(type)[0];
-      if(media.error) {
-        showLoadingMediaErrorPopup(media.error.code, type);
+      media = mini.find(type);
+      if(!media.data('loaded')) {
+        media.find('source[type="' + type + '/' + type_scr_1 + '"]').attr('src', media.data(type_scr_1));
+        media.find('source[type="' + type + '/' + type_scr_2 + '"]').attr('src', media.data(type_scr_2));
+        media.load();
+        media.data('loaded');
+      }
+      if(media[0].error) {
+        showLoadingMediaErrorPopup(media[0].error.code, type);
       } else {
-        media.play();
+        media[0].play();
       }
     }
   });
