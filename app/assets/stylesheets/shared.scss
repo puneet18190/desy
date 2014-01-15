@@ -518,6 +518,15 @@ a.cerca.current {
   .mini_thumb {
     
     display: none;
+    height: 200px;
+    padding: 5px 5px 15px 5px;
+    width: 200px;
+    
+    &.video {
+      
+      width: 356px;
+      
+    }
     
   }
   

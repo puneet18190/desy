@@ -470,7 +470,7 @@ Hides the mini thumbnail of a compact media element.
 **/
 function hideMiniThumbnailForMediaElementCompact(item) {
   item.data('loaded-mini-thumb', false);
-  console.log('hide id = ' + item.attr('id'));
+  item.find('.mini_thumb').hide('fade', {}, 200);
 }
 
 /**
@@ -536,7 +536,7 @@ Shows the mini thumbnail of a compact media element.
 **/
 function showMiniThumbnailForMediaElementCompact(item) {
   item.data('loaded-mini-thumb', true);
-  console.log('show id = ' + item.attr('id'));
+  item.find('.mini_thumb').show('fade', {}, 200);
 }
 
 
