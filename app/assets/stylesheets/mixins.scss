@@ -489,20 +489,6 @@
   
 }
 
-@mixin iconeElements {
-  
-  background-size: 2.7em 8.1em;
-  width: 40%;
-  background-image: $assets-icon-elements_svg;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  float: left;
-  padding: 4px 0px 2px 50px;
-  display: inline-block;
-  margin-right: 1.8%;
-  
-}
-
 @mixin contentInterno {
   
   padding: 4%;
