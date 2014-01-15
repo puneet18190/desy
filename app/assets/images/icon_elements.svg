@@ -39,9 +39,9 @@
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:zoom="4"
-     inkscape:cx="46.884213"
-     inkscape:cy="47.678846"
+     inkscape:zoom="256"
+     inkscape:cx="1.8633225"
+     inkscape:cy="62.967535"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -52,7 +52,7 @@
      fit-margin-bottom="0" /><defs
      id="defs4" /><g
      id="g2997"
-     transform="matrix(1.0186194,0,0,1.0184602,-3.8033442,-3.805)"><circle
+     transform="matrix(1.0186194,0,0,1.0184602,0.0013433,-3.1250002e-4)"><circle
        id="circle6"
        r="12.273"
        cy="12.273"
@@ -68,7 +68,7 @@
        inkscape:connector-curvature="0"
        style="fill:#ffffff" /></g><g
      id="g3001"
-     transform="matrix(1.0187816,0,0,1.0186224,-3.8070192,13.178209)"><circle
+     transform="matrix(1.0187816,0,0,1.0186224,-0.0023317,16.982896)"><circle
        id="circle10"
        r="12.271"
        cy="44.686001"
@@ -84,7 +84,7 @@
        inkscape:connector-curvature="0"
        style="fill:#ffffff" /></g><g
      id="g3005"
-     transform="matrix(1.0188034,0,0,1.0186443,-3.8069632,-44.832897)"><circle
+     transform="matrix(1.0188034,0,0,1.0186443,-0.0022757,-41.02821)"><circle
        id="circle14"
        r="12.271"
        cy="77.089996"
