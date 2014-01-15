@@ -568,8 +568,8 @@ function showMiniThumbnailForMediaElementCompact(item) {
       }
       media = mini.find(type);
       if(!media.data('loaded')) {
-        media.find('source[type="' + type + '/' + type_scr_1 + '"]').attr('src', media.data(type_scr_1));
-        media.find('source[type="' + type + '/' + type_scr_2 + '"]').attr('src', media.data(type_scr_2));
+        media.find('source[type="' + type + '/' + type_src_1 + '"]').attr('src', media.data(type_src_1));
+        media.find('source[type="' + type + '/' + type_src_2 + '"]').attr('src', media.data(type_src_2));
         media.load();
         media.data('loaded');
       }
