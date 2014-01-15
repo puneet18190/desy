@@ -3694,7 +3694,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 167,
+            "line": 183,
             "description": "Initializer for functionalities which are common to sections containing lessons.",
             "itemtype": "method",
             "name": "commonLessonsDocumentReady",
@@ -3703,7 +3703,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 210,
+            "line": 226,
             "description": "Initializer for global functionalities, used throughout the application.",
             "itemtype": "method",
             "name": "globalDocumentReady",
@@ -3712,7 +3712,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 239,
+            "line": 255,
             "description": "Initializer for locations automatic filling.",
             "itemtype": "method",
             "name": "locationsDocumentReady",
@@ -3721,7 +3721,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 262,
+            "line": 278,
             "description": "Initializes reports forms for both lessons and media elements.",
             "itemtype": "method",
             "name": "reportsDocumentReady",
@@ -3730,7 +3730,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 307,
+            "line": 323,
             "description": "Functionalities necessary only for the section 'my documents'.",
             "itemtype": "method",
             "name": "sectionDocumentsDocumentReady",
@@ -3739,7 +3739,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 317,
+            "line": 333,
             "description": "Functionalities necessary only for the section 'my lessons'.",
             "itemtype": "method",
             "name": "sectionLessonsDocumentReady",
@@ -3748,7 +3748,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 332,
+            "line": 348,
             "description": "Functionalities necessary only for the section 'my media elements'.",
             "itemtype": "method",
             "name": "sectionMediaElementsDocumentReady",
@@ -3757,7 +3757,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 384,
+            "line": 400,
             "description": "Functionalities necessary only for the sections containing notifications.",
             "itemtype": "method",
             "name": "sectionNotificationsDocumentReady",
@@ -3766,7 +3766,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 418,
+            "line": 434,
             "description": "Functionalities necessary only for the section 'search'.",
             "itemtype": "method",
             "name": "sectionSearchDocumentReady",
@@ -3775,7 +3775,32 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 441,
+            "line": 457,
+            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}",
+            "itemtype": "method",
+            "name": "browserSupport",
+            "class": "GeneralMiscellanea",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 465,
+            "description": "Hides the mini thumbnail of a compact media element.",
+            "itemtype": "method",
+            "name": "hideMiniThumbnailForMediaElementCompact",
+            "params": [
+                {
+                    "name": "item",
+                    "description": "the compact media element",
+                    "type": "Object"
+                }
+            ],
+            "class": "GeneralMiscellanea",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 487,
             "description": "Initializes global variables used throughout the javascripts.",
             "itemtype": "method",
             "name": "initializeGlobalVariables",
@@ -3784,7 +3809,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 457,
+            "line": 503,
             "description": "Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "redError",
@@ -3793,7 +3818,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 468,
+            "line": 514,
             "description": "Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3809,16 +3834,23 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 496,
-            "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}",
+            "line": 542,
+            "description": "Shows the mini thumbnail of a compact media element.",
             "itemtype": "method",
-            "name": "browserSupport",
+            "name": "showMiniThumbnailForMediaElementCompact",
+            "params": [
+                {
+                    "name": "item",
+                    "description": "the compact media element",
+                    "type": "Object"
+                }
+            ],
             "class": "GeneralMiscellanea",
             "module": "general"
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 504,
+            "line": 589,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3843,7 +3875,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 530,
+            "line": 615,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -5444,7 +5476,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 190,
+            "line": 193,
             "description": "General initializer for help and notifications tooltips.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyTooltips",
@@ -5453,7 +5485,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 211,
+            "line": 214,
             "description": "Initializes the graphical tools of the <b>help tooltip</b>.",
             "itemtype": "method",
             "name": "initializeHelp",
@@ -5462,7 +5494,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 232,
+            "line": 235,
             "description": "Initializes the graphical tools and the routes attached to the <b>notifications tooltip</b>.",
             "itemtype": "method",
             "name": "initializeNotifications",

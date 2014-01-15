@@ -478,6 +478,22 @@ function commonMediaElementsDocumentReady() {
     $(this).addClass(&#x27;change_info_light&#x27;);
     $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).hide();
   });
+  $body.on(&#x27;mouseenter&#x27;, &#x27;.boxViewCompactMediaElement&#x27;, function() {
+    var item = $(this);
+    item.data(&#x27;loading-mini-thumb&#x27;, true);
+    setTimeout(function() {
+      if(item.data(&#x27;loading-mini-thumb&#x27;)) {
+        showMiniThumbnailForMediaElementCompact(item);
+      }
+    }, 500);
+  });
+  $body.on(&#x27;mouseleave&#x27;, &#x27;.boxViewCompactMediaElement&#x27;, function() {
+    var item = $(this);
+    item.data(&#x27;loading-mini-thumb&#x27;, false);
+    if(item.data(&#x27;loaded-mini-thumb&#x27;)) {
+      hideMiniThumbnailForMediaElementCompact(item);
+    }
+  });
 }
 
 /**
@@ -755,6 +771,36 @@ function sectionSearchDocumentReady() {
 
 
 /**
+Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink &quot;BrowserSupportMain/browserSupportMain:method&quot;}}{{/crossLink}}
+@method browserSupport
+@for GeneralMiscellanea
+**/
+function browserSupport() {
+}
+
+/**
+Hides the mini thumbnail of a compact media element.
+@method hideMiniThumbnailForMediaElementCompact
+@for GeneralMiscellanea
+@param item {Object} the compact media element
+**/
+function hideMiniThumbnailForMediaElementCompact(item) {
+  item.data(&#x27;loaded-mini-thumb&#x27;, false);
+  var mini = item.find(&#x27;.mini_thumb&#x27;);
+  mini.hide(&#x27;fade&#x27;, {}, 200, function() {
+    if(mini.hasClass(&#x27;audio&#x27;) || mini.hasClass(&#x27;video&#x27;)) {
+      type = &#x27;video&#x27;;
+      if(mini.hasClass(&#x27;audio&#x27;)) {
+        type = &#x27;audio&#x27;;
+      }
+      var media = mini.find(type);
+      media[0].pause();
+      setCurrentTimeToMedia(media, 0);
+    }
+  });
+}
+
+/**
 Initializes global variables used throughout the javascripts.
 @method initializeGlobalVariables
 @for GeneralMiscellanea
@@ -810,12 +856,51 @@ function secondsToDateString(seconds) {
 }
 
 /**
-Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink &quot;BrowserSupportMain/browserSupportMain:method&quot;}}{{/crossLink}}
-@method browserSupport
+Shows the mini thumbnail of a compact media element.
+@method showMiniThumbnailForMediaElementCompact
 @for GeneralMiscellanea
+@param item {Object} the compact media element
 **/
-function browserSupport() {
+function showMiniThumbnailForMediaElementCompact(item) {
+  item.data(&#x27;loaded-mini-thumb&#x27;, true);
+  var position = &#x27;below&#x27;;
+  var prev = item.prev();
+  if(prev.length &gt; 0) {
+    prev = prev.prev();
+    if(prev.length &gt; 0 &amp;&amp; prev.prev().length &gt; 0) {
+      position = &#x27;above&#x27;;
+    }
+  }
+  var mini = item.find(&#x27;.mini_thumb&#x27;);
+  mini.removeClass(&#x27;above below&#x27;).addClass(position).show(&#x27;fade&#x27;, {}, 200, function() {
+    if(mini.hasClass(&#x27;audio&#x27;) || mini.hasClass(&#x27;video&#x27;)) {
+      type = &#x27;video&#x27;;
+      type_src_1 = &#x27;mp4&#x27;;
+      type_src_2 = &#x27;webm&#x27;;
+      if(mini.hasClass(&#x27;audio&#x27;)) {
+        type = &#x27;audio&#x27;;
+        type_src_1 = &#x27;m4a&#x27;;
+        type_src_2 = &#x27;ogg&#x27;;
+      }
+      media = mini.find(type);
+      if(!media.data(&#x27;loaded&#x27;)) {
+        media.find(&#x27;source[type=&quot;&#x27; + type + &#x27;/&#x27; + type_src_1 + &#x27;&quot;]&#x27;).attr(&#x27;src&#x27;, media.data(type_src_1));
+        media.find(&#x27;source[type=&quot;&#x27; + type + &#x27;/&#x27; + type_src_2 + &#x27;&quot;]&#x27;).attr(&#x27;src&#x27;, media.data(type_src_2));
+        media.load();
+        media.data(&#x27;loaded&#x27;);
+      }
+      if(media[0].error) {
+        showLoadingMediaErrorPopup(media[0].error.code, type);
+      } else {
+        media[0].play();
+      }
+    }
+  });
 }
+
+
+
+
 
 /**
 Removes a parameter from an url.
