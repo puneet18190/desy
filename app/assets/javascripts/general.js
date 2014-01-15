@@ -571,7 +571,7 @@ function showMiniThumbnailForMediaElementCompact(item) {
         media.find('source[type="' + type + '/' + type_src_1 + '"]').attr('src', media.data(type_src_1));
         media.find('source[type="' + type + '/' + type_src_2 + '"]').attr('src', media.data(type_src_2));
         media.load();
-        media.data('loaded');
+        media.data('loaded', true);
       }
       if(media[0].error) {
         showLoadingMediaErrorPopup(media[0].error.code, type);

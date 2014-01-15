@@ -543,8 +543,9 @@ a.cerca.current {
     height: 200px;
     width: 200px;
     position: absolute;
+    left: 0.8%;
     z-index: 2;
-    background-color: red;
+    background-image: $assets-fondo-mini-thumb-stretto_png;
     
     &.above {
       
@@ -557,12 +558,20 @@ a.cerca.current {
       
       padding: 15px 5px 5px 5px;
       top: 46px;
+      background-image: $assets-fondo-mini-thumb-stretto-updown_png;
       
     }
     
     &.video {
       
       width: 356px;
+      background-image: $assets-fondo-mini-thumb-largo_png;
+      
+      &.below {
+        
+        background-image: $assets-fondo-mini-thumb-largo-updown_png;
+        
+      }
       
     }
     
