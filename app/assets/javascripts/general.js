@@ -544,7 +544,21 @@ function showMiniThumbnailForMediaElementCompact(item) {
       position = 'above';
     }
   }
-  item.find('.mini_thumb').removeClass('above below').addClass(position).show('fade', {}, 200);
+  var mini = item.find('.mini_thumb');
+  mini.removeClass('above below').addClass(position).show('fade', {}, 200, function() {
+    if(mini.hasClass('audio') || mini.hasClass('video')) {
+      type = 'video';
+      if(mini.hasClass('audio')) {
+        type = 'audio';
+      }
+      media = mini.find(type)[0];
+      if(media.error) {
+        showLoadingMediaErrorPopup(media.error.code, type);
+      } else {
+        media.play();
+      }
+    }
+  });
 }
 
 

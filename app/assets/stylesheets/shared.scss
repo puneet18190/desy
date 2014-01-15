@@ -501,7 +501,7 @@ a.cerca.current {
         
         &.audio {
           
-          @include svg-circle-icon-handler-without-hover($assets-icon-elements_svg, 26px, 1, 3, 1, 0, 1);
+          @include svg-circle-icon-handler-without-hover($assets-icon-elements_svg, 26px, 1, 3, 1, 0, 2);
           
         }
         
@@ -513,7 +513,7 @@ a.cerca.current {
         
         &.image {
           
-          @include svg-circle-icon-handler-without-hover($assets-icon-elements_svg, 26px, 1, 3, 1, 0, 2);
+          @include svg-circle-icon-handler-without-hover($assets-icon-elements_svg, 26px, 1, 3, 1, 0, 1);
           
         }
         
