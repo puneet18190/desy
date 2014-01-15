@@ -3,7 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>Export::Lesson::Shared::EbookAndEbookRenderer</title>
+    <title>Export::Lesson::Shared::EbookAndEbookView</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
@@ -20,12 +20,12 @@
         
         <h1>
             <span class="type">Module</span> 
-            Export::Lesson::Shared::EbookAndEbookRenderer 
+            Export::Lesson::Shared::EbookAndEbookView 
             
         </h1>
         <ul class="files">
             
-            <li><a href="../../../../files/lib/export/lesson/shared/ebook_and_ebook_renderer_rb.html">lib/export/lesson/shared/ebook_and_ebook_renderer.rb</a></li>
+            <li><a href="../../../../files/lib/export/lesson/shared/ebook_and_ebook_view_rb.html">lib/export/lesson/shared/ebook_and_ebook_view.rb</a></li>
             
         </ul>
     </div>
@@ -124,54 +124,6 @@
       <table border='0' cellpadding='5'>
         
           <tr valign='top'>
-            <td class="attr-name">TEMPLATES_FOLDER</td>
-            <td>=</td>
-            <td class="attr-value">Lesson::FOLDER.join &#x27;ebooks&#x27;, &#x27;template&#x27;</td>
-          </tr>
-          
-            <tr valign='top'>
-              <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
-            </tr>
-          
-        
-          <tr valign='top'>
-            <td class="attr-name">LOOKUP_CONTEXT</td>
-            <td>=</td>
-            <td class="attr-value">ActionView::LookupContext.new TEMPLATES_FOLDER</td>
-          </tr>
-          
-            <tr valign='top'>
-              <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
-            </tr>
-          
-        
-          <tr valign='top'>
-            <td class="attr-name">VIEW_RENDERER</td>
-            <td>=</td>
-            <td class="attr-value">Ebook::Renderer.new LOOKUP_CONTEXT</td>
-          </tr>
-          
-            <tr valign='top'>
-              <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
-            </tr>
-          
-        
-          <tr valign='top'>
-            <td class="attr-name">CONTEXT</td>
-            <td>=</td>
-            <td class="attr-value">VIEW_RENDERER</td>
-          </tr>
-          
-            <tr valign='top'>
-              <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
-            </tr>
-          
-        
-          <tr valign='top'>
             <td class="attr-name">DOCUMENT_FALLBACKS_RELATIVE_FROM_CONTENTS_FOLDER</td>
             <td>=</td>
             <td class="attr-value">File.join DocumentUploader::STORE_DIR, &#x27;fallbacks&#x27;</td>
@@ -199,7 +151,7 @@
             
               <b>document_fallback_filename</b>(document)
             
-            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookRenderer.html#method-i-document_fallback_filename" name="method-i-document_fallback_filename" class="permalink">Link</a>
+            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookView.html#method-i-document_fallback_filename" name="method-i-document_fallback_filename" class="permalink">Link</a>
           </div>
           
           
@@ -220,7 +172,7 @@
                 
               </p>
               <div id="method-i-document_fallback_filename_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_renderer.rb, line 35</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_view.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">document_fallback_filename</span>(<span class="ruby-identifier">document</span>)
   <span class="ruby-node">&quot;#{document_item_fallback_id(document)}.xhtml&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -234,7 +186,7 @@
             
               <b>document_fallbacks_relative_from_content_path</b>(document)
             
-            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookRenderer.html#method-i-document_fallbacks_relative_from_content_path" name="method-i-document_fallbacks_relative_from_content_path" class="permalink">Link</a>
+            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookView.html#method-i-document_fallbacks_relative_from_content_path" name="method-i-document_fallbacks_relative_from_content_path" class="permalink">Link</a>
           </div>
           
           
@@ -255,7 +207,7 @@
                 
               </p>
               <div id="method-i-document_fallbacks_relative_from_content_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_renderer.rb, line 39</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_view.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">document_fallbacks_relative_from_content_path</span>(<span class="ruby-identifier">document</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-constant">DOCUMENT_FALLBACKS_RELATIVE_FROM_CONTENTS_FOLDER</span>, <span class="ruby-identifier">document_fallback_filename</span>(<span class="ruby-identifier">document</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -269,7 +221,7 @@
             
               <b>document_item_fallback_id</b>(document)
             
-            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookRenderer.html#method-i-document_item_fallback_id" name="method-i-document_item_fallback_id" class="permalink">Link</a>
+            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookView.html#method-i-document_item_fallback_id" name="method-i-document_item_fallback_id" class="permalink">Link</a>
           </div>
           
           
@@ -290,7 +242,7 @@
                 
               </p>
               <div id="method-i-document_item_fallback_id_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_renderer.rb, line 31</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_view.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">document_item_fallback_id</span>(<span class="ruby-identifier">document</span>)
   <span class="ruby-node">&quot;#{document_item_id(document)}_fallback&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -304,7 +256,7 @@
             
               <b>document_item_id</b>(document)
             
-            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookRenderer.html#method-i-document_item_id" name="method-i-document_item_id" class="permalink">Link</a>
+            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookView.html#method-i-document_item_id" name="method-i-document_item_id" class="permalink">Link</a>
           </div>
           
           
@@ -325,7 +277,7 @@
                 
               </p>
               <div id="method-i-document_item_id_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_renderer.rb, line 27</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_view.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">document_item_id</span>(<span class="ruby-identifier">document</span>)
   <span class="ruby-node">&quot;document_#{document.id}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -339,7 +291,7 @@
             
               <b>math_image_path_relative_from_contents_folder</b>(math_image_filename)
             
-            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookRenderer.html#method-i-math_image_path_relative_from_contents_folder" name="method-i-math_image_path_relative_from_contents_folder" class="permalink">Link</a>
+            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookView.html#method-i-math_image_path_relative_from_contents_folder" name="method-i-math_image_path_relative_from_contents_folder" class="permalink">Link</a>
           </div>
           
           
@@ -360,9 +312,9 @@
                 
               </p>
               <div id="method-i-math_image_path_relative_from_contents_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_renderer.rb, line 43</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_view.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">math_image_path_relative_from_contents_folder</span>(<span class="ruby-identifier">math_image_filename</span>)
-  <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">MATH_IMAGES_ARCHIVE_FOLDER_NAME</span>, <span class="ruby-identifier">math_image_filename</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">FILE_MATH_IMAGES_FOLDER_NAME</span>, <span class="ruby-identifier">math_image_filename</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -374,7 +326,7 @@
             
               <b>slide_filename</b>(slide)
             
-            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookRenderer.html#method-i-slide_filename" name="method-i-slide_filename" class="permalink">Link</a>
+            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookView.html#method-i-slide_filename" name="method-i-slide_filename" class="permalink">Link</a>
           </div>
           
           
@@ -395,7 +347,7 @@
                 
               </p>
               <div id="method-i-slide_filename_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_renderer.rb, line 23</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_view.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">slide_filename</span>(<span class="ruby-identifier">slide</span>)
   <span class="ruby-node">&quot;#{slide_item_id(slide)}.xhtml&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -409,7 +361,7 @@
             
               <b>slide_item_id</b>(slide)
             
-            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookRenderer.html#method-i-slide_item_id" name="method-i-slide_item_id" class="permalink">Link</a>
+            <a href="../../../../classes/Export/Lesson/Shared/EbookAndEbookView.html#method-i-slide_item_id" name="method-i-slide_item_id" class="permalink">Link</a>
           </div>
           
           
@@ -430,7 +382,7 @@
                 
               </p>
               <div id="method-i-slide_item_id_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_renderer.rb, line 19</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/shared/ebook_and_ebook_view.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">slide_item_id</span>(<span class="ruby-identifier">slide</span>)
   <span class="ruby-node">&quot;slide_#{slide.position-1}&quot;</span>
 <span class="ruby-keyword">end</span></pre>

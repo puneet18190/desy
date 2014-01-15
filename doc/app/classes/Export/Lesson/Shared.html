@@ -27,7 +27,7 @@
             
             <li><a href="../../../files/lib/export/lesson/shared_rb.html">lib/export/lesson/shared.rb</a></li>
             
-            <li><a href="../../../files/lib/export/lesson/shared/ebook_and_ebook_renderer_rb.html">lib/export/lesson/shared/ebook_and_ebook_renderer.rb</a></li>
+            <li><a href="../../../files/lib/export/lesson/shared/ebook_and_ebook_view_rb.html">lib/export/lesson/shared/ebook_and_ebook_view.rb</a></li>
             
         </ul>
     </div>
@@ -50,7 +50,7 @@
       
         <li>
           <span class="type">MODULE</span>
-          <a href="Shared/EbookAndEbookRenderer.html">Export::Lesson::Shared::EbookAndEbookRenderer</a>
+          <a href="Shared/EbookAndEbookView.html">Export::Lesson::Shared::EbookAndEbookView</a>
         </li>
       
     </ul>
@@ -175,7 +175,7 @@
           
         
           <tr valign='top'>
-            <td class="attr-name">MATH_IMAGES_ARCHIVE_FOLDER_NAME</td>
+            <td class="attr-name">FILE_MATH_IMAGES_FOLDER_NAME</td>
             <td>=</td>
             <td class="attr-value">&#x27;math_images&#x27;</td>
           </tr>
@@ -377,7 +377,7 @@
               <div id="method-i-math_images_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/export/lesson/shared.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">math_images</span>
-  <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">to_a</span>(<span class="ruby-value">:with_folder</span>) }.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">uniq_by</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">basename</span> }
+  <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">math_images_paths</span>(<span class="ruby-value">:full_path</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

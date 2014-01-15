@@ -33,9 +33,11 @@
             
             <li><a href="../../../files/lib/export/lesson/ebook_rb.html">lib/export/lesson/ebook.rb</a></li>
             
-            <li><a href="../../../files/lib/export/lesson/ebook/renderer_rb.html">lib/export/lesson/ebook/renderer.rb</a></li>
+            <li><a href="../../../files/lib/export/lesson/ebook/assets_rb.html">lib/export/lesson/ebook/assets.rb</a></li>
             
-            <li><a href="../../../files/lib/export/lesson/ebook/renderer/helper_rb.html">lib/export/lesson/ebook/renderer/helper.rb</a></li>
+            <li><a href="../../../files/lib/export/lesson/ebook/view_rb.html">lib/export/lesson/ebook/view.rb</a></li>
+            
+            <li><a href="../../../files/lib/export/lesson/ebook/view/helper_rb.html">lib/export/lesson/ebook/view/helper.rb</a></li>
             
         </ul>
     </div>
@@ -58,7 +60,12 @@
       
         <li>
           <span class="type">CLASS</span>
-          <a href="Ebook/Renderer.html">Export::Lesson::Ebook::Renderer</a>
+          <a href="Ebook/Assets.html">Export::Lesson::Ebook::Assets</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="Ebook/View.html">Export::Lesson::Ebook::View</a>
         </li>
       
     </ul>
@@ -76,7 +83,17 @@
             
               
               <li>
-                <a href="#method-i-add_template">add_template</a>
+                <a href="#method-i-add_template">add_template</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-assets_compiled-3F">assets_compiled?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-assets_files">assets_files</a>
               </li>
             
           </ul>
@@ -130,18 +147,6 @@
           </ul>
         </dd>
       
-        <dt>T</dt>
-        <dd>
-          <ul>
-            
-              
-              <li>
-                <a href="#method-i-template_path">template_path</a>
-              </li>
-            
-          </ul>
-        </dd>
-      
         <dt>U</dt>
         <dd>
           <ul>
@@ -149,6 +154,18 @@
               
               <li>
                 <a href="#method-i-url">url</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-view_path">view_path</a>
               </li>
             
           </ul>
@@ -180,8 +197,8 @@
       
         <li>
           
-            <a href="Shared/EbookAndEbookRenderer.html">
-              Export::Lesson::Shared::EbookAndEbookRenderer
+            <a href="Shared/EbookAndEbookView.html">
+              Export::Lesson::Shared::EbookAndEbookView
             </a>
           
         </li>
@@ -203,7 +220,7 @@
       <table border='0' cellpadding='5'>
         
           <tr valign='top'>
-            <td class="attr-name">FOLDER</td>
+            <td class="attr-name">OUTPUT_FOLDER</td>
             <td>=</td>
             <td class="attr-value">env_relative_pathname Rails.public_pathname, &#x27;lessons&#x27;, &#x27;exports&#x27;, &#x27;ebooks&#x27;</td>
           </tr>
@@ -217,7 +234,7 @@
           <tr valign='top'>
             <td class="attr-name">SLIDES_INCLUDES</td>
             <td>=</td>
-            <td class="attr-value">[ :documents_slides, :documents, :media_elements_slides, :media_elements ]</td>
+            <td class="attr-value">[ :media_elements_slides, :media_elements ]</td>
           </tr>
           
             <tr valign='top'>
@@ -251,9 +268,57 @@
           
         
           <tr valign='top'>
-            <td class="attr-name">CONTENTS_FOLDER_NAME</td>
+            <td class="attr-name">FILE_CONTENTS_FOLDER</td>
             <td>=</td>
             <td class="attr-value">Pathname &#x27;OEBPS&#x27;</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">FILE_INPUT_ASSETS_FOLDER</td>
+            <td>=</td>
+            <td class="attr-value">FILE_CONTENTS_FOLDER.join &#x27;assets&#x27;</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">INPUT_VIEWS_FOLDER</td>
+            <td>=</td>
+            <td class="attr-value">View::FOLDER</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">INPUT_ASSETS_FOLDER</td>
+            <td>=</td>
+            <td class="attr-value">Lesson::FOLDER.join &#x27;ebooks&#x27;, &#x27;assets&#x27;</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">ASSETS_PATHS</td>
+            <td>=</td>
+            <td class="attr-value">%W( lesson_ebook/application.css )</td>
           </tr>
           
             <tr valign='top'>
@@ -287,14 +352,6 @@
             <td class='attr-rw'>
               [R]
             </td>
-            <td class='attr-name'>cover_slide</td>
-            <td class='attr-desc'></td>
-          </tr>
-        
-          <tr valign='top'>
-            <td class='attr-rw'>
-              [R]
-            </td>
             <td class='attr-name'>filename</td>
             <td class='attr-desc'></td>
           </tr>
@@ -311,14 +368,6 @@
             <td class='attr-rw'>
               [R]
             </td>
-            <td class='attr-name'>folder</td>
-            <td class='attr-desc'></td>
-          </tr>
-        
-          <tr valign='top'>
-            <td class='attr-rw'>
-              [R]
-            </td>
             <td class='attr-name'>lesson</td>
             <td class='attr-desc'></td>
           </tr>
@@ -327,7 +376,7 @@
             <td class='attr-rw'>
               [R]
             </td>
-            <td class='attr-name'>path</td>
+            <td class='attr-name'>output_folder</td>
             <td class='attr-desc'></td>
           </tr>
         
@@ -335,7 +384,15 @@
             <td class='attr-rw'>
               [R]
             </td>
-            <td class='attr-name'>slides_without_cover</td>
+            <td class='attr-name'>output_path</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>slides</td>
             <td class='attr-desc'></td>
           </tr>
         
@@ -373,19 +430,18 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 38</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">lesson</span>)
-  <span class="ruby-ivar">@lesson</span>               = <span class="ruby-identifier">lesson</span>
-  <span class="ruby-ivar">@slides_without_cover</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-constant">SLIDES_INCLUDES</span>).<span class="ruby-identifier">eager_load</span>(<span class="ruby-constant">SLIDES_EAGER_LOAD</span>).<span class="ruby-identifier">order</span>(<span class="ruby-constant">SLIDES_ORDER</span>)
-  <span class="ruby-ivar">@cover_slide</span>          = <span class="ruby-ivar">@slides_without_cover</span>.<span class="ruby-identifier">shift</span> <span class="ruby-comment"># @slides_without_cover includes cover slide till now</span>
+  <span class="ruby-ivar">@lesson</span> = <span class="ruby-identifier">lesson</span>
+  <span class="ruby-ivar">@slides</span> = <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:position</span>)
 
   <span class="ruby-identifier">parameterized_title</span> = <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">parameterize</span>
   <span class="ruby-identifier">time</span>                = <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">updated_at</span>.<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-constant">WRITE_TIME_FORMAT</span>)
 
   <span class="ruby-ivar">@filename_without_extension</span> = <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">tap</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_#{parameterized_title}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">parameterized_title</span>.<span class="ruby-identifier">present?</span> }
-  <span class="ruby-ivar">@folder</span>                     = <span class="ruby-constant">FOLDER</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">time</span>
+  <span class="ruby-ivar">@output_folder</span>              = <span class="ruby-constant">OUTPUT_FOLDER</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">time</span>
   <span class="ruby-ivar">@filename</span>                   = <span class="ruby-node">&quot;#{filename_without_extension}.epub&quot;</span>
-  <span class="ruby-ivar">@path</span>                       = <span class="ruby-identifier">folder</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">filename</span>
+  <span class="ruby-ivar">@output_path</span>                       = <span class="ruby-identifier">output_folder</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">filename</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -418,9 +474,9 @@
                 
               </p>
               <div id="method-c-remove_folder-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 32</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">remove_folder!</span>
-  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-constant">FOLDER</span>
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-constant">OUTPUT_FOLDER</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -429,80 +485,6 @@
                   
       <div class="sectiontitle">Instance Public methods</div>
       
-        <div class="method">
-          <div class="title method-title" id="method-i-create">
-            
-              <b>create</b>()
-            
-            <a href="../../../classes/Export/Lesson/Ebook.html#method-i-create" name="method-i-create" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-create_source')" id="l_method-i-create_source">show</a>
-                
-              </p>
-              <div id="method-i-create_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 66</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create</span>
-  <span class="ruby-constant">Zip</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-constant">Zip</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREATE</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">archive</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">template_path</span>(<span class="ruby-string">&#39;mimetype&#39;</span>), <span class="ruby-string">&#39;mimetype&#39;</span>
-
-    <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">template_path</span>(<span class="ruby-string">&#39;META-INF/container.xml&#39;</span>), <span class="ruby-string">&#39;META-INF/container.xml&#39;</span>
-
-    <span class="ruby-identifier">locals</span> = { <span class="ruby-identifier">lesson</span><span class="ruby-operator">:</span> <span class="ruby-identifier">lesson</span>, <span class="ruby-identifier">slides_without_cover</span><span class="ruby-operator">:</span> <span class="ruby-identifier">slides_without_cover</span>, <span class="ruby-identifier">cover_slide</span><span class="ruby-operator">:</span> <span class="ruby-identifier">cover_slide</span> }
-
-    <span class="ruby-identifier">add_template</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">locals</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">math_images</span><span class="ruby-operator">:</span> <span class="ruby-identifier">math_images</span>), <span class="ruby-constant">CONTENTS_FOLDER_NAME</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;lesson.opf&#39;</span>)
-
-    <span class="ruby-identifier">add_template</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">locals</span>, <span class="ruby-constant">CONTENTS_FOLDER_NAME</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;toc.xhtml&#39;</span>)
-
-    <span class="ruby-identifier">add_template</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">locals</span>, <span class="ruby-constant">CONTENTS_FOLDER_NAME</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;cover.xhtml&#39;</span>)
-
-    <span class="ruby-identifier">slide_template_path</span> = <span class="ruby-constant">CONTENTS_FOLDER_NAME</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;slide.xhtml&#39;</span>)
-    <span class="ruby-identifier">slides_without_cover</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">slide</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">add_template</span> <span class="ruby-identifier">archive</span>, { <span class="ruby-identifier">slide</span><span class="ruby-operator">:</span> <span class="ruby-identifier">slide</span> }, <span class="ruby-constant">CONTENTS_FOLDER_NAME</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">slide_filename</span> <span class="ruby-identifier">slide</span>), <span class="ruby-identifier">slide_template_path</span>
-    <span class="ruby-keyword">end</span>
-
-    <span class="ruby-identifier">media_elements_files</span>(<span class="ruby-identifier">exclude_versions</span><span class="ruby-operator">:</span> [ <span class="ruby-value">:thumb</span> ]).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">path</span>, <span class="ruby-constant">CONTENTS_FOLDER_NAME</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">relative_path_from</span> <span class="ruby-constant">MEDIA_ELEMENTS_UPFOLDER</span>)
-    <span class="ruby-keyword">end</span>
-
-    <span class="ruby-identifier">documents_files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">path</span>, <span class="ruby-constant">CONTENTS_FOLDER_NAME</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">relative_path_from</span> <span class="ruby-constant">DOCUMENTS_UPFOLDER</span>)
-    <span class="ruby-keyword">end</span>
-
-    <span class="ruby-identifier">document_fallback_template_path</span> = <span class="ruby-constant">CONTENTS_FOLDER_NAME</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;documents/fallback.xhtml&#39;</span>)
-    <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">documents</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">document</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">add_template</span> <span class="ruby-identifier">archive</span>, { <span class="ruby-identifier">document</span><span class="ruby-operator">:</span> <span class="ruby-identifier">document</span>, <span class="ruby-identifier">position</span><span class="ruby-operator">:</span> <span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-number">1</span> }, <span class="ruby-constant">CONTENTS_FOLDER_NAME</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">document_fallbacks_relative_from_content_path</span> <span class="ruby-identifier">document</span>), <span class="ruby-identifier">document_fallback_template_path</span>
-    <span class="ruby-keyword">end</span>
-
-    <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">path</span>, <span class="ruby-constant">CONTENTS_FOLDER_NAME</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">math_image_path_relative_from_contents_folder</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">basename</span>)
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-identifier">path</span>.<span class="ruby-identifier">chmod</span> <span class="ruby-number">0644</span>
-<span class="ruby-keyword">rescue</span>
-  <span class="ruby-identifier">path</span>.<span class="ruby-identifier">unlink</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">exist?</span>
-  <span class="ruby-identifier">raise</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
         <div class="method">
           <div class="title method-title" id="method-i-find_or_create">
             
@@ -529,13 +511,18 @@
                 
               </p>
               <div id="method-i-find_or_create_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 58</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">find_or_create</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">exist?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">output_path</span>.<span class="ruby-identifier">exist?</span>
   
-  <span class="ruby-identifier">remove_old_files</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">folder</span>.<span class="ruby-identifier">exist?</span>
-  <span class="ruby-identifier">folder</span>.<span class="ruby-identifier">mkpath</span>
+  <span class="ruby-comment"># raises if export assets are not compiled</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;Assets are not compiled. Please create them using rake exports:lessons:ebooks:assets:compile&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">assets_compiled?</span>
+
+  <span class="ruby-identifier">remove_old_files</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">output_folder</span>.<span class="ruby-identifier">exist?</span>
+  <span class="ruby-identifier">output_folder</span>.<span class="ruby-identifier">mkpath</span>
   <span class="ruby-identifier">create</span>
+
+  <span class="ruby-keyword">self</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -568,11 +555,11 @@
                 
               </p>
               <div id="method-i-url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 52</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">url</span>
   <span class="ruby-identifier">find_or_create</span>
 
-  <span class="ruby-node">&quot;/#{path.relative_path_from Rails.public_pathname}&quot;</span>
+  <span class="ruby-node">&quot;/#{output_path.relative_path_from Rails.public_pathname}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -584,7 +571,7 @@
         <div class="method">
           <div class="title method-title" id="method-i-add_template">
             
-              <b>add_template</b>(archive, locals, archive_entry_path, template_path_relative_from_template_folder = nil)
+              <b>add_template</b>(archive, locals, archive_entry_path, view_path_relative_from_template_folder = nil)
             
             <a href="../../../classes/Export/Lesson/Ebook.html#method-i-add_template" name="method-i-add_template" class="permalink">Link</a>
           </div>
@@ -607,13 +594,13 @@
                 
               </p>
               <div id="method-i-add_template_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 111</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">add_template</span>(<span class="ruby-identifier">archive</span>, <span class="ruby-identifier">locals</span>, <span class="ruby-identifier">archive_entry_path</span>, <span class="ruby-identifier">template_path_relative_from_template_folder</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">template_path_relative_from_template_folder</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">archive_entry_path</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">add_template</span>(<span class="ruby-identifier">archive</span>, <span class="ruby-identifier">locals</span>, <span class="ruby-identifier">archive_entry_path</span>, <span class="ruby-identifier">view_path_relative_from_template_folder</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">view_path_relative_from_template_folder</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">archive_entry_path</span>
 
-  <span class="ruby-identifier">options</span> = { <span class="ruby-identifier">template</span><span class="ruby-operator">:</span> <span class="ruby-identifier">template_path_relative_from_template_folder</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> <span class="ruby-identifier">locals</span> }
-
-  <span class="ruby-identifier">add_string_entry</span> <span class="ruby-identifier">archive</span>, <span class="ruby-constant">VIEW_RENDERER</span>.<span class="ruby-identifier">render_with_default_context</span>(<span class="ruby-identifier">options</span>), <span class="ruby-identifier">archive_entry_path</span>
+  <span class="ruby-identifier">add_string_entry</span> <span class="ruby-identifier">archive</span>                                                                                 ,
+                   <span class="ruby-constant">View</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">render</span>(<span class="ruby-identifier">template</span><span class="ruby-operator">:</span> <span class="ruby-identifier">view_path_relative_from_template_folder</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> <span class="ruby-identifier">locals</span>) ,
+                   <span class="ruby-identifier">archive_entry_path</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -621,11 +608,11 @@
           </div>
         
         <div class="method">
-          <div class="title method-title" id="method-i-template_path">
+          <div class="title method-title" id="method-i-assets_compiled-3F">
             
-              <b>template_path</b>(path)
+              <b>assets_compiled?</b>()
             
-            <a href="../../../classes/Export/Lesson/Ebook.html#method-i-template_path" name="method-i-template_path" class="permalink">Link</a>
+            <a href="../../../classes/Export/Lesson/Ebook.html#method-i-assets_compiled-3F" name="method-i-assets_compiled-3F" class="permalink">Link</a>
           </div>
           
           
@@ -642,13 +629,149 @@
               
               <p class="source-link">
                 Source: 
-                <a href="javascript:toggleSource('method-i-template_path_source')" id="l_method-i-template_path_source">show</a>
+                <a href="javascript:toggleSource('method-i-assets_compiled-3F_source')" id="l_method-i-assets_compiled-3F_source">show</a>
                 
               </p>
-              <div id="method-i-template_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 119</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">template_path</span>(<span class="ruby-identifier">path</span>)
-  <span class="ruby-constant">TEMPLATES_FOLDER</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">path</span>
+              <div id="method-i-assets_compiled-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assets_compiled?</span>
+  <span class="ruby-constant">INPUT_ASSETS_FOLDER</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">INPUT_ASSETS_FOLDER</span>.<span class="ruby-identifier">entries</span>.<span class="ruby-identifier">present?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-assets_files">
+            
+              <b>assets_files</b>()
+            
+            <a href="../../../classes/Export/Lesson/Ebook.html#method-i-assets_files" name="method-i-assets_files" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-assets_files_source')" id="l_method-i-assets_files_source">show</a>
+                
+              </p>
+              <div id="method-i-assets_files_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 117</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assets_files</span>
+  <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">glob</span>( <span class="ruby-constant">INPUT_ASSETS_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;**&#39;</span>, <span class="ruby-string">&#39;*&#39;</span>) ).<span class="ruby-identifier">reject</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">directory?</span> }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create">
+            
+              <b>create</b>()
+            
+            <a href="../../../classes/Export/Lesson/Ebook.html#method-i-create" name="method-i-create" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_source')" id="l_method-i-create_source">show</a>
+                
+              </p>
+              <div id="method-i-create_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create</span>
+  <span class="ruby-constant">Zip</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">output_path</span>, <span class="ruby-constant">Zip</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREATE</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">archive</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">view_path</span>(<span class="ruby-string">&#39;mimetype&#39;</span>), <span class="ruby-string">&#39;mimetype&#39;</span>
+
+    <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">view_path</span>(<span class="ruby-string">&#39;META-INF/container.xml&#39;</span>), <span class="ruby-string">&#39;META-INF/container.xml&#39;</span>
+
+    <span class="ruby-identifier">locals</span> = { <span class="ruby-identifier">lesson</span><span class="ruby-operator">:</span> <span class="ruby-identifier">lesson</span>, <span class="ruby-identifier">slides</span><span class="ruby-operator">:</span> <span class="ruby-identifier">slides</span> }
+
+    <span class="ruby-identifier">add_template</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">locals</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">math_images</span><span class="ruby-operator">:</span> <span class="ruby-identifier">math_images</span>), <span class="ruby-constant">FILE_CONTENTS_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;package.opf&#39;</span>)
+
+    <span class="ruby-identifier">assets_files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">path</span>, <span class="ruby-constant">FILE_INPUT_ASSETS_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">relative_path_from</span> <span class="ruby-constant">INPUT_ASSETS_FOLDER</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">add_template</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">locals</span>, <span class="ruby-constant">FILE_CONTENTS_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;toc.xhtml&#39;</span>)
+
+    <span class="ruby-identifier">slides</span>.<span class="ruby-identifier">each_with_object</span>(<span class="ruby-constant">FILE_CONTENTS_FOLDER</span>.<span class="ruby-identifier">join</span> <span class="ruby-string">&#39;slide.xhtml&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">slide</span>, <span class="ruby-identifier">slide_view_path</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">add_template</span> <span class="ruby-identifier">archive</span>, { <span class="ruby-identifier">lesson</span><span class="ruby-operator">:</span> <span class="ruby-identifier">lesson</span>, <span class="ruby-identifier">slide</span><span class="ruby-operator">:</span> <span class="ruby-identifier">slide</span> }, <span class="ruby-constant">FILE_CONTENTS_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">slide_filename</span> <span class="ruby-identifier">slide</span>), <span class="ruby-identifier">slide_view_path</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">media_elements_files</span>(<span class="ruby-identifier">exclude_versions</span><span class="ruby-operator">:</span> [ <span class="ruby-value">:thumb</span> ]).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">path</span>, <span class="ruby-constant">FILE_CONTENTS_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">relative_path_from</span> <span class="ruby-constant">MEDIA_ELEMENTS_UPFOLDER</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">archive</span>, <span class="ruby-identifier">path</span>, <span class="ruby-constant">FILE_CONTENTS_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">math_image_path_relative_from_contents_folder</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">basename</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">output_path</span>.<span class="ruby-identifier">chmod</span> <span class="ruby-number">0644</span>
+<span class="ruby-keyword">rescue</span>
+  <span class="ruby-identifier">output_path</span>.<span class="ruby-identifier">unlink</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">output_path</span>.<span class="ruby-identifier">exist?</span>
+  <span class="ruby-identifier">raise</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-view_path">
+            
+              <b>view_path</b>(path)
+            
+            <a href="../../../classes/Export/Lesson/Ebook.html#method-i-view_path" name="method-i-view_path" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-view_path_source')" id="l_method-i-view_path_source">show</a>
+                
+              </p>
+              <div id="method-i-view_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">view_path</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-constant">INPUT_VIEWS_FOLDER</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">path</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

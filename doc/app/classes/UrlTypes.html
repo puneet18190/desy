@@ -3,7 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>UrlByUrlType</title>
+    <title>UrlTypes</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
@@ -20,12 +20,12 @@
         
         <h1>
             <span class="type">Module</span> 
-            UrlByUrlType 
+            UrlTypes 
             
         </h1>
         <ul class="files">
             
-            <li><a href="../files/lib/autoload/url_by_url_type_rb.html">lib/autoload/url_by_url_type.rb</a></li>
+            <li><a href="../files/lib/autoload/url_types_rb.html">lib/autoload/url_types.rb</a></li>
             
         </ul>
     </div>
@@ -48,7 +48,7 @@
       
         <li>
           <span class="type">MODULE</span>
-          <a href="UrlByUrlType/InstanceMethods.html">UrlByUrlType::InstanceMethods</a>
+          <a href="UrlTypes/InstanceMethods.html">UrlTypes::InstanceMethods</a>
         </li>
       
     </ul>
@@ -91,9 +91,45 @@
       <table border='0' cellpadding='5'>
         
           <tr valign='top'>
-            <td class="attr-name">URL_TYPES</td>
+            <td class="attr-name">EXPORT</td>
             <td>=</td>
-            <td class="attr-value">Hash[ SETTINGS[&#x27;url_types&#x27;].map{ |v| [v,v] } ]</td>
+            <td class="attr-value">:export</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">FULL_URL</td>
+            <td>=</td>
+            <td class="attr-value">:full_url</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">SCORM</td>
+            <td>=</td>
+            <td class="attr-value">:scorm</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">SCORM_HTML</td>
+            <td>=</td>
+            <td class="attr-value">:scorm_html</td>
           </tr>
           
             <tr valign='top'>
@@ -118,7 +154,7 @@
             
               <b>included</b>(receiver)
             
-            <a href="../classes/UrlByUrlType.html#method-c-included" name="method-c-included" class="permalink">Link</a>
+            <a href="../classes/UrlTypes.html#method-c-included" name="method-c-included" class="permalink">Link</a>
           </div>
           
           
@@ -139,7 +175,7 @@
                 
               </p>
               <div id="method-c-included_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/url_by_url_type.rb, line 23</span>
+                <pre><span class="ruby-comment"># File lib/autoload/url_types.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">receiver</span>)
   <span class="ruby-identifier">receiver</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:include</span>, <span class="ruby-constant">InstanceMethods</span>
 <span class="ruby-keyword">end</span></pre>

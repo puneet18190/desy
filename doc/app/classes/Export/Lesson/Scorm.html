@@ -35,10 +35,20 @@
             
             <li><a href="../../../files/lib/export/lesson/scorm/assets_rb.html">lib/export/lesson/scorm/assets.rb</a></li>
             
+            <li><a href="../../../files/lib/export/lesson/scorm/view_rb.html">lib/export/lesson/scorm/view.rb</a></li>
+            
+            <li><a href="../../../files/lib/export/lesson/scorm/view/helper_rb.html">lib/export/lesson/scorm/view/helper.rb</a></li>
+            
         </ul>
     </div>
     <div id="bodyContent">
         <div id="content">
+  
+    <div class="description">
+      
+<p><a href="../../Export.html">Export</a> scorms</p>
+
+    </div>
   
 
 
@@ -57,6 +67,11 @@
         <li>
           <span class="type">CLASS</span>
           <a href="Scorm/Assets.html">Export::Lesson::Scorm::Assets</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="Scorm/View.html">Export::Lesson::Scorm::View</a>
         </li>
       
     </ul>
@@ -186,38 +201,123 @@
       <table border='0' cellpadding='5'>
         
           <tr valign='top'>
-            <td class="attr-name">ASSETS_FOLDER</td>
-            <td>=</td>
-            <td class="attr-value">Lesson::FOLDER.join &#x27;scorms&#x27;, &#x27;assets&#x27;</td>
-          </tr>
-          
-            <tr valign='top'>
-              <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
-            </tr>
-          
-        
-          <tr valign='top'>
-            <td class="attr-name">FOLDER</td>
+            <td class="attr-name">OUTPUT_FOLDER</td>
             <td>=</td>
             <td class="attr-value">env_relative_pathname Rails.public_pathname, &#x27;lessons&#x27;, &#x27;exports&#x27;, &#x27;scorms&#x27;</td>
           </tr>
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Folder where the scorm packages are exported</p></td>
             </tr>
           
         
           <tr valign='top'>
-            <td class="attr-name">ASSETS_ARCHIVE_FOLDER_NAME</td>
+            <td class="attr-name">INPUT_FOLDER</td>
             <td>=</td>
-            <td class="attr-value">&#x27;assets&#x27;</td>
+            <td class="attr-value">Lesson::FOLDER.join &#x27;scorms&#x27;</td>
           </tr>
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Folder from which the system extracts assets and templates</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">INPUT_ASSETS_FOLDER</td>
+            <td>=</td>
+            <td class="attr-value">INPUT_FOLDER.join &#x27;assets&#x27;</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Folder from which the system extracts precompiled assets</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">INPUT_VIEWS_FOLDER</td>
+            <td>=</td>
+            <td class="attr-value">View::FOLDER</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Folder from which the system extracts templates</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">INPUT_VIEWS_STATIC_FILES_FOLDER</td>
+            <td>=</td>
+            <td class="attr-value">INPUT_VIEWS_FOLDER.join &#x27;static&#x27;</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Folder from which the system extracts static files to be copied in the
+scorm package</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">FILE_ROOT_FOLDER</td>
+            <td>=</td>
+            <td class="attr-value">Pathname &#x27;.&#x27;</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Root folder inside the scorm package</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">FILE_HTML_FOLDER</td>
+            <td>=</td>
+            <td class="attr-value">FILE_ROOT_FOLDER.join &#x27;html&#x27;</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Folder in the scorm package containing the html files</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">FILE_MANIFEST</td>
+            <td>=</td>
+            <td class="attr-value">FILE_ROOT_FOLDER.join &#x27;imsmanifest.xml&#x27;</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Manifest in the scorm folder</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">FILE_ASSETS_FOLDER</td>
+            <td>=</td>
+            <td class="attr-value">FILE_HTML_FOLDER.join &#x27;assets&#x27;</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p><a href="Scorm/Assets.html">Assets</a> in the scorm folder</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">FILE_MATH_IMAGES_FOLDER</td>
+            <td>=</td>
+            <td class="attr-value">FILE_HTML_FOLDER.join &#x27;math_images&#x27;</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Math images in the scorm folder</p></td>
             </tr>
           
         
@@ -229,19 +329,7 @@
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"><p>STORED or DEFLATED</p></td>
-            </tr>
-          
-        
-          <tr valign='top'>
-            <td class="attr-name">INDEX_PAGE_NAME</td>
-            <td>=</td>
-            <td class="attr-value">&#x27;index.html&#x27;</td>
-          </tr>
-          
-            <tr valign='top'>
-              <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>Compression method</p></td>
             </tr>
           
         
@@ -258,31 +346,7 @@
             <td class='attr-rw'>
               [R]
             </td>
-            <td class='attr-name'>archive_root_folder</td>
-            <td class='attr-desc'></td>
-          </tr>
-        
-          <tr valign='top'>
-            <td class='attr-rw'>
-              [R]
-            </td>
             <td class='attr-name'>filename</td>
-            <td class='attr-desc'></td>
-          </tr>
-        
-          <tr valign='top'>
-            <td class='attr-rw'>
-              [R]
-            </td>
-            <td class='attr-name'>filename_without_extension</td>
-            <td class='attr-desc'></td>
-          </tr>
-        
-          <tr valign='top'>
-            <td class='attr-rw'>
-              [R]
-            </td>
-            <td class='attr-name'>folder</td>
             <td class='attr-desc'></td>
           </tr>
         
@@ -298,7 +362,15 @@
             <td class='attr-rw'>
               [R]
             </td>
-            <td class='attr-name'>path</td>
+            <td class='attr-name'>output_folder</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>output_path</td>
             <td class='attr-desc'></td>
           </tr>
         
@@ -328,7 +400,7 @@
           
           
             <div class="description">
-              
+              <p>Initializer</p>
             </div>
           
           
@@ -344,20 +416,14 @@
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 37</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">lesson</span>, <span class="ruby-identifier">rendered_slides</span>)
-  <span class="ruby-ivar">@lesson</span>, <span class="ruby-ivar">@rendered_slides</span> = <span class="ruby-identifier">lesson</span>, <span class="ruby-identifier">rendered_slides</span>
-
-  <span class="ruby-identifier">parameterized_title</span> = <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">parameterize</span>
-  <span class="ruby-identifier">time</span>                = <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">updated_at</span>.<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-constant">WRITE_TIME_FORMAT</span>)
-
-  <span class="ruby-ivar">@filename_without_extension</span> = <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">tap</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_#{parameterized_title}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">parameterized_title</span>.<span class="ruby-identifier">present?</span> }
-  <span class="ruby-ivar">@folder</span>                     = <span class="ruby-constant">FOLDER</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">time</span>
-  <span class="ruby-ivar">@filename</span>                   = <span class="ruby-node">&quot;#{filename_without_extension}.zip&quot;</span>
-  <span class="ruby-ivar">@path</span>                       = <span class="ruby-identifier">folder</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">filename</span>
-  <span class="ruby-ivar">@archive_root_folder</span>        = <span class="ruby-constant">Pathname</span> <span class="ruby-identifier">filename_without_extension</span>
-  <span class="ruby-ivar">@assets_archive_folder</span>      = <span class="ruby-identifier">archive_root_folder</span>.<span class="ruby-identifier">join</span> <span class="ruby-constant">ASSETS_ARCHIVE_FOLDER_NAME</span>
-  <span class="ruby-ivar">@math_images_archive_folder</span> = <span class="ruby-identifier">archive_root_folder</span>.<span class="ruby-identifier">join</span> <span class="ruby-constant">MATH_IMAGES_ARCHIVE_FOLDER_NAME</span>
+  <span class="ruby-ivar">@lesson</span>, <span class="ruby-ivar">@rendered_slides</span>  = <span class="ruby-identifier">lesson</span>, <span class="ruby-identifier">rendered_slides</span>
+  <span class="ruby-identifier">parameterized_title</span>        = <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">parameterize</span>
+  <span class="ruby-identifier">filename_without_extension</span> = <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">tap</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_#{parameterized_title}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">parameterized_title</span>.<span class="ruby-identifier">present?</span> } <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;.scorm&#39;</span>
+  <span class="ruby-ivar">@output_folder</span>             = <span class="ruby-constant">OUTPUT_FOLDER</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">updated_at</span>.<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-constant">WRITE_TIME_FORMAT</span>)
+  <span class="ruby-ivar">@filename</span>                  = <span class="ruby-node">&quot;#{filename_without_extension}.zip&quot;</span>
+  <span class="ruby-ivar">@output_path</span>               = <span class="ruby-identifier">output_folder</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">filename</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -374,7 +440,7 @@
           
           
             <div class="description">
-              
+              <p>Removes the folder containing extracted scorms</p>
             </div>
           
           
@@ -390,9 +456,9 @@
                 
               </p>
               <div id="method-c-remove_folder-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 29</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">remove_folder!</span>
-  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-constant">FOLDER</span>
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-constant">OUTPUT_FOLDER</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -411,7 +477,8 @@
           
           
             <div class="description">
-              
+              <p>If there is already an exported scorm for the latest version of this
+lesson, it retrieves it, otherwise it is created a new one</p>
             </div>
           
           
@@ -427,17 +494,14 @@
                 
               </p>
               <div id="method-i-find_or_create_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 58</span>
-      <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">find_or_create</span>
-        <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">exist?</span>
-        
-        <span class="ruby-comment"># raises if export assets are not compiled</span>
-<span class="ruby-comment">#        raise &quot;Assets are not compiled. Please create them using rake exports:lessons:scorms:assets:compile&quot; unless assets_compiled?</span>
-
-        <span class="ruby-identifier">remove_old_files</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">folder</span>.<span class="ruby-identifier">exist?</span>
-        <span class="ruby-identifier">folder</span>.<span class="ruby-identifier">mkpath</span>
-        <span class="ruby-identifier">create</span>
-      <span class="ruby-keyword">end</span></pre>
+                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">find_or_create</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">output_path</span>.<span class="ruby-identifier">exist?</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;Assets are not compiled. Please create them using rake exports:lessons:scorms:assets:compile&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">assets_compiled?</span>
+  <span class="ruby-identifier">remove_old_files</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">output_folder</span>.<span class="ruby-identifier">exist?</span>
+  <span class="ruby-identifier">output_folder</span>.<span class="ruby-identifier">mkpath</span>
+  <span class="ruby-identifier">create</span>
+<span class="ruby-keyword">end</span></pre>
               </div>
             </div>
             
@@ -453,7 +517,7 @@
           
           
             <div class="description">
-              
+              <p>Extracts the url of the new scorm</p>
             </div>
           
           
@@ -469,11 +533,10 @@
                 
               </p>
               <div id="method-i-url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 52</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">url</span>
   <span class="ruby-identifier">find_or_create</span>
-
-  <span class="ruby-node">&quot;/#{path.relative_path_from Rails.public_pathname}&quot;</span>
+  <span class="ruby-node">&quot;/#{output_path.relative_path_from Rails.public_pathname}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -492,7 +555,7 @@
           
           
             <div class="description">
-              
+              <p>Returns true or false, checking if the assets are compiled or not</p>
             </div>
           
           
@@ -508,9 +571,9 @@
                 
               </p>
               <div id="method-i-assets_compiled-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 72</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assets_compiled?</span>
-  <span class="ruby-constant">ASSETS_FOLDER</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-constant">ASSETS_FOLDER</span>.<span class="ruby-identifier">entries</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-constant">INPUT_ASSETS_FOLDER</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">INPUT_ASSETS_FOLDER</span>.<span class="ruby-identifier">entries</span>.<span class="ruby-identifier">present?</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -527,7 +590,7 @@
           
           
             <div class="description">
-              
+              <p>Asset files</p>
             </div>
           
           
@@ -543,9 +606,9 @@
                 
               </p>
               <div id="method-i-assets_files_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 76</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 87</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assets_files</span>
-  <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">glob</span> <span class="ruby-constant">ASSETS_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;**&#39;</span>, <span class="ruby-string">&#39;*&#39;</span>)
+  <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">glob</span> <span class="ruby-constant">INPUT_ASSETS_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;**&#39;</span>, <span class="ruby-string">&#39;*&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -562,7 +625,7 @@
           
           
             <div class="description">
-              
+              <p>Creates the scorm package</p>
             </div>
           
           
@@ -578,33 +641,34 @@
                 
               </p>
               <div id="method-i-create_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 80</span>
-      <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create</span>
-        <span class="ruby-constant">Zip</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-constant">Zip</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREATE</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">scorm</span><span class="ruby-operator">|</span>
-<span class="ruby-comment">#          add_string_entry scorm, index_page, archive_root_folder.join(INDEX_PAGE_NAME)</span>
-
-<span class="ruby-comment">#          assets_files.each do |path|</span>
-<span class="ruby-comment">#            add_path_entry scorm, path, assets_archive_folder.join(path.relative_path_from ASSETS_FOLDER)</span>
-<span class="ruby-comment">#          end</span>
-
-          <span class="ruby-identifier">media_elements_files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
-            <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">scorm</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">archive_root_folder</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">relative_path_from</span> <span class="ruby-constant">MEDIA_ELEMENTS_UPFOLDER</span>)
-          <span class="ruby-keyword">end</span>
-
-          <span class="ruby-identifier">documents_files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
-            <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">scorm</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">archive_root_folder</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">relative_path_from</span> <span class="ruby-constant">DOCUMENTS_UPFOLDER</span>)
-          <span class="ruby-keyword">end</span>
-
-          <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
-            <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">scorm</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">math_images_archive_folder</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">basename</span>)
-          <span class="ruby-keyword">end</span>
-        <span class="ruby-keyword">end</span>
-
-        <span class="ruby-identifier">path</span>.<span class="ruby-identifier">chmod</span> <span class="ruby-number">0644</span>
-      <span class="ruby-keyword">rescue</span>
-        <span class="ruby-identifier">path</span>.<span class="ruby-identifier">unlink</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">exist?</span>
-        <span class="ruby-identifier">raise</span>
-      <span class="ruby-keyword">end</span></pre>
+                <pre><span class="ruby-comment"># File lib/export/lesson/scorm.rb, line 92</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create</span>
+  <span class="ruby-constant">Zip</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">output_path</span>, <span class="ruby-constant">Zip</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREATE</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">add_string_entry</span> <span class="ruby-identifier">file</span>, <span class="ruby-constant">View</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">render</span>({<span class="ruby-identifier">template</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;imsmanifest.xml.erb&#39;</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">lesson</span><span class="ruby-operator">:</span> <span class="ruby-identifier">lesson</span>}}), <span class="ruby-constant">FILE_MANIFEST</span>
+    <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-constant">INPUT_VIEWS_STATIC_FILES_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;*&#39;</span>)).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">file</span>, <span class="ruby-identifier">path</span>, <span class="ruby-constant">FILE_ROOT_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">basename</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">rendered_slides</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">slide_id</span>, <span class="ruby-identifier">rendered_slide</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">add_string_entry</span> <span class="ruby-identifier">file</span>, <span class="ruby-identifier">rendered_slide</span>, <span class="ruby-constant">FILE_HTML_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-node">&quot;slide#{slide_id}.html&quot;</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">assets_files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">file</span>, <span class="ruby-identifier">path</span>, <span class="ruby-constant">FILE_ASSETS_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">relative_path_from</span> <span class="ruby-constant">INPUT_ASSETS_FOLDER</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">media_elements_files</span>(<span class="ruby-identifier">exclude_versions</span><span class="ruby-operator">:</span> [ <span class="ruby-value">:thumb</span>, <span class="ruby-value">:cover</span> ]).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">file</span>, <span class="ruby-identifier">path</span>, <span class="ruby-constant">FILE_HTML_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">relative_path_from</span> <span class="ruby-constant">MEDIA_ELEMENTS_UPFOLDER</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">documents_files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">file</span>, <span class="ruby-identifier">path</span>, <span class="ruby-constant">FILE_HTML_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">relative_path_from</span> <span class="ruby-constant">DOCUMENTS_UPFOLDER</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">add_path_entry</span> <span class="ruby-identifier">file</span>, <span class="ruby-identifier">path</span>, <span class="ruby-constant">FILE_MATH_IMAGES_FOLDER</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">basename</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">output_path</span>.<span class="ruby-identifier">chmod</span> <span class="ruby-number">0644</span>
+<span class="ruby-keyword">rescue</span>
+  <span class="ruby-identifier">output_path</span>.<span class="ruby-identifier">unlink</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">output_path</span>.<span class="ruby-identifier">exist?</span>
+  <span class="ruby-identifier">raise</span>
+<span class="ruby-keyword">end</span></pre>
               </div>
             </div>
             

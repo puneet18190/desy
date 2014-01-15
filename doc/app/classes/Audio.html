@@ -158,8 +158,8 @@ href="Media/Shared.html">Media::Shared</a>.</p>
       
         <li>
           
-            <a href="UrlByUrlType.html">
-              UrlByUrlType
+            <a href="UrlTypes.html">
+              UrlTypes
             </a>
           
         </li>
@@ -607,7 +607,7 @@ converted (an animated gif).</p>
 <h3 id="method-i-placeholder_url-label-Usage">Usage</h3>
 
 <pre>&lt;% if audio.converted? %&gt;
-  &lt;%= render :partial =&gt; &#39;shared/players/audio&#39;, :locals =&gt; {:audio =&gt; audio} %&gt;
+  &lt;%= render :partial =&gt; &#39;shared/players/custom/audio&#39;, :locals =&gt; {:audio =&gt; audio} %&gt;
 &lt;% else %&gt;
   &lt;%= image_tag audio.placeholder_url(:lesson_viewer) %&gt;
 &lt;% end %&gt;</pre>

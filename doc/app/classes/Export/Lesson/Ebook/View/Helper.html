@@ -3,7 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>Export::Lesson::Ebook::Renderer::Helper</title>
+    <title>Export::Lesson::Ebook::View::Helper</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="../../../../../css/reset.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="../../../../../css/main.css" type="text/css" media="screen" />
@@ -20,23 +20,17 @@
         
         <h1>
             <span class="type">Module</span> 
-            Export::Lesson::Ebook::Renderer::Helper 
+            Export::Lesson::Ebook::View::Helper 
             
         </h1>
         <ul class="files">
             
-            <li><a href="../../../../../files/lib/export/lesson/ebook/renderer/helper_rb.html">lib/export/lesson/ebook/renderer/helper.rb</a></li>
+            <li><a href="../../../../../files/lib/export/lesson/ebook/view/helper_rb.html">lib/export/lesson/ebook/view/helper.rb</a></li>
             
         </ul>
     </div>
     <div id="bodyContent">
         <div id="content">
-  
-    <div class="description">
-      
-<p>TODO provare a memoizzare per vedere l&#39;effetto che fa</p>
-
-    </div>
   
 
 
@@ -73,27 +67,12 @@
             
               
               <li>
-                <a href="#method-i-dcterms_modified">dcterms_modified</a>,
+                <a href="#method-i-dc_date">dc_date</a>,
               </li>
             
               
               <li>
-                <a href="#method-i-document_fallback_title">document_fallback_title</a>,
-              </li>
-            
-              
-              <li>
-                <a href="#method-i-document_item_attributes">document_item_attributes</a>,
-              </li>
-            
-              
-              <li>
-                <a href="#method-i-document_item_fallback_attributes">document_item_fallback_attributes</a>,
-              </li>
-            
-              
-              <li>
-                <a href="#method-i-document_path">document_path</a>
+                <a href="#method-i-dcterms_modified">dcterms_modified</a>
               </li>
             
           </ul>
@@ -105,7 +84,17 @@
             
               
               <li>
-                <a href="#method-i-image_path">image_path</a>
+                <a href="#method-i-image_figure_classes">image_figure_classes</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-image_path">image_path</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-image_style">image_style</a>
               </li>
             
           </ul>
@@ -123,6 +112,11 @@
               
               <li>
                 <a href="#method-i-math_image_item_id">math_image_item_id</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-math_images_archive_folder_name">math_images_archive_folder_name</a>,
               </li>
             
               
@@ -148,6 +142,18 @@
           </ul>
         </dd>
       
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-package_id">package_id</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
         <dt>S</dt>
         <dd>
           <ul>
@@ -164,7 +170,12 @@
             
               
               <li>
-                <a href="#method-i-slide_title">slide_title</a>
+                <a href="#method-i-slide_title">slide_title</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-stylesheet_path">stylesheet_path</a>
               </li>
             
           </ul>
@@ -173,6 +184,28 @@
     </dl>
   
 
+  
+    <!-- Includes -->
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+      
+        <li>
+          
+            <a href="../../../../ApplicationHelper.html">
+              ApplicationHelper
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="../../Shared/EbookAndEbookView.html">
+              Export::Lesson::Shared::EbookAndEbookView
+            </a>
+          
+        </li>
+      
+    </ul>
   
 
 
@@ -191,17 +224,17 @@
           <tr valign='top'>
             <td class="attr-name">PACKAGE_ID</td>
             <td>=</td>
-            <td class="attr-value">&#x27;DESYLesson&#x27;</td>
+            <td class="attr-value">SETTINGS[&#x27;ebooks_package_id&#x27;]</td>
           </tr>
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"><p>TODO spostarlo nel config</p></td>
+              <td colspan="2" class="attr-desc"><p>TODO spostarlo in SETTINGS</p></td>
             </tr>
           
         
           <tr valign='top'>
-            <td class="attr-name">DCTERMS_MODIFIED_FORMAT</td>
+            <td class="attr-name">DC_DATE_FORMAT</td>
             <td>=</td>
             <td class="attr-value">&#x27;%Y-%m-%dT%H:%M:%SZ&#x27;</td>
           </tr>
@@ -237,9 +270,9 @@
           
         
           <tr valign='top'>
-            <td class="attr-name">MATH_IMAGES_ARCHIVE_FOLDER_NAME</td>
+            <td class="attr-name">FILE_MATH_IMAGES_FOLDER_NAME</td>
             <td>=</td>
-            <td class="attr-value">Shared::MATH_IMAGES_ARCHIVE_FOLDER_NAME</td>
+            <td class="attr-value">Shared::FILE_MATH_IMAGES_FOLDER_NAME</td>
           </tr>
           
             <tr valign='top'>
@@ -264,7 +297,7 @@
             
               <b>cover_image_path</b>(cover_slide)
             
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-cover_image_path" name="method-i-cover_image_path" class="permalink">Link</a>
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-cover_image_path" name="method-i-cover_image_path" class="permalink">Link</a>
           </div>
           
           
@@ -285,9 +318,46 @@
                 
               </p>
               <div id="method-i-cover_image_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 49</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cover_image_path</span>(<span class="ruby-identifier">cover_slide</span>)
-  <span class="ruby-identifier">image_path</span> <span class="ruby-identifier">cover_slide</span>.<span class="ruby-identifier">media_elements_slides</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">media_element</span>
+  <span class="ruby-identifier">media_element</span> = <span class="ruby-identifier">cover_slide</span>.<span class="ruby-identifier">media_elements_slides</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:media_element</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">media_element</span>
+  <span class="ruby-identifier">image_path</span> <span class="ruby-identifier">media_element</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-dc_date">
+            
+              <b>dc_date</b>(lesson)
+            
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-dc_date" name="method-i-dc_date" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-dc_date_source')" id="l_method-i-dc_date_source">show</a>
+                
+              </p>
+              <div id="method-i-dc_date_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">dc_date</span>(<span class="ruby-identifier">lesson</span>)
+  <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">created_at</span>.<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span> <span class="ruby-constant">DC_DATE_FORMAT</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -299,7 +369,7 @@
             
               <b>dcterms_modified</b>(lesson)
             
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-dcterms_modified" name="method-i-dcterms_modified" class="permalink">Link</a>
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-dcterms_modified" name="method-i-dcterms_modified" class="permalink">Link</a>
           </div>
           
           
@@ -320,9 +390,9 @@
                 
               </p>
               <div id="method-i-dcterms_modified_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 27</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">dcterms_modified</span>(<span class="ruby-identifier">lesson</span>)
-  <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">updated_at</span>.<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span> <span class="ruby-constant">DCTERMS_MODIFIED_FORMAT</span>
+  <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">updated_at</span>.<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span> <span class="ruby-constant">DC_DATE_FORMAT</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -330,11 +400,11 @@
           </div>
         
         <div class="method">
-          <div class="title method-title" id="method-i-document_fallback_title">
+          <div class="title method-title" id="method-i-image_figure_classes">
             
-              <b>document_fallback_title</b>(document, position)
+              <b>image_figure_classes</b>(image, *classes)
             
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-document_fallback_title" name="method-i-document_fallback_title" class="permalink">Link</a>
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-image_figure_classes" name="method-i-image_figure_classes" class="permalink">Link</a>
           </div>
           
           
@@ -351,124 +421,14 @@
               
               <p class="source-link">
                 Source: 
-                <a href="javascript:toggleSource('method-i-document_fallback_title_source')" id="l_method-i-document_fallback_title_source">show</a>
+                <a href="javascript:toggleSource('method-i-image_figure_classes_source')" id="l_method-i-image_figure_classes_source">show</a>
                 
               </p>
-              <div id="method-i-document_fallback_title_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 41</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">document_fallback_title</span>(<span class="ruby-identifier">document</span>, <span class="ruby-identifier">position</span>)
-  <span class="ruby-node">&quot;Document #{position} - #{document.title}&quot;</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-document_item_attributes">
-            
-              <b>document_item_attributes</b>(document)
-            
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-document_item_attributes" name="method-i-document_item_attributes" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-document_item_attributes_source')" id="l_method-i-document_item_attributes_source">show</a>
-                
-              </p>
-              <div id="method-i-document_item_attributes_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 65</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">document_item_attributes</span>(<span class="ruby-identifier">document</span>)
-  <span class="ruby-identifier">href</span> = <span class="ruby-identifier">document_path</span>(<span class="ruby-identifier">document</span>)
-
-  { <span class="ruby-identifier">id</span><span class="ruby-operator">:</span>         <span class="ruby-identifier">document_item_id</span>(<span class="ruby-identifier">document</span>)          ,
-    <span class="ruby-identifier">href</span><span class="ruby-operator">:</span>       <span class="ruby-identifier">href</span>                                ,
-    <span class="ruby-identifier">fallback</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">document_item_fallback_id</span>(<span class="ruby-identifier">document</span>) ,
-    <span class="ruby-identifier">media_type</span><span class="ruby-operator">:</span> <span class="ruby-identifier">mime_type</span>(<span class="ruby-identifier">href</span>)                     }
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-document_item_fallback_attributes">
-            
-              <b>document_item_fallback_attributes</b>(document)
-            
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-document_item_fallback_attributes" name="method-i-document_item_fallback_attributes" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-document_item_fallback_attributes_source')" id="l_method-i-document_item_fallback_attributes_source">show</a>
-                
-              </p>
-              <div id="method-i-document_item_fallback_attributes_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 74</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">document_item_fallback_attributes</span>(<span class="ruby-identifier">document</span>)
-  { <span class="ruby-identifier">id</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">document_item_fallback_id</span>(<span class="ruby-identifier">document</span>)                     ,
-    <span class="ruby-identifier">href</span><span class="ruby-operator">:</span> <span class="ruby-identifier">document_fallbacks_relative_from_content_path</span>(<span class="ruby-identifier">document</span>) }
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-document_path">
-            
-              <b>document_path</b>(document)
-            
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-document_path" name="method-i-document_path" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-document_path_source')" id="l_method-i-document_path_source">show</a>
-                
-              </p>
-              <div id="method-i-document_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 61</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">document_path</span>(<span class="ruby-identifier">document</span>)
-  <span class="ruby-identifier">document</span>.<span class="ruby-identifier">url</span>(<span class="ruby-value">:export</span>)
+              <div id="method-i-image_figure_classes_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">image_figure_classes</span>(<span class="ruby-identifier">image</span>, *<span class="ruby-identifier">classes</span>)
+  <span class="ruby-identifier">classes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;no-image&#39;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">image</span>
+  <span class="ruby-identifier">classes</span>.<span class="ruby-identifier">join</span> <span class="ruby-string">&#39; &#39;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -480,7 +440,7 @@
             
               <b>image_path</b>(image)
             
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-image_path" name="method-i-image_path" class="permalink">Link</a>
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-image_path" name="method-i-image_path" class="permalink">Link</a>
           </div>
           
           
@@ -501,9 +461,44 @@
                 
               </p>
               <div id="method-i-image_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 45</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">image_path</span>(<span class="ruby-identifier">image</span>)
-  <span class="ruby-constant">Pathname</span>(<span class="ruby-identifier">image</span>.<span class="ruby-identifier">media</span>.<span class="ruby-identifier">path</span>).<span class="ruby-identifier">relative_path_from</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">public_pathname</span>
+  <span class="ruby-identifier">image</span>.<span class="ruby-identifier">url</span> <span class="ruby-constant">UrlTypes</span><span class="ruby-operator">::</span><span class="ruby-constant">EXPORT</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-image_style">
+            
+              <b>image_style</b>(image)
+            
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-image_style" name="method-i-image_style" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-image_style_source')" id="l_method-i-image_style_source">show</a>
+                
+              </p>
+              <div id="method-i-image_style_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">image_style</span>(<span class="ruby-identifier">image</span>)
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">partial</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;OEBPS/slides/image_media_elements_slide_style.xhtml&#39;</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">image_media_elements_slide</span><span class="ruby-operator">:</span> <span class="ruby-identifier">image</span> }
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -515,7 +510,7 @@
             
               <b>math_image_item_href</b>(math_image)
             
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-math_image_item_href" name="method-i-math_image_item_href" class="permalink">Link</a>
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-math_image_item_href" name="method-i-math_image_item_href" class="permalink">Link</a>
           </div>
           
           
@@ -536,7 +531,7 @@
                 
               </p>
               <div id="method-i-math_image_item_href_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 115</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 117</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">math_image_item_href</span>(<span class="ruby-identifier">math_image</span>)
   <span class="ruby-identifier">math_image_path_relative_from_contents_folder</span> <span class="ruby-identifier">math_image</span>.<span class="ruby-identifier">basename</span>
 <span class="ruby-keyword">end</span></pre>
@@ -550,7 +545,7 @@
             
               <b>math_image_item_id</b>(i)
             
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-math_image_item_id" name="method-i-math_image_item_id" class="permalink">Link</a>
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-math_image_item_id" name="method-i-math_image_item_id" class="permalink">Link</a>
           </div>
           
           
@@ -571,9 +566,44 @@
                 
               </p>
               <div id="method-i-math_image_item_id_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 111</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 109</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">math_image_item_id</span>(<span class="ruby-identifier">i</span>)
   <span class="ruby-node">&quot;math_image_#{i}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-math_images_archive_folder_name">
+            
+              <b>math_images_archive_folder_name</b>()
+            
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-math_images_archive_folder_name" name="method-i-math_images_archive_folder_name" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-math_images_archive_folder_name_source')" id="l_method-i-math_images_archive_folder_name_source">show</a>
+                
+              </p>
+              <div id="method-i-math_images_archive_folder_name_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">math_images_archive_folder_name</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">FILE_MATH_IMAGES_FOLDER_NAME</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -585,7 +615,7 @@
             
               <b>media_element_item_attributes</b>(media_element, lesson, format)
             
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-media_element_item_attributes" name="method-i-media_element_item_attributes" class="permalink">Link</a>
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-media_element_item_attributes" name="method-i-media_element_item_attributes" class="permalink">Link</a>
           </div>
           
           
@@ -606,14 +636,16 @@
                 
               </p>
               <div id="method-i-media_element_item_attributes_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 84</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media_element_item_attributes</span>(<span class="ruby-identifier">media_element</span>, <span class="ruby-identifier">lesson</span>, <span class="ruby-identifier">format</span>)
   <span class="ruby-identifier">id</span> =  <span class="ruby-node">&quot;#{media_element.class.to_s.downcase}_#{media_element.id}&quot;</span>
   <span class="ruby-identifier">id</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_#{format}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">format</span>
 
-  <span class="ruby-identifier">href</span> = <span class="ruby-identifier">media_element_path</span>(<span class="ruby-identifier">media_element</span>, <span class="ruby-identifier">format</span>)
+  <span class="ruby-identifier">href</span> = <span class="ruby-identifier">media_element_path</span> <span class="ruby-identifier">media_element</span>, <span class="ruby-identifier">format</span>
 
-  <span class="ruby-identifier">properties</span>  = <span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">cover_of?</span>(<span class="ruby-identifier">lesson</span>) <span class="ruby-operator">?</span> <span class="ruby-string">&#39;cover-image&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-comment"># TODO fare la cover</span>
+  <span class="ruby-comment"># properties = media_element.cover_of?(lesson) ? &#39;cover-image&#39; : nil</span>
+  <span class="ruby-identifier">properties</span> = <span class="ruby-keyword">nil</span>
 
   { <span class="ruby-identifier">id</span><span class="ruby-operator">:</span>         <span class="ruby-identifier">id</span>                            ,
     <span class="ruby-identifier">href</span><span class="ruby-operator">:</span>       <span class="ruby-identifier">href</span>                          ,
@@ -630,7 +662,7 @@
             
               <b>media_element_mime_type</b>(path)
             
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-media_element_mime_type" name="method-i-media_element_mime_type" class="permalink">Link</a>
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-media_element_mime_type" name="method-i-media_element_mime_type" class="permalink">Link</a>
           </div>
           
           
@@ -651,7 +683,7 @@
                 
               </p>
               <div id="method-i-media_element_mime_type_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 53</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media_element_mime_type</span>(<span class="ruby-identifier">path</span>)
   <span class="ruby-constant">MEDIA_ELEMENT_MIME_TYPES</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">path</span>)) { <span class="ruby-identifier">mime_type</span>(<span class="ruby-identifier">path</span>) }
 <span class="ruby-keyword">end</span></pre>
@@ -665,7 +697,7 @@
             
               <b>media_element_path</b>(media_element, format = nil)
             
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-media_element_path" name="method-i-media_element_path" class="permalink">Link</a>
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-media_element_path" name="method-i-media_element_path" class="permalink">Link</a>
           </div>
           
           
@@ -686,10 +718,10 @@
                 
               </p>
               <div id="method-i-media_element_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 79</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media_element_path</span>(<span class="ruby-identifier">media_element</span>, <span class="ruby-identifier">format</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">href_method</span> = <span class="ruby-identifier">format</span> <span class="ruby-operator">?</span> <span class="ruby-value">:&quot;#{format}_url&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value">:url</span>
-  <span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">href_method</span>, <span class="ruby-value">:export</span>
+  <span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">href_method</span>, <span class="ruby-constant">UrlTypes</span><span class="ruby-operator">::</span><span class="ruby-constant">EXPORT</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -701,7 +733,7 @@
             
               <b>mime_type</b>(path)
             
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-mime_type" name="method-i-mime_type" class="permalink">Link</a>
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-mime_type" name="method-i-mime_type" class="permalink">Link</a>
           </div>
           
           
@@ -722,9 +754,44 @@
                 
               </p>
               <div id="method-i-mime_type_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 57</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">mime_type</span>(<span class="ruby-identifier">path</span>)
   <span class="ruby-constant">MIME</span><span class="ruby-operator">::</span><span class="ruby-constant">Types</span>.<span class="ruby-identifier">of</span>(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:content_type</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">UNKNOWN_MIME_TYPE</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-package_id">
+            
+              <b>package_id</b>()
+            
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-package_id" name="method-i-package_id" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-package_id_source')" id="l_method-i-package_id_source">show</a>
+                
+              </p>
+              <div id="method-i-package_id_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">package_id</span>
+  <span class="ruby-constant">PACKAGE_ID</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -736,7 +803,7 @@
             
               <b>slide_content</b>(slide)
             
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-slide_content" name="method-i-slide_content" class="permalink">Link</a>
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-slide_content" name="method-i-slide_content" class="permalink">Link</a>
           </div>
           
           
@@ -757,18 +824,9 @@
                 
               </p>
               <div id="method-i-slide_content_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 98</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">slide_content</span>(<span class="ruby-identifier">slide</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">slide</span>.<span class="ruby-identifier">text</span>
-  
-  <span class="ruby-identifier">fragment</span> = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">DocumentFragment</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">slide</span>.<span class="ruby-identifier">text</span>)
-  
-  <span class="ruby-identifier">fragment</span>.<span class="ruby-identifier">css</span>(<span class="ruby-constant">Slide</span><span class="ruby-operator">::</span><span class="ruby-constant">MathImages</span><span class="ruby-operator">::</span><span class="ruby-constant">CSS_SELECTOR</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">el</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">math_image_basename</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-constant">URI</span>(<span class="ruby-node">&quot;http://www.example.com/#{el[:src]}&quot;</span>).<span class="ruby-identifier">query</span>)[<span class="ruby-string">&#39;formula&#39;</span>].<span class="ruby-identifier">first</span>
-    <span class="ruby-identifier">el</span>[<span class="ruby-value">:src</span>] = <span class="ruby-identifier">math_image_path_relative_from_contents_folder</span> <span class="ruby-identifier">math_image_basename</span>
-  <span class="ruby-keyword">end</span>
-  
-  <span class="ruby-identifier">fragment</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">html_safe</span>
+  <span class="ruby-identifier">slide</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">math_images_path_relative_from_folder</span><span class="ruby-operator">:</span> <span class="ruby-identifier">math_images_archive_folder_name</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -780,7 +838,7 @@
             
               <b>slide_path</b>(slide)
             
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-slide_path" name="method-i-slide_path" class="permalink">Link</a>
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-slide_path" name="method-i-slide_path" class="permalink">Link</a>
           </div>
           
           
@@ -801,7 +859,7 @@
                 
               </p>
               <div id="method-i-slide_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 31</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">slide_path</span>(<span class="ruby-identifier">slide</span>)
   <span class="ruby-identifier">slide_filename</span> <span class="ruby-identifier">slide</span>
 <span class="ruby-keyword">end</span></pre>
@@ -815,7 +873,7 @@
             
               <b>slide_title</b>(slide)
             
-            <a href="../../../../../classes/Export/Lesson/Ebook/Renderer/Helper.html#method-i-slide_title" name="method-i-slide_title" class="permalink">Link</a>
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-slide_title" name="method-i-slide_title" class="permalink">Link</a>
           </div>
           
           
@@ -836,11 +894,44 @@
                 
               </p>
               <div id="method-i-slide_title_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/renderer/helper.rb, line 35</span>
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">slide_title</span>(<span class="ruby-identifier">slide</span>)
-  <span class="ruby-identifier">title</span> =  <span class="ruby-node">&quot;Slide #{slide.position-1}&quot;</span>
-  <span class="ruby-identifier">title</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; - #{slide.title}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">slide</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">present?</span>
-  <span class="ruby-identifier">title</span>
+  <span class="ruby-identifier">slide</span>.<span class="ruby-identifier">cover?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;Copertina&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;Pagina #{slide.position-1}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-stylesheet_path">
+            
+              <b>stylesheet_path</b>()
+            
+            <a href="../../../../../classes/Export/Lesson/Ebook/View/Helper.html#method-i-stylesheet_path" name="method-i-stylesheet_path" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-stylesheet_path_source')" id="l_method-i-stylesheet_path_source">show</a>
+                
+              </p>
+              <div id="method-i-stylesheet_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/export/lesson/ebook/view/helper.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">stylesheet_path</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-string">&#39;assets&#39;</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>( <span class="ruby-constant">ASSETS_PATHS</span>.<span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">path</span>) <span class="ruby-operator">==</span> <span class="ruby-string">&#39;.css&#39;</span> } )
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

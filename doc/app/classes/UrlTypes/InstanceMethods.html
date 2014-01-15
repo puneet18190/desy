@@ -3,7 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>UrlByUrlType::InstanceMethods</title>
+    <title>UrlTypes::InstanceMethods</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
@@ -20,12 +20,12 @@
         
         <h1>
             <span class="type">Module</span> 
-            UrlByUrlType::InstanceMethods 
+            UrlTypes::InstanceMethods 
             
         </h1>
         <ul class="files">
             
-            <li><a href="../../files/lib/autoload/url_by_url_type_rb.html">lib/autoload/url_by_url_type.rb</a></li>
+            <li><a href="../../files/lib/autoload/url_types_rb.html">lib/autoload/url_types.rb</a></li>
             
         </ul>
     </div>
@@ -89,7 +89,7 @@
             
               <b>url_by_url_type</b>(url, url_type)
             
-            <a href="../../classes/UrlByUrlType/InstanceMethods.html#method-i-url_by_url_type" name="method-i-url_by_url_type" class="permalink">Link</a>
+            <a href="../../classes/UrlTypes/InstanceMethods.html#method-i-url_by_url_type" name="method-i-url_by_url_type" class="permalink">Link</a>
           </div>
           
           
@@ -110,11 +110,17 @@
                 
               </p>
               <div id="method-i-url_by_url_type_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/autoload/url_by_url_type.rb, line 11</span>
+                <pre><span class="ruby-comment"># File lib/autoload/url_types.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">url_by_url_type</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">url_type</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">url_type</span>
 
-  <span class="ruby-keyword">when</span> <span class="ruby-constant">URL_TYPES</span>[<span class="ruby-value">:export</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">EXPORT</span>
+    <span class="ruby-constant">Pathname</span>(<span class="ruby-identifier">url</span>).<span class="ruby-identifier">relative_path_from</span>(<span class="ruby-constant">Pathname</span>(<span class="ruby-string">&#39;/&#39;</span>)).<span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">FULL_URL</span>
+    <span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">build</span>( <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;application&#39;</span>][<span class="ruby-string">&#39;default_url_options&#39;</span>].<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">path</span><span class="ruby-operator">:</span> <span class="ruby-identifier">url</span>) ).<span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">SCORM</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-string">&#39;html&#39;</span>, <span class="ruby-identifier">url</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">SCORM_HTML</span>
     <span class="ruby-constant">Pathname</span>(<span class="ruby-identifier">url</span>).<span class="ruby-identifier">relative_path_from</span>(<span class="ruby-constant">Pathname</span>(<span class="ruby-string">&#39;/&#39;</span>)).<span class="ruby-identifier">to_s</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">url</span>
