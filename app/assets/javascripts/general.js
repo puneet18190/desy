@@ -536,7 +536,15 @@ Shows the mini thumbnail of a compact media element.
 **/
 function showMiniThumbnailForMediaElementCompact(item) {
   item.data('loaded-mini-thumb', true);
-  item.find('.mini_thumb').show('fade', {}, 200);
+  var position = 'below';
+  var prev = item.prev();
+  if(prev.length > 0) {
+    prev = prev.prev();
+    if(prev.length > 0 && prev.prev().length > 0) {
+      position = 'above';
+    }
+  }
+  item.find('.mini_thumb').removeClass('above below').addClass(position).show('fade', {}, 200);
 }
 
 

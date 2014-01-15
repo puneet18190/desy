@@ -520,20 +520,22 @@ a.cerca.current {
     
     display: none;
     height: 200px;
-    padding: 5px 5px 15px 5px;
     width: 200px;
     position: absolute;
     z-index: 2;
+    background-color: red;
     
     &.above {
       
-      
+      padding: 5px 5px 15px 5px;
+      top: -205px;
       
     }
     
     &.below {
       
-      
+      padding: 15px 5px 5px 5px;
+      top: 46px;
       
     }
     
