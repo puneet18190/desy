@@ -162,6 +162,21 @@ function commonMediaElementsDocumentReady() {
     $(this).addClass('change_info_light');
     $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').hide();
   });
+  $body.on('mouseenter', '.boxViewCompactMediaElement', function() {
+    var item = $(this);
+    item.data('loading-mini-thumb', true);
+    setTimeout(function() {
+      if(item.data('loading-mini-thumb')) {
+        showMiniThumbnailForMediaElementCompact(item.attr('id'));
+      }
+    }, 500);
+  });
+  $body.on('mouseleave', '.boxViewCompactMediaElement', function() {
+    $(this).data('loading-mini-thumb', false);
+    if($(this).data('loaded-mini-thumb')) {
+      hideMiniThumbnailForMediaElementCompact(item.attr('id'));
+    }
+  });
 }
 
 /**
@@ -439,6 +454,24 @@ function sectionSearchDocumentReady() {
 
 
 /**
+Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink "BrowserSupportMain/browserSupportMain:method"}}{{/crossLink}}
+@method browserSupport
+@for GeneralMiscellanea
+**/
+function browserSupport() {
+}
+
+/**
+Hides the mini thumbnail of a compact media element.
+@method showMiniThumbnailForMediaElementCompact
+@for GeneralMiscellanea
+@param id {String} html identifier of the media element
+**/
+function hideMiniThumbnailForMediaElementCompact(id) {
+  console.log('hide id = ' + id);
+}
+
+/**
 Initializes global variables used throughout the javascripts.
 @method initializeGlobalVariables
 @for GeneralMiscellanea
@@ -494,12 +527,18 @@ function secondsToDateString(seconds) {
 }
 
 /**
-Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink "BrowserSupportMain/browserSupportMain:method"}}{{/crossLink}}
-@method browserSupport
+Shows the mini thumbnail of a compact media element.
+@method showMiniThumbnailForMediaElementCompact
 @for GeneralMiscellanea
+@param id {String} html identifier of the media element
 **/
-function browserSupport() {
+function showMiniThumbnailForMediaElementCompact(id) {
+  console.log('show id = ' + id);
 }
+
+
+
+
 
 /**
 Removes a parameter from an url.
