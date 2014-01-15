@@ -167,14 +167,15 @@ function commonMediaElementsDocumentReady() {
     item.data('loading-mini-thumb', true);
     setTimeout(function() {
       if(item.data('loading-mini-thumb')) {
-        showMiniThumbnailForMediaElementCompact(item.attr('id'));
+        showMiniThumbnailForMediaElementCompact(item);
       }
     }, 500);
   });
   $body.on('mouseleave', '.boxViewCompactMediaElement', function() {
-    $(this).data('loading-mini-thumb', false);
-    if($(this).data('loaded-mini-thumb')) {
-      hideMiniThumbnailForMediaElementCompact(item.attr('id'));
+    var item = $(this);
+    item.data('loading-mini-thumb', false);
+    if(item.data('loaded-mini-thumb')) {
+      hideMiniThumbnailForMediaElementCompact(item);
     }
   });
 }
@@ -465,10 +466,11 @@ function browserSupport() {
 Hides the mini thumbnail of a compact media element.
 @method showMiniThumbnailForMediaElementCompact
 @for GeneralMiscellanea
-@param id {String} html identifier of the media element
+@param item {Object} the compact media element
 **/
-function hideMiniThumbnailForMediaElementCompact(id) {
-  console.log('hide id = ' + id);
+function hideMiniThumbnailForMediaElementCompact(item) {
+  item.data('loaded-mini-thumb', false);
+  console.log('hide id = ' + item.attr('id'));
 }
 
 /**
@@ -530,10 +532,11 @@ function secondsToDateString(seconds) {
 Shows the mini thumbnail of a compact media element.
 @method showMiniThumbnailForMediaElementCompact
 @for GeneralMiscellanea
-@param id {String} html identifier of the media element
+@param item {Object} the compact media element
 **/
-function showMiniThumbnailForMediaElementCompact(id) {
-  console.log('show id = ' + id);
+function showMiniThumbnailForMediaElementCompact(item) {
+  item.data('loaded-mini-thumb', true);
+  console.log('show id = ' + item.attr('id'));
 }
 
 
