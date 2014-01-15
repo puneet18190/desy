@@ -72,7 +72,7 @@ class LessonExportController < ApplicationController
       return
     end
     if !@lesson.available?
-      render 'not_available'
+      render 'not_available', :layout => 'lesson_editor'
       return
     end
   end
