@@ -470,7 +470,17 @@ Hides the mini thumbnail of a compact media element.
 **/
 function hideMiniThumbnailForMediaElementCompact(item) {
   item.data('loaded-mini-thumb', false);
-  item.find('.mini_thumb').hide('fade', {}, 200);
+  var mini = item.find('.mini_thumb');
+  mini.hide('fade', {}, 200, function() {
+    if(mini.hasClass('audio') || mini.hasClass('video')) {
+      type = 'video';
+      if(mini.hasClass('audio')) {
+        type = 'audio';
+      }
+      stopMedia('#' + mini.attr('id') + ' ' + type);
+      setCurrentTimeToMedia(mini.find(type), 0);
+    }
+  });
 }
 
 /**
