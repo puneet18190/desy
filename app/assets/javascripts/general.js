@@ -477,8 +477,9 @@ function hideMiniThumbnailForMediaElementCompact(item) {
       if(mini.hasClass('audio')) {
         type = 'audio';
       }
-      stopMedia('#' + mini.attr('id') + ' ' + type);
-      setCurrentTimeToMedia(mini.find(type), 0);
+      var media = mini.find(type);
+      media[0].pause();
+      setCurrentTimeToMedia(media, 0);
     }
   });
 }
