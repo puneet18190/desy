@@ -429,6 +429,7 @@ a.cerca.current {
   padding: 0;
   color: #C0C0C0;
   background-color: #FBFAFB;
+  position: relative;
   float: left;
   box-shadow: 0px 3px 4px #D3D3D3;
   -webkit-box-shadow: 0px 3px 4px #D3D3D3;
@@ -521,6 +522,20 @@ a.cerca.current {
     height: 200px;
     padding: 5px 5px 15px 5px;
     width: 200px;
+    position: absolute;
+    z-index: 2;
+    
+    &.above {
+      
+      
+      
+    }
+    
+    &.below {
+      
+      
+      
+    }
     
     &.video {
       
