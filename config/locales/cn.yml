@@ -1784,11 +1784,11 @@ cn:
       not_available:
         # The variable %{lesson} is replaced by the name of the lesson
         # 1 - views/lesson_export/not_available.html.erb
-        title: "Exporting not available for your lesson %{lesson}" # TODO
+        title: "输出没有提供你的课程%{lesson}"
         # 1 - views/lesson_export/not_available.html.erb
-        description: "You are overwriting the content of a video or of an audio contained in this lesson: if you wait a few minutes until the process ends you'll be able to export this lesson again" # TODO
+        description: "你正在覆盖这个课程中的视频或音频内容:等几分钟直到处理完成,然后,你能重新输出这个课程"
         # 1 - views/lesson_export/not_available.html.erb
-        back: "Back" # TODO
+        back: "返回"
   
   
   # SECTION 2.9: Caption used in the section 'my elements'
