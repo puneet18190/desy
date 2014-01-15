@@ -745,19 +745,19 @@ Initializer for tagging autocompĺete.
 **/
 function initTagsAutocomplete(scope) {
   var input_selector = scope + &#x27; #tags&#x27;;
-  if(scope == &#x27;#form_info_new_media_element_in_editor&#x27;) {
-    input_selector = scope + &#x27; #new_tags&#x27;;
-  }
-  if(scope == &#x27;#form_info_update_media_element_in_editor&#x27;) {
-    input_selector = scope + &#x27; #update_tags&#x27;;
-  }
   var container_selector = scope + &#x27; ._tags_container&#x27;;
   var tags_value_selector = &#x27;#tags_value&#x27;;
   if(scope == &#x27;#form_info_new_media_element_in_editor&#x27;) {
+    input_selector = scope + &#x27; #new_tags&#x27;;
     tags_value_selector = &#x27;#new_tags_value&#x27;;
   }
   if(scope == &#x27;#form_info_update_media_element_in_editor&#x27;) {
+    input_selector = scope + &#x27; #update_tags&#x27;;
     tags_value_selector = &#x27;#update_tags_value&#x27;;
+  }
+  if(scope == &#x27;#load-media-element&#x27;) {
+    input_selector = scope + &#x27; .medload_tags&#x27;;
+    tags_value_selector = scope + &#x27; .medload_tags_value&#x27;;
   }
   $(input_selector).autocomplete({
     source: function(request, response) {

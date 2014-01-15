@@ -5880,7 +5880,7 @@
         },
         {
             "file": "app/assets/javascripts/search.js",
-            "line": 21,
+            "line": 20,
             "description": "Initializes the <b>clickable tags</b> allowing a filter on a research.",
             "itemtype": "method",
             "name": "searchDocumentReadyFilterByTag",
@@ -5889,7 +5889,7 @@
         },
         {
             "file": "app/assets/javascripts/search.js",
-            "line": 43,
+            "line": 42,
             "description": "Initializer for generic effects.",
             "itemtype": "method",
             "name": "searchDocumentReadyGeneral",
@@ -5898,7 +5898,7 @@
         },
         {
             "file": "app/assets/javascripts/search.js",
-            "line": 88,
+            "line": 87,
             "description": "Initializer for <b>search keyword</b> placeholders.",
             "itemtype": "method",
             "name": "searchDocumentReadyPlaceholders",
