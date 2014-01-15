@@ -71,7 +71,10 @@ class LessonExportController < ApplicationController
       redirect_to dashboard_path
       return
     end
-    # TODO controllare che non ci siano video o audio in conversione, e se sì renderizzare la pagina apposita
+    if !@lesson.available?
+      render 'not_available'
+      return
+    end
   end
   
 end

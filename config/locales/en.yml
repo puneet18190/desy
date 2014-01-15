@@ -1652,6 +1652,8 @@ en:
       title: "Lesson editor not available for your lesson %{lesson}"
       # 1 - views/lesson_editor/not_available.html.erb
       description: "You are overwriting the content of a video or of an audio contained in this lesson: if you wait a few minutes until the process ends you'll be able to edit this lesson again"
+      # 1 - views/lesson_editor/not_available.html.erb
+      back: "Back"
     # These are the placeholders for all the text fields inside the editor
     placeholders:
       # Placeholder for the caption of an image

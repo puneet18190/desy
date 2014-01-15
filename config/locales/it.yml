@@ -1652,6 +1652,8 @@ it:
       title: "Editor delle lezioni non disponibile per la tua lezione %{lesson}"
       # 1 - views/lesson_editor/not_available.html.erb
       description: "Si sta sovrascrivendo il contenuto di un video o di un file audio contenuti in questa lezione: aspettare qualche minuto fino a quando il processo sarà concluso e sarete in grado di modificare di nuovo questa lezione"
+      # 1 - views/lesson_editor/not_available.html.erb
+      back: "Torna indietro"
     # These are the placeholders for all the text fields inside the editor
     placeholders:
       # Placeholder for the caption of an image

@@ -1652,6 +1652,8 @@ cn:
       title: "课程编辑器不能提供给你的课程%{lesson}"
       # 1 - views/lesson_editor/not_available.html.erb
       description: "你正在覆盖视频内容或包含在课程中的音频内容：如果等待几分钟处理完成，你就能重新编辑这个课程。"
+      # 1 - views/lesson_editor/not_available.html.erb
+      back: "後面"
     # These are the placeholders for all the text fields inside the editor
     placeholders:
       # Placeholder for the caption of an image

@@ -1398,3 +1398,53 @@ label.filebutton span input#new_media_element_input {
   }
   
 }
+
+.contentLessonNotAvailable {
+  
+  width: 600px;
+  height: 550px;
+  margin: 0 auto;
+  text-align: center;
+  display: table;
+  
+  .contentTitle {
+    
+    display: table-cell;
+    vertical-align: middle;
+    
+    h1 {
+      
+      text-align: left;
+      color: $orange;
+      font-size: 30px;
+      font-weight: normal;
+      margin: 0px;
+      
+    }
+    
+    h2 {
+      
+      text-align: left;
+      color: #fff;
+      font-size: 18px;
+      font-weight: normal;
+      margin: 0px;
+      line-height: 25px;
+      
+    }
+    
+    a {
+      
+      @include nunito(15px);
+      
+      &:hover {
+        
+        text-decoration: underline;
+        
+      }
+      
+    }
+    
+  }
+  
+}
