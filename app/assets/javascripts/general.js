@@ -200,7 +200,11 @@ function commonLessonsDocumentReady() {
         if(lessons_content.length > 0) {
           lessons_content.animate({height: '665px'}, 500);
         } else {
-          advanced_search_content.animate({height: '805px'}, 500);
+          if ($('form#search_lessons ._keep_searching').data('opened')) {
+            advanced_search_content.animate({height: '805px'}, 500); // TODO keepsearch
+          } else {
+            advanced_search_content.animate({height: '805px'}, 500);
+          }
         }
       } else {
         var there_is_expanded = $('._lesson_expanded:visible');
@@ -216,7 +220,11 @@ function commonLessonsDocumentReady() {
         if(lessons_content.length > 0) {
           lessons_content.animate({height: '863px'}, 500);
         } else {
-          advanced_search_content.animate({height: '1003px'}, 500);
+          if ($('form#search_lessons ._keep_searching').data('opened')) {
+            advanced_search_content.animate({height: '805px'}, 500); // TODO keepsearch
+          } else {
+            advanced_search_content.animate({height: '1003px'}, 500);
+          }
         }
       }
     }

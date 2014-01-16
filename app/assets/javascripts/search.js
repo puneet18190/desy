@@ -74,6 +74,7 @@ function searchDocumentReadyGeneral() {
     }
   });
   $body.on('click', '._keep_searching', function() {
+    $(this).data('opened', true);
     var form = $(this).parent();
     form.animate({
       height: '210'
