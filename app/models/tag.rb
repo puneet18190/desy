@@ -49,6 +49,7 @@ class Tag < ActiveRecord::Base
   #
   # === Args
   #
+  # * *user*: the user who is autocompleting tags
   # * *a_word*: word to be autocompleted
   # * *item*: either 'lesson' or 'media_element'
   #
@@ -56,7 +57,7 @@ class Tag < ActiveRecord::Base
   #
   # An array of tags
   #
-  def self.get_tags_for_autocomplete(a_word, item)
+  def self.get_tags_for_autocomplete(user, a_word, item)
     return [] if a_word.blank?
     a_word = a_word.to_s.strip.mb_chars.downcase.to_s
     resp = []
@@ -67,9 +68,9 @@ class Tag < ActiveRecord::Base
       limit -= 1
     end
     if item == 'media_element'
-      resp += search_media_elements(a_word, 1, limit, nil, nil, true)
+      resp += user.search_media_elements(a_word, 1, limit, nil, nil, true)
     else
-      resp += search_lessons(a_word, 1, limit, nil, nil, nil, true, nil)
+      resp += user.search_lessons(a_word, 1, limit, nil, nil, nil, true, nil)
     end
     resp
   end
