@@ -67,10 +67,14 @@ class Tag < ActiveRecord::Base
       resp << {:id => curr_tag.id, :value => a_word}
       limit -= 1
     end
+    to_be_adapted = []
     if item == 'media_element'
-      resp += user.search_media_elements(a_word, 1, limit, nil, nil, true)
+      to_be_adapted = user.search_media_elements(a_word, 1, limit, nil, nil, true)
     else
-      resp += user.search_lessons(a_word, 1, limit, nil, nil, nil, true, nil)
+      to_be_adapted = user.search_lessons(a_word, 1, limit, nil, nil, nil, true, nil)
+    end
+    to_be_adapted.each do |tba|
+      resp << {:id => tba.id, :value => tba.word}
     end
     resp
   end
