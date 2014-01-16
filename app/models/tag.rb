@@ -50,6 +50,7 @@ class Tag < ActiveRecord::Base
   # === Args
   #
   # * *a_word*: word to be autocompleted
+  # * *item*: either 'lesson' or 'media_element'
   #
   # === Return
   #
