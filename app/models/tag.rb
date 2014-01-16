@@ -55,7 +55,7 @@ class Tag < ActiveRecord::Base
   #
   # An array of tags
   #
-  def self.get_tags_for_autocomplete(a_word)
+  def self.get_tags_for_autocomplete(a_word, item)
     return [] if a_word.blank?
     a_word = a_word.to_s.strip.mb_chars.downcase.to_s
     resp = []
@@ -65,7 +65,11 @@ class Tag < ActiveRecord::Base
       resp << {:id => curr_tag.id, :value => a_word}
       limit -= 1
     end
-    resp += Tag.select('id, word AS value, (SELECT COUNT(*) FROM taggings WHERE (taggings.tag_id = tags.id)) AS tags_count').where('word ILIKE ? AND word != ?', "#{a_word}%", a_word).limit(limit).order('tags_count DESC, value ASC')
+    if item == 'media_element'
+      resp += search_media_elements(a_word, 1, limit, nil, nil, true)
+    else
+      resp += search_lessons(a_word, 1, limit, nil, nil, nil, true, nil)
+    end
     resp
   end
   

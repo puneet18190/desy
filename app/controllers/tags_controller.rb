@@ -18,7 +18,7 @@ class TagsController < ApplicationController
   # Json
   #
   def get_list
-    @tags = Tag.get_tags_for_autocomplete(params[:term])
+    @tags = Tag.get_tags_for_autocomplete(params[:term], params[:item])
     render :json => @tags
   end
   

@@ -153,9 +153,9 @@ Initializer for search autocomplete.
 @for TagsDocumentReady
 **/
 function tagsDocumentReadyAutocomplete() {
-  initSearchTagsAutocomplete('#general_tag_reader_for_search');
-  initSearchTagsAutocomplete('#lessons_tag_reader_for_search');
-  initSearchTagsAutocomplete('#media_elements_tag_reader_for_search');
+  initSearchTagsAutocomplete('#general_tag_reader_for_search', 'lesson');
+  initSearchTagsAutocomplete('#lessons_tag_reader_for_search', 'lesson');
+  initSearchTagsAutocomplete('#media_elements_tag_reader_for_search', 'media_element');
 }
 
 /**
@@ -196,7 +196,7 @@ function tagsDocumentReadyChangeMediaElementInfo() {
   });
   $('._change_info_container').each(function() {
     var media_element_id = $(this).data('param');
-    initTagsAutocomplete('#dialog-media-element-' + media_element_id);
+    initTagsAutocomplete('#dialog-media-element-' + media_element_id, 'media_element');
     (function() {
       disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' #tags');
     });
@@ -235,7 +235,7 @@ function tagsDocumentReadyMediaElementLoader() {
   $body.on('blur', '#load-media-element .medload_tags', function(e) {
     addTagWithoutSuggestion(this, '#load-media-element ._tags_container', '.medload_tags_value');
   });
-  initTagsAutocomplete('#load-media-element');
+  initTagsAutocomplete('#load-media-element', 'media_element');
 }
 
 /**
@@ -270,7 +270,7 @@ function tagsDocumentReadyNewLesson() {
   $body.on('blur', '#slides._new #tags', function(e) {
     addTagWithoutSuggestion(this, '#slides._new ._tags_container', '#tags_value');
   });
-  initTagsAutocomplete('#slides._new');
+  initTagsAutocomplete('#slides._new', 'lesson');
 }
 
 /**
@@ -309,7 +309,7 @@ function tagsDocumentReadyNewMediaElement() {
   $body.on('blur', '#form_info_new_media_element_in_editor #new_tags', function(e) {
     addTagWithoutSuggestion(this, '#form_info_new_media_element_in_editor ._tags_container', '#new_tags_value');
   });
-  initTagsAutocomplete('#form_info_new_media_element_in_editor');
+  initTagsAutocomplete('#form_info_new_media_element_in_editor', 'media_element');
 }
 
 /**
@@ -344,7 +344,7 @@ function tagsDocumentReadyOvervriteMediaElement() {
   $body.on('blur', '#form_info_update_media_element_in_editor #update_tags', function(e) {
     addTagWithoutSuggestion(this, '#form_info_update_media_element_in_editor ._tags_container', '#update_tags_value');
   });
-  initTagsAutocomplete('#form_info_update_media_element_in_editor');
+  initTagsAutocomplete('#form_info_update_media_element_in_editor', 'media_element');
   (function() {
     disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
   });
@@ -381,7 +381,7 @@ function tagsDocumentReadyUpdateLesson() {
   $body.on('blur', '#slides._update #tags', function(e) {
     addTagWithoutSuggestion(this, '#slides._update ._tags_container', '#tags_value');
   });
-  initTagsAutocomplete('#slides._update');
+  initTagsAutocomplete('#slides._update', 'lesson');
   (function() {
     disableTagsInputTooHigh('#slides._update ._tags_container', '#slides._update #tags');
   });
@@ -396,8 +396,9 @@ Initializer for search autocompĺete.
 @method initSearchTagsAutocomplete
 @for TagsInitializers
 @param input {String} HTML selector for the input
+@param item {String} lesson or media_element
 **/
-function initSearchTagsAutocomplete(input) {
+function initSearchTagsAutocomplete(input, item) {
   var cache = {};
   $(input).autocomplete({
     minLength: 2,
@@ -411,7 +412,10 @@ function initSearchTagsAutocomplete(input) {
       $.ajax({
         dataType: 'json',
         url: '/tags/get_list',
-        data: request,
+        data: {
+          term: request.term,
+          item: item
+        },
         success: function(data, status, xhr) {
           cache[term] = data;
           response(data);
@@ -426,8 +430,9 @@ Initializer for tagging autocompĺete.
 @method initTagsAutocomplete
 @for TagsInitializers
 @param scope {String} HTML scope for the tag container
+@param item {String} lesson or media_element
 **/
-function initTagsAutocomplete(scope) {
+function initTagsAutocomplete(scope, item) {
   var input_selector = scope + ' #tags';
   var container_selector = scope + ' ._tags_container';
   var tags_value_selector = '#tags_value';
@@ -449,7 +454,10 @@ function initTagsAutocomplete(scope) {
       $.ajax({
         dataType: 'json',
         url: '/tags/get_list',
-        data: {term: request.term},
+        data: {
+          term: request.term,
+          item: item
+        },
         success: response
       }).always(bindLoader);
     },

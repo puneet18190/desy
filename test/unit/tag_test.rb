@@ -86,15 +86,6 @@ class TagTest < ActiveSupport::TestCase
     assert_obj_saved @tag
   end
   
-  test 'autocomplete' do
-    load_tags
-    assert_words_ordered Tag.get_tags_for_autocomplete('pa'), ['pa', 'pane', 'pagliaccio', 'pagnotta', 'paniere', 'paglierino', 'pappardelle', 'pane e salame']
-    assert_words_ordered Tag.get_tags_for_autocomplete('ca'), ['ca', 'cagnaccio', 'cagnolino', 'cane', 'cagnetto', 'candreva']
-    assert_words_ordered Tag.get_tags_for_autocomplete('can'), ['cane', 'candreva']
-    assert_words_ordered Tag.get_tags_for_autocomplete('pan'), ['pane', 'paniere', 'pane e salame']
-    assert Tag.get_tags_for_autocomplete('').empty?
-  end
-  
   test 'for_search_engine' do
     load_tags
     MediaElement.where('id < 7').update_all(:user_id => 1, :is_public => false)
