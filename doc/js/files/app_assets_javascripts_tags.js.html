@@ -464,17 +464,6 @@ function removeFromTagsValue(word, value_selector) {
 
 
 /**
-Initializer for search autocomplete.
-@method tagsDocumentReadyAutocomplete
-@for TagsDocumentReady
-**/
-function tagsDocumentReadyAutocomplete() {
-  initSearchTagsAutocomplete(&#x27;#general_tag_reader_for_search&#x27;);
-  initSearchTagsAutocomplete(&#x27;#lessons_tag_reader_for_search&#x27;);
-  initSearchTagsAutocomplete(&#x27;#media_elements_tag_reader_for_search&#x27;);
-}
-
-/**
 Initializer for tagging autocomplete in the form to &lt;b&gt;change the general information of a media element&lt;/b&gt; (see {{#crossLink &quot;DialogsWithForm/showMediaElementInfoPopUp:method&quot;}}{{/crossLink}}).
 @method tagsDocumentReadyChangeMediaElementInfo
 @for TagsDocumentReady
@@ -512,7 +501,7 @@ function tagsDocumentReadyChangeMediaElementInfo() {
   });
   $(&#x27;._change_info_container&#x27;).each(function() {
     var media_element_id = $(this).data(&#x27;param&#x27;);
-    initTagsAutocomplete(&#x27;#dialog-media-element-&#x27; + media_element_id);
+    initTagsAutocomplete(&#x27;#dialog-media-element-&#x27; + media_element_id, &#x27;media_element&#x27;);
     (function() {
       disableTagsInputTooHigh(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container&#x27;, &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; #tags&#x27;);
     });
@@ -551,7 +540,7 @@ function tagsDocumentReadyMediaElementLoader() {
   $body.on(&#x27;blur&#x27;, &#x27;#load-media-element .medload_tags&#x27;, function(e) {
     addTagWithoutSuggestion(this, &#x27;#load-media-element ._tags_container&#x27;, &#x27;.medload_tags_value&#x27;);
   });
-  initTagsAutocomplete(&#x27;#load-media-element&#x27;);
+  initTagsAutocomplete(&#x27;#load-media-element&#x27;, &#x27;media_element&#x27;);
 }
 
 /**
@@ -586,7 +575,7 @@ function tagsDocumentReadyNewLesson() {
   $body.on(&#x27;blur&#x27;, &#x27;#slides._new #tags&#x27;, function(e) {
     addTagWithoutSuggestion(this, &#x27;#slides._new ._tags_container&#x27;, &#x27;#tags_value&#x27;);
   });
-  initTagsAutocomplete(&#x27;#slides._new&#x27;);
+  initTagsAutocomplete(&#x27;#slides._new&#x27;, &#x27;lesson&#x27;);
 }
 
 /**
@@ -625,7 +614,7 @@ function tagsDocumentReadyNewMediaElement() {
   $body.on(&#x27;blur&#x27;, &#x27;#form_info_new_media_element_in_editor #new_tags&#x27;, function(e) {
     addTagWithoutSuggestion(this, &#x27;#form_info_new_media_element_in_editor ._tags_container&#x27;, &#x27;#new_tags_value&#x27;);
   });
-  initTagsAutocomplete(&#x27;#form_info_new_media_element_in_editor&#x27;);
+  initTagsAutocomplete(&#x27;#form_info_new_media_element_in_editor&#x27;, &#x27;media_element&#x27;);
 }
 
 /**
@@ -660,7 +649,7 @@ function tagsDocumentReadyOvervriteMediaElement() {
   $body.on(&#x27;blur&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags&#x27;, function(e) {
     addTagWithoutSuggestion(this, &#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, &#x27;#update_tags_value&#x27;);
   });
-  initTagsAutocomplete(&#x27;#form_info_update_media_element_in_editor&#x27;);
+  initTagsAutocomplete(&#x27;#form_info_update_media_element_in_editor&#x27;, &#x27;media_element&#x27;);
   (function() {
     disableTagsInputTooHigh(&#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags&#x27;);
   });
@@ -697,7 +686,7 @@ function tagsDocumentReadyUpdateLesson() {
   $body.on(&#x27;blur&#x27;, &#x27;#slides._update #tags&#x27;, function(e) {
     addTagWithoutSuggestion(this, &#x27;#slides._update ._tags_container&#x27;, &#x27;#tags_value&#x27;);
   });
-  initTagsAutocomplete(&#x27;#slides._update&#x27;);
+  initTagsAutocomplete(&#x27;#slides._update&#x27;, &#x27;lesson&#x27;);
   (function() {
     disableTagsInputTooHigh(&#x27;#slides._update ._tags_container&#x27;, &#x27;#slides._update #tags&#x27;);
   });
@@ -712,8 +701,9 @@ Initializer for search autocompĺete.
 @method initSearchTagsAutocomplete
 @for TagsInitializers
 @param input {String} HTML selector for the input
+@param item {String} lesson or media_element
 **/
-function initSearchTagsAutocomplete(input) {
+function initSearchTagsAutocomplete(input, item) {
   var cache = {};
   $(input).autocomplete({
     minLength: 2,
@@ -727,7 +717,10 @@ function initSearchTagsAutocomplete(input) {
       $.ajax({
         dataType: &#x27;json&#x27;,
         url: &#x27;/tags/get_list&#x27;,
-        data: request,
+        data: {
+          term: request.term,
+          item: item
+        },
         success: function(data, status, xhr) {
           cache[term] = data;
           response(data);
@@ -742,8 +735,9 @@ Initializer for tagging autocompĺete.
 @method initTagsAutocomplete
 @for TagsInitializers
 @param scope {String} HTML scope for the tag container
+@param item {String} lesson or media_element
 **/
-function initTagsAutocomplete(scope) {
+function initTagsAutocomplete(scope, item) {
   var input_selector = scope + &#x27; #tags&#x27;;
   var container_selector = scope + &#x27; ._tags_container&#x27;;
   var tags_value_selector = &#x27;#tags_value&#x27;;
@@ -765,7 +759,10 @@ function initTagsAutocomplete(scope) {
       $.ajax({
         dataType: &#x27;json&#x27;,
         url: &#x27;/tags/get_list&#x27;,
-        data: {term: request.term},
+        data: {
+          term: request.term,
+          item: item
+        },
         success: response
       }).always(bindLoader);
     },

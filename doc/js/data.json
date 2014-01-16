@@ -2947,7 +2947,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 66,
+            "line": 67,
             "description": "Empties the pages, before loading new contents. This is used in the action index.js.erb.",
             "itemtype": "method",
             "name": "emptyAllPagesInDashboard",
@@ -2963,7 +2963,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 82,
+            "line": 83,
             "description": "Resets all the pages to invisible, and sets as visible the one selected by the user.",
             "itemtype": "method",
             "name": "resetVisibilityOfAllPagesInDashboard",
@@ -2984,7 +2984,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 99,
+            "line": 100,
             "description": "Compresses the section 'lessons', using animate to have a graphical effect.",
             "itemtype": "method",
             "name": "compressLessonsInDashboard",
@@ -2993,7 +2993,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 123,
+            "line": 124,
             "description": "Compresses the section 'media elements', using animate to have a graphical effect.",
             "itemtype": "method",
             "name": "compressMediaElementsInDashboard",
@@ -3002,7 +3002,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 147,
+            "line": 148,
             "description": "Expands the section 'lessons', using animate to have a graphical effect.",
             "itemtype": "method",
             "name": "expandLessonsInDashboard",
@@ -3011,7 +3011,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 167,
+            "line": 168,
             "description": "Expands the section 'media elements', using animate to have a graphical effect. The variable 'scroll_height' is calculated as follows: if the section lessons has been expanded (see {{#crossLink \"DashboardExpandedContents/expandLessonsInDashboard:method\"}}{{/crossLink}}) the overall height is 72px (header) + 61px (header menu) + 50px (margin of global content) + 70px (header of lessons) + 660px (height of lessons) + 40px (pagination of lessons) + 50px (margin of the section elements) + 70px (header of elements) + 660px (height of section elements, once it is expanded) + 40px (pagination of elements) + 50px (padding between main content and footer) = 1823px; if lessons are not expanded, the height of lessons is only 315, and it's not calculated the height of lessons pagination, obtaining a total of 1438px. The scroll is launched with a delay of 150 ms, to avoid overlapping with the expansion effect.",
             "itemtype": "method",
             "name": "expandMediaElementsInDashboard",
@@ -3020,7 +3020,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 191,
+            "line": 192,
             "description": "This function is used to initialize the paginator in the dashboard. It replaces the paginator, copying and pasting it from a hidden div. The method is called only for an expanded section, otherwise there is no pagination.",
             "itemtype": "method",
             "name": "initializeDashboardPagination",
@@ -3046,7 +3046,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 240,
+            "line": 241,
             "description": "This method calls {{#crossLink \"DashboardLessonDescriptions/openDescriptionDashboardRecursionLayer:method\"}}{{/crossLink}} after a certain delay of ms (this procedure is similar to the one defined in {{#crossLink \"VideoEditorComponents/startVideoEditorPreviewClipWithDelay:method\"}}{{/crossLink}}, in the module {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "openDescriptionDashboardLayer",
@@ -3062,7 +3062,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 256,
+            "line": 257,
             "description": "This method is used to open the special div containing description, author and subject of a lesson. It doesn't use animate so it's possible to reverse the expansion just firing mouseleave on the lesson.",
             "itemtype": "method",
             "name": "openDescriptionDashboardRecursionLayer",
@@ -3098,7 +3098,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 288,
+            "line": 289,
             "description": "This method makes decisions about how to react to a resize event. First it centers the lessons, calculating the maximum number that fits the available horizontal space, and the margin-left to apply. Then, it uses such a margin left to calculate the available space for media elements (these must be aligned with the lessons on both left and right sides). After the correct number of lessons and media elements has been calculated, the method decides if it's necessary to call the server and fetch new items: if this is not necessary, it's called {{#crossLink \"DashboardResizing/resizeLessonsAndMediaElementsInDashboard:method}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "dashboardResizeController",
@@ -3107,7 +3107,7 @@
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
-            "line": 330,
+            "line": 331,
             "description": "This method resizes lessons and media elements without calling the server to add new ones.",
             "itemtype": "method",
             "name": "resizeLessonsAndMediaElementsInDashboard",
@@ -3703,7 +3703,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 226,
+            "line": 234,
             "description": "Initializer for global functionalities, used throughout the application.",
             "itemtype": "method",
             "name": "globalDocumentReady",
@@ -3712,7 +3712,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 255,
+            "line": 263,
             "description": "Initializer for locations automatic filling.",
             "itemtype": "method",
             "name": "locationsDocumentReady",
@@ -3721,7 +3721,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 278,
+            "line": 286,
             "description": "Initializes reports forms for both lessons and media elements.",
             "itemtype": "method",
             "name": "reportsDocumentReady",
@@ -3730,7 +3730,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 323,
+            "line": 331,
             "description": "Functionalities necessary only for the section 'my documents'.",
             "itemtype": "method",
             "name": "sectionDocumentsDocumentReady",
@@ -3739,7 +3739,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 333,
+            "line": 341,
             "description": "Functionalities necessary only for the section 'my lessons'.",
             "itemtype": "method",
             "name": "sectionLessonsDocumentReady",
@@ -3748,7 +3748,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 348,
+            "line": 357,
             "description": "Functionalities necessary only for the section 'my media elements'.",
             "itemtype": "method",
             "name": "sectionMediaElementsDocumentReady",
@@ -3757,7 +3757,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 400,
+            "line": 410,
             "description": "Functionalities necessary only for the sections containing notifications.",
             "itemtype": "method",
             "name": "sectionNotificationsDocumentReady",
@@ -3766,7 +3766,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 434,
+            "line": 444,
             "description": "Functionalities necessary only for the section 'search'.",
             "itemtype": "method",
             "name": "sectionSearchDocumentReady",
@@ -3775,7 +3775,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 457,
+            "line": 469,
             "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "browserSupport",
@@ -3784,7 +3784,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 465,
+            "line": 477,
             "description": "Hides the mini thumbnail of a compact media element.",
             "itemtype": "method",
             "name": "hideMiniThumbnailForMediaElementCompact",
@@ -3800,7 +3800,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 487,
+            "line": 499,
             "description": "Initializes global variables used throughout the javascripts.",
             "itemtype": "method",
             "name": "initializeGlobalVariables",
@@ -3809,7 +3809,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 503,
+            "line": 515,
             "description": "Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "redError",
@@ -3818,7 +3818,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 514,
+            "line": 526,
             "description": "Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3834,7 +3834,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 542,
+            "line": 554,
             "description": "Shows the mini thumbnail of a compact media element.",
             "itemtype": "method",
             "name": "showMiniThumbnailForMediaElementCompact",
@@ -3850,7 +3850,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 589,
+            "line": 597,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3875,7 +3875,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 615,
+            "line": 623,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -5476,7 +5476,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 193,
+            "line": 190,
             "description": "General initializer for help and notifications tooltips.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyTooltips",
@@ -5485,7 +5485,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 214,
+            "line": 211,
             "description": "Initializes the graphical tools of the <b>help tooltip</b>.",
             "itemtype": "method",
             "name": "initializeHelp",
@@ -5494,7 +5494,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 235,
+            "line": 232,
             "description": "Initializes the graphical tools and the routes attached to the <b>notifications tooltip</b>.",
             "itemtype": "method",
             "name": "initializeNotifications",
@@ -5930,7 +5930,7 @@
         },
         {
             "file": "app/assets/javascripts/search.js",
-            "line": 87,
+            "line": 89,
             "description": "Initializer for <b>search keyword</b> placeholders.",
             "itemtype": "method",
             "name": "searchDocumentReadyPlaceholders",
@@ -6099,15 +6099,6 @@
         {
             "file": "app/assets/javascripts/tags.js",
             "line": 150,
-            "description": "Initializer for search autocomplete.",
-            "itemtype": "method",
-            "name": "tagsDocumentReadyAutocomplete",
-            "class": "TagsDocumentReady",
-            "module": "tags"
-        },
-        {
-            "file": "app/assets/javascripts/tags.js",
-            "line": 161,
             "description": "Initializer for tagging autocomplete in the form to <b>change the general information of a media element</b> (see {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyChangeMediaElementInfo",
@@ -6116,7 +6107,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 206,
+            "line": 195,
             "description": "Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}} and the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyMediaElementLoader",
@@ -6125,7 +6116,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 241,
+            "line": 230,
             "description": "Initializer for tagging autocomplete in the form to <b>create a new lesson</b>.",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewLesson",
@@ -6134,7 +6125,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 276,
+            "line": 265,
             "description": "Initializer for tagging autocomplete in the form to <b>save as new an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewMediaElement",
@@ -6143,7 +6134,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 315,
+            "line": 304,
             "description": "Initializer for tagging autocomplete in the form to <b>overwrite an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyOvervriteMediaElement",
@@ -6152,7 +6143,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 353,
+            "line": 342,
             "description": "Initializer for tagging autocomplete in the form to <b>update the general information of a lesson</b>.",
             "itemtype": "method",
             "name": "tagsDocumentReadyUpdateLesson",
@@ -6161,7 +6152,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 394,
+            "line": 383,
             "description": "Initializer for search autocompĺete.",
             "itemtype": "method",
             "name": "initSearchTagsAutocomplete",
@@ -6170,6 +6161,11 @@
                     "name": "input",
                     "description": "HTML selector for the input",
                     "type": "String"
+                },
+                {
+                    "name": "item",
+                    "description": "lesson or media_element",
+                    "type": "String"
                 }
             ],
             "class": "TagsInitializers",
@@ -6177,7 +6173,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 424,
+            "line": 417,
             "description": "Initializer for tagging autocompĺete.",
             "itemtype": "method",
             "name": "initTagsAutocomplete",
@@ -6185,6 +6181,11 @@
                 {
                     "name": "scope",
                     "description": "HTML scope for the tag container",
+                    "type": "String"
+                },
+                {
+                    "name": "item",
+                    "description": "lesson or media_element",
                     "type": "String"
                 }
             ],

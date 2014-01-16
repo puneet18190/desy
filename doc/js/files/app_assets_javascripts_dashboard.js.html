@@ -337,6 +337,7 @@ function dashboardDocumentReady() {
   $window.resize(function() {
     dashboardResizeController();
   });
+  initSearchTagsAutocomplete(&#x27;#general_tag_reader_for_search&#x27;, &#x27;lesson&#x27;);
   $body.on(&#x27;mouseenter&#x27;, &#x27;.lesson_dashboard_hover_sensitive&#x27;, function() {
     var item = $(this).find(&#x27;.literature_container&#x27;);
     item.data(&#x27;delaying&#x27;, true);

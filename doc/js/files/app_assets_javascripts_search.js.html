@@ -390,7 +390,9 @@ function searchDocumentReadyGeneral() {
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;._keep_searching&#x27;, function() {
+    $(this).data(&#x27;opened&#x27;, true);
     var form = $(this).parent();
+    $(&#x27;.advanced-search-content&#x27;).animate({height: &#x27;995px&#x27;}, 500);
     form.animate({
       height: &#x27;210&#x27;
     }, 500, function() {

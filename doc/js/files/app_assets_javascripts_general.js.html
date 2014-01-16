@@ -516,7 +516,11 @@ function commonLessonsDocumentReady() {
         if(lessons_content.length &gt; 0) {
           lessons_content.animate({height: &#x27;665px&#x27;}, 500);
         } else {
-          advanced_search_content.animate({height: &#x27;805px&#x27;}, 500);
+          if ($(&#x27;form#search_lessons ._keep_searching&#x27;).data(&#x27;opened&#x27;)) {
+            advanced_search_content.animate({height: &#x27;995px&#x27;}, 500);
+          } else {
+            advanced_search_content.animate({height: &#x27;805px&#x27;}, 500);
+          }
         }
       } else {
         var there_is_expanded = $(&#x27;._lesson_expanded:visible&#x27;);
@@ -532,7 +536,11 @@ function commonLessonsDocumentReady() {
         if(lessons_content.length &gt; 0) {
           lessons_content.animate({height: &#x27;863px&#x27;}, 500);
         } else {
-          advanced_search_content.animate({height: &#x27;1003px&#x27;}, 500);
+          if ($(&#x27;form#search_lessons ._keep_searching&#x27;).data(&#x27;opened&#x27;)) {
+            advanced_search_content.animate({height: &#x27;1193px&#x27;}, 500);
+          } else {
+            advanced_search_content.animate({height: &#x27;1003px&#x27;}, 500);
+          }
         }
       }
     }
@@ -652,6 +660,7 @@ Functionalities necessary only for the section &#x27;my lessons&#x27;.
 @for GeneralDocumentReady
 **/
 function sectionLessonsDocumentReady() {
+  initSearchTagsAutocomplete(&#x27;#general_tag_reader_for_search&#x27;, &#x27;lesson&#x27;);
   $(&#x27;#filter_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $body.on(&#x27;change&#x27;, &#x27;#filter_lessons&#x27;, function() {
     var filter = $(&#x27;#filter_lessons option:selected&#x27;).val();
@@ -667,6 +676,7 @@ Functionalities necessary only for the section &#x27;my media elements&#x27;.
 @for GeneralDocumentReady
 **/
 function sectionMediaElementsDocumentReady() {
+  initSearchTagsAutocomplete(&#x27;#general_tag_reader_for_search&#x27;, &#x27;media_element&#x27;);
   $(&#x27;#filter_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $body.on(&#x27;change&#x27;, &#x27;#filter_media_elements&#x27;, function() {
     var filter = $(&#x27;#filter_media_elements option:selected&#x27;).val();
@@ -764,6 +774,8 @@ function sectionSearchDocumentReady() {
   $(&#x27;#filter_search_media_elements&#x27;).selectbox();
   $(&#x27;#filter_search_lessons_subject&#x27;).selectbox();
   $(&#x27;#filter_search_lessons_school_level&#x27;).selectbox();
+  initSearchTagsAutocomplete(&#x27;#lessons_tag_reader_for_search&#x27;, &#x27;lesson&#x27;);
+  initSearchTagsAutocomplete(&#x27;#media_elements_tag_reader_for_search&#x27;, &#x27;media_element&#x27;);
 }
 
 
@@ -887,13 +899,9 @@ function showMiniThumbnailForMediaElementCompact(item) {
         media.find(&#x27;source[type=&quot;&#x27; + type + &#x27;/&#x27; + type_src_1 + &#x27;&quot;]&#x27;).attr(&#x27;src&#x27;, media.data(type_src_1));
         media.find(&#x27;source[type=&quot;&#x27; + type + &#x27;/&#x27; + type_src_2 + &#x27;&quot;]&#x27;).attr(&#x27;src&#x27;, media.data(type_src_2));
         media.load();
-        media.data(&#x27;loaded&#x27;);
+        media.data(&#x27;loaded&#x27;, true);
       }
-      if(media[0].error) {
-        showLoadingMediaErrorPopup(media[0].error.code, type);
-      } else {
-        media[0].play();
-      }
+      media[0].play();
     }
   });
 }
