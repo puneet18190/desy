@@ -76,6 +76,7 @@ function searchDocumentReadyGeneral() {
   $body.on('click', '._keep_searching', function() {
     $(this).data('opened', true);
     var form = $(this).parent();
+    $('.advanced-search-content').animate({height: '995px'}, 500);
     form.animate({
       height: '210'
     }, 500, function() {
