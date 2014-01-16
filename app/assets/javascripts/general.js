@@ -573,11 +573,7 @@ function showMiniThumbnailForMediaElementCompact(item) {
         media.load();
         media.data('loaded', true);
       }
-      if(media[0].error) {
-        showLoadingMediaErrorPopup(media[0].error.code, type);
-      } else {
-        media[0].play();
-      }
+      media[0].play();
     }
   });
 }
