@@ -51,7 +51,7 @@ cn:
         lesson: "你已增加这个课程"
         # The user successfully added an element to his personal folder
         # 1 - controllers/media_elements_controller.rb
-        media_element: "你已增加这个多媒体单元"
+        media_element: "你已增加这个多媒体素材"
       # The user successfully shared a lesson
       # 1 - controllers/lessons_controller.rb
       publish: "这个课程已分享"
@@ -61,7 +61,7 @@ cn:
         lesson: "你已删除此课程"
         # The user successfully removed an element from his personal folder
         # 1 - controllers/media_elements_controller.rb
-        media_element: "你已删除此媒体单元"
+        media_element: "你已删除此媒体素材"
       # This message is associated to the form used to report an inappropriate content (both for lessons and elements)
       # 1 - views/reports/media_element.js.erb
       # 2 - views/reports/lesson.js.erb
@@ -130,7 +130,7 @@ cn:
           # There was an error while trying to add the element to your personal folder
           # 1 - controllers/media_elements_controller.rb
           # 2 - controllers/media_elements_controller.rb
-          problem_creating_for_media_element: "不能增加单元"
+          problem_creating_for_media_element: "不能增加素材"
           # There was an error while trying to remove the lesson from your personal folder
           # 1 - controllers/lessons_controller.rb
           # 2 - controllers/lessons_controller.rb
@@ -140,7 +140,7 @@ cn:
           # 1 - controllers/media_elements_controller.rb
           # 2 - controllers/media_elements_controller.rb
           # 3 - controllers/media_elements_controller.rb
-          problem_destroying_for_media_element: "不能移去单元"
+          problem_destroying_for_media_element: "不能移去素材"
         document:
           # There was a problem while destroying a document
           # 1 - controllers/documents_controller.rb
@@ -226,10 +226,10 @@ cn:
           # 2 - models/media_element.rb
           # 3 - models/media_element.rb
           # 4 - models/media_element.rb
-          problem_destroying: "不能删除这个单元"
+          problem_destroying: "不能删除这个素材"
           # Since the element is public, it's not possible to delete it
           # 1 - models/media_element.rb
-          cant_destroy_public: "这个单元是公用的，你不能删除它"
+          cant_destroy_public: "这个素材是公用的，你不能删除它"
         user:
           # In the administration module, it's possible to delete a user from the database: this message appears if something wrong occurred during this process, and the user couldn't be deleted
           # 1 - models/user.rb
@@ -250,7 +250,7 @@ cn:
           lesson_already_reported: "你已经记录了这个课程"
           # Same situation: the user is trying to report the same media element twice
           # 1 - models/user.rb
-          media_element_already_reported: "你已经记录了这个单元"
+          media_element_already_reported: "你已经记录了这个素材"
         notification:
           # There was an error while trying to delete a notification
           # 1 - controllers/notifications_controller.rb
@@ -296,7 +296,7 @@ cn:
     publish:
       # Message (the application tells the user that any element contained in the lesson will be shared together with it)
       # 1 - views/shared/_popups.html.erb
-      confirm: "自动分享包括在课程中的每一个单元"
+      confirm: "自动分享包括在课程中的每一个素材"
       # Title
       # 1 - views/shared/_popups.html.erb
       title: "发布这个课程"
@@ -359,13 +359,13 @@ cn:
         confirm: "你确信要删去它吗？"
         # Message if you are using the element in some of your lessons: it will be removed from each of his instances
         # 1 - views/shared/_popups.html.erb
-        confirm_bis: "在一些课程中，你正在使用单元：它将从每一例子中删去"
+        confirm_bis: "在一些课程中，你正在使用素材：它将从每一例子中删去"
         # Title
         # 1 - views/shared/_popups.html.erb
-        title: "删去这个单元"
+        title: "删去这个素材"
         # Button to confirm
         # 1 - views/shared/_popups.html.erb
-        do: "删去这个单元"
+        do: "删去这个素材"
         # Button to cancel
         # 1 - views/shared/_popups.html.erb
         cancel: "终止"
@@ -454,21 +454,21 @@ cn:
     save_media_element_editor:
       # Title
       # 1 - views/shared/_popups.html.erb
-      title: "保存私有单元"
+      title: "保存私有素材"
       # Message
       # 1 - views/shared/_popups.html.erb
-      confirm: "当修改的单元是私有时，你能覆盖它"
+      confirm: "当修改的素材是私有时，你能覆盖它"
       # Button to overwrite
       # 1 - views/shared/_popups.html.erb
       do: "覆盖"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-      cancel: "作为新单元保存"
+      cancel: "作为新素材保存"
     # If the user is overwriting a private element, and he used the same element in some of his lessons, the application asks him for confirmation (since the same element will automatically be modified in all of its instances)
     overwrite_media_element_editor:
       # Title
       # 1 - views/shared/_popups.html.erb
-      title: "这个单元在使用"
+      title: "这个素材在使用"
       # Message
       # 1 - views/shared/_popups.html.erb
       confirm: "如果覆盖，在任意私有课程中它将被退换"
@@ -595,7 +595,7 @@ cn:
     # Form for uploading a new media element
     upload_media_element:
       # 1 - views/media_elements/_new_form_popup.html.erb
-      title: "上传媒体单元"
+      title: "上传媒体素材"
       # 1 - views/media_elements/_new_form_popup.html.erb
       description: "通过点击左边的按钮选择一个文件"
       # 1 - views/media_elements/_new_form_popup.html.erb
@@ -605,7 +605,7 @@ cn:
     # Form for modifying a media element
     change_info_media_element:
       # 1 - views/media_elements/_popup.html.erb
-      title: "单元信息"
+      title: "素材信息"
       # 1 - views/media_elements/_popup.html.erb
       description: "修改数据填写以下表格"
       # 1 - views/media_elements/_popup.html.erb
@@ -623,13 +623,13 @@ cn:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       done: "保存"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      conserve_tags: "保存标题,描述和原始单元标签"
+      conserve_tags: "保存标题,描述和原始素材标签"
     # Form for editing general information of an element after having overwritten its content with one of the three editors (image / audio / video)
     overwrite_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       title: "你已经发生重要改变吗?"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      description: "基于新账号，在这里上传单元信息"
+      description: "基于新账号，在这里上传素材信息"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       cancel: "终止"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
@@ -779,7 +779,7 @@ cn:
         # 1 - views/shared/buttons/_add.html.erb
         lesson: "增加到你的课程"
         # 1 - views/shared/buttons/_add.html.erb
-        media_element: "增加到你的单元"
+        media_element: "增加到你的素材"
       # To add a lesson to your Virtual Classroom
       # 1 - views/shared/buttons/_add_virtual_classroom.html.erb
       add_virtual_classroom: "增加课程到虚拟教室"
@@ -857,13 +857,13 @@ cn:
       compress_lessons: "关闭课程"
       # Button to compress media elements subsection
       # 1 - views/dashboard/index.html.erb
-      compress_media_elements: "关闭单元"
+      compress_media_elements: "关闭素材"
       # Button to expand lessons subsection
       # 1 - views/dashboard/index.html.erb
       expand_lessons: "展开课程"
       # Button to expand media elements subsection
       # 1 - views/dashboard/index.html.erb
-      expand_media_elements: "展开单元"
+      expand_media_elements: "展开素材"
     # Titles for the icons of documents
     documents:
       # Includes .doc, .odt
@@ -1161,12 +1161,12 @@ cn:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "欢迎到DESY!"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "你第一次来到DESY? 在这里你能找到你感兴趣的课程. 任何与你学习科目相关的新课程或训练单元都能添加到这里."
+        content: "你第一次来到DESY? 在这里你能找到你感兴趣的课程. 任何与你学习科目相关的新课程或训练素材都能添加到这里."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "你的选择 - 单元"
+        title: "你的选择 - 素材"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "找出哪一个是载入DESY社区最后一次训练单元. 添加到你喜欢个人部分 (点击 '+' 图标). 如果你想寻找特别的事情,请点击这个链接进入搜素引擎."
+        content: "找出哪一个是载入DESY社区最后一次训练素材. 添加到你喜欢个人部分 (点击 '+' 图标). 如果你想寻找特别的事情,请点击这个链接进入搜素引擎."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "你的选择 - 课程"
@@ -1203,29 +1203,29 @@ cn:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "建立新课程"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "点击按钮 <b>创建新课程</b> 打开课程编辑器.开始创作新的多媒体课程. 记住,把课程录入课程编辑器之前, 你需要合适的媒体号码填入媒体库 (在编辑器里,载入或查找这样的单元是不可能的)."
+        content: "点击按钮 <b>创建新课程</b> 打开课程编辑器.开始创作新的多媒体课程. 记住,把课程录入课程编辑器之前, 你需要合适的媒体号码填入媒体库 (在编辑器里,载入或查找这样的素材是不可能的)."
     media_elements:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "你的训练单元"
+        title: "你的训练素材"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "这一页所有的教学单元 (图像, 视频, 或音频)你要么从本地载入, 要么从DESY数据库中载入.<br/>你想载入新的单元, 这将是 <b>私有的</b>,它不在公共课程范围内. 不像课程, 对于教学单元, 分享过程是不可逆的, 分享课程在社区里能被其他用户使用. 一般情况下,<b>公共单元不能随意删除</b>, 甚至是原始的创建者 (实际上, 我们认为公共课程的所有权是社区)."
+        content: "这一页所有的教学素材 (图像, 视频, 或音频)你要么从本地载入, 要么从DESY数据库中载入.<br/>你想载入新的素材, 这将是 <b>私有的</b>,它不在公共课程范围内. 不像课程, 对于教学素材, 分享过程是不可逆的, 分享课程在社区里能被其他用户使用. 一般情况下,<b>公共素材不能随意删除</b>, 甚至是原始的创建者 (实际上, 我们认为公共课程的所有权是社区)."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "DESY单元编辑器"
+        title: "DESY素材编辑器"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "当你载入教学单元时, 它能在线<b>修改</b>. 使用DESY单元编辑器, 你能修改你的图标, 音频和视频: 如, 你能修剪图片或增加文本到编辑器里; 剪切和修改音频文件; 修改已存在的视频,或通过已经存在教学单元建立新的教学单元.<br/>一个<b>私有</b>教学单元能被修改和重写, 对于公共单元是不能修改与重写的: 公共单元能被修改,但修改后保存一新的单元."
+        content: "当你载入教学素材时, 它能在线<b>修改</b>. 使用DESY素材编辑器, 你能修改你的图标, 音频和视频: 如, 你能修剪图片或增加文本到编辑器里; 剪切和修改音频文件; 修改已存在的视频,或通过已经存在教学素材建立新的教学素材.<br/>一个<b>私有</b>教学素材能被修改和重写, 对于公共素材是不能修改与重写的: 公共素材能被修改,但修改后保存一新的素材."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "预览多媒体单元"
+        title: "预览多媒体素材"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "这个图标<b>预览</b> 打开包含训练单元预览弹出框. 如果那个单元是<b>私有</b>, 那个包含按钮的弹出框修改一般的信息(带有水平线的按钮): 对于单元的'一般信息',意思是它的标题, 描述和标签, 对载入单元的形式感兴趣."
+        content: "这个图标<b>预览</b> 打开包含训练素材预览弹出框. 如果那个素材是<b>私有</b>, 那个包含按钮的弹出框修改一般的信息(带有水平线的按钮): 对于素材的'一般信息',意思是它的标题, 描述和标签, 对载入素材的形式感兴趣."
     search:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "DESY搜索引擎"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "我们的搜索引擎能帮你在DESY数据库中搜索你所需要的课程和训练单元.<br/>当你找到你希望的课程或单元时, 你能点击图标'+'.<br/>记住,当载入或建立新课程时,分配正确数量的标签是非常的重要的,一套好的标签使你的内容可视化,使需要的人们更容易找到."
+        content: "我们的搜索引擎能帮你在DESY数据库中搜索你所需要的课程和训练素材.<br/>当你找到你希望的课程或素材时, 你能点击图标'+'.<br/>记住,当载入或建立新课程时,分配正确数量的标签是非常的重要的,一套好的标签使你的内容可视化,使需要的人们更容易找到."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "推荐有效的搜索"
@@ -1241,7 +1241,7 @@ cn:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "你的个人资料"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "这部分,你能预览和修改你的个人资料, 如名称, 密码, 等等. 分部 <b>主题</b>容许你添加你感兴趣的主题列表.<br/>记住, DESY分析你选择的主题, 把你带回到你感兴趣的仪表盘课程和媒体单元."
+        content: "这部分,你能预览和修改你的个人资料, 如名称, 密码, 等等. 分部 <b>主题</b>容许你添加你感兴趣的主题列表.<br/>记住, DESY分析你选择的主题, 把你带回到你感兴趣的仪表盘课程和媒体素材."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "建立邮件列表"
@@ -1251,7 +1251,7 @@ cn:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "统计"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "分部<b>统计</b>在DESY中,关于怎样使用你的个人账号, 还有你的应用数据库中的课程与单元. 你能看到你建立多少课程, 你上传多少训练单元.在DESY社区中,你能接受更流行."
+        content: "分部<b>统计</b>在DESY中,关于怎样使用你的个人账号, 还有你的应用数据库中的课程与素材. 你能看到你建立多少课程, 你上传多少训练素材.在DESY社区中,你能接受更流行."
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
@@ -1377,7 +1377,7 @@ cn:
     # 3 - views/media_elements/_title_bar.html.erb
     # 4 - views/search/_item_selector.html.erb
     # 5 - views/dashboard/index.html.erb
-    media_elements: "单元"
+    media_elements: "素材"
     # Used to refer to the user's personal profile
     # 1 - views/users/_title_bar.html.erb
     profile: "个人资料"
@@ -1405,7 +1405,7 @@ cn:
       # 1 - helpers/application_helper.rb
       lessons: "%{desy} - 课程"
       # 1 - helpers/application_helper.rb
-      media_elements: "%{desy} - 单元"
+      media_elements: "%{desy} - 素材"
       # 1 - helpers/application_helper.rb
       profile: "%{desy} - 个人资料"
       # 1 - helpers/application_helper.rb
@@ -1468,7 +1468,7 @@ cn:
       # 1 - views/dashboard/index.html.erb
       document: "载入文档"
       # 1 - views/dashboard/index.html.erb
-      media_element: "载入一单元"
+      media_element: "载入一素材"
     # Containers showing a standard message in case there are no lessons or media elements
     empty:
       lessons:
@@ -1484,13 +1484,13 @@ cn:
       media_elements:
         # Title of the container
         # 1 - views/dashboard/_media_elements_empty.html.erb
-        title: "这里没有推荐的单元给你"
+        title: "这里没有推荐的素材给你"
         # Title of the container in case the dashboard is empty because the user picked all the suggested elements and there are no remaining
         # 1 - views/dashboard/_media_elements_empty.html.erb
-        title_emptied: "你已选择所有被推荐的单元"
+        title_emptied: "你已选择所有被推荐的素材"
         # Prompt telling the user to upload a new media element
         # 1 - views/dashboard/_media_elements_empty.html.erb
-        prompt: "现在加载新单元"
+        prompt: "现在加载新素材"
     # Captions for the link that allows the user to open the FAQs section (the variable %{desy} is replaced by the name of the application)
     faqs:
       # 1 - views/dashboard/index.html.erb
@@ -1502,9 +1502,9 @@ cn:
     # Captions for the link to the search engine (the variable %{desy} is replaced by the name of the application)
     search:
       # 1 - views/dashboard/index.html.erb
-      title: "搜索课程或单元"
+      title: "搜索课程或素材"
       # 1 - views/dashboard/index.html.erb
-      description: "使用%{desy}搜素引擎搜素你需要的课程和单元"
+      description: "使用%{desy}搜素引擎搜素你需要的课程和素材"
     # Captions for subsections of the dashboard
     selected:
       # Subsection of lessons
@@ -1517,10 +1517,10 @@ cn:
       # Subsection of media elements
       media_elements:
         # 1 - views/dashboard/index.html.erb
-        title: "最新的训练单元"
+        title: "最新的训练素材"
         # The variable %{desy} is replaced by the name of the application
         # 1 - views/dashboard/index.html.erb
-        description: "在%{desy}内提供的内容不断改善: 为你提供多媒体单元"
+        description: "在%{desy}内提供的内容不断改善: 为你提供多媒体素材"
   
   
   # SECTION 2.4: Captions used in general media galleries. There are three kinds of galleries: Audio, Image and Video. They are used to pick quickly a media element and use it inside a lesson (or as a component to create a new media element, in Audio, Image and Video Editor)
@@ -1806,7 +1806,7 @@ cn:
     editor:
       # Link to the main page of the Element Editor from the section 'my elements'
       # 1 - views/media_elements/index.html.erb
-      menu_link: "单元编辑"
+      menu_link: "素材编辑"
       # Above the three options in the main page of Element Editor
       # 1 - views/media_elements/new.html.erb
       enjoy: "好作品"
@@ -1817,25 +1817,25 @@ cn:
       # 4 - views/audio_editor/_header.html.erb
       # 5 - views/video_editor/_header.html.erb
       # 6 - views/video_editor/_header.html.erb
-      new_untitled: "单元 - 无标题"
+      new_untitled: "素材 - 无标题"
       # Title of the main page of Element Editor
       # 1 - views/media_elements/new.html.erb
-      title: "欢迎到 %{desy}的单元编辑"
+      title: "欢迎到 %{desy}的素材编辑"
       # Text of the main page of Element Editor
       # 1 - views/media_elements/new.html.erb
-      description: "你想建立新单元吗？请选择新单元的类型"
+      description: "你想建立新素材吗？请选择新素材的类型"
     # Message which appears in the middle of the page if your element's section is empty
     # 1 - views/media_elements/_empty.html.erb
-    empty: "在你的区域没有单元"
+    empty: "在你的区域没有素材"
     # Message which appears in the middle of the page if the filter you applied produced an empty result
     # 1 - views/media_elements/_empty_filter.html.erb
-    empty_filter: "单元过滤器没有产生结果"
+    empty_filter: "素材过滤器没有产生结果"
     # Caption of the link to open the window to upload a new element (on the left of the bar above the element's list)
     # 1 - views/media_elements/index.html.erb
-    load_new: "上传新单元"
+    load_new: "上传新素材"
     # Caption which appears above a link to the window to load a new element if your element's section is empty
     # 1 - views/media_elements/_empty.html.erb
-    load_new_now: "现在上传新单元"
+    load_new_now: "现在上传新素材"
   
   
   # SECTION 2.10: Contents of automatic notifications sent by the application to the users
@@ -1877,7 +1877,7 @@ cn:
           ok: "<div class=\"title\">恭喜!</div><div class=\"content\">音频编辑<span class=\"variable\">%{item}</span> 成功完成! 现在音频编辑能提供, 还有用于音频的所有的课程 (除非在编辑中包含任何其它的课程).</div>"
           # The process of audio editing ended with an error. The variable %{item} is replaced by the name of the audio whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
           # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "<div class=\"title\">错误!</div><div class=\"content\">音频编辑<span class=\"variable\">%{item}</span>失败! 现在音频编辑能在提供, 还有用于音频的所有的课程 (除非在编辑中包含任何其它的单元). 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">请去草稿编辑</a></div>"
+          failed: "<div class=\"title\">错误!</div><div class=\"content\">音频编辑<span class=\"variable\">%{item}</span>失败! 现在音频编辑能在提供, 还有用于音频的所有的课程 (除非在编辑中包含任何其它的素材). 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">请去草稿编辑</a></div>"
         create:
           # The process of audio composition started. The variable %{item} is replaced by the name of the audio which is going to be composed
           # 1 - controllers/audio_editor_controller.rb
@@ -1906,10 +1906,10 @@ cn:
           started: "<div class=\"title\">正在编辑视频</div><div class=\"content\">视频编辑<span class=\"variable\">%{item}</span>已开始! 视频编辑临时不能提供, 还有你使用这个视频的课程.</div>"
           # The process of video editing ended successfully. The variable %{item} is replaced by the name of the video whose content has been modified
           # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "<div class=\"title\">恭喜!</div><div class=\"content\">编辑视频<span class=\"variable\">%{item}</span>成功完成! 现在视频能重新提供, 还有使用视频的所有的课程 (除非在编辑中包含任何其它的单元).</div>"
+          ok: "<div class=\"title\">恭喜!</div><div class=\"content\">编辑视频<span class=\"variable\">%{item}</span>成功完成! 现在视频能重新提供, 还有使用视频的所有的课程 (除非在编辑中包含任何其它的素材).</div>"
           # The process of video editing ended with an error. The variable %{item} is replaced by the name of the video whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
           # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "<div class=\"title\">错误!</div><div class=\"content\">编辑视频<span class=\"variable\">%{item}</span>失败! 现在视频编辑能在提供, 还有用于视频的所有的课程 (除非在编辑中包含任何其它的单元). 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">请去草稿编辑</a></div>"
+          failed: "<div class=\"title\">错误!</div><div class=\"content\">编辑视频<span class=\"variable\">%{item}</span>失败! 现在视频编辑能在提供, 还有用于视频的所有的课程 (除非在编辑中包含任何其它的素材). 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">请去草稿编辑</a></div>"
         create:
           # The process of video composition started. The variable %{item} is replaced by the name of the video which is going to be composed
           # 1 - controllers/video_editor_controller.rb
@@ -1963,7 +1963,7 @@ cn:
       # 1 - views/prelogin/home.html.erb
       title: "新教法"
       # 1 - views/prelogin/home.html.erb
-      description: "<b>%{desy}</b>是奉献教育界的新平台. 使用<b>%{desy}</b>你能轻松地建立职业在线课程, 好的用户界面和好的平台设计. 课程可以包含图像、音频和视频, 它能上传,剪切和提升自己. 用户也能利用我们的社区, 分享和接收媒体单元并准备重用.<i>使用<b>%{desy}</b>我们能保证高质量平台和注重细节</i>."
+      description: "<b>%{desy}</b>是奉献教育界的新平台. 使用<b>%{desy}</b>你能轻松地建立职业在线课程, 好的用户界面和好的平台设计. 课程可以包含图像、音频和视频, 它能上传,剪切和提升自己. 用户也能利用我们的社区, 分享和接收媒体素材并准备重用.<i>使用<b>%{desy}</b>我们能保证高质量平台和注重细节</i>."
       # 1 - views/prelogin/home.html.erb
       trial: "免费试用!"
     # Section where the user signs up
@@ -1986,7 +1986,7 @@ cn:
       # 1- views/prelogin/what_is.html.erb
       subtitle: "找出%{desy}的益处"
       # 1- views/prelogin/what_is.html.erb
-      description: "%{desy}是教学数字系统，它充许教师非常自由和容易地建立多媒体课程<br><br>不仅仅是: 它所处的平台充许分享教育单元和社会内容, 优点和额外的功能源于:<ul><li>建立课程和教学跨学科的可能性;</li><li>亲和力和丰富内容的连续性;</li><li>系统的增长感谢是零费用;</li><li>利用教学工具来加强与改善教学.</li></ul>与学校与大学相比, %{desy}能用于公司, 安装在公司局域网内通过门户网站。"
+      description: "%{desy}是教学数字系统，它充许教师非常自由和容易地建立多媒体课程<br><br>不仅仅是: 它所处的平台充许分享教育素材和社会内容, 优点和额外的功能源于:<ul><li>建立课程和教学跨学科的可能性;</li><li>亲和力和丰富内容的连续性;</li><li>系统的增长感谢是零费用;</li><li>利用教学工具来加强与改善教学.</li></ul>与学校与大学相比, %{desy}能用于公司, 安装在公司局域网内通过门户网站。"
       right_column:
         # 1 - views/prelogin/what_is.html.erb
         caption1: "通过分享你的包括视频、音频和图像课程来加入%{desy}社区"
@@ -2113,7 +2113,7 @@ cn:
     title: "你正在寻找什么？"
     # Subtitle inside the search engine
     # 1 - views/search/index.html.erb
-    description_title: "你正寻找课程或单元？"
+    description_title: "你正寻找课程或素材？"
     # General instructions about how to use the engine
     # 1 - views/search/index.html.erb
     description: "插入一个字，选择过滤并查找！"
@@ -2184,7 +2184,7 @@ cn:
       empty_word: "没有发现包含&lt%{word}&gt标签的相关课程"
       # Response if the filters the user applied are too strict and this makes the result to be empty
       # 1 - views/search/media_elements/_empty.html.erb
-      empty_filter: "用你选择的过滤器没有发现单元"
+      empty_filter: "用你选择的过滤器没有发现素材"
       keyword:
         # Label for the space where the user inserts the word he searchs for
         # 1 - views/search/media_elements/_main.html.erb
@@ -2334,7 +2334,7 @@ cn:
         lessons_shared: "已分享课程"
         # How many elements inside the application are shared
         # 1 - views/users/statistics.html.erb
-        media_elements_shared: "已分享教学单元"
+        media_elements_shared: "已分享教学素材"
         # Statistics with graph about the distribution of lessons for each subject
         percentual_lessons_subject:
           # 1 - views/users/statistics.html.erb
@@ -2374,7 +2374,7 @@ cn:
         links: "教訓其次是其他用戶"
         # How many elements you created
         # 1 - views/users/statistics.html.erb
-        media_elements_loaded: "教学单元已上传"
+        media_elements_loaded: "教学素材已上传"
         # Title for personal statistics
         # 1 - views/users/statistics.html.erb
         title: "个人"
@@ -2903,16 +2903,16 @@ cn:
       media_elements:
         # Link to the section 'Elements'
         # 1 - views/admin/_header.html.erb
-        link: "单元"
+        link: "素材"
         # Link to the subsection 'List of elements'
         # 1 - views/admin/_header.html.erb
         list: "列表"
         # Link to the subsection 'Multiple uploader of elements'
         # 1 - views/admin/_header.html.erb
-        upload: "上传新单元"
+        upload: "上传新素材"
         # Link to the subsection 'Edit and publication of uploaded elements'
         # 1 - views/admin/_header.html.erb
-        publish: "发布私人单元"
+        publish: "发布私人素材"
       purchases:
         # Link to the section 'Purchases'
         # 1 - views/admin/_header.html.erb
@@ -2963,7 +2963,7 @@ cn:
         shared_lessons: "已分享课程"
         # Number of elements shared in the application
         # 1 - views/admin/dashboard/index.html.erb
-        shared_media_elements: "以分享单元"
+        shared_media_elements: "以分享素材"
         # Number of users in the application's database
         # 1 - views/admin/dashboard/index.html.erb
         total_users: "在数据库中的用户"
@@ -3092,7 +3092,7 @@ cn:
     media_elements:
       # Title of the section
       # 1 - views/admin/media_elements/index.html.erb
-      title: "单元"
+      title: "素材"
       # Captions of the buttons available on a single element
       actions:
         # Remove the element
@@ -3111,14 +3111,14 @@ cn:
       # Popup which asks for confirmation before deleting a media_element
       # 1 - views/admin/media_elements/_media_element_update.html.erb
       # 2 - views/admin/media_elements/_list.html.erb
-      delete_confirm: "确认你想删除这个单元吗？"
+      delete_confirm: "确认你想删除这个素材吗？"
       # Title of the subsection where the administrator can edit and publish the elements he uploaded which are not public yet
       # 1 - views/admin/media_elements/edit.html.erb
-      edit: "编辑和分享已上传的单元"
+      edit: "编辑和分享已上传的素材"
       # Placeholder used when there are no media elements associated to the selected filter
       # 1 - views/admin/media_elements/_list.html.erb
       # 2 - views/admin/media_elements/edit.html.erb
-      empty: "没有单元发现"
+      empty: "没有素材发现"
       # Caption if you didn't load any element in the multiple loader
       # 1 - views/admin/media_elements/new.html.erb
       # 2 - views/admin/media_elements/quick_upload_delete.js.erb
@@ -3148,12 +3148,12 @@ cn:
         user: "用户"
       # Name used as label in the pagination (ex. '1-10 of 300 elements')
       # 1 - helpers/admin_helper.rb
-      name: "单元"
+      name: "素材"
       # The labels below are used in the section where the administrator can upload and save multiple elements
       new:
         # Title
         # 1 - views/admin/media_elements/new.html.erb
-        title: "上传新单元"
+        title: "上传新素材"
         # Caption for the file uploader
         # 1 - views/admin/media_elements/new.html.erb
         file_to_upload: "选择一文件上传"
@@ -3162,7 +3162,7 @@ cn:
         upload_hint: "你能使用CTRL选择更多的文件：如果你想分配同样的标题/描述/给文件列表，请使用以上域"
         # Title of the frame which contains the list of uploaded files, ready to be saved as new elements
         # 1 - views/admin/media_elements/new.html.erb
-        content_title: "单元准备保存"
+        content_title: "素材准备保存"
       # This label is used in a checkbox on the multiple upload form: when checked, the element will be saved and automatically published (this option is possible only for images, since audios and videos must be converted before they can be shared)
       # 1 - views/admin/media_elements/_media_element_upload.html.erb
       publish_now: "现在发布"
@@ -3170,7 +3170,7 @@ cn:
       search:
         # Title of the form
         # 1 - views/admin/media_elements/index.html.erb
-        label: "查找单元"
+        label: "查找素材"
         # Button to start the search
         # 1 - views/admin/media_elements/index.html.erb
         submit: "查找"
@@ -3616,7 +3616,7 @@ cn:
       lessons: "%{user}的课程"
       # Caption of the frame containing all the elements of a specific user
       # 1 - views/admin/users/show.html.erb
-      media_elements: "%{user}的多媒体单元"
+      media_elements: "%{user}的多媒体素材"
       # Name used as label in the pagination (ex. '1-10 of 300 users')
       # 1 - helpers/admin_helper.rb
       name: "用户"
@@ -3657,7 +3657,7 @@ cn:
           loaded: "已上传"
           # Title of the subframe
           # 1 - views/admin/users/_list.html.erb
-          title: "多媒体单元"
+          title: "多媒体素材"
         # Other statistics
         other:
           # Total amount of likes over the lessons of the selected user
@@ -3719,7 +3719,7 @@ cn:
           lessons: "没有课程报告"
           # 1 - views/admin/dashboard/index.html.erb
           # 2 - views/admin/messages/reports.html.erb
-          media_elements: "没有单元报告"
+          media_elements: "没有素材报告"
         # Label for the item on which the report was sent (it may be lesson or media element)
         # 1 - views/admin/dashboard/index.html.erb
         # 2 - views/admin/dashboard/index.html.erb
@@ -3739,7 +3739,7 @@ cn:
         # Title of the list of reports for media elements
         # 1 - views/admin/dashboard/index.html.erb
         # 2 - views/admin/messages/reports.html.erb
-        media_elements: "已发布媒体单元"
+        media_elements: "已发布媒体素材"
         # Labels of the two actions associated to a report
         actions:
           # Accept the report as justified and remove the reported item
@@ -3874,7 +3874,7 @@ cn:
           lessons_number: "课程"
           # How many elements are associated to the selected tag
           # 1 - views/admin/settings/_tags_list.html.erb
-          media_elements_number: "单元"
+          media_elements_number: "素材"
         # Frame for the tags search engine
         search:
           # Title of the frame
@@ -3894,7 +3894,7 @@ cn:
           # 1 - views/admin/settings/lessons_for_tag.html.erb
           lessons: "与这个标签相关的课程 <b>\"%{tag}\"</b>"
           # 1 - views/admin/settings/media_elements_for_tag.html.erb
-          media_elements: "与这个标签相关的单元 <b>\"%{tag}\"</b>"
+          media_elements: "与这个标签相关的素材 <b>\"%{tag}\"</b>"
   
   
   # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'
@@ -3947,7 +3947,7 @@ cn:
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
-        ["怎样建立课程", "用DESY很容易建立多媒体课程: 首先, 打开你的课程页面,点击这个按钮<b>建立新课程</b>. 输入一个标题, 简短的描述和一套适合的标签, 你将导航到课程编辑器。你开始制作你的幻灯片.<br/>DESY课程编辑器能自动保存你正在编辑的任何修改; 无论如何,你想确认课程是否被保存,请使用当前幻灯片右边的保存按钮.<br/>提醒,你刚刚建立的课程自动保存成<b>私有</b>, 因此,你是看到与使用它的唯一用户,你使用的这个单元在DESY平台还没有与其他用户分享. 如果你决定分享你的课程, 她包括建立课程的内容将被分享."],
+        ["怎样建立课程", "用DESY很容易建立多媒体课程: 首先, 打开你的课程页面,点击这个按钮<b>建立新课程</b>. 输入一个标题, 简短的描述和一套适合的标签, 你将导航到课程编辑器。你开始制作你的幻灯片.<br/>DESY课程编辑器能自动保存你正在编辑的任何修改; 无论如何,你想确认课程是否被保存,请使用当前幻灯片右边的保存按钮.<br/>提醒,你刚刚建立的课程自动保存成<b>私有</b>, 因此,你是看到与使用它的唯一用户,你使用的这个素材在DESY平台还没有与其他用户分享. 如果你决定分享你的课程, 她包括建立课程的内容将被分享."],
         ["我能移除或把我所分享课程变成私有吗?", "是的,分享课程是非常的重要的,但是由于某种原因,你想把你的建立的课程变成私有的,移除或修改它:通常你是建立课程的管理员, 与她们所处的状态无关. 总之, 每次在DESY中与其他用户分享课程, 系统将发送共享课程的通知给每个用户."],
         ["我可以修改其他用户的课程吗?", "可以,这里有两种方式使用其他用户的课程: 链接这个课程(你将成为这个课程的<b>支持者</b>)或者建立这个课程的拷贝. 在第一次使用时, 课程的所有者行为将影响你的链接; 如果你有兴趣建立拷贝, 你能依据你的喜好修改它."],
         ["如果我的课程被其他人修改,会怎样?", "在公共课程里产生的行为将影响所有的支持者发生的链接. 总之, 当这个发生时, 系统将向所有的支持者发送一个通知. 如果你想拷贝一个不受外面改变的影响的课程, 你不应该链接而是拷贝."],
@@ -3958,17 +3958,17 @@ cn:
     media_elements:
       # 1 - views/faqs/index.html.erb
       # 2 - views/faqs/media_elements.html.erb
-      title: "单元"
+      title: "素材"
       # 1 - views/faqs/media_elements.html.erb
-      description: "单元页面是DESY保存所有的你的训练单元的地方, 还有来自链接公共数据库的单元. 从这里,你能打开特别的编辑器(图像,视频和音频),它是有用的编辑已经存在的单元或建立新的单元. 如果FAQs.不能满足你的要求,请毫不犹豫的联系我们"
+      description: "素材页面是DESY保存所有的你的训练素材的地方, 还有来自链接公共数据库的素材. 从这里,你能打开特别的编辑器(图像,视频和音频),它是有用的编辑已经存在的素材或建立新的素材. 如果FAQs.不能满足你的要求,请毫不犹豫的联系我们"
       # They are organized in arrays, which first element is the title and the second element is the content
       # 1 - controllers/faqs_controller.rb
       # 2 - controllers/faqs_controller.rb
       contents: [
         ["在我的课程里,那种多媒体文件我能使用?", "你能以大部格式下载图像,视频和音频. 而且,你能下载不同类型的文档链接到幻灯片成为可能."],
-        ["我能移除公共单元吗?", "不可以,你不能移除或修改已共享的单元. 记住, 但你分享课程时,课程里的所有的私用的单元将被自动分享,与课程分享不同, 因为单元分享是不能恢复的. 如果你发生错误分享单元,如果你确实保持私有, 你能联系网络管理员请求删去单元.<br/>私有单元将自动分享,有些情况,它也将增加到已经是公共的课程里去."],
+        ["我能移除公共素材吗?", "不可以,你不能移除或修改已共享的素材. 记住, 但你分享课程时,课程里的所有的私用的素材将被自动分享,与课程分享不同, 因为素材分享是不能恢复的. 如果你发生错误分享素材,如果你确实保持私有, 你能联系网络管理员请求删去素材.<br/>私有素材将自动分享,有些情况,它也将增加到已经是公共的课程里去."],
         ["我加载了视频,但我仅需要使用视频的一部分...", "没有问题. 多亏DESY视频编辑器. 你能剪辑视频,并且你能从存在的图像,视频和音频中制作新的图像,视频和音频."],
-        ["我能使用或修改其他人加载的视频吗?", "可以, 寻找由其他人加载的单元.到索搜引擎页寻找单元. 之前你已经将单元增加到单元页, 你能使用特别的编辑器修改它们."],
+        ["我能使用或修改其他人加载的视频吗?", "可以, 寻找由其他人加载的素材.到索搜引擎页寻找素材. 之前你已经将素材增加到素材页, 你能使用特别的编辑器修改它们."],
         ["我发现了不适合的内容...", "DESY的管理者随时注意用户上传的文档; 任何情况, 如果你发现你认为不适合的文档, 请使用那个特别的按钮发送一个关于它的通知."]
       ]
     # FAQS about the Virtual Classroom (all of them have a common description which is visible on the gray header)
