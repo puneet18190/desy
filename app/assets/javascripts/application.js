@@ -76,7 +76,6 @@ $(document).ready(function() {
     reportsDocumentReady();
     searchDocumentReadyPlaceholders();
     sectionNotificationsDocumentReady();
-    tagsDocumentReadyAutocomplete();
     tagsDocumentReadyMediaElementLoader();
   }
   if($('#my_documents').length > 0) { // (3) in section documents
@@ -109,7 +108,6 @@ $(document).ready(function() {
     searchDocumentReadyPlaceholders();
     sectionLessonsDocumentReady();
     sectionNotificationsDocumentReady();
-    tagsDocumentReadyAutocomplete();
   }
   if($('.lesson-viewer-layout').length > 0) { // (7) in lesson viewer
     initializeLessonViewer('lesson-viewer');
@@ -130,7 +128,6 @@ $(document).ready(function() {
     searchDocumentReadyPlaceholders();
     sectionMediaElementsDocumentReady();
     sectionNotificationsDocumentReady();
-    tagsDocumentReadyAutocomplete();
     tagsDocumentReadyChangeMediaElementInfo();
     tagsDocumentReadyMediaElementLoader();
   }
@@ -158,7 +155,6 @@ $(document).ready(function() {
     searchDocumentReadyPlaceholders();
     sectionNotificationsDocumentReady();
     sectionSearchDocumentReady();
-    tagsDocumentReadyAutocomplete();
     tagsDocumentReadyChangeMediaElementInfo();
   }
   if($('#video_editor').length > 0) { // (12) in video editor

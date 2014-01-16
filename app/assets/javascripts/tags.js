@@ -148,17 +148,6 @@ function removeFromTagsValue(word, value_selector) {
 
 
 /**
-Initializer for search autocomplete.
-@method tagsDocumentReadyAutocomplete
-@for TagsDocumentReady
-**/
-function tagsDocumentReadyAutocomplete() {
-  initSearchTagsAutocomplete('#general_tag_reader_for_search', 'lesson');
-  initSearchTagsAutocomplete('#lessons_tag_reader_for_search', 'lesson');
-  initSearchTagsAutocomplete('#media_elements_tag_reader_for_search', 'media_element');
-}
-
-/**
 Initializer for tagging autocomplete in the form to <b>change the general information of a media element</b> (see {{#crossLink "DialogsWithForm/showMediaElementInfoPopUp:method"}}{{/crossLink}}).
 @method tagsDocumentReadyChangeMediaElementInfo
 @for TagsDocumentReady

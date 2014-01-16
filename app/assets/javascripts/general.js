@@ -344,6 +344,7 @@ Functionalities necessary only for the section 'my lessons'.
 @for GeneralDocumentReady
 **/
 function sectionLessonsDocumentReady() {
+  initSearchTagsAutocomplete('#general_tag_reader_for_search', 'lesson');
   $('#filter_lessons option[selected]').first().attr('selected', 'selected');
   $body.on('change', '#filter_lessons', function() {
     var filter = $('#filter_lessons option:selected').val();
@@ -359,6 +360,7 @@ Functionalities necessary only for the section 'my media elements'.
 @for GeneralDocumentReady
 **/
 function sectionMediaElementsDocumentReady() {
+  initSearchTagsAutocomplete('#general_tag_reader_for_search', 'media_element');
   $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
   $body.on('change', '#filter_media_elements', function() {
     var filter = $('#filter_media_elements option:selected').val();
@@ -456,6 +458,8 @@ function sectionSearchDocumentReady() {
   $('#filter_search_media_elements').selectbox();
   $('#filter_search_lessons_subject').selectbox();
   $('#filter_search_lessons_school_level').selectbox();
+  initSearchTagsAutocomplete('#lessons_tag_reader_for_search', 'lesson');
+  initSearchTagsAutocomplete('#media_elements_tag_reader_for_search', 'media_element');
 }
 
 
