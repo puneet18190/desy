@@ -493,7 +493,7 @@ function lessonEditorDocumentReadyResize() {
   $window.resize(function() {
     $('.lesson-editor-layout ul#slides').css('margin-top', ((($window.height() - 590) / 2) - 40) + 'px');
     $('.lesson-editor-layout ul#slides.new').css('margin-top', ((($window.height() - 590) / 2)) + 'px');
-    if(WW > 1000) {
+    if(parseInt($window.outerWidth()) > 1000) {
       $('ul#slides li:first').css('margin-left', (($window.width() - 900) / 2) + 'px');
       $('ul#slides.new li:first').css('margin-left', (($window.width() - 900) / 2) + 'px');
     }
@@ -1313,16 +1313,16 @@ Initialize slides position to center.
 @for LessonEditorSlidesNavigation
 **/
 function initLessonEditorPositions() {
-  WW = parseInt($window.outerWidth());
-  WH = parseInt($window.outerHeight());
-  $('#main').css('width', WW);
+  var outer_width = parseInt($window.outerWidth());
+  var outer_height = parseInt($window.outerHeight());
+  $('#main').css('width', outer_width);
   $('ul#slides').css('width', (($('ul#slides li').length + 2) * 1000));
-  $('ul#slides').css('top', ((WH / 2) - 295) + 'px');
-  $('ul#slides.new').css('top', ((WH / 2) - 335) + 'px');
-  $('#footer').css('top', (WH - 40) + 'px').css('width', (WW - 24) + 'px');
-  if(WW > 1000) {
-    $('ul#slides li:first').css('margin-left', ((WW - 900) / 2) + 'px');
-    $('ul#slides.new li:first').css('margin-left', ((WW - 900) / 2) + 'px');
+  $('ul#slides').css('top', ((outer_height / 2) - 295) + 'px');
+  $('ul#slides.new').css('top', ((outer_height / 2) - 335) + 'px');
+  $('#footer').css('top', (outer_height - 40) + 'px').css('width', (outer_width - 24) + 'px');
+  if(outer_width > 1000) {
+    $('ul#slides li:first').css('margin-left', ((outer_width - 900) / 2) + 'px');
+    $('ul#slides.new li:first').css('margin-left', ((outer_width - 900) / 2) + 'px');
   }
 }
 
