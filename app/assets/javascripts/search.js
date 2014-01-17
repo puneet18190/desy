@@ -67,12 +67,6 @@ function searchDocumentReadyGeneral() {
       }
     });
   });
-  $body.on('click', '#search_general_submit', function() {
-    if(!$(this).hasClass('current')) {
-      $('#search_general').submit();
-      $(this).addClass('current');
-    }
-  });
   $body.on('click', '._keep_searching', function() {
     $(this).data('opened', true);
     var form = $(this).parent();
@@ -111,5 +105,11 @@ function searchDocumentReadyPlaceholders() {
     $(this).css('color', '#939393');
     $('#general_tag_kind_for_search').attr('value', '0');
     $('#search_general_submit').removeClass('current');
+  });
+  $body.on('click', '#search_general_submit', function() {
+    if(!$(this).hasClass('current')) {
+      $('#search_general').submit();
+      $(this).addClass('current');
+    }
   });
 }
