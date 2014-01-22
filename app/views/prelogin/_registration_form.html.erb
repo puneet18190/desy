@@ -34,7 +34,123 @@
       :forced_location => forced_location
     }
   %>
-  <%= render partial: 'users/personal_info', :locals => locals_for_general_info %>
+  
+  
+  <fieldset class="insert-content">
+  
+  <div class="inputElement">
+    <%= t('users.info.attributes.name') %><br>
+    <%= f.text_field :name, class: 'text' %>
+  </div>
+  
+  <div class="inputElement">
+    <%= t('users.info.attributes.surname') %><br>
+    <%= f.text_field :surname, class: 'text' %>
+  </div>
+  
+  <div class="inputElement">
+    <%= t('users.info.attributes.email') %><br>
+    <%= f.email_field :email, class: 'text', disabled: !user.new_record? %>
+  </div>
+  
+  <br class="clearfloat"/>
+  
+  <div class="inputElement">
+    <% if user.new_record? %>
+      <%= t('users.info.attributes.password') %>
+    <% else %>
+      <%= t('users.info.attributes.new_password') %>
+    <% end %>
+    <br/>
+    <%= f.password_field :password, class: 'text' %>
+  </div>
+  
+  <div class="inputElement" style="margin-right:0">
+    <% if user.new_record? %>
+      <%= t('users.info.attributes.password_confirmation') %>
+    <% else %>
+      <%= t('users.info.attributes.new_password_confirmation') %>
+    <% end %>
+    <br>
+    <%= f.password_field :password_confirmation, class: 'text' %>
+  </div>
+  
+  <br class="clearfloat"/>
+  
+  <ul class="listaErrori">
+    <% general_errors.each do |err| %>
+      <li><%= err %></li>
+    <% end %>
+  </ul>
+  
+</fieldset>
+
+
+<hr>
+
+
+<fieldset id="location_container_in_personal_info" class="insert-content">
+  
+  
+  <%
+  disabling = !forced_location.nil?
+  forced_ancestors = (forced_location.ancestors + [forced_location]) if disabling
+%>
+<% SETTINGS['location_types'].each_with_index do |location, index| %>
+  <%
+    is_last = (index == SETTINGS['location_types'].length - 1)
+    my_own_locations = locations[index].nil? ? {:selected => 0, :content => []} : locations[index]
+  %>
+  <div class="inputElement">
+    <div class="_location_selector">
+      <%= Location.label_at(index) %><br>
+      <% if disabling %>
+        <div class="sbHolderDeselect" id="<%= location.downcase %>_id"><%= forced_ancestors[index].name %></div>
+      <% else %>
+        <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="<%= is_last %>" name="location[<%= location.downcase %>]">
+          <%= render :partial => 'users/locations_list', :locals => {:locations => my_own_locations[:content], :selected => my_own_locations[:selected], :label => (my_own_locations[:content].any? ? Location.label_at(index) : nil)} %>
+        </select>
+      <% end %>
+    </div>
+  </div>
+  <% disabling = false if disabling && forced_location.sti_type == location %>
+<% end %>
+
+<% if forced_location && forced_location.sti_type == SETTINGS['location_types'].last %>
+  <input id="user_location_id" type="hidden" value="<%= forced_location.id %>" name="user[location_id]">
+<% end %>
+  
+  
+</fieldset>
+
+<% if SETTINGS['saas_registration_mode'] && !edit %>
+  <div id="outer_locations_disclaimer">
+    <input id="locations_disclaimer" class="regular-checkbox" type="checkbox" value="0">
+    <%= label_tag 'locations_disclaimer', '' %>
+    <%= t('registration.locations_disclaimer', :location => Location.base_label.downcase) %>
+  </div>
+<% end %>
+
+<br/><br/><br/>
+
+<hr>
+
+
+<fieldset class="insert-content">
+  
+  <div class="inputElement">
+    <%= t('users.info.attributes.school_level_id') %><br>
+    <%= f.select :school_level_id, school_level_ids %>
+  </div>
+  <br class="clearfloat">
+  
+</fieldset>
+
+<br/><br/>
+
+<hr>
+  
+  
   <h2><%= t('registration.subjects.title') %></h2>
   
   

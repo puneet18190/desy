@@ -2,7 +2,7 @@
   $('#registration_purchase_id').removeClass('error');
   $('#registration_ok').show();
   <% if @forced_location %>
-    $('#location_container_in_personal_info').html('<%= j (render :partial => "users/personal_locations", :locals => {:forced_location => @forced_location, :locations => @locations, :edit => false}) %>');
+    $('#location_container_in_personal_info').html('<%= j (render :partial => "users/personal_locations", :locals => {:forced_location => @forced_location, :locations => @locations, :edit => false}) %>'); // TODO forrm rimpiazzare
     $('._location_select_box').each(function() {
       $('#' + $(this).attr('id')).selectbox();
     });
