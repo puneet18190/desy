@@ -678,6 +678,7 @@ cn:
       not_valid_email: "你插入的邮件地址是非法的或在我们的数据库中已经存在"
       # The user hasn't selected any subject
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/users_controller.rb
       select_at_least_a_subject: "至少选择一个主题"
       # The user inserted a short or blank password (the variable %{min} is replaced by the configured minimum length for a password)
       # 1 - controllers/application_controller.rb

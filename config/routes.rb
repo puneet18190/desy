@@ -94,13 +94,13 @@ Desy::Application.routes.draw do
   get 'images/galleries/image/new_block'     => 'galleries#image_for_image_editor_new_block'
   
   # LESSON VIEWER
-  get  'lessons/view/playlist'   => 'lesson_viewer#playlist', as: :lesson_viewer_playlist
-  get  'lessons/:lesson_id/view' => 'lesson_viewer#index',    as: :lesson_viewer
+  get 'lessons/view/playlist'   => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
+  get 'lessons/:lesson_id/view' => 'lesson_viewer#index',    :as => :lesson_viewer
   
   # LESSON EXPORT
-  get  'lessons/:lesson_id/archive' => 'lesson_export#archive',  as: :lesson_archive
-  get  'lessons/:lesson_id/ebook'   => 'lesson_export#ebook',    as: :lesson_ebook
-  get  'lessons/:lesson_id/scorm'   => 'lesson_export#scorm',    as: :lesson_scorm
+  get 'lessons/:lesson_id/archive' => 'lesson_export#archive', :as => :lesson_archive
+  get 'lessons/:lesson_id/ebook'   => 'lesson_export#ebook',   :as => :lesson_ebook
+  get 'lessons/:lesson_id/scorm'   => 'lesson_export#scorm',   :as => :lesson_scorm
   
   # VIRTUAL CLASSROOM
   post 'virtual_classroom/:lesson_id/remove_lesson_from_inside'          => 'virtual_classroom#remove_lesson_from_inside'
@@ -144,12 +144,13 @@ Desy::Application.routes.draw do
   get 'search' => 'search#index', :as => :search_items
   
   # LOGGED USER
-  get 'profile'               => 'users#edit',          :as => :my_profile
-  get 'profile/subjects'      => 'users#subjects',      :as => :my_subjects
-  get 'profile/statistics'    => 'users#statistics',    :as => :my_statistics
-  get 'profile/mailing_lists' => 'users#mailing_lists', :as => :my_mailing_lists
-  get 'profile/trial'         => 'users#trial',         :as => :my_trial
-  put 'profile/update'        => 'users#update',        :as => :user
+  get 'profile'                 => 'users#edit',            :as => :my_profile
+  get 'profile/subjects'        => 'users#subjects',        :as => :my_subjects
+  get 'profile/statistics'      => 'users#statistics',      :as => :my_statistics
+  get 'profile/mailing_lists'   => 'users#mailing_lists',   :as => :my_mailing_lists
+  get 'profile/trial'           => 'users#trial',           :as => :my_trial
+  put 'profile/update'          => 'users#update',          :as => :user
+  put 'profile/subjects/update' => 'users#update_subjects', :as => :user_subjects
   
   # LOCATIONS
   get 'locations/:id/find'                 => 'users#find_locations'

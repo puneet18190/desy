@@ -374,31 +374,45 @@ class UsersController < ApplicationController
   #
   def update
     @user = current_user
-    in_subjects = !!params[:in_subjects]
-    if in_subjects
-      params[:user] ||= HashWithIndifferentAccess.new
-      params[:user][:subject_ids] ||= []
-    else
-      key_last_location = SETTINGS['location_types'].last.downcase
-      if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
-        params[:user][:location_id] = params[:location][key_last_location]
-      end
-      password = params[:user].try(:[], :password)
-      if !password || password.empty?
-        params[:user].delete(:password)
-        params[:user].delete(:password_confirmation)
-      end
+    key_last_location = SETTINGS['location_types'].last.downcase
+    if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
+      params[:user][:location_id] = params[:location][key_last_location]
+    end
+    password = params[:user].try(:[], :password)
+    if !password || password.empty?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
     end
     if @user.update_attributes(params[:user])
-      ok_message = t('users.info.ok_popup')
-      my_redirect = my_profile_path
-      if in_subjects
-        ok_message = t('users.subjects.ok_popup')
-        my_redirect = my_subjects_path
-      end
-      redirect_to my_redirect, { flash: { notice: ok_message } }
+      redirect_to my_profile_path, { flash: { notice: t('users.info.ok_popup') } }
     else
       @errors = convert_user_error_messages @user.errors
+      @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info
+      @forced_location = @user.purchase.location if @user.purchase && @user.purchase.location
+      @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
+      render :edit
+    end
+  end
+  
+  # === Description
+  #
+  # Updates your profile (it can be called either from UsersController#edit or from UsersController#subjects)
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  #
+  def update_subjects
+    @user = current_user
+    params[:user][:subject_ids] ||= []
+    if @user.update_attributes(params[:user])
+      redirect_to my_subjects_path, { flash: { notice: t('users.subjects.ok_popup') } }
+    else
+      @errors = t('forms.error_captions.select_at_least_a_subject')
       if in_subjects
         @subjects = Subject.extract_with_cathegories
         render :subjects

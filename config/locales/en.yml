@@ -678,6 +678,7 @@ en:
       not_valid_email: "The email you inserted is not valid or already present in our database"
       # The user hasn't selected any subject
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/users_controller.rb
       select_at_least_a_subject: "Select at least one subject"
       # The user inserted a short or blank password (the variable %{min} is replaced by the configured minimum length for a password)
       # 1 - controllers/application_controller.rb
