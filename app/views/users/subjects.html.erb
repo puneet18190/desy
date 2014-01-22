@@ -9,15 +9,46 @@
       </header>
       <%= form_for @user, :url => user_path do |f| %>
         <%
-          locals_for_personal_subjects = {
-            :f => f,
-            :user => @user,
-            :errors => (@errors.nil? ? [] : @errors[:subjects]),
-            :subjects => @subjects,
-            :edit => true
-          }
+          my_style = ''
+          other_label = t('users.subjects.no_cathegory')
+          my_style = 'border-bottom:0' if @subjects.length == 1
+          other_label = '' if @subjects.first[:label].blank?
         %>
-        <%= render :partial => 'personal_subjects', :locals => locals_for_personal_subjects %>
+        <fieldset class="insert-content">
+          <%= hidden_field_tag :in_subjects, true %>
+          <% @subjects.each do |cathegory| %>
+            <div class="cathegorySubjectContainer" style="<%= my_style %>">
+              <div class="cathegorySubjectName">
+                <%= cathegory[:label].present? ? cathegory[:label] : other_label %>
+              </div>
+              <% cathegory[:items].each do |subject| %>
+                <% html_id = "users_subject_ids_#{subject.id}" %>
+                <div class="checkboxElement">
+                  <% if @user.errors.include?(:users_subjects) %>
+                    <div class="field_with_errors">
+                      <%= check_box_tag 'user[subject_ids][]', subject.id, @user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
+                      <%= label_tag html_id, '', :class => 'unchecked' %>
+                    </div>
+                  <% else %>
+                    <%= check_box_tag 'user[subject_ids][]', subject.id, @user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
+                    <%= label_tag html_id, '', :class => 'unchecked' %>
+                  <% end %>
+                  <span><%= subject.to_s %></span>
+                </div>
+              <% end %>
+              <br class="clearfloat">
+              <% if !edit && cathegory[:label].present? %>
+                <a class="checkAllSubjects"><%= t('registration.select_all_subjects') %></a>
+              <% end %>
+            </div>
+          <% end %>
+          <br class="clearfloat">
+          <ul class="listaErrori">
+            <% errors.each do |err| %>
+              <li><%= err %></li>
+            <% end %>
+          </ul>
+        </fieldset>
         <div class="form_submit">
           <input type="submit" value="<%= t('users.subjects.save') %>"/>
         </div>
