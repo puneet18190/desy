@@ -250,6 +250,12 @@ html.media_element_editor-layout {
             display: block;
             color: #7D7D7D;
             
+            input {
+              
+              display: none;
+              
+            }
+            
             input + label, label {
               
               box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
@@ -271,11 +277,17 @@ html.media_element_editor-layout {
               
             }
             
-            input:checked + label::after {
+            input:checked + label:after {
               
               color: $green;
               cursor: pointer;
               padding: 2px 3px;
+              content: '\2714';
+              font-size: 14px;
+              top: 0px;
+              left: 3px;
+              display: inline-block;
+              position: relative;
               
             }
             

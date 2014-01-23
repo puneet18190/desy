@@ -172,11 +172,16 @@
             
           }
           
-          input:checked + label::after {
+          input:checked + label:after {
             
             color: $green;
             padding: 3px;
             cursor: pointer;
+            content: '\2714';
+            font-size: 14px;
+            position: absolute;
+            top: 0px;
+            left: 3px;
             
           }
           
