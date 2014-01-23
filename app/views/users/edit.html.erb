@@ -16,24 +16,24 @@
         <div id="profile-general-edit" class="profile-element-container">
           <div class="profile-element">
             <%= t('users.info.attributes.name') %><br/>
-            <%= text_field_tag :name, @user.name %>
+            <input type="text" value="<%= @user.name %>" name="name">
           </div>
           <div class="profile-element">
             <%= t('users.info.attributes.surname') %><br/>
-            <%= text_field_tag :surname, @user.surname %>
+            <input type="text" value="<%= @user.surname %>" name="surname">
           </div>
           <div class="profile-element">
             <%= t('users.info.attributes.email') %><br/>
-            <%= text_field_tag :email, @user.email, :disabled => true %>
+            <input type="text" value="<%= @user.email %>" disabled="disabled">
           </div>
           <br class="clearfloat"/>
           <div class="profile-element">
             <%= t('users.info.attributes.new_password') %><br/>
-            <%= password_field_tag :password %>
+            <input type="password" name="password">
           </div>
           <div class="profile-element">
             <%= t('users.info.attributes.new_password_confirmation') %><br/>
-            <%= password_field_tag :password_confirmation %>
+            <input type="password" name="password_confirmation">
           </div>
           <ul class="profile-errors">
             <% @errors[:general].each do |err| %>

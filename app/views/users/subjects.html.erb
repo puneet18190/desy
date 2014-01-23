@@ -7,51 +7,35 @@
         <h2><%= t('users.subjects.title') %></h2>
         <p><%= t('users.subjects.description') %></p>
       </header>
-      <%= form_for @user, :url => user_path do |f| %>
-        <%
-          my_style = ''
-          other_label = t('users.subjects.no_cathegory')
-          my_style = 'border-bottom:0' if @subjects.length == 1
-          other_label = '' if @subjects.first[:label].blank?
-        %>
-        <fieldset class="insert-content">
-          <%= hidden_field_tag :in_subjects, true %>
+      <%= form_tag user_subjects_path, :method => :put, :autocomplete => 'off' do %>
+        <div id="profile-subjects-edit" class="profile-element-container">
           <% @subjects.each do |cathegory| %>
-            <div class="cathegorySubjectContainer" style="<%= my_style %>">
-              <div class="cathegorySubjectName">
-                <%= cathegory[:label].present? ? cathegory[:label] : other_label %>
+            <div class="profile-subject-cathegory-container">
+              <div class="profile-subject-cathegory-label">
+                <%= cathegory[:label].present? ? cathegory[:label] : (@subjects.first[:label].blank? ? '' : t('users.subjects.no_cathegory')) %>
               </div>
               <% cathegory[:items].each do |subject| %>
                 <% html_id = "users_subject_ids_#{subject.id}" %>
-                <div class="checkboxElement">
-                  <% if @user.errors.include?(:users_subjects) %>
-                    <div class="field_with_errors">
-                      <%= check_box_tag 'user[subject_ids][]', subject.id, @user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
-                      <%= label_tag html_id, '', :class => 'unchecked' %>
-                    </div>
-                  <% else %>
-                    <%= check_box_tag 'user[subject_ids][]', subject.id, @user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
-                    <%= label_tag html_id, '', :class => 'unchecked' %>
-                  <% end %>
+                <div class="profile-element">
+                  <%= check_box_tag 'user[subject_ids][]', subject.id, @user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
+                  <%= label_tag html_id, '', :class => 'unchecked' %>
                   <span><%= subject.to_s %></span>
                 </div>
               <% end %>
-              <br class="clearfloat">
-              <% if !edit && cathegory[:label].present? %>
+              <br class="clearfloat"/>
+              <% if cathegory[:label].present? %>
                 <a class="checkAllSubjects"><%= t('registration.select_all_subjects') %></a>
               <% end %>
             </div>
           <% end %>
-          <br class="clearfloat">
-          <ul class="listaErrori">
-            <% errors.each do |err| %>
+          <br class="clearfloat"/>
+          <ul class="profile-errors">
+            <% @errors.each do |err| %>
               <li><%= err %></li>
             <% end %>
           </ul>
-        </fieldset>
-        <div class="form_submit">
-          <input type="submit" value="<%= t('users.subjects.save') %>"/>
         </div>
+        <input type="submit" value="<%= t('users.subjects.save') %>"/>
       <% end %>
     </div>
   </div>
