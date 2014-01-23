@@ -347,14 +347,19 @@ class UsersController < ApplicationController
   #
   def update_subjects
     @user = current_user
-    params[:user][:subject_ids] ||= []
-    if @user.update_attributes(params[:user])
+    subject_ids = []
+    params[:subjects].each do |k, v|
+      subject_ids << k.split('_').last.to_i
+    end
+    @user.subject_ids = subject_ids
+    if @user.save
       redirect_to my_subjects_path, { flash: { notice: t('users.subjects.ok_popup') } }
     else
       @errors = convert_user_error_messages @user.errors
       if @errors[:general].any? || @errors[:policies].any?
-        redirect_to my_profile_path, { flash: { alert: t('users.subjects.wrong_popup') } }
+        redirect_to my_subjects_path, { flash: { alert: t('users.subjects.wrong_popup') } }
       else
+        @errors = @errors[:subjects]
         @subjects = Subject.extract_with_cathegories
         render :subjects
       end
