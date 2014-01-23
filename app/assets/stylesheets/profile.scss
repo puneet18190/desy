@@ -12,7 +12,7 @@
     height: 25px;
     margin: 0px 16px 10px 0;
     padding: 10px 0 0 10px;
-    background-color: #e9ecee;
+    background-color: #E9ECEE;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -43,52 +43,44 @@
     
   }
   
-  .insert-content {
+  .profile-element-container {
     
     float: left;
-    border: 1px solid #efefef;
+    border: 1px solid #EFEFEF;
     color: #999;
     padding: 2%;
     margin: 20px 20px 20px 0;
     width: 96%;
     
-    .cathegorySubjectContainer {
+    &#profile-subjects-edit {
       
-      float: left;
-      width: 100%;
-      padding: 0;
-      border-bottom: 1px solid #efefef;
-      margin-bottom: 20px;
-      
-      &:nth-child(3n+1) {
+      .profile-subject-cathegory-container {
         
-        border-bottom: none;
+        float: left;
+        width: 100%;
+        padding: 0;
+        border-bottom: 1px solid #EFEFEF;
+        margin-bottom: 20px;
         
-      }
-      
-      .cathegorySubjectName {
-        
-        color: #7d7d7d;
-        font-size: 16px;
-        padding: 10px 0px;
+        .profile-subject-cathegory-label {
+          
+          color: #7D7D7D;
+          font-size: 16px;
+          padding: 10px 0px;
+          
+        }
         
       }
       
     }
     
-    .inputElement {
+    .profile-element {
       
       @include nunito(100%);
       float: left;
       width: 227px;
       margin-right: 5%;
       padding-bottom: 30px;
-      
-      &:last-child {
-        
-        margin-right: 0;
-        
-      }
       
       label {
         
@@ -123,7 +115,7 @@
     
     textarea.text {
       
-      background-color: #f5f5f5;
+      background-color: #F5F5F5;
       color: #7d7d7d;
       font-size: 120%;
       padding: 10px 10px 0px 10px;
@@ -139,14 +131,14 @@
     .sbHolder, .sbOptions, .sbSelector {
       
       @include nunito(13px);
-      color: #7d7d7d;
+      color: #7D7D7D;
       width: 226px;
       
     }
     
     .sbHolder {
       
-      background-color: #f5f5f5;
+      background-color: #F5F5F5;
       
     }
     
@@ -179,8 +171,8 @@
   
   input[type="text"], input[type="password"], select {
     
-    background-color: #f5f5f5;
-    color: #7d7d7d;
+    background-color: #F5F5F5;
+    color: #7D7D7D;
     font-size: 120%;
     margin-right: 0px;
     
@@ -248,7 +240,7 @@
 
 #mailing_lists {
   
-  border: 1px solid #e2e2e2;
+  border: 1px solid #E2E2E2;
   padding: 10px 20px 20px;
   margin-top: 20px;
   
@@ -332,7 +324,7 @@
       margin-top: 10px;
       width: auto;
       color: white;
-      background-color: #7d7d7d;
+      background-color: #7D7D7D;
       
       .group-title {
         
@@ -381,7 +373,7 @@
     
     form.new_email {
       
-      background-color: #a4a4a4;
+      background-color: #A4A4A4;
       margin: 0;
       padding: 0;
       width: auto;
@@ -427,7 +419,7 @@
 
 .stats {
   
-  background-color: #f5f5f5;
+  background-color: #F5F5F5;
   padding: 20px 30px;
   margin-top: 30px;
   
@@ -444,7 +436,7 @@
       padding: 10px;
       margin-bottom: 20px;
       background-color: #fff;
-      border-bottom: 2px solid #e2e2e2;
+      border-bottom: 2px solid #E2E2E2;
       
       span {
         
@@ -552,7 +544,7 @@
 
 .contentStats {
   
-  background-color: #f5f5f5;
+  background-color: #F5F5F5;
   padding: 20px 8px 8px 8px;
   float: right;
   width: 305px;
@@ -594,7 +586,7 @@
   table, th, td {
     
     @include nunito(95%);
-    border: 1px solid #e0e0e0;
+    border: 1px solid #E0E0E0;
     color: #7D7D7D;
     
     h3 {

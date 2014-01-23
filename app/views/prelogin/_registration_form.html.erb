@@ -8,7 +8,7 @@
     end
   %>
   <% if SETTINGS['saas_registration_mode'] %>
-    <fieldset class="insert-content formCodAcquisto">
+    <fieldset class="insert-contsent formCodAcquisto">
       <%= t('registration.purchase_id') %><br/>
       <%= input_purchase_code %> <div class="validationOk fltlft" style="display:none" id="registration_ok">&#10004;</div>
       <br class="clearfloat">
@@ -36,7 +36,7 @@
   %>
   
   
-  <fieldset class="insert-content">
+  <fieldset class="insert-contsent">
   
   <div class="inputElement">
     <%= t('users.info.attributes.name') %><br>
@@ -89,7 +89,7 @@
 <hr>
 
 
-<fieldset id="location_container_in_personal_info" class="insert-content">
+<fieldset id="location_container_in_personal_info" class="insesrt-content">
   
   
   <%
@@ -136,7 +136,7 @@
 <hr>
 
 
-<fieldset class="insert-content">
+<fieldset class="insert-contesnt">
   
   <div class="inputElement">
     <%= t('users.info.attributes.school_level_id') %><br>
@@ -161,7 +161,7 @@
           my_style = 'border-bottom:0' if @subjects.length == 1
           other_label = '' if @subjects.first[:label].blank?
         %>
-        <fieldset class="insert-content">
+        <fieldset class="inssert-content">
           <%= hidden_field_tag :in_subjects, true %>
           <% @subjects.each do |cathegory| %>
             <div class="cathegorySubjectContainer" style="<%= my_style %>">

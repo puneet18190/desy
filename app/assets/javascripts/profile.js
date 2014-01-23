@@ -31,7 +31,7 @@ function preloginDocumentReady() {
   $body.on('click', '#submit_login_form', function() {
     $('#new_users_session_form').submit();
   });
-  $body.on('click', '.cathegorySubjectContainer .checkboxElement label', function() {
+  $body.on('click', '.profile-subject-cathegory-container .profile-element label', function() {
     if($(this).hasClass('unchecked')) {
       $(this).removeClass('unchecked');
     } else {
