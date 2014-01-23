@@ -678,7 +678,6 @@ cn:
       not_valid_email: "你插入的邮件地址是非法的或在我们的数据库中已经存在"
       # The user hasn't selected any subject
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/users_controller.rb
       select_at_least_a_subject: "至少选择一个主题"
       # The user inserted a short or blank password (the variable %{min} is replaced by the configured minimum length for a password)
       # 1 - controllers/application_controller.rb
@@ -2238,6 +2237,9 @@ cn:
       # Popup shown when the users correctly updates his profile
       # 1 - controllers/users_controller.rb
       ok_popup: "个人资料已正确添加"
+      # Popup shown when an external error prevents the profile to be updated
+      # 1 - controllers/users_controller.rb
+      wrong_popup: "Profile couldn't be updated" # TODO
       # Captions for each profile attribute that can be modified by the user
       attributes:
         # 1 - views/users/_personal_info.html.erb
@@ -2396,6 +2398,9 @@ cn:
       # Popup shown when the users correctly saves his subjects
       # 1 - controllers/users_controller.rb
       ok_popup: "主题已正确添加"
+      # Popup shown when an external error prevents the subjects to be updated
+      # 1 - controllers/users_controller.rb
+      wrong_popup: "Subjects couldn't be updated" # TODO
       # If the subject has no cathegory, this will be the label
       # 1 - views/users/_personal_subjects.html.erb
       no_cathegory: "其它"

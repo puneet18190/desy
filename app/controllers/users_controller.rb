@@ -390,10 +390,15 @@ class UsersController < ApplicationController
       redirect_to my_profile_path, { flash: { notice: t('users.info.ok_popup') } }
     else
       @errors = convert_user_error_messages @user.errors
-      @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info
-      @forced_location = @user.purchase.location if @user.purchase && @user.purchase.location
-      @school_levels = SchoolLevel.order(:description)
-      render :edit
+      if @errors[:subjects].any? || @errors[:policies].any?
+        redirect_to my_profile_path, { flash: { notice: t('users.info.wrong_popup') } }
+      else
+        @errors = @errors[:general]
+        @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info
+        @forced_location = @user.purchase.location if @user.purchase && @user.purchase.location
+        @school_levels = SchoolLevel.order(:description)
+        render :edit
+      end
     end
   end
   
@@ -415,15 +420,12 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       redirect_to my_subjects_path, { flash: { notice: t('users.subjects.ok_popup') } }
     else
-      @errors = t('forms.error_captions.select_at_least_a_subject')
-      if in_subjects
+      @errors = convert_user_error_messages @user.errors
+      if @errors[:general].any? || @errors[:policies].any?
+        redirect_to my_profile_path, { flash: { notice: t('users.subjects.wrong_popup') } }
+      else
         @subjects = Subject.extract_with_cathegories
         render :subjects
-      else
-        @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info
-        @forced_location = @user.purchase.location if @user.purchase && @user.purchase.location
-        @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-        render :edit
       end
     end
   end

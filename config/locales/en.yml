@@ -678,7 +678,6 @@ en:
       not_valid_email: "The email you inserted is not valid or already present in our database"
       # The user hasn't selected any subject
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/users_controller.rb
       select_at_least_a_subject: "Select at least one subject"
       # The user inserted a short or blank password (the variable %{min} is replaced by the configured minimum length for a password)
       # 1 - controllers/application_controller.rb
@@ -2238,6 +2237,9 @@ en:
       # Popup shown when the users correctly updates his profile
       # 1 - controllers/users_controller.rb
       ok_popup: "Profile correctly updated"
+      # Popup shown when an external error prevents the profile to be updated
+      # 1 - controllers/users_controller.rb
+      wrong_popup: "Profile couldn't be updated"
       # Captions for each profile attribute that can be modified by the user
       attributes:
         # 1 - views/users/_personal_info.html.erb
@@ -2396,6 +2398,9 @@ en:
       # Popup shown when the users correctly saves his subjects
       # 1 - controllers/users_controller.rb
       ok_popup: "Subjects correctly updated"
+      # Popup shown when an external error prevents the subjects to be updated
+      # 1 - controllers/users_controller.rb
+      wrong_popup: "Subjects couldn't be updated"
       # If the subject has no cathegory, this will be the label
       # 1 - views/users/_personal_subjects.html.erb
       no_cathegory: "Other"
