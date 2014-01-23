@@ -272,7 +272,7 @@ function locationsDocumentReady() {
   $body.on('change', '._location_select_box', function() {
     if(!$(this).data('is-last')) {
       if($(this).val() == '0') {
-        $(this).parents('._location_selector').nextAll().find('select').html('');
+        $(this).parents('.profile-element').nextAll().find('select').html('');
       } else {
         $.ajax({
           url: '/locations/' + $(this).val() + '/find',

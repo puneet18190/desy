@@ -102,7 +102,7 @@
     my_own_locations = locations[index].nil? ? {:selected => 0, :content => []} : locations[index]
   %>
   <div class="inputElement">
-    <div class="_location_selector">
+    <div class="TODO"> <!-- TODO forrm aggiornare il nome della classe (mettici profile-element) -->
       <%= Location.label_at(index) %><br>
       <% if disabling %>
         <div class="sbHolderDeselect" id="<%= location.downcase %>_id"><%= forced_ancestors[index].name %></div>
