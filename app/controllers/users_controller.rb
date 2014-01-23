@@ -258,6 +258,7 @@ class UsersController < ApplicationController
   #
   def edit
     @user = current_user
+    @errors = convert_user_error_messages @user.errors
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
     location = @user.location
     if @user.purchase && @user.purchase.location
