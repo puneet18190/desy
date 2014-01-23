@@ -258,7 +258,7 @@ class UsersController < ApplicationController
   #
   def edit
     @user = current_user
-    @errors = convert_user_error_messages @user.errors
+    @errors = []
     @school_levels = SchoolLevel.order(:description)
     location = @user.location
     if @user.purchase && @user.purchase.location
