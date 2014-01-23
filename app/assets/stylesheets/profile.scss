@@ -69,11 +69,39 @@
       input {
         
         @include nunito(13px);
+        background-color: #F5F5F5;
+        color: #7D7D7D;
+        margin-right: 0px;
         width: 216px;
         height: 29px;
         box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
         padding: 4px 10px 4px 10px;
         border-radius: 4px;
+        
+        &.true {
+          
+          border: 2px solid red;
+          padding: 2px 8px 2px 8px;
+          
+        }
+        
+      }
+      
+    }
+    
+    &#profile-general-edit {
+      
+      .profile-element {
+        
+        &.email {
+          
+          input {
+            
+            color: #ccc;
+            
+          }
+          
+        }
         
       }
       
@@ -195,49 +223,34 @@
     
   }
   
-  input[type="text"], input[type="password"], select {
-    
-    background-color: #F5F5F5;
-    color: #7D7D7D;
-    font-size: 120%;
-    margin-right: 0px;
-    
-  }
-  
   .form_submit {
     
     padding-left: 20px;
     
-  }
-  
-  input[type="submit"] {
-    
-    background-color: #555;
-    color: #fff;
-    text-transform: uppercase;
-    padding: 10px 30px;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    cursor: pointer;
-    
-    &:hover {
+    input {
       
-      background-color: #999;
+      background-color: #555;
+      color: #fff;
+      text-transform: uppercase;
+      padding: 10px 30px;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      cursor: pointer;
+      
+      &:hover {
+        
+        background-color: #999;
+        
+      }
+      
+      &.current, &:hover.current {
+        
+        color: #ccc;
+        background-color: #999;
+        
+      }
       
     }
-    
-    &.current, &:hover.current {
-      
-      color: #ccc;
-      background-color: #999;
-      
-    }
-    
-  }
-  
-  input:disabled {
-    
-    color: #ccc;
     
   }
   
