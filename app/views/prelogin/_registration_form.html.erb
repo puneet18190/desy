@@ -17,7 +17,7 @@
       <%= label_tag 'registration_trial', '' %>
     </fieldset>
     <% if errors && errors.has_key?(:purchase_id) %>
-      <ul class="listaErrori">
+      <ul class="profile-errors">
         <li><%= errors[:purchase_id] %></li>
       </ul>
     <% end %>
@@ -77,7 +77,7 @@
   
   <br class="clearfloat"/>
   
-  <ul class="listaErrori">
+  <ul class="profile-errors">
     <% general_errors.each do |err| %>
       <li><%= err %></li>
     <% end %>
@@ -208,7 +208,7 @@
       </div>
       <br class="clearfloat"><br><br>
     <% end %>
-    <ul class="listaErrori">
+    <ul class="profile-errors">
       <% (errors.nil? ? [] : errors[:policies]).each do |err| %>
         <li><%= err %></li>
       <% end %>
