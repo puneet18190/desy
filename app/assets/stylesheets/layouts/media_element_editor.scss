@@ -250,7 +250,7 @@ html.media_element_editor-layout {
             display: block;
             color: #7D7D7D;
             
-            .regular-checkbox + label, label {
+            input + label, label {
               
               box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
               float: left;
@@ -264,14 +264,14 @@ html.media_element_editor-layout {
               
             }
             
-            .regular-checkbox:checked + label {
+            input:checked + label {
               
               background-color: #CDCDCE;
               cursor: default;
               
             }
             
-            .regular-checkbox:checked + label::after {
+            input:checked + label::after {
               
               color: $green;
               cursor: pointer;
