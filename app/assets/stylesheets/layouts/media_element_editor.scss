@@ -237,28 +237,47 @@ html.media_element_editor-layout {
             
           }
           
-          .checkboxElement .regular-checkbox + label, .checkboxElement label {
+          .checkboxMediaElement {
             
-            background-color: #fff;
-            padding: 3px 9px;
-            border-radius: 3px;
-            height: 15px;
-            width: 4px;
-            box-shadow: none;
+            @include nunito(16px);
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            padding: 8px;
+            width: 15px;
+            float: left;
+            margin-right: 5%;
+            margin-bottom: 30px;
+            display: block;
+            color: #7D7D7D;
             
-          }
-          
-          .checkboxElement .regular-checkbox:checked + label {
+            .regular-checkbox + label, label {
+              
+              box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
+              float: left;
+              cursor: pointer;
+              background-color: #fff;
+              padding: 3px 9px;
+              border-radius: 3px;
+              height: 15px;
+              width: 4px;
+              box-shadow: none;
+              
+            }
             
-            background-color: #cdcdce;
-            cursor: default;
+            .regular-checkbox:checked + label {
+              
+              background-color: #CDCDCE;
+              cursor: default;
+              
+            }
             
-          }
-          
-          .checkboxElement .regular-checkbox:checked + label::after {
-            
-            color: #41a62a;
-            padding: 2px 3px;
+            .regular-checkbox:checked + label::after {
+              
+              color: $green;
+              cursor: pointer;
+              padding: 2px 3px;
+              
+            }
             
           }
           

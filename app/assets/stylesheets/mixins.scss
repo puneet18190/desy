@@ -469,13 +469,6 @@
   
 }
 
-@mixin border-formatting {
-  
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  
-}
-
 @mixin iconEditorElement($font-size) {
   
   float: left;

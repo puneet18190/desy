@@ -15,10 +15,13 @@
                 <%= cathegory[:label].present? ? cathegory[:label] : (@subjects.first[:label].blank? ? '' : t('users.subjects.no_cathegory')) %>
               </div>
               <% cathegory[:items].each do |subject| %>
-                <% html_id = "users_subject_ids_#{subject.id}" %>
                 <div class="profile-element">
-                  <%= check_box_tag 'user[subject_ids][]', subject.id, @user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
-                  <%= label_tag html_id, '' %>
+                  <% if @subjects_ids.include?(subject.id) %>
+                    <input id="profile-subject-<%= subject.id %>" class="regular-checkbox" type="checkbox" value="1" name="subjects[id_#{subject.id}]" checked="checked">
+                  <% else %>
+                    <input id="profile-subject-<%= subject.id %>" class="regular-checkbox" type="checkbox" value="1" name="subjects[id_#{subject.id}]">
+                  <% end %>
+                  <%= label_tag "profile-subject-#{subject.id}", '' %>
                   <span><%= subject.to_s %></span>
                 </div>
               <% end %>
