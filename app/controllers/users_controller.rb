@@ -259,7 +259,7 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     @errors = convert_user_error_messages @user.errors
-    @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
+    @school_levels = SchoolLevel.order(:description)
     location = @user.location
     if @user.purchase && @user.purchase.location
       @forced_location = @user.purchase.location
@@ -377,20 +377,22 @@ class UsersController < ApplicationController
     @user = current_user
     key_last_location = SETTINGS['location_types'].last.downcase
     if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
-      params[:user][:location_id] = params[:location][key_last_location]
+      @user.location_id = params[:location][key_last_location]
     end
-    password = params[:user].try(:[], :password)
-    if !password || password.empty?
-      params[:user].delete(:password)
-      params[:user].delete(:password_confirmation)
+    @user.name = params[:name]
+    @user.surname = params[:surname]
+    @user.school_level_id = params[:school_level_id]
+    if params[:password] && params[:password].present?
+      @user.password = params[:password]
+      @user.password_confirmation = params[:password_confirmation]
     end
-    if @user.update_attributes(params[:user])
+    if @user.save
       redirect_to my_profile_path, { flash: { notice: t('users.info.ok_popup') } }
     else
       @errors = convert_user_error_messages @user.errors
       @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info
       @forced_location = @user.purchase.location if @user.purchase && @user.purchase.location
-      @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
+      @school_levels = SchoolLevel.order(:description)
       render :edit
     end
   end

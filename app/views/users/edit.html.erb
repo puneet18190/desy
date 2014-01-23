@@ -60,13 +60,21 @@
             <% disabling = false if disabling && @forced_location.sti_type == location %>
           <% end %>
           <% if @forced_location && @forced_location.sti_type == SETTINGS['location_types'].last %>
-            <input id="user_location_id" type="hidden" value="<%= @forced_location.id %>" name="user[location_id]" />
+            <input type="hidden" value="<%= @forced_location.id %>" name="location[<%= @forced_location.sti_type.downcase %>]" />
           <% end %>
         </div>
         <div id="profile-school-level-edit" class="profile-element-container">
-          <div class="inputElement">
-            <%= t('users.info.attributes.school_level_id') %><br>
-            <%= select_tag :school_level_id, @school_level_ids %>
+          <div class="profile-element">
+            <%= t('users.info.attributes.school_level_id') %><br/>
+            <select id="user_school_level_id" name="school_level_id">
+              <% @school_levels.each do |sl| %>
+                <% if @user.school_level_id == sl.id %>
+                  <option value="<%= sl.id %>" selected="selected"><%= sl.description %></option>
+                <% else %>
+                  <option value="<%= sl.id %>"><%= sl.description %></option>
+                <% end %>
+              <% end %>
+            </select>
           </div>
           <br class="clearfloat"/>
         </div>
