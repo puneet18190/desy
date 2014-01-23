@@ -22,7 +22,7 @@
             <%= t('users.info.attributes.surname') %><br/>
             <input type="text" value="<%= @user.surname %>" name="surname">
           </div>
-          <div class="profile-element">
+          <div class="profile-element email">
             <%= t('users.info.attributes.email') %><br/>
             <input type="text" value="<%= @user.email %>" disabled="disabled">
           </div>
@@ -35,6 +35,7 @@
             <%= t('users.info.attributes.new_password_confirmation') %><br/>
             <input type="password" name="password_confirmation">
           </div>
+          <br class="clearfloat"/>
           <ul class="profile-errors">
             <% @errors[:general].each do |err| %>
               <li><%= err %></li>
