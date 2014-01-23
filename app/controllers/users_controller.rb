@@ -275,19 +275,43 @@ class UsersController < ApplicationController
   
   # === Description
   #
-  # Necessary to fill the locations list
+  # Updates your profile (it can be called either from UsersController#edit or from UsersController#subjects)
   #
   # === Mode
   #
   # Html
   #
-  # === Skipped filters
+  # === Specific filters
   #
-  # * ApplicationController#authenticate
+  # * ApplicationController#initialize_layout
   #
-  def find_locations
-    @parent = Location.find_by_id params[:id]
-    @locations = @parent.nil? ? [] : @parent.children.order(:name)
+  def update
+    @user = current_user
+    key_last_location = SETTINGS['location_types'].last.downcase
+    if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
+      @user.location_id = params[:location][key_last_location]
+    end
+    @user.name = params[:name]
+    @user.surname = params[:surname]
+    @user.school_level_id = params[:school_level_id]
+    if params[:password] && params[:password].present?
+      @user.password = params[:password]
+      @user.password_confirmation = params[:password_confirmation]
+    end
+    if @user.save
+      redirect_to my_profile_path, { flash: { notice: t('users.info.ok_popup') } }
+    else
+      @errors = convert_user_error_messages @user.errors
+      if @errors[:subjects].any? || @errors[:policies].any? || @user.errors.messages.has_key?(:email)
+        redirect_to my_profile_path, { flash: { alert: t('users.info.wrong_popup') } }
+      else
+        @errors = @errors[:general]
+        @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info
+        @forced_location = @user.purchase.location if @user.purchase && @user.purchase.location
+        @school_levels = SchoolLevel.order(:description)
+        render :edit
+      end
+    end
   end
   
   # === Description
@@ -305,6 +329,55 @@ class UsersController < ApplicationController
   def subjects
     @user = current_user
     @subjects = Subject.extract_with_cathegories
+    @subjects_ids = UsersSubject.where(:user_id => @user.id).pluck(:subject_id)
+    @errors = []
+  end
+  
+  # === Description
+  #
+  # Updates your profile (it can be called either from UsersController#edit or from UsersController#subjects)
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  #
+  def update_subjects
+    @user = current_user
+    params[:user][:subject_ids] ||= []
+    if @user.update_attributes(params[:user])
+      redirect_to my_subjects_path, { flash: { notice: t('users.subjects.ok_popup') } }
+    else
+      @errors = convert_user_error_messages @user.errors
+      if @errors[:general].any? || @errors[:policies].any?
+        redirect_to my_profile_path, { flash: { alert: t('users.subjects.wrong_popup') } }
+      else
+        @subjects = Subject.extract_with_cathegories
+        render :subjects
+      end
+    end
+  end
+  
+  # === Description
+  #
+  # Section of your profile about trial version handling
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  #
+  def trial
+    if !current_user.trial?
+      redirect_to my_profile_path
+      return
+    end
   end
   
   # === Description
@@ -344,90 +417,19 @@ class UsersController < ApplicationController
   
   # === Description
   #
-  # Section of your profile about trial version handling
+  # Necessary to fill the locations list
   #
   # === Mode
   #
   # Html
   #
-  # === Specific filters
+  # === Skipped filters
   #
-  # * ApplicationController#initialize_layout
+  # * ApplicationController#authenticate
   #
-  def trial
-    if !current_user.trial?
-      redirect_to my_profile_path
-      return
-    end
-  end
-  
-  # === Description
-  #
-  # Updates your profile (it can be called either from UsersController#edit or from UsersController#subjects)
-  #
-  # === Mode
-  #
-  # Html
-  #
-  # === Specific filters
-  #
-  # * ApplicationController#initialize_layout
-  #
-  def update
-    @user = current_user
-    key_last_location = SETTINGS['location_types'].last.downcase
-    if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
-      @user.location_id = params[:location][key_last_location]
-    end
-    @user.name = params[:name]
-    @user.surname = params[:surname]
-    @user.school_level_id = params[:school_level_id]
-    if params[:password] && params[:password].present?
-      @user.password = params[:password]
-      @user.password_confirmation = params[:password_confirmation]
-    end
-    if @user.save
-      redirect_to my_profile_path, { flash: { notice: t('users.info.ok_popup') } }
-    else
-      @errors = convert_user_error_messages @user.errors
-      if @errors[:subjects].any? || @errors[:policies].any?
-        redirect_to my_profile_path, { flash: { notice: t('users.info.wrong_popup') } }
-      else
-        @errors = @errors[:general]
-        @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info
-        @forced_location = @user.purchase.location if @user.purchase && @user.purchase.location
-        @school_levels = SchoolLevel.order(:description)
-        render :edit
-      end
-    end
-  end
-  
-  # === Description
-  #
-  # Updates your profile (it can be called either from UsersController#edit or from UsersController#subjects)
-  #
-  # === Mode
-  #
-  # Html
-  #
-  # === Specific filters
-  #
-  # * ApplicationController#initialize_layout
-  #
-  def update_subjects
-    @user = current_user
-    params[:user][:subject_ids] ||= []
-    if @user.update_attributes(params[:user])
-      redirect_to my_subjects_path, { flash: { notice: t('users.subjects.ok_popup') } }
-    else
-      @errors = convert_user_error_messages @user.errors
-      if @errors[:general].any? || @errors[:policies].any?
-        redirect_to my_profile_path, { flash: { notice: t('users.subjects.wrong_popup') } }
-      else
-        @subjects = Subject.extract_with_cathegories
-        render :subjects
-      end
-    end
+  def find_locations
+    @parent = Location.find_by_id params[:id]
+    @locations = @parent.nil? ? [] : @parent.children.order(:name)
   end
   
   # === Description
