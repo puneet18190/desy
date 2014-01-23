@@ -51,7 +51,7 @@
             <div class="profile-element">
               <%= Location.label_at(index) %><br>
               <% if disabling %>
-                <div class="profile-location-deselected" id="<%= location.downcase %>_id"><%= forced_ancestors[index].name %></div>
+                <input type="text" value="<%= forced_ancestors[index].name %>" disabled="disabled">
               <% else %>
                 <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="<%= is_last %>" name="location[<%= location.downcase %>]">
                   <%= render :partial => 'users/locations_list', :locals => {:locations => my_own_locations[:content], :selected => my_own_locations[:selected], :label => (my_own_locations[:content].any? ? Location.label_at(index) : nil)} %>
