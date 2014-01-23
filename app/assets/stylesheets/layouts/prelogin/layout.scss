@@ -505,20 +505,6 @@ html.prelogin-layout {
       
     }
     
-    &.users-controller.create-action {
-      
-      .field_with_errors {
-        
-        input, select, .sbSelector, textarea, .regular-checkbox + label  {
-          
-          border: 2px solid #D20B0B;
-          
-        }
-        
-      }
-      
-    }
-    
     input[type="submit"] {
       
       @include nunito(20px);

@@ -171,15 +171,8 @@
               <% cathegory[:items].each do |subject| %>
                 <% html_id = "users_subject_ids_#{subject.id}" %>
                 <div class="checkboxElement">
-                  <% if @user.errors.include?(:users_subjects) %>
-                    <div class="field_with_errors">
-                      <%= check_box_tag 'user[subject_ids][]', subject.id, @user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
-                      <%= label_tag html_id, '', :class => 'unchecked' %>
-                    </div>
-                  <% else %>
-                    <%= check_box_tag 'user[subject_ids][]', subject.id, @user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
-                    <%= label_tag html_id, '', :class => 'unchecked' %>
-                  <% end %>
+                  <%= check_box_tag 'user[subject_ids][]', subject.id, @user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regular-checkbox big-checkbox' %>
+                  <%= label_tag html_id, '', :class => 'unchecked' %>
                   <span><%= subject.to_s %></span>
                 </div>
               <% end %>
@@ -204,17 +197,9 @@
           <table>
             <tr>
               <td>
-                <% if user.errors.include?(policy) %>
-                  <div class="field_with_errors">
-                    <%= f.hidden_field policy, value: '0', id: nil %>
-                    <%= check_box_tag "user[#{policy}]", '1', user.send(policy) == '1', class: 'regular-checkbox' %>
-                    <%= label_tag "user[#{policy}]", '' %>
-                  </div>
-                <% else %>
-                  <%= f.hidden_field policy, value: '0', id: nil %>
-                  <%= check_box_tag "user[#{policy}]", '1', user.send(policy) == '1', class: 'regular-checkbox' %>
-                  <%= label_tag "user[#{policy}]", '' %>
-                <% end %>
+                <%= f.hidden_field policy, value: '0', id: nil %>
+                <%= check_box_tag "user[#{policy}]", '1', user.send(policy) == '1', class: 'regular-checkbox' %>
+                <%= label_tag "user[#{policy}]", '' %>
               </td>
               <td><%= my_policy['accept'] %></td>
             </tr>

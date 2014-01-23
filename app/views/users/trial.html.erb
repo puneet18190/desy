@@ -10,13 +10,7 @@
         <fieldset class="insert-constent"> <!-- TODO forrm sostituirlo -->
           <div class="inputElement">
             <%= t('users.trial.purchase_code') %><br>
-            <% if @error.blank? %>
-              <%= text_field_tag 'purchase_id', '', :class => 'text' %>
-            <% else %>
-              <div class="field_with_errors">
-                <%= text_field_tag 'purchase_id', '', :class => 'text' %>
-              </div>
-            <% end %>
+            <%= text_field_tag 'purchase_id', '', :class => 'text' %>
           </div>
           <br class="clearfloat"/>
           <% if @error.present? %>
