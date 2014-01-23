@@ -52,28 +52,6 @@
     margin: 20px 20px 20px 0;
     width: 96%;
     
-    &#profile-subjects-edit {
-      
-      .profile-subject-cathegory-container {
-        
-        float: left;
-        width: 100%;
-        padding: 0;
-        border-bottom: 1px solid #EFEFEF;
-        margin-bottom: 20px;
-        
-        .profile-subject-cathegory-label {
-          
-          color: #7D7D7D;
-          font-size: 16px;
-          padding: 10px 0px;
-          
-        }
-        
-      }
-      
-    }
-    
     .profile-element {
       
       @include nunito(100%);
@@ -99,15 +77,23 @@
       
     }
     
-    .text, select, option {
+    &#profile-subjects-edit {
       
-      @include nunito(13px);
-      width: 216px;
-      height: 29px;
-      
-      &.school {
+      .profile-subject-cathegory-container {
         
-        width: 500px;
+        float: left;
+        width: 100%;
+        padding: 0;
+        border-bottom: 1px solid #EFEFEF;
+        margin-bottom: 20px;
+        
+        .profile-subject-cathegory-label {
+          
+          color: #7D7D7D;
+          font-size: 16px;
+          padding: 10px 0px;
+          
+        }
         
       }
       
@@ -128,42 +114,50 @@
       
     }
     
-    .sbHolder, .sbOptions, .sbSelector {
+    .profile-errors {
       
-      @include nunito(13px);
-      color: #7D7D7D;
-      width: 226px;
+      height: 30px;
+      background-color: red;
       
     }
     
     .sbHolder {
       
+      @include nunito(13px);
+      color: #7D7D7D;
+      width: 226px;
       background-color: #F5F5F5;
       
-    }
-    
-    .sbOptions {
-      
-      margin-top: 10px;
-      
-      a {
+      .sbOptions {
         
-        color: #999;
+        @include nunito(13px);
+        margin-top: 10px;
+        color: #7D7D7D;
+        width: 226px;
         
-        &.sbFocus {
+        a {
           
-          color: #fff;
+          color: #999;
+          
+          &.sbFocus {
+            
+            color: #fff;
+            
+          }
           
         }
         
       }
       
-    }
-    
-    .sbSelector {
-      
-      height: 26px;
-      padding-top: 10px;
+      .sbSelector {
+        
+        @include nunito(13px);
+        color: #7D7D7D;
+        width: 226px;
+        height: 26px;
+        padding-top: 10px;
+        
+      }
       
     }
     
