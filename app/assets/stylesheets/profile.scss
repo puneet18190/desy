@@ -117,6 +117,16 @@
       
     }
     
+    &#profile-school-level-edit {
+      
+      .profile-element {
+        
+        padding: 0;
+        
+      }
+      
+    }
+    
     textarea.text {
       
       background-color: #F5F5F5;
@@ -143,15 +153,21 @@
       
       @include nunito(13px);
       color: #7D7D7D;
-      width: 226px;
+      width: 236px;
       background-color: #F5F5F5;
+      
+      .sbToggle {
+        
+        top: 8px;
+        right: 5px;
+        
+      }
       
       .sbOptions {
         
         @include nunito(13px);
-        margin-top: 10px;
         color: #7D7D7D;
-        width: 226px;
+        width: 235px;
         
         a {
           
@@ -171,9 +187,8 @@
         
         @include nunito(13px);
         color: #7D7D7D;
-        width: 226px;
-        height: 26px;
-        padding-top: 10px;
+        width: 236px;
+        height: 37px;
         
       }
       
