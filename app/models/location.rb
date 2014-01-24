@@ -183,12 +183,21 @@ class Location < ActiveRecord::Base
   #
   def select_with_selected
     resp = []
-    self.ancestors.each do |anc|
-      resp << {:selected => anc.id, :content => anc.siblings.order(:name)}
-    end
-    resp << {:selected => self.id, :content => self.siblings.order(:name)}
-    resp << {:selected => 0, :content => self.children.order(:name)} if self.class.to_s != SUBMODEL_NAMES.last
     index = SUBMODEL_NAMES.index(self.class.to_s)
+    if index.nil?
+      resp << {:selected => 0, :content => Location.roots.order(:name)}
+      index = 1
+    else
+      self.ancestors.each do |anc|
+        resp << {:selected => anc.id, :content => anc.siblings.order(:name)}
+      end
+      resp << {:selected => self.id, :content => self.siblings.order(:name)}
+      index += 1
+      if self.class.to_s != SUBMODEL_NAMES.last
+        resp << {:selected => 0, :content => self.children.order(:name)}
+        index += 1
+      end
+    end
     while index < SUBMODEL_NAMES.length
       resp << {:selected => 0, :content => []}
       index += 1

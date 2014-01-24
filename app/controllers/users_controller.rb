@@ -492,7 +492,7 @@ class UsersController < ApplicationController
         @locations = @forced_location.select_with_selected
       end
     else
-      @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.select_with_selected
+      @locations = (location.nil? ? Location.new : location).select_with_selected
     end
   end
   
