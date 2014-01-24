@@ -14,7 +14,9 @@
           </div>
           <br class="clearfloat"/>
           <ul class="profile-errors">
-            <li><%= @error %></li>
+            <% if @error.present? %>
+              <li><%= @error %></li>
+            <% end %>
           </ul>
         </div>
         <div class="form_submit">
