@@ -16,6 +16,9 @@
 #
 class UsersController < ApplicationController
   
+  # The kind of last location, extracted from settings.yml
+  LAST_LOCATION = SETTINGS['location_types'].last.downcase
+  
   skip_before_filter :authenticate, :only => [
     :create,
     :confirm,
@@ -66,9 +69,8 @@ class UsersController < ApplicationController
     end
     @user = User.active.not_confirmed.new(params[:user]) do |user|
       user.email = email
-      key_last_location = SETTINGS['location_types'].last.downcase
-      if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
-        user.location_id = params[:location][key_last_location]
+      if params.has_key?(:location) && params[:location][LAST_LOCATION].to_i != 0
+        user.location_id = params[:location][LAST_LOCATION]
       end
       user.purchase_id = @trial ? nil : (purchase ? purchase.id : 0) if saas
     end
@@ -236,7 +238,7 @@ class UsersController < ApplicationController
       return
     end
     user.purchase_id = purchase.id
-    user.location_id = purchase.location_id if purchase.location && purchase.location.sti_type == SETTINGS['location_types'].last
+    user.location_id = purchase.location_id if purchase.location && purchase.location.sti_type.downcase == LAST_LOCATION
     if !user.save
       redirect_to user_request_upgrade_trial_path, { flash: { alert: t('flash.upgrade_trial.generic_error') } }
       return
@@ -258,19 +260,8 @@ class UsersController < ApplicationController
   #
   def edit
     @user = current_user
+    initialize_general_profile
     @errors = []
-    @school_levels = SchoolLevel.order(:description)
-    location = @user.location
-    if @user.purchase && @user.purchase.location
-      @forced_location = @user.purchase.location
-      if location && location.is_descendant_of?(@forced_location)
-        @locations = location.get_filled_select_for_personal_info
-      else
-        @locations = @forced_location.get_filled_select_for_personal_info
-      end
-    else
-      @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
-    end
   end
   
   # === Description
@@ -287,9 +278,8 @@ class UsersController < ApplicationController
   #
   def update
     @user = current_user
-    key_last_location = SETTINGS['location_types'].last.downcase
-    if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
-      @user.location_id = params[:location][key_last_location]
+    if params.has_key?(:location) && params[:location][LAST_LOCATION].to_i != 0
+      @user.location_id = params[:location][LAST_LOCATION]
     end
     @user.name = params[:name]
     @user.surname = params[:surname]
@@ -305,10 +295,8 @@ class UsersController < ApplicationController
       if @errors[:subjects].any? || @errors[:policies].any? || @user.errors.messages.has_key?(:email)
         redirect_to my_profile_path, { flash: { alert: t('users.info.wrong_popup') } }
       else
+        initialize_general_profile
         @errors = @errors[:general]
-        @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info
-        @forced_location = @user.purchase.location if @user.purchase && @user.purchase.location
-        @school_levels = SchoolLevel.order(:description)
         render :edit
       end
     end
@@ -361,6 +349,7 @@ class UsersController < ApplicationController
       else
         @errors = @errors[:subjects]
         @subjects = Subject.extract_with_cathegories
+        @subjects_ids = UsersSubject.where(:user_id => @user.id).pluck(:subject_id)
         render :subjects
       end
     end
@@ -410,7 +399,7 @@ class UsersController < ApplicationController
       return
     end
     user.purchase_id = purchase.id
-    user.location_id = purchase.location_id if purchase.location && purchase.location.sti_type == SETTINGS['location_types'].last
+    user.location_id = purchase.location_id if purchase.location && purchase.location.sti_type.downcase == LAST_LOCATION
     if !user.save
       @error = t('users.trial.errors.problem_saving')
       render 'trial'
@@ -485,6 +474,23 @@ class UsersController < ApplicationController
   end
   
   private
+  
+  # Initializes the local variables for general profile
+  def initialize_general_profile
+    @school_levels = SchoolLevel.order(:description)
+    location = @user.location
+    location = Location.find_by_id(params[:location][LAST_LOCATION]) if params[:location].present? && params[:location][LAST_LOCATION].to_i != 0
+    if @user.purchase && @user.purchase.location
+      @forced_location = @user.purchase.location
+      if location && location.is_descendant_of?(@forced_location)
+        @locations = location.get_filled_select_for_personal_info
+      else
+        @locations = @forced_location.get_filled_select_for_personal_info
+      end
+    else
+      @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
+    end
+  end
   
   def upgrade_trial_link
     my_trial_path

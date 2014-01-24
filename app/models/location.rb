@@ -39,7 +39,7 @@ class Location < ActiveRecord::Base
   validates_presence_of :name, :sti_type
   validates_length_of :name, :code, :maximum => 255
   validates_uniqueness_of :code, :scope => :sti_type, :unless => proc { |record| record.code.blank? }
-  validates_inclusion_of :sti_type, :in => SETTINGS['location_types']
+  validates_inclusion_of :sti_type, :in => SUBMODEL_NAMES
   
   has_ancestry
   
@@ -47,6 +47,9 @@ class Location < ActiveRecord::Base
   SUBMODELS = SETTINGS['location_types'].map do |type|
     Object.const_set type, Class.new(self)
   end
+  
+  # List of submodels in string format
+  SUBMODEL_NAMES = SUBMODELS.map { |a_class| a_class.to_s }
   
   # === Description
   #
@@ -58,7 +61,7 @@ class Location < ActiveRecord::Base
   #
   def label
     index = 0
-    SETTINGS['location_types'].each_with_index do |t, i|
+    SUBMODEL_NAMES.each_with_index do |t, i|
       index = i if t == self.sti_type.to_s
     end
     Location.label_at index
@@ -89,7 +92,7 @@ class Location < ActiveRecord::Base
   # A boolean
   #
   def is_descendant_of?(ancestor)
-    max_depth = SETTINGS['location_types'].length
+    max_depth = SUBMODEL_NAMES.length
     if ancestor.ancestry.nil?
       self.ancestry == ancestor.id.to_s || (/#{ancestor.ancestry_with_me}/ =~ self.ancestry) == 0
     elsif self.depth == max_depth - 1 && ancestor.depth == max_depth - 2
@@ -153,7 +156,7 @@ class Location < ActiveRecord::Base
       resp << anc.siblings.order(:name)
     end
     resp << self.siblings.order(:name)
-    resp << self.children.order(:name) if self.class.to_s != SETTINGS['location_types'].last
+    resp << self.children.order(:name) if self.class.to_s != SUBMODEL_NAMES.last
     resp
   end
   
@@ -171,7 +174,7 @@ class Location < ActiveRecord::Base
       resp << {:selected => anc.id, :content => anc.siblings.order(:name)}
     end
     resp << {:selected => self.id, :content => self.siblings.order(:name)}
-    resp << {:selected => 0, :content => self.children.order(:name)} if self.class.to_s != SETTINGS['location_types'].last
+    resp << {:selected => 0, :content => self.children.order(:name)} if self.class.to_s != SUBMODEL_NAMES.last
     resp
   end
   
@@ -189,14 +192,14 @@ class Location < ActiveRecord::Base
   #
   def self.get_from_chain_params(params)
     flag = true
-    index = SETTINGS['location_types'].length - 1
-    loc_param = params[SETTINGS['location_types'].last.downcase]
+    index = SUBMODEL_NAMES.length - 1
+    loc_param = params[SUBMODEL_NAMES.last.downcase]
     while flag && index >= 0
       if loc_param.present? && loc_param != '0'
         flag = false
       else
         index -= 1
-        loc_param = params[SETTINGS['location_types'][index].downcase]
+        loc_param = params[SUBMODEL_NAMES[index].downcase]
       end
     end
     Location.find_by_id loc_param
