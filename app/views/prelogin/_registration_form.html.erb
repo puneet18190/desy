@@ -96,7 +96,7 @@
   disabling = !forced_location.nil?
   forced_ancestors = (forced_location.ancestors + [forced_location]) if disabling
 %>
-<% SETTINGS['location_types'].each_with_index do |location, index| %>
+<% SETTINGS['location_types'].each_with_index do |location, index| %> <!-- TODO forrm pensaci tu --- devo sistemare il nuovo parziale locations_list -->
   <%
     is_last = (index == SETTINGS['location_types'].length - 1)
     my_own_locations = locations[index].nil? ? {:selected => 0, :content => []} : locations[index]

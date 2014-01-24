@@ -115,7 +115,13 @@
         
         input {
           
-          color: #939393;
+          color: #7D7D7D;
+          
+          &.empty-locations {
+            
+            color: #ccc;
+            
+          }
           
         }
         

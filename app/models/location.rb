@@ -106,12 +106,20 @@ class Location < ActiveRecord::Base
   #
   # Returns the label of the lowest category of location
   #
+  # === Args
+  #
+  # * *plural*: pluralizes the label (default = false)
+  #
   # === Returns
   #
   # A string translated with I18n
   #
-  def self.base_label
-    I18n.t('locations.labels').last
+  def self.base_label(plural=false)
+    if plural
+      I18n.t('locations.labels.plural').last
+    else
+      I18n.t('locations.labels.singular').last
+    end
   end
   
   # === Description
@@ -121,13 +129,18 @@ class Location < ActiveRecord::Base
   # === Args
   #
   # * *index*: the depth of the chosen category
+  # * *plural*: pluralizes the label (default = false)
   #
   # === Returns
   #
   # A string translated with I18n
   #
-  def self.label_at(index)
-    I18n.t('locations.labels')[index]
+  def self.label_at(index, plural=false)
+    if plural
+      I18n.t('locations.labels.plural')[index]
+    else
+      I18n.t('locations.labels.singular')[index]
+    end
   end
   
   # === Description

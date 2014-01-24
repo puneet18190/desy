@@ -47,6 +47,7 @@
             <div id="<%= location.downcase %>_id" class="profile-element">
               <%
                 locals_for_location = {
+                  :empty     => (index > 0 && @locations[index - 1][:selected] != 0 && @locations[index][:content].empty?),
                   :forced    => (disabling ? forced_ancestors[index] : nil),
                   :is_last   => (index == @location_types.length - 1),
                   :label     => Location.label_at(index),

@@ -1,6 +1,10 @@
 <%= label %><br/>
 <% if locations.empty? %>
-  <input type="text" value="<%= label %>" disabled="disabled"/>
+  <% if empty %>
+    <input type="text" class="empty-locations" value="<%= 'vuotoo!!! ' + label %>" disabled="disabled"/>
+  <% else %>
+    <input type="text" class="empty-locations" value="<%= label %>" disabled="disabled"/>
+  <% end %>
 <% elsif forced %>
   <input type="text" value="<%= forced.name %>" disabled="disabled"/>
 <% else %>

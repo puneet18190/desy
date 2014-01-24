@@ -319,8 +319,7 @@ class UsersController < ApplicationController
   #
   def subjects
     @user = current_user
-    @subjects = Subject.extract_with_cathegories
-    @subjects_ids = UsersSubject.where(:user_id => @user.id).pluck(:subject_id)
+    initialize_subjects_profile
     @errors = []
   end
   
@@ -350,9 +349,8 @@ class UsersController < ApplicationController
       if @errors[:general].any? || @errors[:policies].any?
         redirect_to my_subjects_path, { flash: { alert: t('users.subjects.wrong_popup') } }
       else
+        initialize_subjects_profile
         @errors = @errors[:subjects]
-        @subjects = Subject.extract_with_cathegories
-        @subjects_ids = UsersSubject.where(:user_id => @user.id).pluck(:subject_id)
         render :subjects
       end
     end
@@ -496,6 +494,12 @@ class UsersController < ApplicationController
     else
       @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.select_with_selected
     end
+  end
+  
+  # Initializes the local variables for updating subjects in the profile
+  def initialize_subjects_profile
+    @subjects = Subject.extract_with_cathegories
+    @subjects_ids = UsersSubject.where(:user_id => @user.id).pluck(:subject_id)
   end
   
   # Function to be overwritten if the upgrade trial path changes
