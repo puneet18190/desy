@@ -7,20 +7,18 @@
         <p><%= t('users.trial.description', :desy => SETTINGS['application_name']) %></p>
       </header>
       <%= form_tag user_logged_upgrade_trial_path, :method => :post, :autocomplete => 'off' do %>
-        <fieldset class="insert-constent"> <!-- TODO forrm sostituirlo -->
-          <div class="inputElement">
-            <%= t('users.trial.purchase_code') %><br>
-            <%= text_field_tag 'purchase_id', '', :class => 'text' %>
+        <div id="profile-trial-edit" class="profile-element-container">
+          <div class="profile-element">
+            <%= t('users.trial.purchase_code') %><br/>
+            <input type="text" value="" name="purchase_id"/>
           </div>
           <br class="clearfloat"/>
-          <% if @error.present? %>
-            <ul class="profile-errors">
-              <li><%= @error %></li>
-            </ul>
-          <% end %>
-        </fieldset>
+          <ul class="profile-errors">
+            <li><%= @error %></li>
+          </ul>
+        </div>
         <div class="form_submit">
-          <%= submit_tag t('users.trial.commit') %>
+          <input type="submit" value="<%= t('users.trial.commit') %>"/>
         </div>
       <% end %>
     </div>
