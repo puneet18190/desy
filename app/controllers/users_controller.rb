@@ -426,7 +426,7 @@ class UsersController < ApplicationController
   #
   def find_locations
     @parent = Location.find_by_id params[:id]
-    @locations = @parent.nil? ? [] : @parent.children.order(:name)
+    @locations = @parent.select_with_selected
     @first_depth = @parent.depth + 1
     @location_types = LOCATION_TYPES
   end
@@ -490,12 +490,12 @@ class UsersController < ApplicationController
     if @user.purchase && @user.purchase.location
       @forced_location = @user.purchase.location
       if location && location.is_descendant_of?(@forced_location)
-        @locations = location.get_filled_select_for_personal_info
+        @locations = location.select_with_selected
       else
-        @locations = @forced_location.get_filled_select_for_personal_info
+        @locations = @forced_location.select_with_selected
       end
     else
-      @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
+      @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.select_with_selected
     end
   end
   

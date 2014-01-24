@@ -150,7 +150,7 @@ class Location < ActiveRecord::Base
   #
   # An array of strings
   #
-  def get_filled_select
+  def select_without_selected
     resp = []
     self.ancestors.each do |anc|
       resp << anc.siblings.order(:name)
@@ -162,13 +162,13 @@ class Location < ActiveRecord::Base
   
   # === Description
   #
-  # Used in the front end, to fill the list of tags +select+ associated to this particular location -- only for registration and personal info
+  # Used in the front end, to fill the list of tags +select+ associated to this particular location (evidentiating which is the selected location for each step)
   #
   # === Returns
   #
   # An array of hashes
   #
-  def get_filled_select_for_personal_info
+  def select_with_selected
     resp = []
     self.ancestors.each do |anc|
       resp << {:selected => anc.id, :content => anc.siblings.order(:name)}
