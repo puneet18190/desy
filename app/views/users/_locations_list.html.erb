@@ -1,6 +1,11 @@
-<% if !label.nil? %>
-  <option value="0"><%= t('locations.placeholder', :location => label) %></option>
-<% end %>
-<% if locations.any? %>
-  <%= options_from_collection_for_select(locations, 'id', 'name', selected.to_i) %>
+<%= label %><br/>
+<% if locations.empty? %>
+  <input type="text" value="<%= label %>" disabled="disabled"/>
+<% elsif forced %>
+  <input type="text" value="<%= forced.name %>" disabled="disabled"/>
+<% else %>
+  <select id="<%= type %>_id" class="_location_select_box" data-is-last="<%= is_last %>" name="location[<%= type %>]">
+    <option value="0"><%= t('locations.placeholder', :location => label) %></option>
+    <%= options_from_collection_for_select(locations, 'id', 'name', selected.to_i) %>
+  </select>
 <% end %>

@@ -175,6 +175,11 @@ class Location < ActiveRecord::Base
     end
     resp << {:selected => self.id, :content => self.siblings.order(:name)}
     resp << {:selected => 0, :content => self.children.order(:name)} if self.class.to_s != SUBMODEL_NAMES.last
+    index = SUBMODEL_NAMES.index(self.class.to_s)
+    while index < SUBMODEL_NAMES.length
+      resp << {:selected => 0, :content => []}
+      index += 1
+    end
     resp
   end
   

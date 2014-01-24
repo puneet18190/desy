@@ -43,24 +43,23 @@
           </ul>
         </div>
         <div id="profile-locations-edit" class="profile-element-container">
-          <% SETTINGS['location_types'].each_with_index do |location, index| %>
-            <%
-              is_last = (index == SETTINGS['location_types'].length - 1)
-              my_own_locations = @locations[index].nil? ? {:selected => 0, :content => []} : @locations[index]
-            %>
+          <% LOCATION_TYPES.each_with_index do |location, index| %>
             <div class="profile-element">
-              <%= Location.label_at(index) %><br>
-              <% if disabling %>
-                <input type="text" value="<%= forced_ancestors[index].name %>" disabled="disabled"/>
-              <% else %>
-                <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="<%= is_last %>" name="location[<%= location.downcase %>]">
-                  <%= render :partial => 'users/locations_list', :locals => {:locations => my_own_locations[:content], :selected => my_own_locations[:selected], :label => (my_own_locations[:content].any? ? Location.label_at(index) : nil)} %>
-                </select>
-              <% end %>
+              <%
+                locals_for_location = {
+                  :forced    => (disabling ? forced_ancestors[index] : nil)
+                  :is_last   => (index == LOCATION_TYPES.length - 1),
+                  :label     => Location.label_at(index),
+                  :locations => @locations[index][:content],
+                  :selected  => @locations[index][:selected],
+                  :type      => location
+                }
+              %>
+              <%= render :partial => 'users/locations_list', :locals => locals_for_location %>
             </div>
             <% disabling = false if disabling && @forced_location.sti_type == location %>
           <% end %>
-          <% if @forced_location && @forced_location.sti_type == SETTINGS['location_types'].last %>
+          <% if @forced_location && @forced_location.sti_type.downcase == LAST_LOCATION %>
             <input type="hidden" value="<%= @forced_location.id %>" name="location[<%= @forced_location.sti_type.downcase %>]"/>
           <% end %>
         </div>

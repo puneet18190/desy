@@ -16,8 +16,11 @@
 #
 class UsersController < ApplicationController
   
+  # Locattion types, extracted from settings.yml
+  LOCATION_TYPES = SETTINGS['location_types']
+  
   # The kind of last location, extracted from settings.yml
-  LAST_LOCATION = SETTINGS['location_types'].last.downcase
+  LAST_LOCATION = LOCATION_TYPES.last.downcase
   
   skip_before_filter :authenticate, :only => [
     :create,
@@ -492,6 +495,7 @@ class UsersController < ApplicationController
     end
   end
   
+  # Function to be overwritten if the upgrade trial path changes
   def upgrade_trial_link
     my_trial_path
   end
