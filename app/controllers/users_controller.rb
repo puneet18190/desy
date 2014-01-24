@@ -344,8 +344,13 @@ class UsersController < ApplicationController
         subject_ids << k.split('_').last.to_i
       end
     end
-    @user.subject_ids = subject_ids
-    if @user.save
+    user_saved = false
+    ActiveRecord::Base.transaction do
+      @user.subject_ids = subject_ids
+      user_saved = @user.save
+      raise ActiveRecord::Rollback if !user_saved
+    end
+    if user_saved
       redirect_to my_subjects_path, { flash: { notice: t('users.subjects.ok_popup') } }
     else
       @errors = convert_user_error_messages @user.errors

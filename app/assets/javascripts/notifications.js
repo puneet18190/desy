@@ -177,6 +177,9 @@ Initializer for the loop that updates the notifications
 @param time {Number} the time to iterate the loop
 **/
 function notificationsDocumentReadyLoop(time) {
+
+return;
+
   unbindLoader();
   $.ajax({
     url: '/notifications/reload',
