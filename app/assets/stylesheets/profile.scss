@@ -139,6 +139,18 @@
         border-bottom: 1px solid #EFEFEF;
         margin-bottom: 20px;
         
+        &.no-border {
+          
+          border: 0;
+          
+          .profile-element {
+            
+            margin-bottom: 0;
+            
+          }
+          
+        }
+        
         .profile-subject-cathegory-label {
           
           color: #7D7D7D;
@@ -159,6 +171,7 @@
           margin-bottom: 30px;
           display: block;
           color: #7D7D7D;
+          position: relative;
           
           input {
             
@@ -181,13 +194,19 @@
           input:checked + label:after {
             
             color: $green;
-            padding: 3px;
             cursor: pointer;
             content: '\2714';
-            font-size: 14px;
+            font-size: 28px;
+            top: 9px;
+            left: 18px;
             position: absolute;
-            top: 0px;
-            left: 3px;
+            
+          }
+          
+          span {
+            
+            float: left;
+            padding: 10px;
             
           }
           

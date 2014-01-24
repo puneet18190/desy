@@ -36,6 +36,7 @@ class UsersController < ApplicationController
     :edit,
     :update,
     :subjects,
+    :update_subjects,
     :statistics,
     :mailing_lists,
     :trial,
@@ -338,8 +339,10 @@ class UsersController < ApplicationController
   def update_subjects
     @user = current_user
     subject_ids = []
-    params[:subjects].each do |k, v|
-      subject_ids << k.split('_').last.to_i
+    if params[:subjects].present?
+      params[:subjects].each do |k, v|
+        subject_ids << k.split('_').last.to_i
+      end
     end
     @user.subject_ids = subject_ids
     if @user.save
