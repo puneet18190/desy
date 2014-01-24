@@ -16,24 +16,24 @@
         <div id="profile-general-edit" class="profile-element-container">
           <div class="profile-element">
             <%= t('users.info.attributes.name') %><br/>
-            <input type="text" value="<%= @user.name %>" name="name" class="<%= @user.errors.messages.has_key?(:name).to_s %>">
+            <input type="text" value="<%= @user.name %>" name="name" class="<%= @user.errors.messages.has_key?(:name).to_s %>"/>
           </div>
           <div class="profile-element">
             <%= t('users.info.attributes.surname') %><br/>
-            <input type="text" value="<%= @user.surname %>" name="surname" class="<%= @user.errors.messages.has_key?(:surname).to_s %>">
+            <input type="text" value="<%= @user.surname %>" name="surname" class="<%= @user.errors.messages.has_key?(:surname).to_s %>"/>
           </div>
           <div class="profile-element email">
             <%= t('users.info.attributes.email') %><br/>
-            <input type="text" value="<%= @user.email %>" disabled="disabled">
+            <input type="text" value="<%= @user.email %>" disabled="disabled"/>
           </div>
           <br class="clearfloat"/>
           <div class="profile-element">
             <%= t('users.info.attributes.new_password') %><br/>
-            <input type="password" name="password" class="<%= @user.errors.messages.has_key?(:password).to_s %>">
+            <input type="password" name="password" class="<%= @user.errors.messages.has_key?(:password).to_s %>"/>
           </div>
           <div class="profile-element">
             <%= t('users.info.attributes.new_password_confirmation') %><br/>
-            <input type="password" name="password_confirmation" class="<%= @user.errors.added?(:password, :confirmation).to_s %>">
+            <input type="password" name="password_confirmation" class="<%= @user.errors.added?(:password, :confirmation).to_s %>"/>
           </div>
           <br class="clearfloat"/>
           <ul class="profile-errors">
@@ -51,7 +51,7 @@
             <div class="profile-element">
               <%= Location.label_at(index) %><br>
               <% if disabling %>
-                <input type="text" value="<%= forced_ancestors[index].name %>" disabled="disabled">
+                <input type="text" value="<%= forced_ancestors[index].name %>" disabled="disabled"/>
               <% else %>
                 <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="<%= is_last %>" name="location[<%= location.downcase %>]">
                   <%= render :partial => 'users/locations_list', :locals => {:locations => my_own_locations[:content], :selected => my_own_locations[:selected], :label => (my_own_locations[:content].any? ? Location.label_at(index) : nil)} %>
@@ -61,7 +61,7 @@
             <% disabling = false if disabling && @forced_location.sti_type == location %>
           <% end %>
           <% if @forced_location && @forced_location.sti_type == SETTINGS['location_types'].last %>
-            <input type="hidden" value="<%= @forced_location.id %>" name="location[<%= @forced_location.sti_type.downcase %>]" />
+            <input type="hidden" value="<%= @forced_location.id %>" name="location[<%= @forced_location.sti_type.downcase %>]"/>
           <% end %>
         </div>
         <div id="profile-school-level-edit" class="profile-element-container">
