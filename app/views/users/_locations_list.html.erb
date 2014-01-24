@@ -1,7 +1,7 @@
 <%= label %><br/>
 <% if locations.empty? %>
   <% if empty %>
-    <input type="text" class="empty-locations" value="<%= 'vuotoo!!! ' + label %>" disabled="disabled"/>
+    <input type="text" class="empty-locations" value="<%= t('locations.empty', :location => label_plur) %>" disabled="disabled"/>
   <% else %>
     <input type="text" class="empty-locations" value="<%= label %>" disabled="disabled"/>
   <% end %>

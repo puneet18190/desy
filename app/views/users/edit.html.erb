@@ -47,13 +47,14 @@
             <div id="<%= location.downcase %>_id" class="profile-element">
               <%
                 locals_for_location = {
-                  :empty     => (index > 0 && @locations[index - 1][:selected] != 0 && @locations[index][:content].empty?),
-                  :forced    => (disabling ? forced_ancestors[index] : nil),
-                  :is_last   => (index == @location_types.length - 1),
-                  :label     => Location.label_at(index),
-                  :locations => @locations[index][:content],
-                  :selected  => @locations[index][:selected],
-                  :type      => location.downcase
+                  :empty      => (index > 0 && @locations[index - 1][:selected] != 0 && @locations[index][:content].empty?),
+                  :forced     => (disabling ? forced_ancestors[index] : nil),
+                  :is_last    => (index == @location_types.length - 1),
+                  :label      => Location.label_at(index),
+                  :label_plur => Location.label_at(index, true),
+                  :locations  => @locations[index][:content],
+                  :selected   => @locations[index][:selected],
+                  :type       => location.downcase
                 }
               %>
               <%= render :partial => 'users/locations_list', :locals => locals_for_location %>
