@@ -142,12 +142,7 @@
         &.no-border {
           
           border: 0;
-          
-          .profile-element {
-            
-            margin-bottom: 0;
-            
-          }
+          margin-bottom: -10px;
           
         }
         
@@ -226,7 +221,7 @@
       
     }
     
-    textarea.text {
+    textarea.text { /* TODO forrm, questo si riferisce solamente ad amicocloud! */
       
       background-color: #F5F5F5;
       color: #7d7d7d;
