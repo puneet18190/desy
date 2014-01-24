@@ -5,7 +5,7 @@ $('._location_select_box').each(function() {
   <% if index >= @first_depth %>
     <%
       locals_for_location = {
-        :empty      => ((index == @first_depth) && @locations[index][:content].empty?),
+        :empty      => (index > 0 && @locations[index - 1][:selected] != 0 && @locations[index][:content].empty?),
         :forced     => nil,
         :is_last    => (index == @location_types.length - 1),
         :label      => Location.label_at(index),
