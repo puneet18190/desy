@@ -483,10 +483,9 @@ class UsersController < ApplicationController
   # Initializes the local variables for general profile
   def initialize_general_profile
     @location_types = LOCATION_TYPES
-    @last_location = LAST_LOCATION
     @school_levels = SchoolLevel.order(:description)
     location = @user.location
-    location = Location.find_by_id(params[:location][@last_location]) if params[:location].present? && params[:location][@last_location].to_i != 0
+    location = Location.get_from_chain_params(params[:location]) if params[:location].present?
     if @user.purchase && @user.purchase.location
       @forced_location = @user.purchase.location
       if location && location.is_descendant_of?(@forced_location)

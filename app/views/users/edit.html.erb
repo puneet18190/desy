@@ -59,7 +59,7 @@
             </div>
             <% disabling = false if disabling && @forced_location.sti_type == location %>
           <% end %>
-          <% if @forced_location && @forced_location.sti_type.downcase == @last_location %>
+          <% if @forced_location && @forced_location.sti_type == @location_types.last %>
             <input type="hidden" value="<%= @forced_location.id %>" name="location[<%= @forced_location.sti_type.downcase %>]"/>
           <% end %>
         </div>
