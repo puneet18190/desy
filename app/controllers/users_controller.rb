@@ -427,6 +427,8 @@ class UsersController < ApplicationController
   def find_locations
     @parent = Location.find_by_id params[:id]
     @locations = @parent.nil? ? [] : @parent.children.order(:name)
+    @first_depth = @parent.depth + 1
+    @location_types = LOCATION_TYPES
   end
   
   # === Description
@@ -480,9 +482,11 @@ class UsersController < ApplicationController
   
   # Initializes the local variables for general profile
   def initialize_general_profile
+    @location_types = LOCATION_TYPES
+    @last_location = LAST_LOCATION
     @school_levels = SchoolLevel.order(:description)
     location = @user.location
-    location = Location.find_by_id(params[:location][LAST_LOCATION]) if params[:location].present? && params[:location][LAST_LOCATION].to_i != 0
+    location = Location.find_by_id(params[:location][@last_location]) if params[:location].present? && params[:location][@last_location].to_i != 0
     if @user.purchase && @user.purchase.location
       @forced_location = @user.purchase.location
       if location && location.is_descendant_of?(@forced_location)

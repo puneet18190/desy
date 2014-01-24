@@ -43,23 +43,23 @@
           </ul>
         </div>
         <div id="profile-locations-edit" class="profile-element-container">
-          <% LOCATION_TYPES.each_with_index do |location, index| %>
-            <div class="profile-element">
+          <% @location_types.each_with_index do |location, index| %>
+            <div id="<%= location.downcase %>_id" class="profile-element">
               <%
                 locals_for_location = {
-                  :forced    => (disabling ? forced_ancestors[index] : nil)
-                  :is_last   => (index == LOCATION_TYPES.length - 1),
+                  :forced    => (disabling ? forced_ancestors[index] : nil),
+                  :is_last   => (index == @location_types.length - 1),
                   :label     => Location.label_at(index),
                   :locations => @locations[index][:content],
                   :selected  => @locations[index][:selected],
-                  :type      => location
+                  :type      => location.downcase
                 }
               %>
               <%= render :partial => 'users/locations_list', :locals => locals_for_location %>
             </div>
             <% disabling = false if disabling && @forced_location.sti_type == location %>
           <% end %>
-          <% if @forced_location && @forced_location.sti_type.downcase == LAST_LOCATION %>
+          <% if @forced_location && @forced_location.sti_type.downcase == @last_location %>
             <input type="hidden" value="<%= @forced_location.id %>" name="location[<%= @forced_location.sti_type.downcase %>]"/>
           <% end %>
         </div>

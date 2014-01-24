@@ -1,11 +1,21 @@
-<% first_depth = @parent.depth + 1 %>
 $('._location_select_box').each(function() {
   $('#' + $(this).attr('id')).selectbox('detach');
 });
-<% ((first_depth + 1)...(SETTINGS['location_types'].length)).to_a.each do |depth| %>
-  $('select#<%= SETTINGS["location_types"][depth].downcase %>_id').html('');
+<% @location_types.each_with_index do |location, index| %>
+  <% if index >= @first_depth %>
+    <%
+      locals_for_location = {
+        :forced    => nil,
+        :is_last   => (index == @location_types.length - 1),
+        :label     => Location.label_at(index),
+        :locations => @locations[index][:content],
+        :selected  => @locations[index][:selected],
+        :type      => location.downcase
+      }
+    %>
+    $('#<%= location.downcase %>_id').html('<%= j(render :partial => "users/locations_list", :locals => locals_for_location) %>');
+  <% end %>
 <% end %>
-$('select#<%= SETTINGS["location_types"][first_depth].downcase %>_id').html('<%= j render(:partial => "users/locations_list", :locals => {:locations => @locations, :selected => nil, :label => Location.label_at(first_depth)}) %>');
 $('._location_select_box').each(function() {
   $('#' + $(this).attr('id')).selectbox();
 });
