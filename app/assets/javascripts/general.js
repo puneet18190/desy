@@ -271,8 +271,22 @@ function locationsDocumentReady() {
   });
   $body.on('change', '._location_select_box', function() {
     if(!$(this).data('is-last')) {
+      var locations_url = '/locations/' + $(this).val() + '/find';
+      if($(this).val() == '0') {
+        var container = $(this).parents('.profile-element').prev();
+        if(container.length > 0) {
+          var sub_inputs = container.find('input');
+          if(sub_inputs.length > 0) {
+            locations_url = '/locations/' + sub_inputs.data('selected') + '/find?empty_children=true';
+          } else {
+            locations_url = '/locations/' + container.find('select').val() + '/find?empty_children=true';
+          }
+        } else {
+          locations_url = '/locations/0/find';
+        }
+      }
       $.ajax({
-        url: '/locations/' + $(this).val() + '/find',
+        url: locations_url,
         type: 'get'
       });
     }

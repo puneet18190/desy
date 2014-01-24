@@ -423,9 +423,14 @@ class UsersController < ApplicationController
   # * ApplicationController#authenticate
   #
   def find_locations
-    @parent = Location.find_by_id params[:id]
+    if params[:id] == '0'
+      @parent = Location.new
+      @first_depth = 1
+    else
+      @parent = Location.find_by_id params[:id]
+      @first_depth = params[:empty_children].present? ? (@parent.depth + 2) : (@parent.depth + 1)
+    end
     @locations = @parent.select_with_selected
-    @first_depth = @parent.depth + 1
     @location_types = LOCATION_TYPES
   end
   

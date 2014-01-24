@@ -6,7 +6,7 @@
     <input type="text" class="empty-locations" value="<%= label %>" disabled="disabled"/>
   <% end %>
 <% elsif forced %>
-  <input type="text" value="<%= forced.name %>" disabled="disabled"/>
+  <input type="text" value="<%= forced.name %>" disabled="disabled" data-selected="<%= selected %>"/>
 <% else %>
   <select id="selecting_<%= type %>_id" class="_location_select_box" data-is-last="<%= is_last %>" name="location[<%= type %>]">
     <option value="0"><%= t('locations.placeholder', :location => label) %></option>
