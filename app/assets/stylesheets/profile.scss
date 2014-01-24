@@ -142,7 +142,7 @@
         &.no-border {
           
           border: 0;
-          margin-bottom: -10px;
+          margin-bottom: -10px; /* 30px of margin-bottom minus 20px of regular margin. this style is not temporary nor unstable, please don't delete it! */
           
         }
         
