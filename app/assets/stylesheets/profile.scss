@@ -331,27 +331,6 @@
     
   }
   
-  table {
-    
-    border-collapse: collapse;
-    width: 50%;
-    float: left;
-    
-    td {
-     
-     padding: 10px 0 10px 0;
-     
-    }
-    
-    p {
-      
-      padding-left: 15px;
-      padding-bottom: 5px;
-      
-    }
-    
-  }
-  
 }
 
 #mailing_lists {
@@ -651,6 +630,27 @@
         }
         
       }
+      
+    }
+    
+  }
+  
+  #subjects-stats {
+    
+    border-collapse: collapse;
+    width: 50%;
+    float: left;
+    
+    td {
+     
+     padding: 10px 0 10px 0;
+     
+    }
+    
+    p {
+      
+      padding-left: 15px;
+      padding-bottom: 5px;
       
     }
     

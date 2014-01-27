@@ -3,6 +3,311 @@
 
 #official_registration_form {
   
+  width: 100%;
+  
+  header {
+    
+    padding: 10px 0 0 20px;
+    
+  }
+  
+  form {
+    
+    margin-top: 20px;
+    
+  }
+  
+  h2 {
+    
+    @include nunito(25px);
+    color:  #7d7d7d;
+    text-transform: lowercase;
+    text-shadow: #ccc 1px 1px 0px;
+    
+  }
+  
+  .profile-element-container {
+    
+    float: left;
+    border: 1px solid #EFEFEF;
+    color: #999;
+    padding: 35px;
+    margin: 0 0 20px 0;
+    width: calc(100% - 72px);
+    
+    .profile-element {
+      
+      @include nunito(100%);
+      float: left;
+      width: 236px;
+      margin-right: 80px;
+      padding-bottom: 30px;
+      
+      input {
+        
+        @include nunito(13px);
+        background-color: #F5F5F5;
+        color: #7D7D7D;
+        margin-right: 0px;
+        width: 216px;
+        height: 29px;
+        box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
+        padding: 4px 10px 4px 10px;
+        border-radius: 4px;
+        
+        &.true {
+          
+          border: 2px solid red;
+          padding: 2px 8px 2px 8px;
+          
+        }
+        
+      }
+      
+    }
+    
+    &#profile-general-edit {
+      
+      .profile-element {
+        
+        &.email {
+          
+          input {
+            
+            color: #ccc;
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+    &#profile-locations-edit {
+      
+      padding-bottom: 5px;
+      
+      .profile-element {
+        
+        input {
+          
+          color: #7D7D7D;
+          
+          &.empty-locations {
+            
+            color: #ccc;
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+    &#profile-subjects-edit {
+      
+      .profile-subject-cathegory-container {
+        
+        float: left;
+        width: 100%;
+        padding: 0;
+        border-bottom: 1px solid #EFEFEF;
+        margin-bottom: 20px;
+        
+        &.no-border {
+          
+          border: 0;
+          margin-bottom: -10px; /* 30px of margin-bottom minus 20px of regular margin. this style is not temporary nor unstable, please don't delete it! */
+          
+        }
+        
+        .profile-subject-cathegory-label {
+          
+          color: #7D7D7D;
+          font-size: 16px;
+          padding: 10px 0px;
+          
+        }
+        
+        .profile-element {
+          
+          @include nunito(16px);
+          border-radius: 5px;
+          -webkit-border-radius: 5px;
+          padding: 8px;
+          width: 211px;
+          float: left;
+          margin-right: 5%;
+          margin-bottom: 30px;
+          display: block;
+          color: #7D7D7D;
+          position: relative;
+          
+          input {
+            
+            display: none;
+            
+          }
+          
+          input:checked + label, label {
+            
+            background-color: #F5F5F5;
+            box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
+            border-radius: 10px;
+            padding: 20px;
+            float: left;
+            width: auto;
+            cursor: pointer;
+            
+          }
+          
+          input:checked + label:after {
+            
+            color: $green;
+            cursor: pointer;
+            content: '\2714';
+            font-size: 28px;
+            top: 9px;
+            left: 18px;
+            position: absolute;
+            
+          }
+          
+          span {
+            
+            float: left;
+            padding: 10px;
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+    &#profile-school-level-edit {
+      
+      .profile-element {
+        
+        padding: 0;
+        
+      }
+      
+    }
+    
+    textarea.text { /* TODO forrm, questo si riferisce solamente ad amicocloud! */
+      
+      background-color: #F5F5F5;
+      color: #7d7d7d;
+      font-size: 120%;
+      padding: 10px 10px 0px 10px;
+      border: none;
+      border-radius: 4px;
+      -webkit-border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
+      width: 534px;
+      height: 192px;
+      
+    }
+    
+    .profile-errors {
+      
+      min-height: 30px;
+      margin-left: 0;
+      list-style: none;
+      
+      li {
+        
+        padding: 8px  20px;
+        background-image: $assets-puntoesclamativo_png;
+        background-repeat: no-repeat;
+        background-position: 0 .5em;
+        
+      }
+      
+    }
+    
+    .sbHolder {
+      
+      @include nunito(13px);
+      color: #7D7D7D;
+      width: 236px;
+      background-color: #F5F5F5;
+      
+      .sbToggle {
+        
+        top: 8px;
+        right: 5px;
+        
+      }
+      
+      .sbOptions {
+        
+        @include nunito(13px);
+        color: #7D7D7D;
+        width: 235px;
+        
+        a {
+          
+          color: #999;
+          
+          &.sbFocus {
+            
+            color: #fff;
+            
+          }
+          
+        }
+        
+      }
+      
+      .sbSelector {
+        
+        @include nunito(13px);
+        color: #7D7D7D;
+        width: 236px;
+        height: 37px;
+        
+      }
+      
+    }
+    
+  }
+  
+  .form_submit {
+    
+    padding-left: 20px;
+    
+    input {
+      
+      background-color: #555;
+      color: #fff;
+      text-transform: uppercase;
+      padding: 10px 30px;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      cursor: pointer;
+      
+      &:hover {
+        
+        background-color: #999;
+        
+      }
+      
+      &.current, &:hover.current {
+        
+        color: #ccc;
+        background-color: #999;
+        
+      }
+      
+    }
+    
+  }
+  
   label[for=locations_disclaimer] {
     
     cursor: pointer;
