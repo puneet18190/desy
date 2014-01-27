@@ -16,7 +16,7 @@
               </div>
               <% cathegory[:items].each do |subject| %>
                 <div class="profile-element">
-                  <% if @subjects_ids.include?(subject.id) %>
+                  <% if @subject_ids.include?(subject.id) %>
                     <input id="profile-subject-<%= subject.id %>" type="checkbox" value="1" name="subjects[id_<%= subject.id %>]" checked="checked"/>
                   <% else %>
                     <input id="profile-subject-<%= subject.id %>" type="checkbox" value="1" name="subjects[id_<%= subject.id %>]"/>
