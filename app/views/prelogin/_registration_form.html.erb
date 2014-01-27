@@ -126,10 +126,10 @@
             <% end %>
             <%= label_tag "profile-subject-#{subject.id}", '' %>
             <span><%= subject.to_s %></span>
-            <% if cathegory[:label].present? %>
-              <a class="checkAllSubjects"><%= t('registration.select_all_subjects') %></a>
-            <% end %>
           </div>
+        <% end %>
+        <% if cathegory[:label].present? %>
+          <a class="checkAllSubjects"><%= t('registration.select_all_subjects') %></a>
         <% end %>
       </div>
     <% end %>
