@@ -299,9 +299,10 @@ class ApplicationController < ActionController::Base
     pas_min = SETTINGS['minimum_password_length']
     pas_max = SETTINGS['maximum_password_length']
     resp = {
-      :general => [],
+      :general  => [],
       :subjects => [],
-      :policies => []
+      :policies => [],
+      :purchase => []
     }
     resp[:general] << t('forms.error_captions.fill_all_the_fields_or_too_long') if (errors.messages.keys & [:name, :surname]).any?
     resp[:general] << t('forms.error_captions.not_valid_email') if errors.messages.has_key? :email
@@ -324,12 +325,14 @@ class ApplicationController < ActionController::Base
         resp[:policies] << t('forms.error_captions.policy_not_accepted', :policy => t('registration.policies')[index]['title'])
       end
     end
-    resp[:purchase_id] = t('forms.error_captions.invalid_purchase_id') if errors.added?(:purchase_id, :doesnt_exist)
+    resp[:purchase] << t('forms.error_captions.invalid_purchase_id') if errors.added?(:purchase_id, :doesnt_exist)
     resp
   end
   
   # Initializes the registration_form
   def initialize_registration_form
+    @trial = params[:trial] == '1'
+    @user = User.new(params[:user])
     initialize_general_profile(Location.new)
     initialize_subjects_profile
   end
