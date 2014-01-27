@@ -77,7 +77,7 @@
       </div>
       <% disabling = false if disabling && forced_location.sti_type == location %>
     <% end %>
-    <input id="hidden_location_in_registration" type="hidden" value="<%= forced_location.id %>"/>
+    <input id="hidden_location_in_registration" type="hidden" value=""/>
     <% if saas %>
       <div id="outer_locations_disclaimer">
         <input id="locations_disclaimer" type="checkbox" value="0"/>
