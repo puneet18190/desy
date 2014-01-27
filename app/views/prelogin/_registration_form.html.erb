@@ -1,3 +1,15 @@
+<!-- TODO forrm rimuovi in seguito
+  :forced_location => @forced_location,
+  :locations       => @locations,
+  :location_types  => @location_types,
+  :errors          => @errors,
+  :saas            => @saas,
+  :school_levels   => @school_levels,
+  :subjects        => @subjects,
+  :trial           => @trial,
+  :user            => @user
+-->
+
 <%= form_tag users_path, :method => :post, :id => 'official_registration_form', :autocomplete => 'off' do %>
   <% if saas %>
     <div id="registration-purchase-id" class="registration-element-container">
@@ -25,141 +37,86 @@
         <% end %>
       </ul>
   <% end %>
+  <div id="registration-general" class="registration-element-container">
+    <div class="profile-element">
+      <%= t('users.info.attributes.name') %><br/>
+      <input type="text" value="<%= @user.name %>" name="name" class="<%= @user.errors.messages.has_key?(:name).to_s %>"/>
+    </div>
+    <div class="profile-element">
+      <%= t('users.info.attributes.surname') %><br/>
+      <input type="text" value="<%= @user.surname %>" name="surname" class="<%= @user.errors.messages.has_key?(:surname).to_s %>"/>
+    </div>
+    <div class="profile-element email">
+      <%= t('users.info.attributes.email') %><br/>
+      <input type="text" value="<%= @user.email %>" disabled="disabled"/>
+    </div>
+    <br class="clearfloat"/>
+    <div class="profile-element">
+      <%= t('users.info.attributes.password') %><br/>
+      <input type="password" name="password" class="<%= @user.errors.messages.has_key?(:password).to_s %>"/>
+    </div>
+    <div class="profile-element">
+      <%= t('users.info.attributes.password_confirmation') %><br/>
+      <input type="password" name="password_confirmation" class="<%= @user.errors.added?(:password, :confirmation).to_s %>"/>
+    </div>
+    <br class="clearfloat"/>
+    <ul class="profile-errors">
+      <% @errors.each do |err| %>
+        <li><%= err %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="registration-locations" class="registration-element-container">
+    <% @location_types.each_with_index do |location, index| %>
+      <div id="<%= location.downcase %>_id" class="profile-element">
+        <%
+          locals_for_location = {
+            :empty      => (index > 0 && @locations[index - 1][:selected] != 0 && @locations[index][:content].empty?),
+            :forced     => (disabling ? forced_ancestors[index] : nil),
+            :is_last    => (index == @location_types.length - 1),
+            :label      => Location.label_at(index),
+            :label_plur => Location.label_at(index, true),
+            :locations  => @locations[index][:content],
+            :selected   => @locations[index][:selected],
+            :type       => location.downcase
+          }
+        %>
+        <%= render :partial => 'users/locations_list', :locals => locals_for_location %>
+      </div>
+      <% disabling = false if disabling && @forced_location.sti_type == location %>
+    <% end %>
+    <% if @forced_location && @forced_location.sti_type == @location_types.last %>
+      <input type="hidden" value="<%= @forced_location.id %>" name="location[<%= @forced_location.sti_type.downcase %>]"/>
+    <% end %>
+    <% if saas %>
+      <div id="outer_locations_disclaimer">
+        <input id="locations_disclaimer" type="checkbox" value="0"/>
+        <%= label_tag 'locations_disclaimer', '' %>
+        <%= t('registration.locations_disclaimer', :location => Location.base_label.downcase) %>
+      </div>
+    <% end %>
+  </div>
+  <div id="registration-school-level" class="registration-element-container">
+    <div class="profile-element">
+      <%= t('users.info.attributes.school_level_id') %><br/>
+      <select id="user_school_level_id" name="school_level_id">
+        <% @school_levels.each do |sl| %>
+          <% if @user.school_level_id == sl.id %>
+            <option value="<%= sl.id %>" selected="selected"><%= sl.description %></option>
+          <% else %>
+            <option value="<%= sl.id %>"><%= sl.description %></option>
+          <% end %>
+        <% end %>
+      </select>
+    </div>
+    <br class="clearfloat"/>
+  </div>
+  
   
   <!-- TODO forrm giunto qui -->
   
-  <%
-    locals_for_general_info = {
-      :f => f,
-      :edit => false,
-      :user => user,
-      :general_errors => (errors.nil? ? [] : errors[:general]),
-      :location_errors => (errors.nil? ? [] : errors[:location]),
-      :locations => locations,
-      :school_level_ids => school_level_ids,
-      :forced_location => forced_location
-    }
-  %>
-  
-  
-  <fieldset class="insert-contsent">
-  
-  <div class="inputElement">
-    <%= t('users.info.attributes.name') %><br>
-    <%= f.text_field :name, class: 'text' %>
-  </div>
-  
-  <div class="inputElement">
-    <%= t('users.info.attributes.surname') %><br>
-    <%= f.text_field :surname, class: 'text' %>
-  </div>
-  
-  <div class="inputElement">
-    <%= t('users.info.attributes.email') %><br>
-    <%= f.email_field :email, class: 'text', disabled: !user.new_record? %>
-  </div>
-  
-  <br class="clearfloat"/>
-  
-  <div class="inputElement">
-    <% if user.new_record? %>
-      <%= t('users.info.attributes.password') %>
-    <% else %>
-      <%= t('users.info.attributes.new_password') %>
-    <% end %>
-    <br/>
-    <%= f.password_field :password, class: 'text' %>
-  </div>
-  
-  <div class="inputElement" style="margin-right:0">
-    <% if user.new_record? %>
-      <%= t('users.info.attributes.password_confirmation') %>
-    <% else %>
-      <%= t('users.info.attributes.new_password_confirmation') %>
-    <% end %>
-    <br>
-    <%= f.password_field :password_confirmation, class: 'text' %>
-  </div>
-  
-  <br class="clearfloat"/>
-  
-  <ul class="profile-errors">
-    <% general_errors.each do |err| %>
-      <li><%= err %></li>
-    <% end %>
-  </ul>
-  
-</fieldset>
-
-
-<hr>
-
-
-<fieldset id="location_container_in_personal_info" class="insesrt-content">
-  
-  
-  <%
-  disabling = !forced_location.nil?
-  forced_ancestors = (forced_location.ancestors + [forced_location]) if disabling
-%>
-<% SETTINGS['location_types'].each_with_index do |location, index| %> <!-- TODO forrm pensaci tu --- devo sistemare il nuovo parziale locations_list -->
-  <%
-    is_last = (index == SETTINGS['location_types'].length - 1)
-    my_own_locations = locations[index].nil? ? {:selected => 0, :content => []} : locations[index]
-  %>
-  <div class="inputElement">
-    <div class="TODO"> <!-- TODO forrm aggiornare il nome della classe (mettici profile-element) -->
-      <%= Location.label_at(index) %><br>
-      <% if disabling %>
-        <div class="profile-location-deselected" id="<%= location.downcase %>_id"><%= forced_ancestors[index].name %></div>
-      <% else %>
-        <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="<%= is_last %>" name="location[<%= location.downcase %>]">
-          <%= render :partial => 'users/locations_list', :locals => {:locations => my_own_locations[:content], :selected => my_own_locations[:selected], :label => (my_own_locations[:content].any? ? Location.label_at(index) : nil)} %>
-        </select>
-      <% end %>
-    </div>
-  </div>
-  <% disabling = false if disabling && forced_location.sti_type == location %>
-<% end %>
-
-<% if forced_location && forced_location.sti_type == SETTINGS['location_types'].last %>
-  <input id="user_location_id" type="hidden" value="<%= forced_location.id %>" name="user[location_id]">
-<% end %>
-  
-  
-</fieldset>
-
-<% if saas %>
-  <div id="outer_locations_disclaimer">
-    <input id="locations_disclaimer" class="regcular-checkbox" type="checkbox" value="0">
-    <%= label_tag 'locations_disclaimer', '' %>
-    <%= t('registration.locations_disclaimer', :location => Location.base_label.downcase) %>
-  </div>
-<% end %>
-
-<br/><br/><br/>
-
-<hr>
-
-
-<fieldset class="insert-contesnt">
-  
-  <div class="inputElement">
-    <%= t('users.info.attributes.school_level_id') %><br>
-    <%= f.select :school_level_id, school_level_ids %>
-  </div>
-  <br class="clearfloat">
-  
-</fieldset>
-
-<br/><br/>
-
-<hr>
-  
   
   <h2><%= t('registration.subjects.title') %></h2>
-  
-  
   
   <%
           my_style = ''
