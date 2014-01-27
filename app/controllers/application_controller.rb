@@ -331,7 +331,7 @@ class ApplicationController < ActionController::Base
         resp[:policies] << t('forms.error_captions.policy_not_accepted', :policy => t('registration.policies')[index]['title'])
       end
     end
-    resp[:purchase] << t('forms.error_captions.invalid_purchase_id') if errors.added?(:purchase_id, :doesnt_exist)
+    resp[:purchase] << t('forms.error_captions.invalid_purchase_id') if errors.messages.has_key? :purchase_id
     resp
   end
   
