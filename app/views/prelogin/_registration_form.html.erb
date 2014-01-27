@@ -61,7 +61,7 @@
     </div>
     <br class="clearfloat"/>
     <ul class="profile-errors">
-      <% errors.each do |err| %>
+      <% errors[:general].each do |err| %>
         <li><%= err %></li>
       <% end %>
     </ul>
@@ -100,8 +100,8 @@
     <div class="profile-element">
       <%= t('users.info.attributes.school_level_id') %><br/>
       <select id="user_school_level_id" name="school_level_id">
-        <% @school_levels.each do |sl| %>
-          <% if @user.school_level_id == sl.id %>
+        <% school_levels.each do |sl| %>
+          <% if user.school_level_id == sl.id %>
             <option value="<%= sl.id %>" selected="selected"><%= sl.description %></option>
           <% else %>
             <option value="<%= sl.id %>"><%= sl.description %></option>
