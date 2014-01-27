@@ -137,26 +137,23 @@
   
   <div id="registration-policies" class="registration-element-container">
     <% user.registration_policies.each_with_index do |policy, index| %>
-      <% my_policy = t('registration.policies')[index] %>
-      <strong><%= my_policy['title'] %></strong><br><br>
-      <div class="policy-verticalScroll">
-        <%= my_policy['description'].html_safe %>
-      </div>
-      <div class="checkbox-csssontent">
-        <div class="checkboxElement">
-          <table>
-            <tr>
-              <td>
-                <%= f.hidden_field policy, value: '0', id: nil %>
-                <%= check_box_tag "user[#{policy}]", '1', user.send(policy) == '1', class: 'regcular-checkbox' %>
-                <%= label_tag "user[#{policy}]", '' %>
-              </td>
-              <td><%= my_policy['accept'] %></td>
-            </tr>
-          </table>
+      <div class="profile-element">
+        <% my_policy = t('registration.policies')[index] %>
+        <h3><%= my_policy['title'] %></h3>
+        <div class="content">
+          <%= my_policy['description'].html_safe %>
+        </div>
+        <div class="accept">
+          <% if user.send(policy) == '1' %>
+            <input id="registration-policy_<%= index %>" type="checkbox" value="1" name="policy_<%= index %>" checked="checked"/>
+            <label for="registration-policy_<%= index %>"></label>
+          <% else %>
+            <input id="registration-policy_<%= index %>" type="checkbox" value="1" name="policy_<%= index %>"/>
+            <label for="registration-policy_<%= index %>"></label>
+          <% end %>
+          <span><%= my_policy['accept'] %></span>
         </div>
       </div>
-      <br class="clearfloat"><br><br>
     <% end %>
     <br class="clearfloat"/>
     <ul class="profile-errors">
