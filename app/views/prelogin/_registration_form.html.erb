@@ -40,53 +40,53 @@
   <div id="registration-general" class="registration-element-container">
     <div class="profile-element">
       <%= t('users.info.attributes.name') %><br/>
-      <input type="text" value="<%= @user.name %>" name="name" class="<%= @user.errors.messages.has_key?(:name).to_s %>"/>
+      <input type="text" value="<%= user.name %>" name="name" class="<%= user.errors.messages.has_key?(:name).to_s %>"/>
     </div>
     <div class="profile-element">
       <%= t('users.info.attributes.surname') %><br/>
-      <input type="text" value="<%= @user.surname %>" name="surname" class="<%= @user.errors.messages.has_key?(:surname).to_s %>"/>
+      <input type="text" value="<%= user.surname %>" name="surname" class="<%= user.errors.messages.has_key?(:surname).to_s %>"/>
     </div>
     <div class="profile-element email">
       <%= t('users.info.attributes.email') %><br/>
-      <input type="text" value="<%= @user.email %>" disabled="disabled"/>
+      <input type="text" value="<%= user.email %>" disabled="disabled"/>
     </div>
     <br class="clearfloat"/>
     <div class="profile-element">
       <%= t('users.info.attributes.password') %><br/>
-      <input type="password" name="password" class="<%= @user.errors.messages.has_key?(:password).to_s %>"/>
+      <input type="password" name="password" class="<%= user.errors.messages.has_key?(:password).to_s %>"/>
     </div>
     <div class="profile-element">
       <%= t('users.info.attributes.password_confirmation') %><br/>
-      <input type="password" name="password_confirmation" class="<%= @user.errors.added?(:password, :confirmation).to_s %>"/>
+      <input type="password" name="password_confirmation" class="<%= user.errors.added?(:password, :confirmation).to_s %>"/>
     </div>
     <br class="clearfloat"/>
     <ul class="profile-errors">
-      <% @errors.each do |err| %>
+      <% errors.each do |err| %>
         <li><%= err %></li>
       <% end %>
     </ul>
   </div>
   <div id="registration-locations" class="registration-element-container">
-    <% @location_types.each_with_index do |location, index| %>
+    <% location_types.each_with_index do |location, index| %>
       <div id="<%= location.downcase %>_id" class="profile-element">
         <%
           locals_for_location = {
-            :empty      => (index > 0 && @locations[index - 1][:selected] != 0 && @locations[index][:content].empty?),
+            :empty      => (index > 0 && locations[index - 1][:selected] != 0 && locations[index][:content].empty?),
             :forced     => (disabling ? forced_ancestors[index] : nil),
-            :is_last    => (index == @location_types.length - 1),
+            :is_last    => (index == location_types.length - 1),
             :label      => Location.label_at(index),
             :label_plur => Location.label_at(index, true),
-            :locations  => @locations[index][:content],
-            :selected   => @locations[index][:selected],
+            :locations  => locations[index][:content],
+            :selected   => locations[index][:selected],
             :type       => location.downcase
           }
         %>
         <%= render :partial => 'users/locations_list', :locals => locals_for_location %>
       </div>
-      <% disabling = false if disabling && @forced_location.sti_type == location %>
+      <% disabling = false if disabling && forced_location.sti_type == location %>
     <% end %>
-    <% if @forced_location && @forced_location.sti_type == @location_types.last %>
-      <input type="hidden" value="<%= @forced_location.id %>" name="location[<%= @forced_location.sti_type.downcase %>]"/>
+    <% if forced_location && forced_location.sti_type == location_types.last %>
+      <input type="hidden" value="<%= forced_location.id %>" name="location[<%= forced_location.sti_type.downcase %>]"/>
     <% end %>
     <% if saas %>
       <div id="outer_locations_disclaimer">
