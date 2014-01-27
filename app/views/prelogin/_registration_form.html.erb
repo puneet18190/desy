@@ -1,27 +1,33 @@
-<%= form_tag user, :id => 'official_registration_form', :autocomplete => 'off' do |f| %>
-  <%
-    input_purchase_code = "<input id=\"registration_purchase_id\" class=\"text fltlft\" type=\"text\" value=\"\" name=\"purchase_id\">".html_safe
-    input_trial_checkbox = "<input id=\"registration_trial\" class=\"regcular-checkbox\" type=\"checkbox\" value=\"0\" name=\"trial\">".html_safe
-    if trial
-      input_purchase_code = "<input id=\"registration_purchase_id\" class=\"text disabled fltlft\" type=\"text\" value=\"\" name=\"purchase_id\" disabled=\"disabled\">".html_safe
-      input_trial_checkbox = "<input id=\"registration_trial\" class=\"regcular-checkbox checked\" type=\"checkbox\" value=\"1\" name=\"trial\" checked=\"checked\">".html_safe
-    end
-  %>
+<%= form_tag users_path, :method => :post, :id => 'official_registration_form', :autocomplete => 'off' do %>
   <% if SETTINGS['saas_registration_mode'] %>
-    <fieldset class="insert-contsent formCodAcquisto">
-      <%= t('registration.purchase_id') %><br/>
-      <%= input_purchase_code %> <div class="validationOk fltlft" style="display:none" id="registration_ok">&#10004;</div>
+    <div id="registration-purchase-id" class="registration-element-container">
+      <% if trial %>
+        <%= t('registration.purchase_id') %><br/>
+        <input id="registration_purchase_id" type="text" value="" name="purchase_id" disabled="disabled"/>
+        <div class="validationOk fltlft" style="display:none" id="registration_ok">&#10004;</div>
+        <br class="clearfloat"/>
+        <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br/>
+        <input id="registration_trial" class="checked" type="checkbox" value="1" name="trial" checked="checked"/>
+        <label for="registration_trial"></label>
+      <% else %>
+        <%= t('registration.purchase_id') %><br/>
+        <input id="registration_purchase_id" type="text" value="" name="purchase_id"/>
+        <div class="validationOk fltlft" style="display:none" id="registration_ok">&#10004;</div>
+        <br class="clearfloat"/>
+        <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br/>
+        <input id="registration_trial" class="checked" type="checkbox" value="1" name="trial"/>
+        <label for="registration_trial"></label>
+      <% end %>
       <br class="clearfloat"/>
-      <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br>
-      <%= input_trial_checkbox %>
-      <%= label_tag 'registration_trial', '' %>
-    </fieldset>
-    <% if errors && errors.has_key?(:purchase_id) %>
       <ul class="profile-errors">
-        <li><%= errors[:purchase_id] %></li>
+        <% errors[:purchase_id].each do |err| %>
+          <li><%= err %></li>
+        <% end %>
       </ul>
-    <% end %>
   <% end %>
+  
+  <!-- TODO forrm giunto qui -->
+  
   <%
     locals_for_general_info = {
       :f => f,

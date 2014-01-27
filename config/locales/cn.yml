@@ -2041,9 +2041,11 @@ cn:
     upgrade_trial: "升级的试用账户"
     # Purchase code
     # 1 - views/prelogin/_registration_form.html.erb
+    # 2 - views/prelogin/_registration_form.html.erb
     purchase_id: "购买注册码:"
     # Trial checkbox (the variable %{days} is replaced by the number of days the trial is valid)
     # 1 - views/prelogin/_registration_form.html.erb
+    # 2 - views/prelogin/_registration_form.html.erb
     trial: "我没有购买码,但想激活 %{days}天的试用账号"
     # Disclaimer to state that the location is not compulsory (the variable %{location} is replaced by the lowest leaf in the location tree)
     # 1 - views/users/_personal_info.html.erb
