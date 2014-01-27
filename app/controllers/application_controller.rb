@@ -336,8 +336,9 @@ class ApplicationController < ActionController::Base
   end
   
   # Initializes the registration_form
-  def initialize_registration_form
-    @trial = params[:trial] == '1'
+  def initialize_registration_form(subject_ids=[])
+    @subject_ids = subject_ids
+    @trial = params[:trial].present?
     initialize_general_profile(Location.new)
     initialize_subjects_profile(false)
   end

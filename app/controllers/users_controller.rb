@@ -60,22 +60,36 @@ class UsersController < ApplicationController
   #
   def create
     @saas = SETTINGS['saas_registration_mode']
-    
-    # TODO forrm da qui ...
-    
-    email = params[:user].try(:delete, :email)
-    if @saas
-      @trial            = params[:trial] == '1'
-      purchase = Purchase.find_by_token params[:purchase_id]
-    end
-    @user = User.active.not_confirmed.new(params[:user]) do |user|
-      user.email = email
-      if params.has_key?(:location) && params[:location][LAST_LOCATION].to_i != 0
-        user.location_id = params[:location][LAST_LOCATION]
+    subject_ids = []
+    if params[:subjects].present?
+      params[:subjects].each do |k, v|
+        subject_ids << k.split('_').last.to_i
       end
-      user.purchase_id = @trial ? nil : (purchase ? purchase.id : 0) if @saas
     end
-    if @user.save
+    user_saved = false
+    AtiveRecord::Base.transaction do
+      @user = User.active.not_confirmed.new
+      @user.email = params[:email]
+      @user.name = params[:name]
+      @user.surname = params[:surname]
+      @user.password = params[:password]
+      @user.password_confirmation = params[:password_confirmation]
+      @user.school_level_id = params[:school_level_id]
+      @user.subject_ids = subject_ids
+      
+      # TODO forrm manca accettazione policies
+      
+      if @saas && params[:trial].present?
+        purchase = Purchase.find_by_token params[:purchase_id]
+        @user.purchase_id = purchase ? purchase.id : 0
+      end
+      if params.has_key?(:location) && params[:location][LAST_LOCATION].to_i != 0
+        @user.location_id = params[:location][LAST_LOCATION]
+      end
+      user_saved = @user.save
+      raise ActiveRecord::Rollback if !user_saved
+    end
+    if user_saved
       UserMailer.account_confirmation(@user).deliver
       if @saas
         if @user.trial?
@@ -96,11 +110,8 @@ class UsersController < ApplicationController
         UserMailer.purchase_full(purchase).deliver if purchase && User.where(:purchase_id => purchase.id).count >= purchase.accounts_number
       end
       render 'users/fullpage_notifications/confirmation/email_sent'
-    
-    # TODO forrm ... a qui
-    
     else
-      initialize_registration_form
+      initialize_registration_form(subject_ids)
       @errors = convert_user_error_messages @user.errors
     end
   end
