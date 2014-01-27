@@ -4,16 +4,12 @@
 #official_registration_form {
   
   width: 100%;
-  margin-top: 20px;
   
   .registration-element-container {
     
     float: left;
-    border: 1px solid #EFEFEF;
-    color: #999;
-    padding: 35px;
-    margin: 0 0 20px 0;
-    width: calc(100% - 72px);
+    padding: 35px 0 35px 0;
+    width: 100%;
     
     .profile-element {
       
@@ -23,13 +19,12 @@
       margin-right: 80px;
       padding-bottom: 30px;
       
-      input { /* TODO forrm */
+      input {
         
-        @include nunito(13px);
-        background-color: #F5F5F5;
-        color: #7D7D7D;
-        margin-right: 0px;
-        width: 216px;
+        @include arial(15px);
+        background-color: white;
+        color: #939393;
+        width: 227px;
         height: 29px;
         box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
         padding: 4px 10px 4px 10px;
@@ -43,6 +38,12 @@
         }
         
       }
+      
+    }
+    
+    &#registration-purchase-id {
+      
+      color: #434244;
       
     }
     

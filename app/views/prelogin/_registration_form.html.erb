@@ -8,29 +8,32 @@
   
   <% if saas %>
     <div id="registration-purchase-id" class="registration-element-container">
-      <% if trial %>
-        <%= t('registration.purchase_id') %><br/>
-        <input id="registration_purchase_id" type="text" value="" name="purchase_id" disabled="disabled"/>
-        <div class="fltlft" style="display:none" id="registration_ok">&#10004;</div>
-        <br class="clearfloat"/>
-        <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br/>
-        <input id="registration_trial" class="checked" type="checkbox" value="1" name="trial" checked="checked"/>
-        <%= label_tag 'registration_trial', '' %>
-      <% else %>
-        <%= t('registration.purchase_id') %><br/>
-        <input id="registration_purchase_id" type="text" value="" name="purchase_id"/>
-        <div class="fltlft" style="display:none" id="registration_ok">&#10004;</div>
-        <br class="clearfloat"/>
-        <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br/>
-        <input id="registration_trial" class="checked" type="checkbox" value="1" name="trial"/>
-        <%= label_tag 'registration_trial', '' %>
-      <% end %>
+      <div class="profile-element">
+        <% if trial %>
+          <%= t('registration.purchase_id') %><br/>
+          <input id="registration_purchase_id" type="text" value="" name="purchase_id" disabled="disabled"/>
+          <div class="fltlft" style="display:none" id="registration_ok">&#10004;</div>
+          <br class="clearfloat"/>
+          <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br/>
+          <input id="registration_trial" class="checked" type="checkbox" value="1" name="trial" checked="checked"/>
+          <%= label_tag 'registration_trial', '' %>
+        <% else %>
+          <%= t('registration.purchase_id') %><br/>
+          <input id="registration_purchase_id" type="text" value="" name="purchase_id"/>
+          <div class="fltlft" style="display:none" id="registration_ok">&#10004;</div>
+          <br class="clearfloat"/>
+          <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br/>
+          <input id="registration_trial" class="checked" type="checkbox" value="1" name="trial"/>
+          <%= label_tag 'registration_trial', '' %>
+        <% end %>
+      </div>
       <br class="clearfloat"/>
       <ul class="profile-errors">
         <% errors[:purchase].each do |err| %>
           <li><%= err %></li>
         <% end %>
       </ul>
+    </div>
   <% end %>
   
   <div id="registration-general" class="registration-element-container">
