@@ -177,11 +177,15 @@ class Location < ActiveRecord::Base
   #
   # Returns an array of hashes (:selected, which may be either an id or zero if no location is selected, and :content, which contains the effective locations): it starts from the first ancestors until the leaves. After the first children of the current location, the response loads empty arrays until the leaves.
   #
+  # === Args
+  #
+  # * *stop_before_leaves*: default = false, if true the response doesn't contain locations below the direct children of the current location
+  #
   # === Returns
   #
   # An array of hashes
   #
-  def select_with_selected
+  def select_with_selected(stop_before_leaves=false)
     resp = []
     index = SUBMODEL_NAMES.index(self.class.to_s)
     if index.nil?
@@ -198,9 +202,11 @@ class Location < ActiveRecord::Base
         index += 1
       end
     end
-    while index < SUBMODEL_NAMES.length
-      resp << {:selected => 0, :content => []}
-      index += 1
+    if !stop_before_leaves
+      while index < SUBMODEL_NAMES.length
+        resp << {:selected => 0, :content => []}
+        index += 1
+      end
     end
     resp
   end

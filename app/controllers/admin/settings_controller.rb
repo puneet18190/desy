@@ -208,11 +208,11 @@ class Admin::SettingsController < AdminController
     @locations = [{:selected => 0, :content => Location.roots.order(:name)}]
     if params[:selected]
       location = Location.find_by_id params[:selected]
-      @locations = location.get_filled_select_for_personal_info if location
+      @locations = location.select_with_selected(true) if location
     end
     if params[:search_by_code_type]
       location = Location.where(:sti_type => params[:search_by_code_type], :code => params[:search_by_code]).first
-      @locations = location.get_filled_select_for_personal_info if location
+      @locations = location.select_with_selected(true) if location
     end
   end
   

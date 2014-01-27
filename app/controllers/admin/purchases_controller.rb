@@ -229,7 +229,7 @@ class Admin::PurchasesController < AdminController
     @location = location_id.nil? ? location_code : location_id
     if @location
       @ok = true
-      @locations = @location.get_filled_select_for_personal_info
+      @locations = @location.select_with_selected(false)
     else
       @ok = false
     end
