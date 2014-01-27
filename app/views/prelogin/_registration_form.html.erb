@@ -1,16 +1,5 @@
-<!-- TODO forrm rimuovi in seguito
-  :forced_location => @forced_location,
-  :locations       => @locations,
-  :location_types  => @location_types,
-  :errors          => @errors,
-  :saas            => @saas,
-  :school_levels   => @school_levels,
-  :subjects        => @subjects,
-  :trial           => @trial,
-  :user            => @user
--->
-
 <%= form_tag users_path, :method => :post, :id => 'official_registration_form', :autocomplete => 'off' do %>
+  
   <% if saas %>
     <div id="registration-purchase-id" class="registration-element-container">
       <% if trial %>
@@ -20,7 +9,7 @@
         <br class="clearfloat"/>
         <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br/>
         <input id="registration_trial" class="checked" type="checkbox" value="1" name="trial" checked="checked"/>
-        <label for="registration_trial"></label>
+        <%= label_tag 'registration_trial', '' %>
       <% else %>
         <%= t('registration.purchase_id') %><br/>
         <input id="registration_purchase_id" type="text" value="" name="purchase_id"/>
@@ -28,7 +17,7 @@
         <br class="clearfloat"/>
         <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br/>
         <input id="registration_trial" class="checked" type="checkbox" value="1" name="trial"/>
-        <label for="registration_trial"></label>
+        <%= label_tag 'registration_trial', '' %>
       <% end %>
       <br class="clearfloat"/>
       <ul class="profile-errors">
@@ -37,6 +26,7 @@
         <% end %>
       </ul>
   <% end %>
+  
   <div id="registration-general" class="registration-element-container">
     <div class="profile-element">
       <%= t('users.info.attributes.name') %><br/>
@@ -66,6 +56,7 @@
       <% end %>
     </ul>
   </div>
+  
   <div id="registration-locations" class="registration-element-container">
     <% location_types.each_with_index do |location, index| %>
       <div id="<%= location.downcase %>_id" class="profile-element">
@@ -96,6 +87,7 @@
       </div>
     <% end %>
   </div>
+  
   <div id="registration-school-level" class="registration-element-container">
     <div class="profile-element">
       <%= t('users.info.attributes.school_level_id') %><br/>
@@ -112,50 +104,45 @@
     <br class="clearfloat"/>
   </div>
   
-  
-  <!-- TODO forrm giunto qui -->
-  
-  
   <h2><%= t('registration.subjects.title') %></h2>
+  <div id="registration-subjects" class="registration-element-container">
+    <% subjects.each_with_index do |cathegory, index| %>
+      <div class="profile-subject-cathegory-container <%= (index == subjects.length - 1) ? 'no-border' : '' %>">
+        <div class="profile-subject-cathegory-label">
+          <%= cathegory[:label].present? ? cathegory[:label] : (subjects.first[:label].blank? ? '' : t('users.subjects.no_cathegory')) %>
+        </div>
+        <% cathegory[:items].each do |subject| %>
+          <div class="profile-element">
+            <% if subjects_ids.include?(subject.id) %>
+              <input id="profile-subject-<%= subject.id %>" type="checkbox" value="1" name="subjects[id_<%= subject.id %>]" checked="checked"/>
+            <% else %>
+              <input id="profile-subject-<%= subject.id %>" type="checkbox" value="1" name="subjects[id_<%= subject.id %>]"/>
+            <% end %>
+            <%= label_tag "profile-subject-#{subject.id}", '' %>
+            <span><%= subject.to_s %></span>
+            <% if cathegory[:label].present? %>
+              <a class="checkAllSubjects"><%= t('registration.select_all_subjects') %></a>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <br class="clearfloat"/>
+    <ul class="profile-errors">
+      <% errors[:subjects].each do |err| %>
+        <li><%= err %></li>
+      <% end %>
+    </ul>
+  </div>
   
-  <%
-          my_style = ''
-          other_label = t('users.subjects.no_cathegory')
-          my_style = 'border-bottom:0' if @subjects.length == 1
-          other_label = '' if @subjects.first[:label].blank?
-        %>
-        <fieldset class="inssert-content">
-          <%= hidden_field_tag :in_subjects, true %>
-          <% @subjects.each do |cathegory| %>
-            <div class="cathegorySubjectContainer" style="<%= my_style %>">
-              <div class="cathegorySubjectName">
-                <%= cathegory[:label].present? ? cathegory[:label] : other_label %>
-              </div>
-              <% cathegory[:items].each do |subject| %>
-                <% html_id = "users_subject_ids_#{subject.id}" %>
-                <div class="checkboxElement">
-                  <%= check_box_tag 'user[subject_ids][]', subject.id, @user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: 'regcular-checkbox bicg-checkbox' %>
-                  <%= label_tag html_id, '', :class => 'unchecked' %>
-                  <span><%= subject.to_s %></span>
-                </div>
-              <% end %>
-              <br class="clearfloat">
-              <% if !edit && cathegory[:label].present? %>
-                <a class="checkAllSubjects"><%= t('registration.select_all_subjects') %></a>
-              <% end %>
-            </div>
-  
-  
-  
-  <hr>
-  <div class="contentForm">
+  <div id="registration-policies" class="registration-element-container">
     <% user.registration_policies.each_with_index do |policy, index| %>
       <% my_policy = t('registration.policies')[index] %>
       <strong><%= my_policy['title'] %></strong><br><br>
       <div class="policy-verticalScroll">
         <%= my_policy['description'].html_safe %>
       </div>
-      <div class="checkbox-csssontent"> <!-- TODO forrm pensaci tu -->
+      <div class="checkbox-csssontent">
         <div class="checkboxElement">
           <table>
             <tr>
@@ -171,11 +158,14 @@
       </div>
       <br class="clearfloat"><br><br>
     <% end %>
+    <br class="clearfloat"/>
     <ul class="profile-errors">
-      <% (errors.nil? ? [] : errors[:policies]).each do |err| %>
+      <% errors[:policies].each do |err| %>
         <li><%= err %></li>
       <% end %>
     </ul>
-    <%= f.submit t('registration.done') %>
+  </div>
+  <div class="form_submit">
+    <input type="submit" value="<%= t('registration.done') %>"/>
   </div>
 <% end %>
