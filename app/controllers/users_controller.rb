@@ -65,9 +65,12 @@ class UsersController < ApplicationController
   # * ApplicationController#authenticate
   #
   def create
+    @saas = SETTINGS['saas_registration_mode']
+    
+    # TODO forrm da qui ...
+    
     email = params[:user].try(:delete, :email)
-    saas = SETTINGS['saas_registration_mode']
-    if saas
+    if @saas
       @trial            = params[:trial] == '1'
       purchase = Purchase.find_by_token params[:purchase_id]
     end
@@ -76,11 +79,11 @@ class UsersController < ApplicationController
       if params.has_key?(:location) && params[:location][LAST_LOCATION].to_i != 0
         user.location_id = params[:location][LAST_LOCATION]
       end
-      user.purchase_id = @trial ? nil : (purchase ? purchase.id : 0) if saas
+      user.purchase_id = @trial ? nil : (purchase ? purchase.id : 0) if @saas
     end
     if @user.save
       UserMailer.account_confirmation(@user).deliver
-      if saas
+      if @saas
         if @user.trial?
           Notification.send_to @user.id, t('notifications.account.trial',
             :user_name => @user.name,
@@ -99,13 +102,12 @@ class UsersController < ApplicationController
         UserMailer.purchase_full(purchase).deliver if purchase && User.where(:purchase_id => purchase.id).count >= purchase.accounts_number
       end
       render 'users/fullpage_notifications/confirmation/email_sent'
+    
+    # TODO forrm ... a qui
+    
     else
+      initialize_registration_form
       @errors = convert_user_error_messages @user.errors
-      location = Location.get_from_chain_params params[:location]
-      @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
-      @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-      @subjects         = Subject.extract_with_cathegories
-      render 'prelogin/registration', :layout => 'prelogin'
     end
   end
   

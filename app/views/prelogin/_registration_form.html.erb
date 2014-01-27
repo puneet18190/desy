@@ -1,5 +1,5 @@
 <%= form_tag users_path, :method => :post, :id => 'official_registration_form', :autocomplete => 'off' do %>
-  <% if SETTINGS['saas_registration_mode'] %>
+  <% if saas %>
     <div id="registration-purchase-id" class="registration-element-container">
       <% if trial %>
         <%= t('registration.purchase_id') %><br/>
@@ -129,7 +129,7 @@
   
 </fieldset>
 
-<% if SETTINGS['saas_registration_mode'] && !edit %>
+<% if saas %>
   <div id="outer_locations_disclaimer">
     <input id="locations_disclaimer" class="regcular-checkbox" type="checkbox" value="0">
     <%= label_tag 'locations_disclaimer', '' %>

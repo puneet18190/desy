@@ -80,6 +80,8 @@ class PreloginController < ApplicationController
   # * ApplicationController#authenticate
   #
   def registration
+    @saas = SETTINGS['saas_registration_mode']
+    @user = User.new
     initialize_registration_form
     @errors = {
       :general  => [],
