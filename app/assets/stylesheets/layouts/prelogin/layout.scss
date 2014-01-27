@@ -8,22 +8,21 @@
   .registration-element-container {
     
     float: left;
-    padding: 35px 0 35px 0;
     width: 100%;
     
     .profile-element {
       
       @include nunito(100%);
       float: left;
-      width: 236px;
-      margin-right: 80px;
-      padding-bottom: 30px;
+      width: 247px;
+      margin-right: 12px;
+      margin-bottom: 10px;
       
       input {
         
         @include arial(15px);
         background-color: white;
-        margin: 5px 12px 10px 0;
+        margin-top: 5px;
         color: #939393;
         width: 227px;
         height: 29px;
@@ -45,6 +44,7 @@
     &#registration-purchase-id {
       
       color: #434244;
+      padding-top: 35px;
       
       .profile-element {
         
