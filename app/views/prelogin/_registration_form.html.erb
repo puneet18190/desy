@@ -12,7 +12,7 @@
         <% if trial %>
           <%= t('registration.purchase_id') %><br/>
           <input id="registration_purchase_id" type="text" value="" name="purchase_id" disabled="disabled"/>
-          <div class="fltlft" style="display:none" id="registration_ok">&#10004;</div>
+          <div id="registration_ok" style="display:none">&#10004;</div>
           <br class="clearfloat"/>
           <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br/>
           <input id="registration_trial" class="checked" type="checkbox" value="1" name="trial" checked="checked"/>
@@ -20,7 +20,7 @@
         <% else %>
           <%= t('registration.purchase_id') %><br/>
           <input id="registration_purchase_id" type="text" value="" name="purchase_id"/>
-          <div class="fltlft" style="display:none" id="registration_ok">&#10004;</div>
+          <div id="registration_ok" style="display:none">&#10004;</div>
           <br class="clearfloat"/>
           <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br/>
           <input id="registration_trial" class="checked" type="checkbox" value="1" name="trial"/>

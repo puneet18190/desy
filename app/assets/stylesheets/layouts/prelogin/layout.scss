@@ -425,6 +425,12 @@ html.prelogin-layout {
         
         @include nunito(16px);
         
+        &.subtitle {
+          
+          margin-top: 15px;
+          
+        }
+        
       }
       
       .footer {

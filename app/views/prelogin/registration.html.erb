@@ -30,6 +30,6 @@
 <br class="clearfloat">
 <div class="containerText">
   <h1><%= t('registration.title') %></h1>
-  <h2><%= t('registration.subtitle', :desy => SETTINGS['application_name']) %></h2>
+  <h2 class="subtitle"><%= t('registration.subtitle', :desy => SETTINGS['application_name']) %></h2>
   <%= render :partial => 'prelogin/registration_form', :locals => locals_for_registration_form %>
 </div>
