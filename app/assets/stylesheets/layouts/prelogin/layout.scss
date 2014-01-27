@@ -76,8 +76,8 @@
             
             background-color: #83A5C8;
             box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 3px;
+            padding: 9px;
             float: left;
             width: auto;
             cursor: pointer;
@@ -86,12 +86,12 @@
           
           input:checked + label:after {
             
-            color: $green;
+            color: white;
             cursor: pointer;
             content: '\2714';
-            font-size: 28px;
-            top: 9px;
-            left: 18px;
+            font-size: 14px;
+            top: 17px;
+            left: 4px;
             position: absolute;
             
           }
