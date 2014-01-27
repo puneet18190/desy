@@ -1,3 +1,9 @@
+<%
+  disabling = !forced_location.nil?
+  forced_ancestors = (forced_location.ancestors + [forced_location]) if disabling
+%>
+
+
 <%= form_tag users_path, :method => :post, :id => 'official_registration_form', :autocomplete => 'off' do %>
   
   <% if saas %>
