@@ -16,7 +16,7 @@
       <br class="clearfloat"/>
       <div class="profile-element check">
         <%= t('registration.trial', :days => SETTINGS['saas_trial_duration']) %><br/>
-        <input id="registration_trial" class="checked" type="checkbox" value="1" name="trial" <%= trial ? "checked=\"checked\"".html_safe : '' %>/>
+        <input id="registration_trial" type="checkbox" value="1" name="trial" <%= trial ? "class=\"checked\" checked=\"checked\"".html_safe : '' %>/>
         <%= label_tag 'registration_trial', '' %>
       </div>
       <br class="clearfloat"/>

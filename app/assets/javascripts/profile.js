@@ -67,11 +67,11 @@ function purchaseCodeRegistrationDocumentReady() {
     var me = $(this);
     if(!me.hasClass('checked')) {
       me.addClass('checked').val('1');
-      $('#registration_purchase_id').val('').removeClass('error').addClass('disabled').attr('disabled', 'disabled');
+      $('#registration_purchase_id').val('').removeClass('error').attr('disabled', 'disabled');
       $('#registration_ok').hide();
     } else {
       me.removeClass('checked').val('0');
-      $('#registration_purchase_id').removeAttr('disabled').removeClass('disabled');
+      $('#registration_purchase_id').removeAttr('disabled');
     }
   });
   $body.on('click', '#locations_disclaimer', function() {

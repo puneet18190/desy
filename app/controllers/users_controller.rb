@@ -67,7 +67,7 @@ class UsersController < ApplicationController
       end
     end
     user_saved = false
-    AtiveRecord::Base.transaction do
+    ActiveRecord::Base.transaction do
       @user = User.active.not_confirmed.new
       @user.email = params[:email]
       @user.name = params[:name]
