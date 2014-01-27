@@ -2242,24 +2242,28 @@ cn:
       wrong_popup: "Profile couldn't be updated" # TODO
       # Captions for each profile attribute that can be modified by the user
       attributes:
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/users/edit.html.erb
+        # 2 - views/prelogin/_registration_form.html.erb
         name: "名字"
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/users/edit.html.erb
+        # 2 - views/prelogin/_registration_form.html.erb
         surname: "别名"
         # Only this particular attribute can't be modified, being the identifier of the user
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/users/edit.html.erb
+        # 2 - views/prelogin/_registration_form.html.erb
         email: "邮件地址"
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/prelogin/_registration_form.html.erb
         password: "密码"
         # This is in the case the user is writing his password for the first time
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/users/edit.html.erb
         new_password: "新密码"
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/prelogin/_registration_form.html.erb
         password_confirmation: "密码确认"
         # This is in the case the user is writing his password for the first time
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/users/edit.html.erb
         new_password_confirmation: "新密码确认"
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/users/edit.html.erb
+        # 2 - views/prelogin/_registration_form.html.erb
         school_level_id: "学校标准"
     # Section 2: mailing lists
     mailing_list:
