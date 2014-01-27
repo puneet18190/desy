@@ -339,7 +339,7 @@ class ApplicationController < ActionController::Base
   def initialize_registration_form
     @trial = params[:trial] == '1'
     initialize_general_profile(Location.new)
-    initialize_subjects_profile
+    initialize_subjects_profile(false)
   end
   
   # Initializes the local variables for general profile
@@ -361,9 +361,9 @@ class ApplicationController < ActionController::Base
   end
   
   # Initializes the local variables for updating subjects in the profile
-  def initialize_subjects_profile
+  def initialize_subjects_profile(with_users_subjects)
     @subjects = Subject.extract_with_cathegories
-    @subjects_ids = UsersSubject.where(:user_id => @user.id).pluck(:subject_id)
+    @subjects_ids = UsersSubject.where(:user_id => @user.id).pluck(:subject_id) if with_users_subjects
   end
   
   # Checks if there is a logged user

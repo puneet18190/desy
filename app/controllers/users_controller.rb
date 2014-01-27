@@ -316,7 +316,7 @@ class UsersController < ApplicationController
   #
   def subjects
     @user = current_user
-    initialize_subjects_profile
+    initialize_subjects_profile(true)
     @errors = []
   end
   
@@ -347,7 +347,7 @@ class UsersController < ApplicationController
       if @errors[:general].any? || @errors[:policies].any? || @errors[:purchase].any?
         redirect_to my_subjects_path, { flash: { alert: t('users.subjects.wrong_popup') } }
       else
-        initialize_subjects_profile
+        initialize_subjects_profile(true)
         @errors = @errors[:subjects]
         render :subjects
       end
