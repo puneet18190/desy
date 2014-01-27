@@ -157,7 +157,7 @@ class Location < ActiveRecord::Base
   
   # === Description
   #
-  # Used in the front end, to fill the list of tags +select+ associated to this particular location
+  # Returns an array of arrays, starting from the first ancestors until the direct children of the location. If the location is a leaf, the response stops to the location itself.
   #
   # === Returns
   #
@@ -175,7 +175,7 @@ class Location < ActiveRecord::Base
   
   # === Description
   #
-  # Used in the front end, to fill the list of tags +select+ associated to this particular location (evidentiating which is the selected location for each step)
+  # Returns an array of hashes (:selected, which may be either an id or zero if no location is selected, and :content, which contains the effective locations): it starts from the first ancestors until the leaves. After the first children of the current location, the response loads empty arrays until the leaves.
   #
   # === Returns
   #

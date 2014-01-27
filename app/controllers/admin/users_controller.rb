@@ -32,7 +32,7 @@ class Admin::UsersController < AdminController
     @locations = [Location.roots.order(:name)]
     if params[:search]
       location = Location.get_from_chain_params params[:search]
-      @locations = location.get_filled_select if location
+      @locations = location.select_without_selected if location
     end
   end
   
