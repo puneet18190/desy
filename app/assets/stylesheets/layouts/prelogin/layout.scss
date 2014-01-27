@@ -23,6 +23,7 @@
         
         @include arial(15px);
         background-color: white;
+        margin: 5px 12px 10px 0;
         color: #939393;
         width: 227px;
         height: 29px;
@@ -44,6 +45,67 @@
     &#registration-purchase-id {
       
       color: #434244;
+      
+      .profile-element {
+        
+        width: 100%;
+        padding: 0;
+        
+        &.code {
+          
+          input {
+            
+            background-color: #83A5C8;
+            color: white;
+            
+          }
+          
+        }
+        
+        &.check {
+          
+          position: relative;
+          
+          input {
+            
+            display: none;
+            
+          }
+          
+          input:checked + label, label {
+            
+            background-color: #83A5C8;
+            box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
+            border-radius: 10px;
+            padding: 20px;
+            float: left;
+            width: auto;
+            cursor: pointer;
+            
+          }
+          
+          input:checked + label:after {
+            
+            color: $green;
+            cursor: pointer;
+            content: '\2714';
+            font-size: 28px;
+            top: 9px;
+            left: 18px;
+            position: absolute;
+            
+          }
+          
+          span {
+            
+            float: left;
+            padding: 10px;
+            
+          }
+          
+        }
+        
+      }
       
     }
     
