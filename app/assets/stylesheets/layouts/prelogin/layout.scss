@@ -57,12 +57,24 @@
             
             background-color: #83A5C8;
             color: white;
+            float: left;
             
           }
           
           input[disabled="disabled"] {
             
             background-color: #ACCFF2;
+            
+          }
+          
+          #registration_ok {
+            
+            @include nunito(35px);
+            display: none;
+            color: green;
+            margin: 0;
+            padding: 0;
+            float: left;
             
           }
           
