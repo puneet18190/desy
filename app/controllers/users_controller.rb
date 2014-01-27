@@ -292,7 +292,7 @@ class UsersController < ApplicationController
       redirect_to my_profile_path, { flash: { notice: t('users.info.ok_popup') } }
     else
       @errors = convert_user_error_messages @user.errors
-      if @errors[:subjects].any? || @errors[:policies].any? || @user.errors.messages.has_key?(:email)
+      if @errors[:subjects].any? || @errors[:policies].any? || @errors[:purchase].any? || @user.errors.messages.has_key?(:email)
         redirect_to my_profile_path, { flash: { alert: t('users.info.wrong_popup') } }
       else
         initialize_general_profile(@user.location)
@@ -344,7 +344,7 @@ class UsersController < ApplicationController
       redirect_to my_subjects_path, { flash: { notice: t('users.subjects.ok_popup') } }
     else
       @errors = convert_user_error_messages @user.errors
-      if @errors[:general].any? || @errors[:policies].any?
+      if @errors[:general].any? || @errors[:policies].any? || @errors[:purchase].any?
         redirect_to my_subjects_path, { flash: { alert: t('users.subjects.wrong_popup') } }
       else
         initialize_subjects_profile

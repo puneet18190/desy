@@ -1528,9 +1528,9 @@ class User < ActiveRecord::Base
   # Validates that there are not too many users associated to the same purchase
   def validate_accounts_number_for_purchase
     if @user
-      errors.add(:purchase_id, :too_many_users_for_purchase) if @purchase && self.purchase_id != @user.purchase_id && @purchase.accounts_number == User.where(:purchase_id => self.purchase_id).count
+      errors.add(:purchase_id, :too_many_users_for_purchase) if @purchase && self.purchase_id != @user.purchase_id && @purchase.accounts_number <= User.where(:purchase_id => self.purchase_id).count
     else
-      errors.add(:purchase_id, :too_many_users_for_purchase) if @purchase && @purchase.accounts_number == User.where(:purchase_id => self.purchase_id).count
+      errors.add(:purchase_id, :too_many_users_for_purchase) if @purchase && @purchase.accounts_number <= User.where(:purchase_id => self.purchase_id).count
     end
   end
   
