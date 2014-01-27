@@ -264,7 +264,7 @@ class UsersController < ApplicationController
   #
   def edit
     @user = current_user
-    initialize_general_profile
+    initialize_general_profile(@user.location)
     @errors = []
   end
   
@@ -299,7 +299,7 @@ class UsersController < ApplicationController
       if @errors[:subjects].any? || @errors[:policies].any? || @user.errors.messages.has_key?(:email)
         redirect_to my_profile_path, { flash: { alert: t('users.info.wrong_popup') } }
       else
-        initialize_general_profile
+        initialize_general_profile(@user.location)
         @errors = @errors[:general]
         render :edit
       end
@@ -484,30 +484,6 @@ class UsersController < ApplicationController
   end
   
   private
-  
-  # Initializes the local variables for general profile
-  def initialize_general_profile
-    @location_types = LOCATION_TYPES
-    @school_levels = SchoolLevel.order(:description)
-    location = @user.location
-    location = Location.get_from_chain_params(params[:location]) if params[:location].present?
-    if @user.purchase && @user.purchase.location
-      @forced_location = @user.purchase.location
-      if location && location.is_descendant_of?(@forced_location)
-        @locations = location.select_with_selected
-      else
-        @locations = @forced_location.select_with_selected
-      end
-    else
-      @locations = (location.nil? ? Location.new : location).select_with_selected
-    end
-  end
-  
-  # Initializes the local variables for updating subjects in the profile
-  def initialize_subjects_profile
-    @subjects = Subject.extract_with_cathegories
-    @subjects_ids = UsersSubject.where(:user_id => @user.id).pluck(:subject_id)
-  end
   
   # Function to be overwritten if the upgrade trial path changes
   def upgrade_trial_link

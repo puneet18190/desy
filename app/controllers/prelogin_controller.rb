@@ -80,11 +80,13 @@ class PreloginController < ApplicationController
   # * ApplicationController#authenticate
   #
   def registration
+    initialize_registration_form
+    
+    
     @trial            = params[:trial] == '1'
     @user             = User.new(params[:user])
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
     @locations        = [{:selected => 0, :content => Location.roots.order(:name)}]
-    @user_location    = {}
     @subjects         = Subject.extract_with_cathegories
   end
   
