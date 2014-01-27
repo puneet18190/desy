@@ -1,4 +1,4 @@
-<%= form_for user, :html => {:autocomplete => 'off'} do |f| %>
+<%= form_tag user, :id => 'official_registration_form', :autocomplete => 'off' do |f| %>
   <%
     input_purchase_code = "<input id=\"registration_purchase_id\" class=\"text fltlft\" type=\"text\" value=\"\" name=\"purchase_id\">".html_safe
     input_trial_checkbox = "<input id=\"registration_trial\" class=\"regcular-checkbox\" type=\"checkbox\" value=\"0\" name=\"trial\">".html_safe
