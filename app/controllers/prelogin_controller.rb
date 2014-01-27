@@ -58,8 +58,9 @@ class PreloginController < ApplicationController
     @purchase = Purchase.find_by_token(params[:token])
     @purchase = nil if @purchase && @purchase.users.count >= @purchase.accounts_number
     if @purchase && @purchase.location
+      @location_types = LOCATION_TYPES
       @forced_location = @purchase.location
-      @locations = @forced_location.get_filled_select_for_personal_info
+      @locations = @forced_location.select_with_selected
     end
   end
   
