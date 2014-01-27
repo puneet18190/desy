@@ -59,6 +59,12 @@
             color: white;
             float: left;
             
+            &.error {
+              
+              background-color: #D20B0B;
+              
+            }
+            
           }
           
           input[disabled="disabled"] {
