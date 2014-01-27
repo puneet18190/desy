@@ -2009,7 +2009,7 @@ en:
     # 1 - views/prelogin/_registration_form.html.erb
     done: "Sign up"
     # Button to select all the subjects of a cathegory
-    # 1 - views/users/_personal_subjects.html.erb
+    # 1 - views/prelogin/_registration_form.html.erb
     select_all_subjects: "Select all"
     # Messages shown to the trial users if they try to do forbidden actions
     trial_limitations_messages:
@@ -2402,7 +2402,8 @@ en:
       # 1 - controllers/users_controller.rb
       wrong_popup: "Subjects couldn't be updated"
       # If the subject has no cathegory, this will be the label
-      # 1 - views/users/_personal_subjects.html.erb
+      # 1 - views/users/subjects.html.erb
+      # 2 - views/prelogin/_registration_form.html.erb
       no_cathegory: "Other"
     # Captions used for trial accounts
     trial:
