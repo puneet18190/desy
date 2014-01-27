@@ -4,29 +4,9 @@
 #official_registration_form {
   
   width: 100%;
+  margin-top: 20px;
   
-  header {
-    
-    padding: 10px 0 0 20px;
-    
-  }
-  
-  form {
-    
-    margin-top: 20px;
-    
-  }
-  
-  h2 {
-    
-    @include nunito(25px);
-    color:  #7d7d7d;
-    text-transform: lowercase;
-    text-shadow: #ccc 1px 1px 0px;
-    
-  }
-  
-  .profile-element-container {
+  .registration-element-container {
     
     float: left;
     border: 1px solid #EFEFEF;
@@ -43,7 +23,7 @@
       margin-right: 80px;
       padding-bottom: 30px;
       
-      input {
+      input { /* TODO forrm */
         
         @include nunito(13px);
         background-color: #F5F5F5;
@@ -66,7 +46,7 @@
       
     }
     
-    &#profile-general-edit {
+    &#profile-general-edit { /* TODO forrm */
       
       .profile-element {
         
@@ -84,7 +64,7 @@
       
     }
     
-    &#profile-locations-edit {
+    &#profile-locations-edit { /* TODO forrm */
       
       padding-bottom: 5px;
       
@@ -106,7 +86,7 @@
       
     }
     
-    &#profile-subjects-edit {
+    &#profile-subjects-edit { /* TODO forrm */
       
       .profile-subject-cathegory-container {
         
@@ -188,7 +168,7 @@
       
     }
     
-    &#profile-school-level-edit {
+    &#profile-school-level-edit { /* TODO forrm */
       
       .profile-element {
         
@@ -198,22 +178,7 @@
       
     }
     
-    textarea.text { /* TODO forrm, questo si riferisce solamente ad amicocloud! */
-      
-      background-color: #F5F5F5;
-      color: #7d7d7d;
-      font-size: 120%;
-      padding: 10px 10px 0px 10px;
-      border: none;
-      border-radius: 4px;
-      -webkit-border-radius: 4px;
-      box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
-      width: 534px;
-      height: 192px;
-      
-    }
-    
-    .profile-errors {
+    .profile-errors { /* TODO forrm */
       
       min-height: 30px;
       margin-left: 0;
@@ -230,7 +195,7 @@
       
     }
     
-    .sbHolder {
+    .sbHolder { /* TODO forrm */
       
       @include nunito(13px);
       color: #7D7D7D;
@@ -277,44 +242,13 @@
     
   }
   
-  .form_submit {
-    
-    padding-left: 20px;
-    
-    input {
-      
-      background-color: #555;
-      color: #fff;
-      text-transform: uppercase;
-      padding: 10px 30px;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      cursor: pointer;
-      
-      &:hover {
-        
-        background-color: #999;
-        
-      }
-      
-      &.current, &:hover.current {
-        
-        color: #ccc;
-        background-color: #999;
-        
-      }
-      
-    }
-    
-  }
-  
-  label[for=locations_disclaimer] {
+  label[for=locations_disclaimer] { /* TODO forrm */
     
     cursor: pointer;
     
   }
   
-  .policy-verticalScroll {
+  .policy-verticalScroll { /* TODO forrm */
     
     overflow-x: hidden;
     overflow-y: auto;
@@ -334,44 +268,7 @@
     
   }
   
-  .container {
-    
-    background-color: transparent;
-    position: relative;
-    padding: 0px;
-    width: 972px;
-    
-    hr {
-      
-      height: 0px;
-      
-    }
-    
-    .footer {
-      
-      padding: 10px 30px 10px 40px;
-      border-top: 7px solid #fdb525;
-      float: left;
-      background-color: #fff;
-      color: #CECDCD;
-      font-size: 75%;
-      text-transform: lowercase;
-      position: relative;
-      width: 914px;
-      height: 40px;
-      
-    }
-    
-    .containerText {
-      
-      padding: 0px 90px 20px 0px;
-      font-family: 'Nunito', sans-serif;
-      
-    }
-    
-  }
-  
-  input[type="submit"] {
+  input[type="submit"] { /* TODO forrm */
     
     @include nunito(20px);
     background-color: #9bc3eb;
@@ -501,6 +398,53 @@ html.prelogin-layout {
       ul li {
         
         padding-bottom: 10px;
+        
+      }
+      
+    }
+    
+  }
+  
+  &.prelogin-controller.registration-action, &.users-controller.create-action {
+    
+    .container {
+      
+      padding: 0;
+      background-color: transparent;
+      position: relative;
+      width: 972px;
+      
+      h1 {
+        
+        @include nunito(36px);
+        
+      }
+      
+      h2 {
+        
+        @include nunito(16px);
+        
+      }
+      
+      .footer {
+        
+        padding: 10px 30px 10px 40px;
+        border-top: 7px solid #fdb525;
+        float: left;
+        background-color: #fff;
+        color: #CECDCD;
+        font-size: 75%;
+        text-transform: lowercase;
+        position: relative;
+        width: 914px;
+        height: 40px;
+        
+      }
+      
+      .containerText {
+        
+        padding: 0px 90px 20px 0px;
+        font-family: 'Nunito', sans-serif;
         
       }
       
