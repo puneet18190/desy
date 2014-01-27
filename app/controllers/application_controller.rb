@@ -7,6 +7,12 @@
 #
 class ApplicationController < ActionController::Base
   
+  # Locattion types, extracted from settings.yml
+  LOCATION_TYPES = SETTINGS['location_types']
+  
+  # The kind of last location, extracted from settings.yml
+  LAST_LOCATION = LOCATION_TYPES.last.downcase
+  
   # List of actions that in no case require the autentication.
   OUT_OF_AUTHENTICATION_ACTIONS = [:page_not_found, :browser_not_supported]
   OUT_OF_AUTHENTICATION_ACTIONS << :set_locale if Rails.application.config.more_than_one_language
@@ -17,7 +23,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate, :initialize_location, :initialize_players_counter, :except => OUT_OF_AUTHENTICATION_ACTIONS
   
   helper_method :current_user, :personificated_user
-
+  
   # In *production* environment pages with 404 status are catched by the web server, so we don't make the effort to render a 404 page
   def page_not_found
     render layout: false, text: '<h1>Page not found</h1>', status: :not_found
@@ -26,7 +32,7 @@ class ApplicationController < ActionController::Base
   def browser_not_supported
     render layout: false, partial: 'shared/browser_not_supported'
   end
-
+  
   def unauthorized
     render layout: false, text: '401 Unauthorized', status: :unauthorized
   end

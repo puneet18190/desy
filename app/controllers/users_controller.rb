@@ -16,12 +16,6 @@
 #
 class UsersController < ApplicationController
   
-  # Locattion types, extracted from settings.yml
-  LOCATION_TYPES = SETTINGS['location_types']
-  
-  # The kind of last location, extracted from settings.yml
-  LAST_LOCATION = LOCATION_TYPES.last.downcase
-  
   skip_before_filter :authenticate, :only => [
     :create,
     :confirm,
