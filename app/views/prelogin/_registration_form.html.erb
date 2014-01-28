@@ -175,7 +175,7 @@
     $(document).ready(function() {
       $.ajax({
         type: 'get',
-        url: 'sign_up/purchase_code?token=<%= purchase_id %>'
+        url: 'sign_up/purchase_code?token=<%= purchase_id %>&dont_load_locations=true'
       });
     });
   </script>

@@ -55,6 +55,7 @@ class PreloginController < ApplicationController
       render :nothing => true
       return
     end
+    @load_locations = params[:dont_load_locations].blank?
     @purchase = Purchase.find_by_token(params[:token])
     @purchase = nil if @purchase && @purchase.users.count >= @purchase.accounts_number
     if @purchase && @purchase.location
