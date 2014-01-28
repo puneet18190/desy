@@ -11,6 +11,7 @@
       <div class="profile-element code">
         <%= t('registration.purchase_id') %><br/>
         <input id="registration_purchase_id" type="text" value="<%= purchase_id %>" name="purchase_id" <%= trial ? "disabled=\"disabled\"".html_safe : '' %>/>
+        <input id="hidden_registration_purchase_id" type="hidden" value="<%= purchase_id %>"/>
         <div id="registration_ok">&#10004;</div>
       </div>
       <br class="clearfloat"/>
