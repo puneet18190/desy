@@ -143,7 +143,7 @@
         <% my_policy = t('registration.policies')[index] %>
         <h3><%= my_policy['title'] %></h3>
         <div class="policy-verticalScroll">
-          <%= my_policy['description'].html_safe %>
+          <span><%= my_policy['description'].html_safe %></span>
         </div>
         <div class="accept">
           <% if user.send(policy) == '1' %>
@@ -157,8 +157,7 @@
         </div>
       </div>
     <% end %>
-    <br class="clearfloat"/>
-    <ul class="profile-errors">
+    <ul class="profile-errors" style="margin-top:40px">
       <% errors[:policies].each do |err| %>
         <li><%= err %></li>
       <% end %>
