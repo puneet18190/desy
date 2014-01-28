@@ -283,7 +283,7 @@
           padding: 5px 40px;
           display: block;
           margin-bottom: 5px;
-          width: 60px;
+          width: 90px;
           text-align: center;
           
           &:hover {
@@ -301,6 +301,37 @@
     &#registration-school-level {
       
       padding-bottom: 75px;
+      
+    }
+    
+    &#registration-policies {
+      
+      .profile-element {
+        
+        float: none;
+        width: 100%;
+        
+        .policy-verticalScroll {
+          
+          overflow-x: hidden;
+          overflow-y: auto;
+          height: 140px;
+          
+          p {
+            
+            padding-right: 10px;
+            
+          }
+          
+          .jspDrag {
+            
+            background: #83A5C8;
+            
+          }
+          
+        }
+        
+      }
       
     }
     
@@ -370,26 +401,6 @@
         padding-top: 1px;
         
       }
-      
-    }
-    
-  }
-  
-  .policy-verticalScroll { /* TODO forrm */
-    
-    overflow-x: hidden;
-    overflow-y: auto;
-    height: 140px;
-    
-    p {
-      
-      padding-right: 10px;
-      
-    }
-    
-    .jspDrag {
-      
-      background: #83A5C8;
       
     }
     
