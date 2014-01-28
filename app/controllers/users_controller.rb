@@ -81,7 +81,7 @@ class UsersController < ApplicationController
           @user.send(:"#{policy}=", '1')
         end
       end
-      if @saas && params[:trial].present?
+      if @saas && params[:trial].blank?
         purchase = Purchase.find_by_token params[:purchase_id]
         @user.purchase_id = purchase ? purchase.id : 0
       end
