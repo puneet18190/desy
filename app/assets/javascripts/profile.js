@@ -41,7 +41,7 @@ function preloginDocumentReady() {
   $body.on('click', '.checkAllSubjects', function() {
     $(this).parent().find('.profile-element label.unchecked').click();
   });
-  $('.policy-verticalScroll').jScrollPane();
+  $('.policy-verticalScroll').jScrollPane({autoReinitialise: true});
   var parsedLocation = UrlParser.parse(window.location.href);
   if(_.contains(_.keys(parsedLocation.searchObj), 'login')) {
     $('._show_login_form_container').click();
