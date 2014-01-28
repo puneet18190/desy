@@ -114,11 +114,12 @@
         <% cathegory[:items].each do |subject| %>
           <div class="profile-element">
             <% if subject_ids.include?(subject.id) %>
-              <input id="profile-subject-<%= subject.id %>" class="checked" type="checkbox" value="1" name="subjects[id_<%= subject.id %>]" checked="checked"/>
+              <input id="profile-subject-<%= subject.id %>" type="checkbox" value="1" name="subjects[id_<%= subject.id %>]" checked="checked"/>
+              <%= label_tag "profile-subject-#{subject.id}", '', :class => 'checked' %>
             <% else %>
-              <input id="profile-subject-<%= subject.id %>" class="unchecked" type="checkbox" value="1" name="subjects[id_<%= subject.id %>]"/>
+              <input id="profile-subject-<%= subject.id %>" type="checkbox" value="1" name="subjects[id_<%= subject.id %>]"/>
+              <%= label_tag "profile-subject-#{subject.id}", '', :class => 'unchecked' %>
             <% end %>
-            <%= label_tag "profile-subject-#{subject.id}", '' %>
             <span><%= subject.to_s %></span>
           </div>
         <% end %>
