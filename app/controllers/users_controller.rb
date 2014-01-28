@@ -115,7 +115,7 @@ class UsersController < ApplicationController
     else
       initialize_registration_form(subject_ids)
       @errors = convert_user_error_messages @user.errors
-      render 'prelogin/registration'
+      render 'prelogin/registration', :layout => 'prelogin'
     end
   end
   
