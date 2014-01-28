@@ -56,12 +56,10 @@ Initializes handler of purchase code in prelogin registration.
 function purchaseCodeRegistrationDocumentReady() {
   $body.on('blur', '#registration_purchase_id', function() {
     var token = $(this).val();
-    if(token != '') {
-      $.ajax({
-        type: 'get',
-        url: 'sign_up/purchase_code?token=' + token
-      });
-    }
+    $.ajax({
+      type: 'get',
+      url: 'sign_up/purchase_code?token=' + token
+    });
   });
   $body.on('click', '#registration_trial', function() {
     var me = $(this);

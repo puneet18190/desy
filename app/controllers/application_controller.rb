@@ -339,6 +339,7 @@ class ApplicationController < ActionController::Base
   def initialize_registration_form(subject_ids=[])
     @subject_ids = subject_ids
     @trial = params[:trial].present?
+    @purchase_id = params[:purchase_id]
     initialize_general_profile(Location.new)
     initialize_subjects_profile(false)
   end
