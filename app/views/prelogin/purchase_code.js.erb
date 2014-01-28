@@ -30,6 +30,7 @@
     });
     <% if @forced_location.sti_type == @location_types.last %>
       $('#outer_locations_disclaimer').hide();
+      $('#registration-locations').css('margin-bottom', '75px');
       $('#hidden_location_in_registration').attr('name', 'locations[<%= @forced_location.sti_type.downcase %>]').val('<%= @forced_location.id %>');
     <% end %>
   <% end %>
