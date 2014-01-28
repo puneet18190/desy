@@ -198,7 +198,6 @@
       
       .profile-subject-cathegory-container {
         
-        float: left;
         width: 100%;
         padding: 0;
         border-bottom: 1px solid #EFEFEF;
@@ -282,6 +281,12 @@
           color: #434244;
           font-size: 11px;
           padding: 5px 40px;
+          
+          &:hover {
+            
+            color: #7096BD;
+            
+          }
           
         }
         
