@@ -76,9 +76,9 @@ class UsersController < ApplicationController
       @user.password_confirmation = params[:password_confirmation]
       @user.school_level_id = params[:school_level_id]
       @user.subject_ids = subject_ids
-      
-      # TODO forrm manca accettazione policies
-      
+      params[:policies].keys.each do |policy|
+        @user.send(:"#{policy}=", '1')
+      end
       if @saas && params[:trial].present?
         purchase = Purchase.find_by_token params[:purchase_id]
         @user.purchase_id = purchase ? purchase.id : 0
