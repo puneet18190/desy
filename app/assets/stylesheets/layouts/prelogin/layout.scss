@@ -5,6 +5,53 @@
   
   width: 100%;
   
+  #outer_locations_disclaimer {
+    
+    margin-bottom: 70px;
+    margin-top: 5px;
+    height: 20px;
+    position: relative;
+    
+    input {
+      
+      display: none;
+      
+    }
+    
+    input:checked + label, label {
+      
+      background-color: white;
+      box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
+      border-radius: 3px;
+      padding: 9px;
+      float: left;
+      width: auto;
+      cursor: pointer;
+      
+    }
+    
+    input:checked + label:after {
+      
+      color: #99A1A7;
+      cursor: pointer;
+      content: '\2714';
+      font-size: 14px;
+      top: 1px;
+      left: 4px;
+      position: absolute;
+      
+    }
+    
+    span {
+      
+      float: left;
+      padding-left: 10px;
+      
+    }
+    
+    
+  }
+  
   .registration-element-container {
     
     float: left;
@@ -300,12 +347,6 @@
       }
       
     }
-    
-  }
-  
-  label[for=locations_disclaimer] { /* TODO forrm */
-    
-    cursor: pointer;
     
   }
   

@@ -78,10 +78,10 @@ function purchaseCodeRegistrationDocumentReady() {
     var me = $(this);
     if(!me.hasClass('checked')) {
       me.addClass('checked');
-      $('#location_container_in_personal_info').hide();
+      $('#registration-locations').hide();
     } else {
       me.removeClass('checked');
-      $('#location_container_in_personal_info').show();
+      $('#registration-locations').show();
     }
   });
 }
