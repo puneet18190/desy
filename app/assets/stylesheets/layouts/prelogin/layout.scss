@@ -8,7 +8,7 @@
   h2#title_for_subject_selection {
     
     font-size: 17px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     
   }
   
@@ -202,20 +202,21 @@
         width: 100%;
         padding: 0;
         border-bottom: 1px solid #EFEFEF;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         
         &.no-border {
           
           border: 0;
-          margin-bottom: -10px; /* TODO forrm 30px of margin-bottom minus 20px of regular margin. this style is not temporary nor unstable, please don't delete it! */
+          margin-bottom: -30px; /* this style is not temporary nor unstable, please don't delete it! */
           
         }
         
         .profile-subject-cathegory-label {
           
-          color: #7D7D7D;
-          font-size: 16px;
-          padding: 10px 0px;
+          color: #434244;
+          font-size: 14px;
+          padding: 0;
+          margin-bottom: 20px;
           
         }
         
@@ -224,10 +225,10 @@
           @include nunito(16px);
           border-radius: 5px;
           -webkit-border-radius: 5px;
-          padding: 8px;
-          width: 211px;
+          padding: 0;
+          width: 33%;
           float: left;
-          margin-right: 5%;
+          margin-right: 0;
           margin-bottom: 30px;
           display: block;
           color: #7D7D7D;
@@ -241,10 +242,10 @@
           
           input:checked + label, label {
             
-            background-color: #F5F5F5;
+            background-color: white;
             box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 5px;
+            padding: 15px;
             float: left;
             width: auto;
             cursor: pointer;
@@ -253,12 +254,12 @@
           
           input:checked + label:after {
             
-            color: $green;
+            color: #99A1A7;
             cursor: pointer;
             content: '\2714';
-            font-size: 28px;
-            top: 9px;
-            left: 18px;
+            font-size: 22px;
+            top: 2px;
+            left: 7px;
             position: absolute;
             
           }
@@ -266,9 +267,21 @@
           span {
             
             float: left;
-            padding: 10px;
+            padding-left: 15px;
+            padding-top: 6px;
+            color: white;
+            font-size: 14px;
             
           }
+          
+        }
+        
+        .checkAllSubjects {
+          
+          background-color: #BAD7F3;
+          color: #434244;
+          font-size: 11px;
+          padding: 5px 40px;
           
         }
         
