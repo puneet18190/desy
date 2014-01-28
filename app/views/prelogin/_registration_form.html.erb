@@ -101,10 +101,10 @@
         <% end %>
       </select>
     </div>
-    <br class="clearfloat"/>
   </div>
   
-  <h2><%= t('registration.subjects.title') %></h2>
+  <br class="clearfloat"/>
+  <h2 id="title_for_subject_selection"><%= t('registration.subjects.title') %></h2>
   <div id="registration-subjects" class="registration-element-container">
     <% subjects.each_with_index do |cathegory, index| %>
       <div class="profile-subject-cathegory-container <%= (index == subjects.length - 1) ? 'no-border' : '' %>">
@@ -122,6 +122,7 @@
             <span><%= subject.to_s %></span>
           </div>
         <% end %>
+        <br class="clearfloat"/>
         <% if cathegory[:label].present? %>
           <a class="checkAllSubjects"><%= t('registration.select_all_subjects') %></a>
         <% end %>

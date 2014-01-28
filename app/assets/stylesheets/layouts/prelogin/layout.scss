@@ -5,6 +5,13 @@
   
   width: 100%;
   
+  h2#title_for_subject_selection {
+    
+    font-size: 17px;
+    margin-bottom: 20px;
+    
+  }
+  
   #outer_locations_disclaimer {
     
     margin-bottom: 70px;
@@ -187,7 +194,7 @@
       
     }
     
-    &#profile-subjects-edit { /* TODO forrm */
+    &#registration-subjects {
       
       .profile-subject-cathegory-container {
         
@@ -200,7 +207,7 @@
         &.no-border {
           
           border: 0;
-          margin-bottom: -10px; /* 30px of margin-bottom minus 20px of regular margin. this style is not temporary nor unstable, please don't delete it! */
+          margin-bottom: -10px; /* TODO forrm 30px of margin-bottom minus 20px of regular margin. this style is not temporary nor unstable, please don't delete it! */
           
         }
         
@@ -269,13 +276,9 @@
       
     }
     
-    &#profile-school-level-edit { /* TODO forrm */
+    &#registration-school-level {
       
-      .profile-element {
-        
-        padding: 0;
-        
-      }
+      padding-bottom: 75px;
       
     }
     
