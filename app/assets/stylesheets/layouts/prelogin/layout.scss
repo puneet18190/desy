@@ -134,25 +134,9 @@
       
     }
     
-    &#profile-locations-edit { /* TODO forrm */
+    &#registration-locations {
       
-      padding-bottom: 5px;
-      
-      .profile-element {
-        
-        input {
-          
-          color: #7D7D7D;
-          
-          &.empty-locations {
-            
-            color: #ccc;
-            
-          }
-          
-        }
-        
-      }
+      padding-bottom: 0;
       
     }
     
@@ -267,12 +251,14 @@
       
     }
     
-    .sbHolder { /* TODO forrm */
+    .sbHolder {
       
       @include nunito(13px);
       color: #7D7D7D;
-      width: 236px;
-      background-color: #F5F5F5;
+      width: 247px;
+      margin-top: 5px;
+      padding: 4px 0 4px 0;
+      background-color: white;
       
       .sbToggle {
         
@@ -285,7 +271,8 @@
         
         @include nunito(13px);
         color: #7D7D7D;
-        width: 235px;
+        width: 246px;
+        padding: 0;
         
         a {
           
@@ -293,6 +280,7 @@
           
           &.sbFocus {
             
+            background-color: #248FBA;
             color: #fff;
             
           }
@@ -303,10 +291,11 @@
       
       .sbSelector {
         
-        @include nunito(13px);
+        @include arial(14px);
         color: #7D7D7D;
-        width: 236px;
-        height: 37px;
+        width: 247px;
+        height: 36px;
+        padding-top: 1px;
         
       }
       
