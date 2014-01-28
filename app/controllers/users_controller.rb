@@ -76,8 +76,10 @@ class UsersController < ApplicationController
       @user.password_confirmation = params[:password_confirmation]
       @user.school_level_id = params[:school_level_id]
       @user.subject_ids = subject_ids
-      params[:policies].keys.each do |policy|
-        @user.send(:"#{policy}=", '1')
+      if params[:policies].present?
+        params[:policies].keys.each do |policy|
+          @user.send(:"#{policy}=", '1')
+        end
       end
       if @saas && params[:trial].present?
         purchase = Purchase.find_by_token params[:purchase_id]
@@ -113,6 +115,7 @@ class UsersController < ApplicationController
     else
       initialize_registration_form(subject_ids)
       @errors = convert_user_error_messages @user.errors
+      render 'prelogin/registration'
     end
   end
   
