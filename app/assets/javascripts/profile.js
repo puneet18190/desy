@@ -39,7 +39,7 @@ function preloginDocumentReady() {
     }
   });
   $body.on('click', '.checkAllSubjects', function() {
-    $(this).parent().find('.checkboxElement label.unchecked').click();
+    $(this).parent().find('.profile-element label.unchecked').click();
   });
   $('.policy-verticalScroll').jScrollPane();
   var parsedLocation = UrlParser.parse(window.location.href);
