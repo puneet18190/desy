@@ -147,10 +147,10 @@
         </div>
         <div class="accept">
           <% if user.send(policy) == '1' %>
-            <input id="registration-policy_<%= index %>" type="checkbox" value="1" name="policy_<%= index %>" checked="checked"/>
+            <input id="registration-policy_<%= index %>" type="checkbox" value="1" name="policies[<%= policy %>]" checked="checked"/>
             <label for="registration-policy_<%= index %>"></label>
           <% else %>
-            <input id="registration-policy_<%= index %>" type="checkbox" value="1" name="policy_<%= index %>"/>
+            <input id="registration-policy_<%= index %>" type="checkbox" value="1" name="policies[<%= policy %>]"/>
             <label for="registration-policy_<%= index %>"></label>
           <% end %>
           <span><%= my_policy['accept'] %></span>
@@ -166,4 +166,5 @@
   <div class="form_submit">
     <input type="submit" value="<%= t('registration.done') %>"/>
   </div>
+  
 <% end %>
