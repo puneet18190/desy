@@ -360,7 +360,7 @@
             background-color: white;
             box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
             border-radius: 3px;
-            padding: 9px;
+            padding: 11px;
             float: left;
             width: auto;
             cursor: pointer;
@@ -369,13 +369,26 @@
           
           input:checked + label:after {
             
-            color: #99A1A7;
+            color: $green;
             cursor: pointer;
             content: '\2714';
             font-size: 14px;
-            top: 1px;
-            left: 4px;
+            top: 2px;
+            left: 6px;
             position: absolute;
+            
+          }
+          
+          input:checked + label.true, label.true {
+            
+            padding: 10px;
+            
+          }
+          
+          label.true {
+            
+            border: 2px solid #D20B0B;
+            padding: 10px;
             
           }
           
@@ -383,6 +396,7 @@
             
             float: left;
             padding-left: 10px;
+            padding-top: 3px;
             
           }
           

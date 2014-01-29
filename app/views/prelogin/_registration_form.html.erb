@@ -151,8 +151,9 @@
             <input id="registration-policy_<%= index %>" type="checkbox" value="1" name="policies[<%= policy %>]" checked="checked"/>
             <label for="registration-policy_<%= index %>"></label>
           <% else %>
+            <% err_class = user.errors.messages.has_key?(:"#{policy}").to_s %>
             <input id="registration-policy_<%= index %>" type="checkbox" value="1" name="policies[<%= policy %>]"/>
-            <label for="registration-policy_<%= index %>"></label>
+            <label for="registration-policy_<%= index %>" class="<%= err_class %>"></label>
           <% end %>
           <span><%= my_policy['accept'] %></span>
         </div>
