@@ -3639,7 +3639,7 @@ it:
         # 2 - views/admin/users/_list.html.erb
         school_level: "Livello scolastico"
         # 1 - views/admin/users/_list.html.erb
-        surname: "Surname"
+        surname: "Cognome"
         # 1 - views/admin/users/show.html.erb
         updated_at: "Ultima modifica"
         # 1 - views/admin/users/show.html.erb
