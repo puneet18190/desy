@@ -31,8 +31,7 @@
             <p><%= t('forms.change_info_media_element.description') %></p>
             <%= form_tag media_element_path(media_element.id), :remote => true, :class => 'formModifyInfo' do %>
               <div class="cols" style="float:left">
-                <input id="title" type="text" class="title basta_caos_porca_miseria" name="title" value="<%= media_element.title %>">
-                <br>
+                <input id="title" type="text" class="title basta_caos_porca_miseria" name="title" value="<%= media_element.title %>"><br/>
                 <%= text_area_tag 'description', media_element.description, :class => 'description basta_caos_porca_miseria' %>
               </div>
               <div class="cols fltrt">
@@ -47,8 +46,7 @@
                   <% end %>
                   <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower basta_caos_porca_miseria' %>
                   <%= hidden_field_tag 'tags_value', media_element.tags, :id => "tags_value_#{media_element.id}", :class => '_tags_value' %>
-                </div>
-                <br>
+                </div><br/>
                 <div class="fltrt">
                   <div class="fltlft" style="margin-top:5px"><a class="lower _cancel buttonForm" data-param="<%= media_element.id %>"><%= t('forms.change_info_media_element.cancel') %></a></div>
                   <div class="fltrt"><%= submit_tag t('forms.change_info_media_element.done'), :class => 'lower' %></div>
