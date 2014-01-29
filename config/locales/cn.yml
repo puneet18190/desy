@@ -1334,7 +1334,7 @@ cn:
       # 1 - views/users/send_upgrade_trial.html.erb
       title: "恭喜!"
       # 1 - views/users/send_upgrade_trial.html.erb
-      description: "你的试用账号已成功升级到正式账号!<br>开始使用你的账号,回到你的主页并登陆"
+      description: "你的试用账号已成功升级到正式账号!<br/>开始使用你的账号,回到你的主页并登陆"
   
   
   
@@ -1986,7 +1986,7 @@ cn:
       # 1- views/prelogin/what_is.html.erb
       subtitle: "找出%{desy}的益处"
       # 1- views/prelogin/what_is.html.erb
-      description: "%{desy}是教学数字系统，它充许教师非常自由和容易地建立多媒体课程<br><br>不仅仅是: 它所处的平台充许分享教育素材和社会内容, 优点和额外的功能源于:<ul><li>建立课程和教学跨学科的可能性;</li><li>亲和力和丰富内容的连续性;</li><li>系统的增长感谢是零费用;</li><li>利用教学工具来加强与改善教学.</li></ul>与学校与大学相比, %{desy}能用于公司, 安装在公司局域网内通过门户网站。"
+      description: "%{desy}是教学数字系统，它充许教师非常自由和容易地建立多媒体课程<br/><br/>不仅仅是: 它所处的平台充许分享教育素材和社会内容, 优点和额外的功能源于:<ul><li>建立课程和教学跨学科的可能性;</li><li>亲和力和丰富内容的连续性;</li><li>系统的增长感谢是零费用;</li><li>利用教学工具来加强与改善教学.</li></ul>与学校与大学相比, %{desy}能用于公司, 安装在公司局域网内通过门户网站。"
       right_column:
         # 1 - views/prelogin/what_is.html.erb
         caption1: "通过分享你的包括视频、音频和图像课程来加入%{desy}社区"

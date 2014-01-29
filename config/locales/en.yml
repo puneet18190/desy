@@ -1334,7 +1334,7 @@ en:
       # 1 - views/users/send_upgrade_trial.html.erb
       title: "Congratulations!"
       # 1 - views/users/send_upgrade_trial.html.erb
-      description: "Your trial account has been successfully upgraded to a regular one!<br> To start using your account just go back to the home page and log in"
+      description: "Your trial account has been successfully upgraded to a regular one!<br/> To start using your account just go back to the home page and log in"
   
   
   
@@ -1986,7 +1986,7 @@ en:
       # 1- views/prelogin/what_is.html.erb
       subtitle: "Find out the benefits of %{desy}"
       # 1- views/prelogin/what_is.html.erb
-      description: "%{desy} is a didactic digital system which allows teachers to create multimedia lessons in full autonomy and easily.<br><br>Not only: the platform where it lays allows for sharing didactic elements and socialization of contents, from which advantages and additional functionalities are derived among which:<ul><li>the possibility to build lessons and didactic interdisciplinary methods;</li><li>the continuity of the affinity process and enrichment of contents;</li><li>the growth of the system thanks to self feeding at 0 cost;</li><li>the reinforcement and evaluation of the teachers' role in elaborating didactic instruments.</li></ul>other than in schools and universities, %{desy} can be used in a company professional formation, through formative portals installed within companies' intranet, which allow to gather the company know how in a secure and reserve way and at the same time to share them with the teachers called to look after updating and innovation."
+      description: "%{desy} is a didactic digital system which allows teachers to create multimedia lessons in full autonomy and easily.<br/><br/>Not only: the platform where it lays allows for sharing didactic elements and socialization of contents, from which advantages and additional functionalities are derived among which:<ul><li>the possibility to build lessons and didactic interdisciplinary methods;</li><li>the continuity of the affinity process and enrichment of contents;</li><li>the growth of the system thanks to self feeding at 0 cost;</li><li>the reinforcement and evaluation of the teachers' role in elaborating didactic instruments.</li></ul>other than in schools and universities, %{desy} can be used in a company professional formation, through formative portals installed within companies' intranet, which allow to gather the company know how in a secure and reserve way and at the same time to share them with the teachers called to look after updating and innovation."
       right_column:
         # 1 - views/prelogin/what_is.html.erb
         caption1: "Participate in the community of %{desy} by sharing your lessons containing didactic videos, audios and images!"

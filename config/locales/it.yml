@@ -1334,7 +1334,7 @@ it:
       # 1 - views/users/send_upgrade_trial.html.erb
       title: "Congratulazioni!"
       # 1 - views/users/send_upgrade_trial.html.erb
-      description: "L'upgrade del tuo account di tipo 'trial' è stato effettuato con successo!<br> Per cominciare a usare il tuo account, torna alla home page ed effettua l'accesso"
+      description: "L'upgrade del tuo account di tipo 'trial' è stato effettuato con successo!<br/> Per cominciare a usare il tuo account, torna alla home page ed effettua l'accesso"
   
   
   
@@ -1986,7 +1986,7 @@ it:
       # 1- views/prelogin/what_is.html.erb
       subtitle: "Scopri i vantaggi di %{desy}"
       # 1- views/prelogin/what_is.html.erb
-      description: "%{desy} è un sistema di didattica digitale che consente ai docenti di creare lezioni multimediali in piena autonomia e con grande facilità.<br><br>Non solo: la piattaforma su cui poggia consente la condivisione degli elementi didattici e la socializzazione dei contenuti, da cui discendono vantaggi e funzionalità aggiuntive, tra cui:<ul><li>la possibilità di costruire lezioni e percorsi didattici interdisciplinari;</li><li>la continuità del processo di affinamento e arricchimento dei contenuti;</li><li>la crescita del sistema grazie ad un meccanismo di autoalimentazione a zero costi;</li><li>il rafforzamento e la valorizzazione del ruolo dei docenti nella elaborazione degli strumenti didattici.</li></ul>Oltre che nella scuola e nelle università, %{desy} può essere utilizzato nella formazione professionale e aziendale, attraverso portali formativi autonomi installati all’interno delle  intranet delle imprese, che consentono di raccogliere in modo sicuro e riservato i saperi aziendali, e al tempo stesso di condividerli con i docenti chiamati a curare l’aggiornamento e l’innovazione."
+      description: "%{desy} è un sistema di didattica digitale che consente ai docenti di creare lezioni multimediali in piena autonomia e con grande facilità.<br/><br/>Non solo: la piattaforma su cui poggia consente la condivisione degli elementi didattici e la socializzazione dei contenuti, da cui discendono vantaggi e funzionalità aggiuntive, tra cui:<ul><li>la possibilità di costruire lezioni e percorsi didattici interdisciplinari;</li><li>la continuità del processo di affinamento e arricchimento dei contenuti;</li><li>la crescita del sistema grazie ad un meccanismo di autoalimentazione a zero costi;</li><li>il rafforzamento e la valorizzazione del ruolo dei docenti nella elaborazione degli strumenti didattici.</li></ul>Oltre che nella scuola e nelle università, %{desy} può essere utilizzato nella formazione professionale e aziendale, attraverso portali formativi autonomi installati all’interno delle  intranet delle imprese, che consentono di raccogliere in modo sicuro e riservato i saperi aziendali, e al tempo stesso di condividerli con i docenti chiamati a curare l’aggiornamento e l’innovazione."
       right_column:
         # 1 - views/prelogin/what_is.html.erb
         caption1: "Partecipa alla comunità di %{desy} condividendo le tue lezioni contenenti video didattici, audio e immagini!"
