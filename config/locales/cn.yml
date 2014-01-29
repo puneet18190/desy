@@ -2239,7 +2239,7 @@ cn:
       ok_popup: "个人资料已正确添加"
       # Popup shown when an external error prevents the profile to be updated
       # 1 - controllers/users_controller.rb
-      wrong_popup: "Profile couldn't be updated" # TODO
+      wrong_popup: "个人资料無法更新"
       # Captions for each profile attribute that can be modified by the user
       attributes:
         # 1 - views/users/edit.html.erb
@@ -2404,7 +2404,7 @@ cn:
       ok_popup: "主题已正确添加"
       # Popup shown when an external error prevents the subjects to be updated
       # 1 - controllers/users_controller.rb
-      wrong_popup: "Subjects couldn't be updated" # TODO
+      wrong_popup: "科目無法更新"
       # If the subject has no cathegory, this will be the label
       # 1 - views/users/subjects.html.erb
       # 2 - views/prelogin/_registration_form.html.erb
@@ -2851,11 +2851,11 @@ cn:
       # 1 - app/models/location.rb
       # 2 - app/models/location.rb
       plural: [
-          "省",
-          "市",
+          "各省",
+          "城市",
           "县",
           "学校"
-        ] # TODO
+        ]
       # 1 - app/models/location.rb
       feminine: [
           false,
@@ -2865,7 +2865,7 @@ cn:
         ]
     # Caption used when the user doesn't find any sublocation corresponding to the one he selected (the variable %{location} is replaced by the plural of the caption.
     # 1 - views/users/_locations_list.html.erb
-    empty: "There are no %{location}" # TODO
+    empty: "有沒有%{location}"
     # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'. Important: it must be DESCENDANT, from the higher level to the lower location
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
