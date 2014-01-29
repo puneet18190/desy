@@ -809,7 +809,7 @@ function lessonEditorDocumentReadyResize() {
   $window.resize(function() {
     $(&#x27;.lesson-editor-layout ul#slides&#x27;).css(&#x27;margin-top&#x27;, ((($window.height() - 590) / 2) - 40) + &#x27;px&#x27;);
     $(&#x27;.lesson-editor-layout ul#slides.new&#x27;).css(&#x27;margin-top&#x27;, ((($window.height() - 590) / 2)) + &#x27;px&#x27;);
-    if(WW &gt; 1000) {
+    if(parseInt($window.outerWidth()) &gt; 1000) {
       $(&#x27;ul#slides li:first&#x27;).css(&#x27;margin-left&#x27;, (($window.width() - 900) / 2) + &#x27;px&#x27;);
       $(&#x27;ul#slides.new li:first&#x27;).css(&#x27;margin-left&#x27;, (($window.width() - 900) / 2) + &#x27;px&#x27;);
     }
@@ -1629,16 +1629,16 @@ Initialize slides position to center.
 @for LessonEditorSlidesNavigation
 **/
 function initLessonEditorPositions() {
-  WW = parseInt($window.outerWidth());
-  WH = parseInt($window.outerHeight());
-  $(&#x27;#main&#x27;).css(&#x27;width&#x27;, WW);
+  var outer_width = parseInt($window.outerWidth());
+  var outer_height = parseInt($window.outerHeight());
+  $(&#x27;#main&#x27;).css(&#x27;width&#x27;, outer_width);
   $(&#x27;ul#slides&#x27;).css(&#x27;width&#x27;, (($(&#x27;ul#slides li&#x27;).length + 2) * 1000));
-  $(&#x27;ul#slides&#x27;).css(&#x27;top&#x27;, ((WH / 2) - 295) + &#x27;px&#x27;);
-  $(&#x27;ul#slides.new&#x27;).css(&#x27;top&#x27;, ((WH / 2) - 335) + &#x27;px&#x27;);
-  $(&#x27;#footer&#x27;).css(&#x27;top&#x27;, (WH - 40) + &#x27;px&#x27;).css(&#x27;width&#x27;, (WW - 24) + &#x27;px&#x27;);
-  if(WW &gt; 1000) {
-    $(&#x27;ul#slides li:first&#x27;).css(&#x27;margin-left&#x27;, ((WW - 900) / 2) + &#x27;px&#x27;);
-    $(&#x27;ul#slides.new li:first&#x27;).css(&#x27;margin-left&#x27;, ((WW - 900) / 2) + &#x27;px&#x27;);
+  $(&#x27;ul#slides&#x27;).css(&#x27;top&#x27;, ((outer_height / 2) - 295) + &#x27;px&#x27;);
+  $(&#x27;ul#slides.new&#x27;).css(&#x27;top&#x27;, ((outer_height / 2) - 335) + &#x27;px&#x27;);
+  $(&#x27;#footer&#x27;).css(&#x27;top&#x27;, (outer_height - 40) + &#x27;px&#x27;).css(&#x27;width&#x27;, (outer_width - 24) + &#x27;px&#x27;);
+  if(outer_width &gt; 1000) {
+    $(&#x27;ul#slides li:first&#x27;).css(&#x27;margin-left&#x27;, ((outer_width - 900) / 2) + &#x27;px&#x27;);
+    $(&#x27;ul#slides.new li:first&#x27;).css(&#x27;margin-left&#x27;, ((outer_width - 900) / 2) + &#x27;px&#x27;);
   }
 }
 

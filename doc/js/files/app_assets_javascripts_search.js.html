@@ -383,12 +383,6 @@ function searchDocumentReadyGeneral() {
       }
     });
   });
-  $body.on(&#x27;click&#x27;, &#x27;#search_general_submit&#x27;, function() {
-    if(!$(this).hasClass(&#x27;current&#x27;)) {
-      $(&#x27;#search_general&#x27;).submit();
-      $(this).addClass(&#x27;current&#x27;);
-    }
-  });
   $body.on(&#x27;click&#x27;, &#x27;._keep_searching&#x27;, function() {
     $(this).data(&#x27;opened&#x27;, true);
     var form = $(this).parent();
@@ -427,6 +421,12 @@ function searchDocumentReadyPlaceholders() {
     $(this).css(&#x27;color&#x27;, &#x27;#939393&#x27;);
     $(&#x27;#general_tag_kind_for_search&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     $(&#x27;#search_general_submit&#x27;).removeClass(&#x27;current&#x27;);
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#search_general_submit&#x27;, function() {
+    if(!$(this).hasClass(&#x27;current&#x27;)) {
+      $(&#x27;#search_general&#x27;).submit();
+      $(this).addClass(&#x27;current&#x27;);
+    }
   });
 }
 

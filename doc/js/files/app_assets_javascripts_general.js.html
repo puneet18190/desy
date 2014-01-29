@@ -587,14 +587,24 @@ function locationsDocumentReady() {
   });
   $body.on(&#x27;change&#x27;, &#x27;._location_select_box&#x27;, function() {
     if(!$(this).data(&#x27;is-last&#x27;)) {
+      var locations_url = &#x27;/locations/&#x27; + $(this).val() + &#x27;/find&#x27;;
       if($(this).val() == &#x27;0&#x27;) {
-        $(this).parents(&#x27;._location_selector&#x27;).nextAll().find(&#x27;select&#x27;).html(&#x27;&#x27;);
-      } else {
-        $.ajax({
-          url: &#x27;/locations/&#x27; + $(this).val() + &#x27;/find&#x27;,
-          type: &#x27;get&#x27;
-        });
+        var container = $(this).parents(&#x27;.profile-element&#x27;).prev();
+        if(container.length &gt; 0) {
+          var sub_inputs = container.find(&#x27;input&#x27;);
+          if(sub_inputs.length &gt; 0) {
+            locations_url = &#x27;/locations/&#x27; + sub_inputs.data(&#x27;selected&#x27;) + &#x27;/find?empty_children=true&#x27;;
+          } else {
+            locations_url = &#x27;/locations/&#x27; + container.find(&#x27;select&#x27;).val() + &#x27;/find?empty_children=true&#x27;;
+          }
+        } else {
+          locations_url = &#x27;/locations/0/find&#x27;;
+        }
       }
+      $.ajax({
+        url: locations_url,
+        type: &#x27;get&#x27;
+      });
     }
   });
 }

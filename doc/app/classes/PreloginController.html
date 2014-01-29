@@ -252,11 +252,13 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
     <span class="ruby-identifier">render</span> <span class="ruby-value">:nothing</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
     <span class="ruby-keyword">return</span>
   <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@load_locations</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:dont_load_locations</span>].<span class="ruby-identifier">blank?</span>
   <span class="ruby-ivar">@purchase</span> = <span class="ruby-constant">Purchase</span>.<span class="ruby-identifier">find_by_token</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>])
   <span class="ruby-ivar">@purchase</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@purchase</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">accounts_number</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@purchase</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">location</span>
+    <span class="ruby-ivar">@location_types</span> = <span class="ruby-constant">LOCATION_TYPES</span>
     <span class="ruby-ivar">@forced_location</span> = <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">location</span>
-    <span class="ruby-ivar">@locations</span> = <span class="ruby-ivar">@forced_location</span>.<span class="ruby-identifier">get_filled_select_for_personal_info</span>
+    <span class="ruby-ivar">@locations</span> = <span class="ruby-ivar">@forced_location</span>.<span class="ruby-identifier">select_with_selected</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -308,14 +310,17 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
                 
               </p>
               <div id="method-i-registration_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 82</span>
+                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">registration</span>
-  <span class="ruby-ivar">@trial</span>            = <span class="ruby-identifier">params</span>[<span class="ruby-value">:trial</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;1&#39;</span>
-  <span class="ruby-ivar">@user</span>             = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
-  <span class="ruby-ivar">@school_level_ids</span> = <span class="ruby-constant">SchoolLevel</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">sl</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">sl</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">sl</span>.<span class="ruby-identifier">id</span>] }
-  <span class="ruby-ivar">@locations</span>        = [{<span class="ruby-value">:selected</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-number">0</span>, <span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Location</span>.<span class="ruby-identifier">roots</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)}]
-  <span class="ruby-ivar">@user_location</span>    = {}
-  <span class="ruby-ivar">@subjects</span>         = <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">extract_with_cathegories</span>
+  <span class="ruby-ivar">@saas</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_registration_mode&#39;</span>]
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">initialize_registration_form</span>
+  <span class="ruby-ivar">@errors</span> = {
+    <span class="ruby-value">:general</span>  =<span class="ruby-operator">&gt;</span> [],
+    <span class="ruby-value">:subjects</span> =<span class="ruby-operator">&gt;</span> [],
+    <span class="ruby-value">:policies</span> =<span class="ruby-operator">&gt;</span> [],
+    <span class="ruby-value">:purchase</span> =<span class="ruby-operator">&gt;</span> []
+  }
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -366,7 +371,7 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
                 
               </p>
               <div id="method-i-what_is_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 107</span>
+                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">what_is</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -403,7 +408,7 @@ href="DashboardController.html#method-i-index">DashboardController#index</a></p>
                 
               </p>
               <div id="method-i-redirect_to_dashboard_if_logged_in_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 113</span>
+                <pre><span class="ruby-comment"># File app/controllers/prelogin_controller.rb, line 118</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">redirect_to_dashboard_if_logged_in</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">logged_in?</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">dashboard_path</span>

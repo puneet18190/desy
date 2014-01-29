@@ -3721,7 +3721,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 286,
+            "line": 296,
             "description": "Initializes reports forms for both lessons and media elements.",
             "itemtype": "method",
             "name": "reportsDocumentReady",
@@ -3730,7 +3730,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 331,
+            "line": 341,
             "description": "Functionalities necessary only for the section 'my documents'.",
             "itemtype": "method",
             "name": "sectionDocumentsDocumentReady",
@@ -3739,7 +3739,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 341,
+            "line": 351,
             "description": "Functionalities necessary only for the section 'my lessons'.",
             "itemtype": "method",
             "name": "sectionLessonsDocumentReady",
@@ -3748,7 +3748,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 357,
+            "line": 367,
             "description": "Functionalities necessary only for the section 'my media elements'.",
             "itemtype": "method",
             "name": "sectionMediaElementsDocumentReady",
@@ -3757,7 +3757,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 410,
+            "line": 420,
             "description": "Functionalities necessary only for the sections containing notifications.",
             "itemtype": "method",
             "name": "sectionNotificationsDocumentReady",
@@ -3766,7 +3766,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 444,
+            "line": 454,
             "description": "Functionalities necessary only for the section 'search'.",
             "itemtype": "method",
             "name": "sectionSearchDocumentReady",
@@ -3775,7 +3775,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 469,
+            "line": 479,
             "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "browserSupport",
@@ -3784,7 +3784,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 477,
+            "line": 487,
             "description": "Hides the mini thumbnail of a compact media element.",
             "itemtype": "method",
             "name": "hideMiniThumbnailForMediaElementCompact",
@@ -3800,7 +3800,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 499,
+            "line": 509,
             "description": "Initializes global variables used throughout the javascripts.",
             "itemtype": "method",
             "name": "initializeGlobalVariables",
@@ -3809,7 +3809,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 515,
+            "line": 525,
             "description": "Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "redError",
@@ -3818,7 +3818,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 526,
+            "line": 536,
             "description": "Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3834,7 +3834,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 554,
+            "line": 564,
             "description": "Shows the mini thumbnail of a compact media element.",
             "itemtype": "method",
             "name": "showMiniThumbnailForMediaElementCompact",
@@ -3850,7 +3850,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 597,
+            "line": 607,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3875,7 +3875,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 623,
+            "line": 633,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -5894,7 +5894,7 @@
         },
         {
             "file": "app/assets/javascripts/profile.js",
-            "line": 93,
+            "line": 91,
             "description": "Initializes the javascript effects of the registration / modify profile form.",
             "itemtype": "method",
             "name": "profileDocumentReady",
@@ -5930,7 +5930,7 @@
         },
         {
             "file": "app/assets/javascripts/search.js",
-            "line": 89,
+            "line": 83,
             "description": "Initializer for <b>search keyword</b> placeholders.",
             "itemtype": "method",
             "name": "searchDocumentReadyPlaceholders",

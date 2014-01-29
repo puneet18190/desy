@@ -347,7 +347,7 @@ function preloginDocumentReady() {
   $body.on(&#x27;click&#x27;, &#x27;#submit_login_form&#x27;, function() {
     $(&#x27;#new_users_session_form&#x27;).submit();
   });
-  $body.on(&#x27;click&#x27;, &#x27;.cathegorySubjectContainer .checkboxElement label&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;.profile-subject-cathegory-container .profile-element label&#x27;, function() {
     if($(this).hasClass(&#x27;unchecked&#x27;)) {
       $(this).removeClass(&#x27;unchecked&#x27;);
     } else {
@@ -355,9 +355,9 @@ function preloginDocumentReady() {
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;.checkAllSubjects&#x27;, function() {
-    $(this).parent().find(&#x27;.checkboxElement label.unchecked&#x27;).click();
+    $(this).parent().find(&#x27;.profile-element label.unchecked&#x27;).click();
   });
-  $(&#x27;.policy-verticalScroll&#x27;).jScrollPane();
+  $(&#x27;.policy-verticalScroll&#x27;).jScrollPane({autoReinitialise: true});
   var parsedLocation = UrlParser.parse(window.location.href);
   if(_.contains(_.keys(parsedLocation.searchObj), &#x27;login&#x27;)) {
     $(&#x27;._show_login_form_container&#x27;).click();
@@ -372,32 +372,30 @@ Initializes handler of purchase code in prelogin registration.
 function purchaseCodeRegistrationDocumentReady() {
   $body.on(&#x27;blur&#x27;, &#x27;#registration_purchase_id&#x27;, function() {
     var token = $(this).val();
-    if(token != &#x27;&#x27;) {
-      $.ajax({
-        type: &#x27;get&#x27;,
-        url: &#x27;sign_up/purchase_code?token=&#x27; + token
-      });
-    }
+    $.ajax({
+      type: &#x27;get&#x27;,
+      url: &#x27;sign_up/purchase_code?token=&#x27; + token
+    });
   });
   $body.on(&#x27;click&#x27;, &#x27;#registration_trial&#x27;, function() {
     var me = $(this);
     if(!me.hasClass(&#x27;checked&#x27;)) {
       me.addClass(&#x27;checked&#x27;).val(&#x27;1&#x27;);
-      $(&#x27;#registration_purchase_id&#x27;).val(&#x27;&#x27;).removeClass(&#x27;error&#x27;).addClass(&#x27;disabled&#x27;).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
+      $(&#x27;#registration_purchase_id&#x27;).val(&#x27;&#x27;).removeClass(&#x27;error&#x27;).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
       $(&#x27;#registration_ok&#x27;).hide();
     } else {
       me.removeClass(&#x27;checked&#x27;).val(&#x27;0&#x27;);
-      $(&#x27;#registration_purchase_id&#x27;).removeAttr(&#x27;disabled&#x27;).removeClass(&#x27;disabled&#x27;);
+      $(&#x27;#registration_purchase_id&#x27;).removeAttr(&#x27;disabled&#x27;);
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;#locations_disclaimer&#x27;, function() {
     var me = $(this);
     if(!me.hasClass(&#x27;checked&#x27;)) {
       me.addClass(&#x27;checked&#x27;);
-      $(&#x27;#location_container_in_personal_info&#x27;).hide();
+      $(&#x27;#registration-locations&#x27;).hide();
     } else {
       me.removeClass(&#x27;checked&#x27;);
-      $(&#x27;#location_container_in_personal_info&#x27;).show();
+      $(&#x27;#registration-locations&#x27;).show();
     }
   });
 }

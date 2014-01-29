@@ -280,7 +280,7 @@ class UsersController < ApplicationController
   
   # === Description
   #
-  # Updates your profile (it can be called either from UsersController#edit or from UsersController#subjects)
+  # Updates your profile.
   #
   # === Mode
   #
@@ -336,7 +336,7 @@ class UsersController < ApplicationController
   
   # === Description
   #
-  # Updates your profile (it can be called either from UsersController#edit or from UsersController#subjects)
+  # Updates your subjects.
   #
   # === Mode
   #
