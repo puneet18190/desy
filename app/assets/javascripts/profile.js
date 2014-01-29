@@ -76,13 +76,23 @@ function purchaseCodeRegistrationDocumentReady() {
     var me = $(this);
     if(!me.hasClass('checked')) {
       me.addClass('checked');
+      var last_select = $('#registration-locations .profile-element select').first().parent();
+      var depth = 0;
+      while(last_select.length > 0) {
+        last_select = last_select.parent();
+        depth += 1;
+      }
+      $.ajax({
+        type: 'get',
+        url: 'locations/toggle?on=false&depth=' + depth
+      });
     } else {
       me.removeClass('checked');
+      $.ajax({
+        type: 'get',
+        url: 'locations/toggle?on=true'
+      });
     }
-    $.ajax({
-      type: 'get',
-      url: 'locations/toggle'
-    });
   });
 }
 
@@ -102,7 +112,7 @@ function profileDocumentReady() {
     }
   });
   $body.on('keypress', '#mailing_lists_accordion .group-title', function(event) {
-     if(event.which === 32){
+     if(event.which === 32) {
        event.stopPropagation();
      }
   });
