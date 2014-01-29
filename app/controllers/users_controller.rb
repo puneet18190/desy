@@ -24,7 +24,8 @@ class UsersController < ApplicationController
     :send_reset_password,
     :request_upgrade_trial,
     :send_upgrade_trial,
-    :find_locations
+    :find_locations,
+    :toggle_locations
   ]
   before_filter :initialize_layout, :only => [
     :edit,
@@ -444,6 +445,23 @@ class UsersController < ApplicationController
     end
     @locations = @parent.select_with_selected
     @location_types = LOCATION_TYPES
+  end
+  
+  # === Description
+  #
+  # Toggles locations between active and disabled, in the registration form: used in case the user doesn't find his location in the database.
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Skipped filters
+  #
+  # * ApplicationController#authenticate
+  #
+  def toggle_locations
+    @location_types = LOCATION_TYPES
+    # TODO locattions riempri
   end
   
   # === Description

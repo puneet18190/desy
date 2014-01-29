@@ -76,11 +76,13 @@ function purchaseCodeRegistrationDocumentReady() {
     var me = $(this);
     if(!me.hasClass('checked')) {
       me.addClass('checked');
-      $('#registration-locations').hide();
     } else {
       me.removeClass('checked');
-      $('#registration-locations').show();
     }
+    $.ajax({
+      type: 'get',
+      url: 'locations/toggle'
+    });
   });
 }
 

@@ -153,6 +153,7 @@ Desy::Application.routes.draw do
   put 'profile/subjects/update' => 'users#update_subjects', :as => :user_subjects
   
   # LOCATIONS
+  get 'locations/toggle'                   => 'users#toggle_locations'
   get 'locations/:id/find'                 => 'users#find_locations'
   get 'admin/locations/:id/find'           => 'admin/users#find_locations'
   get 'admin/purchases/locations/:id/find' => 'admin/purchases#find_locations'
