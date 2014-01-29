@@ -2856,6 +2856,13 @@ cn:
           "县",
           "学校"
         ] # TODO
+      # 1 - app/models/location.rb
+      feminine: [
+          false,
+          false,
+          false,
+          false
+        ]
     # Caption used when the user doesn't find any sublocation corresponding to the one he selected (the variable %{location} is replaced by the plural of the caption.
     # 1 - views/users/_locations_list.html.erb
     empty: "There are no %{location}" # TODO
@@ -2864,9 +2871,13 @@ cn:
     # 2 - views/admin/users/_list.html.erb
     parents_label: "省/市/县"
     # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
-    # 1 - views/admin/users/_locations_list.html.erb
-    # 2 - views/users/_locations_list.html.erb
-    placeholder: "选择%{location}"
+    placeholder:
+      # 1 - views/admin/users/_locations_list.html.erb
+      # 2 - views/users/_locations_list.html.erb
+      feminine: "选择%{location}"
+      # 1 - views/admin/users/_locations_list.html.erb
+      # 2 - views/users/_locations_list.html.erb
+      masculine: "选择%{location}"
   
   
   # SECTION 3.4: Media formats

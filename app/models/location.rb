@@ -238,4 +238,16 @@ class Location < ActiveRecord::Base
     Location.find_by_id loc_param
   end
   
+  # === Description
+  #
+  # Returns the gender (masculine, feminine) of the location.
+  #
+  # === Returns
+  #
+  # The string 'masculine' or 'feminine'
+  #
+  def gender
+    I18n.t('locations.labels.feminine')[SUBMODEL_NAMES.index(self.sti_type)] ? 'feminine' : 'masculine'
+  end
+  
 end

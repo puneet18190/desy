@@ -2856,6 +2856,13 @@ it:
           "Contee",
           "Scuole"
         ]
+      # 1 - app/models/location.rb
+      feminine: [
+          true,
+          true,
+          true,
+          true
+        ]
     # Caption used when the user doesn't find any sublocation corresponding to the one he selected (the variable %{location} is replaced by the plural of the caption.
     # 1 - views/users/_locations_list.html.erb
     empty: "Non ci sono %{location}"
@@ -2864,9 +2871,13 @@ it:
     # 2 - views/admin/users/_list.html.erb
     parents_label: "Provincia / Città / Contea"
     # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
-    # 1 - views/admin/users/_locations_list.html.erb
-    # 2 - views/users/_locations_list.html.erb
-    placeholder: "Seleziona una %{location}"
+    placeholder:
+      # 1 - views/admin/users/_locations_list.html.erb
+      # 2 - views/users/_locations_list.html.erb
+      feminine: "Seleziona una %{location}"
+      # 1 - views/admin/users/_locations_list.html.erb
+      # 2 - views/users/_locations_list.html.erb
+      masculine: "Seleziona un %{location}"
   
   
   # SECTION 3.4: Media formats
