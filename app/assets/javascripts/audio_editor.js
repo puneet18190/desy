@@ -120,7 +120,7 @@ Function that creates a single input field to be inserted in the empty audio com
 @return {String} the resulting input written in HTML
 **/
 function fillAudioEditorSingleParameter(input, identifier, value) {
-  return '<input id="' + input + '_' + identifier + '" class="_audio_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
+  return '<input id="' + input + '_' + identifier + '" class="_audio_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '"/>';
 }
 
 /**

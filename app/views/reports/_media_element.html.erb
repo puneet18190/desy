@@ -4,7 +4,7 @@
   <h3><%= t('reports.description') %></h3>
   <p><%= t('reports.placeholder') %></p>
   <%= form_tag '/reports/media_element', :remote => true do %>
-    <input type="hidden" value="<%= media_element.id %>" name="media_element_id">
+    <input type="hidden" value="<%= media_element.id %>" name="media_element_id"/>
     <table>
       <tbody>
         <tr>
@@ -14,7 +14,7 @@
         </tr>
         <tr>
           <td align="right">
-            <input class="_send" type="submit" value="<%= t('reports.commit') %>" name="commit">
+            <input class="_send" type="submit" value="<%= t('reports.commit') %>" name="commit"/>
           </td>
         </tr>
       </tbody>
