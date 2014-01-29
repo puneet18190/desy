@@ -1505,7 +1505,7 @@ label.filebutton span input#new_media_element_input {
     
   }
   
-  h2#title_for_subject_selection {
+  h2.title_for_registration_subsection {
     
     font-size: 17px;
     margin-bottom: 30px;
@@ -1514,7 +1514,7 @@ label.filebutton span input#new_media_element_input {
   
   #outer_locations_disclaimer {
     
-    margin-bottom: 70px;
+    margin-bottom: 75px;
     margin-top: 5px;
     height: 20px;
     position: relative;
@@ -1699,6 +1699,12 @@ label.filebutton span input#new_media_element_input {
       
       padding-bottom: 0;
       
+      .profile-errors {
+        
+        margin-top: 25px;
+        
+      }
+      
       .profile-subject-cathegory-container {
         
         width: 100%;
@@ -1709,7 +1715,7 @@ label.filebutton span input#new_media_element_input {
         &.no-border {
           
           border: 0;
-          margin-bottom: -30px; /* this style is not temporary nor unstable, please don't delete it! */
+          margin-bottom: 0;
           
         }
         
@@ -1826,7 +1832,7 @@ label.filebutton span input#new_media_element_input {
         
         float: none;
         width: 100%;
-        margin-top: 35px;
+        margin-top: 0;
         margin-right: 0;
         
         h3 {
