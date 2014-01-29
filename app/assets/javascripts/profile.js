@@ -88,6 +88,9 @@ function purchaseCodeRegistrationDocumentReady() {
       });
     } else {
       me.removeClass('checked');
+      
+      // TODO locattions completalo
+      
       $.ajax({
         type: 'get',
         url: 'locations/toggle?on=true'
