@@ -4,7 +4,7 @@
   </div>
   <div class="listContainer">
     <%= render :partial => 'virtual_classroom/my_virtual_classroom', :locals => {:lessons => @lessons, :covers => @covers} %>
-    <br class="clearfloat">
+    <br class="clearfloat"/>
     <% if @lessons.any? %>
       <%= render :partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :force_index_url => nil} %>
     <% else %>

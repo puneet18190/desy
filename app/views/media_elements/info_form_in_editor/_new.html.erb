@@ -9,7 +9,7 @@
     <div class="titleFormInfo">
       <div class="<%= sti_type.downcase %>Icon pull-left">&nbsp;</div>
       <h1 class="pull-left"><%= t('forms.new_media_element_in_editor.title') %></h1>
-      <br style="clear:float">
+      <br class="clearfloat"/>
       <h2 class="pull-left"><%= t('forms.new_media_element_in_editor.description') %></h2>
     </div>
     <div class="error_messages"></div>
@@ -28,7 +28,7 @@
         <%= hidden_field_tag 'new_tags_value', '' %>
       </div>
     </div>
-    <br class="clearfloat">
+    <br class="clearfloat"/>
     <div class="cols ad_hoc_per_check" style="float:right">
       <% if edited %>
         <div id="only_to_conserve_tags">

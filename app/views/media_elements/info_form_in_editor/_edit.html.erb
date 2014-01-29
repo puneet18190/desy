@@ -7,7 +7,7 @@
      <div class="titleFormInfo">
       <div class="<%= media_element.sti_type.downcase %>Icon pull-left">&nbsp;</div>
       <h1 class="pull-left"><%= t('forms.overwrite_media_element_in_editor.title') %></h1>
-      <br style="clear:float">
+      <br class="clearfloat"/>
       <h2 class="pull-left"><%= t('forms.overwrite_media_element_in_editor.description') %></h2>
     </div>
     <div class="error_messages"></div>
@@ -29,7 +29,7 @@
         <%= hidden_field_tag 'update_tags_value', media_element.tags %>
       </div>
     </div>
-    <br class="clearfloat">
+    <br class="clearfloat"/>
     <div class="cols" style="float:right">
       <a class="_cancel buttonForm lower"><%= t('forms.overwrite_media_element_in_editor.cancel') %></a>
       <a class="_commit buttonForm lower"><%= t('forms.overwrite_media_element_in_editor.done') %></a>

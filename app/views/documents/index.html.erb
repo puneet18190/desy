@@ -3,7 +3,7 @@
 <div class="gray-bar">
   <a id="upload_document" class="navlist-item b-document _load_document lower"><%= t('documents.upload') %></a>
 </div>
-<br class="clearfloat">
+<br class="clearfloat"/>
 <div class="griglia-contenuti">
   <div class="documents-content fixed-compact-height">
     <div id="documents_title_bar" class="title-bar">
@@ -27,7 +27,7 @@
     </div>
     <%= render :partial => 'documents/my_documents', :locals => {:documents => @documents, :word => @word} %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
-    <br class="clearfloat">
+    <br class="clearfloat"/>
     <% if @documents.present? %>
       <%= render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount} %>
     <% end %>
