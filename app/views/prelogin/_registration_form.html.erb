@@ -27,6 +27,8 @@
         <% end %>
       </ul>
     </div>
+  <% else %>
+    <div id="registration_not_saas_spacer"></div>
   <% end %>
   
   <div id="registration-general" class="registration-element-container">
@@ -81,13 +83,11 @@
     <input id="hidden_location_in_registration" type="hidden" value=""/>
   </div>
   <br class="clearfloat"/>
-  <% if saas %>
-    <div id="outer_locations_disclaimer">
-      <input id="locations_disclaimer" type="checkbox" value="0"/>
-      <%= label_tag 'locations_disclaimer', '' %>
-      <span><%= t('registration.locations_disclaimer', :location => Location.base_label.downcase) %></span>
-    </div>
-  <% end %>
+  <div id="outer_locations_disclaimer">
+    <input id="locations_disclaimer" type="checkbox" value="0"/>
+    <%= label_tag 'locations_disclaimer', '' %>
+    <span><%= t('registration.locations_disclaimer', :location => Location.base_label.downcase) %></span>
+  </div>
   
   <div id="registration-school-level" class="registration-element-container">
     <div class="profile-element">
