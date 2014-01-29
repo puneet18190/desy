@@ -2048,11 +2048,18 @@ en:
     # Disclaimer to state that the location is not compulsory (the variable %{location} is replaced by the lowest leaf in the location tree)
     # 1 - views/prelogin/_registration_form.html.erb
     locations_disclaimer: "You didn't find your %{location} in our database? Skip the selection"
-    subjects:
-      # Caption for subjects selection
+    # Titles of the subsections of registration form
+    title_sections:
       # 1 - views/prelogin/_registration_form.html.erb
-      # 2 - controllers/application_controller.rb
-      title: "Choose the subjects you are interested in"
+      general: "Insert your personal data"
+      # 1 - views/prelogin/_registration_form.html.erb
+      location: "Where do you live and work?"
+      # 1 - views/prelogin/_registration_form.html.erb
+      school_level: "Select your teaching school level"
+      # 1 - views/prelogin/_registration_form.html.erb
+      subjects: "Choose the subjects you are interested in"
+      # 1 - views/prelogin/_registration_form.html.erb
+      policies: "Don't forget to accept our policies"
     # List of customizable policies: for each there must be a title and a content (keyword 'description')
     # Example of usage:
     #  - title: "title of first policy"
