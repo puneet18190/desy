@@ -40,7 +40,7 @@
     </div>
     <div class="profile-element email">
       <%= t('users.info.attributes.email') %><br/>
-      <input type="text" value="<%= user.email %>" class="<%= user.errors.messages.has_key?(:name).to_s %>"/>
+      <input type="text" value="<%= user.email %>" name="email" class="<%= user.errors.messages.has_key?(:email).to_s %>"/>
     </div>
     <br class="clearfloat"/>
     <div class="profile-element">
