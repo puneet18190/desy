@@ -69,14 +69,14 @@ ActiveRecord::Schema.define(:version => 20130709121200) do
     t.integer  "purchase_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
-    t.index ["location_id"], :name => "fk__users_location_id"
-    t.index ["purchase_id"], :name => "fk__users_purchase_id"
-    t.index ["school_level_id"], :name => "fk__users_school_level_id"
     t.index ["active"], :name => "index_users_on_active"
     t.index ["confirmation_token"], :name => "index_users_on_confirmation_token"
     t.index ["confirmed"], :name => "index_users_on_confirmed"
     t.index ["email"], :name => "index_users_on_email", :unique => true
+    t.index ["location_id"], :name => "fk__users_location_id"
     t.index ["password_token"], :name => "index_users_on_password_token"
+    t.index ["purchase_id"], :name => "fk__users_purchase_id"
+    t.index ["school_level_id"], :name => "fk__users_school_level_id"
     t.foreign_key ["location_id"], "locations", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_users_location_id"
     t.foreign_key ["purchase_id"], "purchases", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_users_purchase_id"
     t.foreign_key ["school_level_id"], "school_levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_users_school_level_id"
