@@ -112,6 +112,7 @@
         <div class="profile-subject-cathegory-label">
           <%= cathegory[:label].present? ? cathegory[:label] : (subjects.first[:label].blank? ? '' : t('users.subjects.no_cathegory')) %>
         </div>
+        <% additional_subj_class = errors[:subjects].any? ? 'true' : '' %>
         <% cathegory[:items].each do |subject| %>
           <div class="profile-element">
             <% if subject_ids.include?(subject.id) %>
@@ -119,7 +120,7 @@
               <%= label_tag "profile-subject-#{subject.id}", '', :class => 'checked' %>
             <% else %>
               <input id="profile-subject-<%= subject.id %>" type="checkbox" value="1" name="subjects[id_<%= subject.id %>]"/>
-              <%= label_tag "profile-subject-#{subject.id}", '', :class => 'unchecked' %>
+              <%= label_tag "profile-subject-#{subject.id}", '', :class => "unchecked #{additional_subj_class}" %>
             <% end %>
             <span><%= subject.to_s %></span>
           </div>

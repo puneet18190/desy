@@ -266,6 +266,19 @@
             
           }
           
+          input:checked + label.true, label.true {
+            
+            padding: 14px;
+            
+          }
+          
+          label.true {
+            
+            border: 2px solid #D20B0B;
+            padding: 14px;
+            
+          }
+          
           span {
             
             float: left;
