@@ -468,8 +468,8 @@ class UsersController < ApplicationController
         @locations = Location.roots.order(:name)
         @depth = 0
       else
-        @locations = location.siblings.order(:name)
-        @depth = location.depth
+        @locations = location.children.order(:name)
+        @depth = location.depth + 1
       end
     else
       @depth = correct_integer?(params[:depth]) ? (params[:depth].to_i - 1) : 0
