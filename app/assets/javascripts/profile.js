@@ -76,10 +76,10 @@ function purchaseCodeRegistrationDocumentReady() {
     var me = $(this);
     if(!me.hasClass('checked')) {
       me.addClass('checked');
-      var last_select = $('#registration-locations .profile-element select').first().parent();
+      var last_not_select = $('#registration-locations .profile-element select').first().parent();
       var depth = 0;
-      while(last_select.length > 0) {
-        last_select = last_select.prev();
+      while(last_not_select.length > 0) {
+        last_not_select = last_not_select.prev();
         depth += 1;
       }
       $.ajax({
@@ -88,12 +88,14 @@ function purchaseCodeRegistrationDocumentReady() {
       });
     } else {
       me.removeClass('checked');
-      
-      // TODO locattions completalo
-      
+      var last_not_selected = $('#registration-locations .profile-element.locked').last();
+      var which_selected = 0;
+      if(last_not_selected.length > 0) {
+        which_selected = last_not_selected.find('input').data('selected');
+      }
       $.ajax({
         type: 'get',
-        url: 'locations/toggle?on=true'
+        url: 'locations/toggle?on=true&location_id=' + which_selected
       });
     }
   });

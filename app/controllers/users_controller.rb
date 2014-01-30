@@ -462,8 +462,18 @@ class UsersController < ApplicationController
   def toggle_locations
     @location_types = LOCATION_TYPES
     @on = params[:on] == 'true'
-    @depth = correct_integer?(params[:depth]) ? (params[:depth].to_i - 1) : 0
-    # TODO locattions riempri
+    if @on
+      location = Location.find_by_id(correct_integer?(params[:location_id]) ? params[:location_id].to_i : 0)
+      if location.nil?
+        @locations = Location.roots.order(:name)
+        @depth = 0
+      else
+        @locations = location.siblings.order(:name)
+        @depth = location.depth
+      end
+    else
+      @depth = correct_integer?(params[:depth]) ? (params[:depth].to_i - 1) : 0
+    end
   end
   
   # === Description
