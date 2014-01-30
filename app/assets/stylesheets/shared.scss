@@ -1693,6 +1693,20 @@ label.filebutton span input#new_media_element_input {
       
       padding-bottom: 0;
       
+      .profile-element {
+        
+        &.locked, &.locked-empty {
+          
+          input {
+            
+            background-color: black; /* TODO locattions scegli nuovo colore */
+            
+          }
+          
+        }
+        
+      }
+      
     }
     
     &#registration-subjects {
