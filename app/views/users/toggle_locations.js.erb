@@ -1,3 +1,6 @@
+$('._location_select_box').each(function() {
+  $('#' + $(this).attr('id')).selectbox('detach');
+});
 <% if @on %>
   $('#registration-locations .profile-element.locked').removeClass('locked');
   $('#registration-locations .profile-element.locked-empty').removeClass('locked-empty');
@@ -39,3 +42,6 @@
     <% end %>
   <% end %>
 <% end %>
+$('._location_select_box').each(function() {
+  $('#' + $(this).attr('id')).selectbox();
+});
