@@ -676,6 +676,9 @@ cn:
       # The user's email is not valid or already present in the database
       # 1 - controllers/application_controller.rb
       not_valid_email: "你插入的邮件地址是非法的或在我们的数据库中已经存在"
+      # The email doesn't match confirmation
+      # 1 - controllers/application_controller.rb
+      email_doesnt_match_confirmation: "The email doesn't match confirmation" # TODO
       # The user hasn't selected any subject
       # 1 - controllers/application_controller.rb
       select_at_least_a_subject: "至少选择一个主题"
@@ -2259,6 +2262,8 @@ cn:
         # 1 - views/users/edit.html.erb
         # 2 - views/prelogin/_registration_form.html.erb
         email: "邮件地址"
+        # 1 - views/prelogin/_registration_form.html.erb
+        email_confirmation: "Email confirmation" # TODO
         # 1 - views/prelogin/_registration_form.html.erb
         password: "密码"
         # This is in the case the user is writing his password for the first time

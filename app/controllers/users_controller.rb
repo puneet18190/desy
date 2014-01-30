@@ -71,6 +71,7 @@ class UsersController < ApplicationController
     ActiveRecord::Base.transaction do
       @user = User.active.not_confirmed.new
       @user.email = params[:email]
+      @user.email_confirmation = params[:email_confirmation]
       @user.name = params[:name]
       @user.surname = params[:surname]
       @user.password = params[:password]

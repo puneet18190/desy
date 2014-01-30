@@ -311,7 +311,6 @@ class ApplicationController < ActionController::Base
       :purchase => []
     }
     resp[:general] << t('forms.error_captions.fill_all_the_fields_or_too_long') if (errors.messages.keys & [:name, :surname]).any?
-    resp[:general] << t('forms.error_captions.not_valid_email') if errors.messages.has_key? :email
     resp[:subjects] << t('forms.error_captions.select_at_least_a_subject') if errors.messages.has_key? :users_subjects
     if errors.messages.has_key? :password
       if errors.added?(:password, :too_short, {:count => pas_min}) || errors.added?(:password, :too_long, {:count => pas_max})
@@ -324,6 +323,13 @@ class ApplicationController < ActionController::Base
         resp[:general] << t('forms.error_captions.password_doesnt_match_confirmation')
       else
         resp[:general] << t('forms.error_captions.invalid_password')
+      end
+    end
+    if errors.messages.has_key? :email
+      if errors.added? :email, :confirmation
+        resp[:general] << t('forms.error_captions.email_doesnt_match_confirmation')
+      else
+        resp[:general] << t('forms.error_captions.not_valid_email')
       end
     end
     SETTINGS['user_registration_policies'].each_with_index do |policy, index|

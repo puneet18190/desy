@@ -676,6 +676,9 @@ it:
       # The user's email is not valid or already present in the database
       # 1 - controllers/application_controller.rb
       not_valid_email: "L'email inserita non è valida o già presente nel nostro archivio"
+      # The email doesn't match confirmation
+      # 1 - controllers/application_controller.rb
+      email_doesnt_match_confirmation: "La conferma della email non corrisponde alla email inserita"
       # The user hasn't selected any subject
       # 1 - controllers/application_controller.rb
       select_at_least_a_subject: "Selezionarne almeno una"
@@ -2259,6 +2262,8 @@ it:
         # 1 - views/users/edit.html.erb
         # 2 - views/prelogin/_registration_form.html.erb
         email: "Email"
+        # 1 - views/prelogin/_registration_form.html.erb
+        email_confirmation: "Conferma email"
         # 1 - views/prelogin/_registration_form.html.erb
         password: "Password"
         # This is in the case the user is writing his password for the first time
