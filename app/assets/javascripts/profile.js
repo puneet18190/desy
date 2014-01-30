@@ -79,7 +79,7 @@ function purchaseCodeRegistrationDocumentReady() {
       var last_select = $('#registration-locations .profile-element select').first().parent();
       var depth = 0;
       while(last_select.length > 0) {
-        last_select = last_select.parent();
+        last_select = last_select.prev();
         depth += 1;
       }
       $.ajax({
