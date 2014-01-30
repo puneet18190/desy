@@ -5894,7 +5894,7 @@
         },
         {
             "file": "app/assets/javascripts/profile.js",
-            "line": 91,
+            "line": 108,
             "description": "Initializes the javascript effects of the registration / modify profile form.",
             "itemtype": "method",
             "name": "profileDocumentReady",

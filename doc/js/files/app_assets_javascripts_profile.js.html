@@ -392,10 +392,27 @@ function purchaseCodeRegistrationDocumentReady() {
     var me = $(this);
     if(!me.hasClass(&#x27;checked&#x27;)) {
       me.addClass(&#x27;checked&#x27;);
-      $(&#x27;#registration-locations&#x27;).hide();
+      var last_not_select = $(&#x27;#registration-locations .profile-element select&#x27;).first().parent();
+      var depth = 0;
+      while(last_not_select.length &gt; 0) {
+        last_not_select = last_not_select.prev();
+        depth += 1;
+      }
+      $.ajax({
+        type: &#x27;get&#x27;,
+        url: &#x27;locations/toggle?on=false&amp;depth=&#x27; + depth
+      });
     } else {
       me.removeClass(&#x27;checked&#x27;);
-      $(&#x27;#registration-locations&#x27;).show();
+      var last_not_selected = $(&#x27;#registration-locations .profile-element.locked&#x27;).last();
+      var which_selected = 0;
+      if(last_not_selected.length &gt; 0) {
+        which_selected = last_not_selected.find(&#x27;input&#x27;).data(&#x27;selected&#x27;);
+      }
+      $.ajax({
+        type: &#x27;get&#x27;,
+        url: &#x27;locations/toggle?on=true&amp;location_id=&#x27; + which_selected
+      });
     }
   });
 }
@@ -416,7 +433,7 @@ function profileDocumentReady() {
     }
   });
   $body.on(&#x27;keypress&#x27;, &#x27;#mailing_lists_accordion .group-title&#x27;, function(event) {
-     if(event.which === 32){
+     if(event.which === 32) {
        event.stopPropagation();
      }
   });

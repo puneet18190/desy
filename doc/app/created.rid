@@ -1,4 +1,4 @@
-Wed, 29 Jan 2014 15:49:17 +0100
+Thu, 30 Jan 2014 11:51:14 +0100
 app/controllers/admin/dashboard_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/admin/documents_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
 app/controllers/admin/lessons_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
@@ -10,7 +10,7 @@ app/controllers/admin/reports_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/admin/settings_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
 app/controllers/admin/users_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
 app/controllers/admin_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/controllers/application_controller.rb	Wed, 29 Jan 2014 15:42:11 +0100
+app/controllers/application_controller.rb	Thu, 30 Jan 2014 11:46:16 +0100
 app/controllers/audio_editor_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/dashboard_controller.rb	Tue, 07 Jan 2014 16:52:25 +0100
 app/controllers/documents_controller.rb	Tue, 07 Jan 2014 16:52:25 +0100
@@ -24,12 +24,12 @@ app/controllers/lessons_controller.rb	Tue, 07 Jan 2014 16:52:25 +0100
 app/controllers/mailing_lists_controller.rb	Thu, 14 Nov 2013 12:46:56 +0100
 app/controllers/media_elements_controller.rb	Tue, 07 Jan 2014 16:52:25 +0100
 app/controllers/notifications_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/controllers/prelogin_controller.rb	Wed, 29 Jan 2014 15:42:11 +0100
+app/controllers/prelogin_controller.rb	Wed, 29 Jan 2014 16:35:23 +0100
 app/controllers/reports_controller.rb	Tue, 26 Nov 2013 16:04:55 +0100
 app/controllers/search_controller.rb	Tue, 07 Jan 2014 16:52:25 +0100
 app/controllers/tags_controller.rb	Thu, 16 Jan 2014 14:49:41 +0100
 app/controllers/users/sessions_controller.rb	Mon, 18 Nov 2013 11:40:45 +0100
-app/controllers/users_controller.rb	Wed, 29 Jan 2014 15:49:12 +0100
+app/controllers/users_controller.rb	Thu, 30 Jan 2014 11:44:31 +0100
 app/controllers/video_editor_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/virtual_classroom_controller.rb	Thu, 14 Nov 2013 12:46:56 +0100
 app/helpers/admin_helper.rb	Tue, 03 Dec 2013 10:29:01 +0100
@@ -57,7 +57,7 @@ app/models/slide.rb	Fri, 10 Jan 2014 11:45:56 +0100
 app/models/subject.rb	Wed, 27 Nov 2013 10:38:42 +0100
 app/models/tag.rb	Thu, 16 Jan 2014 14:49:41 +0100
 app/models/tagging.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/models/user.rb	Wed, 29 Jan 2014 11:03:32 +0100
+app/models/user.rb	Thu, 30 Jan 2014 11:34:29 +0100
 app/models/users_subject.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/models/video.rb	Thu, 09 Jan 2014 12:06:10 +0100
 app/models/virtual_classroom_lesson.rb	Wed, 06 Nov 2013 17:10:38 +0100
