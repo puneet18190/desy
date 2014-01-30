@@ -50,6 +50,10 @@
     </div>
     <br class="clearfloat"/>
     <div class="profile-element">
+      <%= t('users.info.attributes.email_confirmation') %><br/>
+      <input type="text" name="email_confirmation" class="<%= user.errors.added?(:email, :confirmation).to_s %>"/>
+    </div>
+    <div class="profile-element">
       <%= t('users.info.attributes.password') %><br/>
       <input type="password" name="password" class="<%= user.errors.messages.has_key?(:password).to_s %>"/>
     </div>

@@ -42,6 +42,7 @@
 # * *presence* with numericality greater than 0 and presence of associated object for +school_level_id+
 # * *numericality* greater than 0 and allow_nil and eventually presence of associated object for +location_id+ and +purchase_id+ (for the location, it's also checked that the subclass is the last in the locations chain, see Location)
 # * *confirmation* of +encrypted_password+ (the attribute password must coincide with its confirmation provided by the user): this validation uses the private attribute +password_confirmation+, associated to password
+# * *confirmation* of +email+ (the attribute email must coincide with its confirmation provided by the user): this validation uses the private attribute +email_confirmation+
 # * *presence* of at least one associated record of UsersSubject
 # * *uniqueness* of +email+
 # * *length* of +name+ and +surname+ (maximum 255)
@@ -114,7 +115,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :name, :surname, :school_level_id
   validates_numericality_of :school_level_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :location_id, :purchase_id, :only_integer => true, :greater_than => 0, :allow_nil => true
-  validates_confirmation_of :password
+  validates_confirmation_of :password, :email
   validates_presence_of :users_subjects
   validates_uniqueness_of :email
   validates_length_of :name, :surname, :email, :maximum => 255
