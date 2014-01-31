@@ -2054,15 +2054,15 @@ cn:
     # Titles of the subsections of registration form
     title_sections:
       # 1 - views/prelogin/_registration_form.html.erb
-      general: "Insert your personal data" # TODO
+      general: "请插入你的个人资料"
       # 1 - views/prelogin/_registration_form.html.erb
-      location: "Where do you live and work?" # TODO
+      location: "你在哪儿居住与工作?"
       # 1 - views/prelogin/_registration_form.html.erb
-      school_level: "Select your teaching school level" # TODO
+      school_level: "请选择教学等级"
       # 1 - views/prelogin/_registration_form.html.erb
       subjects: "选择你感兴趣的科目"
       # 1 - views/prelogin/_registration_form.html.erb
-      policies: "Don't forget to accept our policies" # TODO
+      policies: "请不要忘记接受我们的政策"
     # List of customizable policies: for each there must be a title and a content (keyword 'description')
     # Example of usage:
     #  - title: "title of first policy"
