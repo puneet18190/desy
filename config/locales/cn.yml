@@ -1849,100 +1849,197 @@ cn:
     empty: "你没有得到任何的通知"
     documents:
       # Notification sent by a user who destroyed a document attached to a lesson coped by somebody else, to inform all its followers (the variable %{lesson_title} is replaced by the title of the lesson, %{document_title} by the title of the document, and %{link} by the link to the lesson viewer for that lesson)
-      # 1 - models/document.rb
-      destroyed: "<div class=\"title\">警告!</div><div class=\"content\">这个文档 <span class=\"variable\">%{document_title}</span> 被它的所有者移除: 这会影响你的课程 <span class=\"variable\">%{lesson_title}</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
+      destroyed:
+        # 1 - models/document.rb
+        title: "警告!"
+        # 1 - models/document.rb
+        message: "这个文档 <span class=\"variable\">%{document_title}</span> 被它的所有者移除: 这会影响你的课程 <span class=\"variable\">%{lesson_title}</span>"
+        # 1 - models/document.rb
+        basement: "<span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a>"
       # Message attached to the notification of modifications automatically sent to users who have a link to a lesson containig a document which has been deleted (%{document_title} is  replaced by the title of the document)
       # 1 - models/document.rb
       standard_message_for_linked_lessons: "我移除了那个附加文档 «%{document_title}»"
     lessons:
       # Message sent to a user who has the lesson link, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
-      # 1 - models/lesson.rb
-      destroyed: "<div class=\"title\">警告!</div><div class=\"content\">用户<span class=\"variable\">%{user_name}</span>, <span class=\"variable\">的作者 %{lesson_title}</span>, 已删除这个课程: 因此，你失去了这个课程的链接.</div>"
+      destroyed:
+        # 1 - models/lesson.rb
+        title: "警告!"
+        # 1 - models/lesson.rb
+        message: "用户<span class=\"variable\">%{user_name}</span>, <span class=\"variable\">的作者 %{lesson_title}</span>, 已删除这个课程: 因此，你失去了这个课程的链接."
       # Notification received by an user who sent to his friends an email with the public link of a lesson: it's used as a memo of the list of emails to which the message was successfully sent (the variable %{title} is replaced by the title of the lesson, %{message} by the message inserted by the sender, %{emails} by the list of emails separated by comma)
-      # 1 - controllers/virtual_classroom_controller.rb
-      link_sent: "<div class=\"title\">链接已送!</div><div class=\"content\">你已发送课程链接<span class=\"variable\">%{title}</span>到以下邮箱地址:<br/><br/><span class=\"message\">%{emails}</span><br/><br/>你链接的信息是<br/><br/><span class=\"message\">\"%{message}\"</div>"
+      link_sent:
+        # 1 - controllers/virtual_classroom_controller.rb
+        title: "链接已送!"
+        # 1 - controllers/virtual_classroom_controller.rb
+        message: "你已发送课程链接<span class=\"variable\">%{title}</span>到以下邮箱地址:<br/><br/><span class=\"message\">%{emails}</span><br/><br/>你链接的信息是<br/><br/><span class=\"message\">\"%{message}\"</span>"
       # Notification sent by a user who modified a shared lesson, to inform all its followers about the nature of modifications made (the variable %{lesson_title} is replaced by the title of the lesson, %{message} by the message containing a better description of the modifications, and %{link} by the link to the lesson viewer for that lesson)
-      # 1 - models/lesson.rb
-      # 2 - models/lesson.rb
-      # 3 - models/document.rb
-      modified: "<div class=\"title\">你的消息!</div><div class=\"content\">这个课程<span class=\"variable\">%{lesson_title}</span>作者作了一些改变: 改变的详细是：<br/><br/><span class=\"message\">\"%{message}\"</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
+      modified:
+        # 1 - models/lesson.rb
+        # 2 - models/lesson.rb
+        # 3 - models/document.rb
+        title: "你的消息!"
+        # 1 - models/lesson.rb
+        # 2 - models/lesson.rb
+        # 3 - models/document.rb
+        message: "这个课程<span class=\"variable\">%{lesson_title}</span>作者作了一些改变: 改变的详细是：<br/><br/><span class=\"message\">\"%{message}\"</span>"
+        # 1 - models/lesson.rb
+        # 2 - models/lesson.rb
+        # 3 - models/document.rb
+        basement: "<span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a>"
       # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted) (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
-      # 1 - models/lesson.rb
-      unpublished: "<div class=\"title\">警告!</div><div class=\"content\">用户<span class=\"variable\">%{user_name}</span>, <span class=\"variable\">的作者%{lesson_title}</span>, 把这篇课程变成私有状态: 因此，你已失去了那篇课程的链接.</div>"
+      unpublished:
+        # 1 - models/lesson.rb
+        title: "警告!"
+        # 1 - models/lesson.rb
+        message: "用户<span class=\"variable\">%{user_name}</span>, <span class=\"variable\">的作者%{lesson_title}</span>, 把这篇课程变成私有状态: 因此，你已失去了那篇课程的链接."
     audio:
       compose:
         update:
           # The process of audio editing started. The variable %{item} is replaced by the name of the audio whose content is going to be modified
-          # 1 - controllers/audio_editor_controller.rb
-          started: "<div class=\"title\">音频正在编辑</div><div class=\"content\">音频编辑 <span class=\"variable\">%{item}</span> 已开始! 音频编辑临时不能提供, 还有你使用这篇音频的课程.</div>"
+          started:
+            # 1 - controllers/audio_editor_controller.rb
+            title: "音频正在编辑"
+            # 1 - controllers/audio_editor_controller.rb
+            message: "音频编辑 <span class=\"variable\">%{item}</span> 已开始! 音频编辑临时不能提供, 还有你使用这篇音频的课程."
           # The process of audio editing ended successfully. The variable %{item} is replaced by the name of the audio whose content has been modified
-          # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "<div class=\"title\">恭喜!</div><div class=\"content\">音频编辑<span class=\"variable\">%{item}</span> 成功完成! 现在音频编辑能提供, 还有用于音频的所有的课程 (除非在编辑中包含任何其它的课程).</div>"
+          ok:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "恭喜!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "音频编辑<span class=\"variable\">%{item}</span> 成功完成! 现在音频编辑能提供, 还有用于音频的所有的课程 (除非在编辑中包含任何其它的课程)."
           # The process of audio editing ended with an error. The variable %{item} is replaced by the name of the audio whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
-          # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "<div class=\"title\">错误!</div><div class=\"content\">音频编辑<span class=\"variable\">%{item}</span>失败! 现在音频编辑能在提供, 还有用于音频的所有的课程 (除非在编辑中包含任何其它的素材). 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">请去草稿编辑</a></div>"
+          failed:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "错误!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "音频编辑<span class=\"variable\">%{item}</span>失败! 现在音频编辑能在提供, 还有用于音频的所有的课程 (除非在编辑中包含任何其它的素材). 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">请去草稿编辑</a>"
         create:
           # The process of audio composition started. The variable %{item} is replaced by the name of the audio which is going to be composed
-          # 1 - controllers/audio_editor_controller.rb
-          started: "<div class=\"title\">音频制作</div><div class=\"content\">音频制作<span class=\"variable\">%{item}</span>开始了! 音频编辑临时不能提供</div>"
+          started:
+            # 1 - controllers/audio_editor_controller.rb
+            title: "音频制作"
+            # 1 - controllers/audio_editor_controller.rb
+            message: "音频制作<span class=\"variable\">%{item}</span>开始了! 音频编辑临时不能提供"
           # The process of audio composition ended successfully. The variable %{item} is replaced by the name of the new audio
-          # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "<div class=\"title\">恭喜!</div><div class=\"content\">音频制作<span class=\"variable\">%{item}</span>成功完成! 现在音频编辑可重新提供.</div>"
+          ok:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "恭喜!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "音频制作<span class=\"variable\">%{item}</span>成功完成! 现在音频编辑可重新提供."
           # The process of audio composition ended with an error. The variable %{item} is replaced by the name of the audio in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
-          # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "<div class=\"title\">错误!</div><div class=\"content\">音频制作<span class=\"variable\">%{item}</span> 失败! 现在音频编辑可重新提供. 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">去草稿编辑</a></div>"
+          failed:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "错误!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "音频制作<span class=\"variable\">%{item}</span> 失败! 现在音频编辑可重新提供. 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">去草稿编辑</a>"
       upload:
         # The process of audio uploading started. The variable %{item} is replaced by the name of the audio which is going to be uploaded
-        # 1 - controllers/media_elements_controller.rb
-        started: "<div class=\"title\">音频正在上传</div><div class=\"content\">音频上传<span class=\"variable\">%{item}</span>已开始! 请等待，知道完成并能使用新音频.</div>"
+        started:
+          # 1 - controllers/media_elements_controller.rb
+          title: "音频正在上传"
+          # 1 - controllers/media_elements_controller.rb
+          message: "音频上传<span class=\"variable\">%{item}</span>已开始! 请等待，知道完成并能使用新音频."
         # The process of audio uploading ended successfully. The variable %{item} is replaced by the name of the new audio
-        # 1 - ../lib/media/audio/editing/conversion.rb
-        ok: "<div class=\"title\">恭喜!</div><div class=\"content\">音频上传<span class=\"variable\">%{item}</span>成功完成! 现在你能在你的课程中使用它.</div>"
+        ok:
+          # 1 - ../lib/media/audio/editing/conversion.rb
+          title: "恭喜!"
+          # 1 - ../lib/media/audio/editing/conversion.rb
+          message: "音频上传<span class=\"variable\">%{item}</span>成功完成! 现在你能在你的课程中使用它."
         # The process of audio uploading ended with an error. The variable %{item} is replaced by the name of the audio which the user tried to upload
-        # 1 - ../lib/media/audio/editing/conversion.rb
-        failed: "<div class=\"title\">错误!</div><div class=\"content\">音频上传<span class=\"variable\">%{item}</span>失败! 请重新再来.</div>"
+        failed:
+          # 1 - ../lib/media/audio/editing/conversion.rb
+          title: "错误!"
+          # 1 - ../lib/media/audio/editing/conversion.rb
+          message: "音频上传<span class=\"variable\">%{item}</span>失败! 请重新再来."
     video:
       compose:
         update:
           # The process of video editing started. The variable %{item} is replaced by the name of the video whose content is going to be modified
-          # 1 - controllers/audio_editor_controller.rb
-          started: "<div class=\"title\">正在编辑视频</div><div class=\"content\">视频编辑<span class=\"variable\">%{item}</span>已开始! 视频编辑临时不能提供, 还有你使用这个视频的课程.</div>"
+          started:
+            # 1 - controllers/audio_editor_controller.rb
+            title: "正在编辑视频"
+            # 1 - controllers/audio_editor_controller.rb
+            message: "视频编辑<span class=\"variable\">%{item}</span>已开始! 视频编辑临时不能提供, 还有你使用这个视频的课程."
           # The process of video editing ended successfully. The variable %{item} is replaced by the name of the video whose content has been modified
-          # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "<div class=\"title\">恭喜!</div><div class=\"content\">编辑视频<span class=\"variable\">%{item}</span>成功完成! 现在视频能重新提供, 还有使用视频的所有的课程 (除非在编辑中包含任何其它的素材).</div>"
+          ok:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "恭喜!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "编辑视频<span class=\"variable\">%{item}</span>成功完成! 现在视频能重新提供, 还有使用视频的所有的课程 (除非在编辑中包含任何其它的素材)."
           # The process of video editing ended with an error. The variable %{item} is replaced by the name of the video whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
-          # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "<div class=\"title\">错误!</div><div class=\"content\">编辑视频<span class=\"variable\">%{item}</span>失败! 现在视频编辑能在提供, 还有用于视频的所有的课程 (除非在编辑中包含任何其它的素材). 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">请去草稿编辑</a></div>"
+          failed:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "错误!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "编辑视频<span class=\"variable\">%{item}</span>失败! 现在视频编辑能在提供, 还有用于视频的所有的课程 (除非在编辑中包含任何其它的素材). 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">请去草稿编辑</a>"
         create:
           # The process of video composition started. The variable %{item} is replaced by the name of the video which is going to be composed
-          # 1 - controllers/video_editor_controller.rb
-          started: "<div class=\"title\">音频制作</div><div class=\"content\">视频制作<span class=\"variable\">%{item}</span>已开始! 视频编辑临时不能提供.</div>"
+          started:
+            # 1 - controllers/video_editor_controller.rb
+            title: "音频制作"
+            # 1 - controllers/video_editor_controller.rb
+            message: "视频制作<span class=\"variable\">%{item}</span>已开始! 视频编辑临时不能提供."
           # The process of video composition ended successfully. The variable %{item} is replaced by the name of the new video
-          # 1 - ../lib/media/video/editing/composer.rb
-          ok: "<div class=\"title\">恭喜!</div><div class=\"content\">视频制作<span class=\"variable\">%{item}</span>成功完成! 现在编辑能重新提供.</div>"
+          ok:
+            # 1 - ../lib/media/video/editing/composer.rb
+            title: "恭喜!"
+            # 1 - ../lib/media/video/editing/composer.rb
+            message: "视频制作<span class=\"variable\">%{item}</span>成功完成! 现在编辑能重新提供."
           # The process of video composition ended with an error. The variable %{item} is replaced by the name of the video in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
-          # 1 - ../lib/media/video/editing/composer.rb
-          failed: "<div class=\"title\">错误!</div><div class=\"content\">视频制作<span class=\"variable\">%{item}</span>失败! 现在视频编辑能在提供. 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">请去草稿编辑</a></div>"
+          failed:
+            # 1 - ../lib/media/video/editing/composer.rb
+            title: "错误!"
+            # 1 - ../lib/media/video/editing/composer.rb
+            message: "视频制作<span class=\"variable\">%{item}</span>失败! 现在视频编辑能在提供. 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">请去草稿编辑</a>"
       upload:
         # The process of video uploading started. The variable %{item} is replaced by the name of the video which is going to be uploaded
-        # 1 - controllers/media_elements_controller.rb
-        started: "<div class=\"title\">视频正在上传!</div><div class=\"content\">视频上传<span class=\"variable\">%{item}</span>已开始! 请等待直到完成并能使用新视频.</div>"
+        started:
+          # 1 - controllers/media_elements_controller.rb
+          title: "视频正在上传!"
+          # 1 - controllers/media_elements_controller.rb
+          message: "视频上传<span class=\"variable\">%{item}</span>已开始! 请等待直到完成并能使用新视频."
         # The process of video uploading ended successfully. The variable %{item} is replaced by the name of the new video
-        # 1 - ../lib/media/video/editing/conversion.rb
-        ok: "<div class=\"title\">恭喜!</div><div class=\"content\">视频上传<span class=\"variable\">%{item}</span>成功完成! 现在你能在课程中使用它.</div>"
+        ok:
+          # 1 - ../lib/media/video/editing/conversion.rb
+          title: "恭喜!"
+          # 1 - ../lib/media/video/editing/conversion.rb
+          message: "视频上传<span class=\"variable\">%{item}</span>成功完成! 现在你能在课程中使用它."
         # The process of video uploading ended with an error. The variable %{item} is replaced by the name of the video which the user tried to upload
-        # 1 - ../lib/media/video/editing/conversion.rb
-        failed: "<div class=\"title\">错误!</div><div class=\"content\">视频上传<span class=\"variable\">%{item}</span>失败! 请重新试一次.</div>"
+        failed:
+          # 1 - ../lib/media/video/editing/conversion.rb
+          title: "错误!"
+          # 1 - ../lib/media/video/editing/conversion.rb
+          message: "视频上传<span class=\"variable\">%{item}</span>失败! 请重新试一次."
     # Notifications related to the user's account cycle: account created, trial upgraded, account renewed, etc
     account:
       # The user has created a new account with a regular purchase code. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, and %{expiration_date} by the date of expiration of the user's account
-      welcome: "<div class=\"title\">欢迎 %{user_name}!</div><div class=\"content\">在<span class=\"variable\">%{desy}</span>里,你激活了你的账号: 你的账号是合法的,直到<span class=\"variable\">%{expiration_date}</span>.</div>"
+      welcome:
+        # 1 - controllers/users_controller.rb
+        title: "欢迎 %{user_name}!"
+        # 1 - controllers/users_controller.rb
+        message: "在<span class=\"variable\">%{desy}</span>里,你激活了你的账号: 你的账号是合法的,直到<span class=\"variable\">%{expiration_date}</span>."
       # The user has renewed his regular account. The variable %{expiration_date} is replaced by the date of expiration of the user's account
-      renewed: "<div class=\"title\">恭喜!</div><div class=\"content\">你的正式账号已经被更新直到 <span class=\"variable\">%{expiration_date}</span>.</div>"
+      renewed:
+        # 1 - controllers/admin/purchases_controller.rb
+        title: "恭喜!"
+        # 1 - controllers/admin/purchases_controller.rb
+        message: "你的正式账号已经被更新直到 <span class=\"variable\">%{expiration_date}</span>."
       # The user has created a trial account. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, %{validity} by the validity (in days) of the user's trial account, %{link} by the link to the upgrade form
-      trial: "<div class=\"title\">欢迎%{user_name}!</div><div class=\"content\">在%{desy}中,你已激活试用账号: 你的帐号在<span class=\"variable\">%{validity}天内是合法的</span>.<br/><br/>A <span class=\"variable\">使用账号</span>激活所有的功能, 除了<br/><ul><li>在社区分享外</li><li>下载你的课程</li></ul></div><div class=\"basement\"><span>升级你的账号</span><a href=\"%{link}\" class=\"trial\"></a></div>"
+      trial:
+        # 1 - controllers/users_controller.rb
+        title: "欢迎%{user_name}!"
+        # 1 - controllers/users_controller.rb
+        message: "在%{desy}中,你已激活试用账号: 你的帐号在<span class=\"variable\">%{validity}天内是合法的</span>.<br/><br/>A <span class=\"variable\">使用账号</span>激活所有的功能, 除了<br/><ul><li>在社区分享外</li><li>下载你的课程</li></ul>"
+        # 1 - controllers/users_controller.rb
+        basement: "<span>升级你的账号</span><a href=\"%{link}\" class=\"trial\"></a>"
       # The user has upgraded his trial account to a regular one. The variable %{validity} is replaced by the validity (in days) of the user's trial account
-      upgraded: "<div class=\"title\">恭喜!</div><div class=\"content\">你的试用账号已被升级到正式账号, 它是合法的直到 <span class=\"variable\">%{expiration_date}</span>.</div>"
+      upgraded:
+        # 1 - controllers/users_controller.rb
+        # 2 - controllers/users_controller.rb
+        title: "恭喜!"
+        # 1 - controllers/users_controller.rb
+        # 2 - controllers/users_controller.rb
+        message: "你的试用账号已被升级到正式账号, 它是合法的直到 <span class=\"variable\">%{expiration_date}</span>."
   
   
   # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)
