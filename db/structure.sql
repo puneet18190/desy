@@ -452,6 +452,8 @@ CREATE TABLE notifications (
     id integer NOT NULL,
     user_id integer NOT NULL,
     message text NOT NULL,
+    title character varying(255) NOT NULL,
+    basement text,
     seen boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL

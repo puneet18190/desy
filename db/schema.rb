@@ -221,6 +221,8 @@ ActiveRecord::Schema.define(:version => 20130709121200) do
   create_table "notifications", :force => true do |t|
     t.integer  "user_id",                       :null => false
     t.text     "message",                       :null => false
+    t.string   "title",                         :null => false
+    t.text     "basement"
     t.boolean  "seen",       :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
