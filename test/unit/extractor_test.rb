@@ -749,8 +749,8 @@ class ExtractorTest < ActiveSupport::TestCase
     end
     assert Notification.all.empty?
     (1...21).each do |i|
-      assert Notification.send_to(1, "us1_n#{i}")
-      assert Notification.send_to(2, "us2_n#{i}")
+      assert Notification.send_to(1, "title_us1_n#{i}", "us1_n#{i}", "basement_us1_n#{i}")
+      assert Notification.send_to(2, "title_us2_n#{i}", "us2_n#{i}", "basement_us2_n#{i}")
     end
     assert_equal 40, Notification.count
     us1_1 = Notification.find_by_message('us1_n1')
