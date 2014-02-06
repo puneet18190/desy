@@ -1849,100 +1849,197 @@ it:
     empty: "Non hai notifiche"
     documents:
       # Notification sent by a user who destroyed a document attached to a lesson coped by somebody else, to inform all its followers (the variable %{lesson_title} is replaced by the title of the lesson, %{document_title} by the title of the document, and %{link} by the link to the lesson viewer for that lesson)
-      # 1 - models/document.rb
-      destroyed: "<div class=\"title\">Warning!</div><div class=\"content\">Il documento <span class=\"variable\">%{document_title}</span> è stato rimosso dal suo proprietario: questo cambiamento ha interessato la tua lezione <span class=\"variable\">%{lesson_title}</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
+      destroyed:
+        # 1 - models/document.rb
+        title: "Warning!"
+        # 1 - models/document.rb
+        message: "Il documento <span class=\"variable\">%{document_title}</span> è stato rimosso dal suo proprietario: questo cambiamento ha interessato la tua lezione <span class=\"variable\">%{lesson_title}</span>"
+        # 1 - models/document.rb
+        basement: "<span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a>"
       # Message attached to the notification of modifications automatically sent to users who have a link to a lesson containig a document which has been deleted (%{document_title} is  replaced by the title of the document)
       # 1 - models/document.rb
       standard_message_for_linked_lessons: "Ho rimosso il documento allegato «%{document_title}»"
     lessons:
       # Message sent to a user who has the lesson link, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
-      # 1 - models/lesson.rb
-      destroyed: "<div class=\"title\">Attenzione!</div><div class=\"content\">L'utente <span class=\"variable\">%{user_name}</span>, autore di <span class=\"variable\">%{lesson_title}</span>, ha cancellato la sua lezione: quindi, hai perso il collegamento a quella lezione.</div>"
+      destroyed:
+        # 1 - models/lesson.rb
+        title: "Attenzione!"
+        # 1 - models/lesson.rb
+        message: "L'utente <span class=\"variable\">%{user_name}</span>, autore di <span class=\"variable\">%{lesson_title}</span>, ha cancellato la sua lezione: quindi, hai perso il collegamento a quella lezione."
       # Notification received by an user who sent to his friends an email with the public link of a lesson: it's used as a memo of the list of emails to which the message was successfully sent (the variable %{title} is replaced by the title of the lesson, %{message} by the message inserted by the sender, %{emails} by the list of emails separated by comma)
-      # 1 - controllers/virtual_classroom_controller.rb
-      link_sent: "<div class=\"title\">Collegamento inviato!</div><div class=\"content\">Hai inviato il link della lezione <span class=\"variable\">%{title}</span> ai seguenti indirizzi email: <br/><br/><span class=\"message\">%{emails}</span><br/><br/>Il messaggio che hai allegato è<br/><br/><span class=\"message\">\"%{message}\"</div>"
+      link_sent:
+        # 1 - controllers/virtual_classroom_controller.rb
+        title: "Collegamento inviato!"
+        # 1 - controllers/virtual_classroom_controller.rb
+        message: "Hai inviato il link della lezione <span class=\"variable\">%{title}</span> ai seguenti indirizzi email: <br/><br/><span class=\"message\">%{emails}</span><br/><br/>Il messaggio che hai allegato è<br/><br/><span class=\"message\">\"%{message}\"</span>"
       # Notification sent by a user who modified a shared lesson, to inform all its followers about the nature of modifications made (the variable %{lesson_title} is replaced by the title of the lesson, %{message} by the message containing a better description of the modifications, and %{link} by the link to the lesson viewer for that lesson)
-      # 1 - models/lesson.rb
-      # 2 - models/lesson.rb
-      # 3 - models/document.rb
-      modified: "<div class=\"title\">Ci sono novità per te!</div><div class=\"content\">La lezione <span class=\"variable\">%{lesson_title}</span> ha subito alcune modifiche da parte dell'autore: i cambiamenti sono<br/><br/><span class=\"message\">\"%{message}\"</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
+      modified:
+        # 1 - models/lesson.rb
+        # 2 - models/lesson.rb
+        # 3 - models/document.rb
+        title: "Ci sono novità per te!"
+        # 1 - models/lesson.rb
+        # 2 - models/lesson.rb
+        # 3 - models/document.rb
+        message: "La lezione <span class=\"variable\">%{lesson_title}</span> ha subito alcune modifiche da parte dell'autore: i cambiamenti sono<br/><br/><span class=\"message\">\"%{message}\"</span>"
+        # 1 - models/lesson.rb
+        # 2 - models/lesson.rb
+        # 3 - models/document.rb
+        basement: "<span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a>"
       # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted) (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
-      # 1 - models/lesson.rb
-      unpublished: "<div class=\"title\">Attenzione!</div><div class=\"content\">L'utente <span class=\"variable\">%{user_name}</span>, autore di <span class=\"variable\">%{lesson_title}</span>, ha modificato a 'privato' lo stato della sua lezione: per cui hai perso il collegamento con la lezione.</div>"
+      unpublished:
+        # 1 - models/lesson.rb
+        title: "Attenzione!"
+        # 1 - models/lesson.rb
+        message: "L'utente <span class=\"variable\">%{user_name}</span>, autore di <span class=\"variable\">%{lesson_title}</span>, ha modificato a 'privato' lo stato della sua lezione: per cui hai perso il collegamento con la lezione."
     audio:
       compose:
         update:
           # The process of audio editing started. The variable %{item} is replaced by the name of the audio whose content is going to be modified
-          # 1 - controllers/audio_editor_controller.rb
-          started: "<div class=\"title\">Modifica della traccia audio</div><div class=\"content\">L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è iniziata! L'Editor audio è temporaneamente non disponibile insieme alle lezioni dove utilizzi questa traccia audio.</div>"
+          started:
+            # 1 - controllers/audio_editor_controller.rb
+            title: "Modifica della traccia audio"
+            # 1 - controllers/audio_editor_controller.rb
+            message: "L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è iniziata! L'Editor audio è temporaneamente non disponibile insieme alle lezioni dove utilizzi questa traccia audio."
           # The process of audio editing ended successfully. The variable %{item} is replaced by the name of the audio whose content has been modified
-          # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "<div class=\"title\">Complimenti!</div><div class=\"content\">L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è terminata con successo! L'Editor audio è di nuovo disponibile insieme a tutte le lezioni dove la traccia audio viene utilizzata (a meno che non contengano altri elementi in fase di modifica).</div>"
+          ok:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "Complimenti!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è terminata con successo! L'Editor audio è di nuovo disponibile insieme a tutte le lezioni dove la traccia audio viene utilizzata (a meno che non contengano altri elementi in fase di modifica)."
           # The process of audio editing ended with an error. The variable %{item} is replaced by the name of the audio whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
-          # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "<div class=\"title\">Errore!</div><div class=\"content\">L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è fallita! L'Editor audio è di nuovo disponibile insieme alle lezioni dove utilizzi questa traccia audio (a meno che non contengano altri elementi in fase di modifica). Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto.</a></div>"
+          failed:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "Errore!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è fallita! L'Editor audio è di nuovo disponibile insieme alle lezioni dove utilizzi questa traccia audio (a meno che non contengano altri elementi in fase di modifica). Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto.</a>"
         create:
           # The process of audio composition started. The variable %{item} is replaced by the name of the audio which is going to be composed
-          # 1 - controllers/audio_editor_controller.rb
-          started: "<div class=\"title\">Composizione audio</div><div class=\"content\">L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è iniziata! L'Editor audio è temporaneamente non disponibile</div>"
+          started:
+            # 1 - controllers/audio_editor_controller.rb
+            title: "Composizione audio"
+            # 1 - controllers/audio_editor_controller.rb
+            message: "L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è iniziata! L'Editor audio è temporaneamente non disponibile"
           # The process of audio composition ended successfully. The variable %{item} is replaced by the name of the new audio
-          # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "<div class=\"title\">Complimenti!</div><div class=\"content\">L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è terminata con successo! L'Editor audio è di nuovo disponibile.</div>"
+          ok:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "Complimenti!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è terminata con successo! L'Editor audio è di nuovo disponibile."
           # The process of audio composition ended with an error. The variable %{item} is replaced by the name of the audio in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
-          # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "<div class=\"title\">Errore!</div><div class=\"content\">L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è fallita! L'Editor audio è di nuovo disponibile. Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto</a></div>"
+          failed:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "Errore!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è fallita! L'Editor audio è di nuovo disponibile. Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto</a>"
       upload:
         # The process of audio uploading started. The variable %{item} is replaced by the name of the audio which is going to be uploaded
-        # 1 - controllers/media_elements_controller.rb
-        started: "<div class=\"title\">Caricamento traccia audio</div><div class=\"content\">Il caricamento della traccia audio <span class=\"variable\">%{item}</span> è iniziato! Attendere fino al termine del caricamento prima di utilizzare la nuova traccia audio.</div>"
+        started:
+          # 1 - controllers/media_elements_controller.rb
+          title: "Caricamento traccia audio"
+          # 1 - controllers/media_elements_controller.rb
+          message: "Il caricamento della traccia audio <span class=\"variable\">%{item}</span> è iniziato! Attendere fino al termine del caricamento prima di utilizzare la nuova traccia audio."
         # The process of audio uploading ended successfully. The variable %{item} is replaced by the name of the new audio
-        # 1 - ../lib/media/audio/editing/conversion.rb
-        ok: "<div class=\"title\">Complimenti!</div><div class=\"content\">Il caricamento della traccia audio <span class=\"variable\">%{item}</span> è terminato con successo! Adesso puoi utilizzarla nelle tue lezioni.</div>"
+        ok:
+          # 1 - ../lib/media/audio/editing/conversion.rb
+          title: "Complimenti!"
+          # 1 - ../lib/media/audio/editing/conversion.rb
+          message: "Il caricamento della traccia audio <span class=\"variable\">%{item}</span> è terminato con successo! Adesso puoi utilizzarla nelle tue lezioni."
         # The process of audio uploading ended with an error. The variable %{item} is replaced by the name of the audio which the user tried to upload
-        # 1 - ../lib/media/audio/editing/conversion.rb
-        failed: "<div class=\"title\">Errore!</div><div class=\"content\">Il caricamento della traccia audio <span class=\"variable\">%{item}</span> è fallita! Si prega di riprovare.</div>"
+        failed:
+          # 1 - ../lib/media/audio/editing/conversion.rb
+          title: "Errore!"
+          # 1 - ../lib/media/audio/editing/conversion.rb
+          message: "Il caricamento della traccia audio <span class=\"variable\">%{item}</span> è fallita! Si prega di riprovare."
     video:
       compose:
         update:
           # The process of video editing started. The variable %{item} is replaced by the name of the video whose content is going to be modified
-          # 1 - controllers/audio_editor_controller.rb
-          started: "<div class=\"title\">Elaborazione video</div><div class=\"content\">L'elaborazione del video <span class=\"variable\">%{item}</span>  è iniziata! L'editor video è temporaneamente non disponibile, insieme alle lezioni dove utilizzi questo video.</div>"
+          started:
+            # 1 - controllers/audio_editor_controller.rb
+            title: "Elaborazione video"
+            # 1 - controllers/audio_editor_controller.rb
+            message: "L'elaborazione del video <span class=\"variable\">%{item}</span>  è iniziata! L'editor video è temporaneamente non disponibile, insieme alle lezioni dove utilizzi questo video."
           # The process of video editing ended successfully. The variable %{item} is replaced by the name of the video whose content has been modified
-          # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "<div class=\"title\">Complimenti!</div><div class=\"content\">L'elaborazione del video <span class=\"variable\">%{item}</span> è terminata con successo! L'Editor video è di nuovo disponibile, insieme alle lezioni dove utilizzi questo video (a meno che non contengano altri elementi in fase di elaborazione).</div>"
+          ok:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "Complimenti!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "L'elaborazione del video <span class=\"variable\">%{item}</span> è terminata con successo! L'Editor video è di nuovo disponibile, insieme alle lezioni dove utilizzi questo video (a meno che non contengano altri elementi in fase di elaborazione)."
           # The process of video editing ended with an error. The variable %{item} is replaced by the name of the video whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
-          # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "<div class=\"title\">Errore!</div><div class=\"content\">L'elaborazione del video <span class=\"variable\">%{item}</span> è fallita! L'Editor video è di nuovo disponibile, insieme alle lezioni dove utilizzi questo video (a meno che non contengano altri elementi in fase di elaborazione). Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto</a></div>"
+          failed:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "Errore!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "L'elaborazione del video <span class=\"variable\">%{item}</span> è fallita! L'Editor video è di nuovo disponibile, insieme alle lezioni dove utilizzi questo video (a meno che non contengano altri elementi in fase di elaborazione). Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto</a>"
         create:
           # The process of video composition started. The variable %{item} is replaced by the name of the video which is going to be composed
-          # 1 - controllers/video_editor_controller.rb
-          started: "<div class=\"title\">Creazione video</div><div class=\"content\">La creazione del video <span class=\"variable\">%{item}</span> è iniziata! L'Editor video è temporaneamente non disponibile.</div>"
+          started:
+            # 1 - controllers/video_editor_controller.rb
+            title: "Creazione video"
+            # 1 - controllers/video_editor_controller.rb
+            message: "La creazione del video <span class=\"variable\">%{item}</span> è iniziata! L'Editor video è temporaneamente non disponibile."
           # The process of video composition ended successfully. The variable %{item} is replaced by the name of the new video
-          # 1 - ../lib/media/video/editing/composer.rb
-          ok: "<div class=\"title\">Complimenti!</div><div class=\"content\">La creazione del video <span class=\"variable\">%{item}</span> è terminato con successo! L'Editor video è di nuovo disponibile.</div>"
+          ok:
+            # 1 - ../lib/media/video/editing/composer.rb
+            title: "Complimenti!"
+            # 1 - ../lib/media/video/editing/composer.rb
+            message: "La creazione del video <span class=\"variable\">%{item}</span> è terminato con successo! L'Editor video è di nuovo disponibile."
           # The process of video composition ended with an error. The variable %{item} is replaced by the name of the video in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
-          # 1 - ../lib/media/video/editing/composer.rb
-          failed: "<div class=\"title\">Errore!</div><div class=\"content\">La creazione del video <span class=\"variable\">%{item}</span> è fallito! L'Editor video è di nuovo disponibile. Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto</a></div>"
+          failed:
+            # 1 - ../lib/media/video/editing/composer.rb
+            title: "Errore!"
+            # 1 - ../lib/media/video/editing/composer.rb
+            message: "La creazione del video <span class=\"variable\">%{item}</span> è fallito! L'Editor video è di nuovo disponibile. Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto</a>"
       upload:
         # The process of video uploading started. The variable %{item} is replaced by the name of the video which is going to be uploaded
-        # 1 - controllers/media_elements_controller.rb
-        started: "<div class=\"title\">Caricamento video!</div><div class=\"content\">Il caricamento del video <span class=\"variable\">%{item}</span> è iniziato! Attendere fino al termine del caricamento prima di utilizzare il nuovo video.</div>"
+        started:
+          # 1 - controllers/media_elements_controller.rb
+          title: "Caricamento video!"
+          # 1 - controllers/media_elements_controller.rb
+          message: "Il caricamento del video <span class=\"variable\">%{item}</span> è iniziato! Attendere fino al termine del caricamento prima di utilizzare il nuovo video."
         # The process of video uploading ended successfully. The variable %{item} is replaced by the name of the new video
-        # 1 - ../lib/media/video/editing/conversion.rb
-        ok: "<div class=\"title\">Complimenti!</div><div class=\"content\">Il caricamento del video <span class=\"variable\">%{item}</span> è terminato con successo! Adesso puoi utilizzarlo nelle tue lezioni.</div>"
+        ok:
+          # 1 - ../lib/media/video/editing/conversion.rb
+          title: "Complimenti!"
+          # 1 - ../lib/media/video/editing/conversion.rb
+          message: "Il caricamento del video <span class=\"variable\">%{item}</span> è terminato con successo! Adesso puoi utilizzarlo nelle tue lezioni."
         # The process of video uploading ended with an error. The variable %{item} is replaced by the name of the video which the user tried to upload
-        # 1 - ../lib/media/video/editing/conversion.rb
-        failed: "<div class=\"title\">Errore!</div><div class=\"content\">Il caricamento del video <span class=\"variable\">%{item}</span> è fallito! Si prega di riprovare.</div>"
+        failed:
+          # 1 - ../lib/media/video/editing/conversion.rb
+          title: "Errore!"
+          # 1 - ../lib/media/video/editing/conversion.rb
+          message: "Il caricamento del video <span class=\"variable\">%{item}</span> è fallito! Si prega di riprovare."
     # Notifications related to the user's account cycle: account created, trial upgraded, account renewed, etc
     account:
       # The user has created a new account with a regular purchase code. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, and %{expiration_date} by the date of expiration of the user's account
-      welcome: "<div class=\"title\">Benvenuto %{user_name}!</div><div class=\"content\">Hai attivato un account in <span class=\"variable\">%{desy}</span>: il tuo account sarà valido fino al <span class=\"variable\">%{expiration_date}</span>.</div>"
+      welcome:
+        # 1 - controllers/users_controller.rb
+        title: "Benvenuto %{user_name}!"
+        # 1 - controllers/users_controller.rb
+        message: "Hai attivato un account in <span class=\"variable\">%{desy}</span>: il tuo account sarà valido fino al <span class=\"variable\">%{expiration_date}</span>."
       # The user has renewed his regular account. The variable %{expiration_date} is replaced by the date of expiration of the user's account
-      renewed: "<div class=\"title\">Congratulazioni!</div><div class=\"content\">Il tuo account è stato rinnovato fino al <span class=\"variable\">%{expiration_date}</span>.</div>"
+      renewed:
+        # 1 - controllers/admin/purchases_controller.rb
+        title: "Congratulazioni!"
+        # 1 - controllers/admin/purchases_controller.rb
+        message: "Il tuo account è stato rinnovato fino al <span class=\"variable\">%{expiration_date}</span>."
       # The user has created a trial account. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, %{validity} by the validity (in days) of the user's trial account, %{link} by the link to the upgrade form
-      trial: "<div class=\"title\">Benvenuto %{user_name}!</div><div class=\"content\">Hai attivato un account di tipo 'trial' in %{desy}: il tuo account sarà valido per <span class=\"variable\">%{validity} giorni</span>.<br/><br/>Un <span class=\"variable\">account di tipo 'trial'</span> abilita tutte le funzionalità, tranne<br/><ul><li>condivisione di prodotti con la nostra community</li><li>scaricamento offline delle tue lezioni</li></ul></div><div class=\"basement\"><span>Acquista %{desy}</span><a href=\"%{link}\" class=\"trial\"></a></div>"
+      trial:
+        # 1 - controllers/users_controller.rb
+        title: "Benvenuto %{user_name}!"
+        # 1 - controllers/users_controller.rb
+        message: "Hai attivato un account di tipo 'trial' in %{desy}: il tuo account sarà valido per <span class=\"variable\">%{validity} giorni</span>.<br/><br/>Un <span class=\"variable\">account di tipo 'trial'</span> abilita tutte le funzionalità, tranne<br/><ul><li>condivisione di prodotti con la nostra community</li><li>scaricamento offline delle tue lezioni</li></ul>"
+        # 1 - controllers/users_controller.rb
+        basement: "<span>Acquista %{desy}</span><a href=\"%{link}\" class=\"trial\"></a>"
       # The user has upgraded his trial account to a regular one. The variable %{validity} is replaced by the validity (in days) of the user's trial account
-      upgraded: "<div class=\"title\">Congratulazioni!</div><div class=\"content\">Il tuo account di tipo 'trial' è stato convertito in un account standard, che sarà valido fino al <span class=\"variable\">%{expiration_date}</span>.</div>"
+      upgraded:
+        # 1 - controllers/users_controller.rb
+        # 2 - controllers/users_controller.rb
+        title: "Congratulazioni!"
+        # 1 - controllers/users_controller.rb
+        # 2 - controllers/users_controller.rb
+        message: "Il tuo account di tipo 'trial' è stato convertito in un account standard, che sarà valido fino al <span class=\"variable\">%{expiration_date}</span>."
   
   
   # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)
