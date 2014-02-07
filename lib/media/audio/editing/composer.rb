@@ -55,11 +55,21 @@ module Media
             end
             audio.save!
             audio.enable_lessons_containing_me
-            Notification.send_to audio.user_id, I18n.t('notifications.audio.compose.update.failed', item: audio.title, link: ::Audio::CACHE_RESTORE_PATH) # TODO sendtto
+            Notification.send_to(
+              audio.user_id,
+              I18n.t('notifications.audio.compose.update.failed.title'),
+              I18n.t('notifications.audio.compose.update.failed.message', :item => audio.title, :link => ::Audio::CACHE_RESTORE_PATH),
+              ''
+            )
           else
             audio.destroyable_even_if_not_converted = true
             audio.destroy
-            Notification.send_to audio.user_id, I18n.t('notifications.audio.compose.create.failed', item: audio.title, link: ::Audio::CACHE_RESTORE_PATH) # TODO sendtto
+            Notification.send_to(
+              audio.user_id,
+              I18n.t('notifications.audio.compose.create.failed.title'),
+              I18n.t('notifications.audio.compose.create.failed.message', :item => audio.title, :link => ::Audio::CACHE_RESTORE_PATH),
+              ''
+            )
           end
           raise e
         end
@@ -84,7 +94,12 @@ module Media
             ActiveRecord::Base.transaction do
               audio.save!
               audio.enable_lessons_containing_me
-              Notification.send_to audio.user_id, I18n.t("notifications.audio.compose.#{notification_translation_key}.ok", item: audio.title) # TODO sendtto
+              Notification.send_to(
+                audio.user_id,
+                I18n.t("notifications.audio.compose.#{notification_translation_key}.ok.title"),
+                I18n.t("notifications.audio.compose.#{notification_translation_key}.ok.message", :item => audio.title),
+                ''
+              )
               audio.user.audio_editor_cache!
             end
           end
