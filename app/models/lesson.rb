@@ -157,11 +157,14 @@ class Lesson < ActiveRecord::Base
   #
   def notify_changes(msg)
     Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).each do |bo|
-      if msg.blank? # TODO sendtto IMPORTANTE, CHIAMALO UNA VOLTA SOLA INVECE DI DUE, E AGGIORNA TUTTI E TRE I FILES DI TRADUZIONI!!!!
-        Notification.send_to bo.user_id, I18n.t('notifications.lessons.modified', :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => I18n.t('lessons.notify_modifications.empty_message'))
-      else
-        Notification.send_to bo.user_id, I18n.t('notifications.lessons.modified', :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => msg[0, I18n.t('language_parameters.notification.message_length_for_public_lesson_modification')])
-      end
+      message_max = I18n.t('language_parameters.notification.message_length_for_public_lesson_modification')
+      message = msg.blank? ? I18n.t('lessons.notify_modifications.empty_message') : msg[0, message_max]
+      Notification.send_to(
+        bo.user_id,
+        I18n.t('notifications.lessons.modified.title'),
+        I18n.t('notifications.lessons.modified.message', :lesson_title => self.title, :message => message),
+        I18n.t('notifications.lessons.modified.basement', :lesson_title => self.title, :link => lesson_viewer_path(self.id))
+      )
     end
     self.notified = true
     self.save
