@@ -58,7 +58,7 @@ class Notification < ActiveRecord::Base
   def self.send_to(user_id_or_user_ids, title, message, basement)
     case user_id_or_user_ids
     when Array
-      user_id_or_user_ids.each_slice(SENDING_SLICES_AMOUNT) { |slice| Delayed::Job.enqueue NotificationsJob.new(slice, message) }
+      user_id_or_user_ids.each_slice(SENDING_SLICES_AMOUNT) { |slice| Delayed::Job.enqueue NotificationsJob.new(slice, title, message, basement) }
     else
       return new do |n|
         n.user_id = user_id_or_user_ids
