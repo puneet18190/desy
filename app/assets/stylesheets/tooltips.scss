@@ -46,11 +46,13 @@
     .title {
       
       @include nunito(20px);
-      padding: 20px;
+      margin: 20px;
       height: 20px;
       letter-spacing: -1px;
       font-weight: bold;
       color: #2FAADC;
+      white-space: nowrap;
+      overflow: hidden;
       
     }
     
