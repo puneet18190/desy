@@ -96,19 +96,21 @@ class UsersController < ApplicationController
     if user_saved
       UserMailer.account_confirmation(@user).deliver
       if @saas
+        desy = SETTINGS['application_name']
         if @user.trial?
-          Notification.send_to @user.id, t('notifications.account.trial',
-            :user_name => @user.name,
-            :desy      => SETTINGS['application_name'],
-            :validity  => SETTINGS['saas_trial_duration'],
-            :link      => upgrade_trial_link
-          ) # TODO sendtto
+          Notification.send_to(
+            @user.id,
+            I18n.t('notifications.account.trial.title', :user_name => @user.name),
+            I18n.t('notifications.account.trial.message', :desy => desy, :validity => SETTINGS['saas_trial_duration']),
+            I18n.t('notifications.account.trial.basement', :desy => desy, :link => upgrade_trial_link)
+          )
         else
-          Notification.send_to @user.id, t('notifications.account.welcome',
-            :user_name       => @user.name,
-            :desy            => SETTINGS['application_name'],
-            :expiration_date => TimeConvert.to_string(purchase.expiration_date)
-          ) # TODO sendtto
+          Notification.send_to(
+            @user.id,
+            I18n.t('notifications.account.welcome.title', :user_name => @user.name),
+            I18n.t('notifications.account.welcome.message', :desy => desy, :expiration_date => TimeConvert.to_string(purchase.expiration_date)),
+            ''
+          )
         end
         purchase = @user.purchase
         UserMailer.purchase_full(purchase).deliver if purchase && User.where(:purchase_id => purchase.id).count >= purchase.accounts_number
