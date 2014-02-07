@@ -1875,16 +1875,13 @@ it:
       # Notification sent by a user who modified a shared lesson, to inform all its followers about the nature of modifications made (the variable %{lesson_title} is replaced by the title of the lesson, %{message} by the message containing a better description of the modifications, and %{link} by the link to the lesson viewer for that lesson)
       modified:
         # 1 - models/lesson.rb
-        # 2 - models/lesson.rb
-        # 3 - models/document.rb
+        # 2 - models/document.rb
         title: "Ci sono novità per te!"
         # 1 - models/lesson.rb
-        # 2 - models/lesson.rb
-        # 3 - models/document.rb
+        # 2 - models/document.rb
         message: "La lezione <span class=\"variable\">%{lesson_title}</span> ha subito alcune modifiche da parte dell'autore: i cambiamenti sono<br/><br/><span class=\"message\">\"%{message}\"</span>"
         # 1 - models/lesson.rb
-        # 2 - models/lesson.rb
-        # 3 - models/document.rb
+        # 2 - models/document.rb
         basement: "<span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a>"
       # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted) (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       unpublished:
