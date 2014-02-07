@@ -193,6 +193,13 @@ module NotificationsTest
       I18n.t('notifications.account.welcome.message', :desy => 'DESY', :expiration_date => '1 gennaio 2014'),
       ''
     )
+    # Here I set the times to be all different
+    time = Time.zone.now
+    decrement = 0
+    Notification.order('id DESC').each do |n|
+      Notification.where(:id => n.id).update_all(:created_at => time + decrement)
+      decrement += 1
+    end
   end
   
 end

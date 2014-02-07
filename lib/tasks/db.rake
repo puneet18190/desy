@@ -115,9 +115,9 @@ namespace :db do
     NotificationsTest.try_all(:cn, an_user_id)
     # 4 - Try time differences
     time_now = Time.zone.now
-    coefficients = [0, 64, 360, 3600, 8640, 86400, 262980, 2629800, 10155760, 31957700, 315577000]
+    coefficients = [360, 3600, 8640, 86400, 262980, 2629800, 10155760, 31957700, 315577000]
     summing = false
-    Notification.limit(11).each_with_index do |n, i|
+    Notification.order('created_at ASC').limit(9).each_with_index do |n, i|
       Notification.where(:id => n.id).update_all(:created_at => time_now - coefficients[i])
     end
   end
