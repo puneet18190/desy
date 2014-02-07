@@ -176,8 +176,9 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).empty?
     not_if_ication = Notification.where(:user_id => 1, :message => I18n.t('notifications.lessons.unpublished.message', :lesson_title => 'string', :user_name => 'eef fuu'))
     assert not_if_ication.any?, Notification.where(:user_id => 1).inspect
-    assert_equal I18n.t('notifications.lessons.unpublished.title'), not_if_ication.title
-    assert_equal '', not_if_ication.basement
+    assert_equal 1, not_if_ication.length
+    assert_equal I18n.t('notifications.lessons.unpublished.title'), not_if_ication.first.title
+    assert_equal '', not_if_ication.first.basement
     assert_equal 3, MediaElement.where(:is_public => true).count
     lesson = Lesson.find 1
     assert lesson.publish
@@ -263,7 +264,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     notif_newaa2 = notif_new.where(:user_id => 2).first
     assert_equal I18n.t('notifications.documents.destroyed.title'), notif_newaa2.title
     assert_equal I18n.t('notifications.documents.destroyed.message', :document_title => 'Documento 1', :lesson_title => 'string'), notif_newaa2.message
-    assert_equal I18n.t('notifications.documents.destroyed.basement', :lesson_title => 'Documento 1', :link => '/lessons/2/view'), notif_newaa2.basement
+    assert_equal I18n.t('notifications.documents.destroyed.basement', :lesson_title => 'string', :link => '/lessons/2/view'), notif_newaa2.basement
     assert_nil Document.find_by_id 1
     assert_nil DocumentsSlide.find_by_id 1
   end
