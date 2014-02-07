@@ -150,7 +150,14 @@ class MediaElementsController < ApplicationController
     record.user_id = current_user.id
     record.save_tags = true
     if record.save
-      Notification.send_to current_user.id, t("notifications.#{record.class.to_s.downcase}.upload.started", item: record.title) if !record.image? # TODO sendtto
+      if !record.image?
+        Notification.send_to(
+          current_user.id,
+          I18n.t("notifications.#{record.class.to_s.downcase}.upload.started.title"),
+          I18n.t("notifications.#{record.class.to_s.downcase}.upload.started.message", :item => record.title),
+          ''
+        )
+      end
     else
       if record.errors.added? :media, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
