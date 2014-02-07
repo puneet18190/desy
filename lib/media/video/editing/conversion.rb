@@ -101,7 +101,7 @@ module Media
             FileUtils.cp input_path, create_log_folder if input_path
 
             if model.present? and model.user_id.present?
-              Notification.send_to model.user_id, I18n.t('notifications.video.upload.failed', item: model.title)
+              Notification.send_to model.user_id, I18n.t('notifications.video.upload.failed', item: model.title) # TODO sendtto
               model.destroyable_even_if_not_converted = true
               model.destroy
             end
@@ -119,7 +119,7 @@ module Media
 
           FileUtils.rm temp_path
 
-          Notification.send_to model.user_id, I18n.t('notifications.video.upload.ok', item: model.title)
+          Notification.send_to model.user_id, I18n.t('notifications.video.upload.ok', item: model.title) # TODO sendtto
         end
   
         # Generates the thumb version

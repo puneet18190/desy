@@ -102,13 +102,13 @@ class UsersController < ApplicationController
             :desy      => SETTINGS['application_name'],
             :validity  => SETTINGS['saas_trial_duration'],
             :link      => upgrade_trial_link
-          )
+          ) # TODO sendtto
         else
           Notification.send_to @user.id, t('notifications.account.welcome',
             :user_name       => @user.name,
             :desy            => SETTINGS['application_name'],
             :expiration_date => TimeConvert.to_string(purchase.expiration_date)
-          )
+          ) # TODO sendtto
         end
         purchase = @user.purchase
         UserMailer.purchase_full(purchase).deliver if purchase && User.where(:purchase_id => purchase.id).count >= purchase.accounts_number
@@ -259,7 +259,7 @@ class UsersController < ApplicationController
       redirect_to user_request_upgrade_trial_path, { flash: { alert: t('flash.upgrade_trial.generic_error') } }
       return
     end
-    Notification.send_to user.id, t('notifications.account.upgraded', :expiration_date => TimeConvert.to_string(purchase.expiration_date))
+    Notification.send_to user.id, t('notifications.account.upgraded', :expiration_date => TimeConvert.to_string(purchase.expiration_date)) # TODO sendtto
   end
   
   # === Description
@@ -420,7 +420,7 @@ class UsersController < ApplicationController
       render 'trial'
       return
     end
-    Notification.send_to user.id, t('notifications.account.upgraded', :expiration_date => TimeConvert.to_string(purchase.expiration_date))
+    Notification.send_to user.id, t('notifications.account.upgraded', :expiration_date => TimeConvert.to_string(purchase.expiration_date)) # TODO sendtto
     redirect_to dashboard_path, { flash: { notice: t('users.trial.successful_upgrade') } }
   end
   

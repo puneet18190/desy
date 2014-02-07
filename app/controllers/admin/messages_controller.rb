@@ -88,7 +88,7 @@ class Admin::MessagesController < AdminController
   
   # Uses Notification.send_to to send multiple messages organizing them in different threads
   def send_notifications(users_ids, message)
-    Notification.send_to(users_ids, message)
+    Notification.send_to(users_ids, message) # TODO sendtto
   end
   
 end

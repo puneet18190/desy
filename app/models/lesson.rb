@@ -157,7 +157,7 @@ class Lesson < ActiveRecord::Base
   #
   def notify_changes(msg)
     Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).each do |bo|
-      if msg.blank?
+      if msg.blank? # TODO sendtto IMPORTANTE, CHIAMALO UNA VOLTA SOLA INVECE DI DUE, E AGGIORNA TUTTI E TRE I FILES DI TRADUZIONI!!!!
         Notification.send_to bo.user_id, I18n.t('notifications.lessons.modified', :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => I18n.t('lessons.notify_modifications.empty_message'))
       else
         Notification.send_to bo.user_id, I18n.t('notifications.lessons.modified', :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => msg[0, I18n.t('language_parameters.notification.message_length_for_public_lesson_modification')])
@@ -586,7 +586,7 @@ class Lesson < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
         begin
-          if !Notification.send_to b.user_id, I18n.t('notifications.lessons.unpublished', :user_name => self.user.full_name, :lesson_title => self.title)
+          if !Notification.send_to b.user_id, I18n.t('notifications.lessons.unpublished', :user_name => self.user.full_name, :lesson_title => self.title) # TODO sendtto
             errors.add(:base, :problem_unpublishing)
             raise ActiveRecord::Rollback
           end
@@ -623,7 +623,7 @@ class Lesson < ActiveRecord::Base
     resp = false
     ActiveRecord::Base.transaction do
       Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
-        if !Notification.send_to b.user_id, I18n.t('notifications.lessons.destroyed', :user_name => self.user.full_name, :lesson_title => self.title)
+        if !Notification.send_to b.user_id, I18n.t('notifications.lessons.destroyed', :user_name => self.user.full_name, :lesson_title => self.title) # TODO sendtto
           errors.add(:base, :problem_destroying)
           raise ActiveRecord::Rollback
         end

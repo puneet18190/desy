@@ -166,12 +166,12 @@ class Document < ActiveRecord::Base
     resp = false
     ActiveRecord::Base.transaction do
       DocumentsSlide.joins(:slide, {:slide => :lesson}).select('lessons.user_id AS my_user_id, lessons.title AS lesson_title, lessons.id AS lesson_id').group('lessons.id').where('documents_slides.document_id = ?', self.id).each do |ds|
-        if ds.my_user_id.to_i != self.user_id && !Notification.send_to(ds.my_user_id.to_i, I18n.t('notifications.documents.destroyed', :lesson_title => ds.lesson_title, :document_title => self.title, :link => lesson_viewer_path(ds.lesson_id.to_i)))
+        if ds.my_user_id.to_i != self.user_id && !Notification.send_to(ds.my_user_id.to_i, I18n.t('notifications.documents.destroyed', :lesson_title => ds.lesson_title, :document_title => self.title, :link => lesson_viewer_path(ds.lesson_id.to_i))) # TODO sendtto
           errors.add(:base, :problem_destroying)
           raise ActiveRecord::Rollback
         end
         Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => ds.lesson_id.to_i).each do |b|
-          if !Notification.send_to(b.user_id, I18n.t('notifications.lessons.modified', :lesson_title => ds.lesson_title, :link => lesson_viewer_path(ds.lesson_id.to_i), :message => I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => self.title)))
+          if !Notification.send_to(b.user_id, I18n.t('notifications.lessons.modified', :lesson_title => ds.lesson_title, :link => lesson_viewer_path(ds.lesson_id.to_i), :message => I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => self.title))) # TODO sendtto
             errors.add(:base, :problem_destroying)
             raise ActiveRecord::Rollback
           end
