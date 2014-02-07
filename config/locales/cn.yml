@@ -2012,12 +2012,6 @@ cn:
           message: "视频上传<span class=\"variable\">%{item}</span>失败! 请重新试一次."
     # Notifications related to the user's account cycle: account created, trial upgraded, account renewed, etc
     account:
-      # The user has created a new account with a regular purchase code. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, and %{expiration_date} by the date of expiration of the user's account
-      welcome:
-        # 1 - controllers/users_controller.rb
-        title: "欢迎 %{user_name}!"
-        # 1 - controllers/users_controller.rb
-        message: "在<span class=\"variable\">%{desy}</span>里,你激活了你的账号: 你的账号是合法的,直到<span class=\"variable\">%{expiration_date}</span>."
       # The user has renewed his regular account. The variable %{expiration_date} is replaced by the date of expiration of the user's account
       renewed:
         # 1 - controllers/admin/purchases_controller.rb
@@ -2040,6 +2034,12 @@ cn:
         # 1 - controllers/users_controller.rb
         # 2 - controllers/users_controller.rb
         message: "你的试用账号已被升级到正式账号, 它是合法的直到 <span class=\"variable\">%{expiration_date}</span>."
+      # The user has created a new account with a regular purchase code. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, and %{expiration_date} by the date of expiration of the user's account
+      welcome:
+        # 1 - controllers/users_controller.rb
+        title: "欢迎 %{user_name}!"
+        # 1 - controllers/users_controller.rb
+        message: "在<span class=\"variable\">%{desy}</span>里,你激活了你的账号: 你的账号是合法的,直到<span class=\"variable\">%{expiration_date}</span>."
   
   
   # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)

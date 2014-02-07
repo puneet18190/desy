@@ -2012,12 +2012,6 @@ it:
           message: "Il caricamento del video <span class=\"variable\">%{item}</span> è fallito! Si prega di riprovare."
     # Notifications related to the user's account cycle: account created, trial upgraded, account renewed, etc
     account:
-      # The user has created a new account with a regular purchase code. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, and %{expiration_date} by the date of expiration of the user's account
-      welcome:
-        # 1 - controllers/users_controller.rb
-        title: "Benvenuto %{user_name}!"
-        # 1 - controllers/users_controller.rb
-        message: "Hai attivato un account in <span class=\"variable\">%{desy}</span>: il tuo account sarà valido fino al <span class=\"variable\">%{expiration_date}</span>."
       # The user has renewed his regular account. The variable %{expiration_date} is replaced by the date of expiration of the user's account
       renewed:
         # 1 - controllers/admin/purchases_controller.rb
@@ -2040,6 +2034,12 @@ it:
         # 1 - controllers/users_controller.rb
         # 2 - controllers/users_controller.rb
         message: "Il tuo account di tipo 'trial' è stato convertito in un account standard, che sarà valido fino al <span class=\"variable\">%{expiration_date}</span>."
+      # The user has created a new account with a regular purchase code. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, and %{expiration_date} by the date of expiration of the user's account
+      welcome:
+        # 1 - controllers/users_controller.rb
+        title: "Benvenuto %{user_name}!"
+        # 1 - controllers/users_controller.rb
+        message: "Hai attivato un account in <span class=\"variable\">%{desy}</span>: il tuo account sarà valido fino al <span class=\"variable\">%{expiration_date}</span>."
   
   
   # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)
