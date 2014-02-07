@@ -174,7 +174,11 @@ class Document < ActiveRecord::Base
           raise ActiveRecord::Rollback
         end
         Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => ds.lesson_id.to_i).each do |b|
-          if !Notification.send_to(b.user_id, I18n.t('notifications.lessons.modified', :lesson_title => ds.lesson_title, :link => lesson_viewer_path(ds.lesson_id.to_i), :message => I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => self.title))) # TODO sendtto
+          automatic_message = I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => self.title)
+          n_title = I18n.t('notifications.lessons.modified.title')
+          n_message = I18n.t('notifications.lessons.modified.message', :lesson_title => ds.lesson_title, :message => automatic_message)
+          n_basement = I18n.t('notifications.lessons.modified.basement', :lesson_title => ds.lesson_title, :link => lesson_viewer_path(ds.lesson_id.to_i))
+          if !Notification.send_to(b.user_id, n_title, n_message, n_basement)
             errors.add(:base, :problem_destroying)
             raise ActiveRecord::Rollback
           end
