@@ -76,6 +76,11 @@ module ApplicationHelper
     x < 10 ? "0#{x}" : x.to_s
   end
   
+  # It stands for "interpolation escape"
+  def ie(x)
+    strip_tags(x).html_safe
+  end
+  
   private
   
   # Submethod of #manipulate_url, that takes into consideration nested url parameters.

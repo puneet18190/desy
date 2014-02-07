@@ -523,7 +523,7 @@ it:
     purchase_full:
       # Subject
       # 1 - mailers/user_mailer.rb
-      subject: "%{desy} - Purchase has reached the limit of users"
+      subject: "%{desy} - Raggiunto il limite massimo di utenti per l'acquisto"
       # Message
       # 1 - mailers/user_mailer.rb
       message: "<h2>Il seguente acquisto ha raggiunto il suo limite di %{accounts_number} utenti: se vuoi continuare ad usarlo, devi modificarlo, o alternativamente generare e distribuire un nuovo codice d'acquisto</h2><br/><ul><li>Denominazione sociale: <i>%{name}</i></li><li>Responsabile: <i>%{responsible}</i></li><li>Indirizzo: <i>%{address}</i></li><li>Numero telefonico: <i>%{phone_number}</i></li><li>Fax: <i>%{fax}</i></li><li>Email: <i>%{email}</i></li><li>Codice fiscale: <i>%{ssn_code}</i></li><li>Partita IVA: <i>%{vat_code}</i></li><li>Numero di utenze: <i>%{accounts_number}</i></li><li>Restrizione per gli utenti: <i>%{location}</i></li><li>Valido da: <i>%{start_date}</i></li><li>Valido fino a: <i>%{expiration_date}</i></li></ul><br/><br/><h2>Codice d'acquisto: %{token}</h2>"
