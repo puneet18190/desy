@@ -76,11 +76,21 @@ module Media
             end
             video.save!
             video.enable_lessons_containing_me
-            Notification.send_to video.user_id, I18n.t('notifications.video.compose.update.failed', item: video.title, link: ::Video::CACHE_RESTORE_PATH) # TODO sendtto
+            Notification.send_to(
+              video.user_id,
+              I18n.t('notifications.video.compose.update.failed.title'),
+              I18n.t('notifications.video.compose.update.failed.message', :item => video.title, :link => ::Video::CACHE_RESTORE_PATH),
+              ''
+            )
           else
             video.destroyable_even_if_not_converted = true
             video.destroy
-            Notification.send_to video.user_id, I18n.t('notifications.video.compose.create.failed', item: video.title, link: ::Video::CACHE_RESTORE_PATH) # TODO sendtto
+            Notification.send_to(
+              video.user_id,
+              I18n.t('notifications.video.compose.create.failed.title'),
+              I18n.t('notifications.video.compose.create.failed.message', :item => video.title, :link => ::Video::CACHE_RESTORE_PATH),
+              ''
+            )
           end
 
           raise e
@@ -133,7 +143,12 @@ module Media
             ActiveRecord::Base.transaction do
               video.save!
               video.enable_lessons_containing_me
-              Notification.send_to video.user_id, I18n.t("notifications.video.compose.#{notification_translation_key}.ok", item: video.title) # TODO sendtto
+              Notification.send_to(
+                video.user_id,
+                I18n.t("notifications.video.compose.#{notification_translation_key}.ok.title"),
+                I18n.t("notifications.video.compose.#{notification_translation_key}.ok.message", :item => video.title),
+                ''
+              )
               video.user.video_editor_cache!
             end
           end
