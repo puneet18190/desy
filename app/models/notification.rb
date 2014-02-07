@@ -83,18 +83,9 @@ class Notification < ActiveRecord::Base
   
   # === Description
   #
-  # Renders the message with the time
-  #
-  def message_with_time
-    time_difference = TimeConvert.time_difference_to_s(Time.zone.now - self.created_at)
-    self.message.gsub("</div><div class=\"content\">", "</div><p class=\"time _notification_time_#{self.id}\">#{time_difference}</p><div class=\"content\">")
-  end
-  
-  # === Description
-  #
   # Renders the time difference
   #
-  def only_time
+  def time
     TimeConvert.time_difference_to_s(Time.zone.now - self.created_at)
   end
   
