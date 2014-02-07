@@ -259,7 +259,12 @@ class UsersController < ApplicationController
       redirect_to user_request_upgrade_trial_path, { flash: { alert: t('flash.upgrade_trial.generic_error') } }
       return
     end
-    Notification.send_to user.id, t('notifications.account.upgraded', :expiration_date => TimeConvert.to_string(purchase.expiration_date)) # TODO sendtto
+    Notification.send_to(
+      user.id,
+      I18n.t('notifications.account.upgraded.title'),
+      I18n.t('notifications.account.upgraded.message', :expiration_date => TimeConvert.to_string(purchase.expiration_date)),
+      ''
+    )
   end
   
   # === Description
@@ -420,7 +425,12 @@ class UsersController < ApplicationController
       render 'trial'
       return
     end
-    Notification.send_to user.id, t('notifications.account.upgraded', :expiration_date => TimeConvert.to_string(purchase.expiration_date)) # TODO sendtto
+    Notification.send_to(
+      user.id,
+      I18n.t('notifications.account.upgraded.title'),
+      I18n.t('notifications.account.upgraded.message', :expiration_date => TimeConvert.to_string(purchase.expiration_date)),
+      ''
+    )
     redirect_to dashboard_path, { flash: { notice: t('users.trial.successful_upgrade') } }
   end
   
