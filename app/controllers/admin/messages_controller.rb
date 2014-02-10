@@ -32,9 +32,7 @@ class Admin::MessagesController < AdminController
       location = Location.get_from_chain_params params[:search]
       @locations = location.select_without_selected if location
     end
-    if params[:users]
-      @users = User.find(params[:users].gsub(/[\[\]\"]/, '').split(','))
-    end
+    @users = User.find(params[:users].gsub(/[\[\]\"]/, '').split(',')) if params[:users]
   end
   
   # === Description

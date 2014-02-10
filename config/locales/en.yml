@@ -3838,12 +3838,20 @@ en:
         # Button to submit and send the notification
         # 1 - views/admin/messages/new_notification.html.erb
         send: "Send"
-        # Title of the text area where the user types the content of the notification
-        # 1 - views/admin/messages/new_notification.html.erb
-        message: "Message"
-        # Placeholder of the text area where the user types the content of the notification
-        # 1 - views/admin/messages/new_notification.html.erb
-        message_placeholder: "Insert a message"
+        # Three fields for the form, with correspodant placeholders: title, message, basement
+        form:
+          # 1 - views/admin/messages/new_notification.html.erb
+          basement: "Basement"
+          # 1 - views/admin/messages/new_notification.html.erb
+          basement_placeholder: "Insert a basement (you can use HTML tags)"
+          # 1 - views/admin/messages/new_notification.html.erb
+          message: "Message"
+          # 1 - views/admin/messages/new_notification.html.erb
+          message_placeholder: "Insert a message (you can use HTML tags)"
+          # 1 - views/admin/messages/new_notification.html.erb
+          title: "Title"
+          # 1 - views/admin/messages/new_notification.html.erb
+          title_placeholder: "Insert a title"
       # Section where the administrator checks out the reports about unproper content sent by the users
       reports:
         # Title of the section

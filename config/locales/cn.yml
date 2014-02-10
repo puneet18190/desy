@@ -3838,12 +3838,20 @@ cn:
         # Button to submit and send the notification
         # 1 - views/admin/messages/new_notification.html.erb
         send: "发送"
-        # Title of the text area where the user types the content of the notification
-        # 1 - views/admin/messages/new_notification.html.erb
-        message: "信息"
-        # Placeholder of the text area where the user types the content of the notification
-        # 1 - views/admin/messages/new_notification.html.erb
-        message_placeholder: "插入一条信息"
+        # Three fields for the form, with correspodant placeholders: title, message, basement
+        form:
+          # 1 - views/admin/messages/new_notification.html.erb
+          basement: "Basement" # TODO
+          # 1 - views/admin/messages/new_notification.html.erb
+          basement_placeholder: "Insert a basement (you can use HTML tags)" # TODO
+          # 1 - views/admin/messages/new_notification.html.erb
+          message: "信息"
+          # 1 - views/admin/messages/new_notification.html.erb
+          message_placeholder: "Insert a message (you can use HTML tags)" # TODO
+          # 1 - views/admin/messages/new_notification.html.erb
+          title: "Title" # TODO
+          # 1 - views/admin/messages/new_notification.html.erb
+          title_placeholder: "Insert a title" # TODO
       # Section where the administrator checks out the reports about unproper content sent by the users
       reports:
         # Title of the section
