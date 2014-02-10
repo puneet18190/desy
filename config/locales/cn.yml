@@ -3841,17 +3841,17 @@ cn:
         # Three fields for the form, with correspodant placeholders: title, message, basement
         form:
           # 1 - views/admin/messages/new_notification.html.erb
-          basement: "Basement" # TODO
+          basement: "地下室"
           # 1 - views/admin/messages/new_notification.html.erb
-          basement_placeholder: "Insert a basement (you can use HTML tags)" # TODO
+          basement_placeholder: "插入一個地下室（您可以使用HTML標籤）"
           # 1 - views/admin/messages/new_notification.html.erb
           message: "信息"
           # 1 - views/admin/messages/new_notification.html.erb
-          message_placeholder: "Insert a message (you can use HTML tags)" # TODO
+          message_placeholder: "插入一條消息（您可以使用HTML標籤）"
           # 1 - views/admin/messages/new_notification.html.erb
-          title: "Title" # TODO
+          title: "標題"
           # 1 - views/admin/messages/new_notification.html.erb
-          title_placeholder: "Insert a title" # TODO
+          title_placeholder: "插入標題"
       # Section where the administrator checks out the reports about unproper content sent by the users
       reports:
         # Title of the section
