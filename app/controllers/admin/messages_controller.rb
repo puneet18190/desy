@@ -51,7 +51,7 @@ class Admin::MessagesController < AdminController
     if params[:search].present?
       if params[:send_message].present? && params[:message].present?
         if params[:all_users].present?
-          users = :all
+          users = User.pluck(:id)
         else
           users = AdminSearchForm.search_notifications_users(params[:search]).pluck('users.id')
         end
