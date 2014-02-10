@@ -79,7 +79,7 @@
             <% end %>
           </td>
           <td>
-            <% if current_user.super_admin? && current_user != user -%>
+            <% if current_user.super_admin? && current_user != user && user.confirmed -%>
               <%= link_to admin_personifications_path(user), title: t('admin.users.actions.personificate'), method: :post do %>
                 <i class="icon-user"></i>
               <% end %>
@@ -87,7 +87,7 @@
           </td>
           <td>
             <% if !user.super_admin? %>
-              <%= link_to admin_user_path(user), :method => :delete, :remote => true, :confirm => t('admin.users.delete_confirm'), :title=> t('admin.users.delete'), :class => 'action' do %>
+              <%= link_to admin_user_path(user), :method => :delete, :remote => true, :confirm => t('admin.users.delete_confirm'), :title => t('admin.users.delete'), :class => 'action' do %>
                 <i class="icon-remove"></i>
               <% end %>
             <% end %>
