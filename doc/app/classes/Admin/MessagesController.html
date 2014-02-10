@@ -196,7 +196,7 @@ notification sender main page</p>
         <span class="ruby-identifier">users</span> = <span class="ruby-constant">AdminSearchForm</span>.<span class="ruby-identifier">search_notifications_users</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]).<span class="ruby-identifier">pluck</span>(<span class="ruby-string">&#39;users.id&#39;</span>)
       <span class="ruby-keyword">end</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">users</span>.<span class="ruby-identifier">present?</span>
-        <span class="ruby-identifier">send_notifications</span>(<span class="ruby-identifier">users</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>].<span class="ruby-identifier">to_s</span>)
+        <span class="ruby-identifier">send_notifications</span>(<span class="ruby-identifier">users</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:basement</span>])
       <span class="ruby-keyword">end</span>
       <span class="ruby-ivar">@reset_form</span> = <span class="ruby-keyword">true</span>
     <span class="ruby-keyword">else</span>
@@ -315,7 +315,7 @@ href="ReportsController.html">Admin::ReportsController</a>)</p>
         <div class="method">
           <div class="title method-title" id="method-i-send_notifications">
             
-              <b>send_notifications</b>(users_ids, message)
+              <b>send_notifications</b>(users_ids, title, message, basement)
             
             <a href="../../classes/Admin/MessagesController.html#method-i-send_notifications" name="method-i-send_notifications" class="permalink">Link</a>
           </div>
@@ -341,8 +341,8 @@ send multiple messages organizing them in different threads</p>
               </p>
               <div id="method-i-send_notifications_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/admin/messages_controller.rb, line 90</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">send_notifications</span>(<span class="ruby-identifier">users_ids</span>, <span class="ruby-identifier">message</span>)
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span>(<span class="ruby-identifier">users_ids</span>, <span class="ruby-identifier">message</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">send_notifications</span>(<span class="ruby-identifier">users_ids</span>, <span class="ruby-identifier">title</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">basement</span>)
+  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span>(<span class="ruby-identifier">users_ids</span>, <span class="ruby-identifier">title</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">basement</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
