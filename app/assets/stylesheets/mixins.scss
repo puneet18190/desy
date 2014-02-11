@@ -143,16 +143,6 @@
   
 }
 
-@mixin layoutIconElements {
-  
-  margin-right: 0px;
-  position: absolute;
-  bottom: 10px;
-  right: 3px;
-  font-size: 0.3em;
-  
-}
-
 /* tenere allineato con content.css; le differenze con tale file sono sottolineate nei commenti */
 @mixin read-only-tiny-mce {
   

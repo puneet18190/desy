@@ -108,7 +108,7 @@ html.lesson-editor-layout {
       
       .jspTrack {
         
-        background-color: #3f3f3f;
+        background-color: #3F3F3F;
         z-index: 99999;
         
       }
@@ -406,13 +406,13 @@ html.lesson-editor-layout {
           
         }
         
-        a.save,a.save.disabled:hover {
+        a.save, a.save.disabled:hover {
           
           background-position: left -168px;
           
         }
         
-        a.delete:hover,a.delete.active {
+        a.delete:hover, a.delete.active {
           
           background-position: -57px 0;
           
@@ -424,13 +424,13 @@ html.lesson-editor-layout {
           
         }
         
-        a.info:hover,a.info.active {
+        a.info:hover, a.info.active {
           
           background-position: -57px -112px;
           
         }
         
-        a.save:hover,a.save.active {
+        a.save:hover, a.save.active {
           
           background-position: -57px -168px;
           
@@ -574,7 +574,7 @@ html.lesson-editor-layout {
         
         &:hover {
           
-          background-color: #f5a933;
+          background-color: #F5A933;
           
         }
         

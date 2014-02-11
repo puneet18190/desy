@@ -83,7 +83,7 @@ html.media_element_editor-layout {
     background-image: $assets-bg-title-editor_gif;
     background-repeat: repeat-x;
     background-position: top left;
-    background-color: #5f5f5f;
+    background-color: #5F5F5F;
     
   }
   
@@ -127,7 +127,7 @@ html.media_element_editor-layout {
     .testo {
       
       padding-top: 7px;
-      text-align:center;
+      text-align: center;
       
     }
     
@@ -360,7 +360,7 @@ html.media_element_editor-layout {
         
         &:hover {
           
-          background-color: #67b855;
+          background-color: #67B855;
           cursor: pointer;
           
         }
@@ -374,7 +374,7 @@ html.media_element_editor-layout {
         
         &:hover {
           
-          background-color: #67b855;
+          background-color: #67B855;
           
         }
         
@@ -424,6 +424,7 @@ html.media_element_editor-layout {
     
     top: 0;
     left: 0;
+    
   }
   
   .mediaEditorVideoContainer {
@@ -642,7 +643,7 @@ html.media_element_editor-layout {
       h1 {
         
         text-align: left;
-        color: #40a748;
+        color: #40A748;
         font-size: 30px;
         font-weight: normal;
         
@@ -839,27 +840,13 @@ html.media_element_editor-layout {
         
       }
       
-      .photoIcon {
+      .photoIcon, .audioIcon, .videoIcon, .textIcon {
         
-        @include layoutIconElements;
-        
-      }
-      
-      .audioIcon {
-        
-        @include layoutIconElements;
-        
-      }
-      
-      .videoIcon {
-        
-        @include layoutIconElements;
-        
-      }
-      
-      .textIcon {
-        
-        @include layoutIconElements;
+        margin-right: 0px;
+        position: absolute;
+        bottom: 10px;
+        right: 3px;
+        font-size: 0.3em;
         
       }
       
