@@ -6,10 +6,10 @@ html.prelogin-layout {
   body {
     
     @include arial(80%);
-    background-color: #9bc3eb;
+    background-color: #9BC3EB;
     background-image: $assets-bg-register_jpg;
     background-repeat: repeat-x ;
-    background-position:0px 0px;
+    background-position: 0px 0px;
     margin: 0;
     color: #fff;
     text-align: center;
@@ -148,7 +148,7 @@ html.prelogin-layout {
       .footer {
         
         padding: 10px 30px 10px 40px;
-        border-top: 7px solid #fdb525;
+        border-top: 7px solid #FDB525;
         float: left;
         background-color: #fff;
         color: #CECDCD;
@@ -178,7 +178,7 @@ html.prelogin-layout {
       background-color: #fff;
       background-image: none;
       margin: 0;
-      color: #6d6d6e;
+      color: #6D6D6E;
       text-align: center;
       width: 100%;
       height: 100%;
@@ -195,7 +195,7 @@ html.prelogin-layout {
         
         display: inline-block;
         padding: 40px;
-        color: #6d6d6e;
+        color: #6D6D6E;
         
         h1, h3 {
           
@@ -205,7 +205,7 @@ html.prelogin-layout {
         
         h1 {
           
-          color: #3c9927;
+          color: #3C9927;
           font-size: 22px;
           
         }
@@ -213,7 +213,7 @@ html.prelogin-layout {
         h3 {
           
           padding-bottom: 25px;
-          color: #fdb525;
+          color: #FDB525;
           
         }
         
@@ -243,9 +243,9 @@ html.prelogin-layout {
       .footer {
         
         padding: 10px 30px 10px 40px;
-        border-top: 7px solid #fdb525;
+        border-top: 7px solid #FDB525;
         background-color: #fff;
-        color: #cecdcd;
+        color: #CECDCD;
         font-size: 75%;
         text-transform: lowercase;
         position: relative;

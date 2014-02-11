@@ -11,7 +11,7 @@ html.prelogin-layout.prelogin-controller.home-action {
     background-color: #fff;
     background-image: $assets-bg-title-prelogin_jpg;
     background-repeat: repeat-x;
-    background-position:0px 37px;
+    background-position: 0px 37px;
     margin: 0;
     color: #505051;
     text-align: center;
@@ -32,7 +32,7 @@ html.prelogin-layout.prelogin-controller.home-action {
     .containerText {
       
       padding-top: 20px;
-      margin-bottom:88px;
+      margin-bottom: 88px;
       float: left;
       
       a {
@@ -43,12 +43,12 @@ html.prelogin-layout.prelogin-controller.home-action {
       }
       
       h1 {
-       
-       @include nunito-with-line-height(150%, 100%);
-       color: #505051;
-       padding-top: 14px;
-       padding-bottom: 0px;
-       
+        
+        @include nunito-with-line-height(150%, 100%);
+        color: #505051;
+        padding-top: 14px;
+        padding-bottom: 0px;
+        
       }
       
       p {
@@ -61,7 +61,7 @@ html.prelogin-layout.prelogin-controller.home-action {
     
     .contentVideoHomePrelogin {
       
-      background-color: #d9e0e7;
+      background-color: #D9E0E7;
       padding: 0;
       margin: 0;
       height: 393px;
@@ -69,7 +69,7 @@ html.prelogin-layout.prelogin-controller.home-action {
       
       .homeVideoContainer {
         
-        background-color: #d9e0e7;
+        background-color: #D9E0E7;
         position: absolute;
         top: 0;
         left: 0;
@@ -82,7 +82,7 @@ html.prelogin-layout.prelogin-controller.home-action {
   
   .footer {
     
-    border-top: 1px solid #f7f9fa;
+    border-top: 1px solid #F7F9Fa;
     padding-top: 15px;
     
     .footer_logo_content {

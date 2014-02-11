@@ -35,18 +35,20 @@ html.prelogin-layout .header {
       
       &:hover {
         
-        color: #fdb525;
+        color: #FDB525;
         
       }
       
       &.current {
-        color:#fdb525;
+        
+        color: #FDB525;
+        
       }
       
     }
     
   }
-
+  
   .login {
     
     float: right;
@@ -75,7 +77,7 @@ html.prelogin-layout .header {
       
       float: right;
       padding: 4px 15px 4px 15px;
-      background-color: #4bab36;
+      background-color: #4BAB36;
       text-align: center;
       font-size: 120%;
       color: #fff;
@@ -92,7 +94,7 @@ html.prelogin-layout .header {
       
       float: left;
       padding: 4px 15px 4px 15px;
-      background-color: #9bc3eb;
+      background-color: #9BC3EB;
       text-align: center;
       font-size: 120%;
       color: #fff;
@@ -111,7 +113,7 @@ html.prelogin-layout .header {
       top: 40px;
       right: 20px;
       width: 196px;
-      background-color: #2f2e2e;
+      background-color: #2F2E2E;
       padding: 15px 20px 15px 20px;
       display: none;
       position: absolute;
@@ -150,7 +152,7 @@ html.prelogin-layout .header {
         border: 1px solid #424141;
         width: 184px;
         height: 29px;
-        background-color: #2e2c2d;
+        background-color: #2E2C2D;
         border-radius: 6px;
         -webkit-border-radius: 4px;
         margin-right: 0px;
