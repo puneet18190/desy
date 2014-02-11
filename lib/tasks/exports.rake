@@ -27,12 +27,12 @@ namespace :exports do
         require 'export/lesson/archive/assets'
         require 'export/lesson/ebook/assets'
         require 'export/lesson/scorm/assets'
-        Export::Lesson::Archive::Assets.remove_folder!
-        Export::Lesson::Ebook::Assets.remove_folder!
-        Export::Lesson::Scorm::Assets.remove_folder!
-        Export::Lesson::Archive::Assets.compile
-        Export::Lesson::Ebook::Assets.compile
-        Export::Lesson::Scorm::Assets.compile
+        # Export::Lesson::Archive::Assets.remove_folder! TODO maurizio deve usare invoke_or_reboot
+        # Export::Lesson::Ebook::Assets.remove_folder!
+        # Export::Lesson::Scorm::Assets.remove_folder!
+        # Export::Lesson::Archive::Assets.compile
+        # Export::Lesson::Ebook::Assets.compile
+        # Export::Lesson::Scorm::Assets.compile
       end
       
       desc "Empties folders of files for the three kinds of download"
