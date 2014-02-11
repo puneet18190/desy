@@ -59,23 +59,6 @@
   
 }
 
-@mixin stileElementiSceltaColori {
-  
-  padding: 5px;
-  outline: 1px solid #e6e6e6;
-  cursor: pointer;
-  float: left;
-  margin-left: 8px;
-  margin-top: 2px;
-  
-  &:hover, &.current {
-    
-    outline: 2px solid #fff;
-    
-  }
-  
-}
-
 @mixin slideshow($slidesAmount, $slideshowSel: ".slideshow", $slidesSel: ".slides", $slideSel: ".slide") {
   
   #{$slideshowSel} {

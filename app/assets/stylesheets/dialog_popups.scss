@@ -34,8 +34,8 @@
     
     width: auto;
     overflow: hidden;
-    box-shadow: 1px 1px 1px #b4b4b4;
-    -webkit-box-shadow: 1px 1px 1px #b4b4b4;
+    box-shadow: 1px 1px 1px #B4B4B4;
+    -webkit-box-shadow: 1px 1px 1px #B4B4B4;
     font-family: 'Nunito', sans-serif;
     background-color: rgba(248,248,248,0.9);
     border-radius: 5px;
@@ -117,7 +117,7 @@
     overflow: hidden;
     box-shadow: 0px 5px 15px #454343;
     -webkit-box-shadow: 0px 5px 15px #454343;
-    background-color: #f5f5f5;
+    background-color: #F5F5F5;
     color: $black;
     
     &.ui-dialog-content.ui-widget-content {
@@ -157,7 +157,7 @@
       width: 354px;
       height: 293px;
       padding-right: 24px;
-      border-right: 1px solid #d2d2d2;
+      border-right: 1px solid #D2D2D2;
       
       .virtual_classroom_send_link_mails_box_container {
         
@@ -179,7 +179,7 @@
             
             .jspTrack {
               
-              background-color: #b3b1b1;
+              background-color: #B3B1B1;
               
               .jspDrag {
                 
@@ -303,7 +303,7 @@
             
             a.sbFocus {
               
-              background-color: #f5f5f5;
+              background-color: #F5F5F5;
               color: #999999;
               
             }
@@ -377,7 +377,7 @@
             
             &:hover {
               
-              background-color: #b3b1b1;
+              background-color: #B3B1B1;
               border: none;
               
             }
@@ -435,7 +435,7 @@
 
 .timedPopUp a, .confirmPopUp a {
   
-  color: #72b863;
+  color: #72B863;
   text-transform: uppercase;
   
 }
@@ -456,7 +456,7 @@
   
   textarea.campoTesto {
     
-    border: 1px solid #f0e5e5;
+    border: 1px solid #F0E5E5;
     
   }
   
@@ -476,7 +476,7 @@
 
 .imageInGalleryPopUp.ui-dialog-content.ui-widget-content {
   
-  background-color: #48484a;
+  background-color: #48484A;
   padding: 10px;
   
   img {
@@ -489,7 +489,7 @@
   
   .caption {
     
-    color: #8c8a8c;
+    color: #8C8A8C;
     text-align: left;
     padding: 10px;
     display: block;
@@ -508,13 +508,13 @@
 
 .videoInGalleryPopUp.ui-dialog-content.ui-widget-content {
   
-  background-color: #48484a;
+  background-color: #48484A;
   padding: 10px;
   overflow: hidden;
   
   .caption {
     
-    color: #8c8a8c;
+    color: #8C8A8C;
     text-align: left;
     padding: 10px;
     float: left;

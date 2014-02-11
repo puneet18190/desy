@@ -495,7 +495,7 @@
     
     .audioTrackContent {
       
-      background-color: #4a4a4a;
+      background-color: #4A4A4A;
       padding: 5px 10px;
       height: 34px;
       margin-top: 8px;
@@ -503,7 +503,7 @@
       &:hover {
         
         cursor: pointer;
-        background-color: #403f3f;
+        background-color: #403F3F;
         
       }
       
@@ -511,7 +511,7 @@
         
         float: left;
         padding: 5px 10px;
-        border-left: 1px solid #2d2d2d;
+        border-left: 1px solid #2D2D2D;
         height: 26px;
         
         a {
@@ -533,7 +533,7 @@
     
     .audioTrackExpanded {
       
-      background-color: #3b3a3b;
+      background-color: #3B3A3B;
       text-align: left;
       height: 32px;
       padding: 10px 20px;
@@ -556,7 +556,7 @@
     
     .audioTrackContent {
       
-      background-color: #4a4a4a;
+      background-color: #4A4A4A;
       padding: 5px 10px;
       height: 34px;
       margin-top: 8px;
@@ -565,7 +565,7 @@
         
         float: left;
         padding: 5px 10px;
-        border-left: 1px solid #2d2d2d;
+        border-left: 1px solid #2D2D2D;
         height: 26px;
         
         a {
@@ -601,7 +601,7 @@
   
   @include boxShadow;
   @include ulGallery;
-  display:block;
+  display: block;
   
   .jspVerticalBar {
     
@@ -745,7 +745,18 @@
       
       & > div {
         
-        @include stileElementiSceltaColori;
+        padding: 5px;
+        outline: 1px solid #E6E6E6;
+        cursor: pointer;
+        float: left;
+        margin-left: 8px;
+        margin-top: 2px;
+        
+        &:hover, &.current {
+          
+          outline: 2px solid #fff;
+          
+        }
         
       }
       
@@ -762,7 +773,18 @@
       
       & > div {
         
-        @include stileElementiSceltaColori;
+        padding: 5px;
+        outline: 1px solid #E6E6E6;
+        cursor: pointer;
+        float: left;
+        margin-left: 8px;
+        margin-top: 2px;
+        
+        &:hover, &.current {
+          
+          outline: 2px solid #fff;
+          
+        }
         
       }
       
