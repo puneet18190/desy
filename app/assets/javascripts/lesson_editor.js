@@ -637,6 +637,12 @@ function lessonEditorDocumentReadyTextFields() {
       $('#slides._update #description_placeholder').attr('value', '0');
     }
   });
+  $body.on('keydown', 'form#lesson-create input#title, form#lesson-create textarea', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('keydown', 'form#lesson-create input#tags', function() {
+    $(this).parent().removeClass('form_error');
+  });
 }
 
 
