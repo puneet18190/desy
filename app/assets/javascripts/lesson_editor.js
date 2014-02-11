@@ -643,6 +643,9 @@ function lessonEditorDocumentReadyTextFields() {
   $body.on('keydown', 'form#lesson-create input#tags', function() {
     $(this).parent().removeClass('form_error');
   });
+  $body.on('click', '#lesson-create .sbHolder', function() {
+    $(this).removeClass('form_error');
+  });
 }
 
 
