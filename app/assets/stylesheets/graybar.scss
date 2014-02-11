@@ -5,7 +5,7 @@
   
   @include nunito(120%);
   padding: 8px;
-  background-color: #f5f5f5;
+  background-color: #F5F5F5;
   color: #727377;
   float: left;
   margin-bottom: 20px;
@@ -29,8 +29,8 @@
     
     &.b-dashboard {
       
-      background-color: #fafafa;
-      color: #b9b9bd;
+      background-color: #FAFAFA;
+      color: #B9B9BD;
       
       &:hover {
         
@@ -60,7 +60,7 @@
       
       &:hover {
         
-        background-color: #f5a933;
+        background-color: #F5A933;
         
       }
       
@@ -73,7 +73,7 @@
       
       &:hover {
         
-        background-color: #67b855;
+        background-color: #67B855;
         
       }
       
@@ -86,7 +86,7 @@
       
       &:hover {
         
-        background-color: #908f8f;
+        background-color: #908F8F;
         
       }
       
@@ -123,7 +123,7 @@
         
         a:hover, a:focus, a.sbFocus {
           
-          background-color: #f5f5f5;
+          background-color: #F5F5F5;
           color: #999999;
           
         }
@@ -227,7 +227,7 @@
       
       @include nunito(100%);
       padding: 18px;
-      border: 1px solid #efefef;
+      border: 1px solid #EFEFEF;
       
       label {
         
@@ -322,7 +322,7 @@
   
   .sbHolder {
     
-    background-color: #f8f8f8;
+    background-color: #F8F8F8;
     
   }
   
@@ -360,7 +360,7 @@
   
   input[type="text"] {
     
-    background-color: #f8f8f8;
+    background-color: #F8F8F8;
     
   }
   
@@ -381,8 +381,8 @@ label {
 .regular-radio + label {
   
   -webkit-appearance: none;
-  background-color: #fafafa;
-  border: 1px solid #cacece;
+  background-color: #FAFAFA;
+  border: 1px solid #CACECE;
   padding: 7px;
   border-radius: 50px;
   display: inline-block;
@@ -398,7 +398,7 @@ label {
   border-radius: 50px;
   position: absolute;
   top: 3px;
-  background-color: #99a1a7;
+  background-color: #99A1A7;
   text-shadow: 0px;
   left: 3px;
   
@@ -406,9 +406,9 @@ label {
 
 .regular-radio:checked + label {
   
-  background-color: #e9ecee;
+  background-color: #E9ECEE;
   color: #99a1a7;
-  border: 1px solid #adb8c0;
+  border: 1px solid #ADB8C0;
   
 }
 
