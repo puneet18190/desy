@@ -54,6 +54,9 @@ Initializes handler of purchase code in prelogin registration.
 @for ProfilePrelogin
 **/
 function purchaseCodeRegistrationDocumentReady() {
+  $body.on('keydown', '#registration_purchase_id', function() {
+    $(this).removeClass('error');
+  });
   $body.on('blur', '#registration_purchase_id', function() {
     var token = $(this).val();
     $.ajax({

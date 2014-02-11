@@ -38,11 +38,11 @@
       $('#registration-locations').show().css('margin-bottom', '75px');
       $('#hidden_location_in_registration').attr('name', 'locations[<%= @forced_location.sti_type.downcase %>]').val('<%= @forced_location.id %>');
     <% end %>
-    $('#registration_purchase_id').removeAttr('name').attr('disabled', 'disabled').css('background-color', '#83A5C8');
-    $('#hidden_registration_purchase_id').attr('name', 'purchase_id').val('<%= @purchase.token %>')
-    $('#registration_trial').attr('disabled', 'disabled');
-    $('label[for="registration_trial"]').css('cursor', 'default').css('background-color', '#ACCFF2');
   <% end %>
+  $('#registration_purchase_id').removeAttr('name').attr('disabled', 'disabled').css('background-color', '#83A5C8');
+  $('#hidden_registration_purchase_id').attr('name', 'purchase_id').val('<%= @purchase.token %>')
+  $('#registration_trial').attr('disabled', 'disabled');
+  $('label[for="registration_trial"]').css('cursor', 'default').css('background-color', '#ACCFF2');
 <% else %>
   $('#registration_purchase_id').addClass('error');
   $('#registration_ok').hide();
