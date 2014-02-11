@@ -41,6 +41,9 @@ function preloginDocumentReady() {
   $body.on('click', '.checkAllSubjects', function() {
     $(this).parent().find('.profile-element label.unchecked').click();
   });
+  $body.on('keydown', '#registration-general input', function() {
+    $(this).removeClass('true');
+  });
   $('.policy-verticalScroll').jScrollPane({autoReinitialise: true});
   var parsedLocation = UrlParser.parse(window.location.href);
   if(_.contains(_.keys(parsedLocation.searchObj), 'login')) {
