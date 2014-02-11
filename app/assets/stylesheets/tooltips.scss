@@ -3,11 +3,12 @@
 
 #notifications_main {
   
-  text-align:left;
+  text-align: left;
   background-color: transparent;
   position: relative;
-  bottom:9px;
+  bottom: 9px;
   margin-left:10px;
+  
   .hidden {
     
     display: none;
@@ -100,7 +101,7 @@
     }
     
     .variable {
-      color:#5d5c5c;
+      color:#5D5C5C;
       font-weight: bold;
       
     }
@@ -115,7 +116,7 @@
       
       span {
         
-        color: #5d5c5c;
+        color: #5D5C5C;
         float: left;
         font-weight: bold;
         font-size: 13px;
@@ -149,7 +150,7 @@
     width: 281px;
     padding: 5px;
     background-color: #fff;
-    border: 1px solid #e8e8e8;
+    border: 1px solid #E8E8E8;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     top: 61px;
@@ -283,7 +284,7 @@
     border-radius: 3px;
     -webkit-border-radius: 3px;
     color: #fff;
-    background-color: #e10000;
+    background-color: #E10000;
     padding: 2px 5px;
     right: 40px;
     
@@ -338,7 +339,7 @@
     border-radius: 3px;
     -webkit-border-radius: 3px;
     background-color: #fff;
-    border: 1px solid #e8e8e8;
+    border: 1px solid #E8E8E8;
     top: 61px;
     
     .callout {

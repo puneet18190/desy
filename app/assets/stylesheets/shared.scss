@@ -125,7 +125,7 @@ a.cerca.current {
   
   &:hover {
     
-    background-color: #f2eef2;
+    background-color: #F2EEF2;
     cursor: pointer;
     
   }
@@ -401,7 +401,7 @@ a.cerca.current {
     
     padding-top: 0%;
     height: 274px;
-    background-color: #fbfafb;
+    background-color: #FBFAFB;
     
     p {
       
@@ -614,7 +614,7 @@ a.cerca.current {
   .vuoto {
     
     height: 2.4em;
-    background-color: #fbfafb;
+    background-color: #FBFAFB;
     
   }
   
@@ -623,7 +623,7 @@ a.cerca.current {
 .mediaStatus {
   
   padding: 15px 0 0 10px;
-  color: #c0c0c0;
+  color: #C0C0C0;
   font-weight: bold;
   font-size: 11px;
   
@@ -667,7 +667,7 @@ a.cerca.current {
       
       &:hover {
         
-        background-color: #67b855;
+        background-color: #67B855;
         
       }
       
@@ -702,8 +702,8 @@ a.cerca.current {
     
     padding: 10px 20px;
     width: 794px;
-    outline: 1px solid #524f4f;
-    background-color: #3b3a3b;
+    outline: 1px solid #524F4F;
+    background-color: #3B3A3B;
     position: absolute;
     bottom: 60px;
     display: inline-block;
@@ -789,7 +789,7 @@ a.cerca.current {
     
     &:hover {
       
-      background-color: #67b855;
+      background-color: #67B855;
       
     }
     
@@ -827,11 +827,11 @@ a.cerca.current {
     height: 34px;
     color: #fff;
     background-color:$green;
-    border: 0px solid #4fc356;
+    border: 0px solid #4FC356;
     
     &:hover {
       
-      background-color: #67b855;
+      background-color: #67B855;
       cursor: pointer;
       
     }
@@ -992,13 +992,13 @@ label.filebutton span input#new_media_element_input {
     
     &:hover {
       
-      background-color: #67b855;
+      background-color: #67B855;
       
     }
     
     &.current {
       
-      background-color: #67b855;
+      background-color: #67B855;
       
     }
     
@@ -1017,7 +1017,7 @@ label.filebutton span input#new_media_element_input {
 .elementoGrigio {
   
   float: left;
-  background-color: #3e3e40;
+  background-color: #3E3E40;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   width: 35%;
@@ -1029,7 +1029,7 @@ label.filebutton span input#new_media_element_input {
 .elementoTime {
   
   float: left;
-  background-color: #3e3e40;
+  background-color: #3E3E40;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   width: 14%;
@@ -1092,7 +1092,7 @@ label.filebutton span input#new_media_element_input {
   
   background-color: #fff;
   text-align: right;
-  color: #cbcbcb;
+  color: #CBCBCB;
   display: block;
   font-size: 7px;
   height: 38px;
@@ -2018,7 +2018,7 @@ label.filebutton span input#new_media_element_input {
   input[type="submit"] {
     
     @include nunito(20px);
-    background-color: #9bc3eb;
+    background-color: #9BC3EB;
     text-transform: none;
     margin: 0 0 20px 0;
     padding: 0px;
