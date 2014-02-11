@@ -646,6 +646,12 @@ function lessonEditorDocumentReadyTextFields() {
   $body.on('click', '#lesson-create .sbHolder', function() {
     $(this).removeClass('form_error');
   });
+  $body.on('keydown', '#slides._update #title, #slides._update #description', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('keydown', '#slides._update input#tags', function() {
+    $(this).parent().removeClass('form_error');
+  });
 }
 
 
