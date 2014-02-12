@@ -530,11 +530,11 @@
     
   }
   
-  #tags {
+  input[type="text"] {
     
     overflow: visible;
     clear: both;
-    border: none;
+    border: none !important;
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 0 10px;

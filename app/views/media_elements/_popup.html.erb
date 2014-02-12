@@ -31,8 +31,8 @@
             <p><%= t('forms.change_info_media_element.description') %></p>
             <%= form_tag media_element_path(media_element.id), :remote => true, :class => 'formModifyInfo' do %>
               <div class="cols" style="float:left">
-                <input id="title" type="text" class="title basta_caos_porca_miseria" name="title" value="<%= media_element.title %>"/><br/>
-                <%= text_area_tag 'description', media_element.description, :class => 'description basta_caos_porca_miseria' %>
+                <input type="text" class="title basta_caos_porca_miseria" name="title" value="<%= media_element.title %>"/><br/>
+                <textarea name="description" class="description basta_caos_porca_miseria form_error"><%= media_element.description %></textarea>
               </div>
               <div class="cols fltrt">
                 <div class="_tags_placeholder" style="display:none">
@@ -44,7 +44,7 @@
                   <% my_tags.each do |t| %>
                     <span><%= t.tag.word.strip %><a class="remove"></a></span>
                   <% end %>
-                  <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower basta_caos_porca_miseria' %>
+                  <input type="text" value="" name="tags" maxlength="<%= SETTINGS['max_tag_length'] %>" class="lower basta_caos_porca_miseria my_new_tag">
                   <%= hidden_field_tag 'tags_value', media_element.tags, :id => "tags_value_#{media_element.id}", :class => '_tags_value' %>
                 </div><br/>
                 <div class="fltrt">

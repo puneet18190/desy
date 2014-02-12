@@ -143,6 +143,12 @@ Initializer for functionalities which are common to sections containing media el
 @for GeneralDocumentReady
 **/
 function commonMediaElementsDocumentReady() {
+  $body.on('keydown', '._change_info_container .description, ._change_info_container .title', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('keydown', '._change_info_container ._tags_container input', function() {
+    $(this).parent().removeClass('form_error');
+  });
   $body.on('click', '._close_media_element_preview_popup', function() {
     var param = $(this).data('param');
     closePopUp('dialog-media-element-' + param);

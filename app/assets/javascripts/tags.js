@@ -157,9 +157,9 @@ function tagsDocumentReadyChangeMediaElementInfo() {
     var media_element_id = $(this).parent().parent().parent().parent().parent().data('param');
     removeFromTagsValue($(this).parent().text(), '#dialog-media-element-' + media_element_id + ' ._tags_container ._tags_value');
     $(this).parent().remove();
-    if($('#dialog-media-element-' + media_element_id + ' #tags').not(':visible')) {
-      $('#dialog-media-element-' + media_element_id + ' #tags').show();
-      disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' #tags');
+    if($('#dialog-media-element-' + media_element_id + ' .my_new_tag').not(':visible')) {
+      $('#dialog-media-element-' + media_element_id + ' .my_new_tag').show();
+      disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' .my_new_tag');
     }
   });
   $body.on('focus', '._change_info_container ._tags_container', function() {
@@ -167,10 +167,10 @@ function tagsDocumentReadyChangeMediaElementInfo() {
   });
   $body.on('click', '._change_info_container ._tags_container', function() {
     var media_element_id = $(this).parent().parent().parent().parent().data('param');
-    $('#dialog-media-element-' + media_element_id + ' #tags').focus();
+    $('#dialog-media-element-' + media_element_id + ' .my_new_tag').focus();
     $(this).find('._placeholder').hide();
   });
-  $body.on('keydown', '._change_info_container #tags', function(e) {
+  $body.on('keydown', '._change_info_container .my_new_tag', function(e) {
     var media_element_id = $(this).parent().parent().parent().parent().data('param');
     if(e.which === 13 || e.which === 188) {
       e.preventDefault();
@@ -179,7 +179,7 @@ function tagsDocumentReadyChangeMediaElementInfo() {
       $(this).prev().find('.remove').trigger('click');
     }
   });
-  $body.on('blur', '._change_info_container #tags', function(e) {
+  $body.on('blur', '._change_info_container .my_new_tag', function(e) {
     var media_element_id = $(this).parent().parent().parent().parent().data('param');
     addTagWithoutSuggestion(this, '#dialog-media-element-' + media_element_id + ' ._tags_container', '._tags_value');
   });
@@ -187,7 +187,7 @@ function tagsDocumentReadyChangeMediaElementInfo() {
     var media_element_id = $(this).data('param');
     initTagsAutocomplete('#dialog-media-element-' + media_element_id, 'media_element');
     (function() {
-      disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' #tags');
+      disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' .my_new_tag');
     });
   });
 }
