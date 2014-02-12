@@ -7,7 +7,7 @@
       <% if err.to_s == 'tags' %>
         $('#dialog-media-element-<%= @media_element_id %> ._tags_container').addClass('form_error');
       <% else %>
-        $('#dialog-media-element-<%= @media_element_id %> #<%= err %>').addClass('form_error');
+        $('#dialog-media-element-<%= @media_element_id %> .<%= err %>').addClass('form_error');
       <% end %>
     <% end %>
   <% else %>
@@ -23,6 +23,7 @@
     var destination = $(big_selector).data('destination');
     if(destination == '<%= ButtonDestinations::EXPANDED_MEDIA_ELEMENT %>') {
       $('#' + destination + '_<%= @media_element_id %>').replaceWith('<%= j render(:partial => "media_elements/view_single_expanded", :locals => {:media_element => @media_element, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => used_in_private_lessons}) %>');
+      resizeExpandedMediaElements($('#info_container').data('in-space'));
     } else if(destination == '<%= ButtonDestinations::COMPACT_MEDIA_ELEMENT %>') {
       $('#' + destination + '_<%= @media_element_id %>').replaceWith('<%= j render(:partial => "media_elements/view_single_compact", :locals => {:media_element => @media_element, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT, :used_in_private_lessons => used_in_private_lessons}) %>');
     } else if(destination == '<%= ButtonDestinations::FOUND_MEDIA_ELEMENT %>') {

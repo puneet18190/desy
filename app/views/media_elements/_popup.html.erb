@@ -32,7 +32,7 @@
             <%= form_tag media_element_path(media_element.id), :remote => true, :class => 'formModifyInfo' do %>
               <div class="cols" style="float:left">
                 <input type="text" class="title basta_caos_porca_miseria" name="title" value="<%= media_element.title %>"/><br/>
-                <textarea name="description" class="description basta_caos_porca_miseria form_error"><%= media_element.description %></textarea>
+                <textarea name="description" class="description basta_caos_porca_miseria"><%= media_element.description %></textarea>
               </div>
               <div class="cols fltrt">
                 <div class="_tags_placeholder" style="display:none">
