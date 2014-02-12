@@ -140,6 +140,9 @@ function documentsDocumentReadyGeneral() {
     $(this).removeClass('change_info');
     $(this).addClass('change_info_light');
   });
+  $body.on('keydown', '._document_change_info_container ._doc_title, ._document_change_info_container ._doc_description', function() {
+    $(this).removeClass('form_error');
+  });
   $('#order_documents option[selected]').first().attr('selected', 'selected');
   $('#order_documents').selectbox();
 }
