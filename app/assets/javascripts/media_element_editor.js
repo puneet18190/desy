@@ -148,7 +148,17 @@ function mediaElementEditorDocumentReady() {
       form.find('._tags_container').append(old_tags + old_tags_placeholder + old_tags_value);
       form.find('._tags_container ._placeholder').hide();
       form.find('#new_tags_value').val(form.find('#only_to_conserve_tags .edited_container .edited_tags').val());
+      form.find('._tags_container, #new_title, #new_description').removeClass('form_error');
     }
+  });
+  $body.on('keydown', '#form_info_update_media_element_in_editor #update_title, #form_info_update_media_element_in_editor #update_description', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('keydown', '#form_info_new_media_element_in_editor #new_title, #form_info_new_media_element_in_editor #new_description', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('keydown', '#form_info_update_media_element_in_editor #update_tags, #form_info_new_media_element_in_editor #new_tags', function() {
+    $(this).parent().removeClass('form_error');
   });
 }
 
