@@ -81,7 +81,6 @@ $(document).ready(function() {
   if($('#my_documents').length > 0) { // (3) in section documents
     documentsDocumentReady();
     documentsDocumentReadyUploader();
-    sectionDocumentsDocumentReady();
     notificationsDocumentReady();
     sectionNotificationsDocumentReady();
   }

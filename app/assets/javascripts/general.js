@@ -345,16 +345,6 @@ function reportsDocumentReady() {
 }
 
 /**
-Functionalities necessary only for the section 'my documents'.
-@method sectionDocumentsDocumentReady
-@for GeneralDocumentReady
-**/
-function sectionDocumentsDocumentReady() {
-  $('#order_documents option[selected]').first().attr('selected', 'selected');
-  $('#order_documents').selectbox();
-}
-
-/**
 Functionalities necessary only for the section 'my lessons'.
 @method sectionLessonsDocumentReady
 @for GeneralDocumentReady

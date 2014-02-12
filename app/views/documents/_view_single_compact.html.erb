@@ -36,7 +36,7 @@
          
         <h1><%= t('documents.change_info.title') %></h1>
         <%= form_tag document_path(document.id), :class => 'formDocuments', :remote => true do %>
-          <%= hidden_field_tag 'word', '', :class => '_hidden_word' %>
+          <input type="hidden" value="" name="word" class="_hidden_word">
           <input class="_doc_title" type="text" value="<%= document.title %>" name="title"/>
           <p>
             <textarea class="_doc_description" name="description" data-document-id="<%= document.id %>"><%= popup_description %></textarea>
