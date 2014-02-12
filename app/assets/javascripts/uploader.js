@@ -98,6 +98,7 @@ Handles 413 status error, file too large.
 function uploadFileTooLarge(selector) {
   var ret = document.getElementById('upload_target').contentWindow.document.title;
   if(ret && ret.match(/413/g)) {
+    $window.unbind('beforeunload');
     unbindLoader();
     $.ajax({
       type: 'get',
