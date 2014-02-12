@@ -124,7 +124,7 @@ Initializes the javascript effects of the registration / modify profile form.
 **/
 function profileDocumentReady() {
   $body.on('keypress', '#mailing_lists_accordion .group-title', function(event) {
-    if (event.keyCode == 10 || event.keyCode == 13){
+    if (event.keyCode == 10 || event.keyCode == 13) {
       event.preventDefault();
     }
   });
@@ -148,5 +148,8 @@ function profileDocumentReady() {
       $(this).val('');
       $(this).data('placeholder', false);
     }
+  });
+  $body.on('keydown', '#profile-general-edit input', function() {
+    $(this).removeClass('true');
   });
 }
