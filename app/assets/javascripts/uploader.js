@@ -38,6 +38,7 @@ Handles correct uploading process (correct in the sense that the file is not too
 @param fields {Array} an array of fields that must be bordered with red because they correspond to an error
 **/
 function uploadDone(selector, errors, fields) {
+  $window.unbind('beforeunload');
   if(errors != undefined) {
     top.uploaderErrors(selector, errors, fields);
   } else {
@@ -142,6 +143,9 @@ function mediaElementLoaderDocumentReady() {
       $('#load-media-element ._close').addClass('disabled');
       $('#load-media-element .barraLoading .loading-errors').html('').hide();
       $('#load-media-element .barraLoading .loading-internal').show();
+      $window.on('beforeunload', function() {
+        return true;
+      });
       uploadAnimationRecursion($('#load-media-element .barraLoading .loading-internal'), 0, 5, 760);
       $(this).closest('#new_media_element').submit();
     } else {
@@ -205,6 +209,9 @@ function documentsDocumentReadyUploader() {
       $('#load-document ._close').addClass('disabled');
       $('#load-document .barraLoading .loading-errors').html('').hide();
       $('#load-document .barraLoading .loading-internal').show();
+      $window.on('beforeunload', function() {
+        return true;
+      });
       uploadAnimationRecursion($('#load-document .barraLoading .loading-internal'), 0, 5, 760);
       $(this).closest('#new_document').submit();
     } else {
