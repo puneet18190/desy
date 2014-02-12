@@ -464,7 +464,17 @@ function mediaElementEditorDocumentReady() {
       form.find(&#x27;._tags_container&#x27;).append(old_tags + old_tags_placeholder + old_tags_value);
       form.find(&#x27;._tags_container ._placeholder&#x27;).hide();
       form.find(&#x27;#new_tags_value&#x27;).val(form.find(&#x27;#only_to_conserve_tags .edited_container .edited_tags&#x27;).val());
+      form.find(&#x27;._tags_container, #new_title, #new_description&#x27;).removeClass(&#x27;form_error&#x27;);
     }
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;#form_info_update_media_element_in_editor #update_title, #form_info_update_media_element_in_editor #update_description&#x27;, function() {
+    $(this).removeClass(&#x27;form_error&#x27;);
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;#form_info_new_media_element_in_editor #new_title, #form_info_new_media_element_in_editor #new_description&#x27;, function() {
+    $(this).removeClass(&#x27;form_error&#x27;);
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags, #form_info_new_media_element_in_editor #new_tags&#x27;, function() {
+    $(this).parent().removeClass(&#x27;form_error&#x27;);
   });
 }
 

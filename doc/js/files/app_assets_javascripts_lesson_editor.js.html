@@ -953,6 +953,21 @@ function lessonEditorDocumentReadyTextFields() {
       $(&#x27;#slides._update #description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     }
   });
+  $body.on(&#x27;keydown&#x27;, &#x27;form#lesson-create input#title, form#lesson-create textarea&#x27;, function() {
+    $(this).removeClass(&#x27;form_error&#x27;);
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;form#lesson-create input#tags&#x27;, function() {
+    $(this).parent().removeClass(&#x27;form_error&#x27;);
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#lesson-create .sbHolder&#x27;, function() {
+    $(this).removeClass(&#x27;form_error&#x27;);
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;#slides._update #title, #slides._update #description&#x27;, function() {
+    $(this).removeClass(&#x27;form_error&#x27;);
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;#slides._update input#tags&#x27;, function() {
+    $(this).parent().removeClass(&#x27;form_error&#x27;);
+  });
 }
 
 

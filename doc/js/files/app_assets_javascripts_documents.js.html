@@ -456,6 +456,11 @@ function documentsDocumentReadyGeneral() {
     $(this).removeClass(&#x27;change_info&#x27;);
     $(this).addClass(&#x27;change_info_light&#x27;);
   });
+  $body.on(&#x27;keydown&#x27;, &#x27;._document_change_info_container ._doc_title, ._document_change_info_container ._doc_description&#x27;, function() {
+    $(this).removeClass(&#x27;form_error&#x27;);
+  });
+  $(&#x27;#order_documents option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#order_documents&#x27;).selectbox();
 }
 
 /**

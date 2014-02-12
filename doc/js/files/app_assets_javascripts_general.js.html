@@ -459,6 +459,12 @@ Initializer for functionalities which are common to sections containing media el
 @for GeneralDocumentReady
 **/
 function commonMediaElementsDocumentReady() {
+  $body.on(&#x27;keydown&#x27;, &#x27;._change_info_container .description, ._change_info_container .title&#x27;, function() {
+    $(this).removeClass(&#x27;form_error&#x27;);
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;._change_info_container ._tags_container input&#x27;, function() {
+    $(this).parent().removeClass(&#x27;form_error&#x27;);
+  });
   $body.on(&#x27;click&#x27;, &#x27;._close_media_element_preview_popup&#x27;, function() {
     var param = $(this).data(&#x27;param&#x27;);
     closePopUp(&#x27;dialog-media-element-&#x27; + param);
@@ -652,16 +658,6 @@ function reportsDocumentReady() {
   $body.on(&#x27;click&#x27;, &#x27;._report_form_content ._send&#x27;, function(e) {
     $(this).closest(&#x27;form&#x27;).submit();
   });
-}
-
-/**
-Functionalities necessary only for the section &#x27;my documents&#x27;.
-@method sectionDocumentsDocumentReady
-@for GeneralDocumentReady
-**/
-function sectionDocumentsDocumentReady() {
-  $(&#x27;#order_documents option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
-  $(&#x27;#order_documents&#x27;).selectbox();
 }
 
 /**

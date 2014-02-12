@@ -347,6 +347,9 @@ function preloginDocumentReady() {
   $body.on(&#x27;click&#x27;, &#x27;#submit_login_form&#x27;, function() {
     $(&#x27;#new_users_session_form&#x27;).submit();
   });
+  $body.on(&#x27;click&#x27;, &#x27;#registration-subjects label&#x27;, function() {
+    $(&#x27;#registration-subjects label&#x27;).removeClass(&#x27;true&#x27;);
+  });
   $body.on(&#x27;click&#x27;, &#x27;.profile-subject-cathegory-container .profile-element label&#x27;, function() {
     if($(this).hasClass(&#x27;unchecked&#x27;)) {
       $(this).removeClass(&#x27;unchecked&#x27;);
@@ -356,6 +359,12 @@ function preloginDocumentReady() {
   });
   $body.on(&#x27;click&#x27;, &#x27;.checkAllSubjects&#x27;, function() {
     $(this).parent().find(&#x27;.profile-element label.unchecked&#x27;).click();
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;#registration-general input&#x27;, function() {
+    $(this).removeClass(&#x27;true&#x27;);
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#registration-policies label&#x27;, function() {
+    $(this).removeClass(&#x27;true&#x27;);
   });
   $(&#x27;.policy-verticalScroll&#x27;).jScrollPane({autoReinitialise: true});
   var parsedLocation = UrlParser.parse(window.location.href);
@@ -370,6 +379,9 @@ Initializes handler of purchase code in prelogin registration.
 @for ProfilePrelogin
 **/
 function purchaseCodeRegistrationDocumentReady() {
+  $body.on(&#x27;keydown&#x27;, &#x27;#registration_purchase_id&#x27;, function() {
+    $(this).removeClass(&#x27;error&#x27;);
+  });
   $body.on(&#x27;blur&#x27;, &#x27;#registration_purchase_id&#x27;, function() {
     var token = $(this).val();
     $.ajax({
@@ -428,7 +440,7 @@ Initializes the javascript effects of the registration / modify profile form.
 **/
 function profileDocumentReady() {
   $body.on(&#x27;keypress&#x27;, &#x27;#mailing_lists_accordion .group-title&#x27;, function(event) {
-    if (event.keyCode == 10 || event.keyCode == 13){
+    if (event.keyCode == 10 || event.keyCode == 13) {
       event.preventDefault();
     }
   });
@@ -452,6 +464,9 @@ function profileDocumentReady() {
       $(this).val(&#x27;&#x27;);
       $(this).data(&#x27;placeholder&#x27;, false);
     }
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;#profile-general-edit input&#x27;, function() {
+    $(this).removeClass(&#x27;true&#x27;);
   });
 }
 
