@@ -636,6 +636,12 @@ cn:
       done: "上传"
     # Error messages shown in case the user doesn't fill the form correctly
     error_captions:
+      # The user is trying to leave or reload the page while loading a media element or a document
+      dont_leave_page:
+        # 1 - views/shared/_popups.html.erb
+        document: "You are loading a document, if you leave the page you will stop the process" # TODO
+        # 1 - views/shared/_popups.html.erb
+        media_element: "You are loading a didactic element, if you leave the page you will stop the process" # TODO
       # The documents folder is full
       # 1 - controllers/application_controller.rb
       document_folder_size_exceeded: "文档上传临时终止;请稍后再试"
