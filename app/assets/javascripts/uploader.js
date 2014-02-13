@@ -145,7 +145,7 @@ function mediaElementLoaderDocumentReady() {
       $('#load-media-element .barraLoading .loading-errors').html('').hide();
       $('#load-media-element .barraLoading .loading-internal').show();
       $window.on('beforeunload', function() {
-        return true;
+        return $captions.data('dont-leave-page-upload-media-element');
       });
       uploadAnimationRecursion($('#load-media-element .barraLoading .loading-internal'), 0, 5, 760);
       $(this).closest('#new_media_element').submit();
@@ -211,7 +211,7 @@ function documentsDocumentReadyUploader() {
       $('#load-document .barraLoading .loading-errors').html('').hide();
       $('#load-document .barraLoading .loading-internal').show();
       $window.on('beforeunload', function() {
-        return true;
+        return $captions.data('dont-leave-page-upload-document');
       });
       uploadAnimationRecursion($('#load-document .barraLoading .loading-internal'), 0, 5, 760);
       $(this).closest('#new_document').submit();
