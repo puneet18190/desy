@@ -1,6 +1,6 @@
 var container = $('#lesson_editor_audio_gallery_container');
 var current_slide = $('li._lesson_editor_current_slide');
-container.html("<%= j(render :partial => 'galleries/audio', :locals => {:audios => @audios}) %>");
+container.html("<%= j(render :partial => 'galleries/wrapper_with_upload', :locals => {:kind => 'audio', :items => @audios}) %>");
 container.show();
 $('li._lesson_editor_current_slide .slide-content').children().hide();
 centerThis('#lesson_editor_audio_gallery_container');
