@@ -5,12 +5,24 @@
 %>
 <div id="load-gallery-<%= kind %>" class="loadInGallery mediaElement" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>" data-placeholder-media="<%= t('forms.placeholders.media').downcase %>">
   
-  <!-- TODO loadder
   
   
-  <div class="MediaElementPopUpContainer">
-    <div class="ChangeInfoContainerLoading">
-      <%= form_tag media_elements_path, :method => :post, :id => 'new_media_element', :class => 'formModifyInfo', :multipart => true, :autocomplete => 'off' do %>
+  <%= form_tag "galleries/#{kind}/upload", :method => :post, :id => "new_gallery_#{kind}", :multipart => true, :autocomplete => 'off' do %>
+    
+    <div class="title">
+    </div>
+    
+    <div class="content">
+    </div>
+    
+    <div class="loading">
+    </div>
+    
+  <% end %>
+  
+
+<!-- TODO loadd
+
         <div class="cols fltlft">
           <div id="media_element_media_show" class="fk_carica_elemento_file fltrt basta_caos_porca_miseria"></div>
           <label class="filebutton">
@@ -51,18 +63,16 @@
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
-  </div>
-  <div class="barraLoading">
-    <div class="loading-internal" data-can-move="true" style="display:none">
-    </div>
-    <div class="loading-errors" style="display:none">
-    </div>
-  </div>
+        
+        <div class="barraLoading">
+          <div class="loading-internal" data-can-move="true" style="display:none">
+          </div>
+          <div class="loading-errors" style="display:none">
+          </div>
+        </div>
   
-  
-  -->
+-->
+
   
 </div>
 <%= render :partial => "galleries/#{kind}", :locals => {:"#{kind}s" => items}
