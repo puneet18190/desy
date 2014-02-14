@@ -8,7 +8,7 @@ Desy::Application.routes.draw do
   get 'lessons'           => 'lessons#index',           :as => :my_lessons
   get 'media_elements'    => 'media_elements#index',    :as => :my_media_elements
   get 'virtual_classroom' => 'virtual_classroom#index', :as => :my_virtual_classroom
-  get 'documents'         => 'documents#index',         :as => :documents
+  get 'documents'         => 'documents#index',         :as => :my_documents
   
   # DASHBOARD
   get 'dashboard/lessons'        => 'dashboard#lessons',        :as => :dashboard_lessons
@@ -41,10 +41,10 @@ Desy::Application.routes.draw do
   get  'media_elements/conversion/check'               => 'media_elements#check_conversion'
   
   # DOCUMENTS
-  resources :documents,                                 :only => :create
-  get       'documents/create/fake'                           => 'documents#create_fake'
-  delete    'documents/:document_id'                          => 'documents#destroy'
-  post      'documents/:document_id'                          => 'documents#update',  :as => :document
+  post   'documents'              => 'documents#create',     :as => :documents
+  get    'documents/create/fake'  => 'documents#create_fake'
+  delete 'documents/:document_id' => 'documents#destroy'
+  post   'documents/:document_id' => 'documents#update',     :as => :document
   
   # NOTIFICATIONS
   post 'notifications/:notification_id/seen'    => 'notifications#seen'
@@ -117,10 +117,10 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/:lesson_id/remove_lesson_from_playlist'        => 'virtual_classroom#remove_lesson_from_playlist'
   post 'virtual_classroom/:lesson_id/playlist/:position/change_position' => 'virtual_classroom#change_position_in_playlist'
   post 'virtual_classroom/empty_playlist'                                => 'virtual_classroom#empty_playlist'
-  post 'virtual_classroom/empty_virtual_classroom'                       => 'virtual_classroom#empty_virtual_classroom', :as => :empty_virtual_classroom
-  get  'virtual_classroom/select_lessons'                                => 'virtual_classroom#select_lessons',          :as => :select_lessons_for_virtual_classroom
+  post 'virtual_classroom/empty_virtual_classroom'                       => 'virtual_classroom#empty_virtual_classroom'
+  get  'virtual_classroom/select_lessons'                                => 'virtual_classroom#select_lessons'
   get  'virtual_classroom/select_lessons_new_block'                      => 'virtual_classroom#select_lessons_new_block'
-  post 'virtual_classroom/load_lessons'                                  => 'virtual_classroom#load_lessons',            :as => :load_lessons
+  post 'virtual_classroom/load_lessons'                                  => 'virtual_classroom#load_lessons',               :as => :load_lessons
   post 'virtual_classroom/:lesson_id/send_link'                          => 'virtual_classroom#send_link'
   
   # VIDEO EDITOR
