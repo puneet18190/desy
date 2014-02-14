@@ -5,7 +5,7 @@
 %>
 
 <div id="load-gallery-<%= kind %>" class="loadInGallery mediaElement" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>" data-placeholder-media="<%= t('forms.placeholders.media').downcase %>">
-  <%= form_tag "galleries/#{kind}/upload", :method => :post, :id => "new_gallery_#{kind}", :multipart => true, :autocomplete => 'off' do %>
+  <%= form_tag "lessons/galleries/#{kind}s", :method => :post, :id => "new_gallery_#{kind}", :multipart => true, :autocomplete => 'off' do %>
     <div class="part1">
       <div class="attachment">
         <div id="gallery_<%= kind %>_media_show"></div>
