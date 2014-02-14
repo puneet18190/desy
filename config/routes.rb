@@ -162,53 +162,48 @@ Desy::Application.routes.draw do
   put  'lessons/:lesson_id/update'                             => 'lesson_editor#update',                :as => :lesson
   get  'lessons/new'                                           => 'lesson_editor#new',                   :as => :new_lesson
   
-  
-  
-  
-  
-  
-  
   # LESSON EXPORT
   get 'lessons/:lesson_id/archive' => 'lesson_export#archive', :as => :lesson_archive
   get 'lessons/:lesson_id/ebook'   => 'lesson_export#ebook',   :as => :lesson_ebook
   get 'lessons/:lesson_id/scorm'   => 'lesson_export#scorm',   :as => :lesson_scorm
   
   # LESSON VIEWER
-  get 'lessons/view/playlist'   => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
   get 'lessons/:lesson_id/view' => 'lesson_viewer#index',    :as => :lesson_viewer
+  get 'lessons/view/playlist'   => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
   
   # LOCATIONS
-  get 'locations/toggle'                   => 'users#toggle_locations'
-  get 'locations/:id/find'                 => 'users#find_locations'
   get 'admin/locations/:id/find'           => 'admin/users#find_locations'
-  get 'admin/purchases/locations/:id/find' => 'admin/purchases#find_locations'
   get 'admin/purchases/locations/fill'     => 'admin/purchases#fill_locations'
+  get 'admin/purchases/locations/:id/find' => 'admin/purchases#find_locations'
+  get 'locations/:id/find'                 => 'users#find_locations'
+  get 'locations/toggle'                   => 'users#toggle_locations'
   
   # LOGGED USER
   get 'profile'                 => 'users#edit',            :as => :my_profile
-  get 'profile/subjects'        => 'users#subjects',        :as => :my_subjects
-  get 'profile/statistics'      => 'users#statistics',      :as => :my_statistics
   get 'profile/mailing_lists'   => 'users#mailing_lists',   :as => :my_mailing_lists
+  get 'profile/subjects'        => 'users#subjects',        :as => :my_subjects
+  put 'profile/subjects/update' => 'users#update_subjects', :as => :user_subjects
+  get 'profile/statistics'      => 'users#statistics',      :as => :my_statistics
   get 'profile/trial'           => 'users#trial',           :as => :my_trial
   put 'profile/update'          => 'users#update',          :as => :user
-  put 'profile/subjects/update' => 'users#update_subjects', :as => :user_subjects
   
   # MAILING LISTS
   post   'mailing_lists/create'                                 => 'mailing_lists#create_group'
-  put    'mailing_lists/:group_id/update/:name'                 => 'mailing_lists#update_group'
+  delete 'mailing_lists/:group_id/addresses/:address_id/delete' => 'mailing_lists#delete_address'
   post   'mailing_lists/:group_id/addresses/create'             => 'mailing_lists#create_address', :as => :add_new_address_to_group
   delete 'mailing_lists/:group_id/delete'                       => 'mailing_lists#delete_group'
-  delete 'mailing_lists/:group_id/addresses/:address_id/delete' => 'mailing_lists#delete_address'
+  put    'mailing_lists/:group_id/update/:name'                 => 'mailing_lists#update_group'
   
   # MAIN MENU
   get 'dashboard'         => 'dashboard#index',         :as => :dashboard
+  get 'documents'         => 'documents#index',         :as => :my_documents
   get 'lessons'           => 'lessons#index',           :as => :my_lessons
   get 'media_elements'    => 'media_elements#index',    :as => :my_media_elements
   get 'virtual_classroom' => 'virtual_classroom#index', :as => :my_virtual_classroom
-  get 'documents'         => 'documents#index',         :as => :my_documents
   
   # MEDIA ELEMENT BUTTONS
   post 'media_elements'                                => 'media_elements#create',          :as => :media_elements
+  get  'media_elements/conversion/check'               => 'media_elements#check_conversion'
   get  'media_elements/create/fake'                    => 'media_elements#create_fake'
   get  'media_elements/new'                            => 'media_elements#new',             :as => :new_media_elements_editor
   post 'media_elements/:media_element_id'              => 'media_elements#update',          :as => :media_element
@@ -217,12 +212,11 @@ Desy::Application.routes.draw do
   post 'media_elements/:media_element_id/destroy/fake' => 'media_elements#destroy_fake'
   post 'media_elements/:media_element_id/remove'       => 'media_elements#remove'
   get  'media_elements/:media_element_id/preview/load' => 'media_elements#load_preview'
-  get  'media_elements/conversion/check'               => 'media_elements#check_conversion'
   
   # NOTIFICATIONS
-  post 'notifications/:notification_id/seen'    => 'notifications#seen'
-  post 'notifications/:notification_id/destroy' => 'notifications#destroy'
   get  'notifications/get_new_block'            => 'notifications#get_new_block'
+  post 'notifications/:notification_id/destroy' => 'notifications#destroy'
+  post 'notifications/:notification_id/seen'    => 'notifications#seen'
   get  'notifications/reload'                   => 'notifications#reload'
   
   # REPORTS
@@ -237,50 +231,50 @@ Desy::Application.routes.draw do
   get 'tags/:word/check_presence' => 'tags#check_presence'
   
   # USER NOT LOGGED
-  get  'what_is'                     => 'prelogin#what_is',             :as => :what_is
   get  'sign_up'                     => 'prelogin#registration',        :as => :sign_up
   post 'sign_up'                     => 'users#create',                 :as => :users
+  get  'sign_up/purchase_code'       => 'prelogin#purchase_code',       :as => :match_purchase_code
   get  'users/confirm/:token'        => 'users#confirm',                :as => :user_confirm
   get  'users/password'              => 'users#request_reset_password', :as => :user_request_reset_password
-  post 'users/password/send'         => 'users#send_reset_password',    :as => :user_send_reset_password
   get  'users/password/reset/:token' => 'users#reset_password',         :as => :user_reset_password
+  post 'users/password/send'         => 'users#send_reset_password',    :as => :user_send_reset_password
   get  'users/upgrade_trial'         => 'users#request_upgrade_trial',  :as => :user_request_upgrade_trial
   post 'users/upgrade_trial'         => 'users#send_upgrade_trial',     :as => :user_send_upgrade_trial
   post 'users/upgrade_trial/logged'  => 'users#logged_upgrade_trial',   :as => :user_logged_upgrade_trial
-  get  'sign_up/purchase_code'       => 'prelogin#purchase_code',       :as => :match_purchase_code
+  get  'what_is'                     => 'prelogin#what_is',             :as => :what_is
   
   # USER SESSIONS
-  post   'users_sessions' => 'users/sessions#create'
   delete 'users_session'  => 'users/sessions#destroy'
+  post   'users_sessions' => 'users/sessions#create'
   
   # UTILITIES
+  post 'browser_not_supported' => 'application#browser_not_supported'
   get  ':locale'               => 'application#set_locale', constraints: { locale: /(en|cn|it)/ } if Rails.application.config.more_than_one_language
   if SETTINGS['media_test']
     get  'videos_test'         => 'media_elements#videos_test'
     get  'audios_test'         => 'media_elements#audios_test'
   end
-  post 'browser_not_supported' => 'application#browser_not_supported'
   match '*path',           :to => 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
   
   # VIDEO EDITOR
-  get  'videos/:video_id/edit'   => 'video_editor#edit'
-  get  'videos/new'              => 'video_editor#new'
+  post 'videos/cache/empty'      => 'video_editor#empty_cache',   :as => :video_editor_empty_cache
   get  'videos/cache/restore'    => 'video_editor#restore_cache', :as => :video_editor_restore_cache
   post 'videos/cache/save'       => 'video_editor#save_cache',    :as => :video_editor_save_cache
-  post 'videos/cache/empty'      => 'video_editor#empty_cache',   :as => :video_editor_empty_cache
   post 'videos/commit/new'       => 'video_editor#save'
   post 'videos/commit/overwrite' => 'video_editor#overwrite'
+  get  'videos/new'              => 'video_editor#new'
+  get  'videos/:video_id/edit'   => 'video_editor#edit'
   
   # VIRTUAL CLASSROOM
-  post 'virtual_classroom/:lesson_id/remove_lesson_from_inside'          => 'virtual_classroom#remove_lesson_from_inside'
-  post 'virtual_classroom/:lesson_id/add_lesson_to_playlist'             => 'virtual_classroom#add_lesson_to_playlist'
-  post 'virtual_classroom/:lesson_id/remove_lesson_from_playlist'        => 'virtual_classroom#remove_lesson_from_playlist'
-  post 'virtual_classroom/:lesson_id/playlist/:position/change_position' => 'virtual_classroom#change_position_in_playlist'
   post 'virtual_classroom/empty_playlist'                                => 'virtual_classroom#empty_playlist'
   post 'virtual_classroom/empty_virtual_classroom'                       => 'virtual_classroom#empty_virtual_classroom'
+  post 'virtual_classroom/:lesson_id/add_lesson_to_playlist'             => 'virtual_classroom#add_lesson_to_playlist'
+  post 'virtual_classroom/:lesson_id/playlist/:position/change_position' => 'virtual_classroom#change_position_in_playlist'
+  post 'virtual_classroom/:lesson_id/remove_lesson_from_inside'          => 'virtual_classroom#remove_lesson_from_inside'
+  post 'virtual_classroom/:lesson_id/remove_lesson_from_playlist'        => 'virtual_classroom#remove_lesson_from_playlist'
+  post 'virtual_classroom/:lesson_id/send_link'                          => 'virtual_classroom#send_link'
+  post 'virtual_classroom/load_lessons'                                  => 'virtual_classroom#load_lessons',               :as => :load_lessons
   get  'virtual_classroom/select_lessons'                                => 'virtual_classroom#select_lessons'
   get  'virtual_classroom/select_lessons_new_block'                      => 'virtual_classroom#select_lessons_new_block'
-  post 'virtual_classroom/load_lessons'                                  => 'virtual_classroom#load_lessons',               :as => :load_lessons
-  post 'virtual_classroom/:lesson_id/send_link'                          => 'virtual_classroom#send_link'
   
 end
