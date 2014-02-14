@@ -356,6 +356,36 @@ class GalleriesController < ApplicationController
     get_documents(@page, @word)
   end
   
+  # TODO loadder documentalo
+  def create_audio
+    
+  end
+  
+  # TODO loadder documentalo
+  def create_image
+    
+  end
+  
+  # TODO loadder documentalo
+  def create_video
+    
+  end
+  
+  # TODO loadder documentalo
+  def create_fake_media_element
+    
+  end
+  
+  # TODO loadder documentalo
+  def create_document
+    
+  end
+  
+  # TODO loadder documentalo
+  def create_fake_document
+    
+  end
+  
   private
   
   # Initializes the parameter +page+ used in all the actions getting new blocks in the gallery
