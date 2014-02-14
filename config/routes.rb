@@ -2,56 +2,74 @@ Desy::Application.routes.draw do
   
   root :to => 'prelogin#home'
   
-  # ADMINISTRATION
   namespace 'admin' do
-    root      :to                                       => 'dashboard#index'
-    get       'users/get_full_names'                    => 'users#get_full_names'
-    put       'users/:id/set_status'                    => 'users#set_status'
-    put       'users/:id/activate'                      => 'users#activate',                        :as => :users_activate
-    put       'users/:id/ban'                           => 'users#ban',                             :as => :users_ban
-    get       'media_elements/edit'                     => 'media_elements#edit'
-    get       'media_elements/:id/load'                 => 'media_elements#load_media_element'
-    post      'media_elements/quick_upload'             => 'media_elements#quick_upload'
-    post      'media_elements/:key/create'              => 'media_elements#create'
-    delete    'media_elements/quick_upload/:key/delete' => 'media_elements#quick_upload_delete'
-    put       'media_elements/:media_element_id/update' => 'media_elements#update'
-    get       'messages/new_notification'               => 'messages#new_notification',             :as => :messages_new_notification
-    get       'messages/reports'                        => 'messages#reports'
-    post      'messages/filter_users'                   => 'messages#filter_users'
-    delete    'reports/:id/accept'                      => 'reports#accept'
-    delete    'reports/:id/decline'                     => 'reports#decline'
-    get       'settings/subjects'                       => 'settings#subjects'
-    post      'settings/subjects/new'                   => 'settings#new_subject'
-    delete    'settings/subjects/:id/delete'            => 'settings#delete_subject'
-    get       'settings/school_levels'                  => 'settings#school_levels'
-    post      'settings/school_levels/new'              => 'settings#new_school_level'
-    delete    'settings/school_levels/:id/delete'       => 'settings#delete_school_level'
-    get       'settings/tags'                           => 'settings#tags'
-    delete    'settings/tags/:id/delete'                => 'settings#delete_tag'
-    get       'settings/tags/:id/show/lessons'          => 'settings#lessons_for_tag'
-    get       'settings/tags/:id/show/media_elements'   => 'settings#media_elements_for_tag'
-    get       'settings/locations'                      => 'settings#locations'
-    put       'settings/locations/:id/update'           => 'settings#update_location'
-    post      'settings/locations/create'               => 'settings#create_location'
-    get       'purchases/:id/links/form'                => 'purchases#link_form'
-    post      'purchases/:id/links/send'                => 'purchases#send_link'
-    get 'purchases'=> 'purchases#index', :as => :purchases
-    post 'purchases' => 'purchases#create'
-    get 'purchases/new' => 'purchases#new'
-    get 'purchases/:id/edit' => 'purchases#edit'
-    put 'purchases/:id' => 'purchases#update', :as => :purchase
-    get 'lessons' => 'lessons#index', :as => :lessons
-    delete 'lessons/:id' => 'admin/lessons#destroy', :as => :lesson
-    get 'documents' => 'documents#index', :as => :documents
+    root   :to                                       => 'dashboard#index'
+    
+    # ADMIN DOCUMENTS
+    get    'documents'     => 'documents#index',   :as => :documents
     delete 'documents/:id' => 'documents#destroy', :as => :document
-    get 'media_elements' => 'media_elements#index', :as => :media_elements
-    get 'media_elements/new' => 'media_elements#new'
-    delete 'admin/media_elements/:id' => 'media_elements#destroy', :as => :media_element
-    get 'users' 'users#index', :as => :users
-    get 'users/:id' => 'users#show', :as => :user
-    delete 'users/:id' => 'users#destroy'
-    post      'personifications/:id'                    => 'personifications#create',               :as => :personifications
-    delete    'personifications'                        => 'personifications#destroy',              :as => :personification
+    
+    # ADMIN LESSONS
+    get    'lessons'     => 'lessons#index',   :as => :lessons
+    delete 'lessons/:id' => 'lessons#destroy', :as => :lesson
+    
+    # ADMIN MEDIA ELEMENTS
+    get    'media_elements'                          => 'media_elements#index',              :as => :media_elements
+    get    'media_elements/edit'                     => 'media_elements#edit'
+    delete 'media_elements/:id'                      => 'media_elements#destroy',            :as => :media_element
+    get    'media_elements/:id/load'                 => 'media_elements#load_media_element'
+    post   'media_elements/:key/create'              => 'media_elements#create'
+    put    'media_elements/:media_element_id/update' => 'media_elements#update'
+    get    'media_elements/new'                      => 'media_elements#new'
+    post   'media_elements/quick_upload'             => 'media_elements#quick_upload'
+    delete 'media_elements/quick_upload/:key/delete' => 'media_elements#quick_upload_delete'
+    
+    # ADMIN MESSAGES
+    post 'messages/filter_users'     => 'messages#filter_users'
+    get  'messages/new_notification' => 'messages#new_notification', :as => :messages_new_notification
+    get  'messages/reports'          => 'messages#reports'
+    
+    # ADMIN PERSONIFICATIONS
+    delete 'personifications'     => 'personifications#destroy', :as => :personification
+    post   'personifications/:id' => 'personifications#create',  :as => :personifications
+    
+    # ADMIN PURCHASES
+    get  'purchases'                => 'purchases#index',    :as => :purchases
+    post 'purchases'                => 'purchases#create'
+    put  'purchases/:id'            => 'purchases#update',   :as => :purchase
+    get  'purchases/:id/edit'       => 'purchases#edit'
+    get  'purchases/:id/links/form' => 'purchases#link_form'
+    post 'purchases/:id/links/send' => 'purchases#send_link'
+    get  'purchases/new'            => 'purchases#new'
+    
+    # ADMIN REPORTS
+    delete 'reports/:id/accept'  => 'reports#accept'
+    delete 'reports/:id/decline' => 'reports#decline'
+    
+    # ADMIN SETTINGS
+    get    'settings/locations'                    => 'settings#locations'
+    post   'settings/locations/create'             => 'settings#create_location'
+    put    'settings/locations/:id/update'         => 'settings#update_location'
+    get    'settings/school_levels'                => 'settings#school_levels'
+    delete 'settings/school_levels/:id/delete'     => 'settings#delete_school_level'
+    post   'settings/school_levels/new'            => 'settings#new_school_level'
+    get    'settings/subjects'                     => 'settings#subjects'
+    delete 'settings/subjects/:id/delete'          => 'settings#delete_subject'
+    post   'settings/subjects/new'                 => 'settings#new_subject'
+    get    'settings/tags'                         => 'settings#tags'
+    delete 'settings/tags/:id/delete'              => 'settings#delete_tag'
+    get    'settings/tags/:id/show/lessons'        => 'settings#lessons_for_tag'
+    get    'settings/tags/:id/show/media_elements' => 'settings#media_elements_for_tag'
+    
+    # ADMIN USERS
+    get    'users'                => 'users#index',         :as => :users
+    get    'users/get_full_names' => 'users#get_full_names'
+    delete 'users/:id'            => 'users#destroy'
+    get    'users/:id'            => 'users#show',          :as => :user
+    put    'users/:id/activate'   => 'users#activate',      :as => :users_activate
+    put    'users/:id/ban'        => 'users#ban',           :as => :users_ban
+    put    'users/:id/set_status' => 'users#set_status'
+    
   end
   
   # AUDIO EDITOR
