@@ -713,6 +713,7 @@ cn:
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
+      # 5 - views/galleries/_wrapper_with_upload.html.erb
       description: "描述（最大%{num}字符）"
       # File to load (used only for media elements
       # 1 - views/media_elements/_new_form_popup.html.erb
@@ -725,12 +726,14 @@ cn:
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
+      # 5 - views/galleries/_wrapper_with_upload.html.erb
       tags: "插入最小%{items}标签（每个字符最大 %{num}）"
       # Title (the variable %{num} represents the maximum number of characters)
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
+      # 5 - views/galleries/_wrapper_with_upload.html.erb
       title: "标题（最大%{num}字符）"
   
   

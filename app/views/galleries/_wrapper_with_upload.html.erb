@@ -1,7 +1,7 @@
 <%
-  title_max = t('forms.placeholders.title', :num => t('language_parameters.media_element.length_title').to_s).downcase # TODO traduzz
-  description_max = t('forms.placeholders.description', :num => t('language_parameters.media_element.length_description').to_s).downcase # TODO traduzz
-  tags_max = t('forms.placeholders.tags', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase # TODO traduzz
+  title_max = t('forms.placeholders.title', :num => t('language_parameters.media_element.length_title').to_s).downcase
+  description_max = t('forms.placeholders.description', :num => t('language_parameters.media_element.length_description').to_s).downcase
+  tags_max = t('forms.placeholders.tags', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
 
 <div id="load-gallery-<%= kind %>" class="loadInGallery mediaElement" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>" data-placeholder-media="<%= t('forms.placeholders.media').downcase %>">
