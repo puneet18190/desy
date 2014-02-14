@@ -35,11 +35,21 @@ Desy::Application.routes.draw do
     post      'settings/locations/create'               => 'settings#create_location'
     get       'purchases/:id/links/form'                => 'purchases#link_form'
     post      'purchases/:id/links/send'                => 'purchases#send_link'
-    resources :purchases,                         :only => [:index, :new, :create, :edit, :update]
-    resources :lessons,                           :only => [:index, :destroy]
-    resources :documents,                         :only => [:index, :destroy]
-    resources :media_elements,                    :only => [:new, :index, :destroy]
-    resources :users,                             :only => [:index, :show, :destroy]
+    get 'purchases'=> 'purchases#index', :as => :purchases
+    post 'purchases' => 'purchases#create'
+    get 'purchases/new' => 'purchases#new'
+    get 'purchases/:id/edit' => 'purchases#edit'
+    put 'purchases/:id' => 'purchases#update', :as => :purchase
+    get 'lessons' => 'lessons#index', :as => :lessons
+    delete 'lessons/:id' => 'admin/lessons#destroy', :as => :lesson
+    get 'documents' => 'documents#index', :as => :documents
+    delete 'documents/:id' => 'documents#destroy', :as => :document
+    get 'media_elements' => 'media_elements#index', :as => :media_elements
+    get 'media_elements/new' => 'media_elements#new'
+    delete 'admin/media_elements/:id' => 'media_elements#destroy', :as => :media_element
+    get 'users' 'users#index', :as => :users
+    get 'users/:id' => 'users#show', :as => :user
+    delete 'users/:id' => 'users#destroy'
     post      'personifications/:id'                    => 'personifications#create',               :as => :personifications
     delete    'personifications'                        => 'personifications#destroy',              :as => :personification
   end
