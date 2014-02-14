@@ -876,12 +876,22 @@
     
     .plus {
       
-      @include svg-circle-icon-handler-without-hover($assets-empty-add-buttons_svg, 34px, 2, 2, 1, 1, 1);
+      @include svg-circle-icon-handler-without-hover($assets-empty-add-buttons_svg, 30px, 2, 2, 1, 1, 1);
       display: inline-block;
       
       &.encendido {
         
-        @include svg-circle-icon-handler-without-hover($assets-empty-add-buttons_svg, 34px, 2, 2, 0.5, 1, 1);
+        @include svg-circle-icon-handler-without-hover($assets-empty-add-buttons_svg, 30px, 2, 2, 0.5, 1, 1);
+        
+      }
+      
+    }
+    
+    .prompt {
+      
+      &.encendido {
+        
+        opacity: 0.5;
         
       }
       

@@ -248,11 +248,17 @@ function globalDocumentReady() {
       closePopUp($(this).attr('id'));
     });
   });
-  $body.on('mouseenter', '.empty-situation-container a, .lesson-editor-empty-situation-container a', function() {
+  $body.on('mouseenter', '.empty-situation-container a', function() {
     $(this).find('.plus').addClass('encendido');
   });
-  $body.on('mouseleave', '.empty-situation-container a, .lesson-editor-empty-situation-container a', function() {
+  $body.on('mouseleave', '.empty-situation-container a', function() {
     $(this).find('.plus').removeClass('encendido');
+  });
+  $body.on('mouseenter', '.highlight-with-text a', function() {
+    $(this).find('.plus, .prompt').addClass('encendido');
+  });
+  $body.on('mouseleave', '.highlight-with-text a', function() {
+    $(this).find('.plus, .prompt').removeClass('encendido');
   });
   $('#user_school_level_id').selectbox();
   $body.on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
