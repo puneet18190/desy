@@ -872,7 +872,6 @@
     width: 770px;
     height: 460px;
     padding: 15px;
-    background-color: green;
     
     .part1, .part2, .part3 {
       
@@ -882,15 +881,95 @@
     
     .part1 {
       
-      height: 130px;
+      height: 115px;
+      margin-bottom: 30px;
       background-color: aqua;
+      
+      .attachment {
+        
+        #new_media_element_input {
+          
+          display: none;
+          
+        }
+        
+      }
+      
+      .title_and_subtitle {
+        
+      }
       
     }
     
     .part2 {
       
-      height: 285px;
+      height: 240px;
+      margin-bottom: 30px;
       background-color: maroon;
+      
+      .title_and_description {
+        
+        float: left;
+        width: 385px;
+        
+        .title {
+          
+          width: 377.5px;
+          height: 45px;
+          border: 0;
+          padding: 0;
+          margin: 0 0 15px 0;
+          background-color: yellow;
+          
+        }
+        
+        .description {
+          
+          width: 377.5px;
+          height: 180px;
+          border: 0;
+          padding: 0;
+          margin: 0;
+          background-color: red;
+          
+        }
+        
+      }
+      
+      .tags_loader {
+        
+        float: left;
+        width: 385px;
+        
+        ._tags_container {
+          
+          float: right;
+          width: 377.5px;
+          height: 240px;
+          background-color: blue;
+          position: relative;
+          
+          .tags {
+            
+            background-color: blue;
+            border: 0;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            
+          }
+          
+          ._placeholder {
+            
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            
+          }
+          
+        }
+        
+      }
       
     }
     
