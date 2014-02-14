@@ -889,6 +889,11 @@
     
     .prompt {
       
+      @include nunito(13px);
+      display: inline-block;
+      padding-top: 7px;
+      padding-left: 10px;
+      
       &.encendido {
         
         opacity: 0.5;

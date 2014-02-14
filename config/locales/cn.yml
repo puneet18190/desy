@@ -1615,11 +1615,11 @@ cn:
     # Caption for quick load inside lesson editor
     quick_load:
       # 1 - views/galleries/_wrapper_with_upload.html.erb
-      audio: "Load a new audio" # TODO
+      audio: "Upload a new audio" # TODO
       # 1 - views/galleries/_wrapper_with_upload.html.erb
-      image: "Load a new image" # TODO
+      image: "Upload a new image" # TODO
       # 1 - views/galleries/_wrapper_with_upload.html.erb
-      video: "Load a new video" # TODO
+      video: "Upload a new video" # TODO
     videos:
       # Title of a generic video gallery
       # 1 - views/galleries/_video.html.erb
