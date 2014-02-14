@@ -634,6 +634,35 @@ cn:
       cancel: "终止"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       done: "上传"
+    # Uploader of files directly inside the Lesson Editor
+    gallery_upload:
+      audio:
+        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        title: "Quick upload of an audio" # TODO
+        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        description: "After the upload is over, before using your audio you'll have to wait a few minutes for the conversion" # TODO
+        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        cancel: "终止"
+        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        done: "上传"
+      image:
+        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        title: "Quick upload of an image" # TODO
+        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        description: "You will be able to use your new image immediately after the uploading is complete" # TODO
+        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        cancel: "终止"
+        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        done: "上传"
+      video:
+        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        title: "Quick upload of a video" # TODO
+        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        description: "After the upload is over, before using your video you'll have to wait a few minutes for the conversion" # TODO
+        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        cancel: "终止"
+        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        done: "上传"
     # Error messages shown in case the user doesn't fill the form correctly
     error_captions:
       # The user is trying to leave or reload the page while loading a media element or a document

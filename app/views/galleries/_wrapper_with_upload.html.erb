@@ -17,10 +17,10 @@
       </div>
       <div class="title_and_subtitle">
         <h1>
-          <%= t('forms.upload_media_element.title') %> <!-- TODO traduzz -->
+          <%= t("forms.gallery_upload.#{kind}.title") %>
         </h1>
         <p>
-          <%= t('forms.upload_media_element.description') %> <!-- TODO traduzz -->
+          <%= t("forms.gallery_upload.#{kind}.description") %>
         </p>
       </div>
     </div>
@@ -42,8 +42,8 @@
       </div>
     </div>
     <div class="part3">
-      <a class="_close buttonForm"><%= t('forms.upload_media_element.cancel') %></a> <!-- TODO traduzz -->
-      <%= submit_tag t('forms.upload_media_element.done').downcase, :id => "new_gallery_#{kind}_submit" %> <!-- TODO traduzz -->
+      <a class="_close buttonForm"><%= t("forms.gallery_upload.#{kind}.cancel") %></a>
+      <%= submit_tag t("forms.gallery_upload.#{kind}.done").downcase, :id => "new_gallery_#{kind}_submit" %>
     </div>
   <% end %>
   <div class="barraLoading">
