@@ -862,6 +862,46 @@
 .loadInGallery {
   
   display: none;
+  width: 800px;
+  height: 490px;
+  padding: 50px;
+  background-color: #252323;
+  
+  form#new_gallery_audio, form#new_gallery_image, form#new_gallery_video {
+    
+    width: 770px;
+    height: 460px;
+    padding: 15px;
+    background-color: green;
+    
+    .part1, .part2, .part3 {
+      
+      width: 100%;
+      
+    }
+    
+    .part1 {
+      
+      height: 130px;
+      background-color: aqua;
+      
+    }
+    
+    .part2 {
+      
+      height: 285px;
+      background-color: maroon;
+      
+    }
+    
+    .part3 {
+      
+      height: 45px;
+      background-color: purple;
+      
+    }
+    
+  }
   
 }
 
