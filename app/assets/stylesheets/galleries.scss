@@ -883,9 +883,14 @@
       
       height: 115px;
       margin-bottom: 30px;
-      background-color: aqua;
+      background-color: maroon;
       
       .attachment {
+        
+        width: 385px;
+        height: 115px;
+        background-color: aqua;
+        float: left;
         
         #new_media_element_input {
           
@@ -897,6 +902,12 @@
       
       .title_and_subtitle {
         
+        float: left;
+        width: 385px;
+        height: 115px;
+        background-color: green;
+        text-align: center;
+        
       }
       
     }
@@ -905,7 +916,6 @@
       
       height: 240px;
       margin-bottom: 30px;
-      background-color: maroon;
       
       .title_and_description {
         
@@ -976,7 +986,21 @@
     .part3 {
       
       height: 45px;
-      background-color: purple;
+      
+      .close, .submit {
+        
+        @include nunito(20px);
+        float: right;
+        display: block;
+        margin-right: 25px;
+        width: 151.25px;
+        text-align: center;
+        background-color: $green;
+        color: white;
+        padding: 9px 0 0 0;
+        height: 36px;
+        
+      }
       
     }
     

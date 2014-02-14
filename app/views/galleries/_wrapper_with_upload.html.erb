@@ -42,8 +42,8 @@
       </div>
     </div>
     <div class="part3">
-      <a class="_close buttonForm"><%= t("forms.gallery_upload.#{kind}.cancel") %></a>
-      <%= submit_tag t("forms.gallery_upload.#{kind}.done").downcase, :id => "new_gallery_#{kind}_submit" %>
+      <a class="submit"><%= t("forms.gallery_upload.#{kind}.done").downcase %></a>
+      <a class="close"><%= t("forms.gallery_upload.#{kind}.cancel").downcase %></a>
     </div>
   <% end %>
 </div>
