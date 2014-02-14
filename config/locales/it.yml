@@ -638,7 +638,7 @@ it:
     gallery_upload:
       audio:
         # 1 - views/galleries/_wrapper_with_upload.html.erb
-        title: "Caricamento veloce di audio"
+        title: "Caricamento di audio"
         # 1 - views/galleries/_wrapper_with_upload.html.erb
         description: "Dopo che il caricamento sarà finito,<br/> prima di poter usare l'audio dovrai aspettare alcuni minuti"
         # 1 - views/galleries/_wrapper_with_upload.html.erb
@@ -647,7 +647,7 @@ it:
         done: "Upload"
       image:
         # 1 - views/galleries/_wrapper_with_upload.html.erb
-        title: "Caricamento veloce di immagini"
+        title: "Caricamento di immagini"
         # 1 - views/galleries/_wrapper_with_upload.html.erb
         description: "Sarai in grado di usare la nuova immagine<br/> non appena il caricamento sarà completo"
         # 1 - views/galleries/_wrapper_with_upload.html.erb
@@ -656,7 +656,7 @@ it:
         done: "Upload"
       video:
         # 1 - views/galleries/_wrapper_with_upload.html.erb
-        title: "Caricamento veloce di video"
+        title: "Caricamento di video"
         # 1 - views/galleries/_wrapper_with_upload.html.erb
         description: "Dopo che il caricamento sarà finito,<br/> prima di poter usare il video dovrai aspettare alcuni minuti"
         # 1 - views/galleries/_wrapper_with_upload.html.erb
