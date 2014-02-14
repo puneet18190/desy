@@ -872,11 +872,20 @@
   right: 62px;
   height: 34px;
   
-  a.plus {
+  a {
     
-    width: 34px;
-    height: 34px;
-    background-color: yellow;
+    .plus {
+      
+      @include svg-circle-icon-handler-without-hover($assets-empty-add-buttons_svg, 34px, 2, 2, 1, 1, 1);
+      display: inline-block;
+      
+      &.encendido {
+        
+        @include svg-circle-icon-handler-without-hover($assets-empty-add-buttons_svg, 34px, 2, 2, 0.5, 1, 1);
+        
+      }
+      
+    }
     
   }
   

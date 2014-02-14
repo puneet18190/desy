@@ -52,9 +52,13 @@
   </div>
 </div>
 
-<div class="gallery_upload_container">
-  <a class="plus"></a>
-  <span><%= t("galleries.quick_load.#{kind}") %></span>
+<div class="gallery_upload_container lesson-editor-empty-situation-container">
+  <a>
+    <div class="plus"></div>
+    <div class="prompt">
+      <%= t("galleries.quick_load.#{kind}").downcase %>
+    </div>
+  </a>
 </div>
 
 <%= render :partial => "galleries/#{kind}", :locals => {:"#{kind}s" => items} %>
