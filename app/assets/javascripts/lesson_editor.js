@@ -131,6 +131,7 @@ function lessonEditorDocumentReady() {
   lessonEditorDocumentReadyReplaceMediaElement();
   lessonEditorDocumentReadyTextFields();
   lessonEditorDocumentReadyInitializeImageInscription();
+  lessonEditorDocumentReadyUploaderInGallery();
 }
 
 /**
@@ -651,6 +652,21 @@ function lessonEditorDocumentReadyTextFields() {
   });
   $body.on('keydown', '#slides._update input#tags', function() {
     $(this).parent().removeClass('form_error');
+  });
+}
+
+/**
+Initializer for specific media elements or documents uploader inside the Lesson Editor.
+@method lessonEditorDocumentReadyUploaderInGallery
+@for LessonEditorDocumentReady
+**/
+function lessonEditorDocumentReadyUploaderInGallery() {
+  $body.on('click', '.gallery_upload_container a', function() {
+    var myself = $(this);
+    var my_father = myself.parent();
+    myself.hide();
+    my_father.next().hide();
+    my_father.prev().show();
   });
 }
 
