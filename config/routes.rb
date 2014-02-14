@@ -118,54 +118,55 @@ Desy::Application.routes.draw do
   get 'videos/galleries/image/new_block'     => 'galleries#mixed_for_video_editor_image_new_block'
   get 'videos/galleries/video/new_block'     => 'galleries#mixed_for_video_editor_video_new_block'
   
-  
-  
-  
-  
-  
   # GALLERIES QUICK UPLOAD
-  post 'lessons/galleries/images'                     => 'galleries#create_image'
   post 'lessons/galleries/audios'                     => 'galleries#create_audio'
-  post 'lessons/galleries/videos'                     => 'galleries#create_video'
   post 'lessons/galleries/documents'                  => 'galleries#create_document'
-  get  'lessons/galleries/media_elements/create/fake' => 'galleries#create_fake_media_element'
   get  'lessons/galleries/documents/create/fake'      => 'galleries#create_fake_document'
+  post 'lessons/galleries/images'                     => 'galleries#create_image'
+  get  'lessons/galleries/media_elements/create/fake' => 'galleries#create_fake_media_element'
+  post 'lessons/galleries/videos'                     => 'galleries#create_video'
   
   # IMAGE EDITOR
-  get  'images/:image_id/edit'             => 'image_editor#edit'
-  post 'images/:image_id/crop'             => 'image_editor#crop'
   post 'images/:image_id/add_text'         => 'image_editor#add_text'
-  post 'images/:image_id/undo'             => 'image_editor#undo'
   post 'images/:image_id/commit/new'       => 'image_editor#save'
   post 'images/:image_id/commit/overwrite' => 'image_editor#overwrite'
+  post 'images/:image_id/crop'             => 'image_editor#crop'
+  get  'images/:image_id/edit'             => 'image_editor#edit'
+  post 'images/:image_id/undo'             => 'image_editor#undo'
   
   # LESSON BUTTONS
   post 'lessons/:lesson_id/add'                      => 'lessons#add'
   post 'lessons/:lesson_id/copy'                     => 'lessons#copy'
   post 'lessons/:lesson_id/destroy'                  => 'lessons#destroy'
   post 'lessons/:lesson_id/dislike'                  => 'lessons#dislike'
+  post 'lessons/:lesson_id/dont_notify_modification' => 'lessons#dont_notify_modification'
   post 'lessons/:lesson_id/like'                     => 'lessons#like'
+  post 'lessons/:lesson_id/notify_modification'      => 'lessons#notify_modification'
   post 'lessons/:lesson_id/publish'                  => 'lessons#publish'
   post 'lessons/:lesson_id/remove'                   => 'lessons#remove'
   post 'lessons/:lesson_id/unpublish'                => 'lessons#unpublish'
-  post 'lessons/:lesson_id/notify_modification'      => 'lessons#notify_modification'
-  post 'lessons/:lesson_id/dont_notify_modification' => 'lessons#dont_notify_modification'
   post 'virtual_classroom/:lesson_id/add_lesson'     => 'virtual_classroom#add_lesson'
   post 'virtual_classroom/:lesson_id/remove_lesson'  => 'virtual_classroom#remove_lesson'
   
   # LESSON EDITOR
-  get  'lessons/new'                                           => 'lesson_editor#new',                   :as => :new_lesson
   post 'lessons/create'                                        => 'lesson_editor#create'
-  get  'lessons/:lesson_id/slides/edit'                        => 'lesson_editor#index',                 :as => :lesson_editor
   get  'lessons/:lesson_id/edit'                               => 'lesson_editor#edit',                  :as => :edit_lesson
-  put  'lessons/:lesson_id/update'                             => 'lesson_editor#update',                :as => :lesson
-  post 'lessons/:lesson_id/slides/:slide_id/kind/:kind/create' => 'lesson_editor#add_slide'
+  get  'lessons/:lesson_id/slides/edit'                        => 'lesson_editor#index',                 :as => :lesson_editor
   post 'lessons/:lesson_id/slides/:slide_id/delete'            => 'lesson_editor#delete_slide',          :as => :delete_slide
-  post 'lessons/:lesson_id/slides/:slide_id/update'            => 'lesson_editor#save_slide',            :as => :save_slide
-  post 'lessons/:lesson_id/slides/:slide_id/update_and_exit'   => 'lesson_editor#save_slide_and_exit'
-  post 'lessons/:lesson_id/slides/:slide_id/update_and_edit'   => 'lesson_editor#save_slide_and_edit'
-  post 'lessons/:lesson_id/slides/:slide_id/move/:position'    => 'lesson_editor#change_slide_position', :as => :change_slide_position
+  post 'lessons/:lesson_id/slides/:slide_id/kind/:kind/create' => 'lesson_editor#add_slide'
   get  'lessons/:lesson_id/slides/:slide_id/load'              => 'lesson_editor#load_slide'
+  post 'lessons/:lesson_id/slides/:slide_id/move/:position'    => 'lesson_editor#change_slide_position', :as => :change_slide_position
+  post 'lessons/:lesson_id/slides/:slide_id/update'            => 'lesson_editor#save_slide',            :as => :save_slide
+  post 'lessons/:lesson_id/slides/:slide_id/update_and_edit'   => 'lesson_editor#save_slide_and_edit'
+  post 'lessons/:lesson_id/slides/:slide_id/update_and_exit'   => 'lesson_editor#save_slide_and_exit'
+  put  'lessons/:lesson_id/update'                             => 'lesson_editor#update',                :as => :lesson
+  get  'lessons/new'                                           => 'lesson_editor#new',                   :as => :new_lesson
+  
+  
+  
+  
+  
+  
   
   # LESSON EXPORT
   get 'lessons/:lesson_id/archive' => 'lesson_export#archive', :as => :lesson_archive
