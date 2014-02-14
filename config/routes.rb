@@ -74,12 +74,12 @@ Desy::Application.routes.draw do
   
   # AUDIO EDITOR
   get  'audios/:audio_id/edit'   => 'audio_editor#edit'
-  get  'audios/new'              => 'audio_editor#new'
+  post 'audios/cache/empty'      => 'audio_editor#empty_cache',   :as => :audio_editor_empty_cache
   get  'audios/cache/restore'    => 'audio_editor#restore_cache', :as => :audio_editor_restore_cache
   post 'audios/cache/save'       => 'audio_editor#save_cache',    :as => :audio_editor_save_cache
-  post 'audios/cache/empty'      => 'audio_editor#empty_cache',   :as => :audio_editor_empty_cache
   post 'audios/commit/new'       => 'audio_editor#save'
   post 'audios/commit/overwrite' => 'audio_editor#overwrite'
+  get  'audios/new'              => 'audio_editor#new'
   
   # DASHBOARD
   get 'dashboard/lessons'        => 'dashboard#lessons',        :as => :dashboard_lessons
@@ -95,28 +95,33 @@ Desy::Application.routes.draw do
   get 'faqs'                               => 'faqs#index',             :as => :faqs
   get 'faqs/lessons/:num/answer'           => 'faqs#lessons',           :as => :lessons_faqs
   get 'faqs/media_elements/:num/answer'    => 'faqs#media_elements',    :as => :media_elements_faqs
-  get 'faqs/virtual_classroom/:num/answer' => 'faqs#virtual_classroom', :as => :virtual_classroom_faqs
   get 'faqs/profile/:num/answer'           => 'faqs#profile',           :as => :profile_faqs
+  get 'faqs/virtual_classroom/:num/answer' => 'faqs#virtual_classroom', :as => :virtual_classroom_faqs
   
   # GALLERIES
-  get 'lessons/galleries/image'              => 'galleries#image_for_lesson_editor' # image in lesson editor
-  get 'lessons/galleries/image/new_block'    => 'galleries#image_for_lesson_editor_new_block'
-  get 'lessons/galleries/audio'              => 'galleries#audio_for_lesson_editor' # audio in lesson editor
-  get 'lessons/galleries/audio/new_block'    => 'galleries#audio_for_lesson_editor_new_block'
-  get 'lessons/galleries/video'              => 'galleries#video_for_lesson_editor' # video in lesson editor
-  get 'lessons/galleries/video/new_block'    => 'galleries#video_for_lesson_editor_new_block'
-  get 'lessons/galleries/document'           => 'galleries#document_for_lesson_editor' # documents in lesson editor
-  get 'lessons/galleries/document/new_block' => 'galleries#document_for_lesson_editor_new_block'
-  get 'lessons/galleries/document/filter'    => 'galleries#document_for_lesson_editor_filter'
-  get 'videos/galleries'                     => 'galleries#mixed_for_video_editor' # mixed image + video + text in video editor
-  get 'videos/galleries/image/new_block'     => 'galleries#mixed_for_video_editor_image_new_block'
-  get 'videos/galleries/video/new_block'     => 'galleries#mixed_for_video_editor_video_new_block'
-  get 'videos/galleries/audio'               => 'galleries#audio_for_video_editor' # audio in video editor
-  get 'videos/galleries/audio/new_block'     => 'galleries#audio_for_video_editor_new_block'
   get 'audios/galleries/audio'               => 'galleries#audio_for_audio_editor' # audio in audio editor
   get 'audios/galleries/audio/new_block'     => 'galleries#audio_for_audio_editor_new_block'
   get 'images/galleries/image'               => 'galleries#image_for_image_editor' # image in image editor
   get 'images/galleries/image/new_block'     => 'galleries#image_for_image_editor_new_block'
+  get 'lessons/galleries/audio'              => 'galleries#audio_for_lesson_editor' # audio in lesson editor
+  get 'lessons/galleries/audio/new_block'    => 'galleries#audio_for_lesson_editor_new_block'
+  get 'lessons/galleries/document'           => 'galleries#document_for_lesson_editor' # documents in lesson editor
+  get 'lessons/galleries/document/filter'    => 'galleries#document_for_lesson_editor_filter'
+  get 'lessons/galleries/document/new_block' => 'galleries#document_for_lesson_editor_new_block'
+  get 'lessons/galleries/image'              => 'galleries#image_for_lesson_editor' # image in lesson editor
+  get 'lessons/galleries/image/new_block'    => 'galleries#image_for_lesson_editor_new_block'
+  get 'lessons/galleries/video'              => 'galleries#video_for_lesson_editor' # video in lesson editor
+  get 'lessons/galleries/video/new_block'    => 'galleries#video_for_lesson_editor_new_block'
+  get 'videos/galleries'                     => 'galleries#mixed_for_video_editor' # mixed image + video + text in video editor
+  get 'videos/galleries/audio'               => 'galleries#audio_for_video_editor' # audio in video editor
+  get 'videos/galleries/audio/new_block'     => 'galleries#audio_for_video_editor_new_block'
+  get 'videos/galleries/image/new_block'     => 'galleries#mixed_for_video_editor_image_new_block'
+  get 'videos/galleries/video/new_block'     => 'galleries#mixed_for_video_editor_video_new_block'
+  
+  
+  
+  
+  
   
   # GALLERIES QUICK UPLOAD
   post 'lessons/galleries/images'                     => 'galleries#create_image'
