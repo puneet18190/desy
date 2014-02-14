@@ -1612,6 +1612,14 @@ en:
       # Title of a generic image gallery
       # 1 - views/galleries/_image.html.erb
       select: "Select image"
+    # Caption for quick load inside lesson editor
+    quick_load:
+      # 1 - views/galleries/_wrapper_with_upload.html.erb
+      audio: "Load a new audio"
+      # 1 - views/galleries/_wrapper_with_upload.html.erb
+      image: "Load a new image"
+      # 1 - views/galleries/_wrapper_with_upload.html.erb
+      video: "Load a new video"
     videos:
       # Title of a generic video gallery
       # 1 - views/galleries/_video.html.erb

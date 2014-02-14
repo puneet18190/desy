@@ -846,6 +846,7 @@
     display: none;
     
   }
+  
 }
 
 .gallery-footer {
@@ -855,5 +856,28 @@
   position: absolute;
   bottom: 30px;
   right: 18px;
+  
+}
+
+.loadInGallery {
+  
+  display: none;
+  
+}
+
+.gallery_upload_container {
+  
+  position: absolute;
+  top: 51px;
+  right: 62px;
+  height: 34px;
+  
+  a.plus {
+    
+    width: 34px;
+    height: 34px;
+    background-color: yellow;
+    
+  }
   
 }
