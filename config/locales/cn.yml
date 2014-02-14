@@ -640,7 +640,7 @@ cn:
         # 1 - views/galleries/_wrapper_with_upload.html.erb
         title: "Quick upload of an audio" # TODO
         # 1 - views/galleries/_wrapper_with_upload.html.erb
-        description: "After the upload is over, before using your audio you'll have to wait a few minutes for the conversion" # TODO
+        description: "After the upload is over, before using your audio<br/> you'll have to wait a few minutes for the conversion" # TODO
         # 1 - views/galleries/_wrapper_with_upload.html.erb
         cancel: "终止"
         # 1 - views/galleries/_wrapper_with_upload.html.erb
@@ -649,7 +649,7 @@ cn:
         # 1 - views/galleries/_wrapper_with_upload.html.erb
         title: "Quick upload of an image" # TODO
         # 1 - views/galleries/_wrapper_with_upload.html.erb
-        description: "You will be able to use your new image immediately after the uploading is complete" # TODO
+        description: "You will be able to use your new image<br/> immediately after the uploading is complete" # TODO
         # 1 - views/galleries/_wrapper_with_upload.html.erb
         cancel: "终止"
         # 1 - views/galleries/_wrapper_with_upload.html.erb
@@ -658,7 +658,7 @@ cn:
         # 1 - views/galleries/_wrapper_with_upload.html.erb
         title: "Quick upload of a video" # TODO
         # 1 - views/galleries/_wrapper_with_upload.html.erb
-        description: "After the upload is over, before using your video you'll have to wait a few minutes for the conversion" # TODO
+        description: "After the upload is over, before using your video<br/> you'll have to wait a few minutes for the conversion" # TODO
         # 1 - views/galleries/_wrapper_with_upload.html.erb
         cancel: "终止"
         # 1 - views/galleries/_wrapper_with_upload.html.erb

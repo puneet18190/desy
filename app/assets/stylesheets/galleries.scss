@@ -883,13 +883,12 @@
       
       height: 115px;
       margin-bottom: 30px;
-      background-color: maroon;
       
       .attachment {
         
         width: 385px;
         height: 115px;
-        background-color: aqua;
+        background-color: green;
         float: left;
         
         #new_media_element_input {
@@ -905,8 +904,24 @@
         float: left;
         width: 385px;
         height: 115px;
-        background-color: green;
         text-align: center;
+        
+        h1 {
+          
+          @include nunito(26px);
+          padding: 0;
+          color: white;
+          margin-bottom: 10px;
+          
+        }
+        
+        p {
+          
+          @include arial-with-line-height(14px, 20px);
+          color: white;
+          padding: 0;
+          
+        }
         
       }
       
