@@ -1,4 +1,5 @@
 Desy::Application.routes.draw do
+  
   # APPLICATION ROOT
   root :to => 'prelogin#home'
   
@@ -28,16 +29,16 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/:lesson_id/remove_lesson'  => 'virtual_classroom#remove_lesson'
   
   # MEDIA ELEMENTS
-  resources :media_elements,                          :only => :create
-  get       'media_elements/create/fake'                    => 'media_elements#create_fake'
-  get       'media_elements/new'                            => 'media_elements#new',             :as => :new_media_elements_editor
-  post      'media_elements/:media_element_id'              => 'media_elements#update',          :as => :media_element
-  post      'media_elements/:media_element_id/add'          => 'media_elements#add'
-  post      'media_elements/:media_element_id/destroy'      => 'media_elements#destroy'
-  post      'media_elements/:media_element_id/destroy/fake' => 'media_elements#destroy_fake'
-  post      'media_elements/:media_element_id/remove'       => 'media_elements#remove'
-  get       'media_elements/:media_element_id/preview/load' => 'media_elements#load_preview'
-  get       'media_elements/conversion/check'               => 'media_elements#check_conversion'
+  post 'media_elements'                                => 'media_elements#create',          :as => :media_elements
+  get  'media_elements/create/fake'                    => 'media_elements#create_fake'
+  get  'media_elements/new'                            => 'media_elements#new',             :as => :new_media_elements_editor
+  post 'media_elements/:media_element_id'              => 'media_elements#update',          :as => :media_element
+  post 'media_elements/:media_element_id/add'          => 'media_elements#add'
+  post 'media_elements/:media_element_id/destroy'      => 'media_elements#destroy'
+  post 'media_elements/:media_element_id/destroy/fake' => 'media_elements#destroy_fake'
+  post 'media_elements/:media_element_id/remove'       => 'media_elements#remove'
+  get  'media_elements/:media_element_id/preview/load' => 'media_elements#load_preview'
+  get  'media_elements/conversion/check'               => 'media_elements#check_conversion'
   
   # DOCUMENTS
   resources :documents,                                 :only => :create
@@ -92,6 +93,14 @@ Desy::Application.routes.draw do
   get 'audios/galleries/audio/new_block'     => 'galleries#audio_for_audio_editor_new_block'
   get 'images/galleries/image'               => 'galleries#image_for_image_editor' # image in image editor
   get 'images/galleries/image/new_block'     => 'galleries#image_for_image_editor_new_block'
+  
+  # GALLERIES QUICK UPLOAD
+  post 'lessons/galleries/images'                     => 'galleries#create_image'
+  post 'lessons/galleries/audios'                     => 'galleries#create_audio'
+  post 'lessons/galleries/videos'                     => 'galleries#create_video'
+  post 'lessons/galleries/documents'                  => 'galleries#create_document'
+  get  'lessons/galleries/media_elements/create/fake' => 'galleries#create_fake_media_element'
+  get  'lessons/galleries/documents/create/fake'      => 'galleries#create_fake_document'
   
   # LESSON VIEWER
   get 'lessons/view/playlist'   => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
