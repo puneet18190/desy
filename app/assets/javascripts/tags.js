@@ -185,7 +185,7 @@ function tagsDocumentReadyChangeMediaElementInfo() {
   });
   $('._change_info_container').each(function() {
     var media_element_id = $(this).data('param');
-    initTagsAutocomplete('#dialog-media-element-' + media_element_id, 'media_element');
+    initTagsAutocomplete($('#dialog-media-element-' + media_element_id + ' .my_new_tags'), 'media_element');
     (function() {
       disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' .my_new_tag');
     });
@@ -224,7 +224,7 @@ function tagsDocumentReadyMediaElementLoader() {
   $body.on('blur', '#load-media-element .medload_tags', function(e) {
     addTagWithoutSuggestion(this, '#load-media-element ._tags_container', '.medload_tags_value');
   });
-  initTagsAutocomplete('#load-media-element', 'media_element');
+  initTagsAutocomplete($('#load-media-element .medload_tags'), 'media_element');
 }
 
 /**
@@ -296,7 +296,7 @@ function tagsDocumentReadyNewLesson() {
   $body.on('blur', '#slides._new #tags', function(e) {
     addTagWithoutSuggestion(this, '#slides._new ._tags_container', '#tags_value');
   });
-  initTagsAutocomplete('#slides._new', 'lesson');
+  initTagsAutocomplete($('#slides._new #tags'), 'lesson');
 }
 
 /**
@@ -335,7 +335,7 @@ function tagsDocumentReadyNewMediaElement() {
   $body.on('blur', '#form_info_new_media_element_in_editor #new_tags', function(e) {
     addTagWithoutSuggestion(this, '#form_info_new_media_element_in_editor ._tags_container', '#new_tags_value');
   });
-  initTagsAutocomplete('#form_info_new_media_element_in_editor', 'media_element');
+  initTagsAutocomplete($('#form_info_new_media_element_in_editor #new_tags'), 'media_element');
 }
 
 /**
@@ -370,7 +370,7 @@ function tagsDocumentReadyOvervriteMediaElement() {
   $body.on('blur', '#form_info_update_media_element_in_editor #update_tags', function(e) {
     addTagWithoutSuggestion(this, '#form_info_update_media_element_in_editor ._tags_container', '#update_tags_value');
   });
-  initTagsAutocomplete('#form_info_update_media_element_in_editor', 'media_element');
+  initTagsAutocomplete($('#form_info_update_media_element_in_editor #update_tags'), 'media_element');
   (function() {
     disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
   });
@@ -407,7 +407,7 @@ function tagsDocumentReadyUpdateLesson() {
   $body.on('blur', '#slides._update #tags', function(e) {
     addTagWithoutSuggestion(this, '#slides._update ._tags_container', '#tags_value');
   });
-  initTagsAutocomplete('#slides._update', 'lesson');
+  initTagsAutocomplete($('#slides._update #tags'), 'lesson');
   (function() {
     disableTagsInputTooHigh('#slides._update ._tags_container', '#slides._update #tags');
   });
@@ -455,25 +455,11 @@ function initSearchTagsAutocomplete(input, item) {
 Initializer for tagging autocompĺete.
 @method initTagsAutocomplete
 @for TagsInitializers
-@param scope {String} HTML scope for the tag container
+@param target {Object} final target of the autocomplete
 @param item {String} lesson or media_element
 **/
-function initTagsAutocomplete(scope, item) {
-  var input_selector = scope + ' #tags';
-  var container_selector = scope + ' ._tags_container';
-  if(scope == '#form_info_new_media_element_in_editor') {
-    input_selector = scope + ' #new_tags';
-  }
-  if(scope == '#form_info_update_media_element_in_editor') {
-    input_selector = scope + ' #update_tags';
-  }
-  if(scope == '#load-media-element') {
-    input_selector = scope + ' .medload_tags';
-  }
-  if(scope == '#load-gallery-audio' || scope == '#load-gallery-image' || scope == '#load-gallery-video') {
-    input_selector = scope + ' .tags';
-  }
-  $(input_selector).autocomplete({
+function initTagsAutocomplete(target, item) {
+  target.autocomplete({
     source: function(request, response) {
       unbindLoader();
       $.ajax({
