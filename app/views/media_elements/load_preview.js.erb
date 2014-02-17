@@ -2,8 +2,8 @@
   $('._media_element_item_id_<%= @media_element_id %>').data('preview-loaded', true);
   $('#dialog-media-element-<%= @media_element_id %>').replaceWith('<%= j render(:partial => "media_elements/popup", :locals => {:media_element => @media_element, :locked => false}) %>');
   showMediaElementInfoPopUp(<%= @media_element_id %>);
-  initTagsAutocomplete($('#dialog-media-element-<%= @media_element_id %> .my_new_tag'), 'media_element');
-  (function() {
+  <% if !@media_element.is_public %>
+    initTagsAutocomplete($('#dialog-media-element-<%= @media_element_id %> .my_new_tag'), 'media_element');
     disableTagsInputTooHigh('#dialog-media-element-<%= @media_element_id %> ._tags_container', '#dialog-media-element-<%= @media_element_id %> .my_new_tag');
-  });
+  <% end %>
 <% end %>
