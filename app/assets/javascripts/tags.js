@@ -262,9 +262,6 @@ function tagsDocumentReadyMediaElementGalleryLoader() {
     var scope_id = $(this).parents('.loadInGallery').attr('id');
     addTagWithoutSuggestion(this, '#' + scope_id + ' .part2 .tags_loader ._tags_container', '.tags_value');
   });
-  initTagsAutocomplete('#load-gallery-audio', 'media_element');
-  initTagsAutocomplete('#load-gallery-image', 'media_element');
-  initTagsAutocomplete('#load-gallery-video', 'media_element');
 }
 
 /**
