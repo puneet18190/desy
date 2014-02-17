@@ -183,13 +183,6 @@ function tagsDocumentReadyChangeMediaElementInfo() {
     var media_element_id = $(this).parent().parent().parent().parent().data('param');
     addTagWithoutSuggestion(this, '#dialog-media-element-' + media_element_id + ' ._tags_container', '._tags_value');
   });
-  $('._change_info_container').each(function() {
-    var media_element_id = $(this).data('param');
-    initTagsAutocomplete($('#dialog-media-element-' + media_element_id + ' .my_new_tags'), 'media_element');
-    (function() {
-      disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' .my_new_tag');
-    });
-  });
 }
 
 /**
