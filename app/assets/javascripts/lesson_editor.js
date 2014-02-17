@@ -673,10 +673,10 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find('.part2 .title_and_description .description_placeholder').val('');
     popup.find('.part2 .tags_loader .tags_value').val('');
     popup.find('.part2 .tags_loader ._tags_container span').remove();
-    popup.find('.part2 .tags.loader ._tags_container ._placeholder').show();
-    //$('#media_element_media_show').text(obj.data('placeholder-media')); TODO loadder, manca reset file, bordi errori e errori in barra loader
-    //obj.find('.form_error').removeClass('form_error');
-    //$('#new_media_element_input').val('');
+    popup.find('.part2 .tags_loader ._tags_container ._placeholder').show();
+    popup.find('.part1 .attachment .galleryMediaShow').text(popup.data('placeholder-media'));
+    popup.find('.part1 .attachment label input').val('');
+    //obj.find('.form_error').removeClass('form_error'); TODO loadder, manca bordi errori e errori in barra loader
     //obj.find('.barraLoading .loading-errors').html('');
     popup.show();
   });
