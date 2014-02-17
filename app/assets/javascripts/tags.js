@@ -228,6 +228,46 @@ function tagsDocumentReadyMediaElementLoader() {
 }
 
 /**
+Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink "DialogsWithForm/showLoadMediaElementPopUp:method"}}{{/crossLink}} and the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}).
+@method tagsDocumentReadyMediaElementGalleryLoader
+@for TagsDocumentReady
+**/
+function tagsDocumentReadyMediaElementGalleryLoader() {
+  $body.on('click', '.loadInGallery .part2 .tags_loader ._tags_container .remove', function() {
+    var scope_id = $(this).parents('.loadInGallery').attr('id');
+    removeFromTagsValue($(this).parent().text(), '#' + scope_id + ' .part2 .tags_loader ._tags_container .tags_value');
+    $(this).parent().remove();
+    if($('#' + scope_id + ' .part2 .tags_loader ._tags_container .tags').not(':visible')) {
+      $('#' + scope_id + ' .part2 .tags_loader ._tags_container .tags').show();
+      disableTagsInputTooHigh('#' + scope_id + ' .part2 .tags_loader ._tags_container', '#' + scope_id + ' .part2 .tags_loader ._tags_container .tags');
+    }
+  });
+  $body.on('focus', '.loadInGallery .part2 .tags_loader ._tags_container', function() {
+    $(this).find('._placeholder').hide();
+  });
+  $body.on('click', '.loadInGallery .part2 .tags_loader ._tags_container', function() {
+    $(this).find('.tags').focus();
+    $(this).find('._placeholder').hide();
+  });
+  $body.on('keydown', '.loadInGallery .part2 .tags_loader ._tags_container .tags', function(e) {
+    var scope_id = $(this).parents('.loadInGallery').attr('id');
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion(this, '#' + scope_id + ' .part2 .tags_loader ._tags_container', '.tags_value');
+    } else if(e.which == 8 && $(this).val() == '') {
+      $(this).prev().find('.remove').trigger('click');
+    }
+  });
+  $body.on('blur', '.loadInGallery .part2 .tags_loader ._tags_container .tags', function(e) {
+    var scope_id = $(this).parents('.loadInGallery').attr('id');
+    addTagWithoutSuggestion(this, '#' + scope_id + ' .part2 .tags_loader ._tags_container', '.tags_value');
+  });
+  initTagsAutocomplete('#load-gallery-audio', 'media_element');
+  initTagsAutocomplete('#load-gallery-image', 'media_element');
+  initTagsAutocomplete('#load-gallery-video', 'media_element');
+}
+
+/**
 Initializer for tagging autocomplete in the form to <b>create a new lesson</b>.
 @method tagsDocumentReadyNewLesson
 @for TagsDocumentReady

@@ -95,6 +95,7 @@ $(document).ready(function() {
     galleriesDocumentReady();
     lessonEditorDocumentReady();
     playersDocumentReadyGeneral();
+    tagsDocumentReadyMediaElementGalleryLoader();
     tagsDocumentReadyNewLesson();
     tagsDocumentReadyUpdateLesson();
   }
