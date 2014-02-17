@@ -1006,7 +1006,12 @@
           
           .tags {
             
+            @include arial-with-line-height(13px, 13px);
+            height: 19px;
+            position: absolute;
+            top: 13px;
             background-color: transparent;
+            color: white;
             border: 0;
             width: 100%;
             padding: 0;
