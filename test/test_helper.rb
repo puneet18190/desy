@@ -35,6 +35,7 @@ class ActiveSupport::TestCase
     assert_invalid object, :email, '@ldsfihdslgfidshfldsih.it', valid_email, :not_a_valid_email
     assert_invalid object, :email, '@.it', valid_email, :not_a_valid_email
     assert_invalid object, :email, 'ciao ciao@ciao.it', valid_email, :not_a_valid_email
+    assert_invalid object, :email, 'ciao..ciao@ciao.it', valid_email, :not_a_valid_email
     assert_invalid object, :email, 'fdsfds@sfds@cane.it', valid_email_with_dots, :not_a_valid_email
     assert_invalid object, :email, 'fdsfdssfds@cane.i', valid_email, :not_a_valid_email
   end
