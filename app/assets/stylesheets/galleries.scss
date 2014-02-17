@@ -878,6 +878,7 @@
       
       background-color: $green;
       position: absolute;
+      display: none;
       
     }
     
@@ -1030,7 +1031,7 @@
         
         .title {
           
-          width: 332.5px;
+          width: 345.5px;
           height: 45px;
           padding: 0 16px 0 16px;
           margin: 0 0 15px 0;
@@ -1039,7 +1040,7 @@
         
         .description {
           
-          width: 332.5px;
+          width: 345.5px;
           height: 148px;
           padding: 16px;
           margin: 0;
@@ -1057,7 +1058,7 @@
         ._tags_container {
           
           float: right;
-          width: 332.5px;
+          width: 345.5px;
           height: 208px;
           padding: 16px;
           position: relative;
