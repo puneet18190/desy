@@ -42,6 +42,8 @@ class ActiveSupport::TestCase
     assert_invalid object, :email, 'fdsfdssfds@cane.i', valid_email, :not_a_valid_email
     assert_invalid object, :email, 'fdsfdssfds.@cane.ii', valid_email_with_chars, :not_a_valid_email
     assert_invalid object, :email, '.fdsfdssfds@cane.iu', valid_email, :not_a_valid_email
+    assert_invalid object, :email, '.fdsfdssfds@cane.', valid_email, :not_a_valid_email
+    assert_invalid object, :email, '.fdsfdssfds@caneiu', valid_email, :not_a_valid_email
   end
   
   def assert_user_likes(likes, users)

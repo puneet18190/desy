@@ -47,7 +47,9 @@ module Valid
     index = 0
     at = false
     after_point = false
+    count_after_point = 0
     after_at = false
+    point_after_at = false
     email.each_byte do |i|
       if !Valid.valid_char_for_email?(i)
         return false if index == 0
@@ -58,15 +60,20 @@ module Valid
           after_point = false
         elsif i == 46
           return false if after_at || after_point
+          pont_after_at = at
           after_point = true
+          count_after_point = 0
+        else
+          return false
         end
       else
         after_at = false
         after_point = false
+        count_after_point += 1
       end
       index += 1
     end
-    true
+    return (point_after_at && count_after_point > 1)
   end
   
   # Method that uses Validness to validate and extract the object associated to a field
