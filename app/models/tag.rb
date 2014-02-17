@@ -73,8 +73,14 @@ class Tag < ActiveRecord::Base
     else
       to_be_adapted = user.search_lessons(a_word, 1, limit, nil, nil, nil, true, nil)
     end
-    to_be_adapted.each do |tba|
-      resp << {:id => tba.id, :value => tba.word}
+    if curr_tag
+      to_be_adapted.each do |tba|
+        resp << {:id => tba.id, :value => tba.word} if tba.word != a_word
+      end
+    else
+      to_be_adapted.each do |tba|
+        resp << {:id => tba.id, :value => tba.word}
+      end
     end
     resp
   end
