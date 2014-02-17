@@ -680,6 +680,12 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     //obj.find('.barraLoading .loading-errors').html('');
     popup.show();
   });
+  $body.on('click', '.loadInGallery .part3 .close', function() {
+    var father = $(this).parents('.loadInGallery');
+    father.hide();
+    father.next().find('a').show();
+    father.next().next().show();
+  });
   $body.on('focus', '.loadInGallery .part2 .title_and_description .description', function() {
     var placeholder = $(this).parent().find('.description_placeholder');
     if(placeholder.val() == '') {
