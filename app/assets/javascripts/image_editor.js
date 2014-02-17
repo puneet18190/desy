@@ -45,6 +45,7 @@ function imageEditorDocumentReadyCommit() {
         closePopUp('dialog-confirm');
         $('._image_editor_bottom_bar').hide();
         $('#image_editor #form_info_update_media_element_in_editor').show();
+        disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
       }, function() {
         closePopUp('dialog-confirm');
         $('#image_editor_title ._titled').hide();

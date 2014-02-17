@@ -349,6 +349,7 @@ function audioEditorDocumentReadyCommit() {
       showConfirmPopUp(title, confirm, yes, no, function() {
         closePopUp('dialog-confirm');
         showCommitAudioEditorForm('update');
+        disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
       }, function() {
         closePopUp('dialog-confirm');
         $('#audio_editor_title ._titled').hide();

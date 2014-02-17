@@ -721,6 +721,7 @@ function videoEditorDocumentReadyCommit() {
         closePopUp('dialog-confirm');
         $('._video_editor_bottom_bar').hide();
         $('#video_editor #form_info_update_media_element_in_editor').show();
+        disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
       }, function() {
         closePopUp('dialog-confirm');
         $('#video_editor_title ._titled').hide();

@@ -364,9 +364,6 @@ function tagsDocumentReadyOvervriteMediaElement() {
     addTagWithoutSuggestion(this, '#form_info_update_media_element_in_editor ._tags_container', '#update_tags_value');
   });
   initTagsAutocomplete($('#form_info_update_media_element_in_editor #update_tags'), 'media_element');
-  (function() {
-    disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
-  });
 }
 
 /**
