@@ -398,9 +398,6 @@ function tagsDocumentReadyUpdateLesson() {
     addTagWithoutSuggestion(this, '#slides._update ._tags_container', '#tags_value');
   });
   initTagsAutocomplete($('#slides._update #tags'), 'lesson');
-  (function() {
-    disableTagsInputTooHigh('#slides._update ._tags_container', '#slides._update #tags');
-  });
 }
 
 

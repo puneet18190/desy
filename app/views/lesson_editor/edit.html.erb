@@ -38,11 +38,12 @@
 </ul>
 
 <script>
-  
-  $('#lesson_subject option').each(function() {
-    if($(this).val() == <%= @lesson.subject_id %>) {
-      $(this).attr('selected', 'selected');
-    }
+  $(document).ready(function() {
+    $('#lesson_subject option').each(function() {
+      if($(this).val() == <%= @lesson.subject_id %>) {
+        $(this).attr('selected', 'selected');
+      }
+    });
+    disableTagsInputTooHigh('#slides._update ._tags_container', '#slides._update #tags');
   });
-  
 </script>
