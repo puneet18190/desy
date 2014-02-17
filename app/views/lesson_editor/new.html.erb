@@ -20,7 +20,7 @@
         <%= select_tag 'subject', select_your_subjects(@subjects), :include_blank => false, :class => 'pull-right basta_caos_porca_miseria', :id => 'lesson_subject' %>
         <%= text_area_tag 'description', description_max, :class => 'pull-left basta_caos_porca_miseria' %>
         <%= hidden_field_tag 'description_placeholder', '' %>
-        <div class="ui-widget pull-right _tags_container" data-menu-open="false">
+        <div class="ui-widget pull-right _tags_container">
           <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower basta_caos_porca_miseria' %>
           <div class="_placeholder">
             <%= tags_max %>

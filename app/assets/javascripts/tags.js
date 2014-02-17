@@ -496,21 +496,7 @@ function initTagsAutocomplete(scope, item) {
         return false;
       }
     },
-    open: function(e, ui) {
-      container_selector.data('menu-open', true);
-    },
-    select: function(e, ui) {
-      if(checkNoTagDuplicates(ui.item.value, container_selector)) {
-        $('#info_container').data('tag-just-selected', true);
-        addToTagsValue(ui.item.value, container_selector + ' ' + tags_value_selector);
-        createTagSpan(ui.item.value, false).insertBefore(input_selector);
-        disableTagsInputTooHigh(container_selector, input_selector);
-      }
-      var this_container = $(container_selector)[0];
-      this_container.scrollTop = this_container.scrollHeight;
-    },
     close: function() {
-      container_selector.data('menu-open', false);
       if($('#info_container').data('tag-just-selected')) {
         $(input_selector).val('').css('top', 2);
         $('#info_container').data('tag-just-selected', false);
