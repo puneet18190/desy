@@ -20,7 +20,7 @@
       <%= hidden_field_tag 'new_description_placeholder', '' %>
     </div>
     <div class="cols" style="float:right">
-      <div class="ui-widget pull-right _tags_container">
+      <div class="ui-widget pull-right _tags_container" data-menu-open="false">
         <%= text_field_tag 'new_tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower basta_caos_porca_miseria' %>
         <div class="_placeholder">
           <%= tags_max %>

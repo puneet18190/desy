@@ -10,7 +10,7 @@
         <%= text_field_tag 'title', @lesson.title, :class => 'pull-left basta_caos_porca_miseria' %>
         <%= select_tag 'lesson_subject', options_from_collection_for_select(@subjects, 'id', 'description'), :include_blank => false, :class => 'pull-right basta_caos_porca_miseria' %>
         <%= text_area_tag 'description', @lesson.description, :class => 'pull-left basta_caos_porca_miseria' %>
-        <div class="ui-widget pull-right _tags_container">
+        <div class="ui-widget pull-right _tags_container" data-menu-open="false">
           <% @my_tags.each do |t| %>
             <span><%= t.tag.word.strip %><a class="remove"></a></span>
           <% end %>
