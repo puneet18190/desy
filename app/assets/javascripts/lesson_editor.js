@@ -664,9 +664,35 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   $body.on('click', '.gallery_upload_container a', function() {
     var myself = $(this);
     var my_father = myself.parent();
+    var popup = my_father.prev();
     myself.hide();
     my_father.next().hide();
-    my_father.prev().show();
+    popup.find('.part2 .title_and_description .title').val(popup.data('placeholder-title'));
+    popup.find('.part2 .title_and_description .description').val(popup.data('placeholder-description'));
+    popup.find('.part2 .title_and_description .title_placeholder').val('');
+    popup.find('.part2 .title_and_description .description_placeholder').val('');
+    popup.find('.part2 .tags_loader .tags_value').val('');
+    popup.find('.part2 .tags_loader ._tags_container span').remove();
+    popup.find('.part2 .tags.loader ._tags_container ._placeholder').show();
+    //$('#media_element_media_show').text(obj.data('placeholder-media')); TODO loadder, manca reset file, bordi errori e errori in barra loader
+    //obj.find('.form_error').removeClass('form_error');
+    //$('#new_media_element_input').val('');
+    //obj.find('.barraLoading .loading-errors').html('');
+    popup.show();
+  });
+  $body.on('focus', '.loadInGallery .part2 .title_and_description .description', function() {
+    var placeholder = $(this).parent().find('.description_placeholder');
+    if(placeholder.val() == '') {
+      $(this).attr('value', '');
+      placeholder.attr('value', '0');
+    }
+  });
+  $body.on('focus', '.loadInGallery .part2 .title_and_description .title', function() {
+    var placeholder = $(this).parent().find('.title_placeholder');
+    if(placeholder.val() == '') {
+      $(this).attr('value', '');
+      placeholder.attr('value', '0');
+    }
   });
 }
 
