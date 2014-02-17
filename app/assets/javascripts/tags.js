@@ -474,6 +474,10 @@ function initTagsAutocomplete(scope, item) {
     input_selector = scope + ' .medload_tags';
     tags_value_selector = scope + ' .medload_tags_value';
   }
+  if(scope == '#load-gallery-audio' || scope == '#load-gallery-image' || scope == '#load-gallery-video') {
+    input_selector = scope + ' .tags';
+    tags_value_selector = scope + ' .tags_value';
+  }
   $(input_selector).autocomplete({
     source: function(request, response) {
       unbindLoader();
