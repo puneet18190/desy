@@ -32,7 +32,7 @@ module Valid
   end
   
   # White list of allowed characters in email
-  def self.valid_char_for_email?(i)
+  def self.char_for_email?(i)
     [
       33, 35, 36, 37, 38, 39, 42, 43, 45, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
       61, 63, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82,
@@ -51,7 +51,7 @@ module Valid
     after_at = false
     point_after_at = false
     email.each_byte do |i|
-      if !Valid.valid_char_for_email?(i)
+      if !Valid.char_for_email?(i)
         return false if index == 0
         if i == 64
           return false if at || after_point
