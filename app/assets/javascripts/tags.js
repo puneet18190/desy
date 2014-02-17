@@ -461,22 +461,17 @@ Initializer for tagging autocompĺete.
 function initTagsAutocomplete(scope, item) {
   var input_selector = scope + ' #tags';
   var container_selector = scope + ' ._tags_container';
-  var tags_value_selector = '#tags_value';
   if(scope == '#form_info_new_media_element_in_editor') {
     input_selector = scope + ' #new_tags';
-    tags_value_selector = '#new_tags_value';
   }
   if(scope == '#form_info_update_media_element_in_editor') {
     input_selector = scope + ' #update_tags';
-    tags_value_selector = '#update_tags_value';
   }
   if(scope == '#load-media-element') {
     input_selector = scope + ' .medload_tags';
-    tags_value_selector = scope + ' .medload_tags_value';
   }
   if(scope == '#load-gallery-audio' || scope == '#load-gallery-image' || scope == '#load-gallery-video') {
     input_selector = scope + ' .tags';
-    tags_value_selector = scope + ' .tags_value';
   }
   $(input_selector).autocomplete({
     source: function(request, response) {
@@ -494,12 +489,6 @@ function initTagsAutocomplete(scope, item) {
     search: function() {
       if(this.value.length < $parameters.data('min-length-search-tags')) {
         return false;
-      }
-    },
-    close: function() {
-      if($('#info_container').data('tag-just-selected')) {
-        $(input_selector).val('').css('top', 2);
-        $('#info_container').data('tag-just-selected', false);
       }
     }
   });
