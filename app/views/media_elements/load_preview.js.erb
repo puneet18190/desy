@@ -4,6 +4,5 @@
   showMediaElementInfoPopUp(<%= @media_element_id %>);
   <% if !@media_element.is_public %>
     initTagsAutocomplete($('#dialog-media-element-<%= @media_element_id %> .my_new_tag'), 'media_element');
-    disableTagsInputTooHigh('#dialog-media-element-<%= @media_element_id %> ._tags_container', '#dialog-media-element-<%= @media_element_id %> .my_new_tag');
   <% end %>
 <% end %>

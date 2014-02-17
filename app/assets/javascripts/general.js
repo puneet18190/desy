@@ -163,10 +163,12 @@ function commonMediaElementsDocumentReady() {
     });
   });
   $body.on('click', '._change_info_to_pick.change_info', function() {
-    $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').show('fade', {}, 500);
+    var media_element_id = $(this).data('param');
+    $('#dialog-media-element-' + media_element_id + ' ._change_info_container').show('fade', {}, 500);
     $(this).removeClass('change_info');
     $(this).addClass('change_info_light');
-    $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').hide();
+    $('#dialog-media-element-' + media_element_id + ' ._audio_preview_in_media_element_popup').hide();
+    disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' .my_new_tag');
   });
   $body.on('mouseenter', '.boxViewCompactMediaElement', function() {
     var item = $(this);
