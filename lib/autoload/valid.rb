@@ -60,7 +60,7 @@ module Valid
           after_point = false
         elsif i == 46
           return false if after_at || after_point
-          pont_after_at = at
+          point_after_at = at
           after_point = true
           count_after_point = 0
         else
