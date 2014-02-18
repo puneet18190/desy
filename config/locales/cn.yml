@@ -689,7 +689,14 @@ cn:
       tags_too_many: "太多的標籤"
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       media_blank: "没有文件上传"
+      # The user didn't insert a title
+      # 1 - controllers/application_controller.rb
+      description_blank: "Description is blank" # TODO
+      # The user didn't insert a title
+      # 1 - controllers/application_controller.rb
+      title_blank: "Title is blank" # TODO
       # The media elements folder exceeded the maximum size available
       # 1 - controllers/application_controller.rb
       # 2 - controllers/video_editor_controller.rb
