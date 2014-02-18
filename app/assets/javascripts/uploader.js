@@ -274,7 +274,7 @@ function provaProvaProva(t, x) { // TODO loadder formalizzare e documentare
       showPercentLessonEditorUploadinBar('#load-gallery-image', ((100 * t + 2000) / (t + 2040)));
     }
     setTimeout(function() {
-      provaProvaProva(t + 5);
+      provaProvaProva(t + 5, x);
     }, 5);
   }
 }
