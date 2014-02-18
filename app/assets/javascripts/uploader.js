@@ -248,3 +248,42 @@ function documentsDocumentReadyUploader() {
     $(this).removeClass('form_error');
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+function showPercentLessonEditorUploadinBar(scope, percent) {
+  var pixels = percent * 2984 / 100;
+  if(pixels > 450) {
+    $(scope + 'loading-square-1').show();
+    pixels -= 450;
+    if(pixels > 590) {
+      $(scope + 'loading-square-2').show();
+      pixels -= 590;
+      if(pixels > 900) {
+        $(scope + 'loading-square-3').show();
+        pixels -= 900;
+        if(pixels > 590) {
+          $(scope + 'loading-square-4').show();
+          pixels -= 590;
+          // TODO
+        } else {
+          // TODO
+        }
+      } else {
+        // TODO
+      }
+    } else {
+      // TODO
+    }
+  } else {
+    // TODO
+  }
+}
