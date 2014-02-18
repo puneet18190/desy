@@ -262,16 +262,16 @@ function documentsDocumentReadyUploader() {
 function showPercentLessonEditorUploadinBar(scope, percent) {
   var pixels = percent * 2984 / 100;
   if(pixels > 450) {
-    $(scope + 'loading-square-1').show();
+    $(scope + 'loading-square-1').css('width', '450px').css('left', '-50px').show();
     pixels -= 450;
     if(pixels > 590) {
-      $(scope + 'loading-square-2').show();
+      $(scope + 'loading-square-2').css('height', '590px').css('top', '-50px').show();
       pixels -= 590;
       if(pixels > 900) {
-        $(scope + 'loading-square-3').show();
+        $(scope + 'loading-square-3').css('width', '900px').show();
         pixels -= 900;
         if(pixels > 590) {
-          $(scope + 'loading-square-4').show();
+          $(scope + 'loading-square-4').css('height', '590px').show();
           pixels -= 590;
           // TODO
         } else {
@@ -284,6 +284,6 @@ function showPercentLessonEditorUploadinBar(scope, percent) {
       // TODO
     }
   } else {
-    // TODO
+    $(scope + 'loading-square-1').css('width', (pixels + 'px')).css('left', ((400 - pixels) + 'px')).show();
   }
 }
