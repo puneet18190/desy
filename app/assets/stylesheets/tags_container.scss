@@ -136,13 +136,46 @@
   
 }
 
-.media_elements-controller,.lessons-controller, .dashboard-controller {
+.media_elements-controller, .lessons-controller, .dashboard-controller {
   
   .ui-autocomplete {
     
     width: 325px;
     background-color: rgb(31,31,31);
     opacity: 0.9;
+    
+  }
+  
+  .ui-autocomplete.ui-menu .ui-menu-item a.ui-state-focus, .ui-autocomplete.ui-menu .ui-menu-item a.ui-state-active {
+    
+    color: $green;
+    
+  }
+  
+}
+
+.lesson_editor-controller.index-action {
+  
+  .ui-autocomplete {
+    
+    width: 345.5px !important;
+    top: 320px !important;
+    left: 935px !important;
+    background-color: #1F1F1F;
+    opacity: 0.9;
+    padding: 5px 16px !important;
+    
+    .ui-menu-item {
+      
+      padding: 5px 0 !important;
+      
+      a {
+        
+        padding: 0 !important;
+        
+      }
+      
+    }
     
   }
   
