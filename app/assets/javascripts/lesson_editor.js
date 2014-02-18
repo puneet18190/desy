@@ -661,6 +661,18 @@ Initializer for specific media elements or documents uploader inside the Lesson 
 @for LessonEditorDocumentReady
 **/
 function lessonEditorDocumentReadyUploaderInGallery() {
+  $body.on('change', '.loadInGallery .part1 .attachment input.file', function() {
+    var father = $(this).parents('.attachment');
+    var file_name = $(this).val().replace("C:\\fakepath\\", '');
+    if(file_name.replace(/^[\s\t]+/, '') != '') {
+      if(file_name.length > 20) {
+        file_name = file_name.substring(0, 20) + '...';
+      }
+      father.find('.galleryMediaShow').text(file_name);//.removeClass('form_error'); TODO loadder
+    } else {
+      father.find('.galleryMediaShow').text(father.parents('.loadInGallery').data('placeholder-media'));//.removeClass('form_error'); TODO loadder
+    }
+  });
   $body.on('click', '.gallery_upload_container a', function() {
     var myself = $(this);
     var my_father = myself.parent();
