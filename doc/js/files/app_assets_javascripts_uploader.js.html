@@ -191,9 +191,11 @@
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+                <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
             
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderLessonEditor.html">UploaderLessonEditor</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -316,6 +318,8 @@
     <pre class="code prettyprint linenums">
 /**
 Javascript functions used in the media element and document loader.
+&lt;br/&gt;&lt;br/&gt;
+The class {{#crossLink &quot;UploaderDashboard&quot;}}{{/crossLink}} contains functions that handle uploading processes in regular sections, such as dashboard, my elements, my documents, whereas the class {{#crossLink &quot;UploaderLessonEditor&quot;}}{{/crossLink}} contains functions to upload files in the {{#crossLinkModule &quot;lesson-editor&quot;}}{{/crossLinkModule}}.
 @module uploader
 **/
 
@@ -326,7 +330,7 @@ Javascript functions used in the media element and document loader.
 /**
 Recursive animation of the loading bar, according to the function h * x / (x + 1). Time is divided by 400 to slow down the animation.
 @method uploadAnimationRecursion
-@for UploadCallbacks
+@for UploaderDashboard
 @param item {Object} the selected loading bar
 @param time {Number} the current time
 @param increment {Number} the increment of time
@@ -338,7 +342,7 @@ function uploadAnimationRecursion(item, time, increment, max_width) {
     var current_width = max_width * reduced_time / (reduced_time + 1);
     item.css(&#x27;width&#x27;, (current_width + &#x27;px&#x27;));
     setTimeout(function() {
-      uploadAnimationRecursion(item, (time + increment), increment, max_width)
+      uploadAnimationRecursion(item, (time + increment), increment, max_width);
     }, increment);
   } else {
     item.data(&#x27;can-move&#x27;, true);
@@ -348,12 +352,13 @@ function uploadAnimationRecursion(item, time, increment, max_width) {
 /**
 Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).
 @method uploadDone
-@for UploadCallbacks
+@for UploaderDashboard
 @param selector {String} either &#x27;document&#x27; or &#x27;media-element&#x27;
 @param errors {Array} an array of strings to be shown on the bottom of the loading popup
 @param fields {Array} an array of fields that must be bordered with red because they correspond to an error
 **/
 function uploadDone(selector, errors, fields) {
+  $window.unbind(&#x27;beforeunload&#x27;);
   if(errors != undefined) {
     top.uploaderErrors(selector, errors, fields);
   } else {
@@ -367,7 +372,7 @@ function uploadDone(selector, errors, fields) {
 /**
 Handles the errors of loading popup.
 @method uploaderErrors
-@for UploadCallbacks
+@for UploaderDashboard
 @param selector {String} either &#x27;document&#x27; or &#x27;media-element&#x27;
 @param errors {Array} an array of strings to be shown on the bottom of the loading popup
 @param fields {Array} an array of fields that must be bordered with red because they correspond to an error
@@ -381,6 +386,7 @@ function uploaderErrors(selector, errors, fields) {
   item.find(&#x27;.barraLoading .loading-internal&#x27;).data(&#x27;can-move&#x27;, false).css(&#x27;width&#x27;, &#x27;0px&#x27;).hide();
   loading_errors.show();
   item.find(&#x27;#new_&#x27; + obj_name + &#x27;_submit&#x27;).removeClass(&#x27;disabled&#x27;);
+  item.find(&#x27;#new_&#x27; + obj_name + &#x27;_input&#x27;).unbind(&#x27;click&#x27;);
   item.find(&#x27;._close&#x27;).removeClass(&#x27;disabled&#x27;);
   errors_appended = &#x27;&#x27;;
   for(var i = 0; i &lt; errors.length; i++) {
@@ -407,12 +413,13 @@ function uploaderErrors(selector, errors, fields) {
 /**
 Handles 413 status error, file too large.
 @method uploadFileTooLarge
-@for UploadCallbacks
+@for UploaderDashboard
 @param selector {String} either &#x27;document&#x27; or &#x27;media-element&#x27;
 **/
 function uploadFileTooLarge(selector) {
   var ret = document.getElementById(&#x27;upload_target&#x27;).contentWindow.document.title;
   if(ret &amp;&amp; ret.match(/413/g)) {
+    $window.unbind(&#x27;beforeunload&#x27;);
     unbindLoader();
     $.ajax({
       type: &#x27;get&#x27;,
@@ -455,9 +462,15 @@ function mediaElementLoaderDocumentReady() {
   $body.on(&#x27;click&#x27;, &#x27;#new_media_element_submit&#x27;, function(e) {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       $(this).addClass(&#x27;disabled&#x27;);
+      $(&#x27;#load-media-element #new_media_element_input&#x27;).on(&#x27;click&#x27;, function(e) {
+        e.preventDefault();
+      });
       $(&#x27;#load-media-element ._close&#x27;).addClass(&#x27;disabled&#x27;);
       $(&#x27;#load-media-element .barraLoading .loading-errors&#x27;).html(&#x27;&#x27;).hide();
       $(&#x27;#load-media-element .barraLoading .loading-internal&#x27;).show();
+      $window.on(&#x27;beforeunload&#x27;, function() {
+        return $captions.data(&#x27;dont-leave-page-upload-media-element&#x27;);
+      });
       uploadAnimationRecursion($(&#x27;#load-media-element .barraLoading .loading-internal&#x27;), 0, 5, 760);
       $(this).closest(&#x27;#new_media_element&#x27;).submit();
     } else {
@@ -518,9 +531,15 @@ function documentsDocumentReadyUploader() {
   $body.on(&#x27;click&#x27;, &#x27;#new_document_submit&#x27;, function(e) {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       $(this).addClass(&#x27;disabled&#x27;);
+      $(&#x27;#load-document #new_document_input&#x27;).on(&#x27;click&#x27;, function(e) {
+        e.preventDefault();
+      });
       $(&#x27;#load-document ._close&#x27;).addClass(&#x27;disabled&#x27;);
       $(&#x27;#load-document .barraLoading .loading-errors&#x27;).html(&#x27;&#x27;).hide();
       $(&#x27;#load-document .barraLoading .loading-internal&#x27;).show();
+      $window.on(&#x27;beforeunload&#x27;, function() {
+        return $captions.data(&#x27;dont-leave-page-upload-document&#x27;);
+      });
       uploadAnimationRecursion($(&#x27;#load-document .barraLoading .loading-internal&#x27;), 0, 5, 760);
       $(this).closest(&#x27;#new_document&#x27;).submit();
     } else {
@@ -548,6 +567,67 @@ function documentsDocumentReadyUploader() {
   $body.on(&#x27;keydown&#x27;, &#x27;.docload_title, .docload_description&#x27;, function() {
     $(this).removeClass(&#x27;form_error&#x27;);
   });
+}
+
+
+
+
+
+/**
+Handles the recursion of uploading animation.
+@method recursionLessonEditorUploadinBar
+@for UploaderLessonEditor
+@param time {Number} current time in the recursion
+**/
+function recursionLessonEditorUploadinBar(time) {
+  if(false) { // TODO loadder, devo controllare un data o qlcs di simile
+    showPercentLessonEditorUploadinBar(&#x27;#load-gallery-image&#x27;, 100);
+  } else {
+    if(time &lt; 1500) {
+      showPercentLessonEditorUploadinBar(&#x27;#load-gallery-image&#x27;, 5 / 150 * time);
+    } else {
+      showPercentLessonEditorUploadinBar(&#x27;#load-gallery-image&#x27;, ((100 * time + 1500) / (time + 1530)));
+    }
+    setTimeout(function() {
+      recursionLessonEditorUploadinBar(time + 5);
+    }, 5);
+  }
+}
+
+/**
+Shows a percentage of the circular loading bar.
+@method showPercentLessonEditorUploadinBar
+@for UploaderLessonEditor
+@param scope {String} scope of the loading form&#x27;s id (it can be audio, video, or image)
+@param percent {Float} percentage of loading shown
+**/
+function showPercentLessonEditorUploadinBar(scope, percent) {
+  var pixels = percent * 2984 / 100;
+  if(pixels &gt; 450) {
+    $(scope + &#x27; .loading-square-1&#x27;).css(&#x27;width&#x27;, &#x27;450px&#x27;).css(&#x27;left&#x27;, &#x27;-50px&#x27;).show();
+    pixels -= 450;
+    if(pixels &gt; 590) {
+      $(scope + &#x27; .loading-square-2&#x27;).css(&#x27;height&#x27;, &#x27;590px&#x27;).css(&#x27;top&#x27;, &#x27;-50px&#x27;).show();
+      pixels -= 590;
+      if(pixels &gt; 900) {
+        $(scope + &#x27; .loading-square-3&#x27;).css(&#x27;width&#x27;, &#x27;900px&#x27;).show();
+        pixels -= 900;
+        if(pixels &gt; 590) {
+          $(scope + &#x27; .loading-square-4&#x27;).css(&#x27;height&#x27;, &#x27;590px&#x27;).show();
+          pixels -= 590;
+          $(scope + &#x27; .loading-square-5&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;left&#x27;, ((850 - pixels) + &#x27;px&#x27;)).show();
+        } else {
+          $(scope + &#x27; .loading-square-4&#x27;).css(&#x27;height&#x27;, (pixels + &#x27;px&#x27;)).show();
+        }
+      } else {
+        $(scope + &#x27; .loading-square-3&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).show();
+      }
+    } else {
+      $(scope + &#x27; .loading-square-2&#x27;).css(&#x27;height&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;top&#x27;, ((540 - pixels) + &#x27;px&#x27;)).show();
+    }
+  } else {
+    $(scope + &#x27; .loading-square-1&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;left&#x27;, ((400 - pixels) + &#x27;px&#x27;)).show();
+  }
 }
 
     </pre>

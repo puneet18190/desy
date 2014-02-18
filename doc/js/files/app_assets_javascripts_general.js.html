@@ -191,9 +191,11 @@
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+                <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
             
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderLessonEditor.html">UploaderLessonEditor</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -479,10 +481,12 @@ function commonMediaElementsDocumentReady() {
     });
   });
   $body.on(&#x27;click&#x27;, &#x27;._change_info_to_pick.change_info&#x27;, function() {
-    $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_container&#x27;).show(&#x27;fade&#x27;, {}, 500);
+    var media_element_id = $(this).data(&#x27;param&#x27;);
+    $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._change_info_container&#x27;).show(&#x27;fade&#x27;, {}, 500);
     $(this).removeClass(&#x27;change_info&#x27;);
     $(this).addClass(&#x27;change_info_light&#x27;);
-    $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).hide();
+    $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._audio_preview_in_media_element_popup&#x27;).hide();
+    disableTagsInputTooHigh(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container&#x27;, &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; .my_new_tag&#x27;);
   });
   $body.on(&#x27;mouseenter&#x27;, &#x27;.boxViewCompactMediaElement&#x27;, function() {
     var item = $(this);
@@ -569,6 +573,12 @@ function globalDocumentReady() {
   });
   $body.on(&#x27;mouseleave&#x27;, &#x27;.empty-situation-container a&#x27;, function() {
     $(this).find(&#x27;.plus&#x27;).removeClass(&#x27;encendido&#x27;);
+  });
+  $body.on(&#x27;mouseenter&#x27;, &#x27;.highlight-with-text a&#x27;, function() {
+    $(this).find(&#x27;.plus, .prompt&#x27;).addClass(&#x27;encendido&#x27;);
+  });
+  $body.on(&#x27;mouseleave&#x27;, &#x27;.highlight-with-text a&#x27;, function() {
+    $(this).find(&#x27;.plus, .prompt&#x27;).removeClass(&#x27;encendido&#x27;);
   });
   $(&#x27;#user_school_level_id&#x27;).selectbox();
   $body.on(&#x27;keyup blur&#x27;, &#x27;input[maxlength], textarea[maxlength]&#x27;, function () {

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>UploadCallbacks - DESY</title>
+    <title>UploaderLessonEditor - DESY</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -191,9 +191,11 @@
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+                <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
             
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderLessonEditor.html">UploaderLessonEditor</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -310,7 +312,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>UploadCallbacks Class</h1>
+                        <h1>UploaderLessonEditor Class</h1>
 <div class="box meta">
     
 
@@ -358,28 +360,14 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_uploadAnimationRecursion">uploadAnimationRecursion</a>
+                                <a href="#method_recursionLessonEditorUploadinBar">recursionLessonEditorUploadinBar</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_uploadDone">uploadDone</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_uploaderErrors">uploaderErrors</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_uploadFileTooLarge">uploadFileTooLarge</a>
+                                <a href="#method_showPercentLessonEditorUploadinBar">showPercentLessonEditorUploadinBar</a>
 
                                 
                                 
@@ -401,8 +389,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_uploadAnimationRecursion" class="method item">
-    <h3 class="name"><code>uploadAnimationRecursion</code></h3>
+                    <div id="method_recursionLessonEditorUploadinBar" class="method item">
+    <h3 class="name"><code>recursionLessonEditorUploadinBar</code></h3>
 
     
         <div class="args">
@@ -410,25 +398,7 @@
             
                 <li class="arg">
                     
-                        <code>item</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
                         <code>time</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>increment</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>max_width</code>
                     
                 </li>
             
@@ -461,7 +431,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_uploader.js.html#l10"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:10</code></a>
+        <a href="../files/app_assets_javascripts_uploader.js.html#l258"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:258</code></a>
         
         </p>
 
@@ -472,7 +442,7 @@
     </div>
 
     <div class="description">
-        <p>Recursive animation of the loading bar, according to the function h * x / (x + 1). Time is divided by 400 to slow down the animation.</p>
+        <p>Handles the recursion of uploading animation.</p>
 
     </div>
 
@@ -481,22 +451,6 @@
             <h4>Parameters:</h4>
 
             <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">item</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>the selected loading bar</p>
-
-                    </div>
-
-                    
-                </li>
             
                 <li class="param">
                     
@@ -507,39 +461,7 @@
                     
 
                     <div class="param-description">
-                        <p>the current time</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">increment</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>the increment of time</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">max_width</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>the total width in pixels of loading bar</p>
+                        <p>current time in the recursion</p>
 
                     </div>
 
@@ -556,8 +478,8 @@
 </div>
 
                 
-                    <div id="method_uploadDone" class="method item">
-    <h3 class="name"><code>uploadDone</code></h3>
+                    <div id="method_showPercentLessonEditorUploadinBar" class="method item">
+    <h3 class="name"><code>showPercentLessonEditorUploadinBar</code></h3>
 
     
         <div class="args">
@@ -565,19 +487,13 @@
             
                 <li class="arg">
                     
-                        <code>selector</code>
+                        <code>scope</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>errors</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>fields</code>
+                        <code>percent</code>
                     
                 </li>
             
@@ -610,7 +526,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_uploader.js.html#l32"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:32</code></a>
+        <a href="../files/app_assets_javascripts_uploader.js.html#l279"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:279</code></a>
         
         </p>
 
@@ -621,7 +537,7 @@
     </div>
 
     <div class="description">
-        <p>Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).</p>
+        <p>Shows a percentage of the circular loading bar.</p>
 
     </div>
 
@@ -633,14 +549,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">selector</code>
+                        <code class="param-name">scope</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>either &#39;document&#39; or &#39;media-element&#39;</p>
+                        <p>scope of the loading form&#39;s id (it can be audio, video, or image)</p>
 
                     </div>
 
@@ -649,252 +565,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">errors</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <code class="param-name">percent</code>
+                        <span class="type">Float</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>an array of strings to be shown on the bottom of the loading popup</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">fields</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>an array of fields that must be bordered with red because they correspond to an error</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_uploaderErrors" class="method item">
-    <h3 class="name"><code>uploaderErrors</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>selector</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>errors</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>fields</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_uploader.js.html#l51"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:51</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Handles the errors of loading popup.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>either &#39;document&#39; or &#39;media-element&#39;</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">errors</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>an array of strings to be shown on the bottom of the loading popup</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">fields</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>an array of fields that must be bordered with red because they correspond to an error</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_uploadFileTooLarge" class="method item">
-    <h3 class="name"><code>uploadFileTooLarge</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>selector</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_uploader.js.html#l91"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:91</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Handles 413 status error, file too large.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>either &#39;document&#39; or &#39;media-element&#39;</p>
+                        <p>percentage of loading shown</p>
 
                     </div>
 

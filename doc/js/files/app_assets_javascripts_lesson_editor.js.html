@@ -191,9 +191,11 @@
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+                <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
             
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderLessonEditor.html">UploaderLessonEditor</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -447,6 +449,7 @@ function lessonEditorDocumentReady() {
   lessonEditorDocumentReadyReplaceMediaElement();
   lessonEditorDocumentReadyTextFields();
   lessonEditorDocumentReadyInitializeImageInscription();
+  lessonEditorDocumentReadyUploaderInGallery();
 }
 
 /**
@@ -967,6 +970,53 @@ function lessonEditorDocumentReadyTextFields() {
   });
   $body.on(&#x27;keydown&#x27;, &#x27;#slides._update input#tags&#x27;, function() {
     $(this).parent().removeClass(&#x27;form_error&#x27;);
+  });
+}
+
+/**
+Initializer for specific media elements or documents uploader inside the Lesson Editor.
+@method lessonEditorDocumentReadyUploaderInGallery
+@for LessonEditorDocumentReady
+**/
+function lessonEditorDocumentReadyUploaderInGallery() {
+  $body.on(&#x27;click&#x27;, &#x27;.gallery_upload_container a&#x27;, function() {
+    var myself = $(this);
+    var my_father = myself.parent();
+    var popup = my_father.prev();
+    myself.hide();
+    my_father.next().hide();
+    popup.find(&#x27;.part2 .title_and_description .title&#x27;).val(popup.data(&#x27;placeholder-title&#x27;));
+    popup.find(&#x27;.part2 .title_and_description .description&#x27;).val(popup.data(&#x27;placeholder-description&#x27;));
+    popup.find(&#x27;.part2 .title_and_description .title_placeholder&#x27;).val(&#x27;&#x27;);
+    popup.find(&#x27;.part2 .title_and_description .description_placeholder&#x27;).val(&#x27;&#x27;);
+    popup.find(&#x27;.part2 .tags_loader .tags_value&#x27;).val(&#x27;&#x27;);
+    popup.find(&#x27;.part2 .tags_loader ._tags_container span&#x27;).remove();
+    popup.find(&#x27;.part2 .tags_loader ._tags_container ._placeholder&#x27;).show();
+    popup.find(&#x27;.part1 .attachment .galleryMediaShow&#x27;).val(popup.data(&#x27;placeholder-media&#x27;));
+    popup.find(&#x27;.part1 .attachment label input&#x27;).val(&#x27;&#x27;);
+    //obj.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;); TODO loadder, manca bordi errori e errori in barra loader
+    //obj.find(&#x27;.barraLoading .loading-errors&#x27;).html(&#x27;&#x27;);
+    popup.show();
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.loadInGallery .part3 .close&#x27;, function() {
+    var father = $(this).parents(&#x27;.loadInGallery&#x27;);
+    father.hide();
+    father.next().find(&#x27;a&#x27;).show();
+    father.next().next().show();
+  });
+  $body.on(&#x27;focus&#x27;, &#x27;.loadInGallery .part2 .title_and_description .description&#x27;, function() {
+    var placeholder = $(this).parent().find(&#x27;.description_placeholder&#x27;);
+    if(placeholder.val() == &#x27;&#x27;) {
+      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
+      placeholder.attr(&#x27;value&#x27;, &#x27;0&#x27;);
+    }
+  });
+  $body.on(&#x27;focus&#x27;, &#x27;.loadInGallery .part2 .title_and_description .title&#x27;, function() {
+    var placeholder = $(this).parent().find(&#x27;.title_placeholder&#x27;);
+    if(placeholder.val() == &#x27;&#x27;) {
+      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
+      placeholder.attr(&#x27;value&#x27;, &#x27;0&#x27;);
+    }
   });
 }
 

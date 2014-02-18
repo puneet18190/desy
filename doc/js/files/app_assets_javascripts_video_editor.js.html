@@ -191,9 +191,11 @@
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+                <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
             
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderLessonEditor.html">UploaderLessonEditor</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -681,7 +683,7 @@ Function that creates a single input field to be inserted in the empty audio com
 @return {String} the resulting input written in HTML
 **/
 function fillVideoEditorSingleParameter(input, identifier, value) {
-  return &#x27;&lt;input id=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot; class=&quot;_video_component_input_&#x27; + input + &#x27;&quot; type=&quot;hidden&quot; value=&quot;&#x27; + value + &#x27;&quot; name=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot;&gt;/&#x27;;
+  return &#x27;&lt;input id=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot; class=&quot;_video_component_input_&#x27; + input + &#x27;&quot; type=&quot;hidden&quot; value=&quot;&#x27; + value + &#x27;&quot; name=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot;/&gt;&#x27;;
 }
 
 /**
@@ -1037,6 +1039,7 @@ function videoEditorDocumentReadyCommit() {
         closePopUp(&#x27;dialog-confirm&#x27;);
         $(&#x27;._video_editor_bottom_bar&#x27;).hide();
         $(&#x27;#video_editor #form_info_update_media_element_in_editor&#x27;).show();
+        disableTagsInputTooHigh(&#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags&#x27;);
       }, function() {
         closePopUp(&#x27;dialog-confirm&#x27;);
         $(&#x27;#video_editor_title ._titled&#x27;).hide();

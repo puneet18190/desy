@@ -76,8 +76,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "TagsAccessories",
         "TagsDocumentReady",
         "TagsInitializers",
-        "UploadCallbacks",
+        "UploaderDashboard",
         "UploaderDocumentReady",
+        "UploaderLessonEditor",
         "VideoEditorAddComponents",
         "VideoEditorComponents",
         "VideoEditorCutters",
@@ -223,7 +224,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "uploader",
             "name": "uploader",
-            "description": "Javascript functions used in the media element and document loader."
+            "description": "Javascript functions used in the media element and document loader.\n<br/><br/>\nThe class {{#crossLink \"UploaderDashboard\"}}{{/crossLink}} contains functions that handle uploading processes in regular sections, such as dashboard, my elements, my documents, whereas the class {{#crossLink \"UploaderLessonEditor\"}}{{/crossLink}} contains functions to upload files in the {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}."
         },
         {
             "displayName": "video-editor",

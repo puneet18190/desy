@@ -191,9 +191,11 @@
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
+                <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
             
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderLessonEditor.html">UploaderLessonEditor</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -361,6 +363,7 @@ function imageEditorDocumentReadyCommit() {
         closePopUp(&#x27;dialog-confirm&#x27;);
         $(&#x27;._image_editor_bottom_bar&#x27;).hide();
         $(&#x27;#image_editor #form_info_update_media_element_in_editor&#x27;).show();
+        disableTagsInputTooHigh(&#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags&#x27;);
       }, function() {
         closePopUp(&#x27;dialog-confirm&#x27;);
         $(&#x27;#image_editor_title ._titled&#x27;).hide();
