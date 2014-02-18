@@ -1979,8 +1979,10 @@ cn:
         # The process of audio uploading started. The variable %{item} is replaced by the name of the audio which is going to be uploaded
         started:
           # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/galleries_controller.rb
           title: "音频正在上传"
           # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/galleries_controller.rb
           message: "音频上传<span class=\"variable\">%{item}</span>已开始! 请等待，知道完成并能使用新音频."
         # The process of audio uploading ended successfully. The variable %{item} is replaced by the name of the new audio
         ok:
@@ -2038,8 +2040,10 @@ cn:
         # The process of video uploading started. The variable %{item} is replaced by the name of the video which is going to be uploaded
         started:
           # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/galleries_controller.rb
           title: "视频正在上传!"
           # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/galleries_controller.rb
           message: "视频上传<span class=\"variable\">%{item}</span>已开始! 请等待直到完成并能使用新视频."
         # The process of video uploading ended successfully. The variable %{item} is replaced by the name of the new video
         ok:

@@ -370,8 +370,8 @@ class GalleriesController < ApplicationController
       record.save
       Notification.send_to(
         current_user.id,
-        I18n.t('notifications.audio.upload.started.title'), # TODO traduzz
-        I18n.t('notifications.audio.upload.started.message', :item => record.title), # TODO traduzz
+        I18n.t('notifications.audio.upload.started.title'),
+        I18n.t('notifications.audio.upload.started.message', :item => record.title),
         ''
       )
     else
@@ -418,8 +418,8 @@ class GalleriesController < ApplicationController
       record.save
       Notification.send_to(
         current_user.id,
-        I18n.t('notifications.video.upload.started.title'), # TODO traduzz
-        I18n.t('notifications.video.upload.started.message', :item => record.title), # TODO traduzz
+        I18n.t('notifications.video.upload.started.title'),
+        I18n.t('notifications.video.upload.started.message', :item => record.title),
         ''
       )
     else

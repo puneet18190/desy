@@ -1979,8 +1979,10 @@ en:
         # The process of audio uploading started. The variable %{item} is replaced by the name of the audio which is going to be uploaded
         started:
           # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/galleries_controller.rb
           title: "Audio uploading"
           # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/galleries_controller.rb
           message: "The uploading of the audio <span class=\"variable\">%{item}</span> started! Wait until it's over to be able to use the new audio."
         # The process of audio uploading ended successfully. The variable %{item} is replaced by the name of the new audio
         ok:
@@ -2038,8 +2040,10 @@ en:
         # The process of video uploading started. The variable %{item} is replaced by the name of the video which is going to be uploaded
         started:
           # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/galleries_controller.rb
           title: "Video uploading!"
           # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/galleries_controller.rb
           message: "The uploading of the video <span class=\"variable\">%{item}</span> started! Wait until it's over to be able to use the new video."
         # The process of video uploading ended successfully. The variable %{item} is replaced by the name of the new video
         ok:
