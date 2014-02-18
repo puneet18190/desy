@@ -256,6 +256,16 @@ function documentsDocumentReadyUploader() {
 
 
 /**
+This function replaces {{#crossLink "TagsAccessories/disableTagsInputTooHigh:method"}}{{/crossLink}} in case the tags are used into the lesson editor uploader.
+@method disableTagsInputTooHighForLessonEditorLoader
+@for UploaderLessonEditor
+@param scope_id {String} HTML id for the specific kind of element
+**/
+function disableTagsInputTooHighForLessonEditorLoader(scope_id) {
+  // TODO loadder
+}
+
+/**
 Handles the recursion of uploading animation.
 @method recursionLessonEditorUploadinBar
 @for UploaderLessonEditor

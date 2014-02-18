@@ -229,7 +229,7 @@ function tagsDocumentReadyMediaElementGalleryLoader() {
     $(this).parent().remove();
     if($('#' + scope_id + ' .part2 .tags_loader ._tags_container .tags').not(':visible')) {
       $('#' + scope_id + ' .part2 .tags_loader ._tags_container .tags').show();
-      disableTagsInputTooHigh('#' + scope_id + ' .part2 .tags_loader ._tags_container', '#' + scope_id + ' .part2 .tags_loader ._tags_container .tags');
+      disableTagsInputTooHighForLessonEditorLoader(scope_id);
     }
   });
   $body.on('focus', '.loadInGallery .part2 .tags_loader ._tags_container', function() {
@@ -243,14 +243,18 @@ function tagsDocumentReadyMediaElementGalleryLoader() {
     var scope_id = $(this).parents('.loadInGallery').attr('id');
     if(e.which === 13 || e.which === 188) {
       e.preventDefault();
-      addTagWithoutSuggestion(this, '#' + scope_id + ' .part2 .tags_loader ._tags_container', '.tags_value');
+      addTagWithoutSuggestion(this, '#' + scope_id + ' .part2 .tags_loader ._tags_container', '.tags_value', function() {
+        disableTagsInputTooHighForLessonEditorLoader(scope_id);
+      });
     } else if(e.which == 8 && $(this).val() == '') {
       $(this).prev().find('.remove').trigger('click');
     }
   });
   $body.on('blur', '.loadInGallery .part2 .tags_loader ._tags_container .tags', function(e) {
     var scope_id = $(this).parents('.loadInGallery').attr('id');
-    addTagWithoutSuggestion(this, '#' + scope_id + ' .part2 .tags_loader ._tags_container', '.tags_value');
+    addTagWithoutSuggestion(this, '#' + scope_id + ' .part2 .tags_loader ._tags_container', '.tags_value', function() {
+      disableTagsInputTooHighForLessonEditorLoader(scope_id);
+    });
   });
 }
 
