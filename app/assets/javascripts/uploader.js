@@ -275,13 +275,13 @@ function showPercentLessonEditorUploadinBar(scope, percent) {
           pixels -= 590;
           // TODO
         } else {
-          // TODO
+          $(scope + 'loading-square-4').css('height', (pixels + 'px')).show();
         }
       } else {
-        // TODO
+        $(scope + 'loading-square-3').css('width', (pixels + 'px')).show();
       }
     } else {
-      // TODO
+      $(scope + 'loading-square-2').css('height', (pixels + 'px')).css('top', ((540 - pixels) + 'px')).show();
     }
   } else {
     $(scope + 'loading-square-1').css('width', (pixels + 'px')).css('left', ((400 - pixels) + 'px')).show();
