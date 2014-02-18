@@ -1109,6 +1109,43 @@
           position: relative;
           cursor: text;
           
+          span {
+            
+            border-radius: 5px;
+            padding: 0 3px;
+            margin: 5px 0 0 5px;
+            background-color: white;
+            float: left;
+            color: #373737;
+            
+            &.new_tag {
+              
+              color: white;
+              background-color: #373636;
+              
+            }
+            
+            a {
+              
+              display: block;
+              float: right;
+              width: 15px;
+              height: 15px;
+              background-repeat: no-repeat;
+              margin: 2px 2px 0px 5px;
+              color: #373737;
+              background-image: $assets-grigia_png;
+              
+              &:hover {
+                
+                background-image: $assets-bianca_png;
+                
+              }
+              
+            }
+            
+          }
+          
           .tags {
             
             @include arial-with-line-height(13px, 13px);
