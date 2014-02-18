@@ -706,9 +706,12 @@ it:
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
+      # 4 - controllers/application_controller.rb
       media_unsupported_format: "Formato del file non supportato"
       # The user tried to upload a file which was damaged or invalid
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       media_generic_error: "File non valido o danneggiato"
       # The user tried to load a file exceeding the maximum size
       # 1 - controllers/media_elements_controller.rb

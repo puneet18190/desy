@@ -285,11 +285,11 @@ class ApplicationController < ActionController::Base
     resp[:tags] = 'not enough' if errors_ext.added? :tags, :are_not_enough # TODO traduzz
     resp[:tags] = 'too many' if errors_ext.added? :tags, :too_many # TODO traduzz
     if errors.messages.has_key?(:media) && errors.messages[:media].any?
-      resp[:media] = 'foat' if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil? # TODO traduzz
+      resp[:media] = t('forms.error_captions.media_unsupported_format') if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil?
       resp[:media] = t('forms.error_captions.media_blank') if errors.added? :media, :blank
-      resp[:media] = 'gneeric error' if !resp.has_key? :media # TODO traduzz
+      resp[:media] = t('forms.error_captions.media_generic_error') if !resp.has_key? :media
     else
-      resp[:media] = 'foat' if errors.messages.has_key? :sti_type # TODO traduzz
+      resp[:media] = t('forms.error_captions.media_unsupported_format') if errors.messages.has_key? :sti_type
     end
     resp
   end

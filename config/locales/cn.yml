@@ -706,9 +706,12 @@ cn:
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
+      # 4 - controllers/application_controller.rb
       media_unsupported_format: "格式不支持"
       # The user tried to upload a file which was damaged or invalid
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       media_generic_error: "非法或文件损坏"
       # The user tried to load a file exceeding the maximum size
       # 1 - controllers/media_elements_controller.rb
