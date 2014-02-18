@@ -278,9 +278,9 @@ class ApplicationController < ActionController::Base
     resp = {}
     max_title = I18n.t('language_parameters.media_element.length_title')
     max_description = I18n.t('language_parameters.media_element.length_description')
-    resp[:title] = 'Troppo lungo' if errors.added? :title, :too_long, {:count => max_title} # TODO traduzz
+    resp[:title] = t('forms.error_captions.title_too_long', :max => max_title) if errors.added? :title, :too_long, {:count => max_title}
     resp[:title] = t('forms.error_captions.title_blank') if errors.added? :title, :blank
-    resp[:description] = 'Troppo lungo' if errors.added? :description, :too_long, {:count => max_description} # TODO traduzz
+    resp[:description] = t('forms.error_captions.description_too_long', :max => max_title) if errors.added? :description, :too_long, {:count => max_description}
     resp[:description] = t('forms.error_captions.description_blank') if errors.added? :description, :blank
     resp[:tags] = t('forms.error_captions.tags_are_not_enough') if errors_ext.added? :tags, :are_not_enough
     resp[:tags] = t('forms.error_captions.tags_too_many') if errors_ext.added? :tags, :too_many

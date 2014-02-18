@@ -748,6 +748,12 @@ cn:
       # The user inserted an invalid purchase token
       # 1 - controllers/application_controller.rb
       invalid_purchase_id: "非法购买注册码"
+      # The description is too long (the variable %{max} is replaced by the maximum amount of characters available for description)
+      # 1 - controllers/application_controller.rb
+      description_too_long: "Description is too long (max %{max} characters)" # TODO
+      # The title is too long (the variable %{max} is replaced by the maximum amount of characters available for title)
+      # 1 - controllers/application_controller.rb
+      title_too_long: "Title is too long (max %{max} characters)" # TODO
     # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
       # Description (the variable %{num} represents the maximum number of characters)
