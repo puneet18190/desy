@@ -272,6 +272,28 @@ class ApplicationController < ActionController::Base
     resp
   end
   
+  # Used for errors in forms of element uploader for lesson editor: converts an item of type ActiveModel::Errors into a translated message for the user.
+  def convert_media_element_lesson_editor_uploader_messages errors, wrong_sti_type
+    return {:media => t('forms.error_captions.media_folder_size_exceeded')} if errors.added? :media, :folder_size_exceeded # TODO traduzz
+    resp = {}
+    max_title = I18n.t('language_parameters.media_element.length_title')
+    max_description = I18n.t('language_parameters.media_element.length_description')
+    resp[:title] = 'Troppo lungo' if errors.added? :title, :too_long, {:count => max_title} # TODO traduzz
+    resp[:title] = 'Blank' if errors.added? :title, :blank # TODO traduzz
+    resp[:description] = 'Troppo lungo' if errors.added? :description, :too_long, {:count => max_description} # TODO traduzz
+    resp[:description] = 'Blank' if errors.added? :description, :blank # TODO traduzz
+    resp[:tags] = 'not enough' if errors_ext.added? :tags, :are_not_enough # TODO traduzz
+    resp[:tags] = 'too many' if errors_ext.added? :tags, :too_many # TODO traduzz
+    if errors.messages.has_key?(:media) && errors.messages[:media].any?
+      resp[:media] = 'foat' if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil? # TODO traduzz
+      resp[:media] = 'blank' if errors.added? :media, :blank # TODO traduzz
+      resp[:media] = 'gneeric error' if !resp.has_key? :media # TODO traduzz
+    else
+      resp[:media] = 'foat' if errors.messages.has_key? :sti_type # TODO traduzz
+    end
+    resp
+  end
+  
   # Used for errors in forms of element uploader: converts an item of type ActiveModel::Errors into a translated message for the user.
   def convert_media_element_uploader_messages(errors)
     return [t('forms.error_captions.media_folder_size_exceeded')] if errors.added? :media, :folder_size_exceeded

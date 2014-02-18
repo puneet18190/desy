@@ -356,17 +356,59 @@ class GalleriesController < ApplicationController
     get_documents(@page, @word)
   end
   
-  # TODO loadder documentalo
+  # === Description
+  #
+  # Action that calls the uploader from inside Lesson Editor, and creates the new audio.
+  #
+  # === Mode
+  #
+  # Html
+  #
   def create_audio
-    
+    media = params[:media]
+    record = MediaElement.new :media => media
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.tags = params[:tags_value]
+    record.user_id = current_user.id
+    record.save_tags = true
+    if record.valid? && record.sti_type == 'Audio'
+      record.save
+      Notification.send_to(
+        current_user.id,
+        I18n.t('notifications.audio.upload.started.title'), # TODO traduzz
+        I18n.t('notifications.audio.upload.started.message', :item => record.title), # TODO traduzz
+        ''
+      )
+    else
+      if record.errors.added? :media, :too_large
+        return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
+      end
+      @errors = convert_media_element_lesson_editor_uploader_messages record.errors, (record.sti_type != 'Audio')
+    end
+    render :layout => false
   end
   
-  # TODO loadder documentalo
+  # === Description
+  #
+  # Action that calls the uploader from inside Lesson Editor, and creates the new image.
+  #
+  # === Mode
+  #
+  # Html
+  #
   def create_image
     
   end
   
-  # TODO loadder documentalo
+  # === Description
+  #
+  # Action that calls the uploader from inside Lesson Editor, and creates the new video.
+  #
+  # === Mode
+  #
+  # Html
+  #
   def create_video
     
   end
