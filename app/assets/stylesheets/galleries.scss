@@ -1103,9 +1103,9 @@
         ._tags_container {
           
           float: right;
-          width: 345.5px;
-          height: 208px;
-          padding: 16px;
+          width: 365.5px;
+          height: 228px;
+          padding: 0 12px 12px 0;
           position: relative;
           cursor: text;
           
@@ -1113,12 +1113,9 @@
             
             @include arial-with-line-height(13px, 13px);
             border-radius: 5px;
-            position: relative;
-            top: -16px;
-            left: -16px;
             padding: 6px;
-            height: 15px;
-            margin: 10px 0 0 10px;
+            height: 14px;
+            margin: 12px 0 0 12px;
             background-color: white;
             float: left;
             color: #373737;
@@ -1168,8 +1165,8 @@
             background-color: transparent;
             color: white;
             border: 0;
-            width: 100%;
-            padding: 0;
+            width: 345.5px;
+            padding: 0 16px 0 16px;
             margin: 0;
             
           }
