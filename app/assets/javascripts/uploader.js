@@ -273,7 +273,7 @@ function showPercentLessonEditorUploadinBar(scope, percent) {
         if(pixels > 590) {
           $(scope + 'loading-square-4').css('height', '590px').show();
           pixels -= 590;
-          // TODO
+          $(scope + 'loading-square-5').css('width', (pixels + 'px')).css('left', ((850 - pixels) + 'px')).show();
         } else {
           $(scope + 'loading-square-4').css('height', (pixels + 'px')).show();
         }
