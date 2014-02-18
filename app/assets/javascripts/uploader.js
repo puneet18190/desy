@@ -260,15 +260,23 @@ function documentsDocumentReadyUploader() {
 
 
 
-function provaProvaProva(t) { // TODO loadder formalizzare e documentare
-  if(t < 2000) {
-    showPercentLessonEditorUploadinBar('#load-gallery-image', 5 / 200 * t);
+function provaProva(x) {
+  provaProvaProva(0, x + 2000);
+}
+
+function provaProvaProva(t, x) { // TODO loadder formalizzare e documentare
+  if(t >= x) {
+    showPercentLessonEditorUploadinBar('#load-gallery-image', 100);
   } else {
-    
+    if(t < 2000) {
+      showPercentLessonEditorUploadinBar('#load-gallery-image', 5 / 200 * t);
+    } else {
+      showPercentLessonEditorUploadinBar('#load-gallery-image', ((100 * t + 2000) / (t + 2040)));
+    }
+    setTimeout(function() {
+      provaProvaProva(t + 5);
+    }, 5);
   }
-  setTimeout(function() {
-    provaProvaProva(t + 5);
-  }, 5);
 }
 
 
