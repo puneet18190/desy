@@ -22,7 +22,7 @@ function uploadAnimationRecursion(item, time, increment, max_width) {
     var current_width = max_width * reduced_time / (reduced_time + 1);
     item.css('width', (current_width + 'px'));
     setTimeout(function() {
-      uploadAnimationRecursion(item, (time + increment), increment, max_width)
+      uploadAnimationRecursion(item, (time + increment), increment, max_width);
     }, increment);
   } else {
     item.data('can-move', true);
@@ -259,7 +259,23 @@ function documentsDocumentReadyUploader() {
 
 
 
-function showPercentLessonEditorUploadinBar(scope, percent) {
+
+function provaProvaProva(t) { // TODO loadder formalizzare e documentare
+  if(t < 2000) {
+    showPercentLessonEditorUploadinBar('#load-gallery-image', 5 / 200 * t);
+  } else {
+    
+  }
+  setTimeout(function() {
+    provaProvaProva(t + 5);
+  }, 5);
+}
+
+
+
+
+
+function showPercentLessonEditorUploadinBar(scope, percent) { // TODO loadder documentare
   var pixels = percent * 2984 / 100;
   if(pixels > 450) {
     $(scope + ' .loading-square-1').css('width', '450px').css('left', '-50px').show();
