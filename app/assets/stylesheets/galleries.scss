@@ -879,14 +879,15 @@
       background-color: $green;
       position: absolute;
       display: none;
+      z-index: 2;
       
     }
     
     .loading-square-1 {
       
-      height: 8px;
+      height: 15px;
       width: 450px;
-      top: 532px;
+      top: 525px;
       left: -50px;
       border-radius: 4px 0 0 4px;
       
@@ -895,7 +896,7 @@
     .loading-square-2 {
       
       height: 590px;
-      width: 8px;
+      width: 15px;
       top: -50px;
       left: -50px;
       border-radius: 4px 4px 0 0;
@@ -904,7 +905,7 @@
     
     .loading-square-3 {
       
-      height: 8px;
+      height: 15px;
       width: 900px;
       top: -50px;
       left: -50px;
@@ -915,20 +916,64 @@
     .loading-square-4 {
       
       height: 590px;
-      width: 8px;
+      width: 15px;
       top: -50px;
-      left: 842px;
+      left: 835px;
       border-radius: 0 0 4px 4px;
       
     }
     
     .loading-square-5 {
       
-      height: 8px;
+      height: 15px;
       width: 454px;
-      top: 532px;
+      top: 525px;
       left: 396px;
       border-radius: 4px 0 0 4px;
+      
+    }
+    
+    .loading-square-bis {
+      
+      background-color: #1F1D1D;
+      position: absolute;
+      z-index: 1;
+      
+    }
+    
+    .loading-square-bis-1 {
+      
+      height: 15px;
+      width: 900px;
+      top: 525px;
+      left: -50px;
+      
+    }
+    
+    .loading-square-bis-2 {
+      
+      height: 590px;
+      width: 15px;
+      top: -50px;
+      left: -50px;
+      
+    }
+    
+    .loading-square-bis-3 {
+      
+      height: 15px;
+      width: 900px;
+      top: -50px;
+      left: -50px;
+      
+    }
+    
+    .loading-square-bis-4 {
+      
+      height: 590px;
+      width: 15px;
+      top: -50px;
+      left: 835px;
       
     }
     

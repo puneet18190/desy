@@ -265,6 +265,7 @@ function provaProva(x) {
 }
 
 function provaProvaProva(t, x) { // TODO loadder formalizzare e documentare
+  $('.loading-square').hide();
   if(t >= x) {
     showPercentLessonEditorUploadinBar('#load-gallery-image', 100);
   } else {
