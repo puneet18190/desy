@@ -683,9 +683,11 @@ cn:
       fill_all_the_fields_or_too_long: "不要超出最大长度，填写所有的栏目"
       # The user didn't write the minimum amount of tags
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       tags_are_not_enough: "标签不够"
       # The user inserted too many tags
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       tags_too_many: "太多的標籤"
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb

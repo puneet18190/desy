@@ -282,8 +282,8 @@ class ApplicationController < ActionController::Base
     resp[:title] = t('forms.error_captions.title_blank') if errors.added? :title, :blank
     resp[:description] = 'Troppo lungo' if errors.added? :description, :too_long, {:count => max_description} # TODO traduzz
     resp[:description] = t('forms.error_captions.description_blank') if errors.added? :description, :blank
-    resp[:tags] = 'not enough' if errors_ext.added? :tags, :are_not_enough # TODO traduzz
-    resp[:tags] = 'too many' if errors_ext.added? :tags, :too_many # TODO traduzz
+    resp[:tags] = t('forms.error_captions.tags_are_not_enough') if errors_ext.added? :tags, :are_not_enough
+    resp[:tags] = t('forms.error_captions.tags_too_many') if errors_ext.added? :tags, :too_many
     if errors.messages.has_key?(:media) && errors.messages[:media].any?
       resp[:media] = t('forms.error_captions.media_unsupported_format') if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil?
       resp[:media] = t('forms.error_captions.media_blank') if errors.added? :media, :blank

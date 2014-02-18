@@ -683,9 +683,11 @@ en:
       fill_all_the_fields_or_too_long: "Fill in all the fields without exceeding the max length"
       # The user didn't write the minimum amount of tags
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       tags_are_not_enough: "Not enough tags"
       # The user inserted too many tags
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       tags_too_many: "Too many tags"
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
