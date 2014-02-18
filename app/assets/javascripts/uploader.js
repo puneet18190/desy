@@ -262,7 +262,19 @@ This function replaces {{#crossLink "TagsAccessories/disableTagsInputTooHigh:met
 @param scope_id {String} HTML id for the specific kind of element
 **/
 function disableTagsInputTooHighForLessonEditorLoader(scope_id) {
-  // TODO loadder
+  var container = $('#' + scope_id + ' .part2 ._tags_container');
+  var line = 1;
+  var curr_width = 12;
+  container.find('span').each(function() {
+    curr_width += ($(this).width() + 12);
+    if(curr_width > 240) {
+      curr_width = 12;
+      line += 1;
+    }
+  });
+  if(line > 5) {
+    container.find('.tags').hide();
+  }
 }
 
 /**
