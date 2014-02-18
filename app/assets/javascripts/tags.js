@@ -26,24 +26,19 @@ Adds a tag without using the suggestion (the case with the suggestion is handled
 function addTagWithoutSuggestion(input, container_selector, tags_value_selector) {
   var my_val = $.trim($(input).val()).toLowerCase();
   if(my_val.length >= $parameters.data('min-tag-length') && checkNoTagDuplicates(my_val, container_selector)) {
-    if($('.ui-autocomplete a').first().text() == my_val) {
-      addToTagsValue(my_val, (container_selector + ' ' + tags_value_selector));
-      createTagSpan(my_val, false).insertBefore(input);
-    } else {
-      addToTagsValue(my_val, (container_selector + ' ' + tags_value_selector));
-      createTagSpan(my_val, true).insertBefore(input);
-      unbindLoader();
-      $.ajax({
-        type: 'get',
-        url: '/tags/' + my_val + '/check_presence',
-        dataType: 'json',
-        success: function(data) {
-          if(data.ok) {
-            $(container_selector).find('span.' + getUnivoqueClassForTag(my_val)).removeClass('new_tag');
-          }
+    addToTagsValue(my_val, (container_selector + ' ' + tags_value_selector));
+    createTagSpan(my_val).insertBefore(input);
+    unbindLoader();
+    $.ajax({
+      type: 'get',
+      url: '/tags/' + my_val + '/check_presence',
+      dataType: 'json',
+      success: function(data) {
+        if(data.ok) {
+          $(container_selector).find('span.' + getUnivoqueClassForTag(my_val)).removeClass('new_tag');
         }
-      }).always(bindLoader);
-    }
+      }
+    }).always(bindLoader);
     disableTagsInputTooHigh(container_selector, input);
   }
   $('.ui-autocomplete').hide();
@@ -90,15 +85,12 @@ Creates a new span box for a tag.
 @method createTagSpan
 @for TagsAccessories
 @param word {String} tag to be created
-@param new_tag {Boolean} true if it must be colored as a tag not present in the database yet
 @return {Object} span element
 **/
-function createTagSpan(word, new_tag) {
+function createTagSpan(word) {
   var span = $('<span>').text(word);
   var a = $('<a>').addClass('remove').appendTo(span);
-  if(new_tag) {
-    span.addClass('new_tag ' + getUnivoqueClassForTag(word));
-  }
+  span.addClass('new_tag ' + getUnivoqueClassForTag(word));
   return span;
 }
 
