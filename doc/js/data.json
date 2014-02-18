@@ -5972,6 +5972,11 @@
                     "name": "tags_value_selector",
                     "description": "HTML selector for the hidden input",
                     "type": "String"
+                },
+                {
+                    "name": "callback",
+                    "description": "if it's undefined, the function calls {{#crossLink \"TagsAccessories/disableTagsInputTooHigh:method\"}}{{/crossLink}}",
+                    "type": "Function"
                 }
             ],
             "class": "TagsAccessories",
@@ -6034,11 +6039,6 @@
                     "name": "word",
                     "description": "tag to be created",
                     "type": "String"
-                },
-                {
-                    "name": "new_tag",
-                    "description": "true if it must be colored as a tag not present in the database yet",
-                    "type": "Boolean"
                 }
             ],
             "return": {
@@ -6050,7 +6050,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 105,
+            "line": 102,
             "description": "Disables the tag input if the container is full.",
             "itemtype": "method",
             "name": "disableTagsInputTooHigh",
@@ -6071,7 +6071,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 118,
+            "line": 115,
             "description": "Generates a unique class for a given tag (containing underscores, and taking into consideration special characters).",
             "itemtype": "method",
             "name": "getUnivoqueClassForTag",
@@ -6091,7 +6091,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 133,
+            "line": 130,
             "description": "Removes a tag from the <b>hidden input</b>.",
             "itemtype": "method",
             "name": "removeFromTagsValue",
@@ -6112,7 +6112,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 150,
+            "line": 147,
             "description": "Initializer for tagging autocomplete in the form to <b>change the general information of a media element</b> (see {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyChangeMediaElementInfo",
@@ -6121,7 +6121,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 188,
+            "line": 185,
             "description": "Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}} and the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyMediaElementLoader",
@@ -6130,7 +6130,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 223,
+            "line": 220,
             "description": "Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}} and the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyMediaElementGalleryLoader",
@@ -6139,7 +6139,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 260,
+            "line": 257,
             "description": "Initializer for tagging autocomplete in the form to <b>create a new lesson</b>.",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewLesson",
@@ -6148,7 +6148,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 295,
+            "line": 292,
             "description": "Initializer for tagging autocomplete in the form to <b>save as new an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewMediaElement",
@@ -6157,7 +6157,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 334,
+            "line": 331,
             "description": "Initializer for tagging autocomplete in the form to <b>overwrite an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyOvervriteMediaElement",
@@ -6166,7 +6166,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 369,
+            "line": 366,
             "description": "Initializer for tagging autocomplete in the form to <b>update the general information of a lesson</b>.",
             "itemtype": "method",
             "name": "tagsDocumentReadyUpdateLesson",
@@ -6175,7 +6175,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 407,
+            "line": 404,
             "description": "Initializer for search autocompĺete.",
             "itemtype": "method",
             "name": "initSearchTagsAutocomplete",
@@ -6196,7 +6196,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 441,
+            "line": 438,
             "description": "Initializer for tagging autocompĺete.",
             "itemtype": "method",
             "name": "initTagsAutocomplete",

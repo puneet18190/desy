@@ -340,29 +340,29 @@ Adds a tag without using the suggestion (the case with the suggestion is handled
 @param input {String} HTML selector for the tag input
 @param container_selector {String} HTML selector for the container
 @param tags_value_selector {String} HTML selector for the hidden input
+@param callback {Function} if it&#x27;s undefined, the function calls {{#crossLink &quot;TagsAccessories/disableTagsInputTooHigh:method&quot;}}{{/crossLink}}
 **/
-function addTagWithoutSuggestion(input, container_selector, tags_value_selector) {
+function addTagWithoutSuggestion(input, container_selector, tags_value_selector, callback) {
   var my_val = $.trim($(input).val()).toLowerCase();
   if(my_val.length &gt;= $parameters.data(&#x27;min-tag-length&#x27;) &amp;&amp; checkNoTagDuplicates(my_val, container_selector)) {
-    if($(&#x27;.ui-autocomplete a&#x27;).first().text() == my_val) {
-      addToTagsValue(my_val, (container_selector + &#x27; &#x27; + tags_value_selector));
-      createTagSpan(my_val, false).insertBefore(input);
-    } else {
-      addToTagsValue(my_val, (container_selector + &#x27; &#x27; + tags_value_selector));
-      createTagSpan(my_val, true).insertBefore(input);
-      unbindLoader();
-      $.ajax({
-        type: &#x27;get&#x27;,
-        url: &#x27;/tags/&#x27; + my_val + &#x27;/check_presence&#x27;,
-        dataType: &#x27;json&#x27;,
-        success: function(data) {
-          if(data.ok) {
-            $(container_selector).find(&#x27;span.&#x27; + getUnivoqueClassForTag(my_val)).removeClass(&#x27;new_tag&#x27;);
-          }
+    addToTagsValue(my_val, (container_selector + &#x27; &#x27; + tags_value_selector));
+    createTagSpan(my_val).insertBefore(input);
+    unbindLoader();
+    $.ajax({
+      type: &#x27;get&#x27;,
+      url: &#x27;/tags/&#x27; + my_val + &#x27;/check_presence&#x27;,
+      dataType: &#x27;json&#x27;,
+      success: function(data) {
+        if(data.ok) {
+          $(container_selector).find(&#x27;span.&#x27; + getUnivoqueClassForTag(my_val)).removeClass(&#x27;new_tag&#x27;);
         }
-      }).always(bindLoader);
+      }
+    }).always(bindLoader);
+    if(callback != undefined) {
+      callback();
+    } else {
+      disableTagsInputTooHigh(container_selector, input);
     }
-    disableTagsInputTooHigh(container_selector, input);
   }
   $(&#x27;.ui-autocomplete&#x27;).hide();
   $(input).val(&#x27;&#x27;);
@@ -408,15 +408,12 @@ Creates a new span box for a tag.
 @method createTagSpan
 @for TagsAccessories
 @param word {String} tag to be created
-@param new_tag {Boolean} true if it must be colored as a tag not present in the database yet
 @return {Object} span element
 **/
-function createTagSpan(word, new_tag) {
+function createTagSpan(word) {
   var span = $(&#x27;&lt;span&gt;&#x27;).text(word);
   var a = $(&#x27;&lt;a&gt;&#x27;).addClass(&#x27;remove&#x27;).appendTo(span);
-  if(new_tag) {
-    span.addClass(&#x27;new_tag &#x27; + getUnivoqueClassForTag(word));
-  }
+  span.addClass(&#x27;new_tag &#x27; + getUnivoqueClassForTag(word));
   return span;
 }
 

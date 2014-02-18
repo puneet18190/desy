@@ -22,8 +22,9 @@ Adds a tag without using the suggestion (the case with the suggestion is handled
 @param input {String} HTML selector for the tag input
 @param container_selector {String} HTML selector for the container
 @param tags_value_selector {String} HTML selector for the hidden input
+@param callback {Function} if it's undefined, the function calls {{#crossLink "TagsAccessories/disableTagsInputTooHigh:method"}}{{/crossLink}}
 **/
-function addTagWithoutSuggestion(input, container_selector, tags_value_selector) {
+function addTagWithoutSuggestion(input, container_selector, tags_value_selector, callback) {
   var my_val = $.trim($(input).val()).toLowerCase();
   if(my_val.length >= $parameters.data('min-tag-length') && checkNoTagDuplicates(my_val, container_selector)) {
     addToTagsValue(my_val, (container_selector + ' ' + tags_value_selector));
@@ -39,7 +40,11 @@ function addTagWithoutSuggestion(input, container_selector, tags_value_selector)
         }
       }
     }).always(bindLoader);
-    disableTagsInputTooHigh(container_selector, input);
+    if(callback != undefined) {
+      callback();
+    } else {
+      disableTagsInputTooHigh(container_selector, input);
+    }
   }
   $('.ui-autocomplete').hide();
   $(input).val('');
