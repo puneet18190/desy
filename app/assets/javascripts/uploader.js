@@ -269,10 +269,10 @@ function provaProvaProva(t, x) { // TODO loadder formalizzare e documentare
   if(t >= x) {
     showPercentLessonEditorUploadinBar('#load-gallery-image', 100);
   } else {
-    if(t < 2000) {
-      showPercentLessonEditorUploadinBar('#load-gallery-image', 5 / 200 * t);
+    if(t < 1500) {
+      showPercentLessonEditorUploadinBar('#load-gallery-image', 5 / 150 * t);
     } else {
-      showPercentLessonEditorUploadinBar('#load-gallery-image', ((100 * t + 2000) / (t + 2040)));
+      showPercentLessonEditorUploadinBar('#load-gallery-image', ((100 * t + 1500) / (t + 1530)));
     }
     setTimeout(function() {
       provaProvaProva(t + 5, x);
