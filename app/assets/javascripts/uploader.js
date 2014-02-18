@@ -266,8 +266,8 @@ function disableTagsInputTooHighForLessonEditorLoader(scope_id) {
   var line = 1;
   var curr_width = 12;
   container.find('span').each(function() {
-    curr_width += ($(this).width() + 12);
-    if(curr_width > 240) {
+    curr_width += ($(this).outerWidth());
+    if(curr_width > 377.5) {
       curr_width = 12;
       line += 1;
     }
