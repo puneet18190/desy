@@ -1,5 +1,7 @@
 /**
 Javascript functions used in the media element and document loader.
+<br/><br/>
+The class {{#crossLink "UploaderDashboard"}}{{/crossLink}} contains functions that handle uploading processes in regular sections, such as dashboard, my elements, my documents, whereas the class {{#crossLink "UploaderLessonEditor"}}{{/crossLink}} contains functions to upload files in the {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}}.
 @module uploader
 **/
 
@@ -10,7 +12,7 @@ Javascript functions used in the media element and document loader.
 /**
 Recursive animation of the loading bar, according to the function h * x / (x + 1). Time is divided by 400 to slow down the animation.
 @method uploadAnimationRecursion
-@for UploadCallbacks
+@for UploaderDashboard
 @param item {Object} the selected loading bar
 @param time {Number} the current time
 @param increment {Number} the increment of time
@@ -32,7 +34,7 @@ function uploadAnimationRecursion(item, time, increment, max_width) {
 /**
 Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).
 @method uploadDone
-@for UploadCallbacks
+@for UploaderDashboard
 @param selector {String} either 'document' or 'media-element'
 @param errors {Array} an array of strings to be shown on the bottom of the loading popup
 @param fields {Array} an array of fields that must be bordered with red because they correspond to an error
@@ -52,7 +54,7 @@ function uploadDone(selector, errors, fields) {
 /**
 Handles the errors of loading popup.
 @method uploaderErrors
-@for UploadCallbacks
+@for UploaderDashboard
 @param selector {String} either 'document' or 'media-element'
 @param errors {Array} an array of strings to be shown on the bottom of the loading popup
 @param fields {Array} an array of fields that must be bordered with red because they correspond to an error
@@ -93,7 +95,7 @@ function uploaderErrors(selector, errors, fields) {
 /**
 Handles 413 status error, file too large.
 @method uploadFileTooLarge
-@for UploadCallbacks
+@for UploaderDashboard
 @param selector {String} either 'document' or 'media-element'
 **/
 function uploadFileTooLarge(selector) {
@@ -253,38 +255,35 @@ function documentsDocumentReadyUploader() {
 
 
 
-
-
-
-
-
-
-
-function provaProva(x) {
-  provaProvaProva(0, x + 2000);
-}
-
-function provaProvaProva(t, x) { // TODO loadder formalizzare e documentare
-  $('.loading-square').hide();
-  if(t >= x) {
+/**
+Handles the recursion of uploading animation.
+@method recursionLessonEditorUploadinBar
+@for UploaderLessonEditor
+@param time {Number} current time in the recursion
+**/
+function recursionLessonEditorUploadinBar(time) {
+  if(false) { // TODO loadder, devo controllare un data o qlcs di simile
     showPercentLessonEditorUploadinBar('#load-gallery-image', 100);
   } else {
-    if(t < 1500) {
-      showPercentLessonEditorUploadinBar('#load-gallery-image', 5 / 150 * t);
+    if(time < 1500) {
+      showPercentLessonEditorUploadinBar('#load-gallery-image', 5 / 150 * time);
     } else {
-      showPercentLessonEditorUploadinBar('#load-gallery-image', ((100 * t + 1500) / (t + 1530)));
+      showPercentLessonEditorUploadinBar('#load-gallery-image', ((100 * time + 1500) / (time + 1530)));
     }
     setTimeout(function() {
-      provaProvaProva(t + 5, x);
+      recursionLessonEditorUploadinBar(time + 5);
     }, 5);
   }
 }
 
-
-
-
-
-function showPercentLessonEditorUploadinBar(scope, percent) { // TODO loadder documentare
+/**
+Shows a percentage of the circular loading bar.
+@method showPercentLessonEditorUploadinBar
+@for UploaderLessonEditor
+@param scope {String} scope of the loading form's id (it can be audio, video, or image)
+@param percent {Float} percentage of loading shown
+**/
+function showPercentLessonEditorUploadinBar(scope, percent) {
   var pixels = percent * 2984 / 100;
   if(pixels > 450) {
     $(scope + ' .loading-square-1').css('width', '450px').css('left', '-50px').show();
