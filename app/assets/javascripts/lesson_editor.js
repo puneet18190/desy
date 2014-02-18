@@ -668,9 +668,9 @@ function lessonEditorDocumentReadyUploaderInGallery() {
       if(file_name.length > 20) {
         file_name = file_name.substring(0, 20) + '...';
       }
-      father.find('.galleryMediaShow').text(file_name);//.removeClass('form_error'); TODO loadder
+      father.find('.galleryMediaShow').val(file_name);//.removeClass('form_error'); TODO loadder
     } else {
-      father.find('.galleryMediaShow').text(father.parents('.loadInGallery').data('placeholder-media'));//.removeClass('form_error'); TODO loadder
+      father.find('.galleryMediaShow').val(father.parents('.loadInGallery').data('placeholder-media'));//.removeClass('form_error'); TODO loadder
     }
   });
   $body.on('click', '.gallery_upload_container a', function() {
