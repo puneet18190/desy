@@ -6139,7 +6139,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 257,
+            "line": 261,
             "description": "Initializer for tagging autocomplete in the form to <b>create a new lesson</b>.",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewLesson",
@@ -6148,7 +6148,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 292,
+            "line": 296,
             "description": "Initializer for tagging autocomplete in the form to <b>save as new an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyNewMediaElement",
@@ -6157,7 +6157,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 331,
+            "line": 335,
             "description": "Initializer for tagging autocomplete in the form to <b>overwrite an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "tagsDocumentReadyOvervriteMediaElement",
@@ -6166,7 +6166,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 366,
+            "line": 370,
             "description": "Initializer for tagging autocomplete in the form to <b>update the general information of a lesson</b>.",
             "itemtype": "method",
             "name": "tagsDocumentReadyUpdateLesson",
@@ -6175,7 +6175,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 404,
+            "line": 408,
             "description": "Initializer for search autocompĺete.",
             "itemtype": "method",
             "name": "initSearchTagsAutocomplete",
@@ -6196,7 +6196,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 438,
+            "line": 442,
             "description": "Initializer for tagging autocompĺete.",
             "itemtype": "method",
             "name": "initTagsAutocomplete",
@@ -6335,6 +6335,22 @@
         {
             "file": "app/assets/javascripts/uploader.js",
             "line": 258,
+            "description": "This function replaces {{#crossLink \"TagsAccessories/disableTagsInputTooHigh:method\"}}{{/crossLink}} in case the tags are used into the lesson editor uploader.",
+            "itemtype": "method",
+            "name": "disableTagsInputTooHighForLessonEditorLoader",
+            "params": [
+                {
+                    "name": "scope_id",
+                    "description": "HTML id for the specific kind of element",
+                    "type": "String"
+                }
+            ],
+            "class": "UploaderLessonEditor",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 268,
             "description": "Handles the recursion of uploading animation.",
             "itemtype": "method",
             "name": "recursionLessonEditorUploadinBar",
@@ -6350,7 +6366,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 279,
+            "line": 289,
             "description": "Shows a percentage of the circular loading bar.",
             "itemtype": "method",
             "name": "showPercentLessonEditorUploadinBar",
