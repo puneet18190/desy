@@ -365,13 +365,7 @@ class GalleriesController < ApplicationController
   # Html
   #
   def create_audio
-    media = params[:media]
-    record = MediaElement.new :media => media
-    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
-    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
-    record.tags = params[:tags_value]
-    record.user_id = current_user.id
-    record.save_tags = true
+    record = initialize_media_element_creation
     if record.valid? && record.sti_type == 'Audio'
       record.save
       Notification.send_to(
@@ -398,7 +392,16 @@ class GalleriesController < ApplicationController
   # Html
   #
   def create_image
-    
+    record = initialize_media_element_creation
+    if record.valid? && record.sti_type == 'Image'
+      record.save
+    else
+      if record.errors.added? :media, :too_large
+        return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
+      end
+      @errors = convert_media_element_lesson_editor_uploader_messages record.errors, (record.sti_type != 'Image')
+    end
+    render :layout => false
   end
   
   # === Description
@@ -410,7 +413,22 @@ class GalleriesController < ApplicationController
   # Html
   #
   def create_video
-    
+    record = initialize_media_element_creation
+    if record.valid? && record.sti_type == 'Video'
+      record.save
+      Notification.send_to(
+        current_user.id,
+        I18n.t('notifications.video.upload.started.title'), # TODO traduzz
+        I18n.t('notifications.video.upload.started.message', :item => record.title), # TODO traduzz
+        ''
+      )
+    else
+      if record.errors.added? :media, :too_large
+        return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
+      end
+      @errors = convert_media_element_lesson_editor_uploader_messages record.errors, (record.sti_type != 'Video')
+    end
+    render :layout => false
   end
   
   # TODO loadder documentalo
@@ -429,6 +447,17 @@ class GalleriesController < ApplicationController
   end
   
   private
+  
+  # Common operations in media element initialization.
+  def initialize_media_element_creation
+    record = MediaElement.new :media => params[:media]
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.tags = params[:tags_value]
+    record.user_id = current_user.id
+    record.save_tags = true
+    record
+  end
   
   # Initializes the parameter +page+ used in all the actions getting new blocks in the gallery
   def initialize_page
