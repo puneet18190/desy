@@ -274,10 +274,10 @@ class ApplicationController < ActionController::Base
   
   # Used for errors in forms of element uploader for lesson editor: converts an item of type ActiveModel::Errors into a translated message for the user.
   def convert_media_element_lesson_editor_uploader_messages errors, wrong_sti_type
-    return {:media => t('forms.error_captions.media_folder_size_exceeded')} if errors.added? :media, :folder_size_exceeded # TODO traduzz
+    return {:media => t('forms.error_captions.media_folder_size_exceeded')} if errors.added? :media, :folder_size_exceeded
     resp = {}
-    max_title = I18n.t('language_parameters.media_element.length_title') # TODO traduzz
-    max_description = I18n.t('language_parameters.media_element.length_description') # TODO traduzz
+    max_title = I18n.t('language_parameters.media_element.length_title')
+    max_description = I18n.t('language_parameters.media_element.length_description')
     resp[:title] = 'Troppo lungo' if errors.added? :title, :too_long, {:count => max_title} # TODO traduzz
     resp[:title] = 'Blank' if errors.added? :title, :blank # TODO traduzz
     resp[:description] = 'Troppo lungo' if errors.added? :description, :too_long, {:count => max_description} # TODO traduzz
