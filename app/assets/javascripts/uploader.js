@@ -361,7 +361,7 @@ Handles correct uploading process in the Lesson Editor (correct in the sense tha
 @method uploadDoneLessonEditor
 @for UploaderLessonEditor
 @param selector {String} HTML selector for the specific uploader (audio, video, image or document)
-@param errors {Hash} a hash of the kind {field: error}
+@param errors {Hash} a hash of the kind 'field': 'error'
 **/
 function uploadDoneLessonEditor(selector, errors) {
   $window.unbind('beforeunload');
@@ -370,7 +370,14 @@ function uploadDoneLessonEditor(selector, errors) {
   } else {
     $(selector).data('loader-can-move', false);
     setTimeout(function() {
-      console.log('fatto');
+      if(selector.indexOf('audio') == -1) {
+        var dialogs_selector = (selector.indexOf('video') == -1) ? '.imageInGalleryPopUp' : '.videoInGalleryPopUp'
+        $(dialogs_selector).each(function() {
+          if($(this).hasClass('ui-dialog-content')) {
+            $(this).dialog('destroy');
+          }
+        });
+      }
       // TODO loadder gestisci fine caricamento e chiusura finestra
     }, 1000);
   }
@@ -381,7 +388,7 @@ Handles the errors of loading in Lesson Editor.
 @method uploaderErrorsLessonEditor
 @for UploaderLessonEditor
 @param selector {String} HTML selector for the specific uploader (audio, video, image or document)
-@param errors {Hash} a hash of the kind {field: error}
+@param errors {Hash} a hash of the kind 'field': 'error'
 **/
 function uploaderErrorsLessonEditor(selector, errors) {
 
