@@ -3,7 +3,7 @@
     <% if @errors %>
       top.uploadDoneLessonEditor('#load-gallery-video', <%= @errors.to_json.html_safe %>);
     <% else %>
-      var html_content = "<%= render :partial => 'galleries/video', :locals => {:videos => @videos} %>";
+      var html_content = "<%= j(render :partial => 'galleries/video', :locals => {:videos => @videos}) %>";
       top.uploadDoneLessonEditor('#load-gallery-video', undefined, html_content, <%= @tot_pages %>);
     <% end %>
   }
