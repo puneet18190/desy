@@ -303,7 +303,7 @@ Handles the recursion of uploading animation.
 @param time {Number} current time in the recursion
 **/
 function recursionLessonEditorUploadinBar(selector, time) {
-  if($('#' + selector).data('loader-can-move')) {
+  if($(selector).data('loader-can-move')) {
     if(time < 1500) {
       showPercentLessonEditorUploadinBar(selector, 5 / 150 * time);
     } else {
@@ -313,7 +313,7 @@ function recursionLessonEditorUploadinBar(selector, time) {
       recursionLessonEditorUploadinBar(selector, time + 5);
     }, 5);
   } else {
-    $('#' + selector).data('loader-can-move', true);
+    $(selector).data('loader-can-move', true);
     var position_now = (100 * time + 1500) / (time + 1530);
     var coefficient = (100 - position_now) / 500;
     linearRecursionLessonEditorUploadinBar(selector, 0, coefficient, position_now);
@@ -368,7 +368,7 @@ function uploadDoneLessonEditor(selector, errors) {
   if(errors != undefined) {
     top.uploaderErrorsLessonEditor(selector, errors);
   } else {
-    $('#' + selector).data('loader-can-move', false);
+    $(selector).data('loader-can-move', false);
     setTimeout(function() {
       console.log('fatto');
       // TODO loadder gestisci fine caricamento e chiusura finestra
