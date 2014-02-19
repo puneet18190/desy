@@ -378,7 +378,10 @@ function uploadDoneLessonEditor(selector, errors) {
           }
         });
       }
-      // TODO loadder gestisci fine caricamento e chiusura finestra
+      $(selector + ' .part3 .close').removeClass('disabled');
+      $(selector + ' .part3 .submit').removeClass('disabled');
+      $(selector + ' .part1 .attachment .file').unbind('click');
+      // TODO loadder
     }, 1000);
   }
 }
