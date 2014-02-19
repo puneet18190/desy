@@ -736,7 +736,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
 //      uploadFileTooLarge('media_element');
 //    }
   });
-  // TODO loadder manca anche gestione errori e form_error che si cancellano
+  // TODO loadder manca anche gestione errori col click sopra, e form_error che si cancellano
 }
 
 

@@ -1081,6 +1081,14 @@
           padding: 0 16px 0 16px;
           margin: 0 0 15px 0;
           
+          &.form_error {
+            
+            border: 3px solid #B40404;
+            height: 39px;
+            padding: 0 13px 0 13px;
+            
+          }
+          
         }
         
         .description {
@@ -1090,6 +1098,13 @@
           padding: 16px;
           margin: 0;
           resize: none;
+          
+          &.form_error {
+            
+            border: 3px solid #B40404;
+            padding: 13px;
+            
+          }
           
         }
         
@@ -1108,6 +1123,34 @@
           padding: 0 12px 12px 0;
           position: relative;
           cursor: text;
+          
+          &.form_error {
+            
+            border: 3px solid #B40404;
+            width: 362.5px;
+            height: 225px;
+            padding: 0 9px 9px 0;
+            
+            ._placeholder {
+              
+              top: 13px;
+              
+            }
+            
+            .tags {
+              
+              margin-top: 10px;
+              
+            }
+            
+            span {
+              
+              position: relative;
+              top: -3px;
+              
+            }
+            
+          }
           
           span {
             
