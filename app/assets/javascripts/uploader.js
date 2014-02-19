@@ -338,7 +338,7 @@ function showPercentLessonEditorUploadinBar(scope, percent) {
 Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).
 @method uploadDoneLessonEditor
 @for UploaderLessonEditor
-@param selector {String} 'audio', 'image' or 'video'
+@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
 @param errors {Hash} a hash of the kind {field: error}
 **/
 function uploadDoneLessonEditor(selector, errors) {
@@ -358,7 +358,7 @@ function uploadDoneLessonEditor(selector, errors) {
 Handles the errors of loading in Lesson Editor.
 @method uploaderErrorsLessonEditor
 @for UploaderLessonEditor
-@param selector {String} 'audio', 'image' or 'video'
+@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
 @param errors {Hash} a hash of the kind {field: error}
 **/
 function uploaderErrorsLessonEditor(selector, errors) {
@@ -399,7 +399,7 @@ function uploaderErrorsLessonEditor(selector, errors) {
 Handles 413 status error, file too large, inside Lesson Editor.
 @method uploadFileTooLargeLessonEditor
 @for UploaderLessonEditor
-@param selector {String} 'audio', 'image' or 'video'
+@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
 **/
 function uploadFileTooLargeLessonEditor(selector) {
   console.log('file too large ' + selector); // TODO loadder

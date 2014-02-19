@@ -1,9 +1,9 @@
 <script>
   window.onload = function() {
     <% if @errors %>
-      top.uploadDoneLessonEditor('load-gallery-video', <%= @errors.to_json.html_safe %>);
+      top.uploadDoneLessonEditor('#load-gallery-video', <%= @errors.to_json.html_safe %>);
     <% else %>
-      top.uploadDoneLessonEditor('load-gallery-video');
+      top.uploadDoneLessonEditor('#load-gallery-video');
     <% end %>
   }
 </script>
