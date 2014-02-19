@@ -140,7 +140,7 @@ function mediaElementLoaderDocumentReady() {
     if(!$(this).hasClass('disabled')) {
       closePopUp('load-media-element');
     }
-  })
+  });
   $body.on('click', '#new_media_element_submit', function(e) {
     if(!$(this).hasClass('disabled')) {
       $(this).addClass('disabled');
@@ -209,7 +209,7 @@ function documentsDocumentReadyUploader() {
     if(!$(this).hasClass('disabled')) {
       closePopUp('load-document');
     }
-  })
+  });
   $body.on('click', '#new_document_submit', function(e) {
     if(!$(this).hasClass('disabled')) {
       $(this).addClass('disabled');
@@ -332,4 +332,85 @@ function showPercentLessonEditorUploadinBar(scope, percent) {
   } else {
     $(scope + ' .loading-square-1').css('width', (pixels + 'px')).css('left', ((400 - pixels) + 'px')).show();
   }
+}
+
+/**
+Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).
+@method uploadDoneLessonEditor
+@for UploaderLessonEditor
+@param selector {String} 'audio', 'image' or 'video'
+@param errors {Hash} a hash of the kind {field: error}
+**/
+function uploadDoneLessonEditor(selector, errors) {
+  console.log('upload done - ' + selector + ', errors = ' + errors); // TODO loadder
+//  $window.unbind('beforeunload');
+//  if(errors != undefined) {
+//    top.uploaderErrorsLessonEditor(selector, errors);
+//  } else {
+//    $('#load-' + selector + ' .barraLoading .loading-internal').data('can-move', false).css('width', '760px');
+//    setTimeout(function() {
+//      window.location = '/' + selector.replace('-', '_') + 's';
+//    }, 500);
+//  }
+}
+
+/**
+Handles the errors of loading in Lesson Editor.
+@method uploaderErrorsLessonEditor
+@for UploaderLessonEditor
+@param selector {String} 'audio', 'image' or 'video'
+@param errors {Hash} a hash of the kind {field: error}
+**/
+function uploaderErrorsLessonEditor(selector, errors) {
+  console.log('upload errors - ' + selector + ', errors = ' + errors); // TODO loadder
+//  var obj_name = selector.replace('-', '_');
+//  var item = $('#load-' + selector);
+//  var input_selector = '.' + selector.substr(0, 3) + 'load_';
+//  var loading_errors = item.find('.barraLoading .loading-errors');
+//  item.find('.form_error').removeClass('form_error');
+//  item.find('.barraLoading .loading-internal').data('can-move', false).css('width', '0px').hide();
+//  loading_errors.show();
+//  item.find('#new_' + obj_name + '_submit').removeClass('disabled');
+//  item.find('#new_' + obj_name + '_input').unbind('click');
+//  item.find('._close').removeClass('disabled');
+//  errors_appended = '';
+//  for(var i = 0; i < errors.length; i++) {
+//    if(i == errors.length - 1) {
+//      errors_appended += (errors[i] + '');
+//    } else {
+//      errors_appended += (errors[i] + '; ');
+//    }
+//  }
+//  loading_errors.html('<span class="lower">' + errors_appended + '</span>');
+//  for(var i = 0; i < fields.length; i++) {
+//    if(fields[i] == 'media') {
+//      item.find('#media_element_media_show').addClass('form_error');
+//    } else if(fields[i] == 'tags') {
+//      item.find('._tags_container').addClass('form_error');
+//    } else if(fields[i] == 'attachment') {
+//      item.find('#document_attachment_show').addClass('form_error');
+//    } else {
+//      item.find(input_selector + fields[i]).addClass('form_error');
+//    }
+//  }
+}
+
+/**
+Handles 413 status error, file too large, inside Lesson Editor.
+@method uploadFileTooLargeLessonEditor
+@for UploaderLessonEditor
+@param selector {String} 'audio', 'image' or 'video'
+**/
+function uploadFileTooLargeLessonEditor(selector) {
+  console.log('file too large ' + selector); // TODO loadder
+//  var ret = document.getElementById('upload_target').contentWindow.document.title;
+//  if(ret && ret.match(/413/g)) {
+//    $window.unbind('beforeunload');
+//    unbindLoader();
+//    $.ajax({
+//      type: 'get',
+//      url: selector + 's/create/fake',
+//      data: $('#new_' + selector).serialize()
+//    }).always(bindLoader);
+//  }
 }

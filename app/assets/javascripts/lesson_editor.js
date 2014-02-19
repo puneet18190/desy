@@ -693,10 +693,12 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.show();
   });
   $body.on('click', '.loadInGallery .part3 .close', function() {
-    var father = $(this).parents('.loadInGallery');
-    father.hide();
-    father.next().find('a').show();
-    father.next().next().show();
+    if(!$(this).hasClass('disabled')) {
+      var father = $(this).parents('.loadInGallery');
+      father.hide();
+      father.next().find('a').show();
+      father.next().next().show();
+    }
   });
   $body.on('focus', '.loadInGallery .part2 .title_and_description .description', function() {
     var placeholder = $(this).parent().find('.description_placeholder');
@@ -712,6 +714,29 @@ function lessonEditorDocumentReadyUploaderInGallery() {
       placeholder.attr('value', '0');
     }
   });
+  $body.on('click', '.loadInGallery .part3 .submit', function(e) {
+    if(!$(this).hasClass('disabled')) {
+//      $(this).addClass('disabled'); TODO loadder fallo partire
+//      $('#load-media-element #new_media_element_input').on('click', function(e) {
+//        e.preventDefault();
+//      });
+//      $('#load-media-element ._close').addClass('disabled');
+//      $window.on('beforeunload', function() {
+//        return $captions.data('dont-leave-page-upload-media-element');
+//      });
+//      uploadAnimationRecursion($('#load-media-element .barraLoading .loading-internal'), 0, 5, 760);
+//      $(this).closest('#new_media_element').submit();
+    } else {
+      e.preventDefault();
+    }
+  });
+  $body.on('submit', '#new_media_element', function() {
+//    document.getElementById('new_media_element').target = 'upload_target'; TODO loadder
+//    document.getElementById('upload_target').onload = function() {
+//      uploadFileTooLarge('media_element');
+//    }
+  });
+  // TODO loadder manca anche gestione errori e form_error che si cancellano
 }
 
 
