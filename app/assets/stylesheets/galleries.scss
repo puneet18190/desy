@@ -879,12 +879,14 @@
       position: absolute;
       background-color: #454343;
       color: #B40404;
+      z-index: 2;
       
       &.description {
         
-        width: 345.5px;
-        height: 148px;
-        padding: 13px;
+        width: 371.5px;
+        height: 174px;
+        top: 10px;
+        left: 10px;
         
       }
       
@@ -892,22 +894,26 @@
         
         height: 19px;
         width: 194px;
+        top: 10px;
+        left: 10px;
         
       }
       
       &.tags {
         
-        width: 362.5px;
-        height: 225px;
-        padding: 0 9px 9px 0;
+        width: 371.5px;
+        height: 234px;
+        top: 10px;
+        left: 10px;
         
       }
       
       &.title {
         
-        width: 345.5px;
+        width: 371.5px;
         height: 39px;
-        padding: 0 13px 0 13px;
+        top: 10px;
+        left: 10px;
         
       }
       
