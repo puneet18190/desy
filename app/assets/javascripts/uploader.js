@@ -362,8 +362,10 @@ Handles correct uploading process in the Lesson Editor (correct in the sense tha
 @for UploaderLessonEditor
 @param selector {String} HTML selector for the specific uploader (audio, video, image or document)
 @param errors {Hash} a hash of the kind 'field': 'error'
+@param gallery {String} the HTML content to be replaced into the gallery, if the uploading was successful
+@param pages {Number} number of pages of the newly loaded gallery
 **/
-function uploadDoneLessonEditor(selector, errors) {
+function uploadDoneLessonEditor(selector, errors, gallery, pages) {
   var type = selector.split('-');
   type = type[type.length - 1];
   $window.unbind('beforeunload');
@@ -387,6 +389,24 @@ function uploadDoneLessonEditor(selector, errors) {
       if(gallery_scrollable.hasClass('jspScrollable')) {
         gallery_scrollable.data('jsp').destroy();
       }
+//      var container = $('#lesson_editor_audio_gallery_container');
+//      var current_slide = $('li._lesson_editor_current_slide');
+//      container.html("<%= j(render :partial => 'galleries/wrapper_with_upload', :locals => {:kind => 'audio', :items => @audios}) %>");
+//      container.show();
+//      $('li._lesson_editor_current_slide .slide-content').children().hide();
+//      centerThis('#lesson_editor_audio_gallery_container');
+//      current_slide.find('layer').remove();
+//      container.data('loaded', true);
+//      container.data('page', 1);
+//      container.data('tot-pages', <%= @tot_pages %>);
+//      $('._close_audio_gallery').addClass('_close_audio_gallery_in_lesson_editor');
+//      $('._select_audio_from_gallery').addClass('_add_audio_to_slide');
+//      <% if @audios.count > 6 %>
+//        initializeAudioGalleryInLessonEditor();
+//      <% else %>
+//        $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
+//      <% end %>
+//      initTagsAutocomplete($('#load-gallery-audio .tags'), 'media_element');
       // TODO loadder
     }, 1000);
   }

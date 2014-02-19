@@ -3,7 +3,8 @@
     <% if @errors %>
       top.uploadDoneLessonEditor('#load-gallery-audio', <%= @errors.to_json.html_safe %>);
     <% else %>
-      top.uploadDoneLessonEditor('#load-gallery-audio');
+      var html_content = "<%= render :partial => 'galleries/audio', :locals => {:audios => @audios} %>";
+      top.uploadDoneLessonEditor('#load-gallery-audio', undefined, html_content, <%= @tot_pages %>);
     <% end %>
   }
 </script>
