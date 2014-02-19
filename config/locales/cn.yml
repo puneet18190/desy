@@ -754,6 +754,17 @@ cn:
       # The title is too long (the variable %{max} is replaced by the maximum amount of characters available for title)
       # 1 - controllers/application_controller.rb
       title_too_long: "Title is too long (max %{max} characters)" # TODO
+      # These captions are used in the media element uploader inside Lesson Editor, if the user tries to load a file in a wrong format
+      wrong_sti_type:
+        # 1 - controllers/galleries_controller.rb
+        # 2 - controllers/galleries_controller.rb
+        audio: "File is not an audio" # TODO
+        # 1 - controllers/galleries_controller.rb
+        # 2 - controllers/galleries_controller.rb
+        image: "File is not an image" # TODO
+        # 1 - controllers/galleries_controller.rb
+        # 2 - controllers/galleries_controller.rb
+        video: "File is not a video" # TODO
     # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
       # Description (the variable %{num} represents the maximum number of characters)

@@ -378,14 +378,14 @@ class GalleriesController < ApplicationController
           )
         end
       else
-        @errors = {:media => 'blablabla'} # TODO traduzz
+        @errors = {:media => t('forms.error_captions.wrong_sti_type.audio')}
       end
     else
       if record.errors.added? :media, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
       @errors = convert_media_element_lesson_editor_uploader_messages record.errors
-      @errors[:media] = 'blablabla' if !@errors.has_key?(:media) && record.sti_type != 'Audio' # TODO traduzz
+      @errors[:media] = t('forms.error_captions.wrong_sti_type.audio') if !@errors.has_key?(:media) && record.sti_type != 'Audio'
     end
     render :layout => false
   end
@@ -405,14 +405,14 @@ class GalleriesController < ApplicationController
         record.save
         @errors = {}
       else
-        @errors = {:media => 'blablabla'} # TODO traduzz
+        @errors = {:media => t('forms.error_captions.wrong_sti_type.image')}
       end
     else
       if record.errors.added? :media, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
       @errors = convert_media_element_lesson_editor_uploader_messages record.errors
-      @errors[:media] = 'blablabla' if !@errors.has_key?(:media) && record.sti_type != 'Image' # TODO traduzz
+      @errors[:media] = t('forms.error_captions.wrong_sti_type.image') if !@errors.has_key?(:media) && record.sti_type != 'Image'
     end
     render :layout => false
   end
@@ -439,14 +439,14 @@ class GalleriesController < ApplicationController
           )
         end
       else
-        @errors = {:media => 'blablabla'} # TODO traduzz
+        @errors = {:media => t('forms.error_captions.wrong_sti_type.video')}
       end
     else
       if record.errors.added? :media, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
       @errors = convert_media_element_lesson_editor_uploader_messages record.errors
-      @errors[:media] = 'blablabla' if !@errors.has_key?(:media) && record.sti_type != 'Video' # TODO traduzz
+      @errors[:media] = t('forms.error_captions.wrong_sti_type.video') if !@errors.has_key?(:media) && record.sti_type != 'Video'
     end
     render :layout => false
   end
