@@ -882,13 +882,14 @@
       z-index: 2;
       border-radius: 2px;
       cursor: text;
+      display: none;
       
       &.description {
         
         width: 371.5px;
         height: 174px;
-        top: 10px;
-        left: 10px;
+        top: 223px;
+        left: 18px;
         
       }
       
@@ -896,8 +897,8 @@
         
         height: 19px;
         width: 194px;
-        top: 10px;
-        left: 10px;
+        top: 63px;
+        left: 143px;
         
       }
       
@@ -913,9 +914,9 @@
       &.title {
         
         width: 371.5px;
-        height: 39px;
-        top: 10px;
-        left: 10px;
+        height: 38.5px;
+        top: 163px;
+        left: 18px;
         
       }
       
