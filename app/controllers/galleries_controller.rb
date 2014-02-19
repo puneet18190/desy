@@ -368,7 +368,6 @@ class GalleriesController < ApplicationController
     record = initialize_media_element_creation
     if record.valid?
       if record.sti_type == 'Audio'
-        @errors = {}
         if record.save
           Notification.send_to(
             current_user.id,
@@ -403,7 +402,6 @@ class GalleriesController < ApplicationController
     if record.valid?
       if record.sti_type == 'Image'
         record.save
-        @errors = {}
       else
         @errors = {:media => t('forms.error_captions.wrong_sti_type.image')}
       end
@@ -429,7 +427,6 @@ class GalleriesController < ApplicationController
     record = initialize_media_element_creation
     if record.valid?
       if record.sti_type == 'Video'
-        @errors = {}
         if record.save
           Notification.send_to(
             current_user.id,
