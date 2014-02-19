@@ -369,6 +369,7 @@ class GalleriesController < ApplicationController
     if record.valid?
       if record.sti_type == 'Audio'
         if record.save
+          get_audios(1)
           Notification.send_to(
             current_user.id,
             I18n.t('notifications.audio.upload.started.title'),
@@ -402,6 +403,7 @@ class GalleriesController < ApplicationController
     if record.valid?
       if record.sti_type == 'Image'
         record.save
+        get_images(1)
       else
         @errors = {:media => t('forms.error_captions.wrong_sti_type.image')}
       end
@@ -428,6 +430,7 @@ class GalleriesController < ApplicationController
     if record.valid?
       if record.sti_type == 'Video'
         if record.save
+          get_videos(1)
           Notification.send_to(
             current_user.id,
             I18n.t('notifications.video.upload.started.title'),
