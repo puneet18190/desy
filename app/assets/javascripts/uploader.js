@@ -281,20 +281,22 @@ function disableTagsInputTooHighForLessonEditorLoader(scope_id) {
 Handles the recursion of uploading animation.
 @method recursionLessonEditorUploadinBar
 @for UploaderLessonEditor
+@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
 @param time {Number} current time in the recursion
 **/
-function recursionLessonEditorUploadinBar(time) {
-  if(false) { // TODO loadder, devo controllare un data o qlcs di simile
-    showPercentLessonEditorUploadinBar('#load-gallery-image', 100);
-  } else {
+function recursionLessonEditorUploadinBar(selector, time) {
+  if($('#' + selector).data('loader-can-move')) {
     if(time < 1500) {
       showPercentLessonEditorUploadinBar('#load-gallery-image', 5 / 150 * time);
     } else {
       showPercentLessonEditorUploadinBar('#load-gallery-image', ((100 * time + 1500) / (time + 1530)));
     }
     setTimeout(function() {
-      recursionLessonEditorUploadinBar(time + 5);
+      recursionLessonEditorUploadinBar(selector, time + 5);
     }, 5);
+  } else {
+    $('#' + selector).data('loader-can-move', true);
+    // TODO loadder finire animazione
   }
 }
 
@@ -302,35 +304,35 @@ function recursionLessonEditorUploadinBar(time) {
 Shows a percentage of the circular loading bar.
 @method showPercentLessonEditorUploadinBar
 @for UploaderLessonEditor
-@param scope {String} scope of the loading form's id (it can be audio, video, or image)
+@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
 @param percent {Float} percentage of loading shown
 **/
-function showPercentLessonEditorUploadinBar(scope, percent) {
+function showPercentLessonEditorUploadinBar(selector, percent) {
   var pixels = percent * 2984 / 100;
   if(pixels > 450) {
-    $(scope + ' .loading-square-1').css('width', '450px').css('left', '-50px').show();
+    $(selector + ' .loading-square-1').css('width', '450px').css('left', '-50px').show();
     pixels -= 450;
     if(pixels > 590) {
-      $(scope + ' .loading-square-2').css('height', '590px').css('top', '-50px').show();
+      $(selector + ' .loading-square-2').css('height', '590px').css('top', '-50px').show();
       pixels -= 590;
       if(pixels > 900) {
-        $(scope + ' .loading-square-3').css('width', '900px').show();
+        $(selector + ' .loading-square-3').css('width', '900px').show();
         pixels -= 900;
         if(pixels > 590) {
-          $(scope + ' .loading-square-4').css('height', '590px').show();
+          $(selector + ' .loading-square-4').css('height', '590px').show();
           pixels -= 590;
-          $(scope + ' .loading-square-5').css('width', (pixels + 'px')).css('left', ((850 - pixels) + 'px')).show();
+          $(selector + ' .loading-square-5').css('width', (pixels + 'px')).css('left', ((850 - pixels) + 'px')).show();
         } else {
-          $(scope + ' .loading-square-4').css('height', (pixels + 'px')).show();
+          $(selector + ' .loading-square-4').css('height', (pixels + 'px')).show();
         }
       } else {
-        $(scope + ' .loading-square-3').css('width', (pixels + 'px')).show();
+        $(selector + ' .loading-square-3').css('width', (pixels + 'px')).show();
       }
     } else {
-      $(scope + ' .loading-square-2').css('height', (pixels + 'px')).css('top', ((540 - pixels) + 'px')).show();
+      $(selector + ' .loading-square-2').css('height', (pixels + 'px')).css('top', ((540 - pixels) + 'px')).show();
     }
   } else {
-    $(scope + ' .loading-square-1').css('width', (pixels + 'px')).css('left', ((400 - pixels) + 'px')).show();
+    $(selector + ' .loading-square-1').css('width', (pixels + 'px')).css('left', ((400 - pixels) + 'px')).show();
   }
 }
 
@@ -342,16 +344,16 @@ Handles correct uploading process in the Lesson Editor (correct in the sense tha
 @param errors {Hash} a hash of the kind {field: error}
 **/
 function uploadDoneLessonEditor(selector, errors) {
-  console.log('upload done - ' + selector + ', errors = ' + errors); // TODO loadder
-//  $window.unbind('beforeunload');
-//  if(errors != undefined) {
-//    top.uploaderErrorsLessonEditor(selector, errors);
-//  } else {
-//    $('#load-' + selector + ' .barraLoading .loading-internal').data('can-move', false).css('width', '760px');
-//    setTimeout(function() {
-//      window.location = '/' + selector.replace('-', '_') + 's';
-//    }, 500);
-//  }
+  $window.unbind('beforeunload');
+  if(errors != undefined) {
+    top.uploaderErrorsLessonEditor(selector, errors);
+  } else {
+    $('#' + selector).data('loader-can-move', false);
+    setTimeout(function() {
+      console.log('fatto');
+      // TODO loadder gestisci fine caricamento e chiusura finestra
+    }, 1000);
+  }
 }
 
 /**
@@ -362,13 +364,23 @@ Handles the errors of loading in Lesson Editor.
 @param errors {Hash} a hash of the kind {field: error}
 **/
 function uploaderErrorsLessonEditor(selector, errors) {
+
+if(errors != undefined) {
+  
+  $.each(errors, function(key, value) {
+    console.log(key, value);
+  });
+  
+}
+
+
   console.log('upload errors - ' + selector + ', errors = ' + errors); // TODO loadder
 //  var obj_name = selector.replace('-', '_');
 //  var item = $('#load-' + selector);
 //  var input_selector = '.' + selector.substr(0, 3) + 'load_';
 //  var loading_errors = item.find('.barraLoading .loading-errors');
 //  item.find('.form_error').removeClass('form_error');
-//  item.find('.barraLoading .loading-internal').data('can-move', false).css('width', '0px').hide();
+//  item.find('.barraLoading .loading-internal').data('loader-can-move', false).css('width', '0px').hide();
 //  loading_errors.show();
 //  item.find('#new_' + obj_name + '_submit').removeClass('disabled');
 //  item.find('#new_' + obj_name + '_input').unbind('click');

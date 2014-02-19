@@ -725,7 +725,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
       $window.on('beforeunload', function() {
         return $captions.data('dont-leave-page-upload-media-element');
       });
-      recursionLessonEditorUploadinBar(0);
+      recursionLessonEditorUploadinBar('#' + scope_id, 0);
       setTimeout(function() {
         $('#' + scope_id + ' form').submit();
       }, 1500);
