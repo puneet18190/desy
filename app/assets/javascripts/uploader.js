@@ -278,6 +278,24 @@ function disableTagsInputTooHighForLessonEditorLoader(scope_id) {
 }
 
 /**
+Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink "UploaderLessonEditor/recursionLessonEditorUploadinBar:method"}}{{/crossLink}}.
+@method linearRecursionLessonEditorUploadinBar
+@for UploaderLessonEditor
+@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
+@param time {Number} current time in the recursion
+@param k {Number} linear coefficient of recursion
+@param start {Number} starting point of recursion
+**/
+function linearRecursionLessonEditorUploadinBar(selector, time, k, start) {
+  if(time <= 500) {
+    showPercentLessonEditorUploadinBar(selector, (k * time + start));
+    setTimeout(function() {
+      linearRecursionLessonEditorUploadinBar(selector, time + 5, k, start)
+    }, 5);
+  }
+}
+
+/**
 Handles the recursion of uploading animation.
 @method recursionLessonEditorUploadinBar
 @for UploaderLessonEditor
@@ -287,16 +305,18 @@ Handles the recursion of uploading animation.
 function recursionLessonEditorUploadinBar(selector, time) {
   if($('#' + selector).data('loader-can-move')) {
     if(time < 1500) {
-      showPercentLessonEditorUploadinBar('#load-gallery-image', 5 / 150 * time);
+      showPercentLessonEditorUploadinBar(selector, 5 / 150 * time);
     } else {
-      showPercentLessonEditorUploadinBar('#load-gallery-image', ((100 * time + 1500) / (time + 1530)));
+      showPercentLessonEditorUploadinBar(selector, ((100 * time + 1500) / (time + 1530)));
     }
     setTimeout(function() {
       recursionLessonEditorUploadinBar(selector, time + 5);
     }, 5);
   } else {
     $('#' + selector).data('loader-can-move', true);
-    // TODO loadder finire animazione
+    var position_now = (100 * time + 1500) / (time + 1530);
+    var coefficient = (100 - position_now) / 500;
+    linearRecursionLessonEditorUploadinBar(selector, 0, coefficient, position_now);
   }
 }
 
