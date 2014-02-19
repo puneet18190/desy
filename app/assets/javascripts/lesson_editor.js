@@ -716,25 +716,28 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   });
   $body.on('click', '.loadInGallery .part3 .submit', function(e) {
     if(!$(this).hasClass('disabled')) {
-//      $(this).addClass('disabled'); TODO loadder fallo partire
-//      $('#load-media-element #new_media_element_input').on('click', function(e) {
-//        e.preventDefault();
-//      });
-//      $('#load-media-element ._close').addClass('disabled');
-//      $window.on('beforeunload', function() {
-//        return $captions.data('dont-leave-page-upload-media-element');
-//      });
-//      uploadAnimationRecursion($('#load-media-element .barraLoading .loading-internal'), 0, 5, 760);
-//      $(this).closest('#new_media_element').submit();
+      $(this).addClass('disabled');
+      var scope_id = $(this).parents('.loadInGallery').attr('id');
+      $('#' + scope_id + ' .part3 .close').addClass('disabled');
+      $('#' + scope_id + ' .part1 .attachment .file').on('click', function(e) {
+        e.preventDefault();
+      });
+      $window.on('beforeunload', function() {
+        return $captions.data('dont-leave-page-upload-media-element');
+      });
+      recursionLessonEditorUploadinBar(0);
+      setTimeout(function() {
+        $('#' + scope_id + ' form').submit();
+      }, 1500);
     } else {
       e.preventDefault();
     }
   });
-  $body.on('submit', '#new_media_element', function() {
-//    document.getElementById('new_media_element').target = 'upload_target'; TODO loadder
-//    document.getElementById('upload_target').onload = function() {
-//      uploadFileTooLarge('media_element');
-//    }
+  $body.on('submit', '.loadInGallery form', function() {
+    document.getElementById($(this).attr('id')).target = 'upload_target';
+    document.getElementById('upload_target').onload = function() {
+      uploadFileTooLargeLessonEditor($(this).parents('.loadInGallery').attr('id'));
+    }
   });
   $body.on('keydown', '.loadInGallery .part2 .title, .loadInGallery .part2 .description', function() {
     $(this).removeClass('form_error');
