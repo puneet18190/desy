@@ -365,7 +365,7 @@ Handles correct uploading process in the Lesson Editor (correct in the sense tha
 **/
 function uploadDoneLessonEditor(selector, errors) {
   var type = selector.split('-');
-  type = type[types.length - 1];
+  type = type[type.length - 1];
   $window.unbind('beforeunload');
   if(errors != undefined) {
     top.uploaderErrorsLessonEditor(selector, errors);
