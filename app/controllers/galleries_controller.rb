@@ -366,19 +366,26 @@ class GalleriesController < ApplicationController
   #
   def create_audio
     record = initialize_media_element_creation
-    if record.valid? && record.sti_type == 'Audio'
-      record.save
-      Notification.send_to(
-        current_user.id,
-        I18n.t('notifications.audio.upload.started.title'),
-        I18n.t('notifications.audio.upload.started.message', :item => record.title),
-        ''
-      )
+    if record.valid?
+      if record.sti_type == 'Audio'
+        @errors = {}
+        if record.save
+          Notification.send_to(
+            current_user.id,
+            I18n.t('notifications.audio.upload.started.title'),
+            I18n.t('notifications.audio.upload.started.message', :item => record.title),
+            ''
+          )
+        end
+      else
+        @errors = {:media => 'blablabla'} # TODO traduzz
+      end
     else
       if record.errors.added? :media, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
-      @errors = convert_media_element_lesson_editor_uploader_messages record.errors, (record.sti_type != 'Audio')
+      @errors = convert_media_element_lesson_editor_uploader_messages record.errors
+      @errors[:media] = 'blablabla' if !@errors.has_key?(:media) && record.sti_type != 'Audio' # TODO traduzz
     end
     render :layout => false
   end
@@ -393,13 +400,19 @@ class GalleriesController < ApplicationController
   #
   def create_image
     record = initialize_media_element_creation
-    if record.valid? && record.sti_type == 'Image'
-      record.save
+    if record.valid?
+      if record.sti_type == 'Image'
+        record.save
+        @errors = {}
+      else
+        @errors = {:media => 'blablabla'} # TODO traduzz
+      end
     else
       if record.errors.added? :media, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
-      @errors = convert_media_element_lesson_editor_uploader_messages record.errors, (record.sti_type != 'Image')
+      @errors = convert_media_element_lesson_editor_uploader_messages record.errors
+      @errors[:media] = 'blablabla' if !@errors.has_key?(:media) && record.sti_type != 'Image' # TODO traduzz
     end
     render :layout => false
   end
@@ -414,19 +427,26 @@ class GalleriesController < ApplicationController
   #
   def create_video
     record = initialize_media_element_creation
-    if record.valid? && record.sti_type == 'Video'
-      record.save
-      Notification.send_to(
-        current_user.id,
-        I18n.t('notifications.video.upload.started.title'),
-        I18n.t('notifications.video.upload.started.message', :item => record.title),
-        ''
-      )
+    if record.valid?
+      if record.sti_type == 'Video'
+        @errors = {}
+        if record.save
+          Notification.send_to(
+            current_user.id,
+            I18n.t('notifications.video.upload.started.title'),
+            I18n.t('notifications.video.upload.started.message', :item => record.title),
+            ''
+          )
+        end
+      else
+        @errors = {:media => 'blablabla'} # TODO traduzz
+      end
     else
       if record.errors.added? :media, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
-      @errors = convert_media_element_lesson_editor_uploader_messages record.errors, (record.sti_type != 'Video')
+      @errors = convert_media_element_lesson_editor_uploader_messages record.errors
+      @errors[:media] = 'blablabla' if !@errors.has_key?(:media) && record.sti_type != 'Video' # TODO traduzz
     end
     render :layout => false
   end
