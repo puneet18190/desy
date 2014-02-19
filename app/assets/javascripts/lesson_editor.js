@@ -689,7 +689,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find('.part1 .attachment .galleryMediaShow').val(popup.data('placeholder-media'));
     popup.find('.part1 .attachment label input').val('');
     popup.find('.form_error').removeClass('form_error');
-    //obj.find('.barraLoading .loading-errors').html(''); TODO loadder, manca nascondere layers di errore
+    popup.find('.errors_layer').hide();
     popup.show();
   });
   $body.on('click', '.loadInGallery .part3 .close', function() {
@@ -742,7 +742,9 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   $body.on('keydown', '.loadInGallery .part2 .tags', function() {
     $(this).parent().removeClass('form_error');
   });
-  // TODO loadder manca anche gestione errori col click sopra
+  $body.on('click', '.loadInGallery .errors_layer', function() {
+    $(this).hide();
+  });
 }
 
 
