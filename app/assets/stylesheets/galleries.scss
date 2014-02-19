@@ -880,6 +880,8 @@
       background-color: #454343;
       color: #B40404;
       z-index: 2;
+      border-radius: 2px;
+      cursor: text;
       
       &.description {
         
@@ -901,10 +903,10 @@
       
       &.tags {
         
-        width: 371.5px;
+        width: 371px;
         height: 234px;
-        top: 10px;
-        left: 10px;
+        top: 163px;
+        left: 411px;
         
       }
       
