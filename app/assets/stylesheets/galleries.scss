@@ -874,6 +874,45 @@
     padding: 15px;
     position: relative;
     
+    .errors_layer {
+      
+      position: absolute;
+      background-color: #454343;
+      color: #B40404;
+      
+      &.description {
+        
+        width: 345.5px;
+        height: 148px;
+        padding: 13px;
+        
+      }
+      
+      &.media {
+        
+        height: 19px;
+        width: 194px;
+        
+      }
+      
+      &.tags {
+        
+        width: 362.5px;
+        height: 225px;
+        padding: 0 9px 9px 0;
+        
+      }
+      
+      &.title {
+        
+        width: 345.5px;
+        height: 39px;
+        padding: 0 13px 0 13px;
+        
+      }
+      
+    }
+    
     .loading-square {
       
       background-color: $green;
