@@ -364,14 +364,16 @@ Handles correct uploading process in the Lesson Editor (correct in the sense tha
 @param errors {Hash} a hash of the kind 'field': 'error'
 **/
 function uploadDoneLessonEditor(selector, errors) {
+  var type = selector.split('-');
+  type = type[types.length - 1];
   $window.unbind('beforeunload');
   if(errors != undefined) {
     top.uploaderErrorsLessonEditor(selector, errors);
   } else {
     $(selector).data('loader-can-move', false);
     setTimeout(function() {
-      if(selector.indexOf('audio') == -1) {
-        var dialogs_selector = (selector.indexOf('video') == -1) ? '.imageInGalleryPopUp' : '.videoInGalleryPopUp'
+      if(type != 'audio') {
+        var dialogs_selector = (type == 'image') ? '.imageInGalleryPopUp' : '.videoInGalleryPopUp'
         $(dialogs_selector).each(function() {
           if($(this).hasClass('ui-dialog-content')) {
             $(this).dialog('destroy');
@@ -381,6 +383,10 @@ function uploadDoneLessonEditor(selector, errors) {
       $(selector + ' .part3 .close').removeClass('disabled');
       $(selector + ' .part3 .submit').removeClass('disabled');
       $(selector + ' .part1 .attachment .file').unbind('click');
+      var gallery_scrollable = $('#' + type + '_gallery_content > div');
+      if(gallery_scrollable.hasClass('jspScrollable')) {
+        gallery_scrollable.data('jsp').destroy();
+      }
       // TODO loadder
     }, 1000);
   }
