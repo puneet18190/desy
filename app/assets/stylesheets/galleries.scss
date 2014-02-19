@@ -1025,6 +1025,14 @@
           height: 25px;
           text-align: center;
           
+          &.form_error {
+            
+            border: 3px solid #B40404;
+            height: 19px;
+            width: 194px;
+            
+          }
+          
         }
         
         .file {
