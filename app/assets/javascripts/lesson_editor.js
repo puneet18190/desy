@@ -688,8 +688,8 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find('.part2 .tags_loader ._tags_container ._placeholder').show();
     popup.find('.part1 .attachment .galleryMediaShow').val(popup.data('placeholder-media'));
     popup.find('.part1 .attachment label input').val('');
-    //obj.find('.form_error').removeClass('form_error'); TODO loadder, manca bordi errori e errori in barra loader
-    //obj.find('.barraLoading .loading-errors').html('');
+    popup.find('.form_error').removeClass('form_error');
+    //obj.find('.barraLoading .loading-errors').html(''); TODO loadder, manca nascondere layers di errore
     popup.show();
   });
   $body.on('click', '.loadInGallery .part3 .close', function() {
@@ -736,7 +736,13 @@ function lessonEditorDocumentReadyUploaderInGallery() {
 //      uploadFileTooLarge('media_element');
 //    }
   });
-  // TODO loadder manca anche gestione errori col click sopra, e form_error che si cancellano
+  $body.on('keydown', '.loadInGallery .part2 .title, .loadInGallery .part2 .description', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('keydown', '.loadInGallery .part2 .tags', function() {
+    $(this).parent().removeClass('form_error');
+  });
+  // TODO loadder manca anche gestione errori col click sopra
 }
 
 
