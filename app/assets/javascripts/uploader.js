@@ -386,7 +386,7 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages) {
       $(selector + ' .part3 .submit').removeClass('disabled');
       $(selector + ' .part1 .attachment .file').unbind('click');
       var gallery_scrollable = $('#' + type + '_gallery_content > div');
-      if(gallery_scrollable.hasClass('jspScrollable')) {
+      if(gallery_scrollable.data('jsp') != undefined) {
         gallery_scrollable.data('jsp').destroy();
       }
 //      var container = $('#lesson_editor_audio_gallery_container');
