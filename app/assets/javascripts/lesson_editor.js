@@ -743,7 +743,14 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     $(this).parent().removeClass('form_error');
   });
   $body.on('click', '.loadInGallery .errors_layer', function() {
-    $(this).hide();
+    var myself = $(this);
+    if(!myself.hasClass('media')) {
+      myself.hide();
+      $('.loadInGallery ' + myself.data('selector')).focus();
+    }
+  });
+  $body.on('click', '.loadInGallery .part1 .attachment label', function() {
+    $('.loadInGallery .errors_layer.media').hide();
   });
 }
 
