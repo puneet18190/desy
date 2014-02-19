@@ -734,9 +734,11 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     }
   });
   $body.on('submit', '.loadInGallery form', function() {
-    document.getElementById($(this).attr('id')).target = 'upload_target';
+    var my_id = $(this).attr('id');
+    var parent_id = $(this).parents('.loadInGallery').attr('id');
+    document.getElementById(my_id).target = 'upload_target';
     document.getElementById('upload_target').onload = function() {
-      uploadFileTooLargeLessonEditor('#' + $(this).parents('.loadInGallery').attr('id'));
+      uploadFileTooLargeLessonEditor('#' + parent_id);
     }
   });
   $body.on('keydown', '.loadInGallery .part2 .title, .loadInGallery .part2 .description', function() {
