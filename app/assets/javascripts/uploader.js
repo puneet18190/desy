@@ -418,7 +418,7 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count) {
          }
        }
       $(selector + ' .part3 .close').click();
-      $(selector + '.loading-square').hide();
+      $(selector + ' .loading-square').hide();
     }, 1000);
   }
 }
