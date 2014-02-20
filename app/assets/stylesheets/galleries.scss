@@ -876,9 +876,10 @@
     
     .errors_layer {
       
+      @include arial-with-line-height(13px, 38.5px);
+      color: #8A8686;
       position: absolute;
       background-color: #454343;
-      color: #B40404;
       z-index: 2;
       border-radius: 2px;
       cursor: text;
@@ -886,7 +887,8 @@
       
       &.description {
         
-        width: 371.5px;
+        padding: 0 13px 0 13px;
+        width: 345.5px;
         height: 174px;
         top: 223px;
         left: 18px;
@@ -895,6 +897,8 @@
       
       &.media {
         
+        @include arial-with-line-height(13px, 19px);
+        text-align: center;
         height: 19px;
         width: 194px;
         top: 63px;
@@ -904,7 +908,8 @@
       
       &.tags {
         
-        width: 371px;
+        padding: 0 13px 0 13px;
+        width: 345px;
         height: 234px;
         top: 163px;
         left: 411px;
@@ -913,7 +918,8 @@
       
       &.title {
         
-        width: 371.5px;
+        padding: 0 13px 0 13px;
+        width: 345.5px;
         height: 38.5px;
         top: 163px;
         left: 18px;
