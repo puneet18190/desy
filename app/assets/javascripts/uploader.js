@@ -450,9 +450,9 @@ function uploaderErrorsLessonEditor(selector, errors) {
     }
   });
   $(selector).data('loader-can-move', false).data('loader-with-errors', true);
-  // item.find('#new_' + obj_name + '_submit').removeClass('disabled');
-  // item.find('#new_' + obj_name + '_input').unbind('click');
-  // item.find('._close').removeClass('disabled');
+  $(selector + ' .part3 .close').removeClass('disabled');
+  $(selector + ' .part3 .submit').removeClass('disabled');
+  $(selector + ' .part1 .attachment .file').unbind('click');
 }
 
 /**
