@@ -717,6 +717,7 @@ it:
       media_generic_error: "File non valido o danneggiato"
       # The user tried to load a file exceeding the maximum size
       # 1 - controllers/media_elements_controller.rb
+      # 2 - controllers/galleries_controller.rb
       media_file_too_large: "File troppo grande"
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
