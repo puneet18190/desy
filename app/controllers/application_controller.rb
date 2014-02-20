@@ -274,22 +274,22 @@ class ApplicationController < ActionController::Base
   
   # Used for errors in forms of element uploader for lesson editor: converts an item of type ActiveModel::Errors into a translated message for the user.
   def convert_media_element_lesson_editor_uploader_messages errors
-    return {:media => t('forms.error_captions.media_folder_size_exceeded')} if errors.added? :media, :folder_size_exceeded
+    return {:media => t('forms.error_captions.media_folder_size_exceeded').downcase} if errors.added? :media, :folder_size_exceeded
     resp = {}
-    max_title = I18n.t('language_parameters.media_element.length_title')
-    max_description = I18n.t('language_parameters.media_element.length_description')
-    resp[:title] = t('forms.error_captions.title_too_long', :max => max_title) if errors.added? :title, :too_long, {:count => max_title}
-    resp[:title] = t('forms.error_captions.title_blank') if errors.added? :title, :blank
-    resp[:description] = t('forms.error_captions.description_too_long', :max => max_title) if errors.added? :description, :too_long, {:count => max_description}
-    resp[:description] = t('forms.error_captions.description_blank') if errors.added? :description, :blank
-    resp[:tags] = t('forms.error_captions.tags_are_not_enough') if errors.added? :tags, :are_not_enough
-    resp[:tags] = t('forms.error_captions.tags_too_many') if errors.added? :tags, :too_many
+    max_title = t('language_parameters.media_element.length_title')
+    max_description = t('language_parameters.media_element.length_description')
+    resp[:title] = t('forms.error_captions.title_too_long', :max => max_title).downcase if errors.added? :title, :too_long, {:count => max_title}
+    resp[:title] = t('forms.error_captions.title_blank').downcase if errors.added? :title, :blank
+    resp[:description] = t('forms.error_captions.description_too_long', :max => max_title).downcase if errors.added? :description, :too_long, {:count => max_description}
+    resp[:description] = t('forms.error_captions.description_blank').downcase if errors.added? :description, :blank
+    resp[:tags] = t('forms.error_captions.tags_are_not_enough').downcase if errors.added? :tags, :are_not_enough
+    resp[:tags] = t('forms.error_captions.tags_too_many').downcase if errors.added? :tags, :too_many
     if errors.messages.has_key?(:media) && errors.messages[:media].any?
-      resp[:media] = t('forms.error_captions.media_unsupported_format') if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil?
-      resp[:media] = t('forms.error_captions.media_blank') if errors.added? :media, :blank
-      resp[:media] = t('forms.error_captions.media_generic_error') if !resp.has_key? :media
+      resp[:media] = t('forms.error_captions.media_unsupported_format').downcase if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil?
+      resp[:media] = t('forms.error_captions.media_blank').downcase if errors.added? :media, :blank
+      resp[:media] = t('forms.error_captions.media_generic_error').downcase if !resp.has_key? :media
     else
-      resp[:media] = t('forms.error_captions.media_unsupported_format') if errors.messages.has_key? :sti_type
+      resp[:media] = t('forms.error_captions.media_unsupported_format').downcase if errors.messages.has_key? :sti_type
     end
     resp
   end
