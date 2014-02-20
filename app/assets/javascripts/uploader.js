@@ -441,13 +441,19 @@ function uploaderErrorsLessonEditor(selector, errors) {
   $(selector + ' .form_error').removeClass('form_error');
   $(selector + ' .errors_layer').hide();
   $.each(errors, function(key, value) {
-    $(selector + ' .errors_layer.' + key).text(value).show();
-    if(key == 'media') {
-      $(selector + ' .part1 .galleryMediaShow').addClass('form_error');
-    } else if(key == 'tags') {
-      $(selector + ' .part2 ._tags_container').addClass('form_error');
+    if(key == 'full') {
+      $(selector + ' form').hide();
+      $(selector + ' .full_folder .msge').text(value);
+      $(selector + ' .full_folder').show();
     } else {
-      $(selector + ' .part2 .' + key).addClass('form_error');
+      $(selector + ' .errors_layer.' + key).text(value).show();
+      if(key == 'media') {
+        $(selector + ' .part1 .galleryMediaShow').addClass('form_error');
+      } else if(key == 'tags') {
+        $(selector + ' .part2 ._tags_container').addClass('form_error');
+      } else {
+        $(selector + ' .part2 .' + key).addClass('form_error');
+      }
     }
   });
   $(selector).data('loader-can-move', false).data('loader-with-errors', true);
