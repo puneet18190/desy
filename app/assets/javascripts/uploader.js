@@ -364,6 +364,7 @@ Handles correct uploading process in the Lesson Editor (correct in the sense tha
 @param errors {Hash} a hash of the kind 'field': 'error'
 @param gallery {String} the HTML content to be replaced into the gallery, if the uploading was successful
 @param pages {Number} number of pages of the newly loaded gallery
+@param count {Number} number of elements inside the gallery
 **/
 function uploadDoneLessonEditor(selector, errors, gallery, pages, count) {
   var type = selector.split('-');
