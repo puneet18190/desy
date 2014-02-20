@@ -451,9 +451,29 @@ class GalleriesController < ApplicationController
     render :layout => false
   end
   
-  # TODO loadder documentalo
+  # === Description
+  #
+  # This action checks for errors without setting the media on the new element
+  #
+  # === Mode
+  #
+  # Js
+  #
   def create_fake_media_element
-    
+    @selector = params[:selector]
+    record = MediaElement.new
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.tags = params[:tags_value]
+    record.user_id = current_user.id
+    record.save_tags = true
+    record.valid?
+#    @errors = convert_item_error_messages(record.errors) + [t('forms.error_captions.media_file_too_large')] TODO loadder
+#    @error_fields = []
+#    record.errors.messages.keys.each do |f|
+#      @error_fields << f.to_s if ![:media, :sti_type].include?(f)
+#    end
+#    @error_fields << :media
   end
   
   # TODO loadder documentalo

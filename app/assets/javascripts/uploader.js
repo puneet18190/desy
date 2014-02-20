@@ -467,11 +467,11 @@ function uploadFileTooLargeLessonEditor(selector) {
   if(ret && ret.match(/413/g)) {
     $window.unbind('beforeunload');
     unbindLoader();
-    var fake_url = (selector == 'document') ? '/lessons/galleries/documents/create/fake' : '/lessons/galleries/media_elements/create/fake'
+    var fake_url = (selector == 'document') ? '/lessons/galleries/documents/create/fake' : ('/lessons/galleries/media_elements/create/fake?selector=' + selector)
     $.ajax({
       type: 'get',
       url: fake_url,
-      data: $('#new_' + selector).serialize()
+      data: $('#new_' + selector).serialize() // TODO loadder
     }).always(bindLoader);
   }
 }
