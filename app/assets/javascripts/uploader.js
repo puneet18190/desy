@@ -105,7 +105,7 @@ function uploadFileTooLarge(selector) {
     unbindLoader();
     $.ajax({
       type: 'get',
-      url: selector + 's/create/fake',
+      url: '/' + selector + 's/create/fake',
       data: $('#new_' + selector).serialize()
     }).always(bindLoader);
   }
@@ -463,15 +463,15 @@ Handles 413 status error, file too large, inside Lesson Editor.
 @param selector {String} HTML selector for the specific uploader (audio, video, image or document)
 **/
 function uploadFileTooLargeLessonEditor(selector) {
-  console.log('file too large ' + selector); // TODO loadder
-//  var ret = document.getElementById('upload_target').contentWindow.document.title;
-//  if(ret && ret.match(/413/g)) {
-//    $window.unbind('beforeunload');
-//    unbindLoader();
-//    $.ajax({
-//      type: 'get',
-//      url: selector + 's/create/fake',
-//      data: $('#new_' + selector).serialize()
-//    }).always(bindLoader);
-//  }
+  var ret = document.getElementById('upload_target').contentWindow.document.title;
+  if(ret && ret.match(/413/g)) {
+    $window.unbind('beforeunload');
+    unbindLoader();
+    var fake_url = (selector == 'document') ? '/lessons/galleries/documents/create/fake' : '/lessons/galleries/media_elements/create/fake'
+    $.ajax({
+      type: 'get',
+      url: fake_url,
+      data: $('#new_' + selector).serialize()
+    }).always(bindLoader);
+  }
 }
