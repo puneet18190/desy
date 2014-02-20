@@ -690,6 +690,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find('.part1 .attachment label input').val('');
     popup.find('.form_error').removeClass('form_error');
     popup.find('.errors_layer').hide();
+    popup.find('.full_folder').hide();
     popup.show();
   });
   $body.on('click', '.loadInGallery .part3 .close', function() {
@@ -756,6 +757,12 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   });
   $body.on('click', '.loadInGallery .part1 .attachment label', function() {
     $('.loadInGallery .errors_layer.media').hide();
+  });
+  $body.on('click', '.loadInGallery .full_folder .back_to_gallery', function() {
+    var father = $(this).parents('.loadInGallery');
+    father.find('.part3 .close').click();
+    father.find('form').show();
+    father.find('·full_folder').hide();
   });
 }
 
