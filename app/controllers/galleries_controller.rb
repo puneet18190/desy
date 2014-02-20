@@ -385,7 +385,7 @@ class GalleriesController < ApplicationController
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
       @errors = convert_media_element_lesson_editor_uploader_messages record.errors
-      @errors[:media] = t('forms.error_captions.wrong_sti_type.audio') if !@errors.has_key?(:media) && record.sti_type != 'Audio'
+      @errors[:media] = t('forms.error_captions.wrong_sti_type.audio').downcase if !@errors.has_key?(:media) && record.sti_type != 'Audio'
     end
     render :layout => false
   end
@@ -412,7 +412,7 @@ class GalleriesController < ApplicationController
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
       @errors = convert_media_element_lesson_editor_uploader_messages record.errors
-      @errors[:media] = t('forms.error_captions.wrong_sti_type.image') if !@errors.has_key?(:media) && record.sti_type != 'Image'
+      @errors[:media] = t('forms.error_captions.wrong_sti_type.image').downcase if !@errors.has_key?(:media) && record.sti_type != 'Image'
     end
     render :layout => false
   end
@@ -446,7 +446,7 @@ class GalleriesController < ApplicationController
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
       @errors = convert_media_element_lesson_editor_uploader_messages record.errors
-      @errors[:media] = t('forms.error_captions.wrong_sti_type.video') if !@errors.has_key?(:media) && record.sti_type != 'Video'
+      @errors[:media] = t('forms.error_captions.wrong_sti_type.video').downcase if !@errors.has_key?(:media) && record.sti_type != 'Video'
     end
     render :layout => false
   end
