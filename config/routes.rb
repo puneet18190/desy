@@ -254,7 +254,6 @@ Desy::Application.routes.draw do
     get  'videos_test'         => 'media_elements#videos_test'
     get  'audios_test'         => 'media_elements#audios_test'
   end
-  match '*path',           :to => 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
   
   # VIDEO EDITOR
   post 'videos/cache/empty'      => 'video_editor#empty_cache',   :as => :video_editor_empty_cache
@@ -276,5 +275,7 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/load_lessons'                                  => 'virtual_classroom#load_lessons',               :as => :load_lessons
   get  'virtual_classroom/select_lessons'                                => 'virtual_classroom#select_lessons'
   get  'virtual_classroom/select_lessons_new_block'                      => 'virtual_classroom#select_lessons_new_block'
+  
+  match '*path',           :to => 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
   
 end
