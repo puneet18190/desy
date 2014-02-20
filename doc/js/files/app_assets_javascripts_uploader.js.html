@@ -423,7 +423,7 @@ function uploadFileTooLarge(selector) {
     unbindLoader();
     $.ajax({
       type: &#x27;get&#x27;,
-      url: selector + &#x27;s/create/fake&#x27;,
+      url: &#x27;/&#x27; + selector + &#x27;s/create/fake&#x27;,
       data: $(&#x27;#new_&#x27; + selector).serialize()
     }).always(bindLoader);
   }
@@ -621,7 +621,8 @@ Handles the recursion of uploading animation.
 @param time {Number} current time in the recursion
 **/
 function recursionLessonEditorUploadinBar(selector, time) {
-  if($(selector).data(&#x27;loader-can-move&#x27;)) {
+  var container = $(selector);
+  if(container.data(&#x27;loader-can-move&#x27;)) {
     if(time &lt; 1500) {
       showPercentLessonEditorUploadinBar(selector, 5 / 150 * time);
     } else {
@@ -631,10 +632,15 @@ function recursionLessonEditorUploadinBar(selector, time) {
       recursionLessonEditorUploadinBar(selector, time + 5);
     }, 5);
   } else {
-    $(selector).data(&#x27;loader-can-move&#x27;, true);
-    var position_now = (100 * time + 1500) / (time + 1530);
-    var coefficient = (100 - position_now) / 500;
-    linearRecursionLessonEditorUploadinBar(selector, 0, coefficient, position_now);
+    container.data(&#x27;loader-can-move&#x27;, true);
+    if(!container.data(&#x27;loader-with-errors&#x27;)) {
+      var position_now = (100 * time + 1500) / (time + 1530);
+      var coefficient = (100 - position_now) / 500;
+      linearRecursionLessonEditorUploadinBar(selector, 0, coefficient, position_now);
+    } else {
+      container.data(&#x27;loader-with-errors&#x27;, false);
+      showPercentLessonEditorUploadinBar(selector, 0);
+    }
   }
 }
 
@@ -646,6 +652,7 @@ Shows a percentage of the circular loading bar.
 @param percent {Float} percentage of loading shown
 **/
 function showPercentLessonEditorUploadinBar(selector, percent) {
+  $(selector + &#x27; .loading-square&#x27;).hide();
   var pixels = percent * 2984 / 100;
   if(pixels &gt; 450) {
     $(selector + &#x27; .loading-square-1&#x27;).css(&#x27;width&#x27;, &#x27;450px&#x27;).css(&#x27;left&#x27;, &#x27;-50px&#x27;).show();
@@ -735,8 +742,8 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count) {
            $(&#x27;.video_gallery .scroll-pane&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
          }
        }
-      // TODO chiudi con un click
-      // TODO fai scomparire barra loading
+      $(selector + &#x27; .part3 .close&#x27;).click();
+      $(selector + &#x27; .loading-square&#x27;).hide();
     }, 1000);
   }
 }
@@ -746,50 +753,25 @@ Handles the errors of loading in Lesson Editor.
 @method uploaderErrorsLessonEditor
 @for UploaderLessonEditor
 @param selector {String} HTML selector for the specific uploader (audio, video, image or document)
-@param errors {Hash} a hash of the kind &#x27;field&#x27;: &#x27;error&#x27;
+@param errors {Hash} a hash of the kind &#x27;field&#x27;: &#x27;error&#x27;. It can&#x27;t be undefined!
 **/
 function uploaderErrorsLessonEditor(selector, errors) {
-
-if(errors != undefined) {
-  
+  $(selector + &#x27; .form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+  $(selector + &#x27; .errors_layer&#x27;).hide();
   $.each(errors, function(key, value) {
-    console.log(key, value);
+    $(selector + &#x27; .errors_layer.&#x27; + key).text(value).show();
+    if(key == &#x27;media&#x27;) {
+      $(selector + &#x27; .part1 .galleryMediaShow&#x27;).addClass(&#x27;form_error&#x27;);
+    } else if(key == &#x27;tags&#x27;) {
+      $(selector + &#x27; .part2 ._tags_container&#x27;).addClass(&#x27;form_error&#x27;);
+    } else {
+      $(selector + &#x27; .part2 .&#x27; + key).addClass(&#x27;form_error&#x27;);
+    }
   });
-  
-}
-
-
-  console.log(&#x27;upload errors - &#x27; + selector + &#x27;, errors = &#x27; + errors); // TODO loadder
-//  var obj_name = selector.replace(&#x27;-&#x27;, &#x27;_&#x27;);
-//  var item = $(&#x27;#load-&#x27; + selector);
-//  var input_selector = &#x27;.&#x27; + selector.substr(0, 3) + &#x27;load_&#x27;;
-//  var loading_errors = item.find(&#x27;.barraLoading .loading-errors&#x27;);
-//  item.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
-//  item.find(&#x27;.barraLoading .loading-internal&#x27;).data(&#x27;loader-can-move&#x27;, false).css(&#x27;width&#x27;, &#x27;0px&#x27;).hide();
-//  loading_errors.show();
-//  item.find(&#x27;#new_&#x27; + obj_name + &#x27;_submit&#x27;).removeClass(&#x27;disabled&#x27;);
-//  item.find(&#x27;#new_&#x27; + obj_name + &#x27;_input&#x27;).unbind(&#x27;click&#x27;);
-//  item.find(&#x27;._close&#x27;).removeClass(&#x27;disabled&#x27;);
-//  errors_appended = &#x27;&#x27;;
-//  for(var i = 0; i &lt; errors.length; i++) {
-//    if(i == errors.length - 1) {
-//      errors_appended += (errors[i] + &#x27;&#x27;);
-//    } else {
-//      errors_appended += (errors[i] + &#x27;; &#x27;);
-//    }
-//  }
-//  loading_errors.html(&#x27;&lt;span class=&quot;lower&quot;&gt;&#x27; + errors_appended + &#x27;&lt;/span&gt;&#x27;);
-//  for(var i = 0; i &lt; fields.length; i++) {
-//    if(fields[i] == &#x27;media&#x27;) {
-//      item.find(&#x27;#media_element_media_show&#x27;).addClass(&#x27;form_error&#x27;);
-//    } else if(fields[i] == &#x27;tags&#x27;) {
-//      item.find(&#x27;._tags_container&#x27;).addClass(&#x27;form_error&#x27;);
-//    } else if(fields[i] == &#x27;attachment&#x27;) {
-//      item.find(&#x27;#document_attachment_show&#x27;).addClass(&#x27;form_error&#x27;);
-//    } else {
-//      item.find(input_selector + fields[i]).addClass(&#x27;form_error&#x27;);
-//    }
-//  }
+  $(selector).data(&#x27;loader-can-move&#x27;, false).data(&#x27;loader-with-errors&#x27;, true);
+  $(selector + &#x27; .part3 .close&#x27;).removeClass(&#x27;disabled&#x27;);
+  $(selector + &#x27; .part3 .submit&#x27;).removeClass(&#x27;disabled&#x27;);
+  $(selector + &#x27; .part1 .attachment .file&#x27;).unbind(&#x27;click&#x27;);
 }
 
 /**
@@ -799,17 +781,17 @@ Handles 413 status error, file too large, inside Lesson Editor.
 @param selector {String} HTML selector for the specific uploader (audio, video, image or document)
 **/
 function uploadFileTooLargeLessonEditor(selector) {
-  console.log(&#x27;file too large &#x27; + selector); // TODO loadder
-//  var ret = document.getElementById(&#x27;upload_target&#x27;).contentWindow.document.title;
-//  if(ret &amp;&amp; ret.match(/413/g)) {
-//    $window.unbind(&#x27;beforeunload&#x27;);
-//    unbindLoader();
-//    $.ajax({
-//      type: &#x27;get&#x27;,
-//      url: selector + &#x27;s/create/fake&#x27;,
-//      data: $(&#x27;#new_&#x27; + selector).serialize()
-//    }).always(bindLoader);
-//  }
+  var ret = document.getElementById(&#x27;upload_target&#x27;).contentWindow.document.title;
+  if(ret &amp;&amp; ret.match(/413/g)) {
+    $window.unbind(&#x27;beforeunload&#x27;);
+    unbindLoader();
+    var fake_url = (selector == &#x27;document&#x27;) ? &#x27;/lessons/galleries/documents/create/fake&#x27; : &#x27;/lessons/galleries/media_elements/create/fake&#x27;
+    $.ajax({
+      type: &#x27;get&#x27;,
+      url: fake_url,
+      data: $(selector + &#x27; form&#x27;).serialize()
+    }).always(bindLoader);
+  }
 }
 
     </pre>

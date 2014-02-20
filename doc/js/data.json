@@ -6402,7 +6402,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 323,
+            "line": 329,
             "description": "Shows a percentage of the circular loading bar.",
             "itemtype": "method",
             "name": "showPercentLessonEditorUploadinBar",
@@ -6423,7 +6423,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 359,
+            "line": 366,
             "description": "Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).",
             "itemtype": "method",
             "name": "uploadDoneLessonEditor",
@@ -6459,7 +6459,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 426,
+            "line": 433,
             "description": "Handles the errors of loading in Lesson Editor.",
             "itemtype": "method",
             "name": "uploaderErrorsLessonEditor",
@@ -6471,7 +6471,7 @@
                 },
                 {
                     "name": "errors",
-                    "description": "a hash of the kind 'field': 'error'",
+                    "description": "a hash of the kind 'field': 'error'. It can't be undefined!",
                     "type": "Hash"
                 }
             ],
@@ -6480,7 +6480,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 477,
+            "line": 459,
             "description": "Handles 413 status error, file too large, inside Lesson Editor.",
             "itemtype": "method",
             "name": "uploadFileTooLargeLessonEditor",
