@@ -365,7 +365,7 @@ Handles correct uploading process in the Lesson Editor (correct in the sense tha
 @param gallery {String} the HTML content to be replaced into the gallery, if the uploading was successful
 @param pages {Number} number of pages of the newly loaded gallery
 **/
-function uploadDoneLessonEditor(selector, errors, gallery, pages) {
+function uploadDoneLessonEditor(selector, errors, gallery, pages, count) {
   var type = selector.split('-');
   type = type[type.length - 1];
   $window.unbind('beforeunload');
@@ -389,25 +389,35 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages) {
       if(gallery_scrollable.data('jsp') != undefined) {
         gallery_scrollable.data('jsp').destroy();
       }
-//      var container = $('#lesson_editor_audio_gallery_container');
-//      var current_slide = $('li._lesson_editor_current_slide');
-//      container.html("<%= j(render :partial => 'galleries/wrapper_with_upload', :locals => {:kind => 'audio', :items => @audios}) %>");
-//      container.show();
-//      $('li._lesson_editor_current_slide .slide-content').children().hide();
-//      centerThis('#lesson_editor_audio_gallery_container');
-//      current_slide.find('layer').remove();
-//      container.data('loaded', true);
-//      container.data('page', 1);
-//      container.data('tot-pages', <%= @tot_pages %>);
-//      $('._close_audio_gallery').addClass('_close_audio_gallery_in_lesson_editor');
-//      $('._select_audio_from_gallery').addClass('_add_audio_to_slide');
-//      <% if @audios.count > 6 %>
-//        initializeAudioGalleryInLessonEditor();
-//      <% else %>
-//        $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
-//      <% end %>
-//      initTagsAutocomplete($('#load-gallery-audio .tags'), 'media_element');
-      // TODO loadder
+       var container = $('#lesson_editor_' + type + '_gallery_container');
+       container.find('#' + type + '_gallery').replaceWith(gallery);
+       container.data('page', 1);
+       container.data('tot-pages', pages);
+       $('._close_' + type + '_gallery').addClass('_close_' + type + '_gallery_in_lesson_editor');
+       $('._select_' + type + '_from_gallery').addClass('_add_' + type + '_to_slide');
+       if(type == 'audio') {
+         if(count > 6) {
+           initializeAudioGalleryInLessonEditor();
+         } else {
+           $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
+         }
+       }
+       if(type == 'image') {
+         if(count > 21) {
+           initializeImageGalleryInLessonEditor();
+         } else {
+           $('.image_gallery .scroll-pane').css('overflow', 'hidden');
+         }
+       }
+       if(type == 'video') {
+         if(count > 6) {
+           initializeVideoGalleryInLessonEditor();
+         } else {
+           $('.video_gallery .scroll-pane').css('overflow', 'hidden');
+         }
+       }
+      // TODO chiudi con un click
+      // TODO fai scomparire barra loading
     }, 1000);
   }
 }
