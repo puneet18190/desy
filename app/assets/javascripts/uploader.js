@@ -314,9 +314,14 @@ function recursionLessonEditorUploadinBar(selector, time) {
     }, 5);
   } else {
     $(selector).data('loader-can-move', true);
-    var position_now = (100 * time + 1500) / (time + 1530);
-    var coefficient = (100 - position_now) / 500;
-    linearRecursionLessonEditorUploadinBar(selector, 0, coefficient, position_now);
+    if(!$(selector).data('loader-with-errors')) {
+      var position_now = (100 * time + 1500) / (time + 1530);
+      var coefficient = (100 - position_now) / 500;
+      linearRecursionLessonEditorUploadinBar(selector, 0, coefficient, position_now);
+    } else {
+      $(selector).data('loader-with-errors', false);
+      showPercentLessonEditorUploadinBar(selector, 0);
+    }
   }
 }
 
@@ -443,7 +448,7 @@ function uploaderErrorsLessonEditor(selector, errors) {
       $(selector + ' .part2 .' + key).addClass('form_error');
     }
   });
-  // TODO blocca la barra loading
+  $(selector).data('loader-can-move', false).data('loader-with-errors', true);
   // TODO i tre unbind
   // item.find('#new_' + obj_name + '_submit').removeClass('disabled');
   // item.find('#new_' + obj_name + '_input').unbind('click');
