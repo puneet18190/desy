@@ -468,12 +468,10 @@ function uploadFileTooLargeLessonEditor(selector) {
     $window.unbind('beforeunload');
     unbindLoader();
     var fake_url = (selector == 'document') ? '/lessons/galleries/documents/create/fake' : '/lessons/galleries/media_elements/create/fake'
-    var fake_data = $(selector + ' form').serialize();
-    fake_data['selector'] = selector;
     $.ajax({
       type: 'get',
       url: fake_url,
-      data: fake_data
+      data: $(selector + ' form').serialize()
     }).always(bindLoader);
   }
 }
