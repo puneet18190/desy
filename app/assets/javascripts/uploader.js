@@ -334,6 +334,7 @@ Shows a percentage of the circular loading bar.
 @param percent {Float} percentage of loading shown
 **/
 function showPercentLessonEditorUploadinBar(selector, percent) {
+  $(selector + ' .loading-square').hide();
   var pixels = percent * 2984 / 100;
   if(pixels > 450) {
     $(selector + ' .loading-square-1').css('width', '450px').css('left', '-50px').show();
