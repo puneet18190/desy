@@ -705,6 +705,9 @@ en:
       # 3 - controllers/video_editor_controller.rb
       # 4 - controllers/application_controller.rb
       media_folder_size_exceeded: "Media uploading is temporarly disabled; please try again later"
+      # If the media folder is full, and the user tried to upload from the lesson editor: this is the caption of the button to come back to the gallery, since uploading is temporarily not available
+      # 1 - views/galleries/_wrapper_with_upload.html.erb
+      media_folder_full_button: "Back to the gallery"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
