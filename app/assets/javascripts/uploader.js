@@ -428,50 +428,26 @@ Handles the errors of loading in Lesson Editor.
 @method uploaderErrorsLessonEditor
 @for UploaderLessonEditor
 @param selector {String} HTML selector for the specific uploader (audio, video, image or document)
-@param errors {Hash} a hash of the kind 'field': 'error'
+@param errors {Hash} a hash of the kind 'field': 'error'. It can't be undefined!
 **/
 function uploaderErrorsLessonEditor(selector, errors) {
-
-if(errors != undefined) {
-  
+  $(selector + ' .form_error').removeClass('form_error');
+  $(selector + ' .errors_layer').hide();
   $.each(errors, function(key, value) {
-    console.log(key, value);
+    $(selector + ' .errors_layer.' + key).text(value).show();
+    if(key == 'media') {
+      $(selector + ' .part1 .galleryMediaShow').addClass('form_error');
+    } else if(key == 'tags') {
+      $(selector + ' .part2 ._tags_container').addClass('form_error');
+    } else {
+      $(selector + ' .part2 .' + key).addClass('form_error');
+    }
   });
-  
-}
-
-
-  console.log('upload errors - ' + selector + ', errors = ' + errors); // TODO loadder
-//  var obj_name = selector.replace('-', '_');
-//  var item = $('#load-' + selector);
-//  var input_selector = '.' + selector.substr(0, 3) + 'load_';
-//  var loading_errors = item.find('.barraLoading .loading-errors');
-//  item.find('.form_error').removeClass('form_error');
-//  item.find('.barraLoading .loading-internal').data('loader-can-move', false).css('width', '0px').hide();
-//  loading_errors.show();
-//  item.find('#new_' + obj_name + '_submit').removeClass('disabled');
-//  item.find('#new_' + obj_name + '_input').unbind('click');
-//  item.find('._close').removeClass('disabled');
-//  errors_appended = '';
-//  for(var i = 0; i < errors.length; i++) {
-//    if(i == errors.length - 1) {
-//      errors_appended += (errors[i] + '');
-//    } else {
-//      errors_appended += (errors[i] + '; ');
-//    }
-//  }
-//  loading_errors.html('<span class="lower">' + errors_appended + '</span>');
-//  for(var i = 0; i < fields.length; i++) {
-//    if(fields[i] == 'media') {
-//      item.find('#media_element_media_show').addClass('form_error');
-//    } else if(fields[i] == 'tags') {
-//      item.find('._tags_container').addClass('form_error');
-//    } else if(fields[i] == 'attachment') {
-//      item.find('#document_attachment_show').addClass('form_error');
-//    } else {
-//      item.find(input_selector + fields[i]).addClass('form_error');
-//    }
-//  }
+  // TODO blocca la barra loading
+  // TODO i tre unbind
+  // item.find('#new_' + obj_name + '_submit').removeClass('disabled');
+  // item.find('#new_' + obj_name + '_input').unbind('click');
+  // item.find('._close').removeClass('disabled');
 }
 
 /**
