@@ -1325,9 +1325,41 @@
       
     }
     
-    .full_folder {
+  }
+  
+  .full_folder {
+    
+    display: none;
+    width: 770px;
+    height: 460px;
+    padding: 15px;
+    
+    .msge {
       
-      display: none;
+      @include nunito(18px);
+      text-align: center;
+      margin-top: 160px;
+      margin-bottom: 50px;
+      
+    }
+    
+    a.back_to_gallery {
+      
+      @include nunito(20px);
+      display: block;
+      margin-left: 272.5px;
+      width: 225px;
+      text-align: center;
+      background-color: $green;
+      color: white;
+      padding: 9px 0 0 0;
+      height: 36px;
+      
+      &:hover {
+        
+        background-color: #67B855;
+        
+      }
       
     }
     
