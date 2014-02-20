@@ -471,7 +471,7 @@ function uploadFileTooLargeLessonEditor(selector) {
     $.ajax({
       type: 'get',
       url: fake_url,
-      data: $('#new_' + selector).serialize() // TODO loadder
+      data: $(selector + ' form').serialize()
     }).always(bindLoader);
   }
 }
