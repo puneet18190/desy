@@ -303,7 +303,8 @@ Handles the recursion of uploading animation.
 @param time {Number} current time in the recursion
 **/
 function recursionLessonEditorUploadinBar(selector, time) {
-  if($(selector).data('loader-can-move')) {
+  var container = $(selector);
+  if(container.data('loader-can-move')) {
     if(time < 1500) {
       showPercentLessonEditorUploadinBar(selector, 5 / 150 * time);
     } else {
@@ -313,13 +314,13 @@ function recursionLessonEditorUploadinBar(selector, time) {
       recursionLessonEditorUploadinBar(selector, time + 5);
     }, 5);
   } else {
-    $(selector).data('loader-can-move', true);
-    if(!$(selector).data('loader-with-errors')) {
+    container.data('loader-can-move', true);
+    if(!container.data('loader-with-errors')) {
       var position_now = (100 * time + 1500) / (time + 1530);
       var coefficient = (100 - position_now) / 500;
       linearRecursionLessonEditorUploadinBar(selector, 0, coefficient, position_now);
     } else {
-      $(selector).data('loader-with-errors', false);
+      container.data('loader-with-errors', false);
       showPercentLessonEditorUploadinBar(selector, 0);
     }
   }
@@ -449,7 +450,6 @@ function uploaderErrorsLessonEditor(selector, errors) {
     }
   });
   $(selector).data('loader-can-move', false).data('loader-with-errors', true);
-  // TODO i tre unbind
   // item.find('#new_' + obj_name + '_submit').removeClass('disabled');
   // item.find('#new_' + obj_name + '_input').unbind('click');
   // item.find('._close').removeClass('disabled');
