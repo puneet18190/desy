@@ -31,7 +31,7 @@ var black_list = new Array();
     
     black_list.push(<%= me[:media_element_id] %>);
     if(item.length > 0) {
-      var destination = item.attr('id').split('_')[0];
+      var destination = item.attr('id').split('_')[0] + '_media_element';
       if(destination == '<%= ButtonDestinations::EXPANDED_MEDIA_ELEMENT %>') {
         item.replaceWith('<%= j(render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me[:media_element], :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :used_in_private_lessons => used_in_private_lessons}) %>');
         resizeExpandedMediaElements($('#info_container').data('in-space'));
