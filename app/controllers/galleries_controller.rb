@@ -460,7 +460,6 @@ class GalleriesController < ApplicationController
   # Js
   #
   def create_fake_media_element
-    @selector = params[:selector]
     record = MediaElement.new
     record.title = params[:title_placeholder] != '0' ? '' : params[:title]
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]

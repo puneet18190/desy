@@ -1,1 +1,1 @@
-top.uploadDoneLessonEditor('<%= @selector %>', <%= @errors.to_json.html_safe %>);
+top.uploadDoneLessonEditor(('#' + $('.loadInGallery:visible').attr('id')), <%= @errors.to_json.html_safe %>);
