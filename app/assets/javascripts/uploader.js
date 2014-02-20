@@ -417,8 +417,8 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count) {
            $('.video_gallery .scroll-pane').css('overflow', 'hidden');
          }
        }
-      // TODO chiudi con un click
-      // TODO fai scomparire barra loading
+      $(selector + ' .part3 .close').click();
+      $(selector + '.loading-square').hide();
     }, 1000);
   }
 }
