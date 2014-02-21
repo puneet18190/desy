@@ -693,6 +693,21 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find('.full_folder').hide();
     popup.show();
   });
+  $body.on('click', 'a.document_quick_upload_hint', function() {
+    var my_father = $('#document_gallery');
+    var popup = my_father.prev();
+    my_father.hide();
+    popup.find('.part2 .title_and_description .title').val(popup.data('placeholder-title'));
+    popup.find('.part2 .title_and_description .description').val(popup.data('placeholder-description'));
+    popup.find('.part2 .title_and_description .title_placeholder').val('');
+    popup.find('.part2 .title_and_description .description_placeholder').val('');
+    popup.find('.part1 .attachment .galleryMediaShow').val(popup.data('placeholder-attachment'));
+    popup.find('.part1 .attachment label input').val('');
+    popup.find('.form_error').removeClass('form_error');
+    popup.find('.errors_layer').hide();
+    popup.find('.full_folder').hide();
+    popup.show();
+  });
   $body.on('click', '.loadInGallery .part3 .close', function() {
     if(!$(this).hasClass('disabled')) {
       var father = $(this).parents('.loadInGallery');
