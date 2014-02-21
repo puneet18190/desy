@@ -637,31 +637,31 @@ cn:
     # Uploader of files directly inside the Lesson Editor
     gallery_upload:
       audio:
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         title: "Quick upload of an audio" # TODO
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         description: "After the upload is over, before using your audio<br/> you'll have to wait a few minutes for the conversion" # TODO
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         cancel: "终止"
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         done: "上传"
       image:
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         title: "Quick upload of an image" # TODO
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         description: "You will be able to use your new image<br/> immediately after the uploading is complete" # TODO
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         cancel: "终止"
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         done: "上传"
       video:
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         title: "Quick upload of a video" # TODO
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         description: "After the upload is over, before using your video<br/> you'll have to wait a few minutes for the conversion" # TODO
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         cancel: "终止"
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         done: "上传"
     # Error messages shown in case the user doesn't fill the form correctly
     error_captions:
@@ -706,7 +706,7 @@ cn:
       # 4 - controllers/application_controller.rb
       media_folder_size_exceeded: "媒体上传临时中止，请稍后再试。"
       # If the media folder is full, and the user tried to upload from the lesson editor: this is the caption of the button to come back to the gallery, since uploading is temporarily not available
-      # 1 - views/galleries/_wrapper_with_upload.html.erb
+      # 1 - views/galleries/wrappers/_media_element.html.erb
       media_folder_full_button: "Back to the gallery" # TODO
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
@@ -776,7 +776,7 @@ cn:
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
-      # 5 - views/galleries/_wrapper_with_upload.html.erb
+      # 5 - views/galleries/wrappers/_media_element.html.erb
       description: "描述（最大%{num}字符）"
       # File to load (used only for media elements
       # 1 - views/media_elements/_new_form_popup.html.erb
@@ -789,14 +789,14 @@ cn:
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
-      # 5 - views/galleries/_wrapper_with_upload.html.erb
+      # 5 - views/galleries/wrappers/_media_element.html.erb
       tags: "插入最小%{items}标签（每个字符最大 %{num}）"
       # Title (the variable %{num} represents the maximum number of characters)
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
-      # 5 - views/galleries/_wrapper_with_upload.html.erb
+      # 5 - views/galleries/wrappers/_media_element.html.erb
       title: "标题（最大%{num}字符）"
   
   
@@ -1648,11 +1648,11 @@ cn:
       select: "选择图像"
     # Caption for quick load inside lesson editor
     quick_load:
-      # 1 - views/galleries/_wrapper_with_upload.html.erb
+      # 1 - views/galleries/wrappers/_media_element.html.erb
       audio: "Upload a new audio" # TODO
-      # 1 - views/galleries/_wrapper_with_upload.html.erb
+      # 1 - views/galleries/wrappers/_media_element.html.erb
       image: "Upload a new image" # TODO
-      # 1 - views/galleries/_wrapper_with_upload.html.erb
+      # 1 - views/galleries/wrappers/_media_element.html.erb
       video: "Upload a new video" # TODO
     videos:
       # Title of a generic video gallery

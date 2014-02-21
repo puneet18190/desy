@@ -637,31 +637,31 @@ en:
     # Uploader of files directly inside the Lesson Editor
     gallery_upload:
       audio:
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         title: "Quick upload of an audio"
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         description: "After the upload is over, before using your audio<br/> you'll have to wait a few minutes for the conversion"
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         cancel: "Cancel"
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         done: "Upload"
       image:
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         title: "Quick upload of an image"
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         description: "You will be able to use your new image<br/> immediately after the uploading is complete"
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         cancel: "Cancel"
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         done: "Upload"
       video:
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         title: "Quick upload of a video"
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         description: "After the upload is over, before using your video<br/> you'll have to wait a few minutes for the conversion"
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         cancel: "Cancel"
-        # 1 - views/galleries/_wrapper_with_upload.html.erb
+        # 1 - views/galleries/wrappers/_media_element.html.erb
         done: "Upload"
     # Error messages shown in case the user doesn't fill the form correctly
     error_captions:
@@ -706,7 +706,7 @@ en:
       # 4 - controllers/application_controller.rb
       media_folder_size_exceeded: "Media uploading is temporarly disabled; please try again later"
       # If the media folder is full, and the user tried to upload from the lesson editor: this is the caption of the button to come back to the gallery, since uploading is temporarily not available
-      # 1 - views/galleries/_wrapper_with_upload.html.erb
+      # 1 - views/galleries/wrappers/_media_element.html.erb
       media_folder_full_button: "Back to the gallery"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
@@ -776,7 +776,7 @@ en:
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
-      # 5 - views/galleries/_wrapper_with_upload.html.erb
+      # 5 - views/galleries/wrappers/_media_element.html.erb
       description: "Description (max %{num} characters)"
       # File to load (used only for media elements
       # 1 - views/media_elements/_new_form_popup.html.erb
@@ -789,14 +789,14 @@ en:
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
-      # 5 - views/galleries/_wrapper_with_upload.html.erb
+      # 5 - views/galleries/wrappers/_media_element.html.erb
       tags: "Insert a minimum of %{items} tags (max %{num} characters each)"
       # Title (the variable %{num} represents the maximum number of characters)
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
-      # 5 - views/galleries/_wrapper_with_upload.html.erb
+      # 5 - views/galleries/wrappers/_media_element.html.erb
       title: "Title (max %{num} characters)"
   
   
@@ -1648,11 +1648,11 @@ en:
       select: "Select image"
     # Caption for quick load inside lesson editor
     quick_load:
-      # 1 - views/galleries/_wrapper_with_upload.html.erb
+      # 1 - views/galleries/wrappers/_media_element.html.erb
       audio: "Upload a new audio"
-      # 1 - views/galleries/_wrapper_with_upload.html.erb
+      # 1 - views/galleries/wrappers/_media_element.html.erb
       image: "Upload a new image"
-      # 1 - views/galleries/_wrapper_with_upload.html.erb
+      # 1 - views/galleries/wrappers/_media_element.html.erb
       video: "Upload a new video"
     videos:
       # Title of a generic video gallery

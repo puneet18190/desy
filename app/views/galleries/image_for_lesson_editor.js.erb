@@ -1,6 +1,6 @@
 var container = $('#lesson_editor_image_gallery_container');
 var current_slide = $('li._lesson_editor_current_slide');
-container.html("<%= j(render :partial => 'galleries/wrapper_with_upload', :locals => {:kind => 'image', :items => @images}) %>");
+container.html("<%= j(render :partial => 'galleries/wrappers/media_element', :locals => {:kind => 'image', :items => @images}) %>");
 container.show();
 $('li._lesson_editor_current_slide .slide-content').children().hide();
 centerThis('#lesson_editor_image_gallery_container');
