@@ -471,9 +471,28 @@ class GalleriesController < ApplicationController
     @errors[:media] = t('forms.error_captions.media_file_too_large').downcase
   end
   
-  # TODO loadder documentalo
+  # === Description
+  #
+  # Action that calls the uploader from inside Lesson Editor, and creates the new document.
+  #
+  # === Mode
+  #
+  # Html
+  #
   def create_document
-    
+    record = Document.new :attachment => params[:media]
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.user_id = current_user.id
+    if !record.save
+      if record.errors.added? :attachment, :too_large
+        return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
+      end
+      # TODO loadder inserire errori correttamente
+    else
+      get_documents(1)
+    end
+    render :layout => false
   end
   
   # TODO loadder documentalo
