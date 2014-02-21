@@ -673,7 +673,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
       father.find('.galleryMediaShow').val(father.parents('.loadInGallery').data('placeholder-media')).removeClass('form_error');
     }
   });
-  $body.on('click', '.gallery_upload_container.media_element a', function() {
+  $body.on('click', '.gallery_upload_container a', function() {
     var myself = $(this);
     var my_father = myself.parent();
     var popup = my_father.prev();
@@ -687,23 +687,6 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find('.part2 .tags_loader ._tags_container span').remove();
     popup.find('.part2 .tags_loader ._tags_container ._placeholder').show();
     popup.find('.part1 .attachment .galleryMediaShow').val(popup.data('placeholder-media'));
-    popup.find('.part1 .attachment label input').val('');
-    popup.find('.form_error').removeClass('form_error');
-    popup.find('.errors_layer').hide();
-    popup.find('.full_folder').hide();
-    popup.show();
-  });
-  $body.on('click', '.gallery_upload_container.document a', function() {
-    var myself = $(this);
-    var my_father = myself.parent();
-    var popup = my_father.prev();
-    myself.hide();
-    my_father.next().hide();
-    popup.find('.part2 .title_and_description .title').val(popup.data('placeholder-title'));
-    popup.find('.part2 .title_and_description .description').val(popup.data('placeholder-description'));
-    popup.find('.part2 .title_and_description .title_placeholder').val('');
-    popup.find('.part2 .title_and_description .description_placeholder').val('');
-    popup.find('.part1 .attachment .galleryMediaShow').val(popup.data('placeholder-attachment'));
     popup.find('.part1 .attachment label input').val('');
     popup.find('.form_error').removeClass('form_error');
     popup.find('.errors_layer').hide();
