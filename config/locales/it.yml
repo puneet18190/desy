@@ -717,6 +717,9 @@ it:
       # If the media folder is full, and the user tried to upload from the lesson editor: this is the caption of the button to come back to the gallery, since uploading is temporarily not available
       # 1 - views/galleries/wrappers/_media_element.html.erb
       media_folder_full_button: "Torna alla galleria"
+      # If the document folder is full, and the user tried to upload from the lesson editor: this is the caption of the button to come back to the gallery, since uploading is temporarily not available
+      # 1 - views/galleries/wrappers/_document.html.erb
+      document_folder_full_button: "Torna alla galleria"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
