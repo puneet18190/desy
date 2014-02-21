@@ -2822,6 +2822,7 @@ it:
     upload_form:
       # Caption when a file has not been loaded yet
       # 1 - views/documents/_new_form_popup.html.erb
+      # 2 - views/galleries/wrappers/_document.html.erb
       attachment_placeholder: "Seleziona un file"
       # Error when the file uploaded is too large
       # 1 - controllers/documents_controller.rb
