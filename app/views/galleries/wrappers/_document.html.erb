@@ -1,6 +1,6 @@
 <%
-  title_max = t('forms.placeholders.title', :num => t('language_parameters.document.length_title').to_s).downcase # TODO traduzz
-  description_max = t('forms.placeholders.description', :num => t('language_parameters.document.length_description').to_s).downcase # TODO traduzz
+  title_max = t('documents.title_placeholder', :num => t('language_parameters.document.length_title').to_s).downcase
+  description_max = t('documents.description_placeholder', :num => t('language_parameters.document.length_description').to_s).downcase
 %>
 
 <div id="load-gallery-document" class="loadInGallery document" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-attachment="<%= t('forms.placeholders.attachment').downcase %>" data-loader-can-move="true" data-loader-with-errors="false" data-loader-position-stop="0"> <!-- TODO traduzz -->

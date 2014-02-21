@@ -2793,6 +2793,7 @@ cn:
     # Placeholder in the form to change description and title (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_new_form_popup.html.erb
     # 2 - views/documents/_view_single_compact.html.erb
+    # 3 - views/galleries/wrappers/_document.html.erb
     description_placeholder: "插入一个字符(最大 %{num}字符)"
     # Placeholder in the popup not editable
     # 1 - views/documents/_view_single_compact.html.erb
@@ -2812,6 +2813,7 @@ cn:
     search: "过滤字符:"
     # Placeholder in the form to upload a document (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_new_form_popup.html.erb
+    # 2 - views/galleries/wrappers/_document.html.erb
     title_placeholder: "插入标题(最大%{num}字符)"
     # Button to upload a new document
     # 1 - views/documents/index.html.erb
