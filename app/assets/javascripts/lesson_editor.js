@@ -701,7 +701,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find('.part2 .title_and_description .description').val(popup.data('placeholder-description'));
     popup.find('.part2 .title_and_description .title_placeholder').val('');
     popup.find('.part2 .title_and_description .description_placeholder').val('');
-    popup.find('.part1 .attachment .galleryMediaShow').val(popup.data('placeholder-attachment'));
+    popup.find('.part1 .attachment .galleryMediaShow').val(popup.data('placeholder-media'));
     popup.find('.part1 .attachment label input').val('');
     popup.find('.form_error').removeClass('form_error');
     popup.find('.errors_layer').hide();
