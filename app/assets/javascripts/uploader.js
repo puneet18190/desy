@@ -402,33 +402,33 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count) {
         if(gallery_scrollable.data('jsp') != undefined) {
           gallery_scrollable.data('jsp').destroy();
         }
-         var container = $('#lesson_editor_' + type + '_gallery_container');
-         container.find('#' + type + '_gallery').replaceWith(gallery);
-         container.data('page', 1);
-         container.data('tot-pages', pages);
-         $('._close_' + type + '_gallery').addClass('_close_' + type + '_gallery_in_lesson_editor');
-         $('._select_' + type + '_from_gallery').addClass('_add_' + type + '_to_slide');
-         if(type == 'audio') {
-           if(count > 6) {
-             initializeAudioGalleryInLessonEditor();
-           } else {
-             $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
-           }
-         }
-         if(type == 'image') {
-           if(count > 21) {
-             initializeImageGalleryInLessonEditor();
-           } else {
-             $('.image_gallery .scroll-pane').css('overflow', 'hidden');
-           }
-         }
-         if(type == 'video') {
-           if(count > 6) {
-             initializeVideoGalleryInLessonEditor();
-           } else {
-             $('.video_gallery .scroll-pane').css('overflow', 'hidden');
-           }
-         }
+        var container = $('#lesson_editor_' + type + '_gallery_container');
+        container.find('#' + type + '_gallery').replaceWith(gallery);
+        container.data('page', 1);
+        container.data('tot-pages', pages);
+        $('._close_' + type + '_gallery').addClass('_close_' + type + '_gallery_in_lesson_editor');
+        $('._select_' + type + '_from_gallery').addClass('_add_' + type + '_to_slide');
+        if(type == 'audio') {
+          if(count > 6) {
+            initializeAudioGalleryInLessonEditor();
+          } else {
+            $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
+          }
+        }
+        if(type == 'image') {
+          if(count > 21) {
+            initializeImageGalleryInLessonEditor();
+          } else {
+            $('.image_gallery .scroll-pane').css('overflow', 'hidden');
+          }
+        }
+        if(type == 'video') {
+          if(count > 6) {
+            initializeVideoGalleryInLessonEditor();
+          } else {
+            $('.video_gallery .scroll-pane').css('overflow', 'hidden');
+          }
+        }
         $(selector + ' .part3 .close').click();
         $(selector + ' .loading-square').hide();
       });
