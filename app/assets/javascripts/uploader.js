@@ -285,13 +285,16 @@ Handles the recursion of uploading animation, in a linear way, until a fixed tim
 @param time {Number} current time in the recursion
 @param k {Number} linear coefficient of recursion
 @param start {Number} starting point of recursion
+@param callback {Function} function to be fired after the animation is over
 **/
-function linearRecursionLessonEditorUploadinBar(selector, time, k, start) {
+function linearRecursionLessonEditorUploadinBar(selector, time, k, start, callback) {
   if(time <= 500) {
     showPercentLessonEditorUploadinBar(selector, (k * time + start));
     setTimeout(function() {
-      linearRecursionLessonEditorUploadinBar(selector, time + 5, k, start)
+      linearRecursionLessonEditorUploadinBar(selector, time + 5, k, start, callback)
     }, 5);
+  } else {
+    callback();
   }
 }
 
@@ -316,9 +319,7 @@ function recursionLessonEditorUploadinBar(selector, time) {
   } else {
     container.data('loader-can-move', true);
     if(!container.data('loader-with-errors')) {
-      var position_now = (100 * time + 1500) / (time + 1530);
-      var coefficient = (100 - position_now) / 500;
-      linearRecursionLessonEditorUploadinBar(selector, 0, coefficient, position_now);
+      container.data('loader-position-stop', (100 * time + 1500) / (time + 1530));
     } else {
       container.data('loader-with-errors', false);
       showPercentLessonEditorUploadinBar(selector, 0);
@@ -382,51 +383,56 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count) {
   } else {
     $(selector).data('loader-can-move', false);
     setTimeout(function() {
-      if(type != 'audio') {
-        var dialogs_selector = (type == 'image') ? '.imageInGalleryPopUp' : '.videoInGalleryPopUp'
-        $(dialogs_selector).each(function() {
-          if($(this).hasClass('ui-dialog-content')) {
-            $(this).dialog('destroy');
-          }
-        });
-      }
-      $(selector + ' .part3 .close').removeClass('disabled');
-      $(selector + ' .part3 .submit').removeClass('disabled');
-      $(selector + ' .part1 .attachment .file').unbind('click');
-      var gallery_scrollable = $('#' + type + '_gallery_content > div');
-      if(gallery_scrollable.data('jsp') != undefined) {
-        gallery_scrollable.data('jsp').destroy();
-      }
-       var container = $('#lesson_editor_' + type + '_gallery_container');
-       container.find('#' + type + '_gallery').replaceWith(gallery);
-       container.data('page', 1);
-       container.data('tot-pages', pages);
-       $('._close_' + type + '_gallery').addClass('_close_' + type + '_gallery_in_lesson_editor');
-       $('._select_' + type + '_from_gallery').addClass('_add_' + type + '_to_slide');
-       if(type == 'audio') {
-         if(count > 6) {
-           initializeAudioGalleryInLessonEditor();
-         } else {
-           $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
+      var position_now = $(selector).data('loader-position-stop');
+      var coefficient = (100 - ) / 500;
+      linearRecursionLessonEditorUploadinBar(selector, 0, coefficient, position_now, function() {
+        $(selector).data('loader-position-stop', 0);
+        if(type != 'audio') {
+          var dialogs_selector = (type == 'image') ? '.imageInGalleryPopUp' : '.videoInGalleryPopUp'
+          $(dialogs_selector).each(function() {
+            if($(this).hasClass('ui-dialog-content')) {
+              $(this).dialog('destroy');
+            }
+          });
+        }
+        $(selector + ' .part3 .close').removeClass('disabled');
+        $(selector + ' .part3 .submit').removeClass('disabled');
+        $(selector + ' .part1 .attachment .file').unbind('click');
+        var gallery_scrollable = $('#' + type + '_gallery_content > div');
+        if(gallery_scrollable.data('jsp') != undefined) {
+          gallery_scrollable.data('jsp').destroy();
+        }
+         var container = $('#lesson_editor_' + type + '_gallery_container');
+         container.find('#' + type + '_gallery').replaceWith(gallery);
+         container.data('page', 1);
+         container.data('tot-pages', pages);
+         $('._close_' + type + '_gallery').addClass('_close_' + type + '_gallery_in_lesson_editor');
+         $('._select_' + type + '_from_gallery').addClass('_add_' + type + '_to_slide');
+         if(type == 'audio') {
+           if(count > 6) {
+             initializeAudioGalleryInLessonEditor();
+           } else {
+             $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
+           }
          }
-       }
-       if(type == 'image') {
-         if(count > 21) {
-           initializeImageGalleryInLessonEditor();
-         } else {
-           $('.image_gallery .scroll-pane').css('overflow', 'hidden');
+         if(type == 'image') {
+           if(count > 21) {
+             initializeImageGalleryInLessonEditor();
+           } else {
+             $('.image_gallery .scroll-pane').css('overflow', 'hidden');
+           }
          }
-       }
-       if(type == 'video') {
-         if(count > 6) {
-           initializeVideoGalleryInLessonEditor();
-         } else {
-           $('.video_gallery .scroll-pane').css('overflow', 'hidden');
+         if(type == 'video') {
+           if(count > 6) {
+             initializeVideoGalleryInLessonEditor();
+           } else {
+             $('.video_gallery .scroll-pane').css('overflow', 'hidden');
+           }
          }
-       }
-      $(selector + ' .part3 .close').click();
-      $(selector + ' .loading-square').hide();
-    }, 1000);
+        $(selector + ' .part3 .close').click();
+        $(selector + ' .loading-square').hide();
+      });
+    }, 100);
   }
 }
 
