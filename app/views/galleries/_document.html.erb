@@ -1,12 +1,72 @@
 <%
   doc_empty = documents.empty?
   display_docs = doc_empty ? ['none', 'block'] : ['block', 'none']
+  title_max = t('forms.placeholders.title', :num => t('language_parameters.document.length_title').to_s).downcase # TODO traduzz  # TODO traduzz
+  description_max = t('forms.placeholders.description', :num => t('language_parameters.document.length_description').to_s).downcase # TODO traduzz  # TODO traduzz
 %>
 
+<div id="load-gallery-document" class="loadInGallery document" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-attachment="<%= t('forms.placeholders.attachment').downcase %>" data-loader-can-move="true" data-loader-with-errors="false" data-loader-position-stop="0"> <!-- TODO traduzz -->
+  <%= form_tag "/lessons/galleries/documents", :method => :post, :id => 'new_gallery_document', :multipart => true, :autocomplete => 'off' do %>
+    <div class="part1">
+      <div class="attachment">
+        <label>
+          <span>
+            <input type="file" class="file" name="attachment"/>
+          </span>
+        </label>
+        <input id="gallery_document_attachment_show" class="galleryMediaShow" disabled="disabled" value=""/>
+      </div>
+      <div class="title_and_subtitle">
+        <h1>
+          <%= t('forms.gallery_upload.document.title') %> <!-- TODO traduzz -->
+        </h1>
+        <p>
+          <%= t('forms.gallery_upload.document.description').html_safe %> <!-- TODO traduzz -->
+        </p>
+      </div>
+    </div>
+    <div class="part2">
+      <div class="title_and_description">
+        <input class="title" type="text" value="" name="title"/>
+        <input class="title_placeholder" type="hidden" value="" name="title_placeholder"/>
+        <textarea class="description" name="description"></textarea>
+        <input class="description_placeholder" type="hidden" value="" name="description_placeholder"/>
+      </div>
+    </div>
+    <div class="part3">
+      <a class="submit"><%= t('forms.gallery_upload.document.done').downcase %></a> <!-- TODO traduzz -->
+      <a class="close"><%= t('forms.gallery_upload.document.cancel').downcase %></a> <!-- TODO traduzz -->
+    </div>
+    <div class="loading-square loading-square-1"></div>
+    <div class="loading-square loading-square-2"></div>
+    <div class="loading-square loading-square-3"></div>
+    <div class="loading-square loading-square-4"></div>
+    <div class="loading-square loading-square-5"></div>
+    <div class="loading-square-bis loading-square-bis-1"></div>
+    <div class="loading-square-bis loading-square-bis-2"></div>
+    <div class="loading-square-bis loading-square-bis-3"></div>
+    <div class="loading-square-bis loading-square-bis-4"></div>
+    <div class="errors_layer description" data-selector=".part2 .description"></div>
+    <div class="errors_layer attachment"></div>
+    <div class="errors_layer title" data-selector=".part2 .title"></div>
+  <% end %>
+  <div class="full_folder">
+    <p class="msge"></p>
+    <a class="back_to_gallery"><%= t('forms.error_captions.document_folder_full_button').downcase %></a> <!-- TODO traduzz -->
+  </div>
+</div>
+
+<div class="gallery_upload_container highlight-with-text">
+  <a>
+    <div class="plus"></div>
+    <div class="prompt">
+      <%= t('galleries.quick_load.document') %> <!-- TODO traduzz -->
+    </div>
+  </a>
+</div>
+
 <div id="document_gallery" class="document_gallery document-kind" data-empty="<%= doc_empty %>">
-  
   <div id="inputs_for_documents" style="display:none"></div>
-  
   <div class="attachedExternal">
     <div class="attachedInternal">
       <% [1, 2, 3].each do |i| %>
@@ -18,7 +78,6 @@
       <% end %>
     </div>
   </div>
-  
   <div class="documentsExternal">
     <div class="for-scroll-pain" style="display:<%= display_docs[0] %>">
       <% documents.each_with_index do |document, index| %>
@@ -41,7 +100,6 @@
       <p class="filter_empty" style="display:none"></p>
     </div>
   </div>
-  
   <div class="documentsFooter">
     <div class="triangolo" style="display:<%= display_docs[0] %>"></div>
     <div class="footerLeft" style="display:<%= display_docs[0] %>">
@@ -54,5 +112,4 @@
       <div class="lower attach button"><%= t('galleries.documents.done') %></div>
     </div>
   </div>
-  
 </div>
