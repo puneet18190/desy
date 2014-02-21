@@ -1666,6 +1666,8 @@ it:
       image: "Carica una nuova immagine"
       # 1 - views/galleries/wrappers/_media_element.html.erb
       video: "Carica un nuovo video"
+      # 1 - views/galleries/wrappers/_document.html.erb
+      document: "Carica un nuovo documento"
     videos:
       # Title of a generic video gallery
       # 1 - views/galleries/_video.html.erb

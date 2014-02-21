@@ -1666,6 +1666,8 @@ en:
       image: "Upload a new image"
       # 1 - views/galleries/wrappers/_media_element.html.erb
       video: "Upload a new video"
+      # 1 - views/galleries/wrappers/_document.html.erb
+      document: "Upload a new document"
     videos:
       # Title of a generic video gallery
       # 1 - views/galleries/_video.html.erb
