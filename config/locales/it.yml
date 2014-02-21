@@ -663,6 +663,15 @@ it:
         cancel: "Annulla"
         # 1 - views/galleries/wrappers/_media_element.html.erb
         done: "Upload"
+      document:
+        # 1 - views/galleries/wrappers/_document.html.erb
+        title: "Caricamento di documenti"
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        description: "Sarai in grado di usare il nuovo documento<br/> non appena il caricamento sarà completo"
+        # 1 - views/galleries/wrappers/_document.html.erb
+        cancel: "Annulla"
+        # 1 - views/galleries/wrappers/_document.html.erb
+        done: "Upload"
     # Error messages shown in case the user doesn't fill the form correctly
     error_captions:
       # The user is trying to leave or reload the page while loading a media element or a document

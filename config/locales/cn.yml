@@ -663,6 +663,15 @@ cn:
         cancel: "终止"
         # 1 - views/galleries/wrappers/_media_element.html.erb
         done: "上传"
+      document:
+        # 1 - views/galleries/wrappers/_document.html.erb
+        title: "Quick upload of a document" # TODO
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        description: "You will be able to use your document<br/> immediately after the uploading is complete" # TODO
+        # 1 - views/galleries/wrappers/_document.html.erb
+        cancel: "终止"
+        # 1 - views/galleries/wrappers/_document.html.erb
+        done: "上传"
     # Error messages shown in case the user doesn't fill the form correctly
     error_captions:
       # The user is trying to leave or reload the page while loading a media element or a document
