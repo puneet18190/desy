@@ -1365,6 +1365,54 @@
     
   }
   
+  &.document {
+    
+    .loading-square {
+      
+      background-color: #5D5C5C;
+      
+    }
+    
+    .part1 {
+      
+      
+      
+    }
+    
+    .part2 {
+      
+      .title_and_description {
+        
+        width: 770px;
+        
+        .title {
+          
+          width: 738px;
+          
+        }
+        
+        .description {
+          
+          width: 738px;
+          
+        }
+        
+      }
+      
+    }
+    
+    .part3 {
+      
+      .close, .submit {
+        
+        color: #333333;
+        background-color: white;
+        
+      }
+    }
+    
+  }
+  
 }
 
 .gallery_upload_container {
