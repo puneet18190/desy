@@ -294,7 +294,7 @@ function linearRecursionLessonEditorUploadinBar(selector, time, k, start, callba
       linearRecursionLessonEditorUploadinBar(selector, time + 5, k, start, callback)
     }, 5);
   } else {
-    callback();
+    setTimeout(callback, 500);
   }
 }
 
