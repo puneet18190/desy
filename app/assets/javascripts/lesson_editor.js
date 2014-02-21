@@ -737,7 +737,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
       placeholder.attr('value', '0');
     }
   });
-  $body.on('click', '.loadInGallery .part3 .submit', function(e) {
+  $body.on('click', '.loadInGallery .part3 .submit', function(e) { // TODO loadderfunz
     if(!$(this).hasClass('disabled')) {
       $(this).addClass('disabled');
       var scope_id = $(this).parents('.loadInGallery').attr('id');
@@ -756,7 +756,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
       e.preventDefault();
     }
   });
-  $body.on('submit', '.loadInGallery form', function() {
+  $body.on('submit', '.loadInGallery form', function() { // TODO loadderfunz
     var my_id = $(this).attr('id');
     var parent_id = $(this).parents('.loadInGallery').attr('id');
     document.getElementById(my_id).target = 'upload_target';

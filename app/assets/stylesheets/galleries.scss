@@ -1367,6 +1367,16 @@
   
   &.document form#new_gallery_document {
     
+    .errors_layer {
+      
+      &.description, &.title {
+        
+        width: 738px;
+        
+      }
+      
+    }
+    
     .loading-square {
       
       background-color: #5D5C5C;
@@ -1379,7 +1389,7 @@
         
         label {
           
-          @include svg-circle-icon-handler($assets-bottone-add-document_svg, 64px, 1, 1, 1, 0, 0, 0.5, 0, 0);
+          @include svg-circle-icon-handler($assets-bottone-add-document_svg, 75px, 1, 1, 1, 0, 0, 0.5, 0, 0);
           
         }
         
