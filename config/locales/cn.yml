@@ -1648,9 +1648,9 @@ cn:
       # Caption used when the user attaches the maximum allowed number of documents into a slide
       # 1 - views/galleries/_document.html.erb
       locked: "你不能附加超过3个文档"
-      # Placeholder for a document that has to be loaded
+      # Placeholder for a document that has to be loaded (the variable %{link} is replaced by the link to upload a new element)
       # 1 - views/galleries/_document.html.erb
-      placeholder: "从下面列表中增加一个文档"
+      placeholder: "Add a document from the list below, or %{link}" # TODO
     images:
       # Caption for the size (in pixels) of the image inside the gallery
       # 1 - views/galleries/popups/_image.html.erb
@@ -1667,7 +1667,7 @@ cn:
       # 1 - views/galleries/wrappers/_media_element.html.erb
       video: "Upload a new video" # TODO
       # 1 - views/galleries/_document.html.erb
-      document: "Or upload a new document" # TODO
+      document: "Upload a new document" # TODO
     videos:
       # Title of a generic video gallery
       # 1 - views/galleries/_video.html.erb

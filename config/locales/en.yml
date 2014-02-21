@@ -1648,9 +1648,9 @@ en:
       # Caption used when the user attaches the maximum allowed number of documents into a slide
       # 1 - views/galleries/_document.html.erb
       locked: "You can't attach more than three documents"
-      # Placeholder for a document that has to be loaded
+      # Placeholder for a document that has to be loaded (the variable %{link} is replaced by the link to upload a new element)
       # 1 - views/galleries/_document.html.erb
-      placeholder: "Add a document from the list below"
+      placeholder: "Add a document from the list below, or %{link}"
     images:
       # Caption for the size (in pixels) of the image inside the gallery
       # 1 - views/galleries/popups/_image.html.erb
@@ -1667,7 +1667,7 @@ en:
       # 1 - views/galleries/wrappers/_media_element.html.erb
       video: "Upload a new video"
       # 1 - views/galleries/_document.html.erb
-      document: "Or upload a new document"
+      document: "Upload a new document"
     videos:
       # Title of a generic video gallery
       # 1 - views/galleries/_video.html.erb

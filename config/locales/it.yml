@@ -1648,9 +1648,9 @@ it:
       # Caption used when the user attaches the maximum allowed number of documents into a slide
       # 1 - views/galleries/_document.html.erb
       locked: "Puoi allegare al massimo tre documenti"
-      # Placeholder for a document that has to be loaded
+      # Placeholder for a document that has to be loaded (the variable %{link} is replaced by the link to upload a new element)
       # 1 - views/galleries/_document.html.erb
-      placeholder: "Aggiungi un documento dalla lista qui sotto"
+      placeholder: "Aggiungi un documento dalla lista qui sotto, oppure %{link}"
     images:
       # Caption for the size (in pixels) of the image inside the gallery
       # 1 - views/galleries/popups/_image.html.erb
@@ -1667,7 +1667,7 @@ it:
       # 1 - views/galleries/wrappers/_media_element.html.erb
       video: "Carica un nuovo video"
       # 1 - views/galleries/_document.html.erb
-      document: "Oppure carica un nuovo documento"
+      document: "Carica un nuovo documento"
     videos:
       # Title of a generic video gallery
       # 1 - views/galleries/_video.html.erb

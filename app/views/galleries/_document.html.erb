@@ -12,8 +12,7 @@
         <div id="document_<%= i %>_attached_empty" style="display:none">
           <div class="document_number"><%= i %></div>
           <div class="document_placeholder">
-            <%= t('galleries.documents.placeholder') %>
-            <a class="document_quick_upload_hint"><%= t('galleries.quick_load.document').downcase %></a>
+            <%= t('galleries.documents.placeholder', :link => "<a class=\"document_quick_upload_hint\">#{t('galleries.quick_load.document').downcase}</a>").html_safe %>
           </div>
         </div>
       <% end %>
