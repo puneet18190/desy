@@ -708,7 +708,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find('.full_folder').hide();
     popup.show();
   });
-  $body.on('click', '.loadInGallery .part3 .close', function() {
+  $body.on('click', '.loadInGallery.stegosauro .part3 .close', function() {
     if(!$(this).hasClass('disabled')) {
       var father = $(this).parents('.loadInGallery');
       father.hide();
