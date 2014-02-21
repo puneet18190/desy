@@ -716,6 +716,13 @@ function lessonEditorDocumentReadyUploaderInGallery() {
       father.next().next().show();
     }
   });
+  $body.on('click', '.loadInGallery.document .part3 .close', function() {
+    if(!$(this).hasClass('disabled')) {
+      var father = $(this).parents('.loadInGallery');
+      father.hide();
+      father.next().show();
+    }
+  });
   $body.on('focus', '.loadInGallery .part2 .title_and_description .description', function() {
     var placeholder = $(this).parent().find('.description_placeholder');
     if(placeholder.val() == '') {
