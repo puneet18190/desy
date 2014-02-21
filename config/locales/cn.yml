@@ -1667,7 +1667,7 @@ cn:
       # 1 - views/galleries/wrappers/_media_element.html.erb
       video: "Upload a new video" # TODO
       # 1 - views/galleries/_document.html.erb
-      document: "Upload a new document" # TODO
+      document: "Or upload a new document" # TODO
     videos:
       # Title of a generic video gallery
       # 1 - views/galleries/_video.html.erb
