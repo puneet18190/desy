@@ -2986,11 +2986,13 @@ en:
       # 1 - models/document.rb
       # 2 - views/documents/_view_single_compact.html.erb
       # 3 - views/documents/_new_form_popup.html.erb
+      # 4 - views/galleries/wrappers/_document.html.erb
       length_description: 280
       # Maximum number of characters allowed in the title of a document
       # 1 - models/document.rb
       # 2 - models/document.rb
       # 3 - views/documents/_new_form_popup.html.erb
+      # 4 - views/galleries/wrappers/_document.html.erb
       length_title: 35
     media_element:
       # Maximum number of characters allowed in the description of an element
@@ -2999,6 +3001,7 @@ en:
       # 3 - views/media_elements/info_form_in_editor/_new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
       # 5 - controllers/application_controller.rb
+      # 6 - views/galleries/wrappers/_media_element.html.erb
       length_description: 280
       # Maximum number of characters allowed in the title of an element
       # 1 - models/media_element.rb
@@ -3007,6 +3010,7 @@ en:
       # 4 - views/media_elements/info_form_in_editor/_new.html.erb
       # 5 - views/admin/media_elements/new.html.erb
       # 6 - controllers/application_controller.rb
+      # 7 - views/galleries/wrappers/_media_element.html.erb
       length_title: 35
     video_editor:
       # Maximum number of characters allowed in the text component of Video Editor
