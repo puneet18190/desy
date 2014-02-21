@@ -1365,7 +1365,7 @@
     
   }
   
-  &.document {
+  &.document form#new_gallery_document {
     
     .loading-square {
       
@@ -1375,7 +1375,15 @@
     
     .part1 {
       
-      
+      .attachment {
+        
+        label {
+          
+          @include svg-circle-icon-handler($assets-bottone-add-document_svg, 64px, 1, 1, 1, 0, 0, 0.5, 0, 0)
+          
+        }
+        
+      }
       
     }
     
