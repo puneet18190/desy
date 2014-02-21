@@ -264,6 +264,7 @@
             float: left;
             margin-left: 20px;
             padding-top: 13px;
+            color: #B5B3B3;
             
           }
           
@@ -1480,8 +1481,15 @@
   
 }
 
-.document_quick_upload_hint:hover {
+#document_gallery a.document_quick_upload_hint {
   
-  text-decoration: underline;
+  color: #B5B3B3;
+  
+  &:hover {
+    
+    text-decoration: underline;
+    color: #B5B3B3;
+    
+  }
   
 }
