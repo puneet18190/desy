@@ -488,7 +488,7 @@ class GalleriesController < ApplicationController
       if record.errors.added? :attachment, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
-      # TODO loadder inserire errori correttamente
+      @errors = convert_document_lesson_editor_uploader_messages record.errors
     else
       get_documents(1)
     end

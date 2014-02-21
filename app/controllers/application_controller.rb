@@ -273,7 +273,7 @@ class ApplicationController < ActionController::Base
   end
   
   # Used for errors in forms of element uploader for lesson editor: converts an item of type ActiveModel::Errors into a translated message for the user.
-  def convert_media_element_lesson_editor_uploader_messages errors
+  def convert_media_element_lesson_editor_uploader_messages(errors)
     return {:full => t('forms.error_captions.media_folder_size_exceeded')} if errors.added? :media, :folder_size_exceeded
     resp = {}
     max_title = t('language_parameters.media_element.length_title')
@@ -291,6 +291,20 @@ class ApplicationController < ActionController::Base
     else
       resp[:media] = t('forms.error_captions.media_unsupported_format').downcase if errors.messages.has_key? :sti_type
     end
+    resp
+  end
+  
+  # Used for errors in forms of load documents for lesson editor.
+  def convert_document_lesson_editor_uploader_messages(errors)
+    return {:full => t('forms.error_captions.document_folder_size_exceeded')} if errors.added? :attachment, :folder_size_exceeded # TODO traduzz
+    resp = {}
+    max_title = 111 # TODO traduzz
+    max_description = 123 # TODO traduzz
+    resp[:title] = 'asfaf'.downcase if errors.added? :title, :too_long, {:count => max_title} # TODO traduzz
+    resp[:title] = 'dagdgdsgfs'.downcase if errors.added? :title, :blank # TODO traduzz
+    resp[:description] = 'dfd sdg'.downcase if errors.added? :description, :too_long, {:count => max_description} # TODO traduzz
+    resp[:description] = 'afafds'.downcase if errors.added? :description, :blank # TODO traduzz
+    resp[:media] = t('forms.error_captions.document_blank') if errors.messages.has_key?(:attachment) && errors.messages[:attachment].any? # TODO traduzz
     resp
   end
   
