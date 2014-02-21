@@ -384,7 +384,7 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count) {
     $(selector).data('loader-can-move', false);
     setTimeout(function() {
       var position_now = $(selector).data('loader-position-stop');
-      var coefficient = (100 - ) / 500;
+      var coefficient = (100 - position_now) / 500;
       linearRecursionLessonEditorUploadinBar(selector, 0, coefficient, position_now, function() {
         $(selector).data('loader-position-stop', 0);
         if(type != 'audio') {
