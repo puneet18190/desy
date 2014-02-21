@@ -296,7 +296,7 @@ class ApplicationController < ActionController::Base
   
   # Used for errors in forms of load documents for lesson editor.
   def convert_document_lesson_editor_uploader_messages(errors)
-    return {:full => t('forms.error_captions.document_folder_size_exceeded')} if errors.added? :attachment, :folder_size_exceeded # TODO traduzz
+    return {:full => t('forms.error_captions.document_folder_size_exceeded')} if errors.added? :attachment, :folder_size_exceeded
     resp = {}
     max_title = 111 # TODO traduzz
     max_description = 123 # TODO traduzz

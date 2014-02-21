@@ -682,6 +682,7 @@ cn:
         media_element: "你正在加载多媒体文件, 请不要离开此页!"
       # The documents folder is full
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       document_folder_size_exceeded: "文档上传临时终止;请稍后再试"
       # The document is blank
       # 1 - controllers/application_controller.rb

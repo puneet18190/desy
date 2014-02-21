@@ -682,6 +682,7 @@ en:
         media_element: "You are loading a didactic element, if you leave the page you will stop the process"
       # The documents folder is full
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       document_folder_size_exceeded: "Document uploading is temporarly disabled; please try again later"
       # The document is blank
       # 1 - controllers/application_controller.rb

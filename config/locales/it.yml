@@ -682,6 +682,7 @@ it:
         media_element: "Stai caricando un elemento didattico, se lasci la pagina interromperai il processo"
       # The documents folder is full
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       document_folder_size_exceeded: "Il caricamento di documenti è temporaneamente disabilitato: riprova più tardi"
       # The document is blank
       # 1 - controllers/application_controller.rb
