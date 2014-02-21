@@ -378,7 +378,7 @@ class GalleriesController < ApplicationController
           )
         end
       else
-        @errors = {:media => t('forms.error_captions.wrong_sti_type.audio')}
+        @errors = {:media => t('forms.error_captions.wrong_sti_type.audio').downcase}
       end
     else
       if record.errors.added? :media, :too_large
@@ -405,7 +405,7 @@ class GalleriesController < ApplicationController
         record.save
         get_images(1)
       else
-        @errors = {:media => t('forms.error_captions.wrong_sti_type.image')}
+        @errors = {:media => t('forms.error_captions.wrong_sti_type.image').downcase}
       end
     else
       if record.errors.added? :media, :too_large
@@ -439,7 +439,7 @@ class GalleriesController < ApplicationController
           )
         end
       else
-        @errors = {:media => t('forms.error_captions.wrong_sti_type.video')}
+        @errors = {:media => t('forms.error_captions.wrong_sti_type.video').downcase}
       end
     else
       if record.errors.added? :media, :too_large
