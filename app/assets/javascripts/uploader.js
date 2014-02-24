@@ -404,18 +404,16 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count, item_id
           gallery_scrollable.data('jsp').destroy();
         }
         var container = $('#lesson_editor_' + type + '_gallery_container');
-        container.find('#' + type + '_gallery').replaceWith(gallery);
         container.data('page', 1);
         container.data('tot-pages', pages);
         if(type == 'document') {
-          var current_slide = $('li._lesson_editor_current_slide');
-          container.data('slide-id', current_slide.data('slide-id'));
+          container.find('#document_gallery .documentsExternal').replaceWith(gallery);
           if(count > 6) {
             initializeDocumentGalleryInLessonEditor();
           }
-          loadDocumentGalleryForSlideInLessonEditor(current_slide.data('slide-id'));
           $('#gallery_document_' + item_id + ' .add_remove').click();
         } else {
+          container.find('#' + type + '_gallery').replaceWith(gallery);
           $('._close_' + type + '_gallery').addClass('_close_' + type + '_gallery_in_lesson_editor');
           $('._select_' + type + '_from_gallery').addClass('_add_' + type + '_to_slide');
           if(type == 'audio') {
