@@ -18,7 +18,7 @@
       <% end %>
     </div>
   </div>
-  <%= render :partial => 'galleries/contents/document', :locals => {:documents => documents} %>
+  <%= render :partial => 'galleries/contents/document', :locals => {:documents => documents, :display_docs => display_docs, :empty => doc_empty} %>
   <div class="documentsFooter">
     <div class="triangolo" style="display:<%= display_docs[0] %>"></div>
     <div class="footerLeft" style="display:<%= display_docs[0] %>">
