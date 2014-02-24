@@ -5149,7 +5149,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 71,
-            "description": "Function that checks the conversion of the unconverted media elements in the page.",
+            "description": "Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink \"UploaderLessonEditor/lessonEditorConversionOverview:method\"}}{{(crossLink}}.",
             "itemtype": "method",
             "name": "mediaElementLoaderConversionOverview",
             "params": [
@@ -6351,6 +6351,27 @@
         {
             "file": "app/assets/javascripts/uploader.js",
             "line": 280,
+            "description": "Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink \"MediaElementEditorConversion/mediaElementLoaderConversionOverview:method\"}}{{(crossLink}}.",
+            "itemtype": "method",
+            "name": "lessonEditorConversionOverview",
+            "params": [
+                {
+                    "name": "list",
+                    "description": "list of media elements that are being checked",
+                    "type": "Array"
+                },
+                {
+                    "name": "time",
+                    "description": "time to iterate the loop",
+                    "type": "Number"
+                }
+            ],
+            "class": "UploaderLessonEditor",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 318,
             "description": "Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink \"UploaderLessonEditor/recursionLessonEditorUploadinBar:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "linearRecursionLessonEditorUploadinBar",
@@ -6386,7 +6407,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 301,
+            "line": 339,
             "description": "Handles the recursion of uploading animation.",
             "itemtype": "method",
             "name": "recursionLessonEditorUploadinBar",
@@ -6407,7 +6428,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 330,
+            "line": 368,
             "description": "Shows a percentage of the circular loading bar.",
             "itemtype": "method",
             "name": "showPercentLessonEditorUploadinBar",
@@ -6428,7 +6449,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 367,
+            "line": 405,
             "description": "Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).",
             "itemtype": "method",
             "name": "uploadDoneLessonEditor",
@@ -6469,7 +6490,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 449,
+            "line": 488,
             "description": "Handles the errors of loading in Lesson Editor.",
             "itemtype": "method",
             "name": "uploaderErrorsLessonEditor",
@@ -6490,7 +6511,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 481,
+            "line": 520,
             "description": "Handles 413 status error, file too large, inside Lesson Editor.",
             "itemtype": "method",
             "name": "uploadFileTooLargeLessonEditor",

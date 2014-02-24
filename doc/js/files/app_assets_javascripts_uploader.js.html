@@ -596,6 +596,44 @@ function disableTagsInputTooHighForLessonEditorLoader(scope_id) {
 }
 
 /**
+Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink &quot;MediaElementEditorConversion/mediaElementLoaderConversionOverview:method&quot;}}{{(crossLink}}.
+@method lessonEditorConversionOverview
+@for UploaderLessonEditor
+@param list {Array} list of media elements that are being checked
+@param time {Number} time to iterate the loop
+**/
+function lessonEditorConversionOverview(list, time) { // TODO converssion
+  $(&#x27;._media_element_item._disabled&#x27;).each(function() {
+    var my_id = $(this).find(&#x27;._Image_button_preview, ._Audio_button_preview, ._Video_button_preview&#x27;).data(&#x27;clickparam&#x27;);
+    if(list.indexOf(my_id) == -1) {
+      list.push(my_id);
+    }
+  });
+  var black_list = $(&#x27;#info_container&#x27;).data(&#x27;media-elements-not-anymore-in-conversion&#x27;);
+  for(var i = 0; i &lt; black_list.length; i ++) {
+    var j = list.indexOf(black_list[i]);
+    list.splice(j, 1);
+  }
+  if(list.length &gt; 0) {
+    var ajax_url = &#x27;/media_elements/conversion/check?&#x27;;
+    for(var i = 0; i &lt; list.length; i ++) {
+      ajax_url += (&#x27;me&#x27; + list[i] + &#x27;=true&#x27;);
+      if(i != list.length - 1) {
+        ajax_url += &#x27;&amp;&#x27;;
+      }
+    }
+    unbindLoader();
+    $.ajax({
+      url: ajax_url,
+      type: &#x27;get&#x27;
+    }).always(bindLoader);
+  }
+  setTimeout(function() {
+    lessonEditorConversionOverview(list, time);
+  }, time);
+}
+
+/**
 Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink &quot;UploaderLessonEditor/recursionLessonEditorUploadinBar:method&quot;}}{{/crossLink}}.
 @method linearRecursionLessonEditorUploadinBar
 @for UploaderLessonEditor
@@ -726,6 +764,7 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count, item_id
         container.data(&#x27;tot-pages&#x27;, pages);
         if(type == &#x27;document&#x27;) {
           container.find(&#x27;#document_gallery .documentsExternal&#x27;).replaceWith(gallery);
+          $(&#x27;#document_gallery_filter&#x27;).val(&#x27;&#x27;);
           if(count &gt; 6) {
             initializeDocumentGalleryInLessonEditor();
           }
