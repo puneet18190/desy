@@ -149,6 +149,7 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/:lesson_id/remove_lesson'  => 'virtual_classroom#remove_lesson'
   
   # LESSON EDITOR
+  get  'lesson_editor/check_conversion'                        => 'lesson_editor#check_conversion'
   post 'lessons/create'                                        => 'lesson_editor#create'
   get  'lessons/:lesson_id/edit'                               => 'lesson_editor#edit',                  :as => :edit_lesson
   get  'lessons/:lesson_id/slides/edit'                        => 'lesson_editor#index',                 :as => :lesson_editor
