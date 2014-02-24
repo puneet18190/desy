@@ -66,14 +66,15 @@ class Document < ActiveRecord::Base
     '.pdf'     => :pdf,
     '.ps'      => :pdf,
   }
-
+  
+  # Colors of the icons by type
   COLORS_BY_TYPE = {
-    ppt:     '#EA943B',
-    doc:     '#5DA3DA',
-    zip:     '#57585B',
-    exc:     '#92BD4B',
-    pdf:     '#C61734',
-    unknown: '#A7A9AC'
+    :ppt     => '#F6921E',
+    :doc     => '#26A9E0',
+    :zip     => '#57585B',
+    :exc     => '#37B34A',
+    :pdf     => '#EC1C24',
+    :unknown => '#A7A9AC'
   }
   
   serialize :metadata, OpenStruct
