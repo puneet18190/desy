@@ -278,7 +278,7 @@ function disableTagsInputTooHighForLessonEditorLoader(scope_id) {
 }
 
 /**
-Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink "MediaElementEditorConversion/mediaElementLoaderConversionOverview:method"}}{{(crossLink}}.
+Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink "MediaElementEditorConversion/mediaElementLoaderConversionOverview:method"}}{{/crossLink}}.
 @method lessonEditorConversionOverview
 @for UploaderLessonEditor
 @param list {Array} list of media elements that are being checked
