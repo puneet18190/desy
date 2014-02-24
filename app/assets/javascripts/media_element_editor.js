@@ -69,7 +69,7 @@ function submitMediaElementEditorCacheForm(form) {
 
 
 /**
-Function that checks the conversion of the unconverted media elements in the page.
+Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink "UploaderLessonEditor/lessonEditorConversionOverview:method"}}{{(crossLink}}.
 @method mediaElementLoaderConversionOverview
 @for MediaElementEditorConversion
 @param list {Array} list of media elements that are being checked

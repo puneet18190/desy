@@ -278,6 +278,44 @@ function disableTagsInputTooHighForLessonEditorLoader(scope_id) {
 }
 
 /**
+Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink "MediaElementEditorConversion/mediaElementLoaderConversionOverview:method"}}{{(crossLink}}.
+@method lessonEditorConversionOverview
+@for UploaderLessonEditor
+@param list {Array} list of media elements that are being checked
+@param time {Number} time to iterate the loop
+**/
+function lessonEditorConversionOverview(list, time) { // TODO converssion
+  $('._media_element_item._disabled').each(function() {
+    var my_id = $(this).find('._Image_button_preview, ._Audio_button_preview, ._Video_button_preview').data('clickparam');
+    if(list.indexOf(my_id) == -1) {
+      list.push(my_id);
+    }
+  });
+  var black_list = $('#info_container').data('media-elements-not-anymore-in-conversion');
+  for(var i = 0; i < black_list.length; i ++) {
+    var j = list.indexOf(black_list[i]);
+    list.splice(j, 1);
+  }
+  if(list.length > 0) {
+    var ajax_url = '/media_elements/conversion/check?';
+    for(var i = 0; i < list.length; i ++) {
+      ajax_url += ('me' + list[i] + '=true');
+      if(i != list.length - 1) {
+        ajax_url += '&';
+      }
+    }
+    unbindLoader();
+    $.ajax({
+      url: ajax_url,
+      type: 'get'
+    }).always(bindLoader);
+  }
+  setTimeout(function() {
+    lessonEditorConversionOverview(list, time);
+  }, time);
+}
+
+/**
 Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink "UploaderLessonEditor/recursionLessonEditorUploadinBar:method"}}{{/crossLink}}.
 @method linearRecursionLessonEditorUploadinBar
 @for UploaderLessonEditor

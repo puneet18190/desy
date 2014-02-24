@@ -285,6 +285,33 @@ class LessonEditorController < ApplicationController
   def load_slide
   end
   
+  # === Description
+  #
+  # Reloads videos and audios in the galleries if they are in conversion
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  def check_conversion
+    @mes = []
+    params.keys.each do |key|
+      if key[0, 2] == 'me'
+        id = key[2, key.length - 2]
+        media_element_id = correct_integer?(id) ? id.to_i : 0
+        media_element = MediaElement.find_by_id media_element_id
+        ok = (media_element && current_user.id == media_element.user_id && !media_element.is_public)
+        media_element.set_status current_user.id if ok
+        @mes << {
+          :ok               => ok,
+          :media_element_id => media_element_id,
+          :media_element    => media_element,
+          :type             => media_element.sti_type.downcase
+        }
+      end
+    end
+  end
+  
   private
   
   # Checks if the lesson editor is not locked for the user
