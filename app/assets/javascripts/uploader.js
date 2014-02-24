@@ -409,13 +409,11 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count) {
         if(type == 'document') {
           var current_slide = $('li._lesson_editor_current_slide');
           container.data('slide-id', current_slide.data('slide-id'));
-          
-          // TODO manca
-//          <% if @documents.count > 6 %>
-//            initializeDocumentGalleryInLessonEditor();
-//          <% end %>
-//          loadDocumentGalleryForSlideInLessonEditor(current_slide.data('slide-id'));
-          
+          if(count > 6) {
+            initializeDocumentGalleryInLessonEditor();
+          }
+          loadDocumentGalleryForSlideInLessonEditor(current_slide.data('slide-id'));
+          // TODO manca click su nuovo documento appena caricato loadder
         } else {
           $('._close_' + type + '_gallery').addClass('_close_' + type + '_gallery_in_lesson_editor');
           $('._select_' + type + '_from_gallery').addClass('_add_' + type + '_to_slide');
