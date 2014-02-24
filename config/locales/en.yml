@@ -2846,6 +2846,7 @@ en:
       attachment_placeholder: "Select a file to load"
       # Error when the file uploaded is too large
       # 1 - controllers/documents_controller.rb
+      # 2 - controllers/galleries_controller.rb
       attachment_too_large: "Attachment too large"
       # Caption to cancel the uploading
       # 1 - views/documents/_new_form_popup.html.erb

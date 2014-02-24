@@ -496,9 +496,22 @@ class GalleriesController < ApplicationController
     render :layout => false
   end
   
-  # TODO loadder documentalo
+  # === Description
+  #
+  # This action checks for errors without setting the attachment on the new document
+  #
+  # === Mode
+  #
+  # Js
+  #
   def create_fake_document
-    
+    record = Document.new
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.user_id = current_user.id
+    record.valid?
+    @errors = convert_media_element_lesson_editor_uploader_messages record.errors
+    @errors[:media] = t('documents.upload_form.attachment_too_large').downcase
   end
   
   private

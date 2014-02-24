@@ -2846,6 +2846,7 @@ it:
       attachment_placeholder: "Seleziona un file"
       # Error when the file uploaded is too large
       # 1 - controllers/documents_controller.rb
+      # 2 - controllers/galleries_controller.rb
       attachment_too_large: "L'allegato è troppo grande"
       # Caption to cancel the uploading
       # 1 - views/documents/_new_form_popup.html.erb

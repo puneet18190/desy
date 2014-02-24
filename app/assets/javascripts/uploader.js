@@ -453,7 +453,7 @@ Handles the errors of loading in Lesson Editor.
 @param selector {String} HTML selector for the specific uploader (audio, video, image or document)
 @param errors {Hash} a hash of the kind 'field': 'error'. It can't be undefined!
 **/
-function uploaderErrorsLessonEditor(selector, errors) { // TODO loadderfunz
+function uploaderErrorsLessonEditor(selector, errors) {
   $(selector + ' .form_error').removeClass('form_error');
   $(selector + ' .errors_layer').hide();
   $.each(errors, function(key, value) {
@@ -484,7 +484,7 @@ Handles 413 status error, file too large, inside Lesson Editor.
 @for UploaderLessonEditor
 @param selector {String} HTML selector for the specific uploader (audio, video, image or document)
 **/
-function uploadFileTooLargeLessonEditor(selector) { // TODO loadderfunz
+function uploadFileTooLargeLessonEditor(selector) {
   var ret = document.getElementById('upload_target').contentWindow.document.title;
   if(ret && ret.match(/413/g)) {
     $window.unbind('beforeunload');
