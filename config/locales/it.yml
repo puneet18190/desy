@@ -707,7 +707,7 @@ it:
       # The user didn't insert a title
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
-      description_blank: "ILa descrizione è vuota"
+      description_blank: "La descrizione è vuota"
       # The user didn't insert a title
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
