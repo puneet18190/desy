@@ -298,8 +298,8 @@ class ApplicationController < ActionController::Base
   def convert_document_lesson_editor_uploader_messages(errors)
     return {:full => t('forms.error_captions.document_folder_size_exceeded')} if errors.added? :attachment, :folder_size_exceeded
     resp = {}
-    max_title = 111 # TODO traduzz
-    max_description = 123 # TODO traduzz
+    max_title = t('language_parameters.document.length_title')
+    max_description = t('language_parameters.document.length_description')
     resp[:title] = 'asfaf'.downcase if errors.added? :title, :too_long, {:count => max_title} # TODO traduzz
     resp[:title] = 'dagdgdsgfs'.downcase if errors.added? :title, :blank # TODO traduzz
     resp[:description] = 'dfd sdg'.downcase if errors.added? :description, :too_long, {:count => max_description} # TODO traduzz

@@ -3005,12 +3005,14 @@ cn:
       # 2 - views/documents/_view_single_compact.html.erb
       # 3 - views/documents/_new_form_popup.html.erb
       # 4 - views/galleries/wrappers/_document.html.erb
+      # 5 - controllers/application_controller.rb
       length_description: 280
       # Maximum number of characters allowed in the title of a document
       # 1 - models/document.rb
       # 2 - models/document.rb
       # 3 - views/documents/_new_form_popup.html.erb
       # 4 - views/galleries/wrappers/_document.html.erb
+      # 5 - controllers/application_controller.rb
       length_title: 35
     media_element:
       # Maximum number of characters allowed in the description of an element
