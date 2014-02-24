@@ -374,7 +374,7 @@ Handles correct uploading process in the Lesson Editor (correct in the sense tha
 @param pages {Number} number of pages of the newly loaded gallery
 @param count {Number} number of elements inside the gallery
 **/
-function uploadDoneLessonEditor(selector, errors, gallery, pages, count) { // TODO loadderfunz
+function uploadDoneLessonEditor(selector, errors, gallery, pages, count) {
   var type = selector.split('-');
   type = type[type.length - 1];
   $window.unbind('beforeunload');
@@ -387,7 +387,7 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count) { // TO
       var coefficient = (100 - position_now) / 500;
       linearRecursionLessonEditorUploadinBar(selector, 0, coefficient, position_now, function() {
         $(selector).data('loader-position-stop', 0);
-        if(type != 'audio') {
+        if(type != 'audio' && type != 'document') {
           var dialogs_selector = (type == 'image') ? '.imageInGalleryPopUp' : '.videoInGalleryPopUp'
           $(dialogs_selector).each(function() {
             if($(this).hasClass('ui-dialog-content')) {
@@ -398,11 +398,20 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count) { // TO
         $(selector + ' .part3 .close').removeClass('disabled');
         $(selector + ' .part3 .submit').removeClass('disabled');
         $(selector + ' .part1 .attachment .file').unbind('click');
-        var gallery_scrollable = $('#' + type + '_gallery_content > div');
+        var gallery_scrollable = (type == 'document') ? $('.for-scroll-pain') : $('#' + type + '_gallery_content > div');
         if(gallery_scrollable.data('jsp') != undefined) {
           gallery_scrollable.data('jsp').destroy();
         }
         var container = $('#lesson_editor_' + type + '_gallery_container');
+        
+        
+        
+        
+        // TODO fin qui
+        
+        
+        
+        
         container.find('#' + type + '_gallery').replaceWith(gallery);
         container.data('page', 1);
         container.data('tot-pages', pages);
