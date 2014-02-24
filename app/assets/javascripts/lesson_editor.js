@@ -891,7 +891,7 @@ Loads the specific gallery for documents relative to a slide. The gallery is sup
 **/
 function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
   loadDocumentGalleryContent(slide_id);
-  updateEffectsInsideDocumentGallery(slide_id);
+  updateEffectsInsideDocumentGallery();
   $('#lesson_editor_document_gallery_container').data('slide-id', slide_id);
 }
 
@@ -1079,9 +1079,7 @@ function updateEffectsInsideDocumentGallery() {
   inputs.each(function() {
     ids.push($(this).val());
   });
-  $('.documentsExternal .documentInGallery.disabled').each(function() {
-    $(this).removeClass('disabled');
-  });
+  $('.documentsExternal .documentInGallery.disabled').removeClass('disabled');
   for(var i = 0; i < ids.length; i++) {
     $('#gallery_document_' + ids[i] + ' .documentInGallery').addClass('disabled');
   }

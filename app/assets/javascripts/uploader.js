@@ -411,6 +411,7 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count, item_id
           if(count > 6) {
             initializeDocumentGalleryInLessonEditor();
           }
+          container.find('#document_gallery').data('empty', false)
           $('#gallery_document_' + item_id + ' .add_remove').click();
         } else {
           container.find('#' + type + '_gallery').replaceWith(gallery);
