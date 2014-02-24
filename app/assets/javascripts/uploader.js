@@ -408,6 +408,7 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count, item_id
         container.data('tot-pages', pages);
         if(type == 'document') {
           container.find('#document_gallery .documentsExternal').replaceWith(gallery);
+          $('#document_gallery_filter').val('');
           if(count > 6) {
             initializeDocumentGalleryInLessonEditor();
           }
