@@ -686,6 +686,7 @@ it:
       document_folder_size_exceeded: "Il caricamento di documenti è temporaneamente disabilitato: riprova più tardi"
       # The document is blank
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       document_blank: "Scegliere un allegato"
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb

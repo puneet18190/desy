@@ -304,7 +304,7 @@ class ApplicationController < ActionController::Base
     resp[:title] = 'dagdgdsgfs'.downcase if errors.added? :title, :blank # TODO traduzz
     resp[:description] = 'dfd sdg'.downcase if errors.added? :description, :too_long, {:count => max_description} # TODO traduzz
     resp[:description] = 'afafds'.downcase if errors.added? :description, :blank # TODO traduzz
-    resp[:media] = t('forms.error_captions.document_blank') if errors.messages.has_key?(:attachment) && errors.messages[:attachment].any? # TODO traduzz
+    resp[:media] = t('forms.error_captions.document_blank') if errors.messages.has_key?(:attachment) && errors.messages[:attachment].any?
     resp
   end
   
