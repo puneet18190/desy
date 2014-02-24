@@ -374,7 +374,7 @@ Handles correct uploading process in the Lesson Editor (correct in the sense tha
 @param pages {Number} number of pages of the newly loaded gallery
 @param count {Number} number of elements inside the gallery
 **/
-function uploadDoneLessonEditor(selector, errors, gallery, pages, count) {
+function uploadDoneLessonEditor(selector, errors, gallery, pages, count) { // TODO loadderfunz
   var type = selector.split('-');
   type = type[type.length - 1];
   $window.unbind('beforeunload');
@@ -443,7 +443,7 @@ Handles the errors of loading in Lesson Editor.
 @param selector {String} HTML selector for the specific uploader (audio, video, image or document)
 @param errors {Hash} a hash of the kind 'field': 'error'. It can't be undefined!
 **/
-function uploaderErrorsLessonEditor(selector, errors) {
+function uploaderErrorsLessonEditor(selector, errors) { // TODO loadderfunz
   $(selector + ' .form_error').removeClass('form_error');
   $(selector + ' .errors_layer').hide();
   $.each(errors, function(key, value) {
@@ -474,7 +474,7 @@ Handles 413 status error, file too large, inside Lesson Editor.
 @for UploaderLessonEditor
 @param selector {String} HTML selector for the specific uploader (audio, video, image or document)
 **/
-function uploadFileTooLargeLessonEditor(selector) {
+function uploadFileTooLargeLessonEditor(selector) { // TODO loadderfunz
   var ret = document.getElementById('upload_target').contentWindow.document.title;
   if(ret && ret.match(/413/g)) {
     $window.unbind('beforeunload');
