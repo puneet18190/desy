@@ -300,8 +300,8 @@ class ApplicationController < ActionController::Base
     resp = {}
     max_title = t('language_parameters.document.length_title')
     max_description = t('language_parameters.document.length_description')
-    resp[:title] = 'asfaf'.downcase if errors.added? :title, :too_long, {:count => max_title} # TODO traduzz
-    resp[:title] = 'dagdgdsgfs'.downcase if errors.added? :title, :blank # TODO traduzz
+    resp[:title] = t('forms.error_captions.title_too_long', :max => max_title).downcase if errors.added? :title, :too_long, {:count => max_title}
+    resp[:title] = t('forms.error_captions.title_blank').downcase if errors.added? :title, :blank
     resp[:description] = 'dfd sdg'.downcase if errors.added? :description, :too_long, {:count => max_description} # TODO traduzz
     resp[:description] = 'afafds'.downcase if errors.added? :description, :blank # TODO traduzz
     resp[:media] = t('forms.error_captions.document_blank') if errors.messages.has_key?(:attachment) && errors.messages[:attachment].any?
