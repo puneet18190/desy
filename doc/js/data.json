@@ -5149,7 +5149,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 71,
-            "description": "Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink \"UploaderLessonEditor/lessonEditorConversionOverview:method\"}}{{(crossLink}}.",
+            "description": "Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink \"UploaderLessonEditor/lessonEditorConversionOverview:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "mediaElementLoaderConversionOverview",
             "params": [
@@ -6351,7 +6351,7 @@
         {
             "file": "app/assets/javascripts/uploader.js",
             "line": 280,
-            "description": "Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink \"MediaElementEditorConversion/mediaElementLoaderConversionOverview:method\"}}{{(crossLink}}.",
+            "description": "Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink \"MediaElementEditorConversion/mediaElementLoaderConversionOverview:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "lessonEditorConversionOverview",
             "params": [
