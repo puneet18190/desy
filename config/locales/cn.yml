@@ -1630,13 +1630,13 @@ cn:
       select: "选择音频"
     # Captions for empty galleries, one for each kind
     empty:
-      # 1 - views/galleries/contents/audio.html.erb
+      # 1 - views/galleries/contents/_audio.html.erb
       audio: "你的音频库是空的"
-      # 1 - views/galleries/_document.html.erb
+      # 1 - views/galleries/contents/_document.html.erb
       document: "你没有任何的文档!"
-      # 1 - views/galleries/contents/image.html.erb
+      # 1 - views/galleries/contents/_image.html.erb
       image: "你的图像库是空的"
-      # 1 - views/galleries/contents/video.html.erb
+      # 1 - views/galleries/contents/_video.html.erb
       video: "你的视频库是空的"
     documents:
       # The user cancels his modifications
@@ -1652,7 +1652,7 @@ cn:
       # 1 - views/galleries/_document.html.erb
       filter_by: "过滤"
       # Caption used when the user attaches the maximum allowed number of documents into a slide
-      # 1 - views/galleries/_document.html.erb
+      # 1 - views/galleries/contents/_document.html.erb
       locked: "你不能附加超过3个文档"
       # Placeholder for a document that has to be loaded (the variable %{link} is replaced by the link to upload a new element)
       # 1 - views/galleries/_document.html.erb

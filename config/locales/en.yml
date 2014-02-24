@@ -1630,13 +1630,13 @@ en:
       select: "Select audio"
     # Captions for empty galleries, one for each kind
     empty:
-      # 1 - views/galleries/contents/audio.html.erb
+      # 1 - views/galleries/contents/_audio.html.erb
       audio: "Your audio gallery is empty!"
-      # 1 - views/galleries/_document.html.erb
+      # 1 - views/galleries/contents/_document.html.erb
       document: "You don't have any documents!"
-      # 1 - views/galleries/contents/image.html.erb
+      # 1 - views/galleries/contents/_image.html.erb
       image: "Your image gallery is empty!"
-      # 1 - views/galleries/contents/video.html.erb
+      # 1 - views/galleries/contents/_video.html.erb
       video: "Your video gallery is empty!"
     documents:
       # The user cancels his modifications
@@ -1652,7 +1652,7 @@ en:
       # 1 - views/galleries/_document.html.erb
       filter_by: "Filter by"
       # Caption used when the user attaches the maximum allowed number of documents into a slide
-      # 1 - views/galleries/_document.html.erb
+      # 1 - views/galleries/contents/_document.html.erb
       locked: "You can't attach more than three documents"
       # Placeholder for a document that has to be loaded (the variable %{link} is replaced by the link to upload a new element)
       # 1 - views/galleries/_document.html.erb

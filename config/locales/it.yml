@@ -1630,13 +1630,13 @@ it:
       select: "Seleziona una traccia audio"
     # Captions for empty galleries, one for each kind
     empty:
-      # 1 - views/galleries/contents/audio.html.erb
+      # 1 - views/galleries/contents/_audio.html.erb
       audio: "La tua galleria degli audio è vuota!"
-      # 1 - views/galleries/_document.html.erb
+      # 1 - views/galleries/contents/_document.html.erb
       document: "Non hai nessun documento!"
-      # 1 - views/galleries/contents/image.html.erb
+      # 1 - views/galleries/contents/_image.html.erb
       image: "La tua galleria delle immagini è vuota!"
-      # 1 - views/galleries/contents/video.html.erb
+      # 1 - views/galleries/contents/_video.html.erb
       video: "La tua galleria dei video è vuota!"
     documents:
       # The user cancels his modifications
@@ -1652,7 +1652,7 @@ it:
       # 1 - views/galleries/_document.html.erb
       filter_by: "Filtra"
       # Caption used when the user attaches the maximum allowed number of documents into a slide
-      # 1 - views/galleries/_document.html.erb
+      # 1 - views/galleries/contents/_document.html.erb
       locked: "Puoi allegare al massimo tre documenti"
       # Placeholder for a document that has to be loaded (the variable %{link} is replaced by the link to upload a new element)
       # 1 - views/galleries/_document.html.erb
