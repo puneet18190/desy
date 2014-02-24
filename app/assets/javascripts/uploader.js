@@ -284,9 +284,9 @@ Function that checks the conversion of the unconverted media elements in the pag
 @param list {Array} list of media elements that are being checked
 @param time {Number} time to iterate the loop
 **/
-function lessonEditorConversionOverview(list, time) { // TODO converssion
-  $('._media_element_item._disabled').each(function() {
-    var my_id = $(this).find('._Image_button_preview, ._Audio_button_preview, ._Video_button_preview').data('clickparam');
+function lessonEditorConversionOverview(list, time) {
+  $('._audio_gallery_thumb._disabled, ._video_gallery_thumb._disabled').each(function() {
+    var my_id = $(this).hasClass('_video_gallery_thumb') ? $(this).data('video-id') : $(this).data('audio-id');
     if(list.indexOf(my_id) == -1) {
       list.push(my_id);
     }
@@ -297,7 +297,7 @@ function lessonEditorConversionOverview(list, time) { // TODO converssion
     list.splice(j, 1);
   }
   if(list.length > 0) {
-    var ajax_url = '/media_elements/conversion/check?';
+    var ajax_url = '/lesson_editor/check_conversion?';
     for(var i = 0; i < list.length; i ++) {
       ajax_url += ('me' + list[i] + '=true');
       if(i != list.length - 1) {
