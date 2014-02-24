@@ -304,7 +304,7 @@ class ApplicationController < ActionController::Base
     resp[:title] = t('forms.error_captions.title_blank').downcase if errors.added? :title, :blank
     resp[:description] = t('forms.error_captions.description_too_long', :max => max_description).downcase if errors.added? :description, :too_long, {:count => max_description}
     resp[:description] = t('forms.error_captions.description_blank').downcase if errors.added? :description, :blank
-    resp[:media] = t('forms.error_captions.document_blank') if errors.messages.has_key?(:attachment) && errors.messages[:attachment].any?
+    resp[:media] = t('forms.error_captions.document_blank').downcase if errors.messages.has_key?(:attachment) && errors.messages[:attachment].any?
     resp
   end
   
