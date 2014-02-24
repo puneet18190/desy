@@ -1,4 +1,4 @@
-Thu, 20 Feb 2014 12:32:37 +0100
+Mon, 24 Feb 2014 16:22:56 +0100
 app/controllers/admin/dashboard_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/admin/documents_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
 app/controllers/admin/lessons_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
@@ -10,12 +10,12 @@ app/controllers/admin/reports_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/admin/settings_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
 app/controllers/admin/users_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
 app/controllers/admin_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/controllers/application_controller.rb	Thu, 20 Feb 2014 11:40:44 +0100
+app/controllers/application_controller.rb	Mon, 24 Feb 2014 16:18:53 +0100
 app/controllers/audio_editor_controller.rb	Mon, 10 Feb 2014 11:08:12 +0100
 app/controllers/dashboard_controller.rb	Tue, 07 Jan 2014 16:52:25 +0100
 app/controllers/documents_controller.rb	Wed, 12 Feb 2014 17:44:36 +0100
 app/controllers/faqs_controller.rb	Wed, 27 Nov 2013 10:38:42 +0100
-app/controllers/galleries_controller.rb	Thu, 20 Feb 2014 11:55:11 +0100
+app/controllers/galleries_controller.rb	Mon, 24 Feb 2014 16:06:34 +0100
 app/controllers/image_editor_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/lesson_editor_controller.rb	Tue, 03 Dec 2013 10:29:01 +0100
 app/controllers/lesson_export_controller.rb	Wed, 15 Jan 2014 15:13:38 +0100
@@ -24,7 +24,7 @@ app/controllers/lessons_controller.rb	Wed, 12 Feb 2014 16:13:48 +0100
 app/controllers/mailing_lists_controller.rb	Thu, 14 Nov 2013 12:46:56 +0100
 app/controllers/media_elements_controller.rb	Wed, 12 Feb 2014 17:44:42 +0100
 app/controllers/notifications_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/controllers/prelogin_controller.rb	Wed, 19 Feb 2014 14:14:36 +0100
+app/controllers/prelogin_controller.rb	Fri, 21 Feb 2014 18:12:14 +0100
 app/controllers/reports_controller.rb	Tue, 26 Nov 2013 16:04:55 +0100
 app/controllers/search_controller.rb	Tue, 07 Jan 2014 16:52:25 +0100
 app/controllers/tags_controller.rb	Mon, 17 Feb 2014 15:26:57 +0100
@@ -39,7 +39,7 @@ app/mailers/user_mailer.rb	Fri, 07 Feb 2014 17:19:21 +0100
 app/models/admin_search_form.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/models/audio.rb	Thu, 09 Jan 2014 12:06:10 +0100
 app/models/bookmark.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/models/document.rb	Mon, 10 Feb 2014 11:08:12 +0100
+app/models/document.rb	Mon, 24 Feb 2014 16:15:05 +0100
 app/models/documents_slide.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/models/image.rb	Thu, 09 Jan 2014 12:06:10 +0100
 app/models/lesson.rb	Mon, 10 Feb 2014 11:08:12 +0100

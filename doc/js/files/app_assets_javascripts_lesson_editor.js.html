@@ -1008,14 +1008,37 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find(&#x27;.part1 .attachment label input&#x27;).val(&#x27;&#x27;);
     popup.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
     popup.find(&#x27;.errors_layer&#x27;).hide();
+    popup.find(&#x27;.full_folder&#x27;).hide();
     popup.show();
   });
-  $body.on(&#x27;click&#x27;, &#x27;.loadInGallery .part3 .close&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;a.document_quick_upload_hint&#x27;, function() {
+    var my_father = $(&#x27;#document_gallery&#x27;);
+    var popup = my_father.prev();
+    my_father.hide();
+    popup.find(&#x27;.part2 .title_and_description .title&#x27;).val(popup.data(&#x27;placeholder-title&#x27;));
+    popup.find(&#x27;.part2 .title_and_description .description&#x27;).val(popup.data(&#x27;placeholder-description&#x27;));
+    popup.find(&#x27;.part2 .title_and_description .title_placeholder&#x27;).val(&#x27;&#x27;);
+    popup.find(&#x27;.part2 .title_and_description .description_placeholder&#x27;).val(&#x27;&#x27;);
+    popup.find(&#x27;.part1 .attachment .galleryMediaShow&#x27;).val(popup.data(&#x27;placeholder-media&#x27;));
+    popup.find(&#x27;.part1 .attachment label input&#x27;).val(&#x27;&#x27;);
+    popup.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+    popup.find(&#x27;.errors_layer&#x27;).hide();
+    popup.find(&#x27;.full_folder&#x27;).hide();
+    popup.show();
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.loadInGallery.stegosauro .part3 .close&#x27;, function() {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       var father = $(this).parents(&#x27;.loadInGallery&#x27;);
       father.hide();
       father.next().find(&#x27;a&#x27;).show();
       father.next().next().show();
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.loadInGallery.document .part3 .close&#x27;, function() {
+    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
+      var father = $(this).parents(&#x27;.loadInGallery&#x27;);
+      father.hide();
+      father.next().show();
     }
   });
   $body.on(&#x27;focus&#x27;, &#x27;.loadInGallery .part2 .title_and_description .description&#x27;, function() {
@@ -1041,7 +1064,11 @@ function lessonEditorDocumentReadyUploaderInGallery() {
         e.preventDefault();
       });
       $window.on(&#x27;beforeunload&#x27;, function() {
-        return $captions.data(&#x27;dont-leave-page-upload-media-element&#x27;);
+        if(scope_id == &#x27;load-gallery-document&#x27;) {
+          return $captions.data(&#x27;dont-leave-page-upload-document&#x27;);
+        } else {
+          return $captions.data(&#x27;dont-leave-page-upload-media-element&#x27;);
+        }
       });
       recursionLessonEditorUploadinBar(&#x27;#&#x27; + scope_id, 0);
       setTimeout(function() {
@@ -1074,6 +1101,12 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   });
   $body.on(&#x27;click&#x27;, &#x27;.loadInGallery .part1 .attachment label&#x27;, function() {
     $(&#x27;.loadInGallery .errors_layer.media&#x27;).hide();
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.loadInGallery .full_folder .back_to_gallery&#x27;, function() {
+    var father = $(this).parents(&#x27;.loadInGallery&#x27;);
+    father.find(&#x27;.part3 .close&#x27;).click();
+    father.find(&#x27;form&#x27;).show();
+    father.find(&#x27;·full_folder&#x27;).hide();
   });
 }
 
@@ -1176,7 +1209,7 @@ Loads the specific gallery for documents relative to a slide. The gallery is sup
 **/
 function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
   loadDocumentGalleryContent(slide_id);
-  updateEffectsInsideDocumentGallery(slide_id);
+  updateEffectsInsideDocumentGallery();
   $(&#x27;#lesson_editor_document_gallery_container&#x27;).data(&#x27;slide-id&#x27;, slide_id);
 }
 
@@ -1364,9 +1397,7 @@ function updateEffectsInsideDocumentGallery() {
   inputs.each(function() {
     ids.push($(this).val());
   });
-  $(&#x27;.documentsExternal .documentInGallery.disabled&#x27;).each(function() {
-    $(this).removeClass(&#x27;disabled&#x27;);
-  });
+  $(&#x27;.documentsExternal .documentInGallery.disabled&#x27;).removeClass(&#x27;disabled&#x27;);
   for(var i = 0; i &lt; ids.length; i++) {
     $(&#x27;#gallery_document_&#x27; + ids[i] + &#x27; .documentInGallery&#x27;).addClass(&#x27;disabled&#x27;);
   }
