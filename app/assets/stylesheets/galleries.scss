@@ -1440,6 +1440,27 @@
   
 }
 
+#load-gallery-document {
+  
+  .full_folder {
+    
+    .back_to_gallery {
+      
+      color: #333333;
+      background-color: white;
+      
+      &:hover {
+        
+        background-color: #908F8F;
+        
+      }
+      
+    }
+    
+  }
+  
+}
+
 .gallery_upload_container {
   
   position: absolute;
