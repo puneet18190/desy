@@ -373,8 +373,9 @@ Handles correct uploading process in the Lesson Editor (correct in the sense tha
 @param gallery {String} the HTML content to be replaced into the gallery, if the uploading was successful
 @param pages {Number} number of pages of the newly loaded gallery
 @param count {Number} number of elements inside the gallery
+@param item_id {Number} id of the newly loaded item (used only for documents)
 **/
-function uploadDoneLessonEditor(selector, errors, gallery, pages, count) {
+function uploadDoneLessonEditor(selector, errors, gallery, pages, count, item_id) {
   var type = selector.split('-');
   type = type[type.length - 1];
   $window.unbind('beforeunload');
@@ -413,7 +414,7 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count) {
             initializeDocumentGalleryInLessonEditor();
           }
           loadDocumentGalleryForSlideInLessonEditor(current_slide.data('slide-id'));
-          // TODO manca click su nuovo documento appena caricato loadder
+          $('#gallery_document_' + item_id + ' .add_remove').click();
         } else {
           $('._close_' + type + '_gallery').addClass('_close_' + type + '_gallery_in_lesson_editor');
           $('._select_' + type + '_from_gallery').addClass('_add_' + type + '_to_slide');

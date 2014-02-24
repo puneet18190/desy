@@ -491,6 +491,7 @@ class GalleriesController < ApplicationController
       @errors = convert_document_lesson_editor_uploader_messages record.errors
     else
       get_documents(1)
+      @document_id = record.id
     end
     render :layout => false
   end
