@@ -301,7 +301,11 @@ class LessonEditorController < ApplicationController
         media_element_id = correct_integer?(id) ? id.to_i : 0
         media_element = MediaElement.find_by_id media_element_id
         ok = (media_element && current_user.id == media_element.user_id && !media_element.is_public)
-        media_element.set_status current_user.id if ok
+        if ok
+          media_element.set_status current_user.id
+        else
+          get_audios_and_videos_for_reload
+        end
         @mes << {
           :ok               => ok,
           :media_element_id => media_element_id,
@@ -313,6 +317,16 @@ class LessonEditorController < ApplicationController
   end
   
   private
+  
+  # Loads audios and videos, as in GalleriesController
+  def get_audios_and_videos_for_reload
+    x = current_user.own_media_elements(1, GalleriesController::AUDIOS_FOR_PAGE, Filters::AUDIO, true)
+    @audios = x[:records]
+    @audios_tot_pages = x[:pages_amount]
+    x = current_user.own_media_elements(page, GalleriesController::VIDEOS_FOR_PAGE, Filters::VIDEO, true)
+    @videos = x[:records]
+    @videos_tot_pages = x[:pages_amount]
+  end
   
   # Checks if the lesson editor is not locked for the user
   def check_available_for_user

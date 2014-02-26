@@ -1,17 +1,21 @@
 var black_list = new Array();
+<% already_reloaded = false %>
 <% @mes.each do |me| %>
-  var id = <%= me[:media_element_id] %>;
-  var item = $('#gallery_<%= me[:type] %>_' + id);
-  <% if !me[:ok] %>
-    black_list.push(<%= me[:media_element_id] %>);
-    if(item.length > 0) {
-      // TODO ricaricare la galleria, forse con una fake destroy ad hoc??? BAH, facci attenzione, fai le stesse operazioni effettuate nel uploader chiusura popups reset scroll etc etc etc
-    }
-  <% elsif me[:media_element].converted? %>
-    black_list.push(<%= me[:media_element_id] %>);
-    if(item.length > 0) {
-      // TODO rimpiazzare brutalmente l'elemento, fregatene tanto sei sicuro di non fare casino
-    }
+  <% if !already_reloaded %>
+    var id = <%= me[:media_element_id] %>;
+    var item = $('#gallery_<%= me[:type] %>_' + id);
+    <% if !me[:ok] %>
+      <% already_reloaded = true %>
+      black_list.push(<%= me[:media_element_id] %>);
+      if(item.length > 0) {
+        // TODO loadder ricaricare la galleria! usando @videos e @audios, e svuotare tutte le funzionalità copiando da uploader.js
+      }
+    <% elsif me[:media_element].converted? %>
+      black_list.push(<%= me[:media_element_id] %>);
+      if(item.length > 0) {
+        // TODO loadder rimpiazzare brutalmente l'elemento, fregatene tanto sei sicuro di non fare casino
+      }
+    <% end %>
   <% end %>
 <% end %>
 $('#info_container').data('media-elements-not-anymore-in-conversion', black_list);
