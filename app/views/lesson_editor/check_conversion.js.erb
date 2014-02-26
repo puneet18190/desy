@@ -13,7 +13,19 @@ var black_list = new Array();
     <% elsif me[:media_element].converted? %>
       black_list.push(<%= me[:media_element_id] %>);
       if(item.length > 0) {
-        // TODO loadder rimpiazzare brutalmente l'elemento, fregatene tanto sei sicuro di non fare casino
+        var to_be_replaced = '<%= j(render :partial => "galleries/thumbs/#{me[:media_element].sti_type.downcase}", :locals => {video => me[:media_element], :index => 1, :count => 6, :force_margin_top => false}) %>'
+        var my_thumb_id = 'gallery_<%= me[:media_element].sti_type.downcase %>_<%= me[:media_element_id] %>';
+        var my_thumb = $('#' + my_thumb_id);
+        var with_margin_bottom = my_thumb.hasClass('_with_margin_bottom');
+        var margin_top = my_thumb.css('margin-top');
+        var margin_bottom = my_thumb.css('margin-bottom');
+        my_thumb.replaceWith(to_be_replaced);
+        $('#' + my_thumb_id).css('margin-top', margin_top).css('margin-bottom', margin_bottom);
+        if(with_margin_bottom) {
+          $('#' + my_thumb_id).addClass('_with_margin_bottom');
+        } else {
+          $('#' + my_thumb_id).removeClass('_with_margin_bottom');
+        }
       }
     <% end %>
   <% end %>

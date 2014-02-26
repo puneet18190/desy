@@ -301,11 +301,7 @@ class LessonEditorController < ApplicationController
         media_element_id = correct_integer?(id) ? id.to_i : 0
         media_element = MediaElement.find_by_id media_element_id
         ok = (media_element && current_user.id == media_element.user_id && !media_element.is_public)
-        if ok
-          media_element.set_status current_user.id
-        else
-          get_audios_and_videos_for_reload
-        end
+        get_audios_and_videos_for_reload if !ok
         @mes << {
           :ok               => ok,
           :media_element_id => media_element_id,

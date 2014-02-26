@@ -525,6 +525,7 @@ Shows the message after the conversion ended inside Lesson Editor.
 **/
 function uploaderConversionChecker(selector) {
   var message = $captions.data('lesson-editor-conversion-' + selector);
+  console.log('chiamato con selector = <' + selector + '>');
   // TODO loadder
 }
 
