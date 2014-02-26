@@ -15,7 +15,19 @@ var black_list = new Array();
       uploaderConversionChecker('<%= me[:media_element].sti_type.downcase %>-true', '<%= j me[:media_element].title %>');
       black_list.push(<%= me[:media_element_id] %>);
       if(my_thumb.length > 0) {
-        var to_be_replaced = '<%= j(render :partial => "galleries/thumbs/#{me[:media_element].sti_type.downcase}", :locals => {:video => me[:media_element], :index => 1, :count => 6, :force_margin_top => false}) %>'
+        <%
+          for_video = {
+            :video            => me[:media_element],
+            :index            => 1,
+            :count            => 6,
+            :force_margin_top => false
+          }
+          for_audio = {
+            :audio => me[:media_element],
+            :index => 1
+          }
+        %>
+        var to_be_replaced = '<%= j(render :partial => "galleries/thumbs/#{me[:media_element].sti_type.downcase}", :locals => (me[:media_element].sti_type == "Video" ? for_video : for_audio)) %>'
         var with_margin_bottom = my_thumb.hasClass('_with_margin_bottom');
         var margin_top = my_thumb.css('margin-top');
         var margin_bottom = my_thumb.css('margin-bottom');
