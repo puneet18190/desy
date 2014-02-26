@@ -3173,6 +3173,15 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 30,
+            "description": "Close and successively remove HTML for all media element poopups. It calls {{#crossLink \"DialogsAccessories/removeCompletelyMediaElementPopup:method\"}}{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "removeCompletelyAllMediaElementPopups",
+            "class": "DialogsAccessories",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 41,
             "description": "Close and successively remove HTML for a given document popup.",
             "itemtype": "method",
             "name": "removeCompletelyDocumentPopup",
@@ -3183,15 +3192,6 @@
                     "type": "Number"
                 }
             ],
-            "class": "DialogsAccessories",
-            "module": "dialogs"
-        },
-        {
-            "file": "app/assets/javascripts/dialogs.js",
-            "line": 47,
-            "description": "Close and successively remove HTML for all media element poopups. It calls {{#crossLink \"DialogsAccessories/removeCompletelyMediaElementPopup:method}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "removeCompletelyAllMediaElementPopups",
             "class": "DialogsAccessories",
             "module": "dialogs"
         },
