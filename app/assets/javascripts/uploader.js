@@ -294,7 +294,9 @@ function lessonEditorConversionOverview(list, time) {
   var black_list = $('#info_container').data('media-elements-not-anymore-in-conversion');
   for(var i = 0; i < black_list.length; i ++) {
     var j = list.indexOf(black_list[i]);
-    list.splice(j, 1);
+    if(j != -1) {
+      list.splice(j, 1);
+    }
   }
   if(list.length > 0) {
     var ajax_url = '/lesson_editor/check_conversion?';
