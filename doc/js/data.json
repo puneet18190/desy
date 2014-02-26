@@ -3173,6 +3173,15 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 30,
+            "description": "Close and successively remove HTML for all media element poopups. It calls {{#crossLink \"DialogsAccessories/removeCompletelyDocumentPopup:method\"}}{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "removeCompletelyAllDocumentPopups",
+            "class": "DialogsAccessories",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 41,
             "description": "Close and successively remove HTML for all media element poopups. It calls {{#crossLink \"DialogsAccessories/removeCompletelyMediaElementPopup:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "removeCompletelyAllMediaElementPopups",
@@ -3181,7 +3190,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 41,
+            "line": 52,
             "description": "Close and successively remove HTML for a given document popup.",
             "itemtype": "method",
             "name": "removeCompletelyDocumentPopup",
@@ -3197,7 +3206,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 58,
+            "line": 69,
             "description": "Close and successively remove HTML for a given media element popup.",
             "itemtype": "method",
             "name": "removeCompletelyMediaElementPopup",
@@ -3213,7 +3222,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 75,
+            "line": 86,
             "description": "Opposite of {{#crossLink \"DialogsAccessories/customOverlayClose:method\"}}{{/crossLink}}. Remember that the widget-overlay object is unique for every dialog built with JQueryUi, thus it's compulsory to remove the class <i>close on click out</i> before opening a new dialog.",
             "itemtype": "method",
             "name": "removeCustomOverlayClose",
@@ -3222,7 +3231,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 88,
+            "line": 99,
             "description": "Generic confirmation dialog.",
             "itemtype": "method",
             "name": "showConfirmPopUp",
@@ -3263,7 +3272,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 124,
+            "line": 135,
             "description": "Dialog used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}, that asks the user if he wants to restore the cache or not. Specificly, it's used in the generic function {{#crossLink \"MediaElementEditorCache/startCacheLoop:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showRestoreCacheMediaElementEditorPopUp",
@@ -3284,7 +3293,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 175,
+            "line": 186,
             "description": "Dialog for the image gallery.",
             "itemtype": "method",
             "name": "showImageInGalleryPopUp",
@@ -3305,7 +3314,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 215,
+            "line": 226,
             "description": "Dialog for the video gallery (notice that the video is initialized in the moment the dialog gets opened.",
             "itemtype": "method",
             "name": "showVideoInGalleryPopUp",
@@ -3321,7 +3330,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 266,
+            "line": 277,
             "description": "Timed dialog for errors. It uses the general {{#crossLink \"DialogsTimed/showTimedPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showErrorPopUp",
@@ -3337,7 +3346,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 277,
+            "line": 288,
             "description": "Timed dialog for success. It uses the general {{#crossLink \"DialogsTimed/showTimedPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showOkPopUp",
@@ -3353,7 +3362,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 288,
+            "line": 299,
             "description": "General function that opens a dialog, fills it with HTML content and closes it after a configured time.",
             "itemtype": "method",
             "name": "showTimedPopUp",
@@ -3374,7 +3383,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 322,
+            "line": 333,
             "description": "Dialog containing a form used to send a notification about modifications of a public lesson.",
             "itemtype": "method",
             "name": "showLessonNotificationPopUp",
@@ -3390,7 +3399,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 357,
+            "line": 368,
             "description": "Dialog containing the form to upload a new document. This function interacts with the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "showLoadDocumentPopUp",
@@ -3399,7 +3408,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 392,
+            "line": 403,
             "description": "Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "showLoadMediaElementPopUp",
@@ -3408,7 +3417,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 430,
+            "line": 441,
             "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "showMediaElementInfoPopUp",
@@ -3424,7 +3433,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 482,
+            "line": 493,
             "description": "Dialog containing the form to send the public link of a lesson. Used in {{#crossLink \"VirtualClassroomSendLink\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showSendLessonLinkPopUp",
@@ -3440,7 +3449,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 526,
+            "line": 537,
             "description": "Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink \"VirtualClassroomMultipleLoading\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showVirtualClassroomQuickSelectPopUp",

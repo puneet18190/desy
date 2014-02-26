@@ -346,6 +346,17 @@ function customOverlayClose() {
 }
 
 /**
+Close and successively remove HTML for all media element poopups. It calls {{#crossLink &quot;DialogsAccessories/removeCompletelyDocumentPopup:method&quot;}}{{/crossLink}}.
+@method removeCompletelyAllDocumentPopups
+@for DialogsAccessories
+**/
+function removeCompletelyAllDocumentPopups() {
+  $(&#x27;.boxViewSingleDocument .menuController .preview&#x27;).each(function() {
+    removeCompletelyDocumentPopup($(this).data(&#x27;document-id&#x27;));
+  });
+}
+
+/**
 Close and successively remove HTML for all media element poopups. It calls {{#crossLink &quot;DialogsAccessories/removeCompletelyMediaElementPopup:method&quot;}}{{/crossLink}}.
 @method removeCompletelyAllMediaElementPopups
 @for DialogsAccessories
