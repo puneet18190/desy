@@ -12,38 +12,44 @@ var black_list = new Array();
         // TODO loadder ricaricare la galleria! usando @videos e @audios, e svuotare tutte le funzionalità copiando da uploader.js
       }
     <% elsif me[:media_element].converted? %>
-      uploaderConversionChecker('<%= me[:media_element].sti_type.downcase %>-true', '<%= j me[:media_element].title %>');
       black_list.push(<%= me[:media_element_id] %>);
-      if(my_thumb.length > 0) {
+      <% if me[:media_element_id].sti_type == 'Video' %>
         <%
-          for_video = {
+          locals = {
             :video            => me[:media_element],
             :index            => 1,
             :count            => 6,
             :force_margin_top => false
           }
-          for_audio = {
+        %>
+        uploaderConversionChecker('video-true', '<%= j me[:media_element].title %>');
+        if(my_thumb.length > 0) {
+          var to_be_replaced = '<%= j(render :partial => "galleries/thumbs/#{me[:media_element].sti_type.downcase}", :locals => locals) %>';
+          var with_margin_bottom = my_thumb.hasClass('_with_margin_bottom');
+          var margin_top = my_thumb.css('margin-top');
+          var margin_bottom = my_thumb.css('margin-bottom');
+          my_thumb.replaceWith(to_be_replaced);
+          $('#' + my_thumb_id).css('margin-top', margin_top).css('margin-bottom', margin_bottom);
+          if(with_margin_bottom) {
+            $('#' + my_thumb_id).addClass('_with_margin_bottom');
+          }
+          $('#' + my_thumb_id + ' ._select_video_from_gallery').addClass('_add_video_to_slide');
+        }
+      <% else %>
+        <%
+          locals = {
             :audio => me[:media_element],
             :index => 1
           }
         %>
-        var to_be_replaced = '<%= j(render :partial => "galleries/thumbs/#{me[:media_element].sti_type.downcase}", :locals => (me[:media_element].sti_type == "Video" ? for_video : for_audio)) %>'
-        var with_margin_bottom = my_thumb.hasClass('_with_margin_bottom');
-        var margin_top = my_thumb.css('margin-top');
-        var margin_bottom = my_thumb.css('margin-bottom');
-        my_thumb.replaceWith(to_be_replaced);
-        $('#' + my_thumb_id).css('margin-top', margin_top).css('margin-bottom', margin_bottom);
-        if($('#' + my_thumb_id + ' ._select_video_from_gallery').length > 0) {
-          $('#' + my_thumb_id + ' ._select_video_from_gallery').addClass('_add_video_to_slide');
-        } else {
+        if(my_thumb.length > 0) {
+          uploaderConversionChecker('audio-true', '<%= j me[:media_element].title %>');
+          var margin_top = my_thumb.find('._compact').css('margin-top');
+          my_thumb.replaceWith(to_be_replaced);
+          $('#' + my_thumb_id + ' ._compact').css('margin-top', margin_top);
           $('#' + my_thumb_id + ' ._select_audio_from_gallery').addClass('_add_audio_to_slide');
         }
-        if(with_margin_bottom) {
-          $('#' + my_thumb_id).addClass('_with_margin_bottom');
-        } else {
-          $('#' + my_thumb_id).removeClass('_with_margin_bottom');
-        }
-      }
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
