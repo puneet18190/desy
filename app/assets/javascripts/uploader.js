@@ -518,6 +518,17 @@ function uploaderErrorsLessonEditor(selector, errors) {
 }
 
 /**
+Shows the message after the conversion ended inside Lesson Editor.
+@method uploaderConversionChecker
+@for UploaderLessonEditor
+@param selector {String} selector for the correct translation to be shown
+**/
+function uploaderConversionChecker(selector) {
+  var message = $captions.data('lesson-editor-conversion-' + selector);
+  // TODO loadder
+}
+
+/**
 Handles 413 status error, file too large, inside Lesson Editor.
 @method uploadFileTooLargeLessonEditor
 @for UploaderLessonEditor
