@@ -23,7 +23,7 @@ var black_list = new Array();
           }
           vc = current_user.video_editor_cache
         %>
-        uploaderConversionChecker('video-<%= (vc && vc[:initial_video_id] == me[:media_element_id].to_i).to_s %>', '<%= j me[:media_element].title %>');
+        uploaderConversionChecker('video-<%= (!(vc && vc[:initial_video_id] == me[:media_element_id].to_i)).to_s %>', '<%= j me[:media_element].title %>');
         if(my_thumb.length > 0) {
           var to_be_replaced = '<%= j(render :partial => "galleries/thumbs/video", :locals => locals) %>';
           var with_margin_bottom = my_thumb.hasClass('_with_margin_bottom');
@@ -44,7 +44,7 @@ var black_list = new Array();
           }
           ac = current_user.audio_editor_cache
         %>
-        uploaderConversionChecker('audio-<%= (vc && vc[:initial_audio_id] == me[:media_element_id].to_i).to_s %>', '<%= j me[:media_element].title %>');
+        uploaderConversionChecker('audio-<%= (!(ac && ac[:initial_audio_id] == me[:media_element_id].to_i)).to_s %>', '<%= j me[:media_element].title %>');
         if(my_thumb.length > 0) {
           var to_be_replaced = '<%= j(render :partial => "galleries/thumbs/audio", :locals => locals) %>';
           var margin_top = my_thumb.find('._compact').css('margin-top');
