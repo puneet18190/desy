@@ -1,3 +1,4 @@
+removeCompletelyAllDocumentPopups();
 <% if @delete_item.blank? %>
   $('#my_documents').hide('fade', {}, 500, function() {
     $('#my_documents').replaceWith("<%= j(render(:partial => 'documents/my_documents', :locals => {:documents => @documents, :word => @word})) %>");
