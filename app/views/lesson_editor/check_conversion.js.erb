@@ -8,7 +8,40 @@ var black_list = new Array();
       <% already_reloaded = true %>
       black_list.push(<%= me[:media_element_id] %>);
       if(my_thumb.length > 0) {
-        // TODO loadder ricaricare la galleria! usando @videos e @audios, e svuotare tutte le funzionalità copiando da uploader.js
+        if(my_thumb.has_class('_video_gallery_thumb')) {
+          $('.videoInGalleryPopUp').each(function() {
+            if($(this).hasClass('ui-dialog-content')) {
+              $(this).dialog('destroy');
+            }
+          });
+          var gallery_scrollable = $('#video_gallery_content > div');
+          if(gallery_scrollable.data('jsp') != undefined) {
+            gallery_scrollable.data('jsp').destroy();
+          }
+          var container = $('#lesson_editor_video_gallery_container');
+          container.data('page', 1);
+          container.data('tot-pages', <%= @video_tot_pages %>);
+          container.find('#video_gallery').replaceWith('<%= j(render :partial => "galleries/video", :locals => {:videos => @videos}) %>');
+          <% if @videos.count > 6) %>
+            initializeVideoGalleryInLessonEditor();
+          <% else %>
+            $('.video_gallery .scroll-pane').css('overflow', 'hidden');
+          <% end %>
+        } else {
+          var gallery_scrollable = $('#audio_gallery_content > div');
+          if(gallery_scrollable.data('jsp') != undefined) {
+            gallery_scrollable.data('jsp').destroy();
+          }
+          var container = $('#lesson_editor_audio_gallery_container');
+          container.data('page', 1);
+          container.data('tot-pages', <%= @audio_tot_pages %>);
+          container.find('#audio_gallery').replaceWith('<%= j(render :partial => "galleries/audio", :locals => {:audios => @audios}) %>');
+          <% if @audios.count > 6) %>
+            initializeAudioGalleryInLessonEditor();
+          <% else %>
+            $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
+          <% end %>
+        }
       }
     <% elsif me[:media_element].converted? %>
       <% already_reloaded = true %>
