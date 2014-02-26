@@ -1,12 +1,8 @@
 var black_list = new Array();
-
 <% @mes.each do |me| %>
-  
   var id = <%= me[:media_element_id] %>;
   var item = $('#expanded_media_element_' + id + ', #compact_media_element_' + id + ', #found_media_element_' + id);
-  
   <% if !me[:ok] %>
-    
     black_list.push(<%= me[:media_element_id] %>);
     if(item.length > 0) {
       var destination = item.attr('id').split('_')[0] + '_media_element';
@@ -24,11 +20,8 @@ var black_list = new Array();
         }
       });
     }
-    
   <% elsif me[:media_element].converted? %>
-    
     <% used_in_private_lessons = me[:media_element].media_elements_slides.any? %>
-    
     black_list.push(<%= me[:media_element_id] %>);
     if(item.length > 0) {
       var destination = item.attr('id').split('_')[0] + '_media_element';
@@ -41,9 +34,6 @@ var black_list = new Array();
         item.replaceWith('<%= j(render :partial => "media_elements/view_single_compact", :locals => {:media_element => me[:media_element], :destination => ButtonDestinations::FOUND_MEDIA_ELEMENT, :used_in_private_lessons => used_in_private_lessons}) %>');
       }
     }
-    
   <% end %>
-  
 <% end %>
-
 $('#info_container').data('media-elements-not-anymore-in-conversion', black_list);
