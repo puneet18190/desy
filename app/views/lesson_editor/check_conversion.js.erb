@@ -24,7 +24,7 @@ var black_list = new Array();
         %>
         uploaderConversionChecker('video-true', '<%= j me[:media_element].title %>');
         if(my_thumb.length > 0) {
-          var to_be_replaced = '<%= j(render :partial => "galleries/thumbs/#{me[:media_element].sti_type.downcase}", :locals => locals) %>';
+          var to_be_replaced = '<%= j(render :partial => "galleries/thumbs/video", :locals => locals) %>';
           var with_margin_bottom = my_thumb.hasClass('_with_margin_bottom');
           var margin_top = my_thumb.css('margin-top');
           var margin_bottom = my_thumb.css('margin-bottom');
@@ -42,8 +42,9 @@ var black_list = new Array();
             :index => 1
           }
         %>
+        uploaderConversionChecker('audio-true', '<%= j me[:media_element].title %>');
         if(my_thumb.length > 0) {
-          uploaderConversionChecker('audio-true', '<%= j me[:media_element].title %>');
+          var to_be_replaced = '<%= j(render :partial => "galleries/thumbs/video", :locals => locals) %>';
           var margin_top = my_thumb.find('._compact').css('margin-top');
           my_thumb.replaceWith(to_be_replaced);
           $('#' + my_thumb_id + ' ._compact').css('margin-top', margin_top);
