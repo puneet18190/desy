@@ -21,7 +21,11 @@ var black_list = new Array();
         var margin_bottom = my_thumb.css('margin-bottom');
         my_thumb.replaceWith(to_be_replaced);
         $('#' + my_thumb_id).css('margin-top', margin_top).css('margin-bottom', margin_bottom);
-        $('#' + my_thumb_id + ' ._select_video_from_gallery').addClass('_add_video_to_slide');
+        if($('#' + my_thumb_id + ' ._select_video_from_gallery').length > 0) {
+          $('#' + my_thumb_id + ' ._select_video_from_gallery').addClass('_add_video_to_slide');
+        } else {
+          $('#' + my_thumb_id + ' ._select_audio_from_gallery').addClass('_add_audio_to_slide');
+        }
         if(with_margin_bottom) {
           $('#' + my_thumb_id).addClass('_with_margin_bottom');
         } else {
