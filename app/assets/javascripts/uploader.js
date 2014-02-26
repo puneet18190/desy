@@ -522,10 +522,11 @@ Shows the message after the conversion ended inside Lesson Editor.
 @method uploaderConversionChecker
 @for UploaderLessonEditor
 @param selector {String} selector for the correct translation to be shown
+@param title {String} the title of the item
 **/
-function uploaderConversionChecker(selector) {
+function uploaderConversionChecker(selector, title) {
   var message = $captions.data('lesson-editor-conversion-' + selector);
-  console.log('chiamato con selector = <' + selector + '>');
+  console.log('chiamato con selector = <' + selector + '>, e title = <' + title + '>');
   // TODO loadder
 }
 
