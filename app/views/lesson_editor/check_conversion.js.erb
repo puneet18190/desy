@@ -3,20 +3,19 @@ var black_list = new Array();
 <% @mes.each do |me| %>
   <% if !already_reloaded %>
     var id = <%= me[:media_element_id] %>;
-    var item = $('#gallery_<%= me[:type] %>_' + id);
+    var my_thumb_id = 'gallery_<%= me[:media_element].sti_type.downcase %>_<%= me[:media_element_id] %>';
+    var my_thumb = $('#' + my_thumb_id);
     <% if !me[:ok] %>
       <% already_reloaded = true %>
       black_list.push(<%= me[:media_element_id] %>);
-      if(item.length > 0) {
+      if(my_thumb.length > 0) {
         // TODO loadder ricaricare la galleria! usando @videos e @audios, e svuotare tutte le funzionalità copiando da uploader.js
       }
     <% elsif me[:media_element].converted? %>
       uploaderConversionChecker('<%= me[:media_element].sti_type.downcase %>-true', '<%= j me[:media_element].title %>');
       black_list.push(<%= me[:media_element_id] %>);
-      if(item.length > 0) {
+      if(my_thumb.length > 0) {
         var to_be_replaced = '<%= j(render :partial => "galleries/thumbs/#{me[:media_element].sti_type.downcase}", :locals => {:video => me[:media_element], :index => 1, :count => 6, :force_margin_top => false}) %>'
-        var my_thumb_id = 'gallery_<%= me[:media_element].sti_type.downcase %>_<%= me[:media_element_id] %>';
-        var my_thumb = $('#' + my_thumb_id);
         var with_margin_bottom = my_thumb.hasClass('_with_margin_bottom');
         var margin_top = my_thumb.css('margin-top');
         var margin_bottom = my_thumb.css('margin-bottom');
