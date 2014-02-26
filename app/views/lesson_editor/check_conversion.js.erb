@@ -11,8 +11,9 @@ var black_list = new Array();
         // TODO loadder ricaricare la galleria! usando @videos e @audios, e svuotare tutte le funzionalità copiando da uploader.js
       }
     <% elsif me[:media_element].converted? %>
+      <% already_reloaded = true %>
       black_list.push(<%= me[:media_element_id] %>);
-      <% if me[:media_element_id].sti_type == 'Video' %>
+      <% if me[:media_element].sti_type == 'Video' %>
         <%
           locals = {
             :video            => me[:media_element],
