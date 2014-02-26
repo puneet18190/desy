@@ -602,9 +602,9 @@ Function that checks the conversion of the unconverted media elements in the pag
 @param list {Array} list of media elements that are being checked
 @param time {Number} time to iterate the loop
 **/
-function lessonEditorConversionOverview(list, time) { // TODO converssion
-  $(&#x27;._media_element_item._disabled&#x27;).each(function() {
-    var my_id = $(this).find(&#x27;._Image_button_preview, ._Audio_button_preview, ._Video_button_preview&#x27;).data(&#x27;clickparam&#x27;);
+function lessonEditorConversionOverview(list, time) {
+  $(&#x27;._audio_gallery_thumb._disabled, ._video_gallery_thumb._disabled&#x27;).each(function() {
+    var my_id = $(this).hasClass(&#x27;_video_gallery_thumb&#x27;) ? $(this).data(&#x27;video-id&#x27;) : $(this).data(&#x27;audio-id&#x27;);
     if(list.indexOf(my_id) == -1) {
       list.push(my_id);
     }
@@ -615,7 +615,7 @@ function lessonEditorConversionOverview(list, time) { // TODO converssion
     list.splice(j, 1);
   }
   if(list.length &gt; 0) {
-    var ajax_url = &#x27;/media_elements/conversion/check?&#x27;;
+    var ajax_url = &#x27;/lesson_editor/check_conversion?&#x27;;
     for(var i = 0; i &lt; list.length; i ++) {
       ajax_url += (&#x27;me&#x27; + list[i] + &#x27;=true&#x27;);
       if(i != list.length - 1) {

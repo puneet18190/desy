@@ -363,6 +363,17 @@ function removeCompletelyDocumentPopup(document_id) {
 }
 
 /**
+Close and successively remove HTML for all media element poopups. It calls {{#crossLink &quot;DialogsAccessories/removeCompletelyMediaElementPopup:method}}{{/crossLink}}.
+@method removeCompletelyAllMediaElementPopups
+@for DialogsAccessories
+**/
+function removeCompletelyAllMediaElementPopups() {
+  $(&#x27;._media_element_item .menuController .preview&#x27;).each(function() {
+    removeCompletelyMediaElementPopup($(this).data(&#x27;clickparam&#x27;));
+  });
+}
+
+/**
 Close and successively remove HTML for a given media element popup.
 @method removeCompletelyMediaElementPopup
 @for DialogsAccessories
