@@ -309,8 +309,7 @@ class LessonEditorController < ApplicationController
         @mes << {
           :ok               => ok,
           :media_element_id => media_element_id,
-          :media_element    => media_element,
-          :type             => media_element.sti_type.downcase
+          :media_element    => media_element
         }
       end
     end

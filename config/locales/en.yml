@@ -1748,6 +1748,18 @@ en:
     # 2 - views/lesson_editor/thumbnails/_video2.html.erb
     # 3 - views/lesson_editor/thumbnails/_video1.html.erb
     choose_video: "Click here to add a video"
+    # Messages confirming the conversion of videos and audios inside Lesson Editor - the variable %{item} is replaced by the title of the video or audio
+    conversion:
+      error:
+        # 1 - views/shared/_popups.html.erb
+        audio: "There was a mistake converting your audio %{item}! Try loading it again"
+        # 1 - views/shared/_popups.html.erb
+        video: "There was a mistake converting your video %{item}! Try loading it again"
+      correct:
+        # 1 - views/shared/_popups.html.erb
+        audio: "Your audio %{item} has been successfully converted! Open the Audio Gallery to use it"
+        # 1 - views/shared/_popups.html.erb
+        video: "Your video %{item} has been successfully converted! Open the Video Gallery to use it"
     # The Lesson Editor is not available if the user started an audio (or video) editing process which overwrites an audio (or a video) used inside a lesson. The Editor is not avilable only to edit that particular lesson, in this case the application shows a page with title and description
     not_available:
       # The variable %{lesson} is replaced by the name of the lesson
