@@ -24,14 +24,7 @@ Detects if the browser is an iPad, or iPhone, or other mobile browsers, and save
 @for JqueryPatchesBrowsers
 **/
 (function() {
-  var ua = navigator.userAgent.toLowerCase();
-  if(ua.indexOf('ipad') >= 0) {
-    $.browser.ipad = true;
-  } else if(ua.indexOf('iphone') >= 0) {
-    $.browser.iphone = true;
-  } else if(ua.indexOf('webkit') >= 0) {
-    $.browser.webkit = true;
-  }
+// TODO
 })();
 
 /**

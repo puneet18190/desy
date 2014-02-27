@@ -7,22 +7,26 @@ var matched, browser;
 // More details: http://api.jquery.com/jQuery.browser
 // jQuery.uaMatch maintained for back-compat
 jQuery.uaMatch = function( ua ) {
+  var match = [];
   ua = ua.toLowerCase();
 
-  var match = /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
-    /(webkit)[ \/]([\w.]+)/.exec( ua ) ||
-    /(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) ||
-    // Internet Explorer < 11
-    /(msie) ([\w.]+)/.exec( ua ) ||
-    // Internet Explorer >= 11 and Mozilla Firefox
-    ua.indexOf("compatible") < 0 && (
-      /(trident)(?:.*? rv ([\w.]+)|)/.exec( ua ) ||
-      /(mozilla)(?:.*? rv:([\w.]+)|)/.exec( ua )
-    ) ||
-    [];
+  if(ua.indexOf('ipad') >= 0) {
+    match[ 0 ] = 'ipad';
+  } else if(ua.indexOf('iphone') >= 0) {
+    match[ 0 ] = 'iphone';
+  } else {
+    match = /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
+      /(webkit)[ \/]([\w.]+)/.exec( ua ) ||
+      /(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) ||
+      // Internet Explorer < 11
+      /(msie) ([\w.]+)/.exec( ua ) ||
+      // Internet Explorer >= 11
+      /(trident)(?:.*? rv:([\w.]+)|)/.exec( ua ) ||
+      ( ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec( ua ) );
 
-  if ( match[ 1 ] === "trident" ) {
-    match[ 1 ] = "msie";
+    if ( match[ 1 ] === "trident" ) {
+      match[ 1 ] = "msie";
+    }
   }
 
   return {
