@@ -318,7 +318,7 @@ class LessonEditorController < ApplicationController
     x = current_user.own_media_elements(1, GalleriesController::AUDIOS_FOR_PAGE, Filters::AUDIO, true)
     @audios = x[:records]
     @audios_tot_pages = x[:pages_amount]
-    x = current_user.own_media_elements(page, GalleriesController::VIDEOS_FOR_PAGE, Filters::VIDEO, true)
+    x = current_user.own_media_elements(1, GalleriesController::VIDEOS_FOR_PAGE, Filters::VIDEO, true)
     @videos = x[:records]
     @videos_tot_pages = x[:pages_amount]
   end

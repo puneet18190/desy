@@ -2,11 +2,12 @@ var black_list = new Array();
 <% already_reloaded = false %>
 <% @mes.each do |me| %>
   <% if !already_reloaded %>
-    var my_thumb_id = 'gallery_<%= me[:media_element].sti_type.downcase %>_<%= me[:media_element_id] %>';
-    var my_thumb = $('#' + my_thumb_id);
+    var my_thumb = $('#gallery_audio_<%= me[:media_element_id] %>, #gallery_video_<%= me[:media_element_id] %>');
+    var my_thumb_id = my_thumb.attr('id');
     <% if !me[:ok] %>
       <% already_reloaded = true %>
       black_list.push(<%= me[:media_element_id] %>);
+      // uploaderConversionChecker(); TODO loadder trovare il modo!!!!
       if(my_thumb.length > 0) {
         if(my_thumb.has_class('_video_gallery_thumb')) {
           $('.videoInGalleryPopUp').each(function() {
@@ -22,7 +23,7 @@ var black_list = new Array();
           container.data('page', 1);
           container.data('tot-pages', <%= @videos_tot_pages %>);
           container.find('#video_gallery').replaceWith('<%= j(render :partial => "galleries/video", :locals => {:videos => @videos}) %>');
-          <% if @videos.count > 6) %>
+          <% if @videos.count > 6 %>
             initializeVideoGalleryInLessonEditor();
           <% else %>
             $('.video_gallery .scroll-pane').css('overflow', 'hidden');
@@ -36,7 +37,7 @@ var black_list = new Array();
           container.data('page', 1);
           container.data('tot-pages', <%= @audios_tot_pages %>);
           container.find('#audio_gallery').replaceWith('<%= j(render :partial => "galleries/audio", :locals => {:audios => @audios}) %>');
-          <% if @audios.count > 6) %>
+          <% if @audios.count > 6 %>
             initializeAudioGalleryInLessonEditor();
           <% else %>
             $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
