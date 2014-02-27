@@ -68,6 +68,7 @@ Desy::Application.routes.draw do
     get    'users/:id'            => 'users#show',          :as => :user
     put    'users/:id/activate'   => 'users#activate',      :as => :users_activate
     put    'users/:id/ban'        => 'users#ban',           :as => :users_ban
+    post   'users/:id/reconfirm'  => 'users#reconfirm',     :as => :send_again_confirmation
     put    'users/:id/set_status' => 'users#set_status'
     
   end
