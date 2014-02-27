@@ -196,13 +196,13 @@ it:
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - models/lesson.rb
           # 3 - models/lesson.rb
-          problem_adding_to_virtual_classroom: "La lezione non è stata aggiunta al tuo Elenco" # FIXME "La lezione non è stata aggiunta alla tua Virtual Classroom"
+          problem_adding_to_virtual_classroom: "La lezione non è stata aggiunta alla tua Playlist" # FIXME "La lezione non è stata aggiunta alla tua Virtual Classroom"
           # The selected lesson is already in your Virtual Classroom, hence you can't add it again
           # 1 - models/lesson.rb
-          lesson_already_in_virtual_classroom: "Questa lezione è già presente nel tuo Elenco" # FIXME "Questa lezione è già presente nella tua Virtual Classroom"
+          lesson_already_in_virtual_classroom: "Questa lezione è già presente nella tua Playlist" # FIXME "Questa lezione è già presente nella tua Virtual Classroom"
           # For some reason, the selected lesson cannot be added to your Virtual Classroom
           # 1 - models/lesson.rb
-          lesson_not_available_for_virtual_classroom: "La lezione non è stata aggiunta al tuo Elenco" # FIXME "La lezione non è stata aggiunta alla tua Virtual Classroom"
+          lesson_not_available_for_virtual_classroom: "La lezione non è stata aggiunta alla tua Playlist" # FIXME "La lezione non è stata aggiunta alla tua Virtual Classroom"
           # There was an error while trying to remove the lesson from your Virtual Classroom
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - controllers/virtual_classroom_controller.rb
@@ -210,7 +210,7 @@ it:
           # 4 - models/lesson.rb
           # 5 - models/lesson.rb
           # 6 - models/lesson.rb
-          problem_removing_from_virtual_classroom: "La lezione non è stata rimossa dal tuo Elenco" # FIXME "La lezione non è stata rimossa dalla tua Virtual Classroom"
+          problem_removing_from_virtual_classroom: "La lezione non è stata rimossa dalla tua Playlist" # FIXME "La lezione non è stata rimossa dalla tua Virtual Classroom"
         like:
           # There was an error while you were trying to remove 'I like it' from a lesson
           # 1 - controllers/lessons_controller.rb
@@ -875,7 +875,7 @@ it:
         media_element: "Aggiungi ai tuoi elementi"
       # To add a lesson to your Virtual Classroom
       # 1 - views/shared/buttons/_add_virtual_classroom.html.erb
-      add_virtual_classroom: "Aggiungi la lezione al tuo Elenco" # FIXME "Aggiungi la lezione alla Virtual Classroom"
+      add_virtual_classroom: "Aggiungi la lezione alla tua Playlist" # FIXME "Aggiungi la lezione alla Virtual Classroom"
       # To copy a lesson
       # 1 - views/shared/buttons/_copy.html.erb
       copy: "Crea una tua copia della lezione"
@@ -905,7 +905,7 @@ it:
       remove: "Rimuovi questo oggetto"
       # To remove a lesson from your Virtual Classroom
       # 1 - views/shared/buttons/_remove_virtual_classroom.html.erb
-      remove_virtual_classroom: "Rimuovi dal tuo Elenco" # FIXME "Rimuovi dalla tua Virtual Classroom"
+      remove_virtual_classroom: "Rimuovi dalla tua Playlist" # FIXME "Rimuovi dalla tua Virtual Classroom"
       # To turn a shared lesson back into private
       # 1 - views/shared/buttons/_unpublish.html.erb
       # 2 - views/shared/_popups.html.erb
@@ -2789,7 +2789,7 @@ it:
     playlist:
       # Placeholder and instructions when the playlist is empty
       # 1 - views/virtual_classroom/_empty_playlist.html.erb
-      instructions: "Dopo aver aggiunto le lezioni nella Playlist, trascinale in questa area" # FIXME "Dopo aver aggiunto le lezioni nella Virtual Classroom, trascinarle in questa area per creare una playlist"
+      instructions: "Dopo aver aggiunto le lezioni nell'elenco, trascinale in questa area per creare una playlist" # FIXME "Dopo aver aggiunto le lezioni nella Virtual Classroom, trascinarle in questa area per creare una playlist"
       # Label for the playlist column on the right
       # 1 - views/virtual_classroom/_playlist.html.erb
       label: "Playlist"
