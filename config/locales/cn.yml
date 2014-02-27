@@ -3839,6 +3839,12 @@ cn:
         # 1 - views/admin/users/_list.html.erb
         # 2 - views/admin/users/show.html.erb
         personificate: "身份盗窃"
+        # Send again the confirmation email to that unconfirmed user
+        # 1 - views/admin/users/_list.html.erb
+        reconfirm: "再次發送確認郵件"
+        # Succesfully sent again the confirmation email (the variable %{email} is replaced by the user's email)
+        # 1 - controllers/admin/users_controller.rb
+        reconfirm_sent: "您發送確認電子郵件%{email}"
         # The super admin gets back to his original identity
         # 1 - views/shared/_header.html.erb
         unpersonificate: "回到您的身份"

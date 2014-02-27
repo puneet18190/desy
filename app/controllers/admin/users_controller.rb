@@ -185,6 +185,7 @@ class Admin::UsersController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def reconfirm
+    @message = t('admin.users.actions.reconfirm_sent', :email => user.email)
   end
   
 end

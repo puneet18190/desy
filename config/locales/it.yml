@@ -3839,6 +3839,12 @@ it:
         # 1 - views/admin/users/_list.html.erb
         # 2 - views/admin/users/show.html.erb
         personificate: "Furto d'identità"
+        # Send again the confirmation email to that unconfirmed user
+        # 1 - views/admin/users/_list.html.erb
+        reconfirm: "Invia nuovamente la mail di conferma"
+        # Succesfully sent again the confirmation email (the variable %{email} is replaced by the user's email)
+        # 1 - controllers/admin/users_controller.rb
+        reconfirm_sent: "Hai inviato la mail di conferma a %{email}"
         # The super admin gets back to his original identity
         # 1 - views/shared/_header.html.erb
         unpersonificate: "Ritorna alla tua identità"
