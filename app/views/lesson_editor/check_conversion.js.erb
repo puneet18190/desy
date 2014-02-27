@@ -9,7 +9,7 @@ var black_list = new Array();
       black_list.push(<%= me[:media_element_id] %>);
       // uploaderConversionChecker(); TODO loadder trovare il modo!!!!
       if(my_thumb.length > 0) {
-        if(my_thumb.has_class('_video_gallery_thumb')) {
+        if(my_thumb.hasClass('_video_gallery_thumb')) {
           $('.videoInGalleryPopUp').each(function() {
             if($(this).hasClass('ui-dialog-content')) {
               $(this).dialog('destroy');
