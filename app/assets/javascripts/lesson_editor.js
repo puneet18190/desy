@@ -498,7 +498,7 @@ function lessonEditorDocumentReadyResize() {
       $('ul#slides li:first').css('margin-left', (($window.width() - 900) / 2) + 'px');
       $('ul#slides.new li:first').css('margin-left', (($window.width() - 900) / 2) + 'px');
     }
-    $('#footer').css('top', ($window.height() - 40) + 'px').css('width', ($window.width() - 24) + 'px');
+    $('#footer').css('top', ($window.height() - 44) + 'px').css('width', $window.width() + 'px');
     var open_gallery = $('.lesson_editor_gallery_container:visible');
     if(open_gallery.length > 0) {
       centerThis(open_gallery);
@@ -1470,7 +1470,7 @@ function initLessonEditorPositions() {
   $('ul#slides').css('width', (($('ul#slides li').length + 2) * 1000));
   $('ul#slides').css('top', ((outer_height / 2) - 295) + 'px');
   $('ul#slides.new').css('top', ((outer_height / 2) - 335) + 'px');
-  $('#footer').css('top', (outer_height - 40) + 'px').css('width', (outer_width - 24) + 'px');
+  $('#footer').css('top', (outer_height - 44) + 'px').css('width', outer_width + 'px');
   if(outer_width > 1000) {
     $('ul#slides li:first').css('margin-left', ((outer_width - 900) / 2) + 'px');
     $('ul#slides.new li:first').css('margin-left', ((outer_width - 900) / 2) + 'px');

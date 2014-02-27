@@ -753,26 +753,20 @@ html.lesson-editor-layout {
   
   #footer {
     
-    padding: 6px 12px 18px 12px;
     display: block;
     background-color: #1C1C1C;
     color: white;
     font-size: 12px;
     opacity: 0.85;
     position: fixed;
-    height: 30px;
+    height: 34px;
     width: 100%;
     margin-top: 10px;
-    height: 10px;
     clear: both;
     
     #lesson-title {
       
-      #error-footer-disclaimer {
-        
-        display: none;
-        
-      }
+      margin: 6px 12px 18px 12px;
       
       img {
         
@@ -787,6 +781,26 @@ html.lesson-editor-layout {
         
         margin-top: 2px;
         float: left;
+        
+      }
+      
+    }
+    
+    #error-footer-disclaimer {
+      
+      display: none;
+      text-align: center;
+      text-weight: bold;
+      
+      &.true {
+        
+        background-color: green;
+        
+      }
+      
+      &.false {
+        
+        background-color: red;
         
       }
       

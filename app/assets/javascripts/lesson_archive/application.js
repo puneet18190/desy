@@ -40,8 +40,8 @@ $(document).ready(function() {
   lessonViewerDocumentReadyDocuments();
   playersDocumentReadyGeneral();
   var footer = $('#footer');
-  footer.css('top', ($window.height() - 40) + 'px').css('width', ($window.width() - 24) + 'px');
+  footer.css('top', ($window.height() - 44) + 'px').css('width', $window.width() + 'px');
   $window.resize(function() {
-    footer.css('top', ($window.height() - 40) + 'px').css('width', ($window.width() - 24) + 'px');
+    footer.css('top', ($window.height() - 44) + 'px').css('width', $window.width() + 'px');
   });
 });
