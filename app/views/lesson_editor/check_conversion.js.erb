@@ -20,7 +20,7 @@ var black_list = new Array();
           }
           var container = $('#lesson_editor_video_gallery_container');
           container.data('page', 1);
-          container.data('tot-pages', <%= @video_tot_pages %>);
+          container.data('tot-pages', <%= @videos_tot_pages %>);
           container.find('#video_gallery').replaceWith('<%= j(render :partial => "galleries/video", :locals => {:videos => @videos}) %>');
           <% if @videos.count > 6) %>
             initializeVideoGalleryInLessonEditor();
@@ -34,7 +34,7 @@ var black_list = new Array();
           }
           var container = $('#lesson_editor_audio_gallery_container');
           container.data('page', 1);
-          container.data('tot-pages', <%= @audio_tot_pages %>);
+          container.data('tot-pages', <%= @audios_tot_pages %>);
           container.find('#audio_gallery').replaceWith('<%= j(render :partial => "galleries/audio", :locals => {:audios => @audios}) %>');
           <% if @audios.count > 6) %>
             initializeAudioGalleryInLessonEditor();
