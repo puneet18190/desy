@@ -785,9 +785,11 @@ html.lesson-editor-layout {
     
     #error-footer-disclaimer {
       
+      padding: 10px;
+      height: 14px;
       display: none;
       text-align: center;
-      text-weight: bold;
+      font-weight: bold;
       
       &.true {
         
