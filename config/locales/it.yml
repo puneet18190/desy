@@ -1759,8 +1759,6 @@ it:
         audio_general: "C'è stato un errore durante la conversione del tuo audio! Prova a caricarlo di nuovo"
         # 1 - views/shared/_popups.html.erb
         video_general: "C'è stato un errore durante la conversione del tuo video! Prova a caricarlo di nuovo"
-        # 1 - views/shared/_popups.html.erb
-        general: "C'è stato un errore durante la conversione del tuo media! Prova a caricarlo di nuovo"
       correct:
         # 1 - views/shared/_popups.html.erb
         audio: "Il tuo audio %{item} è stato convertito correttamente! Per usarlo apri la galleria audio"
