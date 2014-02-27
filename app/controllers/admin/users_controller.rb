@@ -172,4 +172,20 @@ class Admin::UsersController < AdminController
     redirect_to admin_user_path(@user)
   end
   
+  # === Description
+  #
+  # Sends again the email confirmation to an unconfirmed user.
+  #
+  # === Mode
+  #
+  # Js
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
+  def reconfirm
+    @message = t('admin.users.actions.reconfirm_sent', :email => user.email)
+  end
+  
 end
