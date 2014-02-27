@@ -816,7 +816,7 @@ function lessonEditorDocumentReadyResize() {
       $(&#x27;ul#slides li:first&#x27;).css(&#x27;margin-left&#x27;, (($window.width() - 900) / 2) + &#x27;px&#x27;);
       $(&#x27;ul#slides.new li:first&#x27;).css(&#x27;margin-left&#x27;, (($window.width() - 900) / 2) + &#x27;px&#x27;);
     }
-    $(&#x27;#footer&#x27;).css(&#x27;top&#x27;, ($window.height() - 40) + &#x27;px&#x27;).css(&#x27;width&#x27;, ($window.width() - 24) + &#x27;px&#x27;);
+    $(&#x27;#footer&#x27;).css(&#x27;top&#x27;, ($window.height() - 44) + &#x27;px&#x27;).css(&#x27;width&#x27;, $window.width() + &#x27;px&#x27;);
     var open_gallery = $(&#x27;.lesson_editor_gallery_container:visible&#x27;);
     if(open_gallery.length &gt; 0) {
       centerThis(open_gallery);
@@ -1788,7 +1788,7 @@ function initLessonEditorPositions() {
   $(&#x27;ul#slides&#x27;).css(&#x27;width&#x27;, (($(&#x27;ul#slides li&#x27;).length + 2) * 1000));
   $(&#x27;ul#slides&#x27;).css(&#x27;top&#x27;, ((outer_height / 2) - 295) + &#x27;px&#x27;);
   $(&#x27;ul#slides.new&#x27;).css(&#x27;top&#x27;, ((outer_height / 2) - 335) + &#x27;px&#x27;);
-  $(&#x27;#footer&#x27;).css(&#x27;top&#x27;, (outer_height - 40) + &#x27;px&#x27;).css(&#x27;width&#x27;, (outer_width - 24) + &#x27;px&#x27;);
+  $(&#x27;#footer&#x27;).css(&#x27;top&#x27;, (outer_height - 44) + &#x27;px&#x27;).css(&#x27;width&#x27;, outer_width + &#x27;px&#x27;);
   if(outer_width &gt; 1000) {
     $(&#x27;ul#slides li:first&#x27;).css(&#x27;margin-left&#x27;, ((outer_width - 900) / 2) + &#x27;px&#x27;);
     $(&#x27;ul#slides.new li:first&#x27;).css(&#x27;margin-left&#x27;, ((outer_width - 900) / 2) + &#x27;px&#x27;);

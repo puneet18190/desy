@@ -5187,7 +5187,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 113,
+            "line": 115,
             "description": "Initializes the placeholder of the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "mediaElementEditorDocumentReady",
@@ -5196,7 +5196,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 169,
+            "line": 171,
             "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "resetMediaElementChangeInfo",
@@ -5212,7 +5212,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 189,
+            "line": 191,
             "description": "Resets the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method\"}}{{/crossLink}}, {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method\"}}{{/crossLink}} and {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "resetMediaElementEditorForms",
@@ -5221,7 +5221,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 229,
+            "line": 231,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>left</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollLeft",
@@ -5246,7 +5246,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 245,
+            "line": 247,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>right</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollRight",
@@ -5271,7 +5271,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 257,
+            "line": 259,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the absolute position to be assigned to <b>a div that must be aligned to the component</b> after having been moved to first position.",
             "itemtype": "method",
             "name": "getAbsolutePositionTimelineHorizontalScrollPane",
@@ -5306,7 +5306,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 279,
+            "line": 281,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: gets how many components are hidden to the left of the scroll pane.",
             "itemtype": "method",
             "name": "getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane",
@@ -5331,7 +5331,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 292,
+            "line": 294,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: exactly the same as {{#crossLink \"MediaElementEditorHorizontalTimelines/getAbsolutePositionTimelineHorizontalScrollPane:method\"}}{{/crossLink}}, but <b>it returns the position of the scroll pane</b> instead of the absolute pixels for an external div.",
             "itemtype": "method",
             "name": "getNormalizedPositionTimelineHorizontalScrollPane",
@@ -6389,7 +6389,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 318,
+            "line": 322,
             "description": "Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink \"UploaderLessonEditor/recursionLessonEditorUploadinBar:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "linearRecursionLessonEditorUploadinBar",
@@ -6425,7 +6425,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 339,
+            "line": 343,
             "description": "Handles the recursion of uploading animation.",
             "itemtype": "method",
             "name": "recursionLessonEditorUploadinBar",
@@ -6446,7 +6446,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 368,
+            "line": 372,
             "description": "Shows a percentage of the circular loading bar.",
             "itemtype": "method",
             "name": "showPercentLessonEditorUploadinBar",
@@ -6467,7 +6467,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 405,
+            "line": 409,
             "description": "Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).",
             "itemtype": "method",
             "name": "uploadDoneLessonEditor",
@@ -6508,7 +6508,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 488,
+            "line": 492,
             "description": "Handles the errors of loading in Lesson Editor.",
             "itemtype": "method",
             "name": "uploaderErrorsLessonEditor",
@@ -6529,7 +6529,28 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 520,
+            "line": 524,
+            "description": "Shows the message after the conversion ended inside Lesson Editor.",
+            "itemtype": "method",
+            "name": "uploaderConversionChecker",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "selector for the correct translation to be shown",
+                    "type": "String"
+                },
+                {
+                    "name": "title",
+                    "description": "the title of the item",
+                    "type": "String"
+                }
+            ],
+            "class": "UploaderLessonEditor",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 547,
             "description": "Handles 413 status error, file too large, inside Lesson Editor.",
             "itemtype": "method",
             "name": "uploadFileTooLargeLessonEditor",

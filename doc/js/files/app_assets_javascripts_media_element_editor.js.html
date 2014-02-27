@@ -403,7 +403,9 @@ function mediaElementLoaderConversionOverview(list, time) {
   var black_list = $(&#x27;#info_container&#x27;).data(&#x27;media-elements-not-anymore-in-conversion&#x27;);
   for(var i = 0; i &lt; black_list.length; i ++) {
     var j = list.indexOf(black_list[i]);
-    list.splice(j, 1);
+    if(j != -1) {
+      list.splice(j, 1);
+    }
   }
   if(list.length &gt; 0) {
     var ajax_url = &#x27;/media_elements/conversion/check?&#x27;;

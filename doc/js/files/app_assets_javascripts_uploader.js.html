@@ -603,6 +603,8 @@ Function that checks the conversion of the unconverted media elements in the pag
 @param time {Number} time to iterate the loop
 **/
 function lessonEditorConversionOverview(list, time) {
+  $(&#x27;#lesson-title&#x27;).show();
+  $(&#x27;#error-footer-disclaimer&#x27;).hide();
   $(&#x27;._audio_gallery_thumb._disabled, ._video_gallery_thumb._disabled&#x27;).each(function() {
     var my_id = $(this).hasClass(&#x27;_video_gallery_thumb&#x27;) ? $(this).data(&#x27;video-id&#x27;) : $(this).data(&#x27;audio-id&#x27;);
     if(list.indexOf(my_id) == -1) {
@@ -612,7 +614,9 @@ function lessonEditorConversionOverview(list, time) {
   var black_list = $(&#x27;#info_container&#x27;).data(&#x27;media-elements-not-anymore-in-conversion&#x27;);
   for(var i = 0; i &lt; black_list.length; i ++) {
     var j = list.indexOf(black_list[i]);
-    list.splice(j, 1);
+    if(j != -1) {
+      list.splice(j, 1);
+    }
   }
   if(list.length &gt; 0) {
     var ajax_url = &#x27;/lesson_editor/check_conversion?&#x27;;
@@ -833,6 +837,29 @@ function uploaderErrorsLessonEditor(selector, errors) {
   $(selector + &#x27; .part3 .close&#x27;).removeClass(&#x27;disabled&#x27;);
   $(selector + &#x27; .part3 .submit&#x27;).removeClass(&#x27;disabled&#x27;);
   $(selector + &#x27; .part1 .attachment .file&#x27;).unbind(&#x27;click&#x27;);
+}
+
+/**
+Shows the message after the conversion ended inside Lesson Editor.
+@method uploaderConversionChecker
+@for UploaderLessonEditor
+@param selector {String} selector for the correct translation to be shown
+@param title {String} the title of the item
+**/
+function uploaderConversionChecker(selector, title) {
+  var message = $captions.data(&#x27;lesson-editor-conversion-&#x27; + selector);
+  if(title != undefined) {
+    message = message.replace(&#x27;%{item}&#x27;, title);
+  }
+  var delayed = function() {
+    $(&#x27;#lesson-title&#x27;).hide();
+    $(&#x27;#error-footer-disclaimer&#x27;).text(message).removeClass(&#x27;true false&#x27;).addClass(selector.split(&#x27;-&#x27;)[1]).show();
+  }
+  if($(&#x27;#error-footer-disclaimer&#x27;).is(&#x27;:visible&#x27;)) {
+    setTimeout(delayed, 5000);
+  } else {
+    delayed();
+  }
 }
 
 /**
