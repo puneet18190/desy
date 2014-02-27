@@ -7,9 +7,9 @@ var black_list = new Array();
     <% if !me[:ok] %>
       <% already_reloaded = true %>
       black_list.push(<%= me[:media_element_id] %>);
-      // uploaderConversionChecker(); TODO loadder trovare il modo!!!!
       if(my_thumb.length > 0) {
         if(my_thumb.hasClass('_video_gallery_thumb')) {
+          uploaderConversionChecker('novideo-false');
           $('.videoInGalleryPopUp').each(function() {
             if($(this).hasClass('ui-dialog-content')) {
               $(this).dialog('destroy');
@@ -31,6 +31,7 @@ var black_list = new Array();
           $('._close_video_gallery').addClass('_close_video_gallery_in_lesson_editor');
           $('._select_video_from_gallery').addClass('_add_video_to_slide');
         } else {
+          uploaderConversionChecker('noaudio-false');
           var gallery_scrollable = $('#audio_gallery_content > div');
           if(gallery_scrollable.data('jsp') != undefined) {
             gallery_scrollable.data('jsp').destroy();
@@ -47,6 +48,8 @@ var black_list = new Array();
           $('._close_audio_gallery').addClass('_close_audio_gallery_in_lesson_editor');
           $('._select_audio_from_gallery').addClass('_add_audio_to_slide');
         }
+      } else {
+        uploaderConversionChecker('general-false');
       }
     <% elsif me[:media_element].converted? %>
       <% already_reloaded = true %>

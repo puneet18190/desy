@@ -1755,6 +1755,12 @@ cn:
         audio: "There was a mistake converting your audio %{item}! Try loading it again" # TODO
         # 1 - views/shared/_popups.html.erb
         video: "There was a mistake converting your video %{item}! Try loading it again" # TODO
+        # 1 - views/shared/_popups.html.erb
+        audio_general: "There was a mistake converting your audio! Try loading it again" # TODO
+        # 1 - views/shared/_popups.html.erb
+        video_general: "There was a mistake converting your video! Try loading it again" # TODO
+        # 1 - views/shared/_popups.html.erb
+        general: "There was a mistake converting your media! Try loading it again" # TODO
       correct:
         # 1 - views/shared/_popups.html.erb
         audio: "Your audio %{item} has been successfully converted! Open the Audio Gallery to use it" # TODO
