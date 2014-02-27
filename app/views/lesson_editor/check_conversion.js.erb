@@ -28,6 +28,8 @@ var black_list = new Array();
           <% else %>
             $('.video_gallery .scroll-pane').css('overflow', 'hidden');
           <% end %>
+          $('._close_video_gallery').addClass('_close_video_gallery_in_lesson_editor');
+          $('._select_video_from_gallery').addClass('_add_video_to_slide');
         } else {
           var gallery_scrollable = $('#audio_gallery_content > div');
           if(gallery_scrollable.data('jsp') != undefined) {
@@ -42,6 +44,8 @@ var black_list = new Array();
           <% else %>
             $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
           <% end %>
+          $('._close_audio_gallery').addClass('_close_audio_gallery_in_lesson_editor');
+          $('._select_audio_from_gallery').addClass('_add_audio_to_slide');
         }
       }
     <% elsif me[:media_element].converted? %>
