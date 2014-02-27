@@ -531,7 +531,7 @@ Shows the message after the conversion ended inside Lesson Editor.
 function uploaderConversionChecker(selector, title) {
   var message = $captions.data('lesson-editor-conversion-' + selector);
   if(title != undefined) {
-    message.replace('%{item}', title);
+    message = message.replace('%{item}', title);
   }
   var delayed = function() {
     $('#lesson-title').hide();
