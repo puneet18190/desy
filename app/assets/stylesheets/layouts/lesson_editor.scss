@@ -766,19 +766,29 @@ html.lesson-editor-layout {
     height: 10px;
     clear: both;
     
-    img {
+    #lesson-title {
       
-      float: left;
-      width: auto;
-      margin-right: 5px;
-      margin-top: 4px;
+      #error-footer-disclaimer {
+        
+        display: none;
+        
+      }
       
-    }
-    
-    p {
+      img {
+        
+        float: left;
+        width: auto;
+        margin-right: 5px;
+        margin-top: 4px;
+        
+      }
       
-      margin-top: 2px;
-      float: left;
+      p {
+        
+        margin-top: 2px;
+        float: left;
+        
+      }
       
     }
     

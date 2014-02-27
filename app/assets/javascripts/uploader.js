@@ -285,6 +285,8 @@ Function that checks the conversion of the unconverted media elements in the pag
 @param time {Number} time to iterate the loop
 **/
 function lessonEditorConversionOverview(list, time) {
+  $('#lesson-title').show();
+  $('#error-footer-disclaimer').hide();
   $('._audio_gallery_thumb._disabled, ._video_gallery_thumb._disabled').each(function() {
     var my_id = $(this).hasClass('_video_gallery_thumb') ? $(this).data('video-id') : $(this).data('audio-id');
     if(list.indexOf(my_id) == -1) {
@@ -528,8 +530,18 @@ Shows the message after the conversion ended inside Lesson Editor.
 **/
 function uploaderConversionChecker(selector, title) {
   var message = $captions.data('lesson-editor-conversion-' + selector);
-  console.log('chiamato con selector = <' + selector + '>, e title = <' + title + '>');
-  // TODO loadder
+  if(title != undefined) {
+    message.replace('%{item}', title);
+  }
+  var delayed = function() {
+    $('#lesson-title').hide();
+    $('#error-footer-disclaimer').text(message).removeClass('true false').addClass(selector.split('-')[1]).show();
+  }
+  if($('#error-footer-disclaimer').is(':visible')) {
+    setTimeout(delayed, 5000);
+  } else {
+    delayed();
+  }
 }
 
 /**
