@@ -88,7 +88,7 @@
           </td>
           <td>
             <% if !user.confirmed %>
-              <%= link_to admin_send_again_confirmation_path(user), :title => t('admin.users.actions.reconfirm'), :method => :post do %>
+              <%= link_to admin_send_again_confirmation_path(user), :remote => true, :title => t('admin.users.actions.reconfirm'), :method => :post do %>
                 <i class="icon-retweet"></i>
               <% end %>
             <% end %>
