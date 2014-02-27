@@ -865,10 +865,10 @@ Stops a generic media, logging errors in the console.
 function stopMedia(media) {
   try {
     if($(media).length != 0) {
-      var has_source = true;
+      var has_source = false;
       $(media).find(&#x27;source&#x27;).each(function() {
-        if($(this).attr(&#x27;src&#x27;) == &#x27;&#x27;) {
-          has_source = false;
+        if($(this).attr(&#x27;src&#x27;) != &#x27;&#x27;) {
+          has_source = true;
         }
       });
       if(has_source) {
