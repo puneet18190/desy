@@ -11,11 +11,11 @@ gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'erubis'
 gem 'eventmachine',                         platforms: :ruby
-gem 'facter'
+gem 'facter',                               platforms: :ruby
 gem 'jquery-rails',             '~> 2.1.4'
 gem 'kaminari'
 gem 'mini_magick',                                             github: 'mdesantis/minimagick', branch: 'batch_compatibility'
-gem 'nokogiri'
+gem 'nokogiri',                             platforms: :ruby
 gem 'oj'
 gem 'recursive-open-struct'
 gem 'rubyzip'

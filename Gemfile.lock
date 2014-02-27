@@ -48,6 +48,7 @@ GEM
     arel (3.0.3)
     awesome_print (1.2.0)
     bcrypt-ruby (3.0.1)
+    bcrypt-ruby (3.0.1-x86-mingw32)
     binding.repl (1.0.1)
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
@@ -93,6 +94,7 @@ GEM
       paint (>= 0.8.1)
       unicode-display_width (>= 0.1.1)
     ffi (1.9.3)
+    ffi (1.9.3-x86-mingw32)
     g (1.7.2)
     haml (4.0.5)
       tilt
@@ -164,6 +166,8 @@ GEM
     os (0.9.6)
     paint (0.8.7)
     pg (0.17.1)
+    pg (0.17.1-x64-mingw32)
+    pg (0.17.1-x86-mingw32)
     polyglot (0.3.4)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
@@ -274,11 +278,15 @@ GEM
     whenever (0.9.0)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
+    win32-dir (0.4.6)
+      ffi (>= 1.0.0)
     wirb (1.0.3)
       paint (~> 0.8)
 
 PLATFORMS
   ruby
+  x64-mingw32
+  x86-mingw32
 
 DEPENDENCIES
   ancestry
