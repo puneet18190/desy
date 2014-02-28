@@ -58,4 +58,20 @@ class Admin::LessonsController < AdminController
     redirect_to params[:back_url]
   end
   
+  # === Description
+  #
+  # If the lesson is public, it unpublishes it; if it's private, it publishes it
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
+  def toggle_publish
+    
+  end
+  
 end
