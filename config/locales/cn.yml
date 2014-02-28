@@ -1752,18 +1752,18 @@ cn:
     conversion:
       error:
         # 1 - views/shared/_popups.html.erb
-        audio: "There was a mistake converting your audio %{item}! Try loading it again" # TODO
+        audio: "转换音频%{item}错误! 请重新加载"
         # 1 - views/shared/_popups.html.erb
-        video: "There was a mistake converting your video %{item}! Try loading it again" # TODO
+        video: "转换视频%{item}错误! 请重新加载"
         # 1 - views/shared/_popups.html.erb
-        audio_general: "There was a mistake converting your audio! Try loading it again" # TODO
+        audio_general: "转换音频错误! 请重新加载"
         # 1 - views/shared/_popups.html.erb
-        video_general: "There was a mistake converting your video! Try loading it again" # TODO
+        video_general: "转换视频错误! 请重新加载"
       correct:
         # 1 - views/shared/_popups.html.erb
-        audio: "Your audio %{item} has been successfully converted! Open the Audio Gallery to use it" # TODO
+        audio: "你的音频%{item}已成功转换!"
         # 1 - views/shared/_popups.html.erb
-        video: "Your video %{item} has been successfully converted! Open the Video Gallery to use it" # TODO
+        video: "你的视频%{item}已成功转换!,你能使用它"
     # The Lesson Editor is not available if the user started an audio (or video) editing process which overwrites an audio (or a video) used inside a lesson. The Editor is not avilable only to edit that particular lesson, in this case the application shows a page with title and description
     not_available:
       # The variable %{lesson} is replaced by the name of the lesson
