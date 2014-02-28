@@ -3360,6 +3360,26 @@ cn:
         # Button to start the search
         # 1 - views/admin/lessons/index.html.erb
         submit: "查找"
+      # Labels for the action of toggle publish / unpublish
+      toggle_publish:
+        # Message shown if the lesson has been correctly published
+        # 1 - controllers/admin/lessons_controller.rb
+        done: "這個教訓已經公佈"
+        # Message shown if there was an error while trying to publish the lesson
+        # 1 - controllers/admin/lessons_controller.rb
+        not_done: "錯誤，教訓不能被公開"
+        # Message shown if the lesson has been correctly unpublished
+        # 1 - controllers/admin/lessons_controller.rb
+        undone: "課程設置為私有"
+        # Message shown if there was an error while trying to unpublish the lesson
+        # 1 - controllers/admin/lessons_controller.rb
+        not_undone: "錯誤，教訓不能被設置為私有"
+        # Label of the confirmation popup
+        # 1 - views/admin/lessons/_list.html.erb
+        confirm: "您確定要改變這一課的現狀如何？"
+        # Title of the button
+        # 1 - views/admin/lessons/_list.html.erb
+        title: "發布/取消發布"
     # Section of media elements
     media_elements:
       # Title of the section

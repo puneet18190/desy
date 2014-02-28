@@ -3360,6 +3360,26 @@ it:
         # Button to start the search
         # 1 - views/admin/lessons/index.html.erb
         submit: "Cerca"
+      # Labels for the action of toggle publish / unpublish
+      toggle_publish:
+        # Message shown if the lesson has been correctly published
+        # 1 - controllers/admin/lessons_controller.rb
+        done: "Lezione pubblicata"
+        # Message shown if there was an error while trying to publish the lesson
+        # 1 - controllers/admin/lessons_controller.rb
+        not_done: "Errore, la lezione non è stata pubblicata"
+        # Message shown if the lesson has been correctly unpublished
+        # 1 - controllers/admin/lessons_controller.rb
+        undone: "Lezione settata come privata"
+        # Message shown if there was an error while trying to unpublish the lesson
+        # 1 - controllers/admin/lessons_controller.rb
+        not_undone: "Errore, la lezione non è stata settata privata"
+        # Label of the confirmation popup
+        # 1 - views/admin/lessons/_list.html.erb
+        confirm: "Sei sicuro di cambiare lo stato di questa lezione?"
+        # Title of the button
+        # 1 - views/admin/lessons/_list.html.erb
+        title: "Pubblica / spubblica"
     # Section of media elements
     media_elements:
       # Title of the section

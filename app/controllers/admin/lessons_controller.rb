@@ -74,15 +74,15 @@ class Admin::LessonsController < AdminController
     @lesson = Lesson.find(params[:id])
     if @lesson.is_public
       if @lesson.unpublish
-        @message = 'unpubblicata' # TODO traduzz
+        @message = t('admin.lessons.toggle_publish.undone')
       else
-        @message = 'non unpubblicata' # TODO traduzz
+        @message = t('admin.lessons.toggle_publish.not_undone')
       end
     else
       if @lesson.publish
-        @message = 'pubblicata' # TODO traduzz
+        @message = t('admin.lessons.toggle_publish.done')
       else
-        @message = 'non pubblicata' # TODO traduzz
+        @message = t('admin.lessons.toggle_publish.not_done')
       end
     end
   end

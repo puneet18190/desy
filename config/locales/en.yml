@@ -3360,6 +3360,26 @@ en:
         # Button to start the search
         # 1 - views/admin/lessons/index.html.erb
         submit: "Search"
+      # Labels for the action of toggle publish / unpublish
+      toggle_publish:
+        # Message shown if the lesson has been correctly published
+        # 1 - controllers/admin/lessons_controller.rb
+        done: "The lesson has been published"
+        # Message shown if there was an error while trying to publish the lesson
+        # 1 - controllers/admin/lessons_controller.rb
+        not_done: "Error, the lesson couldn't be published"
+        # Message shown if the lesson has been correctly unpublished
+        # 1 - controllers/admin/lessons_controller.rb
+        undone: "Lesson set as private"
+        # Message shown if there was an error while trying to unpublish the lesson
+        # 1 - controllers/admin/lessons_controller.rb
+        not_undone: "Error, the lesson couldn't be set as private"
+        # Label of the confirmation popup
+        # 1 - views/admin/lessons/_list.html.erb
+        confirm: "Are you sure to change the status of this lesson?"
+        # Title of the button
+        # 1 - views/admin/lessons/_list.html.erb
+        title: "Publish / unpublish"
     # Section of media elements
     media_elements:
       # Title of the section
