@@ -3862,6 +3862,9 @@ it:
         # Send again the confirmation email to that unconfirmed user
         # 1 - views/admin/users/_list.html.erb
         reconfirm: "Invia nuovamente la mail di conferma"
+        # Confirmation popup asking the administrator if he is sure about sending again the confirmation email to the selected user
+        # 1 - views/admin/users/_list.html.erb
+        reconfirm_confirm: "Sei sicuro di voler inviare nuovamente la mail di conferma a questo utente?"
         # Succesfully sent again the confirmation email (the variable %{email} is replaced by the user's email)
         # 1 - controllers/admin/users_controller.rb
         reconfirm_sent: "Hai inviato la mail di conferma a %{email}"

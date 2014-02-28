@@ -3862,6 +3862,9 @@ cn:
         # Send again the confirmation email to that unconfirmed user
         # 1 - views/admin/users/_list.html.erb
         reconfirm: "再次發送確認郵件"
+        # Confirmation popup asking the administrator if he is sure about sending again the confirmation email to the selected user
+        # 1 - views/admin/users/_list.html.erb
+        reconfirm_confirm: "您確定要重新發送確認電子郵件？"
         # Succesfully sent again the confirmation email (the variable %{email} is replaced by the user's email)
         # 1 - controllers/admin/users_controller.rb
         reconfirm_sent: "您發送確認電子郵件%{email}"
