@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>BrowserSupportMain - DESY</title>
+    <title>jquery-browsers - DESY</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -316,18 +316,16 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>BrowserSupportMain Class</h1>
-<div class="box meta">
+                        <h1>jquery-browsers Module</h1>
+<div class="box clearfix meta">
     
 
     
 
     
-
-    
-        
-            Module: <a href="../modules/browser-support.html">browser-support</a>
-        
+        <div class="foundat">
+            Defined in: <a href="../files/app_assets_javascripts_jquery_browser.js.html#l1"><code>app&#x2F;assets&#x2F;javascripts&#x2F;jquery_browser.js:1</code></a>
+        </div>
     
 
     
@@ -336,118 +334,40 @@
 
 
 <div class="box intro">
-    
+    <p>This module contains browser matcher for JQuery.
+<br/><br/>
+It is used in the module <a href="../modules/jquery-patches.html">jquery-patches</a> where it&#39;s defined a set of functions that handle different behaviors depending on the browser (the patches are based on the variable $.browser defined in this module).
+<br/><br/>
+It is used also in the module <a href="../modules/browser-support.html">browser-support</a>, where it&#39;s defined the function <a href="../classes/BrowserSupportMain.html#method_browserSupportMain" class="crosslink">browserSupportMain</a>, which handles the browsers not supported by the application.
+<br/><br/>
+Finally, the two empty functions <a href="../classes/AdminBrowserSupport.html#method_adminBrowserSupport" class="crosslink">adminBrowserSupport</a> and <a href="../classes/GeneralMiscellanea.html#method_browserSupport" class="crosslink">browserSupport</a> are the links in the respective files application.js (one for admin and one for general / lesson_archive) of the function above.
+<br/><br/>
+Important: in lesson_scorm application.js there are not any calls to any of the modules <a href="../modules/jquery-browsers.html">jquery-browsers</a>, <a href="../modules/jquery-patches.html">jquery-patches</a>, nor <a href="../modules/browser-support.html">browser-support</a>.
+<br/><br/>
+Note by the developer: "Limit scope pollution from any deprecated API".</p>
+
 </div>
 
 
 
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
+<div class="yui3-g">
+    <div class="yui3-u-1-2">
+        
+            <p>This module provides the following classes:</p>
 
-        
-            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
-        
-        
-        
-        
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
+            <ul class="module-classes">
             
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method">
-                                <a href="#method_browserSupportMain">browserSupportMain</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
+                <li class="module-class">
+                    <a href="../classes/JqueryBrowsersDetection.html">
+                        JqueryBrowsersDetection
+                    </a>
+                </li>
             
-
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_browserSupportMain" class="method item">
-    <h3 class="name"><code>browserSupportMain</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_browser_not_supported_application.js.html#l10"><code>app&#x2F;assets&#x2F;javascripts&#x2F;browser_not_supported&#x2F;application.js:10</code></a>
-        
-        </p>
-
-
-        
-
+            </ul>
         
     </div>
 
-    <div class="description">
-        <p>Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML. Implements two empty functions, one in <a href="../classes/AdminBrowserSupport.html#method_adminBrowserSupport" class="crosslink">adminBrowserSupport</a>, and one in <a href="../classes/GeneralMiscellanea.html#method_browserSupport" class="crosslink">browserSupport</a>.</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-
+    <div class="yui3-u-1-2">
         
     </div>
 </div>

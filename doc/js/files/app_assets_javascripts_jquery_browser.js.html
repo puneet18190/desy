@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>BrowserSupportMain - DESY</title>
+    <title>app/assets/javascripts/jquery_browser.js - DESY</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -316,140 +316,87 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>BrowserSupportMain Class</h1>
-<div class="box meta">
-    
+                        <h1 class="file-heading">File: app/assets/javascripts/jquery_browser.js</h1>
 
-    
-
-    
-
-    
-        
-            Module: <a href="../modules/browser-support.html">browser-support</a>
-        
-    
-
-    
-</div>
-
-
-
-<div class="box intro">
-    
-</div>
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+This module contains browser matcher for JQuery.
+&lt;br/&gt;&lt;br/&gt;
+It is used in the module {{#crossLinkModule &quot;jquery-patches&quot;}}{{/crossLinkModule}} where it&#x27;s defined a set of functions that handle different behaviors depending on the browser (the patches are based on the variable $.browser defined in this module).
+&lt;br/&gt;&lt;br/&gt;
+It is used also in the module {{#crossLinkModule &quot;browser-support&quot;}}{{/crossLinkModule}}, where it&#x27;s defined the function {{#crossLink &quot;BrowserSupportMain/browserSupportMain:method&quot;}}{{/crossLink}}, which handles the browsers not supported by the application.
+&lt;br/&gt;&lt;br/&gt;
+Finally, the two empty functions {{#crossLink &quot;AdminBrowserSupport/adminBrowserSupport:method&quot;}}{{/crossLink}} and {{#crossLink &quot;GeneralMiscellanea/browserSupport:method&quot;}}{{/crossLink}} are the links in the respective files application.js (one for admin and one for general / lesson_archive) of the function above.
+&lt;br/&gt;&lt;br/&gt;
+Important: in lesson_scorm application.js there are not any calls to any of the modules {{#crossLinkModule &quot;jquery-browsers&quot;}}{{/crossLinkModule}}, {{#crossLinkModule &quot;jquery-patches&quot;}}{{/crossLinkModule}}, nor {{#crossLinkModule &quot;browser-support&quot;}}{{/crossLinkModule}}.
+&lt;br/&gt;&lt;br/&gt;
+Note by the developer: &quot;Limit scope pollution from any deprecated API&quot;.
+@module jquery-browsers
+**/
+(function() {
+  var matched, browser;
 
 
 
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-
-        
-            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
-        
-        
-        
-        
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method">
-                                <a href="#method_browserSupportMain">browserSupportMain</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_browserSupportMain" class="method item">
-    <h3 class="name"><code>browserSupportMain</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_browser_not_supported_application.js.html#l10"><code>app&#x2F;assets&#x2F;javascripts&#x2F;browser_not_supported&#x2F;application.js:10</code></a>
-        
-        </p>
 
 
-        
+/**
+Use of jQuery.browser is frowned upon. More details: http://api.jquery.com/jQuery.browser. jQuery.uaMatch maintained for back-compat
+@method browsersDetectionGeneral
+@for JqueryBrowsersDetection
+**/
+jQuery.uaMatch = function( ua ) {
+  var match = [];
+  ua = ua.toLowerCase();
+  if(ua.indexOf(&#x27;ipad&#x27;) &gt;= 0) {
+    match[ 0 ] = &#x27;ipad&#x27;;
+  } else if(ua.indexOf(&#x27;iphone&#x27;) &gt;= 0) {
+    match[ 0 ] = &#x27;iphone&#x27;;
+  } else {
+    match = /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
+      /(webkit)[ \/]([\w.]+)/.exec( ua ) ||
+      /(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) ||
+      // Internet Explorer &lt; 11
+      /(msie) ([\w.]+)/.exec( ua ) ||
+      // Internet Explorer &gt;= 11
+      /(trident)(?:.*? rv:([\w.]+)|)/.exec( ua ) ||
+      ( ua.indexOf(&quot;compatible&quot;) &lt; 0 &amp;&amp; /(mozilla)(?:.*? rv:([\w.]+)|)/.exec( ua ) );
+    if ( match[ 1 ] === &quot;trident&quot; ) {
+      match[ 1 ] = &quot;msie&quot;;
+    }
+  }
+  return {
+    browser: match[ 1 ] || &quot;&quot;,
+    version: match[ 2 ] || &quot;0&quot;
+  };
+};
+matched = jQuery.uaMatch( navigator.userAgent );
+browser = {};
+if ( matched.browser ) {
+  browser[ matched.browser ] = true;
+  browser.version = matched.version;
+}
 
-        
-    </div>
+/**
+Chrome is Webkit, but Webkit is also Safari.
+@method browsersDetectionSafariAndChrome
+@for JqueryBrowsersDetection
+**/
+if ( browser.chrome ) {
+  browser.webkit = true;
+} else if ( browser.webkit ) {
+  browser.safari = true;
+}
 
-    <div class="description">
-        <p>Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML. Implements two empty functions, one in <a href="../classes/AdminBrowserSupport.html#method_adminBrowserSupport" class="crosslink">adminBrowserSupport</a>, and one in <a href="../classes/GeneralMiscellanea.html#method_browserSupport" class="crosslink">browserSupport</a>.</p>
 
-    </div>
 
-    
 
-    
 
-    
-</div>
+  jQuery.browser = browser;
+})();
 
-                
-            </div>
-        
-
-        
-
-        
-
-        
-    </div>
+    </pre>
 </div>
 
                     </div>

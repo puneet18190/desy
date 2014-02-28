@@ -1,16 +1,16 @@
-Thu, 27 Feb 2014 17:46:18 +0100
+Fri, 28 Feb 2014 11:38:43 +0100
 app/controllers/admin/dashboard_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/admin/documents_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
-app/controllers/admin/lessons_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
+app/controllers/admin/lessons_controller.rb	Fri, 28 Feb 2014 10:47:24 +0100
 app/controllers/admin/media_elements_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
 app/controllers/admin/messages_controller.rb	Mon, 10 Feb 2014 14:27:22 +0100
 app/controllers/admin/personifications_controller.rb	Wed, 27 Nov 2013 10:38:42 +0100
 app/controllers/admin/purchases_controller.rb	Mon, 10 Feb 2014 11:08:12 +0100
 app/controllers/admin/reports_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/admin/settings_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
-app/controllers/admin/users_controller.rb	Thu, 27 Feb 2014 17:27:56 +0100
+app/controllers/admin/users_controller.rb	Fri, 28 Feb 2014 09:54:24 +0100
 app/controllers/admin_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/controllers/application_controller.rb	Thu, 27 Feb 2014 15:26:20 +0100
+app/controllers/application_controller.rb	Fri, 28 Feb 2014 10:00:17 +0100
 app/controllers/audio_editor_controller.rb	Mon, 10 Feb 2014 11:08:12 +0100
 app/controllers/dashboard_controller.rb	Tue, 07 Jan 2014 16:52:25 +0100
 app/controllers/documents_controller.rb	Wed, 12 Feb 2014 17:44:36 +0100
@@ -24,7 +24,7 @@ app/controllers/lessons_controller.rb	Wed, 12 Feb 2014 16:13:48 +0100
 app/controllers/mailing_lists_controller.rb	Thu, 14 Nov 2013 12:46:56 +0100
 app/controllers/media_elements_controller.rb	Wed, 26 Feb 2014 14:54:54 +0100
 app/controllers/notifications_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/controllers/prelogin_controller.rb	Thu, 27 Feb 2014 15:26:20 +0100
+app/controllers/prelogin_controller.rb	Fri, 28 Feb 2014 10:00:17 +0100
 app/controllers/reports_controller.rb	Tue, 26 Nov 2013 16:04:55 +0100
 app/controllers/search_controller.rb	Tue, 07 Jan 2014 16:52:25 +0100
 app/controllers/tags_controller.rb	Mon, 17 Feb 2014 15:26:57 +0100
@@ -65,7 +65,7 @@ app/uploaders/document_uploader.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/uploaders/image_uploader.rb	Wed, 06 Nov 2013 17:10:38 +0100
 lib/autoload/button_destinations.rb	Wed, 06 Nov 2013 17:10:41 +0100
 lib/autoload/buttons.rb	Wed, 06 Nov 2013 17:10:41 +0100
-lib/autoload/enhanced_thread.rb	Thu, 27 Feb 2014 16:57:28 +0100
+lib/autoload/enhanced_thread.rb	Fri, 28 Feb 2014 09:54:25 +0100
 lib/autoload/filename_token.rb	Wed, 06 Nov 2013 17:10:41 +0100
 lib/autoload/filters.rb	Wed, 06 Nov 2013 17:10:41 +0100
 lib/autoload/lessons_media_elements_shared.rb	Wed, 06 Nov 2013 17:10:41 +0100

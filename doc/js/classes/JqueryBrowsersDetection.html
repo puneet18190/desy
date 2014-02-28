@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>BrowserSupportMain - DESY</title>
+    <title>JqueryBrowsersDetection - DESY</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -316,7 +316,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>BrowserSupportMain Class</h1>
+                        <h1>JqueryBrowsersDetection Class</h1>
 <div class="box meta">
     
 
@@ -326,7 +326,7 @@
 
     
         
-            Module: <a href="../modules/browser-support.html">browser-support</a>
+            Module: <a href="../modules/jquery-browsers.html">jquery-browsers</a>
         
     
 
@@ -364,7 +364,14 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_browserSupportMain">browserSupportMain</a>
+                                <a href="#method_browsersDetectionGeneral">browsersDetectionGeneral</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_browsersDetectionSafariAndChrome">browsersDetectionSafariAndChrome</a>
 
                                 
                                 
@@ -386,8 +393,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_browserSupportMain" class="method item">
-    <h3 class="name"><code>browserSupportMain</code></h3>
+                    <div id="method_browsersDetectionGeneral" class="method item">
+    <h3 class="name"><code>browsersDetectionGeneral</code></h3>
 
     
         <span class="paren">()</span>
@@ -418,7 +425,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_browser_not_supported_application.js.html#l10"><code>app&#x2F;assets&#x2F;javascripts&#x2F;browser_not_supported&#x2F;application.js:10</code></a>
+        <a href="../files/app_assets_javascripts_jquery_browser.js.html#l22"><code>app&#x2F;assets&#x2F;javascripts&#x2F;jquery_browser.js:22</code></a>
         
         </p>
 
@@ -429,7 +436,62 @@
     </div>
 
     <div class="description">
-        <p>Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML. Implements two empty functions, one in <a href="../classes/AdminBrowserSupport.html#method_adminBrowserSupport" class="crosslink">adminBrowserSupport</a>, and one in <a href="../classes/GeneralMiscellanea.html#method_browserSupport" class="crosslink">browserSupport</a>.</p>
+        <p>Use of jQuery.browser is frowned upon. More details: <a href="http://api.jquery.com/jQuery.browser">http://api.jquery.com/jQuery.browser</a>. jQuery.uaMatch maintained for back-compat</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_browsersDetectionSafariAndChrome" class="method item">
+    <h3 class="name"><code>browsersDetectionSafariAndChrome</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_jquery_browser.js.html#l59"><code>app&#x2F;assets&#x2F;javascripts&#x2F;jquery_browser.js:59</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Chrome is Webkit, but Webkit is also Safari.</p>
 
     </div>
 

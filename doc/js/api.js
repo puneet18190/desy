@@ -42,6 +42,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "ImageEditorGraphics",
         "ImageEditorImageScale",
         "ImageEditorTexts",
+        "JqueryBrowsersDetection",
         "JqueryPatchesBrowsers",
         "LessonEditorCurrentSlide",
         "LessonEditorDocumentReady",
@@ -107,6 +108,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "galleries",
         "general",
         "image-editor",
+        "jquery-browsers",
         "jquery-patches",
         "lesson-editor",
         "lesson-viewer",
@@ -175,6 +177,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "image-editor",
             "name": "image-editor",
             "description": "The Image Editor can perform two kinds of operations on an image: <b>crop selection</b>, and <b>insertion of texts</b>.\n<br/><br/>\nThe editor is structured as follows: in the center of the screen is located the image under modification, scaled to fit the available space but conserving its original proportions (the coordinates are extracted using the method {{#crossLink \"ImageEditorImageScale/getRelativePositionInImageEditor:method\"}}{{/crossLink}}); the column on the left contains the icons for both available actions.\n<br/><br/>\nClicking on the icon 'crop', the user enters in the <b>crop mode</b>: the image is sensible to the action of clicking and dragging, and reacts showing a selected area with the rest of the image shadowed (see the initializer {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyCrop:method\"}}{{/crossLink}}). Similarly, clicking on the icon 'texts', the user enters in <b>texts insertion mode</b>: this means that clicking on the image he can create small editable text areas that will be added on the image (see the initializer {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyTexts:method\"}}{{/crossLink}} and the class {{#crossLink \"ImageEditorTexts\"}}{{/crossLink}}). While the user is in crop mode or texts insertion mode, he can come back to the initial status of the editor clicking on one of the two buttons on the bottom right corner of the image: <b>cancel</b> resets the mode without applying the modifications, and <b>apply</b> does the same but saving the image first (the graphics of these operations is handled in the class {{#crossLink \"ImageEditorGraphics\"}}{{/crossLink}}).\n<br/><br/>\nThe image in editing is conserved in a temporary folder, together with the version of the image before the last step of editing. Each time a new operation is performed, the temporary image is saved in the place of its old version: this way it's always possible to undo the last operation (there is a specific route for this, initialized in the method {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyUndo:method\"}}{{/crossLink}}).\n<br/><br/>\nAs for the other Element Editors ({{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink \"MediaElementEditorForms\"}}{{/crossLink}}); the part of this functionality specific for the Image Editor is handled in {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method\"}}{{/crossLink}}."
+        },
+        {
+            "displayName": "jquery-browsers",
+            "name": "jquery-browsers",
+            "description": "This module contains browser matcher for JQuery.\n<br/><br/>\nIt is used in the module {{#crossLinkModule \"jquery-patches\"}}{{/crossLinkModule}} where it's defined a set of functions that handle different behaviors depending on the browser (the patches are based on the variable $.browser defined in this module).\n<br/><br/>\nIt is used also in the module {{#crossLinkModule \"browser-support\"}}{{/crossLinkModule}}, where it's defined the function {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}, which handles the browsers not supported by the application.\n<br/><br/>\nFinally, the two empty functions {{#crossLink \"AdminBrowserSupport/adminBrowserSupport:method\"}}{{/crossLink}} and {{#crossLink \"GeneralMiscellanea/browserSupport:method\"}}{{/crossLink}} are the links in the respective files application.js (one for admin and one for general / lesson_archive) of the function above.\n<br/><br/>\nImportant: in lesson_scorm application.js there are not any calls to any of the modules {{#crossLinkModule \"jquery-browsers\"}}{{/crossLinkModule}}, {{#crossLinkModule \"jquery-patches\"}}{{/crossLinkModule}}, nor {{#crossLinkModule \"browser-support\"}}{{/crossLinkModule}}.\n<br/><br/>\nNote by the developer: \"Limit scope pollution from any deprecated API\"."
         },
         {
             "displayName": "jquery-patches",
