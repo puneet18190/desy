@@ -19,15 +19,6 @@ function browserDependingScrollToTag() {
 }
 
 /**
-Detects if the browser is an iPad, or iPhone, or other mobile browsers, and saves the result in <b>$.browser.[mobile_kind]</b>.
-@method mobileDetection
-@for JqueryPatchesBrowsers
-**/
-(function() {
-// TODO
-})();
-
-/**
 Checks if the application must autoplay media
 @method mustAutoplayMediaInLessonViewer
 @for JqueryPatchesBrowsers

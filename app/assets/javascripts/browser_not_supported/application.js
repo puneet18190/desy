@@ -3,6 +3,10 @@ Browser support checking functions
 @module browser-support
 **/
 
+
+
+
+
 /**
 Browser support checking, not supported browsers version. It substitutes the page body with the not supported browser HTML. Implements two empty functions, one in {{#crossLink "AdminBrowserSupport/adminBrowserSupport:method"}}{{/crossLink}}, and one in {{#crossLink "GeneralMiscellanea/browserSupport:method"}}{{/crossLink}}.
 @method browserSupportMain

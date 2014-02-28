@@ -13,7 +13,7 @@
 //= require underscore
 //= require url_parser
 //= require jquery
-//= require ../jquery.browser
+//= require ../jquery_browser
 //= require ../jquery_patches
 //= require jquery_ujs
 //= require jquery.mousewheel
