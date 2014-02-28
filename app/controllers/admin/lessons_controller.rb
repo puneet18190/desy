@@ -71,7 +71,20 @@ class Admin::LessonsController < AdminController
   # * ApplicationController#admin_authenticate
   #
   def toggle_publish
-    
+    @lesson = Lesson.find(params[:id])
+    if @lesson.is_public
+      if @lesson.unpublish
+        @message = 'unpubblicata' # TODO traduzz
+      else
+        @message = 'non unpubblicata' # TODO traduzz
+      end
+    else
+      if @lesson.publish
+        @message = 'pubblicata' # TODO traduzz
+      else
+        @message = 'non pubblicata' # TODO traduzz
+      end
+    end
   end
   
 end
