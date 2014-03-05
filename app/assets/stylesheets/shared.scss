@@ -157,7 +157,6 @@ a.cerca.current {
       height: 162px;
       width: calc(40% - 278px);
       padding-left: 15px;
-      background-color: yellow;
       
       .icon {
         
@@ -166,10 +165,11 @@ a.cerca.current {
         
       }
       
-      .text {
+      .text, .report-title {
         
         @include nunito-with-line-height(11px, 15px);
         float: left;
+        color: #262626;
         
       }
       
@@ -199,6 +199,22 @@ a.cerca.current {
           width: 15px;
           height: 15px;
           background-color: aqua;
+          
+        }
+        
+      }
+      
+      ._reportable_lesson_icon {
+        
+        .report {
+          
+          @include svg-circle-icon-handler($assets-icons-set-1_svg, 15px, 2, 5, 1, 0, 0, 1, 1, 0);
+          
+        }
+        
+        .report_light {
+          
+          @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 15px, 2, 5, 1, 1, 0);
           
         }
         
