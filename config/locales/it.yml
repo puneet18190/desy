@@ -2306,16 +2306,13 @@ it:
     # 1 - views/lessons/_view_single_compact.html.erb
     title: "Vuoi segnalare un contenuto non appropriato?"
     # Title of the report form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     description: "Pensi che questo contenuto sia offensivo?"
     # Description of the report form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     placeholder: "Scrivi il motivo della segnalazione. Grazie per la tua collaborazione!"
     # Button to send the form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     commit: "Invia"
   
   

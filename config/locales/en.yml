@@ -2306,16 +2306,13 @@ en:
     # 1 - views/lessons/_view_single_compact.html.erb
     title: "Do you want to report an inappropriate content?"
     # Title of the report form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     description: "Do you think that this item is offensive?"
     # Description of the report form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     placeholder: "Write the reason for your report. Thank you for your cooperation!"
     # Button to send the form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     commit: "Send"
   
   

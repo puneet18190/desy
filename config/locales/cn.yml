@@ -2306,16 +2306,13 @@ cn:
     # 1 - views/lessons/_view_single_compact.html.erb
     title: "报告滥用"
     # Title of the report form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     description: "你认为这一项是带有攻击性的吗？"
     # Description of the report form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     placeholder: "记下你报告的原因。谢谢你的合作！"
     # Button to send the form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     commit: "发送"
   
   
