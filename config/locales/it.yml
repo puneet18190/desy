@@ -1874,6 +1874,9 @@ it:
     # Caption to indicate how many users like the lesson (the variable %{likes} is replaced by the number of users who like the selected lesson)
     # 1 - views/lessons/_view_single_compact.html.erb
     users_like_this: "A %{likes} utenti piace questa lezione"
+    # Caption to indicate how many users follow the lesson (the variable %{followers} is replaced by the number of users who follow the selected lesson)
+    # 1 - views/lessons/_view_single_compact.html.erb
+    users_follow_this: "%{followers} utenti seguono questa lezione"
   
   
   # SECTION 2.8: Captions used in the Lesson Viewer
