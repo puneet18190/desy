@@ -57,19 +57,18 @@
         <% if [Statuses::PUBLIC, Statuses::LINKED].include?(lesson.status) %>
           <div class="additional-header">
             <div class="author">
-              <div class="icon"><%= t('lessons.author') %>:</div>
+              <div class="icon"><%= t('lessons.author') %></div>
               <div class="text"><%= lesson.user.full_name %></div>
             </div>
             <div class="school">
-              <div class="icon"><%= Location.base_label %>:</div>
+              <div class="icon"><%= Location.base_label %></div>
               <div class="text"><%= lesson.user.base_location %></div>
             </div>
             <div class="school-level">
-              <div class="icon"><%= t('lessons.school_level') %>:</div>
+              <div class="icon"><%= t('lessons.school_level') %></div>
               <div class="text"><%= lesson.school_level.description %></div>
             </div>
           </div>
-          <br class="clearfloat"/>
         <% end %>
         <div class="description">
           <div class="icon"><%= t('lessons.description') %></div>

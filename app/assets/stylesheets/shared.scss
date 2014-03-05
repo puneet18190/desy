@@ -249,7 +249,73 @@ a.cerca.current {
       height: 162px;
       width: calc(60% + 1px);
       padding-left: 15px;
-      background-color: blue;
+      
+      .icon {
+        
+        @include nunito-with-line-height(11px, 15px);
+        padding: 1px 5px;
+        height: 13px;
+        border-radius: 2px;
+        margin-right: 7px;
+        background-color: $orange;
+        color: white;
+        
+      }
+      
+      .additional-header {
+        
+        height: 15px;
+        margin-top: 5px;
+        margin-bottom: 31px;
+        
+        .author, .school, .school-level {
+          
+          height: 15px;
+          float: left;
+          
+        }
+        
+        .author, .school {
+          
+          margin-right: 25px;
+          
+        }
+        
+        .icon, .text {
+          
+          float: left;
+          
+        }
+        
+        .text {
+          
+          @include nunito-with-line-height(11px, 15px);
+          color: #262626;
+          
+        }
+        
+      }
+      
+      .description {
+        
+        clear: both;
+        
+        .icon {
+          
+          float: left;
+          margin-bottom: 7px;
+          
+        }
+        
+        .text {
+          
+          @include nunito-with-line-height(11px, 15px);
+          clear: both;
+          color: #262626;
+          
+        }
+        
+      }
       
     }
     
