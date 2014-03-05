@@ -159,6 +159,67 @@ a.cerca.current {
       padding-left: 15px;
       background-color: yellow;
       
+      .icon {
+        
+        float: left;
+        margin-right: 7px;
+        
+      }
+      
+      .text {
+        
+        @include nunito-with-line-height(11px, 15px);
+        float: left;
+        
+      }
+      
+      .created {
+        
+        margin-top: 15px;
+        height: 15px;
+        
+        .icon {
+          
+          width: 15px;
+          height: 15px;
+          background-color: green;
+          
+        }
+        
+      }
+      
+      .likes {
+        
+        margin-top: 8px;
+        height: 15px;
+        clear: both;
+        
+        .icon {
+          
+          width: 15px;
+          height: 15px;
+          background-color: aqua;
+          
+        }
+        
+      }
+      
+      .followers {
+        
+        margin-top: 8px;
+        height: 15px;
+        clear: both;
+        
+        .icon {
+          
+          width: 15px;
+          height: 15px;
+          background-color: purple;
+          
+        }
+        
+      }
+      
     }
     
     .box-right {
