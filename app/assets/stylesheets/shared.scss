@@ -151,7 +151,25 @@ a.cerca.current {
     height: 162px;
     float: left;
     
-    /* TODO expanded lesson riempi */
+    .box-left {
+      
+      float: left;
+      height: 162px;
+      width: calc(40% - 278px);
+      padding-left: 15px;
+      background-color: yellow;
+      
+    }
+    
+    .box-right {
+      
+      float: left;
+      height: 162px;
+      width: calc(60% + 1px);
+      padding-left: 15px;
+      background-color: blue;
+      
+    }
     
   }
   
