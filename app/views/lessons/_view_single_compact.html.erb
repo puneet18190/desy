@@ -53,20 +53,28 @@
           <%= render :partial => 'reports/form', :locals => {:item => lesson} %>
         <% end %>
       </div>
-      <div class="description-text">
+      <div class="box-right">
         <% if [Statuses::PUBLIC, Statuses::LINKED].include?(lesson.status) %>
-          <div class="intestazione">
-            <h1><%= t('lessons.author') %>:</h1>
-            <p><%= lesson.user.full_name %></p>
-            <h1><%= Location.base_label %>:</h1>
-            <p><%= lesson.user.base_location %></p>
-            <h1><%= t('lessons.school_level') %>:</h1>
-            <p class="fltlft"><%= lesson.school_level.description %></p>
+          <div class="additional-header">
+            <div class="author">
+              <div class="icon"><%= t('lessons.author') %>:</div>
+              <div class="text"><%= lesson.user.full_name %></div>
+            </div>
+            <div class="school">
+              <div class="icon"><%= Location.base_label %>:</div>
+              <div class="text"><%= lesson.user.base_location %></div>
+            </div>
+            <div class="school-level">
+              <div class="icon"><%= t('lessons.school_level') %>:</div>
+              <div class="text"><%= lesson.school_level.description %></div>
+            </div>
           </div>
           <br class="clearfloat"/>
         <% end %>
-        <h1><%= t('lessons.description') %></h1>
-        <p><%= lesson.description %></p>
+        <div class="description">
+          <div class="icon"><%= t('lessons.description') %></div>
+          <div class="text"><%= lesson.description %></div>
+        </div>
       </div>
     </div>
   <% end %>
