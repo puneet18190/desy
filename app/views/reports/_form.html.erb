@@ -1,4 +1,4 @@
-<% type = item.sti_type == 'Lesson' ? 'lesson' : 'media_element' %>
+<% type = item.class.to_s == 'Lesson' ? 'lesson' : 'media_element' %>
 <span id="<%= type %>_report_form_<%= item.id %>" class="tooltipForm for-<%= type %> _report_form_content" style="display:none">
   <%= image_tag 'freccia_tooltip_form.png', :class => 'calloutForm' %>
   <h3><%= t('reports.description') %></h3> <!-- TODO traduzz -->
