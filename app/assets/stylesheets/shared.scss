@@ -143,21 +143,15 @@ a.cerca.current {
   ._lesson_expanded {
     
     display: none;
+    background-color: #E8E8E8;
+    -webkit-box-shadow: inset 0px 3px 4px #D3D3D3;
+    box-shadow: inset 0px 3px 4px #D3D3D3;
+    width: calc(100% - 36px);
+    padding: 18px;
+    height: 162px;
+    float: left;
     
-    /* TODO expanded lesson riempi 
-    
-    color: #373737;
--    background-color: #E8E8E8;
--    -webkit-box-shadow: inset 0px 3px 4px #D3D3D3;
--    box-shadow: inset 0px 3px 4px #D3D3D3;
--    padding: 18px;
--    height: 162px;
--    float: left;
--    width: calc(100% - 36px);
--    cursor: auto;
-
-    
-    */
+    /* TODO expanded lesson riempi */
     
   }
   
