@@ -140,125 +140,24 @@ a.cerca.current {
     
   }
   
-  .lessons-expanded {
+  ._lesson_expanded {
     
     display: none;
+    
+    /* TODO expanded lesson riempi 
+    
     color: #373737;
-    background-color: #E8E8E8;
-    -webkit-box-shadow: inset 0px 3px 4px #D3D3D3;
-    box-shadow: inset 0px 3px 4px #D3D3D3;
-    padding: 18px;
-    height: 162px;
-    float: left;
-    width: calc(100% - 36px);
-    cursor: auto;
+-    background-color: #E8E8E8;
+-    -webkit-box-shadow: inset 0px 3px 4px #D3D3D3;
+-    box-shadow: inset 0px 3px 4px #D3D3D3;
+-    padding: 18px;
+-    height: 162px;
+-    float: left;
+-    width: calc(100% - 36px);
+-    cursor: auto;
+
     
-    h1 {
-      
-      font-size: 100%;
-      color: #A7A9AC;
-      
-    }
-    
-    .img_expanded {
-      
-      h1 {
-        
-        color: #fff;
-        
-      }
-      
-    }
-    
-    .info-text {
-      
-      float: left;
-      padding: 1px 2px 0 10px;
-      font-size: 85%;
-      position: relative;
-      
-      p {
-        
-        padding-top: 20px;
-        padding-bottom: 10px;
-        
-      }
-      
-      ._reportable_lesson_icon {
-        
-        bottom: -39px;
-        left: 10px;
-        height: 20px;
-        position: absolute;
-        cursor: pointer;
-        
-        .icon-content {
-          
-          @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 20px, 2, 5, 1, 0, 0);
-          
-          &.report_light, &.report_selected {
-            
-            @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 20px, 2, 5, 1, 1, 0);
-            
-          }
-          
-        }
-        
-        .report-title {
-          
-          margin-left: 5px;
-          position: relative;
-          top: 5px;
-          
-        }
-        
-      }
-      
-    }
-    
-    .description-text {
-      
-      float: right;
-      padding: 0.5% 1.5% 0 0%;
-      width: 54%;
-      font-size: 90%;
-      margin-left: 1%;
-      
-      p {
-        
-        line-height: 1.5em;
-        
-      }
-      
-      .intestazione {
-        
-        padding-bottom: 20px;
-        float: left;
-        
-        h1 {
-          
-          float: left;
-          padding-right: 5px;
-          padding-bottom: 0px;
-          
-        }
-        
-        p {
-          
-          float: left;
-          padding-right: 20px;
-          
-        }
-        
-      }
-      
-      h1 {
-        
-        padding-bottom: 5px;
-        
-      }
-      
-    }
+    */
     
   }
   

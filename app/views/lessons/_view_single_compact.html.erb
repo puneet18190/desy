@@ -5,6 +5,8 @@
   else
     forced_margin = "style=\"margin-bottom:#{(71 * forced_margin)}px\"".html_safe
   end
+  bookmarks_count ||= nil
+  bookmarks_count = lesson.bookmarks.count if bookmarks_count.nil?
   likes_general_count ||= nil
   likes_general_count = lesson.likes.count if likes_general_count.nil?
   cover ||= nil
