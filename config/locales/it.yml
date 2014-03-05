@@ -1825,9 +1825,9 @@ it:
     # Caption containing the author's name (the variable %{author} is replaced by the name of the author)
     # 1 - views/lessons/_view_single_expanded.html.erb
     created_by: "Creata da %{author}"
-    # Caption which indicates the date in which a lesson is created
+    # Caption which indicates the date in which a lesson is created (the variable %{time} is replaced by the creation time)
     # 1 - views/lessons/_view_single_compact.html.erb
-    created_on: "Creata il"
+    created_on: "Creata il %{time}"
     # Caption of the link to open the lesson editor (on the left of the bar above the lesson's list)
     # 1 - views/lessons/index.html.erb
     create_new: "Crea una nuova lezione"

@@ -1825,9 +1825,9 @@ cn:
     # Caption containing the author's name (the variable %{author} is replaced by the name of the author)
     # 1 - views/lessons/_view_single_expanded.html.erb
     created_by: "由%{author}创建"
-    # Caption which indicates the date in which a lesson is created
+    # Caption which indicates the date in which a lesson is created (the variable %{time} is replaced by the creation time)
     # 1 - views/lessons/_view_single_compact.html.erb
-    created_on: "建立"
+    created_on: "建立%{time}"
     # Caption of the link to open the lesson editor (on the left of the bar above the lesson's list)
     # 1 - views/lessons/index.html.erb
     create_new: "建立新课程"
