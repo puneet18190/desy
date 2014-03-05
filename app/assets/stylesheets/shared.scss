@@ -150,6 +150,7 @@ a.cerca.current {
     padding: 18px;
     height: 162px;
     float: left;
+    cursor: auto;
     
     .box-left {
       
@@ -175,7 +176,7 @@ a.cerca.current {
       
       .created {
         
-        margin-top: 15px;
+        margin-top: 5px;
         height: 15px;
         
         .icon {
@@ -205,6 +206,10 @@ a.cerca.current {
       }
       
       ._reportable_lesson_icon {
+        
+        display: block;
+        height: 15px;
+        margin-top: 76px;
         
         .report {
           
