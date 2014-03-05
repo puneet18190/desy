@@ -1136,7 +1136,7 @@ en:
       # 1 - views/notifications/_main.html.erb
       label: "Profile"
     # Icon to report an offensive lesson or media element
-    # 1 - views/reports/_media_element.html.erb
+    # 1 - views/media_elements/_popup.html.erb
     report: "Report offensive content"
     # Icon with a lens in the main sections
     # 1 - views/shared/_search.html.erb
