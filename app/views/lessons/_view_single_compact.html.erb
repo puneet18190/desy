@@ -30,17 +30,27 @@
   </div>
   
   <% if !disabled %>
-    <div class="lessons-expanded _lesson_expanded">
+    <div class="_lesson_expanded">
       <%= render :partial => 'lessons/thumbnail', :locals => {:lesson => lesson, :cover => cover} %>
-      <div class="info-text">
-        <h1><%= t('lessons.created_on') %></h1>
-        <%= TimeConvert.to_string(lesson.created_at) %>
-        <p>
-          <span class="fltlft"><%= image_tag "star.png", :align => "left" %></span>
-          <span class="fltlft" style="padding-top:2px"><%= t('lessons.users_like_this', :likes => likes_general_count) %></span>
-        </p>
+      <div class="box-left">
+        <div class="created">
+          <div class="icon"></div>
+          <div class="text"><%= t('lessons.created_on', :time => TimeConvert.to_string(lesson.created_at)) %></div> <!-- TODO traduzz -->
+        </div>
+        <div class="likes">
+          <div class="icon"></div>
+          <div class="text"><%= t('lessons.users_like_this', :likes => likes_general_count) %></div>
+        </div>
+        <div class="followers">
+          <div class="icon"></div>
+          <div class="text"><%= t('lessons.users_follow_this', :followers => bookmarks_count) %></div> <!-- TODO traduzz -->
+        </div>
         <% if lesson.is_reportable %>
-          <%= render :partial => 'reports/lesson', :locals => {:lesson => lesson} %>
+          <a class="<%= Buttons::REPORT %> _reportable_lesson_icon">
+            <div class="icon-content"></div>
+            <span class="report-title"><%= t('reports.title') %></span> <!-- TODO traduzz spostare anche e rifattorizzare -->
+          </a>
+          <%= render :partial => 'reports/form', :locals => {:item => lesson} %>
         <% end %>
       </div>
       <div class="description-text">

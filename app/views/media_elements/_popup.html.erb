@@ -85,7 +85,8 @@
         </div>
         <div class="menuIconButton at_right">
           <% if media_element.is_reportable %>
-            <%= render :partial => 'reports/media_element', :locals => {:media_element => media_element} %>
+            <a class="<%= Buttons::REPORT %> _report_media_element_click" title="<%= t('titles.report') %>"></a> <!-- TODO traduzz spostare e separare -->
+            <%= render :partial => 'reports/form', :locals => {:item => media_element} %>
           <% end %>
           <a class="close _close_media_element_preview_popup" data-param="<%= media_element.id %>" title="<%= t('titles.close') %>"></a>
         </div>
