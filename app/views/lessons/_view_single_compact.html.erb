@@ -48,7 +48,7 @@
         <% if lesson.is_reportable %>
           <a class="<%= Buttons::REPORT %> _reportable_lesson_icon">
             <div class="icon-content"></div>
-            <span class="report-title"><%= t('reports.title') %></span> <!-- TODO traduzz spostare anche e rifattorizzare -->
+            <span class="report-title"><%= t('reports.title') %></span>
           </a>
           <%= render :partial => 'reports/form', :locals => {:item => lesson} %>
         <% end %>

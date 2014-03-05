@@ -2303,8 +2303,8 @@ en:
   
   reports:
     # Link to open the report form
-    # 1 - views/reports/_lesson.html.erb
-    title: "Report abuse"
+    # 1 - views/lessons/_view_single_compact.html.erb
+    title: "Do you want to report an inappropriate content?"
     # Title of the report form
     # 1 - views/reports/_lesson.html.erb
     # 2 - views/reports/_media_element.html.erb

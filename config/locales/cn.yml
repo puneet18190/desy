@@ -2303,7 +2303,7 @@ cn:
   
   reports:
     # Link to open the report form
-    # 1 - views/reports/_lesson.html.erb
+    # 1 - views/lessons/_view_single_compact.html.erb
     title: "报告滥用"
     # Title of the report form
     # 1 - views/reports/_lesson.html.erb
