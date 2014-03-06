@@ -161,14 +161,13 @@ a.cerca.current {
       
       .icon {
         
-        float: left;
         margin-right: 7px;
         
       }
       
       .text {
         
-        @include nunito-with-line-height(10px, 15px);
+        @include nunito-with-line-height(10px, 24px);
         float: left;
         color: #262626;
         
@@ -177,13 +176,11 @@ a.cerca.current {
       .created {
         
         margin-top: 5px;
-        height: 15px;
+        height: 24px;
         
         .icon {
           
-          width: 15px;
-          height: 15px;
-          background-color: green;
+          @include svg-circle-icon-handler-without-hover($assets-lesson-expanded_png, 24px, 1, 3, 1, 0, 0);
           
         }
         
@@ -192,14 +189,26 @@ a.cerca.current {
       .likes {
         
         margin-top: 8px;
-        height: 15px;
+        height: 24px;
         clear: both;
         
         .icon {
           
-          width: 15px;
-          height: 15px;
-          background-color: aqua;
+          @include svg-circle-icon-handler-without-hover($assets-lesson-expanded_png, 24px, 1, 3, 1, 0, 1);
+          
+        }
+        
+      }
+      
+      .followers {
+        
+        margin-top: 8px;
+        height: 24px;
+        clear: both;
+        
+        .icon {
+          
+          @include svg-circle-icon-handler-without-hover($assets-lesson-expanded_png, 24px, 1, 3, 1, 0, 2);
           
         }
         
@@ -209,43 +218,27 @@ a.cerca.current {
         
         display: block;
         height: 22px;
-        margin-top: 72px;
-        margin-left: -3px; /* perché c'è troppo padding nell'svg dell'icona */
+        margin-top: 42px;
+        margin-left: 1px;
         
         .report {
           
-          @include svg-circle-icon-handler($assets-icons-set-1_svg, 22px, 2, 5, 1, 0, 0, 1, 1, 0);
+          @include svg-circle-icon-handler($assets-icons-set-1_svg, 24px, 2, 5, 1, 0, 0, 1, 1, 0);
           
         }
         
         .report_light, .report_selected {
           
-          @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 22px, 2, 5, 1, 1, 0);
+          @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 24px, 2, 5, 1, 1, 0);
           
         }
         
         .report-title {
           
-          @include nunito-with-line-height(10px, 22px);
+          @include nunito-with-line-height(10px, 24px);
           float: left;
           color: #262626;
-          margin-left: 4px;
-          
-        }
-        
-      }
-      
-      .followers {
-        
-        margin-top: 8px;
-        height: 15px;
-        clear: both;
-        
-        .icon {
-          
-          width: 15px;
-          height: 15px;
-          background-color: purple;
+          margin-left: 7px;
           
         }
         
@@ -275,12 +268,12 @@ a.cerca.current {
       .additional-header {
         
         height: 15px;
-        margin-top: 5px;
-        margin-bottom: 30px;
+        margin-top: 8px;
+        margin-bottom: 50px;
         
         .author, .school, .school-level {
           
-          height: 15px;
+          height: 16px;
           float: left;
           
         }
