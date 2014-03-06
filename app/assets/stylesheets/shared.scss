@@ -527,7 +527,7 @@ a.cerca.current {
     
   }
   
-  .contentInterno { // TODO contentto
+  .contentInterno {
     
     float: left;
     width: 100%;
@@ -545,7 +545,7 @@ a.cerca.current {
       font-size: 10px !important;
       padding-top: 12px !important;
       width: 10%;
-      text-align: center;
+      text-align: left;
       float: left;
       
     }
@@ -558,6 +558,7 @@ a.cerca.current {
       display: inline-block;
       width: 42.7%;
       margin-right: 1.8%;
+      margin-left: 18px;
       
       .mini-icon {
         
@@ -608,7 +609,7 @@ a.cerca.current {
     height: 200px;
     width: 200px;
     position: absolute;
-    left: 0.8%;
+    left: 14px;
     z-index: 2;
     background-image: $assets-fondo-mini-thumb-stretto_png;
     
