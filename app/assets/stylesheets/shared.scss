@@ -218,7 +218,7 @@ a.cerca.current {
           
         }
         
-        .report_light {
+        .report_light, .report_selected {
           
           @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 22px, 2, 5, 1, 1, 0);
           
