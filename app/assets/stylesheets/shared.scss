@@ -156,7 +156,7 @@ a.cerca.current {
       
       float: left;
       height: 162px;
-      width: calc(40% - 278px);
+      width: calc(50% - 278px);
       padding-left: 15px;
       
       .icon {
@@ -168,7 +168,7 @@ a.cerca.current {
       
       .text {
         
-        @include nunito-with-line-height(11px, 15px);
+        @include nunito-with-line-height(10px, 15px);
         float: left;
         color: #262626;
         
@@ -226,7 +226,7 @@ a.cerca.current {
         
         .report-title {
           
-          @include nunito-with-line-height(11px, 22px);
+          @include nunito-with-line-height(10px, 22px);
           float: left;
           color: #262626;
           margin-left: 4px;
@@ -257,14 +257,14 @@ a.cerca.current {
       
       float: left;
       height: 162px;
-      width: calc(60% + 1px);
+      width: calc(50% + 1px);
       padding-left: 15px;
       
       .icon {
         
-        @include nunito-with-line-height(11px, 15px);
+        @include nunito-with-line-height(10px, 16px);
         padding: 1px 5px;
-        height: 13px;
+        height: 14px;
         border-radius: 2px;
         margin-right: 7px;
         background-color: $orange;
@@ -276,7 +276,7 @@ a.cerca.current {
         
         height: 15px;
         margin-top: 5px;
-        margin-bottom: 31px;
+        margin-bottom: 30px;
         
         .author, .school, .school-level {
           
@@ -299,7 +299,7 @@ a.cerca.current {
         
         .text {
           
-          @include nunito-with-line-height(11px, 15px);
+          @include nunito-with-line-height(10px, 15px);
           color: #262626;
           
         }
@@ -319,7 +319,7 @@ a.cerca.current {
         
         .text {
           
-          @include nunito-with-line-height(11px, 15px);
+          @include nunito-with-line-height(10px, 15px);
           clear: both;
           color: #262626;
           

@@ -2304,7 +2304,7 @@ en:
   reports:
     # Link to open the report form
     # 1 - views/lessons/_view_single_compact.html.erb
-    title: "Do you want to report an inappropriate content?"
+    title: "Inappropriate content?"
     # Title of the report form
     # 1 - views/reports/_form.html.erb
     description: "Do you think that this item is offensive?"
