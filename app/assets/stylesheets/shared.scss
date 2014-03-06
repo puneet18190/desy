@@ -249,9 +249,10 @@ a.cerca.current {
     .box-right {
       
       float: left;
-      height: 162px;
+      height: 154px;
       width: calc(50% + 1px);
       padding-left: 15px;
+      padding-top: 8px;
       
       .icon {
         
@@ -268,7 +269,7 @@ a.cerca.current {
       .additional-header {
         
         height: 15px;
-        margin-top: 8px;
+        margin-top: 0;
         margin-bottom: 50px;
         
         .author, .school, .school-level {
