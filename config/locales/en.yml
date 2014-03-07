@@ -3112,9 +3112,11 @@ en:
     placeholder:
       # 1 - views/admin/users/_locations_list.html.erb
       # 2 - views/users/_locations_list.html.erb
+      # 3 - views/admin/purchases/_locations.html.erb
       feminine: "Select %{location}"
       # 1 - views/admin/users/_locations_list.html.erb
       # 2 - views/users/_locations_list.html.erb
+      # 3 - views/admin/purchases/_locations.html.erb
       masculine: "Select %{location}"
   
   
