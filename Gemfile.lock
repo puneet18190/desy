@@ -222,8 +222,7 @@ GEM
     ruby_info (1.0.1)
     ruby_version (1.0.1)
     rubyzip (1.1.0)
-    sass (3.3.0)
-      rake
+    sass (3.2.15)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
@@ -325,6 +324,7 @@ DEPENDENCIES
   recursive-open-struct
   rspec-rails
   rubyzip
+  sass (~> 3.2.0)
   sass-rails (~> 4.0.0)
   schema_plus
   sdoc
