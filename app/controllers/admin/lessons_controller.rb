@@ -58,4 +58,33 @@ class Admin::LessonsController < AdminController
     redirect_to params[:back_url]
   end
   
+  # === Description
+  #
+  # If the lesson is public, it unpublishes it; if it's private, it publishes it
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
+  def toggle_publish
+    @lesson = Lesson.find(params[:id])
+    if @lesson.is_public
+      if @lesson.unpublish
+        @message = t('admin.lessons.toggle_publish.undone')
+      else
+        @message = t('admin.lessons.toggle_publish.not_undone')
+      end
+    else
+      if @lesson.publish
+        @message = t('admin.lessons.toggle_publish.done')
+      else
+        @message = t('admin.lessons.toggle_publish.not_done')
+      end
+    end
+  end
+  
 end

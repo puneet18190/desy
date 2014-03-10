@@ -159,7 +159,6 @@ Initializer for the general graphical properties of the editor: position and res
 **/
 function imageEditorDocumentReadyGeneral() {
   $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
-  $('#image_gallery_for_image_editor .gallery-header').css('left', ($window.width()/2) - 420);
   $body.on('click', '._add_image_to_image_editor', function() {
     var parser = document.createElement('a');
     parser.href = $('._exit_url').attr('href');

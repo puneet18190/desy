@@ -43,6 +43,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -63,7 +64,7 @@
           <td><%= TimeConvert.to_string user.created_at %></td>
           <td>
             <%= link_to admin_user_path(user), :title => t('admin.users.show'), :class => 'action' do %>
-            <i class="icon-eye-open"></i>
+              <i class="icon-eye-open"></i>
             <% end %>
           </td>
           <td id="user_<%= user.id %>_status">
@@ -79,11 +80,18 @@
             <% end %>
           </td>
           <td>
-            <% if current_user.super_admin? && current_user != user && user.confirmed -%>
-              <%= link_to admin_personifications_path(user), title: t('admin.users.actions.personificate'), method: :post do %>
+            <% if current_user.super_admin? && current_user != user && user.confirmed %>
+              <%= link_to admin_personifications_path(user), :title => t('admin.users.actions.personificate'), :method => :post do %>
                 <i class="icon-user"></i>
               <% end %>
-            <% end -%>
+            <% end %>
+          </td>
+          <td>
+            <% if !user.confirmed %>
+              <%= link_to admin_send_again_confirmation_path(user), :remote => true, :confirm => t('admin.users.actions.reconfirm_confirm'), :title => t('admin.users.actions.reconfirm'), :method => :post do %>
+                <i class="icon-retweet"></i>
+              <% end %>
+            <% end %>
           </td>
           <td>
             <% if !user.super_admin? %>

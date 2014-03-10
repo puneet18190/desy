@@ -5,6 +5,8 @@
   else
     forced_margin = "style=\"margin-bottom:#{(71 * forced_margin)}px\"".html_safe
   end
+  bookmarks_count ||= nil
+  bookmarks_count = lesson.bookmarks.count if bookmarks_count.nil?
   likes_general_count ||= nil
   likes_general_count = lesson.likes.count if likes_general_count.nil?
   cover ||= nil
@@ -28,33 +30,50 @@
   </div>
   
   <% if !disabled %>
-    <div class="lessons-expanded _lesson_expanded">
+    <div class="_lesson_expanded">
       <%= render :partial => 'lessons/thumbnail', :locals => {:lesson => lesson, :cover => cover} %>
-      <div class="info-text">
-        <h1><%= t('lessons.created_on') %></h1>
-        <%= TimeConvert.to_string(lesson.created_at) %>
-        <p>
-          <span class="fltlft"><%= image_tag "star.png", :align => "left" %></span>
-          <span class="fltlft" style="padding-top:2px"><%= t('lessons.users_like_this', :likes => likes_general_count) %></span>
-        </p>
+      <div class="box-left">
+        <div class="created">
+          <div class="icon"></div>
+          <div class="text"><%= t('lessons.created_on', :time => TimeConvert.to_string(lesson.created_at)) %></div>
+        </div>
+        <div class="likes">
+          <div class="icon"></div>
+          <div class="text"><%= t('lessons.users_like_this', :likes => likes_general_count) %></div>
+        </div>
+        <div class="followers">
+          <div class="icon"></div>
+          <div class="text"><%= t('lessons.users_follow_this', :followers => bookmarks_count) %></div>
+        </div>
         <% if lesson.is_reportable %>
-          <%= render :partial => 'reports/lesson', :locals => {:lesson => lesson} %>
+          <a class="_reportable_lesson_icon">
+            <div class="icon-content report"></div>
+            <span class="report-title"><%= t('reports.title') %></span>
+          </a>
+          <%= render :partial => 'reports/form', :locals => {:item => lesson} %>
         <% end %>
       </div>
-      <div class="description-text">
+      <div class="box-right">
         <% if [Statuses::PUBLIC, Statuses::LINKED].include?(lesson.status) %>
-          <div class="intestazione">
-            <h1><%= t('lessons.author') %>:</h1>
-            <p><%= lesson.user.full_name %></p>
-            <h1><%= Location.base_label %>:</h1>
-            <p><%= lesson.user.base_location %></p>
-            <h1><%= t('lessons.school_level') %>:</h1>
-            <p class="fltlft"><%= lesson.school_level.description %></p>
+          <div class="additional-header">
+            <div class="author">
+              <div class="icon"><%= t('lessons.author') %></div>
+              <div class="text"><%= lesson.user.full_name %></div>
+            </div>
+            <div class="school">
+              <div class="icon"><%= Location.base_label %></div>
+              <div class="text"><%= lesson.user.base_location %></div>
+            </div>
+            <div class="school-level">
+              <div class="icon"><%= t('lessons.school_level') %></div>
+              <div class="text"><%= lesson.school_level.description %></div>
+            </div>
           </div>
-          <br class="clearfloat"/>
         <% end %>
-        <h1><%= t('lessons.description') %></h1>
-        <p><%= lesson.description %></p>
+        <div class="description">
+          <div class="icon"><%= t('lessons.description') %></div>
+          <div class="text"><%= lesson.description %></div>
+        </div>
       </div>
     </div>
   <% end %>

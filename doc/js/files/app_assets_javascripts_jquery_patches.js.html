@@ -123,6 +123,8 @@
             
                 <li><a href="../classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
             
+                <li><a href="../classes/JqueryBrowsersDetection.html">JqueryBrowsersDetection</a></li>
+            
                 <li><a href="../classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
                 <li><a href="../classes/LessonEditorCurrentSlide.html">LessonEditorCurrentSlide</a></li>
@@ -253,6 +255,8 @@
             
                 <li><a href="../modules/image-editor.html">image-editor</a></li>
             
+                <li><a href="../modules/jquery-browsers.html">jquery-browsers</a></li>
+            
                 <li><a href="../modules/jquery-patches.html">jquery-patches</a></li>
             
                 <li><a href="../modules/lesson-editor.html">lesson-editor</a></li>
@@ -335,22 +339,6 @@ If the browser is Chrome, it returns body, otherwise it returns html
 function browserDependingScrollToTag() {
   return ($.browser.webkit ? $body : $html);
 }
-
-/**
-Detects if the browser is an iPad, or iPhone, or other mobile browsers, and saves the result in &lt;b&gt;$.browser.[mobile_kind]&lt;/b&gt;.
-@method mobileDetection
-@for JqueryPatchesBrowsers
-**/
-(function() {
-  var ua = navigator.userAgent.toLowerCase();
-  if(ua.indexOf(&#x27;ipad&#x27;) &gt;= 0) {
-    $.browser.ipad = true;
-  } else if(ua.indexOf(&#x27;iphone&#x27;) &gt;= 0) {
-    $.browser.iphone = true;
-  } else if(ua.indexOf(&#x27;webkit&#x27;) &gt;= 0) {
-    $.browser.webkit = true;
-  }
-})();
 
 /**
 Checks if the application must autoplay media

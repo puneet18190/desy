@@ -1136,7 +1136,7 @@ it:
       # 1 - views/notifications/_main.html.erb
       label: "Profilo"
     # Icon to report an offensive lesson or media element
-    # 1 - views/reports/_media_element.html.erb
+    # 1 - views/media_elements/_popup.html.erb
     report: "Segnala contenuti non appropriati"
     # Icon with a lens in the main sections
     # 1 - views/shared/_search.html.erb
@@ -1825,9 +1825,9 @@ it:
     # Caption containing the author's name (the variable %{author} is replaced by the name of the author)
     # 1 - views/lessons/_view_single_expanded.html.erb
     created_by: "Creata da %{author}"
-    # Caption which indicates the date in which a lesson is created
+    # Caption which indicates the date in which a lesson is created (the variable %{time} is replaced by the creation time)
     # 1 - views/lessons/_view_single_compact.html.erb
-    created_on: "Creata il"
+    created_on: "Creata il %{time}"
     # Caption of the link to open the lesson editor (on the left of the bar above the lesson's list)
     # 1 - views/lessons/index.html.erb
     create_new: "Crea una nuova lezione"
@@ -1874,6 +1874,9 @@ it:
     # Caption to indicate how many users like the lesson (the variable %{likes} is replaced by the number of users who like the selected lesson)
     # 1 - views/lessons/_view_single_compact.html.erb
     users_like_this: "A %{likes} utenti piace questa lezione"
+    # Caption to indicate how many users follow the lesson (the variable %{followers} is replaced by the number of users who follow the selected lesson)
+    # 1 - views/lessons/_view_single_compact.html.erb
+    users_follow_this: "%{followers} utenti seguono questa lezione"
   
   
   # SECTION 2.8: Captions used in the Lesson Viewer
@@ -2300,19 +2303,16 @@ it:
   
   reports:
     # Link to open the report form
-    # 1 - views/reports/_lesson.html.erb
-    title: "Contenuto non appropriato"
+    # 1 - views/lessons/_view_single_compact.html.erb
+    title: "Contenuto non appropriato?"
     # Title of the report form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     description: "Pensi che questo contenuto sia offensivo?"
     # Description of the report form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     placeholder: "Scrivi il motivo della segnalazione. Grazie per la tua collaborazione!"
     # Button to send the form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     commit: "Invia"
   
   
@@ -3112,9 +3112,11 @@ it:
     placeholder:
       # 1 - views/admin/users/_locations_list.html.erb
       # 2 - views/users/_locations_list.html.erb
+      # 3 - views/admin/purchases/_locations.html.erb
       feminine: "Seleziona una %{location}"
       # 1 - views/admin/users/_locations_list.html.erb
       # 2 - views/users/_locations_list.html.erb
+      # 3 - views/admin/purchases/_locations.html.erb
       masculine: "Seleziona un %{location}"
   
   
@@ -3360,6 +3362,26 @@ it:
         # Button to start the search
         # 1 - views/admin/lessons/index.html.erb
         submit: "Cerca"
+      # Labels for the action of toggle publish / unpublish
+      toggle_publish:
+        # Message shown if the lesson has been correctly published
+        # 1 - controllers/admin/lessons_controller.rb
+        done: "Lezione pubblicata"
+        # Message shown if there was an error while trying to publish the lesson
+        # 1 - controllers/admin/lessons_controller.rb
+        not_done: "Errore, la lezione non è stata pubblicata"
+        # Message shown if the lesson has been correctly unpublished
+        # 1 - controllers/admin/lessons_controller.rb
+        undone: "Lezione settata come privata"
+        # Message shown if there was an error while trying to unpublish the lesson
+        # 1 - controllers/admin/lessons_controller.rb
+        not_undone: "Errore, la lezione non è stata settata privata"
+        # Label of the confirmation popup
+        # 1 - views/admin/lessons/_list.html.erb
+        confirm: "Sei sicuro di cambiare lo stato di questa lezione?"
+        # Title of the button
+        # 1 - views/admin/lessons/_list.html.erb
+        title: "Pubblica / spubblica"
     # Section of media elements
     media_elements:
       # Title of the section
@@ -3839,6 +3861,15 @@ it:
         # 1 - views/admin/users/_list.html.erb
         # 2 - views/admin/users/show.html.erb
         personificate: "Furto d'identità"
+        # Send again the confirmation email to that unconfirmed user
+        # 1 - views/admin/users/_list.html.erb
+        reconfirm: "Invia nuovamente la mail di conferma"
+        # Confirmation popup asking the administrator if he is sure about sending again the confirmation email to the selected user
+        # 1 - views/admin/users/_list.html.erb
+        reconfirm_confirm: "Sei sicuro di voler inviare nuovamente la mail di conferma a questo utente?"
+        # Succesfully sent again the confirmation email (the variable %{email} is replaced by the user's email)
+        # 1 - controllers/admin/users_controller.rb
+        reconfirm_sent: "Hai inviato la mail di conferma a %{email}"
         # The super admin gets back to his original identity
         # 1 - views/shared/_header.html.erb
         unpersonificate: "Ritorna alla tua identità"

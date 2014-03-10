@@ -455,13 +455,6 @@
   
 }
 
-@mixin contentInterno {
-  
-  padding: 4%;
-  height: 110px;
-  
-}
-
 @mixin tagContainer {
   
   @include arial-with-line-height(13px, 20px);

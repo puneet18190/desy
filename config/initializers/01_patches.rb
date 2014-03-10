@@ -1,6 +1,6 @@
 require 'pathname'
 
-require 'facter'
+WINDOWS = Gem.win_platform?
 
 # Patch to Arel::Nodes:SqlLiteral which allows to dump it using Psych
 module Arel
@@ -16,24 +16,22 @@ module Arel
   end
 end
 
-# TODO Scrivere a che serve
-WINDOWS = Facter::Util::Config.is_windows?
-
 # TODO Should be fixed; check and if it is remove
 #
-# # Patch to Facter in order to fix EncodingError on Windows
-# module Facter::Util::Config
-#   def self.windows_data_dir
-#     if Dir.const_defined? 'COMMON_APPDATA' then
-#       Dir::COMMON_APPDATA.encode('ASCII')
-#     else
-#       nil
+# if WINDOWS
+#   require 'facter'
+#
+#   # Patch to Facter in order to fix EncodingError on Windows
+#   module Facter::Util::Config
+#     def self.windows_data_dir
+#       if Dir.const_defined? 'COMMON_APPDATA' then
+#         Dir::COMMON_APPDATA.encode('ASCII')
+#       else
+#         nil
+#       end
 #     end
 #   end
-# end
 #
-#
-# if WINDOWS
 #   require 'win32/dir'
 #   # Make Dir.glob work with Pathname instances
 #   class Dir
@@ -42,7 +40,7 @@ WINDOWS = Facter::Util::Config.is_windows?
 #         glob_pattern = glob_pattern.to_s.tr("\\", "/")
 #         old_glob(glob_pattern, flags, &block)
 #       end
-#
+
 #       def [](glob_pattern)
 #         glob_pattern = glob_pattern.to_s.tr("\\", "/")
 #         old_ref(glob_pattern)

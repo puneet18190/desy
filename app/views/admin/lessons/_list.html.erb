@@ -28,6 +28,7 @@
         </th>
         <th></th>
         <th></th>
+        <th></th>
         <% if from_reporting.present? %>
           <th></th>
         <% end %>
@@ -51,7 +52,8 @@
           <td><%= TimeConvert.to_string lesson.updated_at %></td>
           <td><%= lesson.likes_count %></td>
           <td><%= lesson.is_public.to_s %></td>
-          <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, "/lessons/#{lesson.id}/view?token=#{lesson.token}", :class => 'action' %><a href="#" target="_blank" class="action"></a></td>
+          <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, "/lessons/#{lesson.id}/view?token=#{lesson.token}", :class => 'action' %></td>
+          <td><%= link_to '<i class="icon-bullhorn"></i>'.html_safe, admin_toggle_publish_path(lesson.id), :class => 'action', :remote => true, :confirm => t('admin.lessons.toggle_publish.confirm'), :title => t('admin.lessons.toggle_publish.title'), :method => :post %></td>
           <% if from_reporting.present? %>
             <td>
               <a class="_report_item" data-report-id="<%= from_reporting %>"><%= t('admin.messages.reports.actions.delete') %></a>

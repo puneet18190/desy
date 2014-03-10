@@ -1,14 +1,20 @@
-require 'facter'
+require 'facter' unless WINDOWS
 
 # Child of Thread class which raises an exception if an error occurs and releases the database connection at the begin or at the end of the execution
 class EnhancedThread < Thread
 
+  PROCESSORS_COUNT =
+    begin
+      Facter.fact(:processorcount).value.to_i
+    rescue
+      1
+    end 
   # Number of the maximum database pools (taken from the database configuration)
   DATABASE_POOL = Rails.configuration.database_configuration[Rails.env]['pool']
   # Minimum amount of execution threads
   MIN_THREADS   = 1
-  # Maximum amount of execution threads (corresponding to the number of processors * 2)
-  MAX_THREADS   = Facter.fact(:processorcount).value.to_i * 2
+  # Maximum amount of execution threads
+  MAX_THREADS   = PROCESSORS_COUNT > 1 ? PROCESSORS_COUNT - 1 : 1
   # proc used in order to close the database connection
   CLOSE_CONNECTION_PROC = proc {
     begin

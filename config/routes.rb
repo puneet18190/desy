@@ -10,8 +10,9 @@ Desy::Application.routes.draw do
     delete 'documents/:id' => 'documents#destroy', :as => :document
     
     # ADMIN LESSONS
-    get    'lessons'     => 'lessons#index',   :as => :lessons
-    delete 'lessons/:id' => 'lessons#destroy', :as => :lesson
+    get    'lessons'                    => 'lessons#index',          :as => :lessons
+    delete 'lessons/:id'                => 'lessons#destroy',        :as => :lesson
+    post   'lessons/:id/publish/toggle' => 'lessons#toggle_publish', :as => :toggle_publish
     
     # ADMIN MEDIA ELEMENTS
     get    'media_elements'                          => 'media_elements#index',              :as => :media_elements
@@ -68,6 +69,7 @@ Desy::Application.routes.draw do
     get    'users/:id'            => 'users#show',          :as => :user
     put    'users/:id/activate'   => 'users#activate',      :as => :users_activate
     put    'users/:id/ban'        => 'users#ban',           :as => :users_ban
+    post   'users/:id/reconfirm'  => 'users#reconfirm',     :as => :send_again_confirmation
     put    'users/:id/set_status' => 'users#set_status'
     
   end

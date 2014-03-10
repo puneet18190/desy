@@ -1136,7 +1136,7 @@ cn:
       # 1 - views/notifications/_main.html.erb
       label: "个人资料"
     # Icon to report an offensive lesson or media element
-    # 1 - views/reports/_media_element.html.erb
+    # 1 - views/media_elements/_popup.html.erb
     report: "报告有攻击性的内容"
     # Icon with a lens in the main sections
     # 1 - views/shared/_search.html.erb
@@ -1752,18 +1752,18 @@ cn:
     conversion:
       error:
         # 1 - views/shared/_popups.html.erb
-        audio: "There was a mistake converting your audio %{item}! Try loading it again" # TODO
+        audio: "转换音频%{item}错误! 请重新加载"
         # 1 - views/shared/_popups.html.erb
-        video: "There was a mistake converting your video %{item}! Try loading it again" # TODO
+        video: "转换视频%{item}错误! 请重新加载"
         # 1 - views/shared/_popups.html.erb
-        audio_general: "There was a mistake converting your audio! Try loading it again" # TODO
+        audio_general: "转换音频错误! 请重新加载"
         # 1 - views/shared/_popups.html.erb
-        video_general: "There was a mistake converting your video! Try loading it again" # TODO
+        video_general: "转换视频错误! 请重新加载"
       correct:
         # 1 - views/shared/_popups.html.erb
-        audio: "Your audio %{item} has been successfully converted! Open the Audio Gallery to use it" # TODO
+        audio: "你的音频%{item}已成功转换!"
         # 1 - views/shared/_popups.html.erb
-        video: "Your video %{item} has been successfully converted! Open the Video Gallery to use it" # TODO
+        video: "你的视频%{item}已成功转换!,你能使用它"
     # The Lesson Editor is not available if the user started an audio (or video) editing process which overwrites an audio (or a video) used inside a lesson. The Editor is not avilable only to edit that particular lesson, in this case the application shows a page with title and description
     not_available:
       # The variable %{lesson} is replaced by the name of the lesson
@@ -1825,9 +1825,9 @@ cn:
     # Caption containing the author's name (the variable %{author} is replaced by the name of the author)
     # 1 - views/lessons/_view_single_expanded.html.erb
     created_by: "由%{author}创建"
-    # Caption which indicates the date in which a lesson is created
+    # Caption which indicates the date in which a lesson is created (the variable %{time} is replaced by the creation time)
     # 1 - views/lessons/_view_single_compact.html.erb
-    created_on: "建立"
+    created_on: "建立%{time}"
     # Caption of the link to open the lesson editor (on the left of the bar above the lesson's list)
     # 1 - views/lessons/index.html.erb
     create_new: "建立新课程"
@@ -1874,6 +1874,9 @@ cn:
     # Caption to indicate how many users like the lesson (the variable %{likes} is replaced by the number of users who like the selected lesson)
     # 1 - views/lessons/_view_single_compact.html.erb
     users_like_this: "%{likes}用户喜欢这个课程"
+    # Caption to indicate how many users follow the lesson (the variable %{followers} is replaced by the number of users who follow the selected lesson)
+    # 1 - views/lessons/_view_single_compact.html.erb
+    users_follow_this: "%{followers}用戶遵循這一課"
   
   
   # SECTION 2.8: Captions used in the Lesson Viewer
@@ -2300,19 +2303,16 @@ cn:
   
   reports:
     # Link to open the report form
-    # 1 - views/reports/_lesson.html.erb
+    # 1 - views/lessons/_view_single_compact.html.erb
     title: "报告滥用"
     # Title of the report form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     description: "你认为这一项是带有攻击性的吗？"
     # Description of the report form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     placeholder: "记下你报告的原因。谢谢你的合作！"
     # Button to send the form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     commit: "发送"
   
   
@@ -3112,9 +3112,11 @@ cn:
     placeholder:
       # 1 - views/admin/users/_locations_list.html.erb
       # 2 - views/users/_locations_list.html.erb
+      # 3 - views/admin/purchases/_locations.html.erb
       feminine: "选择%{location}"
       # 1 - views/admin/users/_locations_list.html.erb
       # 2 - views/users/_locations_list.html.erb
+      # 3 - views/admin/purchases/_locations.html.erb
       masculine: "选择%{location}"
   
   
@@ -3360,6 +3362,26 @@ cn:
         # Button to start the search
         # 1 - views/admin/lessons/index.html.erb
         submit: "查找"
+      # Labels for the action of toggle publish / unpublish
+      toggle_publish:
+        # Message shown if the lesson has been correctly published
+        # 1 - controllers/admin/lessons_controller.rb
+        done: "這個教訓已經公佈"
+        # Message shown if there was an error while trying to publish the lesson
+        # 1 - controllers/admin/lessons_controller.rb
+        not_done: "錯誤，教訓不能被公開"
+        # Message shown if the lesson has been correctly unpublished
+        # 1 - controllers/admin/lessons_controller.rb
+        undone: "課程設置為私有"
+        # Message shown if there was an error while trying to unpublish the lesson
+        # 1 - controllers/admin/lessons_controller.rb
+        not_undone: "錯誤，教訓不能被設置為私有"
+        # Label of the confirmation popup
+        # 1 - views/admin/lessons/_list.html.erb
+        confirm: "您確定要改變這一課的現狀如何？"
+        # Title of the button
+        # 1 - views/admin/lessons/_list.html.erb
+        title: "發布/取消發布"
     # Section of media elements
     media_elements:
       # Title of the section
@@ -3839,6 +3861,15 @@ cn:
         # 1 - views/admin/users/_list.html.erb
         # 2 - views/admin/users/show.html.erb
         personificate: "身份盗窃"
+        # Send again the confirmation email to that unconfirmed user
+        # 1 - views/admin/users/_list.html.erb
+        reconfirm: "再次發送確認郵件"
+        # Confirmation popup asking the administrator if he is sure about sending again the confirmation email to the selected user
+        # 1 - views/admin/users/_list.html.erb
+        reconfirm_confirm: "您確定要重新發送確認電子郵件？"
+        # Succesfully sent again the confirmation email (the variable %{email} is replaced by the user's email)
+        # 1 - controllers/admin/users_controller.rb
+        reconfirm_sent: "您發送確認電子郵件%{email}"
         # The super admin gets back to his original identity
         # 1 - views/shared/_header.html.erb
         unpersonificate: "回到您的身份"

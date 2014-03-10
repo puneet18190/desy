@@ -1,13 +1,10 @@
-<a class="<%= Buttons::REPORT %> _reportable_lesson_icon">
-  <div class="icon-content"></div>
-  <span class="report-title"><%= t('reports.title') %></span>
-</a>
-<span id="lesson_report_form_<%= lesson.id %>" class="tooltipForm for-lessons _report_form_content" style="display:none">
+<% type = item.class.to_s == 'Lesson' ? 'lesson' : 'media_element' %>
+<span id="<%= type %>_report_form_<%= item.id %>" class="tooltipForm for-<%= type %> _report_form_content" style="display:none">
   <%= image_tag 'freccia_tooltip_form.png', :class => 'calloutForm' %>
   <h3><%= t('reports.description') %></h3>
-  <p style="padding-top:0px"><%= t('reports.placeholder') %></p>
-  <%= form_tag '/reports/lesson', :remote => true do %>
-    <input type="hidden" value="<%= lesson.id %>" name="lesson_id"/>
+  <p><%= t('reports.placeholder') %></p>
+  <%= form_tag "/reports/#{type}", :remote => true do %>
+    <input type="hidden" value="<%= item.id %>" name="<%= type %>_id"/>
     <table>
       <tbody>
         <tr>
