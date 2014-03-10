@@ -35,6 +35,8 @@ group :assets do
   gem 'jquery-fileupload-rails'
   gem 'libv8',                   '~> 3.11.8',  platforms: :ruby
   gem 'sass-rails',              '~> 3.2.3'
+  # Sass 3.3 leads to this issue https://github.com/nex3/sass/issues/1162
+  gem 'sass',                    '~> 3.2.0'
   gem 'therubyracer',                          platforms: :ruby
   gem 'uglifier',                '>= 1.0.3'
 end
