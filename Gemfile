@@ -1,22 +1,27 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.17'
-gem 'pg'
+gem 'rails', '4.0.3'
 
 # Gems by group alphabetically sorted
 gem 'ancestry'
-gem 'bcrypt-ruby',              '~> 3.0.0'
+# TODO Rails 4 di default mette nei cookie, che ora dovrebbero essere crittati quindi sicuri; pensare se ha senso tenere la sessione nel db, altrimenti toglierlo
+gem 'activerecord-session_store'
+gem 'bcrypt-ruby',              '~> 3.1.2'
 gem 'carrierwave'
 gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'erubis'
 gem 'eventmachine',                         platforms: :ruby
 gem 'facter',                               platforms: :ruby
+gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails',             '~> 2.1.4'
 gem 'kaminari'
 gem 'mini_magick',                                             github: 'mdesantis/minimagick', branch: 'batch_compatibility'
 gem 'nokogiri',                             platforms: :ruby
 gem 'oj'
+gem 'pg'
+# TODO Toglierlo quando si passa al check dei parametri nel controller
+gem 'protected_attributes'
 gem 'recursive-open-struct'
 gem 'rubyzip'
 gem 'schema_plus'
@@ -24,20 +29,20 @@ gem 'sdoc'
 gem 'subexec',                                                 github: 'mdesantis/subexec'
 gem 'tinymce-rails',            '~> 3.0'
 gem 'tinymce-rails-langs'
+# TODO da mettere dopo
+# gem 'turbolinks'
 gem 'unicorn',                              platforms: :ruby
 gem 'whenever',                                                                                                                 require: false
 gem 'win32-dir',                            platforms: :mingw
 
-# Gems used only for assets and not required in production environments by default
-group :assets do
-  gem 'bootstrap-sass',          '~> 2.2.2.0'
-  gem 'coffee-rails',            '~> 3.2.1'
-  gem 'jquery-fileupload-rails'
-  gem 'libv8',                   '~> 3.11.8',  platforms: :ruby
-  gem 'sass-rails',              '~> 3.2.3'
-  gem 'therubyracer',                          platforms: :ruby
-  gem 'uglifier',                '>= 1.0.3'
-end
+# TODO ordinare
+gem 'bootstrap-sass',          '~> 2.2.2.0'
+gem 'coffee-rails',            '~> 4.0.0'
+gem 'jquery-fileupload-rails'
+gem 'libv8',                   '~> 3.11.8',  platforms: :ruby
+gem 'sass-rails',              '~> 4.0.0'
+gem 'therubyracer',                          platforms: :ruby
+gem 'uglifier',                '>= 1.3.0'
 
 group :development do
   gem 'irb-benchmark'
@@ -50,6 +55,10 @@ end
 group :development, :test do
   gem 'colorize'
   gem 'rspec-rails'
+end
+
+group :doc do
+  gem 'sdoc', require: false
 end
 
 group :irbtools do

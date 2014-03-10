@@ -91,3 +91,6 @@ module ActiveRecord
     end
   end
 end
+
+# Fixes https://github.com/rails/activerecord-session_store/issues/6
+ActiveRecord::SessionStore::Session.attr_accessible :data, :session_id

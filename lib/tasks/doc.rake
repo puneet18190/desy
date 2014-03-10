@@ -1,3 +1,6 @@
+# TODO rendere compatibile con Rails 4
+if false
+
 # clear the doc:app task et al so we can rewrite them
 Rake::Task["doc:app"].clear
 Rake::Task["doc/app"].clear
@@ -33,5 +36,7 @@ namespace :doc do
     puts "Running `#{command}` ..."
     `#{command}`
   end
+
+end
 
 end
