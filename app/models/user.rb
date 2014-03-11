@@ -131,9 +131,9 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
-  scope :confirmed,     where(confirmed: true)
-  scope :not_confirmed, where(confirmed: false)
-  scope :active,        where(active: true)
+  scope :confirmed,     ->() { where(confirmed: true) }
+  scope :not_confirmed, ->() { where(confirmed: false) }
+  scope :active,        ->() { where(active: true) }
   
   alias_attribute :"#{SETTINGS['location_types'].last.downcase}", :location
   
