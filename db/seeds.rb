@@ -134,7 +134,10 @@ class Seeds
   end
   
   def csv_path(filename = @table_name)
-    self.class.first_existing_path CSV_FOLDERS, "#{filename}.csv"
+    filename += '.csv'
+    csv_path = self.class.first_existing_path CSV_FOLDERS, filename
+    raise "Can't find the file #{filename} inside #{CSV_FOLDERS.join(', ')}" unless csv_path
+    csv_path
   end
   
   def csv_open(csv_path = csv_path)
