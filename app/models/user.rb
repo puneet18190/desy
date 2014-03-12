@@ -631,7 +631,7 @@ class User < ActiveRecord::Base
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
     select = 'media_elements.*'
-    select = "#{select}, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'MediaElement'} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances" if !from_gallery
+    select = "#{select}, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.class.connection.quote 'MediaElement'} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.class.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances" if !from_gallery
     relation = MediaElement.select(select).of(self)
     if [Filters::VIDEO, Filters::AUDIO, Filters::IMAGE].include? filter
       relation = relation.where('sti_type = ?', filter.capitalize)
@@ -672,16 +672,16 @@ class User < ActiveRecord::Base
     relation1 = nil
     if from_virtual_classroom
       relation1 = Lesson.preload(:subject, :user).select("lessons.*,
-        (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count
+        (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.class.connection.quote self.id.to_i}) AS virtuals_count
       ")
     else
       relation1 = Lesson.preload(:subject, :user, :school_level, {:user => :location}).select("
         lessons.*,
-        (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
-        (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id) AS all_bookmarks_count,
-        (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.connection.quote self.id} AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
-        (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
-        (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count,
+        (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.class.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.class.connection.quote self.id.to_i}) AS bookmarks_count,
+        (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.class.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id) AS all_bookmarks_count,
+        (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.class.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.class.connection.quote self.id} AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
+        (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.class.connection.quote self.id.to_i}) AS virtuals_count,
+        (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.class.connection.quote self.id.to_i}) AS likes_count,
         (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_general_count
       ")
     end
@@ -788,7 +788,7 @@ class User < ActiveRecord::Base
     UsersSubject.where(:user_id => self.id).each do |us|
       subject_ids << us.subject_id
     end
-    resp = Lesson.preload(:subject, :user).select("lessons.*, 0 AS bookmarks_count, 0 AS virtuals_count, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count").where('is_public = ? AND user_id != ? AND subject_id IN (?) AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)', true, self.id, subject_ids, 'Lesson', self.id).order('updated_at DESC').limit(n)
+    resp = Lesson.preload(:subject, :user).select("lessons.*, 0 AS bookmarks_count, 0 AS virtuals_count, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.class.connection.quote self.id.to_i}) AS likes_count").where('is_public = ? AND user_id != ? AND subject_id IN (?) AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)', true, self.id, subject_ids, 'Lesson', self.id).order('updated_at DESC').limit(n)
     ids = []
     resp.each do |l|
       ids << l.id
@@ -1343,7 +1343,7 @@ class User < ActiveRecord::Base
     end
     resp[:records] = []
     ids = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit).pluck('media_elements.id')
-    MediaElement.select( "media_elements.*, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'MediaElement'} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances").where(:id => ids).order(order).each do |media_element|
+    MediaElement.select( "media_elements.*, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.class.connection.quote 'MediaElement'} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.class.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances").where(:id => ids).order(order).each do |media_element|
       media_element.set_status self.id, {:bookmarked => :bookmarks_count}
       resp[:records] << media_element
     end
@@ -1354,7 +1354,7 @@ class User < ActiveRecord::Base
   
   # Submethod of User#search_media_elements. It returns all the elements in the database, filtered by +filter+ (chosen among the ones in Filters), and ordered by +order_by+ (chosen among the ones in SearchOrders)
   def search_media_elements_without_tag(offset, limit, filter, order_by)
-    select = "media_elements.*, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'MediaElement'} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances"
+    select = "media_elements.*, (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.class.connection.quote 'MediaElement'} AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = #{self.class.connection.quote self.id.to_i}) AS bookmarks_count, (SELECT COUNT(*) FROM media_elements_slides WHERE (media_elements_slides.media_element_id = media_elements.id)) AS instances"
     resp = {}
     order = ''
     case order_by
@@ -1440,11 +1440,11 @@ class User < ActiveRecord::Base
     order = order.gsub('likes', 'likes_general')
     Lesson.preload(:subject, :user, :school_level, {:user => :location}).select("
       lessons.*,
-      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
-      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id) AS all_bookmarks_count,
-      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.connection.quote self.id} AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
-      (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
-      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.class.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.class.connection.quote self.id.to_i}) AS bookmarks_count,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.class.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id) AS all_bookmarks_count,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.class.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.class.connection.quote self.id} AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
+      (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.class.connection.quote self.id.to_i}) AS virtuals_count,
+      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.class.connection.quote self.id.to_i}) AS likes_count,
       (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_general_count
     ").where(:id => ids).order(order).each do |lesson|
       lesson.set_status self.id, {:bookmarked => :bookmarks_count, :in_vc => :virtuals_count, :liked => :likes_count}
@@ -1467,11 +1467,11 @@ class User < ActiveRecord::Base
     order = ''
     select = "
       lessons.*,
-      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.connection.quote self.id.to_i}) AS bookmarks_count,
-      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id) AS all_bookmarks_count,
-      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.connection.quote self.id} AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
-      (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.connection.quote self.id.to_i}) AS virtuals_count,
-      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.connection.quote self.id.to_i}) AS likes_count,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.class.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = #{self.class.connection.quote self.id.to_i}) AS bookmarks_count,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.class.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id) AS all_bookmarks_count,
+      (SELECT COUNT (*) FROM bookmarks WHERE bookmarks.bookmarkable_type = #{self.class.connection.quote 'Lesson'} AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id != #{self.class.connection.quote self.id} AND bookmarks.created_at < lessons.updated_at) AS notification_bookmarks,
+      (SELECT COUNT (*) FROM virtual_classroom_lessons WHERE virtual_classroom_lessons.lesson_id = lessons.id AND virtual_classroom_lessons.user_id = #{self.class.connection.quote self.id.to_i}) AS virtuals_count,
+      (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id AND likes.user_id = #{self.class.connection.quote self.id.to_i}) AS likes_count,
       (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_general_count
     "
     case order_by
