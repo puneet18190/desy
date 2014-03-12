@@ -109,10 +109,10 @@ class Lesson < ActiveRecord::Base
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags_through_taggings, :through => :taggings, :source => :tag
   has_many :slides, :dependent => :destroy
-  has_many :media_elements_slides, through: :slides
-  has_many :media_elements, through: :media_elements_slides, uniq: true
-  has_many :documents_slides, through: :slides
-  has_many :documents, through: :documents_slides, uniq: true
+  has_many :media_elements_slides, :through => :slides
+  has_many :media_elements, -> { uniq }, :through => :media_elements_slides
+  has_many :documents_slides, :through => :slides
+  has_many :documents, -> { uniq }, :through => :documents_slides
   has_many :virtual_classroom_lessons
   
   validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description
