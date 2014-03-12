@@ -676,7 +676,7 @@ class ExtractorTest < ActiveSupport::TestCase
       assert_equal Slide.where(:kind => 'cover', :lesson_id => @les6.id).first.id, resp[:covers][@les6.id].id
       i += 1
     end
-    # third part, notifications_bookmarks
+    # third part, notification_bookmarks
     Lesson.where(:id => [@les1.id, @les3.id, @les4.id, @les7.id, @les8.id, @les9.id]).each do |l|
       l.tags = 'cane, gatto, uovo sodo, mandarino'
       l.save_tags = true
@@ -709,6 +709,17 @@ class ExtractorTest < ActiveSupport::TestCase
       resp = resps[i]
       resp[:records] = resp[:records].sort { |a, b| a.id <=> b.id }
       assert_ordered_item_extractor [1, 2, @les1.id, @les2.id, @les3.id, @les4.id, @les5.id, @les6.id, @les7.id, @les8.id, @les9.id], resp[:records]
+      assert_equal 1, resp[:records][0].all_bookmarks_count.to_i
+      assert_equal 1, resp[:records][1].all_bookmarks_count.to_i
+      assert_equal 0, resp[:records][2].all_bookmarks_count.to_i
+      assert_equal 1, resp[:records][3].all_bookmarks_count.to_i
+      assert_equal 0, resp[:records][4].all_bookmarks_count.to_i
+      assert_equal 0, resp[:records][5].all_bookmarks_count.to_i
+      assert_equal 1, resp[:records][6].all_bookmarks_count.to_i
+      assert_equal 3, resp[:records][7].all_bookmarks_count.to_i
+      assert_equal 0, resp[:records][8].all_bookmarks_count.to_i
+      assert_equal 0, resp[:records][9].all_bookmarks_count.to_i
+      assert_equal 0, resp[:records][10].all_bookmarks_count.to_i
       assert_equal 1, resp[:records][0].notification_bookmarks.to_i
       assert_equal 0, resp[:records][1].notification_bookmarks.to_i
       azz = Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => resp[:records][1].id).first

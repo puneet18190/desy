@@ -88,14 +88,14 @@
           </td>
           <td>
             <% if !user.confirmed %>
-              <%= link_to admin_send_again_confirmation_path(user), :remote => true, :confirm => t('admin.users.actions.reconfirm_confirm'), :title => t('admin.users.actions.reconfirm'), :method => :post do %>
+              <%= link_to admin_send_again_confirmation_path(user), :remote => true, :data => {:confirm => t('admin.users.actions.reconfirm_confirm')}, :title => t('admin.users.actions.reconfirm'), :method => :post do %>
                 <i class="icon-retweet"></i>
               <% end %>
             <% end %>
           </td>
           <td>
             <% if !user.super_admin? %>
-              <%= link_to admin_user_path(user), :method => :delete, :remote => true, :confirm => t('admin.users.delete_confirm'), :title => t('admin.users.delete'), :class => 'action' do %>
+              <%= link_to admin_user_path(user), :method => :delete, :remote => true, :data => {:confirm => t('admin.users.delete_confirm')}, :title => t('admin.users.delete'), :class => 'action' do %>
                 <i class="icon-remove"></i>
               <% end %>
             <% end %>
