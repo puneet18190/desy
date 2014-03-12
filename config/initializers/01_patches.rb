@@ -101,7 +101,6 @@ ActiveRecord::SessionStore::Session.attr_accessible :data, :session_id
 # Should be fixed in Rails >= 4.2 (https://github.com/rails/rails/pull/13244)
 module ActiveRecord
   module ConnectionAdapters
-
     class PostgreSQLAdapter
 
       module OID
