@@ -1406,7 +1406,7 @@ class User < ActiveRecord::Base
       when SearchOrders::UPDATED_AT
         order = 'lessons.updated_at DESC'
       when SearchOrders::LIKES
-        select = "(SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
+        select = "lessons.id AS my_lesson_id, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
         order = 'likes_count DESC, lessons.updated_at DESC'
       when SearchOrders::TITLE
         order = 'lessons.title ASC, lessons.updated_at DESC'
@@ -1436,7 +1436,10 @@ class User < ActiveRecord::Base
         params << self.id
     end
     resp[:records] = []
-    ids = (select.blank? ? Tagging.group('lessons.id') : Tagging.group('lessons.id').select(select)).joins(joins).where(where, *params).order(order).offset(offset).limit(limit).pluck('lessons.id')
+    ids = []
+    (select.blank? ? Tagging.group('lessons.id') : Tagging.group('lessons.id').select(select)).joins(joins).where(where, *params).order(order).offset(offset).limit(limit).each do |single_lesson_item|
+      ids << single_lesson_item.my_lesson_id.to_i
+    end
     order = order.gsub('likes', 'likes_general')
     Lesson.preload(:subject, :user, :school_level, {:user => :location}).select("
       lessons.*,
