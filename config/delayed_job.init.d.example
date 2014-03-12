@@ -19,7 +19,7 @@
 # This configures delayed_job for your Rails app.
 #
 # Its aim is to support delayedjob for every Ruby version manager (rvm, rbenv, chruby...), 
-# given the executable scripts/delayed_job . If it does not, let me know it and I will update this script.
+# given the executable bin/delayed_job or script/delayed_job . If it does not, let me know it and I will update this script.
 #
 # If you have issues with this script, let me know it commenting to this gist:
 #
@@ -41,6 +41,7 @@
 #   APP_NAME=cool_app
 #   APP_PATH=/path/to/cool_app
 #   APPEND_TO_ENV_PATH=''
+#   ADDITIONAL_ENV_VARS='RBENV_VERSION=2.1.0'
 #   DELAYED_JOB=/home/delayed_job/.rvm/bin/delayed_job_rails_wrapper
 #   RAILS_ENV=development
 #   PID_DIR=/path/to/cool_app/shared/pids
@@ -77,36 +78,40 @@
 # Inside the configuration file you can set the following variables (defaults are applied when not 
 # specified):
 #
-#   APP_USER            The user which runs the delayed_job server process
-#     defaults to       the part before the colon (:) of the configuration file name
+#   APP_USER             The user which runs the delayed_job server process
+#     defaults to        the part before the colon (:) of the configuration file name
 #
-#   APP_GROUP           The group which runs the delayed_job server process
-#     defaults to       <APP_USER>
+#   APP_GROUP            The group which runs the delayed_job server process
+#     defaults to        <APP_USER>
 #  
-#   APP_NAME            The application name
-#     defaults to       the part after the colon (:) of the configuration file name
+#   APP_NAME             The application name
+#     defaults to        the part after the colon (:) of the configuration file name
 #  
-#   APP_PATH            The path to the application
-#     defaults to       /home/<APP_USER>/www/<APP_NAME>
+#   APP_PATH             The path to the application
+#     defaults to        /home/<APP_USER>/www/<APP_NAME>
 #  
-#   APPEND_TO_ENV_PATH  A list of paths which will be appended to the user path variable
-#                       at the delayed_job start
-#     defaults to       /home/<APP_USER>/.rbenv/shims:/home/<APP_USER>/.rbenv/bin (yes, I use rbenv)
+#   APPEND_TO_ENV_PATH   A list of paths which will be appended to the user path variable
+#                        at the delayed_job start
+#     defaults to        /home/<APP_USER>/.rbenv/shims:/home/<APP_USER>/.rbenv/bin (yes, I use rbenv)
 #  
-#   DELAYED_JOB         The path to the delayed_job binary.
-#     defaults to       <APP_PATH>/scripts/delayed_job
+#   ADDITIONAL_ENV_VARS  Additional enviroment variables in the format
+#                        "VAR1=value1 VAR2=value2"
+#     defaults to        ''
 #  
-#   RAILS_ENV           The value which delayed_job will use as environment
-#     defaults to       production
+#   DELAYED_JOB          The path to the delayed_job binary.
+#     defaults to        <APP_PATH>/scripts/delayed_job
 #  
-#   PID_DIR             The path to the delayed_job PID directory
-#     defaults to       <APP_PATH>/tmp/pids
+#   RAILS_ENV            The value which delayed_job will use as environment
+#     defaults to        production
+#  
+#   PID_DIR              The path to the delayed_job PID directory
+#     defaults to        <APP_PATH>/tmp/pids
 #
-#   WORKERS             The amount of the workers spawned by delayed_job
-#     defaults to       2
+#   WORKERS              The amount of the workers spawned by delayed_job
+#     defaults to        2
 #
-#   MONITOR             If not false, sets the "--monitor" option, which spawns a new delayed_job process if one dies
-#     defaults to       true
+#   MONITOR              If not false, sets the "--monitor" option, which spawns a new delayed_job process if one dies
+#     defaults to        true
 #
 # The colon (:) was chosen as user/app_name separator because it is an invalid character
 # for UNIX usernames.
@@ -129,12 +134,12 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 . /lib/lsb/init-functions
 
-delayed_job_log_daemon_msg () {
-  log_daemon_msg $1 "$APP_DESC"
-}
-
 delayed_job_log_end_msg () {
   log_end_msg $1
+}
+
+delayed_job_log_daemon_msg () {
+  log_daemon_msg $1 "$APP_DESC"
 }
 
 set_start_stop_daemon_args () {
@@ -144,15 +149,15 @@ set_start_stop_daemon_args () {
   shift 1
   args="$@"
 
-  set -- "$action" --quiet --chuid "$APP_USER":"$APP_GROUP" --pidfile "$PIDFILE"
+  set -- "$action" --quiet --user "$APP_USER" --chuid "$APP_USER:$APP_GROUP" --pidfile "$PIDFILE"
 
   if [ "$action" = --status ]; then
     START_STOP_DAEMON_ARGS="$@"
     return 0
   fi
 
-  set -- $@ --exec /usr/bin/env PATH="$APPEND_TO_ENV_PATH":"$PATH" RAILS_ENV="$RAILS_ENV" "$DELAYED_JOB" -- \
-    --number_of_workers="$WORKERS" $MONITOR $args
+  set -- $@ --exec /usr/bin/env PATH="$APPEND_TO_ENV_PATH":"$PATH" $ADDITIONAL_ENV_VARS    \
+    RAILS_ENV="$RAILS_ENV" "$DELAYED_JOB" -- --number_of_workers="$WORKERS" $MONITOR $args
   START_STOP_DAEMON_ARGS="$@"
 
   return 0
@@ -242,6 +247,7 @@ unset_variables () {
   unset APP_NAME
   unset APP_PATH
   unset APPEND_TO_ENV_PATH
+  unset ADDITIONAL_ENV_VARS
   unset BUNDLE_EXEC
   unset DELAYED_JOB
   unset RAILS_ENV
@@ -256,7 +262,7 @@ setup () {
 
   [ -z "$APP_USER" ] && APP_USER=`basename $1 | cut -f 1 -d :`
 
-  [ -z "$APP_GROUP" ] && APP_GROUP=`id --group $APP_USER`
+  [ -z "$APP_GROUP" ] && APP_GROUP="$APP_USER"
 
   [ -z "$APP_NAME" ] && APP_NAME=`basename $1 | cut -f 2- -d :`
   
@@ -273,7 +279,15 @@ setup () {
 
   [ -z "$APPEND_TO_ENV_PATH" ] && APPEND_TO_ENV_PATH=''
 
-  [ -z "$DELAYED_JOB" ] && DELAYED_JOB="$APP_PATH/script/delayed_job"
+  [ -z "$ADDITIONAL_ENV_VARS" ] && ADDITIONAL_ENV_VARS=''
+
+  if [ -z "$DELAYED_JOB" ]; then
+    if [ -f "$APP_PATH/bin/delayed_job" ]; then
+      DELAYED_JOB="$APP_PATH/bin/delayed_job"
+    else
+      DELAYED_JOB="$APP_PATH/script/delayed_job"
+    fi
+  fi
 
   [ -z "$RAILS_ENV" ] && RAILS_ENV="production"
 

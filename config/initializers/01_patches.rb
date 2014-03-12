@@ -2,8 +2,8 @@ require 'pathname'
 
 WINDOWS = Gem.win_platform?
 
-# Patch to Arel::Nodes:SqlLiteral which allows to dump it using Psych
-# TODO check if useful
+# Patch to Arel::Nodes:SqlLiteral which allows to dump it using Psych (https://github.com/rails/arel/issues/149)
+# TODO check if useful (it should be fixed)
 # module Arel
 #   module Nodes
 #     class SqlLiteral < String
@@ -58,7 +58,7 @@ module Rails
   end
 end
 
-# TODO Scrivere a che serve
+# TODO Scrivere a che servono
 class ActiveRecord::Base
   def self.errors_path
     my_class = self.new.class.to_s
@@ -72,15 +72,16 @@ class ActiveRecord::Base
 end
 
 # Fixes ActiveRecord bug which crashes on certain conditions when translates PostgreSQL exceptions
-# TODO check if useful
+# TODO check if useful (should be fixed)
 # module ActiveRecord
 #   module ConnectionAdapters
 #     class PostgreSQLAdapter
-
+#
 #       protected
-
+#
 #       def translate_exception(exception, message)
 #         raise exception unless exception.respond_to? :result
+#
 #         case exception.result.error_field(PGresult::PG_DIAG_SQLSTATE)
 #         when UNIQUE_VIOLATION
 #           RecordNotUnique.new(message, exception)
@@ -98,23 +99,37 @@ end
 ActiveRecord::SessionStore::Session.attr_accessible :data, :session_id
 
 # PostgreSQL enums support (taken from https://coderwall.com/p/azi3ka)
-
+# Should be fixed in Rails >= 4.2 (https://github.com/rails/rails/pull/13244)
 module ActiveRecord
   module ConnectionAdapters
-
     class PostgreSQLAdapter
-      def self.enum_types
-        @enum_types ||= begin
-          result = Base.connection.execute 'SELECT DISTINCT t.typname FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid'
-          [].tap{ |a| result.each_row{ |v| a << v.first } }
+
+      module OID
+        class Enum < Type
+          def type_cast(value)
+            value.to_s
+          end
         end
       end
 
-      # TODO sopprimere warning (questo non funziona perché deve andare sul nome della colonna)
-      # enum_types.each do |enum_type|
-      #   p enum_type
-      #   OID.alias_type enum_type, 'text'
-      # end
+      def enum_types
+        @enum_types ||= begin
+          result = execute 'SELECT DISTINCT t.oid, t.typname FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid', 'SCHEMA'
+          Hash[ result.map { |v| [ v['oid'], v['typname'] ] } ]
+        end
+      end
+
+      private
+
+      def initialize_type_map_with_enum_types_support
+        initialize_type_map_without_enum_types_support
+
+        # populate enum types
+        enum_types.reject { |_, name| OID.registered_type? name }.each do |oid, name|
+          OID::TYPE_MAP[oid.to_i] = OID::Enum.new
+        end
+      end
+      alias_method_chain :initialize_type_map, :enum_types_support
     end
 
     class PostgreSQLColumn
@@ -122,13 +137,29 @@ module ActiveRecord
       private
 
       def simplified_type_with_enum_types(field_type)
-        if PostgreSQLAdapter.enum_types.include? field_type
+        case field_type
+        when *Base.connection.enum_types.values
           field_type.to_sym
         else
           simplified_type_without_enum_types(field_type)
         end
       end
       alias_method_chain :simplified_type, :enum_types
+    end
+  end
+end
+
+module ActiveRecord
+  class Base
+    def self.implicit_join_references_warning_disabled
+      previous_value = disable_implicit_join_references
+
+      begin
+        self.disable_implicit_join_references = true
+        return yield
+      ensure
+        self.disable_implicit_join_references = previous_value
+      end
     end
   end
 end

@@ -16,7 +16,7 @@ function oneTimeSetUp () {
     fi
   fi
 
-  source "$app_root/script/libinstall/debian"
+  source "$app_root/bin/install.d/debian"
 }
 
 function setUp () {
@@ -190,7 +190,7 @@ function test_configure_logrotate () {
   configure_logrotate
 
   _assertTrue "[ -d \"$app_path/log/media\" ]"
-  assertEquals "`cat \"$app_root\"/script/libinstall/test/logrotate.conf.diff`" \
+  assertEquals "`cat \"$app_root\"/bin/install.d/test/logrotate.conf.diff`" \
                "`diff \"$app_root\"/config/logrotate.conf.example \"/etc/logrotate.d/${username}_$appname\"`"
 }
 
@@ -226,7 +226,7 @@ function test_install_and_configure_nginx () {
   _assertTrue "dpkg-query --show --showformat='\${db:Status-abbrev}' \"$package\" 2> /dev/null | grep --quiet '^i'" 
   _assertTrue "[ -f \"/etc/nginx/sites-available/${username}_$appname\" ]"
   _assertTrue "[ -h \"/etc/nginx/sites-enabled/${username}_$appname\" ]"
-  assertEquals "`cat \"$app_root\"/script/libinstall/test/nginx.conf.diff`" "`diff \"$app_root\"/config/nginx.conf.example /etc/nginx/sites-enabled/testuser_desy`"
+  assertEquals "`cat \"$app_root\"/bin/install.d/test/nginx.conf.diff`" "`diff \"$app_root\"/config/nginx.conf.example /etc/nginx/sites-enabled/testuser_desy`"
 }
 
 function test_install_postgresql () {
@@ -272,7 +272,7 @@ function test_configure_unicorn_service () {
   _assertTrue "[ -f \"/etc/init.d/unicorn\" ]"
   _assertTrue "[ -f \"$app_path/config/unicorn.rb\" ]"
   _assertTrue "[ -d \"/etc/unicorn\" ]"
-  assertEquals "`cat \"$app_root\"/script/libinstall/test/unicorn.conf.diff`" "`diff \"$app_root\"/config/unicorn.conf.example /etc/unicorn/testuser\:desy`"
+  assertEquals "`cat \"$app_root\"/bin/install.d/test/unicorn.conf.diff`" "`diff \"$app_root\"/config/unicorn.conf.example /etc/unicorn/testuser\:desy`"
 }
 
 function test_configure_delayed_job_service () {
@@ -287,7 +287,7 @@ function test_configure_delayed_job_service () {
 
   _assertTrue "[ -f \"/etc/init.d/delayed_job\" ]"
   _assertTrue "[ -d \"/etc/delayed_job\" ]"
-  assertEquals "`cat \"$app_root\"/script/libinstall/test/delayed_job.conf.diff`" "`diff \"$app_root\"/config/delayed_job.conf.example /etc/delayed_job/testuser\:desy`"
+  assertEquals "`cat \"$app_root\"/bin/install.d/test/delayed_job.conf.diff`" "`diff \"$app_root\"/config/delayed_job.conf.example /etc/delayed_job/testuser\:desy`"
 }
 
 function test_configure_cron_service () {
@@ -295,11 +295,11 @@ function test_configure_cron_service () {
 
   su --login --command "cd \"$app_path\" && bundle exec whenever --clear-crontab" "$username"
 
-  assertNotEquals "`cat \"$app_root\"/script/libinstall/test/crontab.out`" "`su --login --command \"crontab -l\" \"$username\"`"
+  assertNotEquals "`cat \"$app_root\"/bin/install.d/test/crontab.out`" "`su --login --command \"crontab -l\" \"$username\"`"
 
   configure_cron_service > /dev/null 2>&1
 
-  assertEquals "`cat \"$app_root\"/script/libinstall/test/crontab.out`" "`su --login --command \"crontab -l\" \"$username\"`"
+  assertEquals "`cat \"$app_root\"/bin/install.d/test/crontab.out`" "`su --login --command \"crontab -l\" \"$username\"`"
 }
 
 function test_after_all () {

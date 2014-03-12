@@ -4,19 +4,17 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
-# Ignore bundler config and deployment installations
+# Ignore bundler config and deployment installations.
 /.bundle
 /vendor/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
+/db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
 /log
 /tmp
-
-# bundle binstubs
-/bin
 
 # Comandi mac per Aurelia
 /mac_commands

@@ -11,7 +11,7 @@ function main () {
 
   trap fail EXIT
 
-  local distro_scripts_dir="$(dirname "$0")"/libinstall
+  local distro_scripts_dir="$(dirname "$0")"/install.d
 
   local supported_distros=()
   for distro_script in "$distro_scripts_dir"/*; do
