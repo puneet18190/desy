@@ -2,8 +2,8 @@ require 'pathname'
 
 WINDOWS = Gem.win_platform?
 
-# Patch to Arel::Nodes:SqlLiteral which allows to dump it using Psych
-# TODO check if useful
+# Patch to Arel::Nodes:SqlLiteral which allows to dump it using Psych (https://github.com/rails/arel/issues/149)
+# TODO check if useful (it should be fixed)
 # module Arel
 #   module Nodes
 #     class SqlLiteral < String
@@ -58,7 +58,7 @@ module Rails
   end
 end
 
-# TODO Scrivere a che serve
+# TODO Scrivere a che servono
 class ActiveRecord::Base
   def self.errors_path
     my_class = self.new.class.to_s
@@ -72,15 +72,16 @@ class ActiveRecord::Base
 end
 
 # Fixes ActiveRecord bug which crashes on certain conditions when translates PostgreSQL exceptions
-# TODO check if useful
+# TODO check if useful (should be fixed)
 # module ActiveRecord
 #   module ConnectionAdapters
 #     class PostgreSQLAdapter
-
+#
 #       protected
-
+#
 #       def translate_exception(exception, message)
 #         raise exception unless exception.respond_to? :result
+#
 #         case exception.result.error_field(PGresult::PG_DIAG_SQLSTATE)
 #         when UNIQUE_VIOLATION
 #           RecordNotUnique.new(message, exception)
@@ -144,6 +145,21 @@ module ActiveRecord
         end
       end
       alias_method_chain :simplified_type, :enum_types
+    end
+  end
+end
+
+module ActiveRecord
+  class Base
+    def self.implicit_join_references_warning_disabled
+      previous_value = disable_implicit_join_references
+
+      begin
+        self.disable_implicit_join_references = true
+        return yield
+      ensure
+        self.disable_implicit_join_references = previous_value
+      end
     end
   end
 end
