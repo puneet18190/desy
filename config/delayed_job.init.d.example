@@ -281,7 +281,7 @@ setup () {
 
   [ -z "$ADDITIONAL_ENV_VARS" ] && ADDITIONAL_ENV_VARS=''
 
-  if [ ! -z "$DELAYED_JOB" ]; then
+  if [ -z "$DELAYED_JOB" ]; then
     if [ -f "$APP_PATH/bin/delayed_job" ]; then
       DELAYED_JOB="$APP_PATH/bin/delayed_job"
     else
