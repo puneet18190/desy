@@ -348,21 +348,21 @@ class ApplicationController < ActionController::Base
     }
     resp[:general] << t('forms.error_captions.fill_all_the_fields_or_too_long') if (errors.messages.keys & [:name, :surname]).any?
     resp[:subjects] << t('forms.error_captions.select_at_least_a_subject') if errors.messages.has_key? :users_subjects
-    if errors.messages.has_key? :password
-      if errors.added?(:password, :too_short, {:count => pas_min}) || errors.added?(:password, :too_long, {:count => pas_max})
+    if errors.messages.has_key?(:password) || errors.messages.has_key?(:password_confirmation)
+      if errors.messages.has_key?(:password) && (errors.added?(:password, :too_short, {:count => pas_min}) || errors.added?(:password, :too_long, {:count => pas_max}))
         if pas_max.nil?
           resp[:general] << t('forms.error_captions.password_too_short', :min => pas_min)
         else
           resp[:general] << t('forms.error_captions.password_not_in_range', :min => pas_min, :max => pas_max)
         end
-      elsif errors.added? :password_confirmation, :confirmation, :attribute => 'Password'
+      elsif errors.messages.has_key?(:password_confirmation) && errors.added?(:password_confirmation, :confirmation, :attribute => 'Password')
         resp[:general] << t('forms.error_captions.password_doesnt_match_confirmation')
       else
         resp[:general] << t('forms.error_captions.invalid_password')
       end
     end
-    if errors.messages.has_key? :email
-      if errors.added? :email_confirmation, :confirmation, :attribute => 'Email'
+    if errors.messages.has_key?(:email) || errors.messages.has_key?(:email_confirmation)
+      if errors.messages.has_key?(:email_confirmation) && errors.added?(:email_confirmation, :confirmation, :attribute => 'Email')
         resp[:general] << t('forms.error_captions.email_doesnt_match_confirmation')
       else
         resp[:general] << t('forms.error_captions.not_valid_email')
