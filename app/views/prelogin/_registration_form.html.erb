@@ -51,7 +51,7 @@
     <br class="clearfloat"/>
     <div class="profile-element">
       <%= t('users.info.attributes.email_confirmation') %><br/>
-      <input type="text" name="email_confirmation" class="<%= user.errors.added?(:email, :confirmation).to_s %>"/>
+      <input type="text" name="email_confirmation" class="<%= user.errors.added?(:email_confirmation, :confirmation, :attribute => 'Email').to_s %>"/>
     </div>
     <div class="profile-element">
       <%= t('users.info.attributes.password') %><br/>
@@ -59,7 +59,7 @@
     </div>
     <div class="profile-element">
       <%= t('users.info.attributes.password_confirmation') %><br/>
-      <input type="password" name="password_confirmation" class="<%= user.errors.added?(:password, :confirmation).to_s %>"/>
+      <input type="password" name="password_confirmation" class="<%= user.errors.added?(:password_confirmation, :confirmation, :attribute => 'Password').to_s %>"/>
     </div>
     <br class="clearfloat"/>
     <ul class="profile-errors">

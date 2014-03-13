@@ -33,7 +33,7 @@
           </div>
           <div class="profile-element">
             <%= t('users.info.attributes.new_password_confirmation') %><br/>
-            <input type="password" name="password_confirmation" class="<%= @user.errors.added?(:password, :confirmation).to_s %>"/>
+            <input type="password" name="password_confirmation" class="<%= @user.errors.added?(:password_confirmation, :confirmation, :attribute => 'Password').to_s %>"/>
           </div>
           <br class="clearfloat"/>
           <ul class="profile-errors">

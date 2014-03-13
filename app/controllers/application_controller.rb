@@ -355,14 +355,14 @@ class ApplicationController < ActionController::Base
         else
           resp[:general] << t('forms.error_captions.password_not_in_range', :min => pas_min, :max => pas_max)
         end
-      elsif errors.added? :password, :confirmation
+      elsif errors.added? :password_confirmation, :confirmation, :attribute => 'Password'
         resp[:general] << t('forms.error_captions.password_doesnt_match_confirmation')
       else
         resp[:general] << t('forms.error_captions.invalid_password')
       end
     end
     if errors.messages.has_key? :email
-      if errors.added? :email, :confirmation
+      if errors.added? :email_confirmation, :confirmation, :attribute => 'Email'
         resp[:general] << t('forms.error_captions.email_doesnt_match_confirmation')
       else
         resp[:general] << t('forms.error_captions.not_valid_email')
