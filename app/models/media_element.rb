@@ -546,7 +546,7 @@ class MediaElement < ActiveRecord::Base
           if t.present?
             t = t.to_s.strip.mb_chars.downcase.to_s
             if !prev_tags.include? t
-              tag = Tag.find_or_initialize_by_word t
+              tag = Tag.find_or_initialize_by(:word => t)
               resp_tags << tag if tag.valid?
             end
             prev_tags << t
