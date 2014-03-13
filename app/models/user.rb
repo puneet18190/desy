@@ -1393,7 +1393,7 @@ class User < ActiveRecord::Base
   def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by, school_level_id)
     resp = {}
     params = ["#{word}%"]
-    select = ''
+    select = 'lessons.id AS my_lesson_id'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
     where = 'tags.word LIKE ?'
     if word.class == Fixnum
@@ -1406,7 +1406,7 @@ class User < ActiveRecord::Base
       when SearchOrders::UPDATED_AT
         order = 'lessons.updated_at DESC'
       when SearchOrders::LIKES
-        select = "lessons.id AS my_lesson_id, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
+        select = "#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
         order = 'likes_count DESC, lessons.updated_at DESC'
       when SearchOrders::TITLE
         order = 'lessons.title ASC, lessons.updated_at DESC'
@@ -1437,7 +1437,7 @@ class User < ActiveRecord::Base
     end
     resp[:records] = []
     ids = []
-    (select.blank? ? Tagging.group('lessons.id') : Tagging.group('lessons.id').select(select)).joins(joins).where(where, *params).order(order).offset(offset).limit(limit).each do |single_lesson_item|
+    Tagging.group('lessons.id').select(select).joins(joins).where(where, *params).order(order).offset(offset).limit(limit).each do |single_lesson_item|
       ids << single_lesson_item.my_lesson_id.to_i
     end
     order = order.gsub('likes', 'likes_general')
