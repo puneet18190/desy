@@ -104,14 +104,14 @@ class UserTest < ActiveSupport::TestCase
     user.email_confirmation = 'ema1@em2.em'
     assert !user.save, "User erroneously saved - #{user.inspect}"
     assert_equal 1, user.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{user.errors.inspect}"
-    assert user.errors.added? :email, :confirmation
+    assert user.errors.added? :email_confirmation, :confirmation, :attribute => 'Email'
     user.email_confirmation = 'ema1@em.em'
     assert user.valid?, "User not valid: #{user.errors.inspect}"
     # password confirmation
     user.password_confirmation = 'ososos0s'
     assert !user.save, "User erroneously saved - #{user.inspect}"
     assert_equal 1, user.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{user.errors.inspect}"
-    assert user.errors.added? :password, :confirmation
+    assert user.errors.added? :password_confirmation, :confirmation, :attribute => 'Password'
     user.password_confirmation = 'osososos'
     assert user.valid?, "User not valid: #{user.errors.inspect}"
     assert_obj_saved user
