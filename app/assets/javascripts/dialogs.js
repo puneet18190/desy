@@ -429,7 +429,7 @@ function showLoadMediaElementPopUp() {
           obj.find('.medload.tags_value').val('');
           obj.find('._tags_container span').remove();
           obj.find('._tags_container ._placeholder').show();
-          $('#media_element_media_show').text(obj.data('placeholder-media'));
+          $('#media_element_media_show').val(obj.data('placeholder-media'));
           obj.find('.form_error').removeClass('form_error');
           $('#new_media_element_input').val('');
           obj.find('.barraLoading .loading-errors').html('');

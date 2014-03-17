@@ -131,9 +131,9 @@ function mediaElementLoaderDocumentReady() {
       if(file_name.length > 20) {
         file_name = file_name.substring(0, 20) + '...';
       }
-      $('#media_element_media_show').text(file_name).removeClass('form_error');
+      $('#media_element_media_show').val(file_name).removeClass('form_error');
     } else {
-      $('#media_element_media_show').text($('#load-media-element').data('placeholder-media')).removeClass('form_error');
+      $('#media_element_media_show').val($('#load-media-element').data('placeholder-media')).removeClass('form_error');
     }
   });
   $body.on('click', '#load-media-element ._close', function() {
