@@ -422,11 +422,11 @@ function showLoadMediaElementPopUp() {
       open: function(event, ui) {
         setTimeout(function() {
           obj.find('input').blur();
-          obj.find('.medload_title').val(obj.data('placeholder-title'));
-          obj.find('.medload_description').val(obj.data('placeholder-description'));
-          obj.find('.medload_title_placeholder').val('');
-          obj.find('.medload_description_placeholder').val('');
-          obj.find('.medload_tags_value').val('');
+          obj.find('.medload.title').val(obj.data('placeholder-title'));
+          obj.find('.medload.description').val(obj.data('placeholder-description'));
+          obj.find('.medload.title_placeholder').val('');
+          obj.find('.medload.description_placeholder').val('');
+          obj.find('.medload.tags_value').val('');
           obj.find('._tags_container span').remove();
           obj.find('._tags_container ._placeholder').show();
           $('#media_element_media_show').text(obj.data('placeholder-media'));
