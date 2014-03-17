@@ -29,7 +29,7 @@
           <div class="_change_info_container ChangeInfoContainer" style="display:none" data-param="<%= media_element.id %>" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>" data-tags="<%= media_element.tags %>">
             <h1><%= t('forms.change_info_media_element.title') %></h1>
             <p><%= t('forms.change_info_media_element.description') %></p>
-            <%= form_tag media_element_path(media_element.id), :remote => true, :class => 'formModifyInfo' do %>
+            <%= form_tag media_element_path(media_element.id), :remote => true, :class => 'stoCazzo' do %> <!-- TODO formms -->
               <div class="cols" style="float:left">
                 <input type="text" class="title basta_caos_porca_miseria" name="title" value="<%= media_element.title %>"/><br/>
                 <textarea name="description" class="description basta_caos_porca_miseria"><%= media_element.description %></textarea>
