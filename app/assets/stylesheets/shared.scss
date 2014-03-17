@@ -502,7 +502,7 @@ a.cerca.current {
       
       height: 10px;
       width: 380px;
-      top: 390px;
+      top: 400px;
       left: -40px;
       
     }
@@ -538,7 +538,7 @@ a.cerca.current {
       
       height: 10px;
       width: 384px;
-      top: 390px;
+      top: 400px;
       left: 336px;
       
     }
@@ -547,7 +547,7 @@ a.cerca.current {
       
       height: 10px;
       width: 760px;
-      top: 390px;
+      top: 400px;
       left: -40px;
       
     }
@@ -708,14 +708,16 @@ a.cerca.current {
       
       .close, .submit {
         
-        width: 151.25px; /* TODO formms */
-        height: 36px; /* TODO formms */
+        @include nunito(18px);
+        width: 120px;
+        padding: 4px 0 0 0;
+        height: 29px;
         
       }
       
       .close {
         
-        margin-right: 25px; /* TODO formms */
+        margin-right: 20px;
         
       }
       
