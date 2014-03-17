@@ -416,6 +416,7 @@ function showLoadMediaElementPopUp() {
       resizable: false,
       draggable: false,
       width: 760,
+      height: 440,
       show: 'fade',
       hide: {effect: 'fade'},
       open: function(event, ui) {
