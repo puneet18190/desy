@@ -498,6 +498,87 @@ a.cerca.current {
     height: 360px;
     padding: 0;
     
+    .loading-square-1 {
+      
+      height: 10px;
+      width: 380px;
+      top: 390px;
+      left: -40px;
+      
+    }
+    
+    .loading-square-2 {
+      
+      height: 440px;
+      width: 10px;
+      top: -40px;
+      left: -40px;
+      
+    }
+    
+    .loading-square-3 {
+      
+      height: 10px;
+      width: 760px;
+      top: -40px;
+      left: -40px;
+      
+    }
+    
+    .loading-square-4 {
+      
+      height: 440px;
+      width: 10px;
+      top: -40px;
+      left: 710px;
+      
+    }
+    
+    .loading-square-5 {
+      
+      height: 10px;
+      width: 384px;
+      top: 390px;
+      left: 336px;
+      
+    }
+    
+    .loading-square-bis-1 {
+      
+      height: 10px;
+      width: 760px;
+      top: 390px;
+      left: -40px;
+      
+    }
+    
+    .loading-square-bis-2 {
+      
+      height: 440px;
+      width: 10px;
+      top: -40px;
+      left: -40px;
+      
+    }
+    
+    .loading-square-bis-3 {
+      
+      height: 10px;
+      width: 760px;
+      top: -40px;
+      left: -40px;
+      
+    }
+    
+    .loading-square-bis-4 {
+      
+      height: 440px;
+      width: 10px;
+      top: -40px;
+      left: 710px;
+      
+    }
+    
     .part1 {
       
       height: 95px;
@@ -652,7 +733,7 @@ a.cerca.current {
   padding: 50px;
   background-color: #252323;
   
-  form#new_gallery_audio, form#new_gallery_image, form#new_gallery_video, form#new_gallery_document {
+  form#new_gallery_audio, form#new_gallery_image, form#new_gallery_video, form#new_gallery_document, form#new_media_element {
     
     width: 770px;
     height: 460px;
@@ -822,7 +903,7 @@ a.cerca.current {
       
     }
     
-    .part1 .attachment .galleryMediaShow, .part2 .title_and_description .title, .part2 .title_and_description .description, .part2 .tags_loader ._tags_container {
+    .part1 .attachment .galleryMediaShow, .part1 .attachment #media_element_media_show, .part2 .title_and_description .title, .part2 .title_and_description .description, .part2 .tags_loader ._tags_container {
       
       @include arial-with-line-height(13px, 13px);
       border: 0;
@@ -854,7 +935,7 @@ a.cerca.current {
           
         }
         
-        .galleryMediaShow {
+        .galleryMediaShow, #media_element_media_show {
           
           float: left;
           margin-left: 30px;
@@ -874,7 +955,7 @@ a.cerca.current {
           
         }
         
-        .file {
+        .file, #new_media_element_input {
           
           display: none;
           
