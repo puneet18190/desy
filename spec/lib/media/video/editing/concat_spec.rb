@@ -173,7 +173,7 @@ module Media
                     bitrate  = info[:streams][:video].first[:bitrate]
                     expected = output_infos[format][:streams][:video].first[:bitrate]
                     if expected
-                      bitrate.should be_within(1).of(expected)
+                      bitrate.should be_within(2).of(expected)
                     else
                       bitrate.should be_nil
                     end
