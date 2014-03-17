@@ -56,13 +56,14 @@ $(document).ready(function() {
   browsersDocumentReady();
   globalDocumentReady();
   if($('#audio_editor').length > 0) { // (1) in audio editor
+    initTagsAutocomplete($('#form_info_new_media_element_in_editor #new_tags'), 'media_element');
+    initTagsAutocomplete($('#form_info_update_media_element_in_editor #update_tags'), 'media_element');
     audioEditorDocumentReady();
     galleriesDocumentReady();
     mediaElementEditorDocumentReady();
     playersDocumentReadyAudioEditor();
     playersDocumentReadyGeneral();
-    tagsDocumentReadyOvervriteMediaElement();
-    tagsDocumentReadyNewMediaElement();
+    tagsDocumentReadyGlobal();
   }
   if($('#dashboard_container').length > 0) { // (2) in dashboard
     commonLessonsDocumentReady();
@@ -86,19 +87,20 @@ $(document).ready(function() {
     sectionNotificationsDocumentReady();
   }
   if($('#image_editor').length > 0 || $('#image_gallery_for_image_editor').length > 0) { // (4) in image editor
+    initTagsAutocomplete($('#form_info_new_media_element_in_editor #new_tags'), 'media_element');
+    initTagsAutocomplete($('#form_info_update_media_element_in_editor #update_tags'), 'media_element');
     galleriesDocumentReady();
     imageEditorDocumentReady();
     mediaElementEditorDocumentReady();
-    tagsDocumentReadyOvervriteMediaElement();
-    tagsDocumentReadyNewMediaElement();
+    tagsDocumentReadyGlobal();
   }
   if($('.lesson-editor-container').length > 0) { // (5) in lesson editor
+    initTagsAutocomplete($('#slides._new #tags'), 'lesson');
+    initTagsAutocomplete($('#slides._update #tags'), 'lesson');
     galleriesDocumentReady();
     lessonEditorDocumentReady();
     playersDocumentReadyGeneral();
-    tagsDocumentReadyMediaElementGalleryLoader();
-    tagsDocumentReadyNewLesson();
-    tagsDocumentReadyUpdateLesson();
+    tagsDocumentReadyGlobal();
   }
   if($('#my_lessons').length > 0) { // (6) in section lessons
     commonLessonsDocumentReady();
@@ -159,12 +161,13 @@ $(document).ready(function() {
     tagsDocumentReadyChangeMediaElementInfo();
   }
   if($('#video_editor').length > 0) { // (12) in video editor
+    initTagsAutocomplete($('#form_info_new_media_element_in_editor #new_tags'), 'media_element');
+    initTagsAutocomplete($('#form_info_update_media_element_in_editor #update_tags'), 'media_element');
     galleriesDocumentReady();
     mediaElementEditorDocumentReady();
     playersDocumentReadyGeneral();
     playersDocumentReadyVideoEditor();
-    tagsDocumentReadyOvervriteMediaElement();
-    tagsDocumentReadyNewMediaElement();
+    tagsDocumentReadyGlobal();
     videoEditorDocumentReady();
   }
   if($('#my_virtual_classroom').length > 0) { // (13) in virtual classroom
