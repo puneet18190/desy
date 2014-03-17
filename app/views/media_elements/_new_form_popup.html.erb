@@ -41,20 +41,26 @@
         </div>
       </div>
     </div>
-    
-    <!-- TODO formms arrivato qui -->
-    
     <div class="part3">
-      <div class="fltrt lower">
-        <div class="fltlft" style="margin-top:5px">
-          <a class="_close buttonForm">
-            <%= t('forms.upload_media_element.cancel') %>
-          </a>
-        </div>
-        <div class="fltrt">
-          <%= submit_tag t('forms.upload_media_element.done').downcase, :id => 'new_media_element_submit', :style => 'padding:0px' %>
-        </div>
-      </div>
+      <a class="submit"><%= t('forms.upload_media_element.cancel').downcase %></a>
+      <a class="close"><%= t('forms.upload_media_element.done').downcase %></a>
     </div>
+    <div class="loading-square loading-square-1"></div>
+    <div class="loading-square loading-square-2"></div>
+    <div class="loading-square loading-square-3"></div>
+    <div class="loading-square loading-square-4"></div>
+    <div class="loading-square loading-square-5"></div>
+    <div class="loading-square-bis loading-square-bis-1"></div>
+    <div class="loading-square-bis loading-square-bis-2"></div>
+    <div class="loading-square-bis loading-square-bis-3"></div>
+    <div class="loading-square-bis loading-square-bis-4"></div>
+    <div class="errors_layer description" data-selector=".part2 .description"></div>
+    <div class="errors_layer media"></div>
+    <div class="errors_layer tags" data-selector=".part2 ._tags_container .tags"></div>
+    <div class="errors_layer title" data-selector=".part2 .title"></div>
   <% end %>
+  <div class="full_folder">
+    <p class="msge"></p>
+    <a class="back_to_back"><%= t('forms.error_captions.media_folder_full_button').downcase %></a> <!-- TODO traduzz -->
+  </div>
 </div>
