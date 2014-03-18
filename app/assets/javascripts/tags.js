@@ -105,7 +105,7 @@ function disableTagsInputTooHigh(container) {
   var curr_width = 12;
   container.find('span').each(function() {
     curr_width += $(this).outerWidth(true);
-    if(curr_width > 377.5) {
+    if(curr_width > container.data('max-width')) {
       curr_width = $(this).outerWidth(true) + 12;
       line += 1;
     }
