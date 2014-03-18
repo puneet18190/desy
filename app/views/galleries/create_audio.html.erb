@@ -1,10 +1,10 @@
 <script>
   window.onload = function() {
     <% if @errors %>
-      top.uploadDoneLessonEditor($('#load-gallery-audio'), <%= @errors ? @errors.to_json.html_safe : 'undefined' %>);
+      top.uploadDone('#load-gallery-audio', <%= @errors.to_json.html_safe %>);
     <% else %>
       var html_content = "<%= j(render :partial => 'galleries/audio', :locals => {:audios => @audios}) %>";
-      top.uploadDoneLessonEditor($('#load-gallery-audio'), undefined, function() {
+      top.uploadDone('#load-gallery-audio', undefined, function() {
         reloadGalleryInLessonEditor($('#load-gallery-audio'), 'audio', html_content, <%= @tot_pages %>, <%= @audios.count %>);
       });
     <% end %>

@@ -102,14 +102,15 @@ function showPercentUploadingBar(container, percent) {
 Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).
 @method uploadDone
 @for UploaderGlobal
-@param container {Object} JQuery object representing the container
+@param selector {String} HTML selector representing the container
 @param errors {Array} an array of strings to be shown on the bottom of the loading popup
 @param callback {Function} success callback
 **/
-function uploadDone(container, errors, callback) {
+function uploadDone(selector, errors, callback) {
+  var container = $(selector);
   $window.unbind('beforeunload');
   if(errors != undefined) {
-    top.uploaderErrors(container, errors);
+    uploaderErrors(container, errors);
   } else {
     $(selector).data('loader-can-move', false);
     setTimeout(callback, 100);
