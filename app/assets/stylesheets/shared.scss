@@ -498,6 +498,45 @@ a.cerca.current {
     height: 360px;
     padding: 0;
     
+    .errors_layer {
+      
+      &.description {
+        
+        width: 303px;
+        height: 141px;
+        top: 223px; /* TODO formms */
+        left: 18px; /* TODO formms */
+        
+      }
+      
+      &.media {
+        
+        height: 19px;
+        width: 194px;
+        top: 63px; /* TODO formms */
+        left: 143px; /* TODO formms */
+        
+      }
+      
+      &.tags {
+        
+        width: 345px; /* TODO formms */
+        height: 234px; /* TODO formms */
+        top: 163px; /* TODO formms */
+        left: 411px; /* TODO formms */
+        
+      }
+      
+      &.title {
+        
+        width: 303px;
+        top: 163px; /* TODO formms */
+        left: 18px; /* TODO formms */
+        
+      }
+      
+    }
+    
     .loading-square-1 {
       
       height: 10px;
