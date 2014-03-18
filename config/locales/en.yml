@@ -682,11 +682,9 @@ en:
         media_element: "You are loading a didactic element, if you leave the page you will stop the process"
       # The documents folder is full
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       document_folder_size_exceeded: "Document uploading is temporarly disabled; please try again later"
       # The document is blank
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       document_blank: "Attachment is blank"
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb
@@ -728,7 +726,6 @@ en:
       media_unsupported_format: "Format not supported"
       # The user tried to upload a file which was damaged or invalid
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       media_generic_error: "Invalid or damaged file"
       # The user tried to load a file exceeding the maximum size
       # 1 - controllers/media_elements_controller.rb

@@ -682,11 +682,9 @@ it:
         media_element: "Stai caricando un elemento didattico, se lasci la pagina interromperai il processo"
       # The documents folder is full
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       document_folder_size_exceeded: "Il caricamento di documenti è temporaneamente disabilitato: riprova più tardi"
       # The document is blank
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       document_blank: "Scegliere un allegato"
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb
@@ -728,7 +726,6 @@ it:
       media_unsupported_format: "Formato del file non supportato"
       # The user tried to upload a file which was damaged or invalid
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       media_generic_error: "File non valido o danneggiato"
       # The user tried to load a file exceeding the maximum size
       # 1 - controllers/media_elements_controller.rb
