@@ -163,20 +163,23 @@ function uploaderErrors(selector, errors, fields) {
 Handles 413 status error, file too large.
 @method uploadFileTooLarge
 @for UploaderGlobal
-@param selector {String} either 'document' or 'media-element'
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
 **/
-function uploadFileTooLarge(selector) {
+function uploadFileTooLarge(container) {
   var ret = document.getElementById('upload_target').contentWindow.document.title;
   if(ret && ret.match(/413/g)) {
     $window.unbind('beforeunload');
     unbindLoader();
     $.ajax({
       type: 'get',
-      url: '/' + selector + 's/create/fake',
-      data: $('#new_' + selector).serialize()
+      url: container.data('fake-url'),
+      data: container.find('form').serialize()
     }).always(bindLoader);
   }
 }
+
+
+
 
 
 
@@ -241,7 +244,7 @@ function mediaElementLoaderDocumentReady() {
   $body.on('submit', '#new_media_element', function() {
     document.getElementById('new_media_element').target = 'upload_target';
     document.getElementById('upload_target').onload = function() {
-      uploadFileTooLarge('media_element');
+      uploadFileTooLarge($('#load-media-element'));
     }
   });
   $body.on('keydown', '.part2 .title, .part2 .description', function() {
@@ -310,7 +313,7 @@ function documentsDocumentReadyUploader() {
   $body.on('submit', '#new_document', function() {
     document.getElementById('new_document').target = 'upload_target';
     document.getElementById('upload_target').onload = function() {
-      uploadFileTooLarge('document');
+      uploadFileTooLarge($('#load-document'));
     }
   });
   $body.on('keydown', '.docload_title, .docload_description', function() {
@@ -435,24 +438,4 @@ function uploaderErrorsLessonEditor(selector, errors) {
   $(selector + ' .part3 .close').removeClass('disabled');
   $(selector + ' .part3 .submit').removeClass('disabled');
   $(selector + ' .part1 .attachment .file').unbind('click');
-}
-
-/**
-Handles 413 status error, file too large, inside Lesson Editor.
-@method uploadFileTooLargeLessonEditor
-@for UploaderLessonEditor
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
-**/
-function uploadFileTooLargeLessonEditor(selector) {
-  var ret = document.getElementById('upload_target').contentWindow.document.title;
-  if(ret && ret.match(/413/g)) {
-    $window.unbind('beforeunload');
-    unbindLoader();
-    var fake_url = (selector == 'document') ? '/lessons/galleries/documents/create/fake' : '/lessons/galleries/media_elements/create/fake'
-    $.ajax({
-      type: 'get',
-      url: fake_url,
-      data: $(selector + ' form').serialize()
-    }).always(bindLoader);
-  }
 }

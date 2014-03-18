@@ -762,10 +762,9 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   });
   $body.on('submit', '.loadInGallery form', function() {
     var my_id = $(this).attr('id');
-    var parent_id = $(this).parents('.loadInGallery').attr('id');
     document.getElementById(my_id).target = 'upload_target';
     document.getElementById('upload_target').onload = function() {
-      uploadFileTooLargeLessonEditor('#' + parent_id);
+      uploadFileTooLarge($(this).parents('.loadInGallery'));
     }
   });
   $body.on('keydown', '.loadInGallery .part2 .title, .loadInGallery .part2 .description', function() {
