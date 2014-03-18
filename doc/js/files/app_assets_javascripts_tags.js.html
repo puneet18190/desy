@@ -191,11 +191,9 @@
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
-            
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
-                <li><a href="../classes/UploaderLessonEditor.html">UploaderLessonEditor</a></li>
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -425,12 +423,12 @@ function disableTagsInputTooHigh(container) {
   var curr_width = 12;
   container.find(&#x27;span&#x27;).each(function() {
     curr_width += $(this).outerWidth(true);
-    if(curr_width &gt; 377.5) {
+    if(curr_width &gt; container.data(&#x27;max-width&#x27;)) {
       curr_width = $(this).outerWidth(true) + 12;
       line += 1;
     }
   });
-  if(line &gt; 5) {
+  if(line &gt; container.data(&#x27;lines&#x27;)) {
     container.find(&#x27;.tags&#x27;).hide();
   }
 }
@@ -505,11 +503,11 @@ function initSearchTagsAutocomplete(input, item) {
 Initializer for tagging autocompĺete.
 @method initTagsAutocomplete
 @for TagsInitializers
-@param target {Object} final target of the autocomplete
+@param scope {String} HTML scope to find the unique selector class _tags_container
 @param item {String} lesson or media_element
 **/
-function initTagsAutocomplete(target, item) {
-  target.autocomplete({
+function initTagsAutocomplete(selector, item) {
+  $(selector + &#x27; ._tags_container .tags&#x27;).autocomplete({
     source: function(request, response) {
       unbindLoader();
       $.ajax({

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>UploaderLessonEditor - DESY</title>
+    <title>UploaderGlobal - DESY</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -191,11 +191,9 @@
             
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
-            
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
-                <li><a href="../classes/UploaderLessonEditor.html">UploaderLessonEditor</a></li>
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -314,7 +312,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>UploaderLessonEditor Class</h1>
+                        <h1>UploaderGlobal Class</h1>
 <div class="box meta">
     
 
@@ -362,56 +360,42 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_lessonEditorConversionOverview">lessonEditorConversionOverview</a>
+                                <a href="#method_linearRecursionUploadingBar">linearRecursionUploadingBar</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_linearRecursionLessonEditorUploadinBar">linearRecursionLessonEditorUploadinBar</a>
+                                <a href="#method_recursionUploadingBar">recursionUploadingBar</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_recursionLessonEditorUploadinBar">recursionLessonEditorUploadinBar</a>
+                                <a href="#method_showPercentUploadingBar">showPercentUploadingBar</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_showPercentLessonEditorUploadinBar">showPercentLessonEditorUploadinBar</a>
+                                <a href="#method_uploadDone">uploadDone</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_uploadDoneLessonEditor">uploadDoneLessonEditor</a>
+                                <a href="#method_uploaderErrors">uploaderErrors</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_uploaderConversionChecker">uploaderConversionChecker</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_uploaderErrorsLessonEditor">uploaderErrorsLessonEditor</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_uploadFileTooLargeLessonEditor">uploadFileTooLargeLessonEditor</a>
+                                <a href="#method_uploadFileTooLarge">uploadFileTooLarge</a>
 
                                 
                                 
@@ -433,8 +417,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_lessonEditorConversionOverview" class="method item">
-    <h3 class="name"><code>lessonEditorConversionOverview</code></h3>
+                    <div id="method_linearRecursionUploadingBar" class="method item">
+    <h3 class="name"><code>linearRecursionUploadingBar</code></h3>
 
     
         <div class="args">
@@ -442,118 +426,7 @@
             
                 <li class="arg">
                     
-                        <code>list</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>time</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_uploader.js.html#l258"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:258</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Function that checks the conversion of the unconverted media elements in the page. Same structure of <a href="../classes/MediaElementEditorConversion.html#method_mediaElementLoaderConversionOverview" class="crosslink">mediaElementLoaderConversionOverview</a>.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">list</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>list of media elements that are being checked</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">time</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>time to iterate the loop</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_linearRecursionLessonEditorUploadinBar" class="method item">
-    <h3 class="name"><code>linearRecursionLessonEditorUploadinBar</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>selector</code>
+                        <code>container</code>
                     
                 </li>
             
@@ -610,7 +483,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_uploader.js.html#l300"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:300</code></a>
+        <a href="../files/app_assets_javascripts_uploader.js.html#l12"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:12</code></a>
         
         </p>
 
@@ -621,7 +494,7 @@
     </div>
 
     <div class="description">
-        <p>Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by <a href="../classes/UploaderLessonEditor.html#method_recursionLessonEditorUploadinBar" class="crosslink">recursionLessonEditorUploadinBar</a>.</p>
+        <p>Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by <a href="../classes/UploaderGlobal.html#method_recursionUploadingBar" class="crosslink">recursionUploadingBar</a>.</p>
 
     </div>
 
@@ -633,14 +506,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">container</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>HTML selector for the specific uploader (audio, video, image or document)</p>
+                        <p>JQuery object for the specific uploader (audio, video, image or document)</p>
 
                     </div>
 
@@ -721,8 +594,8 @@
 </div>
 
                 
-                    <div id="method_recursionLessonEditorUploadinBar" class="method item">
-    <h3 class="name"><code>recursionLessonEditorUploadinBar</code></h3>
+                    <div id="method_recursionUploadingBar" class="method item">
+    <h3 class="name"><code>recursionUploadingBar</code></h3>
 
     
         <div class="args">
@@ -730,7 +603,7 @@
             
                 <li class="arg">
                     
-                        <code>selector</code>
+                        <code>container</code>
                     
                 </li>
             
@@ -769,7 +642,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_uploader.js.html#l321"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:321</code></a>
+        <a href="../files/app_assets_javascripts_uploader.js.html#l33"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:33</code></a>
         
         </p>
 
@@ -792,14 +665,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">container</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>HTML selector for the specific uploader (audio, video, image or document)</p>
+                        <p>JQuery object for the specific uploader (audio, video, image or document)</p>
 
                     </div>
 
@@ -832,8 +705,8 @@
 </div>
 
                 
-                    <div id="method_showPercentLessonEditorUploadinBar" class="method item">
-    <h3 class="name"><code>showPercentLessonEditorUploadinBar</code></h3>
+                    <div id="method_showPercentUploadingBar" class="method item">
+    <h3 class="name"><code>showPercentUploadingBar</code></h3>
 
     
         <div class="args">
@@ -841,7 +714,7 @@
             
                 <li class="arg">
                     
-                        <code>selector</code>
+                        <code>container</code>
                     
                 </li>
             
@@ -880,7 +753,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_uploader.js.html#l350"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:350</code></a>
+        <a href="../files/app_assets_javascripts_uploader.js.html#l61"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:61</code></a>
         
         </p>
 
@@ -903,14 +776,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">container</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>HTML selector for the specific uploader (audio, video, image or document)</p>
+                        <p>JQuery object for the specific uploader (audio, video, image or document)</p>
 
                     </div>
 
@@ -943,8 +816,8 @@
 </div>
 
                 
-                    <div id="method_uploadDoneLessonEditor" class="method item">
-    <h3 class="name"><code>uploadDoneLessonEditor</code></h3>
+                    <div id="method_uploadDone" class="method item">
+    <h3 class="name"><code>uploadDone</code></h3>
 
     
         <div class="args">
@@ -964,25 +837,7 @@
             
                 <li class="arg">
                     
-                        <code>gallery</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>pages</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>count</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>item_id</code>
+                        <code>callback</code>
                     
                 </li>
             
@@ -1015,7 +870,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_uploader.js.html#l387"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:387</code></a>
+        <a href="../files/app_assets_javascripts_uploader.js.html#l101"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:101</code></a>
         
         </p>
 
@@ -1026,7 +881,7 @@
     </div>
 
     <div class="description">
-        <p>Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).</p>
+        <p>Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).</p>
 
     </div>
 
@@ -1045,7 +900,7 @@
                     
 
                     <div class="param-description">
-                        <p>HTML selector for the specific uploader (audio, video, image or document)</p>
+                        <p>HTML selector representing the container</p>
 
                     </div>
 
@@ -1055,13 +910,13 @@
                 <li class="param">
                     
                         <code class="param-name">errors</code>
-                        <span class="type">Hash</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>a hash of the kind &#39;field&#39;: &#39;error&#39;</p>
+                        <p>an array of strings to be shown on the bottom of the loading popup</p>
 
                     </div>
 
@@ -1070,62 +925,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">gallery</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">callback</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>the HTML content to be replaced into the gallery, if the uploading was successful</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">pages</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>number of pages of the newly loaded gallery</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">count</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>number of elements inside the gallery</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">item_id</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>id of the newly loaded item (used only for documents)</p>
+                        <p>success callback</p>
 
                     </div>
 
@@ -1142,8 +949,8 @@
 </div>
 
                 
-                    <div id="method_uploaderConversionChecker" class="method item">
-    <h3 class="name"><code>uploaderConversionChecker</code></h3>
+                    <div id="method_uploaderErrors" class="method item">
+    <h3 class="name"><code>uploaderErrors</code></h3>
 
     
         <div class="args">
@@ -1151,118 +958,7 @@
             
                 <li class="arg">
                     
-                        <code>selector</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>title</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_uploader.js.html#l502"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:502</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Shows the message after the conversion ended inside Lesson Editor.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>selector for the correct translation to be shown</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">title</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>the title of the item</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_uploaderErrorsLessonEditor" class="method item">
-    <h3 class="name"><code>uploaderErrorsLessonEditor</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>selector</code>
+                        <code>container</code>
                     
                 </li>
             
@@ -1301,7 +997,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_uploader.js.html#l470"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:470</code></a>
+        <a href="../files/app_assets_javascripts_uploader.js.html#l120"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:120</code></a>
         
         </p>
 
@@ -1312,7 +1008,7 @@
     </div>
 
     <div class="description">
-        <p>Handles the errors of loading in Lesson Editor.</p>
+        <p>Handles the errors of loading files.</p>
 
     </div>
 
@@ -1324,14 +1020,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">container</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>HTML selector for the specific uploader (audio, video, image or document)</p>
+                        <p>JQuery object for the specific uploader (audio, video, image or document)</p>
 
                     </div>
 
@@ -1364,8 +1060,8 @@
 </div>
 
                 
-                    <div id="method_uploadFileTooLargeLessonEditor" class="method item">
-    <h3 class="name"><code>uploadFileTooLargeLessonEditor</code></h3>
+                    <div id="method_uploadFileTooLarge" class="method item">
+    <h3 class="name"><code>uploadFileTooLarge</code></h3>
 
     
         <div class="args">
@@ -1373,7 +1069,7 @@
             
                 <li class="arg">
                     
-                        <code>selector</code>
+                        <code>container</code>
                     
                 </li>
             
@@ -1406,7 +1102,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_uploader.js.html#l525"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:525</code></a>
+        <a href="../files/app_assets_javascripts_uploader.js.html#l150"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:150</code></a>
         
         </p>
 
@@ -1417,7 +1113,7 @@
     </div>
 
     <div class="description">
-        <p>Handles 413 status error, file too large, inside Lesson Editor.</p>
+        <p>Handles 413 status error, file too large.</p>
 
     </div>
 
@@ -1429,14 +1125,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">container</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>HTML selector for the specific uploader (audio, video, image or document)</p>
+                        <p>JQuery object for the specific uploader (audio, video, image or document)</p>
 
                     </div>
 

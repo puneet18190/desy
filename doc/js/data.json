@@ -298,9 +298,8 @@
             },
             "classes": {},
             "fors": {
-                "UploaderDashboard": 1,
-                "UploaderDocumentReady": 1,
-                "UploaderLessonEditor": 1
+                "UploaderGlobal": 1,
+                "UploaderDocumentReady": 1
             },
             "namespaces": {}
         },
@@ -768,20 +767,18 @@
             "name": "uploader",
             "submodules": {},
             "classes": {
-                "UploaderDashboard": 1,
-                "UploaderDocumentReady": 1,
-                "UploaderLessonEditor": 1
+                "UploaderGlobal": 1,
+                "UploaderDocumentReady": 1
             },
             "fors": {
-                "UploaderDashboard": 1,
-                "UploaderDocumentReady": 1,
-                "UploaderLessonEditor": 1
+                "UploaderGlobal": 1,
+                "UploaderDocumentReady": 1
             },
             "namespaces": {},
             "tag": "module",
             "file": "app/assets/javascripts/uploader.js",
             "line": 1,
-            "description": "Javascript functions used in the media element and document loader.\n<br/><br/>\nThe class {{#crossLink \"UploaderDashboard\"}}{{/crossLink}} contains functions that handle uploading processes in regular sections, such as dashboard, my elements, my documents, whereas the class {{#crossLink \"UploaderLessonEditor\"}}{{/crossLink}} contains functions to upload files in the {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}."
+            "description": "Javascript functions used in the media element and document loader.\n<br/><br/>\nThe class {{#crossLink \"UploaderGlobal\"}}{{/crossLink}} contains functions that handle uploading processes in regular sections, such as dashboard, my elements, my documents, and also Lesson Editor ({{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}}, see the initializer {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadyUploaderInGallery:method\"}}{{/crossLink}})."
         },
         "video-editor": {
             "name": "video-editor",
@@ -1666,9 +1663,9 @@
             "module": "tags",
             "namespace": ""
         },
-        "UploaderDashboard": {
-            "name": "UploaderDashboard",
-            "shortname": "UploaderDashboard",
+        "UploaderGlobal": {
+            "name": "UploaderGlobal",
+            "shortname": "UploaderGlobal",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1680,17 +1677,6 @@
         "UploaderDocumentReady": {
             "name": "UploaderDocumentReady",
             "shortname": "UploaderDocumentReady",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "uploader",
-            "namespace": ""
-        },
-        "UploaderLessonEditor": {
-            "name": "UploaderLessonEditor",
-            "shortname": "UploaderLessonEditor",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -4334,7 +4320,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 799,
+            "line": 798,
             "description": "Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders.",
             "itemtype": "method",
             "name": "saveCurrentSlide",
@@ -4355,7 +4341,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 858,
+            "line": 857,
             "description": "Hides the small popup containing the description of a document inside the document gallery.",
             "itemtype": "method",
             "name": "hidePopuppina",
@@ -4371,7 +4357,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 868,
+            "line": 867,
             "description": "Loads the documents from the slide to the gallery.",
             "itemtype": "method",
             "name": "loadDocumentGalleryContent",
@@ -4387,7 +4373,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 886,
+            "line": 885,
             "description": "Loads the specific gallery for documents relative to a slide. The gallery is supposed to have already been loaded previously, by {{#crossLink \"LessonEditorGalleries/showDocumentGalleryInLessonEditor:method\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "loadDocumentGalleryForSlideInLessonEditor",
@@ -4403,7 +4389,48 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 898,
+            "line": 897,
+            "description": "Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).",
+            "itemtype": "method",
+            "name": "reloadGalleryInLessonEditor",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "JQuery object for the specific uploader (audio, video, image or document)",
+                    "type": "Object"
+                },
+                {
+                    "name": "type",
+                    "description": "'image', 'audio', 'video', or 'document'",
+                    "type": "String"
+                },
+                {
+                    "name": "gallery",
+                    "description": "the HTML content to be replaced into the gallery, if the uploading was successful",
+                    "type": "String"
+                },
+                {
+                    "name": "pages",
+                    "description": "number of pages of the newly loaded gallery",
+                    "type": "Number"
+                },
+                {
+                    "name": "count",
+                    "description": "number of elements inside the gallery",
+                    "type": "Number"
+                },
+                {
+                    "name": "item_id",
+                    "description": "id of the newly loaded item (used only for documents)",
+                    "type": "Number"
+                }
+            ],
+            "class": "LessonEditorGalleries",
+            "module": "lesson-editor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 970,
             "description": "Hides media gallery for selected type.",
             "itemtype": "method",
             "name": "removeGalleryInLessonEditor",
@@ -4419,7 +4446,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 910,
+            "line": 982,
             "description": "Resets the filter of documents in the gallery.",
             "itemtype": "method",
             "name": "resetDocumentGalleryFilter",
@@ -4440,7 +4467,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 941,
+            "line": 1013,
             "description": "Shows document gallery.",
             "itemtype": "method",
             "name": "showDocumentGalleryInLessonEditor",
@@ -4449,7 +4476,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 978,
+            "line": 1050,
             "description": "Shows media gallery for selected type.",
             "itemtype": "method",
             "name": "showGalleryInLessonEditor",
@@ -4470,7 +4497,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1004,
+            "line": 1076,
             "description": "Shows the small popup containing the description of a document inside the document gallery.",
             "itemtype": "method",
             "name": "showPopuppina",
@@ -4486,7 +4513,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1053,
+            "line": 1125,
             "description": "Unloads the documents to the slide.",
             "itemtype": "method",
             "name": "unLoadDocumentGalleryContent",
@@ -4502,7 +4529,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1071,
+            "line": 1143,
             "description": "Updates the faded documents and the gallery is locked if three documents are loaded.",
             "itemtype": "method",
             "name": "updateEffectsInsideDocumentGallery",
@@ -4511,7 +4538,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1107,
+            "line": 1179,
             "description": "Returns the width of the image space for the kind of slide.",
             "itemtype": "method",
             "name": "getHorizontalStandardSizeOfSlideImage",
@@ -4531,7 +4558,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1131,
+            "line": 1203,
             "description": "Returns the height of the image space for the kind of slide.",
             "itemtype": "method",
             "name": "getVerticalStandardSizeOfSlideImage",
@@ -4551,7 +4578,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1155,
+            "line": 1227,
             "description": "Check if image ratio is bigger then kind ratio.",
             "itemtype": "method",
             "name": "isHorizontalMask",
@@ -4581,7 +4608,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1183,
+            "line": 1255,
             "description": "Gets scaled height to slide images.",
             "itemtype": "method",
             "name": "resizeHeight",
@@ -4611,7 +4638,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1196,
+            "line": 1268,
             "description": "Gets scaled width to slide images.",
             "itemtype": "method",
             "name": "resizeWidth",
@@ -4641,7 +4668,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1213,
+            "line": 1285,
             "description": "Inizializes jQueryUI <b>sortable</b> function on top navigation numbers, so that they can be sorted (see also {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "initializeSortableNavs",
@@ -4650,7 +4677,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1258,
+            "line": 1330,
             "description": "Method that deinscribes the image.",
             "itemtype": "method",
             "name": "lessonEditorDeinscribeImage",
@@ -4666,7 +4693,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1299,
+            "line": 1371,
             "description": "Method that inscribes the image.",
             "itemtype": "method",
             "name": "lessonEditorInscribeImage",
@@ -4682,7 +4709,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1340,
+            "line": 1412,
             "description": "Inizializes jQueryUI <b>draggable</b> function on slide image containers.",
             "itemtype": "method",
             "name": "makeDraggable",
@@ -4698,7 +4725,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1429,
+            "line": 1501,
             "description": "Asynchronously loads current slide, previous and following.",
             "itemtype": "method",
             "name": "loadSlideAndAdhiacentInLessonEditor",
@@ -4714,7 +4741,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1442,
+            "line": 1514,
             "description": "Asynchronous slide loading. It checks if the slide has been loaded or not.",
             "itemtype": "method",
             "name": "loadSlideInLessonEditor",
@@ -4730,7 +4757,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1461,
+            "line": 1533,
             "description": "Initialize slides position to center.",
             "itemtype": "method",
             "name": "initLessonEditorPositions",
@@ -4739,7 +4766,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1480,
+            "line": 1552,
             "description": "Re-initialize slides position to center after ajax events.",
             "itemtype": "method",
             "name": "reInitializeSlidePositionsInLessonEditor",
@@ -4748,7 +4775,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1492,
+            "line": 1564,
             "description": "Scrolls navigation scrollPane ({{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}) when moving to another slide.",
             "itemtype": "method",
             "name": "scrollPaneUpdate",
@@ -4768,7 +4795,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1509,
+            "line": 1581,
             "description": "Moves to a slide, update current slide in top navigation.",
             "itemtype": "method",
             "name": "slideTo",
@@ -4789,7 +4816,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1564,
+            "line": 1636,
             "description": "TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first ol, ul, p",
             "itemtype": "method",
             "name": "cleanTinyMCESpanTagsFontSize",
@@ -4805,7 +4832,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1585,
+            "line": 1657,
             "description": "Initialize tinyMCE editor for a single textarea.",
             "itemtype": "method",
             "name": "initTinymce",
@@ -4821,7 +4848,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1637,
+            "line": 1709,
             "description": "TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink \"LessonEditorTinyMCE/initTinymce:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "handleTinyMCEOveflow",
@@ -4842,7 +4869,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1660,
+            "line": 1732,
             "description": "Function to strip tags in a text pasted inside TinyMCE.",
             "itemtype": "method",
             "name": "stripTagsForCutAndPaste",
@@ -5199,7 +5226,28 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 71,
-            "description": "Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink \"UploaderLessonEditor/lessonEditorConversionOverview:method\"}}{{/crossLink}}.",
+            "description": "Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink \"MediaElementEditorConversion/mediaElementLoaderConversionOverview:method\"}}{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "lessonEditorConversionOverview",
+            "params": [
+                {
+                    "name": "list",
+                    "description": "list of media elements that are being checked",
+                    "type": "Array"
+                },
+                {
+                    "name": "time",
+                    "description": "time to iterate the loop",
+                    "type": "Number"
+                }
+            ],
+            "class": "MediaElementEditorConversion",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 113,
+            "description": "Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink \"MediaElementEditorConversion/lessonEditorConversionOverview:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "mediaElementLoaderConversionOverview",
             "params": [
@@ -5219,7 +5267,28 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 115,
+            "line": 153,
+            "description": "Shows the message after the conversion ended inside Lesson Editor.",
+            "itemtype": "method",
+            "name": "uploaderConversionChecker",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "selector for the correct translation to be shown",
+                    "type": "String"
+                },
+                {
+                    "name": "title",
+                    "description": "the title of the item",
+                    "type": "String"
+                }
+            ],
+            "class": "MediaElementEditorConversion",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 180,
             "description": "Initializes the placeholder of the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "mediaElementEditorDocumentReady",
@@ -5228,7 +5297,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 171,
+            "line": 236,
             "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "resetMediaElementChangeInfo",
@@ -5244,7 +5313,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 191,
+            "line": 256,
             "description": "Resets the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method\"}}{{/crossLink}}, {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method\"}}{{/crossLink}} and {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "resetMediaElementEditorForms",
@@ -5253,7 +5322,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 231,
+            "line": 296,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>left</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollLeft",
@@ -5278,7 +5347,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 247,
+            "line": 312,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>right</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollRight",
@@ -5303,7 +5372,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 259,
+            "line": 324,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the absolute position to be assigned to <b>a div that must be aligned to the component</b> after having been moved to first position.",
             "itemtype": "method",
             "name": "getAbsolutePositionTimelineHorizontalScrollPane",
@@ -5338,7 +5407,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 281,
+            "line": 346,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: gets how many components are hidden to the left of the scroll pane.",
             "itemtype": "method",
             "name": "getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane",
@@ -5363,7 +5432,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 294,
+            "line": 359,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: exactly the same as {{#crossLink \"MediaElementEditorHorizontalTimelines/getAbsolutePositionTimelineHorizontalScrollPane:method\"}}{{/crossLink}}, but <b>it returns the position of the scroll pane</b> instead of the absolute pixels for an external div.",
             "itemtype": "method",
             "name": "getNormalizedPositionTimelineHorizontalScrollPane",
@@ -5540,7 +5609,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 190,
+            "line": 193,
             "description": "General initializer for help and notifications tooltips.",
             "itemtype": "method",
             "name": "notificationsDocumentReadyTooltips",
@@ -5549,7 +5618,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 211,
+            "line": 214,
             "description": "Initializes the graphical tools of the <b>help tooltip</b>.",
             "itemtype": "method",
             "name": "initializeHelp",
@@ -5558,7 +5627,7 @@
         },
         {
             "file": "app/assets/javascripts/notifications.js",
-            "line": 232,
+            "line": 235,
             "description": "Initializes the graphical tools and the routes attached to the <b>notifications tooltip</b>.",
             "itemtype": "method",
             "name": "initializeNotifications",
@@ -6179,9 +6248,9 @@
             "name": "initTagsAutocomplete",
             "params": [
                 {
-                    "name": "target",
-                    "description": "final target of the autocomplete",
-                    "type": "Object"
+                    "name": "scope",
+                    "description": "HTML scope to find the unique selector class _tags_container",
+                    "type": "String"
                 },
                 {
                     "name": "item",
@@ -6204,152 +6273,14 @@
         {
             "file": "app/assets/javascripts/uploader.js",
             "line": 12,
-            "description": "Recursive animation of the loading bar, according to the function h * x / (x + 1). Time is divided by 400 to slow down the animation.",
+            "description": "Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink \"UploaderGlobal/recursionUploadingBar:method\"}}{{/crossLink}}.",
             "itemtype": "method",
-            "name": "uploadAnimationRecursion",
+            "name": "linearRecursionUploadingBar",
             "params": [
                 {
-                    "name": "item",
-                    "description": "the selected loading bar",
+                    "name": "container",
+                    "description": "JQuery object for the specific uploader (audio, video, image or document)",
                     "type": "Object"
-                },
-                {
-                    "name": "time",
-                    "description": "the current time",
-                    "type": "Number"
-                },
-                {
-                    "name": "increment",
-                    "description": "the increment of time",
-                    "type": "Number"
-                },
-                {
-                    "name": "max_width",
-                    "description": "the total width in pixels of loading bar",
-                    "type": "Number"
-                }
-            ],
-            "class": "UploaderDashboard",
-            "module": "uploader"
-        },
-        {
-            "file": "app/assets/javascripts/uploader.js",
-            "line": 34,
-            "description": "Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).",
-            "itemtype": "method",
-            "name": "uploadDone",
-            "params": [
-                {
-                    "name": "selector",
-                    "description": "either 'document' or 'media-element'",
-                    "type": "String"
-                },
-                {
-                    "name": "errors",
-                    "description": "an array of strings to be shown on the bottom of the loading popup",
-                    "type": "Array"
-                },
-                {
-                    "name": "fields",
-                    "description": "an array of fields that must be bordered with red because they correspond to an error",
-                    "type": "Array"
-                }
-            ],
-            "class": "UploaderDashboard",
-            "module": "uploader"
-        },
-        {
-            "file": "app/assets/javascripts/uploader.js",
-            "line": 54,
-            "description": "Handles the errors of loading popup.",
-            "itemtype": "method",
-            "name": "uploaderErrors",
-            "params": [
-                {
-                    "name": "selector",
-                    "description": "either 'document' or 'media-element'",
-                    "type": "String"
-                },
-                {
-                    "name": "errors",
-                    "description": "an array of strings to be shown on the bottom of the loading popup",
-                    "type": "Array"
-                },
-                {
-                    "name": "fields",
-                    "description": "an array of fields that must be bordered with red because they correspond to an error",
-                    "type": "Array"
-                }
-            ],
-            "class": "UploaderDashboard",
-            "module": "uploader"
-        },
-        {
-            "file": "app/assets/javascripts/uploader.js",
-            "line": 95,
-            "description": "Handles 413 status error, file too large.",
-            "itemtype": "method",
-            "name": "uploadFileTooLarge",
-            "params": [
-                {
-                    "name": "selector",
-                    "description": "either 'document' or 'media-element'",
-                    "type": "String"
-                }
-            ],
-            "class": "UploaderDashboard",
-            "module": "uploader"
-        },
-        {
-            "file": "app/assets/javascripts/uploader.js",
-            "line": 118,
-            "description": "Initializer for the loading form.",
-            "itemtype": "method",
-            "name": "mediaElementLoaderDocumentReady",
-            "class": "UploaderDocumentReady",
-            "module": "uploader"
-        },
-        {
-            "file": "app/assets/javascripts/uploader.js",
-            "line": 188,
-            "description": "Initializer for the loading form.",
-            "itemtype": "method",
-            "name": "documentsDocumentReadyUploader",
-            "class": "UploaderDocumentReady",
-            "module": "uploader"
-        },
-        {
-            "file": "app/assets/javascripts/uploader.js",
-            "line": 258,
-            "description": "Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink \"MediaElementEditorConversion/mediaElementLoaderConversionOverview:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "lessonEditorConversionOverview",
-            "params": [
-                {
-                    "name": "list",
-                    "description": "list of media elements that are being checked",
-                    "type": "Array"
-                },
-                {
-                    "name": "time",
-                    "description": "time to iterate the loop",
-                    "type": "Number"
-                }
-            ],
-            "class": "UploaderLessonEditor",
-            "module": "uploader"
-        },
-        {
-            "file": "app/assets/javascripts/uploader.js",
-            "line": 300,
-            "description": "Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink \"UploaderLessonEditor/recursionLessonEditorUploadinBar:method\"}}{{/crossLink}}.",
-            "itemtype": "method",
-            "name": "linearRecursionLessonEditorUploadinBar",
-            "params": [
-                {
-                    "name": "selector",
-                    "description": "HTML selector for the specific uploader (audio, video, image or document)",
-                    "type": "String"
                 },
                 {
                     "name": "time",
@@ -6372,20 +6303,20 @@
                     "type": "Function"
                 }
             ],
-            "class": "UploaderLessonEditor",
+            "class": "UploaderGlobal",
             "module": "uploader"
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 321,
+            "line": 33,
             "description": "Handles the recursion of uploading animation.",
             "itemtype": "method",
-            "name": "recursionLessonEditorUploadinBar",
+            "name": "recursionUploadingBar",
             "params": [
                 {
-                    "name": "selector",
-                    "description": "HTML selector for the specific uploader (audio, video, image or document)",
-                    "type": "String"
+                    "name": "container",
+                    "description": "JQuery object for the specific uploader (audio, video, image or document)",
+                    "type": "Object"
                 },
                 {
                     "name": "time",
@@ -6393,20 +6324,20 @@
                     "type": "Number"
                 }
             ],
-            "class": "UploaderLessonEditor",
+            "class": "UploaderGlobal",
             "module": "uploader"
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 350,
+            "line": 61,
             "description": "Shows a percentage of the circular loading bar.",
             "itemtype": "method",
-            "name": "showPercentLessonEditorUploadinBar",
+            "name": "showPercentUploadingBar",
             "params": [
                 {
-                    "name": "selector",
-                    "description": "HTML selector for the specific uploader (audio, video, image or document)",
-                    "type": "String"
+                    "name": "container",
+                    "description": "JQuery object for the specific uploader (audio, video, image or document)",
+                    "type": "Object"
                 },
                 {
                     "name": "percent",
@@ -6414,61 +6345,46 @@
                     "type": "Float"
                 }
             ],
-            "class": "UploaderLessonEditor",
+            "class": "UploaderGlobal",
             "module": "uploader"
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 387,
-            "description": "Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).",
+            "line": 101,
+            "description": "Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).",
             "itemtype": "method",
-            "name": "uploadDoneLessonEditor",
+            "name": "uploadDone",
             "params": [
                 {
                     "name": "selector",
-                    "description": "HTML selector for the specific uploader (audio, video, image or document)",
+                    "description": "HTML selector representing the container",
                     "type": "String"
                 },
                 {
                     "name": "errors",
-                    "description": "a hash of the kind 'field': 'error'",
-                    "type": "Hash"
+                    "description": "an array of strings to be shown on the bottom of the loading popup",
+                    "type": "Array"
                 },
                 {
-                    "name": "gallery",
-                    "description": "the HTML content to be replaced into the gallery, if the uploading was successful",
-                    "type": "String"
-                },
-                {
-                    "name": "pages",
-                    "description": "number of pages of the newly loaded gallery",
-                    "type": "Number"
-                },
-                {
-                    "name": "count",
-                    "description": "number of elements inside the gallery",
-                    "type": "Number"
-                },
-                {
-                    "name": "item_id",
-                    "description": "id of the newly loaded item (used only for documents)",
-                    "type": "Number"
+                    "name": "callback",
+                    "description": "success callback",
+                    "type": "Function"
                 }
             ],
-            "class": "UploaderLessonEditor",
+            "class": "UploaderGlobal",
             "module": "uploader"
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 470,
-            "description": "Handles the errors of loading in Lesson Editor.",
+            "line": 120,
+            "description": "Handles the errors of loading files.",
             "itemtype": "method",
-            "name": "uploaderErrorsLessonEditor",
+            "name": "uploaderErrors",
             "params": [
                 {
-                    "name": "selector",
-                    "description": "HTML selector for the specific uploader (audio, video, image or document)",
-                    "type": "String"
+                    "name": "container",
+                    "description": "JQuery object for the specific uploader (audio, video, image or document)",
+                    "type": "Object"
                 },
                 {
                     "name": "errors",
@@ -6476,44 +6392,41 @@
                     "type": "Hash"
                 }
             ],
-            "class": "UploaderLessonEditor",
+            "class": "UploaderGlobal",
             "module": "uploader"
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 502,
-            "description": "Shows the message after the conversion ended inside Lesson Editor.",
+            "line": 150,
+            "description": "Handles 413 status error, file too large.",
             "itemtype": "method",
-            "name": "uploaderConversionChecker",
+            "name": "uploadFileTooLarge",
             "params": [
                 {
-                    "name": "selector",
-                    "description": "selector for the correct translation to be shown",
-                    "type": "String"
-                },
-                {
-                    "name": "title",
-                    "description": "the title of the item",
-                    "type": "String"
+                    "name": "container",
+                    "description": "JQuery object for the specific uploader (audio, video, image or document)",
+                    "type": "Object"
                 }
             ],
-            "class": "UploaderLessonEditor",
+            "class": "UploaderGlobal",
             "module": "uploader"
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 525,
-            "description": "Handles 413 status error, file too large, inside Lesson Editor.",
+            "line": 173,
+            "description": "Initializer for the loading form.",
             "itemtype": "method",
-            "name": "uploadFileTooLargeLessonEditor",
-            "params": [
-                {
-                    "name": "selector",
-                    "description": "HTML selector for the specific uploader (audio, video, image or document)",
-                    "type": "String"
-                }
-            ],
-            "class": "UploaderLessonEditor",
+            "name": "mediaElementLoaderDocumentReady",
+            "class": "UploaderDocumentReady",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 253,
+            "description": "Initializer for the loading form.",
+            "itemtype": "method",
+            "name": "documentsDocumentReadyUploader",
+            "class": "UploaderDocumentReady",
             "module": "uploader"
         },
         {

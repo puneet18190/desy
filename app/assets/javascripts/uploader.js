@@ -170,9 +170,6 @@ function uploadFileTooLarge(container) {
 
 
 
-
-
-
 /**
 Initializer for the loading form.
 @method mediaElementLoaderDocumentReady
