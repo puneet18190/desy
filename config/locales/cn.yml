@@ -702,7 +702,6 @@ cn:
       tags_too_many: "太多的標籤"
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       media_blank: "没有文件上传"
       # The user didn't insert a title
       # 1 - controllers/application_controller.rb
@@ -716,7 +715,6 @@ cn:
       # 1 - controllers/application_controller.rb
       # 2 - controllers/video_editor_controller.rb
       # 3 - controllers/video_editor_controller.rb
-      # 4 - controllers/application_controller.rb
       media_folder_size_exceeded: "媒体上传临时中止，请稍后再试。"
       # If the media folder is full, and the user tried to upload from the lesson editor: this is the caption of the button to come back to the gallery, since uploading is temporarily not available
       # 1 - views/galleries/wrappers/_media_element.html.erb
@@ -727,8 +725,6 @@ cn:
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
-      # 3 - controllers/application_controller.rb
-      # 4 - controllers/application_controller.rb
       media_unsupported_format: "格式不支持"
       # The user tried to upload a file which was damaged or invalid
       # 1 - controllers/application_controller.rb
