@@ -241,6 +241,16 @@ function mediaElementLoaderDocumentReady() {
   $body.on('keydown', '.part2 ._tags_container .tags', function() {
     $(this).parent().removeClass('form_error');
   });
+  $body.on('click', '#load-media-element .errors_layer', function() {
+    var myself = $(this);
+    if(!myself.hasClass('media')) {
+      myself.hide();
+      $('#load-media-element ' + myself.data('selector')).focus();
+    }
+  });
+  $body.on('click', '#load-media-element .attachment label', function() {
+    $('#load-media-element .errors_layer.media').hide();
+  });
 }
 
 /**
@@ -306,5 +316,15 @@ function documentsDocumentReadyUploader() {
   });
   $body.on('keydown', '.docload_title, .docload_description', function() {
     $(this).removeClass('form_error');
+  });
+  $body.on('click', '#load-document .errors_layer', function() {
+    var myself = $(this);
+    if(!myself.hasClass('media')) {
+      myself.hide();
+      $('#load-document ' + myself.data('selector')).focus();
+    }
+  });
+  $body.on('click', '#load-document .attachment label', function() {
+    $('#load-document .errors_layer.media').hide();
   });
 }
