@@ -256,28 +256,6 @@ function documentsDocumentReadyUploader() {
 
 
 /**
-This function replaces {{#crossLink "TagsAccessories/disableTagsInputTooHigh:method"}}{{/crossLink}} in case the tags are used into the lesson editor uploader.
-@method disableTagsInputTooHighForLessonEditorLoader
-@for UploaderLessonEditor
-@param scope_id {String} HTML id for the specific kind of element
-**/
-function disableTagsInputTooHighForLessonEditorLoader(scope_id) {
-  var container = $('#' + scope_id + ' .part2 ._tags_container');
-  var line = 1;
-  var curr_width = 12;
-  container.find('span').each(function() {
-    curr_width += $(this).outerWidth(true);
-    if(curr_width > 377.5) {
-      curr_width = $(this).outerWidth(true) + 12;
-      line += 1;
-    }
-  });
-  if(line > 5) {
-    container.find('.tags').hide();
-  }
-}
-
-/**
 Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink "MediaElementEditorConversion/mediaElementLoaderConversionOverview:method"}}{{/crossLink}}.
 @method lessonEditorConversionOverview
 @for UploaderLessonEditor

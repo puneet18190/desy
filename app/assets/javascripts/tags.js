@@ -22,9 +22,8 @@ Adds a tag without using the suggestion (the case with the suggestion is handled
 @param input {Object} JQuery object for the tag input
 @param container {Object} JQuery object for the container
 @param tags_value {Object} JQuery object for the hidden input
-@param callback {Function} if it's undefined, the function calls {{#crossLink "TagsAccessories/disableTagsInputTooHigh:method"}}{{/crossLink}}
 **/
-function addTagWithoutSuggestion(input, container, tags_value, callback) {
+function addTagWithoutSuggestion(input, container, tags_value) {
   var my_val = $.trim(input.val()).toLowerCase();
   if(my_val.length >= $parameters.data('min-tag-length') && checkNoTagDuplicates(my_val, container)) {
     addToTagsValue(my_val, tags_value);
@@ -40,11 +39,7 @@ function addTagWithoutSuggestion(input, container, tags_value, callback) {
         }
       }
     }).always(bindLoader);
-    if(callback != undefined) {
-      callback();
-    } else {
-      disableTagsInputTooHigh(container, input);
-    }
+    disableTagsInputTooHigh(container);
   }
   $('.ui-autocomplete').hide();
   input.val('');
@@ -104,11 +99,19 @@ Disables the tag input if the container is full.
 @method disableTagsInputTooHigh
 @for TagsAccessories
 @param container {Object} JQuery object for the container
-@param input {Object} JQuery object for the tag input
 **/
-function disableTagsInputTooHigh(container, input) {
-  if(container[0].scrollHeight > container.height()) {
-    input.hide();
+function disableTagsInputTooHigh(container) {
+  var line = 1;
+  var curr_width = 12;
+  container.find('span').each(function() {
+    curr_width += $(this).outerWidth(true);
+    if(curr_width > 377.5) {
+      curr_width = $(this).outerWidth(true) + 12;
+      line += 1;
+    }
+  });
+  if(line > 5) {
+    container.find('.tags').hide();
   }
 }
 
@@ -217,46 +220,6 @@ function tagsDocumentReadyMediaElementLoader() {
   initTagsAutocomplete($('#load-media-element .medload.tags'), 'media_element');
 }
 
-/**
-Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink "DialogsWithForm/showLoadMediaElementPopUp:method"}}{{/crossLink}} and the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}).
-@method tagsDocumentReadyMediaElementGalleryLoader
-@for TagsDocumentReady
-**/
-function tagsDocumentReadyMediaElementGalleryLoader() {
-  $body.on('click', '.loadInGallery .part2 .tags_loader ._tags_container .remove', function() {
-    var scope_id = $(this).parents('.loadInGallery').attr('id');
-    removeFromTagsValue($(this).parent().text(), '#' + scope_id + ' .part2 .tags_loader ._tags_container .tags_value');
-    $(this).parent().remove();
-    if($('#' + scope_id + ' .part2 .tags_loader ._tags_container .tags').not(':visible')) {
-      $('#' + scope_id + ' .part2 .tags_loader ._tags_container .tags').show();
-      disableTagsInputTooHighForLessonEditorLoader(scope_id);
-    }
-  });
-  $body.on('focus', '.loadInGallery .part2 .tags_loader ._tags_container', function() {
-    $(this).find('._placeholder').hide();
-  });
-  $body.on('click', '.loadInGallery .part2 .tags_loader ._tags_container', function() {
-    $(this).find('.tags').focus();
-    $(this).find('._placeholder').hide();
-  });
-  $body.on('keydown', '.loadInGallery .part2 .tags_loader ._tags_container .tags', function(e) {
-    var scope_id = $(this).parents('.loadInGallery').attr('id');
-    if(e.which === 13 || e.which === 188) {
-      e.preventDefault();
-      addTagWithoutSuggestion(this, '#' + scope_id + ' .part2 .tags_loader ._tags_container', '.tags_value', function() {
-        disableTagsInputTooHighForLessonEditorLoader(scope_id);
-      });
-    } else if(e.which == 8 && $(this).val() == '') {
-      $(this).prev().find('.remove').trigger('click');
-    }
-  });
-  $body.on('blur', '.loadInGallery .part2 .tags_loader ._tags_container .tags', function(e) {
-    var scope_id = $(this).parents('.loadInGallery').attr('id');
-    addTagWithoutSuggestion(this, '#' + scope_id + ' .part2 .tags_loader ._tags_container', '.tags_value', function() {
-      disableTagsInputTooHighForLessonEditorLoader(scope_id);
-    });
-  });
-}
 
 
 
@@ -276,7 +239,7 @@ function tagsDocumentReadyGlobal() {
     span.remove();
     if(tags.not(':visible')) {
       tags.show();
-      disableTagsInputTooHigh(container, tags);
+      disableTagsInputTooHigh(container);
     }
   });
   $body.on('focus', '._tags_container', function() {
