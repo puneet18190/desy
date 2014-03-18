@@ -63,13 +63,14 @@ $(document).ready(function() {
     mediaElementEditorDocumentReady();
     playersDocumentReadyAudioEditor();
     playersDocumentReadyGeneral();
-    tagsDocumentReadyGlobal();
+    tagsDocumentReady();
   }
   if($('#dashboard_container').length > 0) { // (2) in dashboard
     commonLessonsDocumentReady();
     commonMediaElementsDocumentReady();
     dashboardDocumentReady();
     documentsDocumentReadyUploader();
+    initTagsAutocomplete($('#load-media-element .medload.tags'), 'media_element');
     lessonButtonsDocumentReady();
     mediaElementButtonsDocumentReady();
     mediaElementLoaderDocumentReady();
@@ -78,7 +79,7 @@ $(document).ready(function() {
     reportsDocumentReady();
     searchDocumentReadyPlaceholders();
     sectionNotificationsDocumentReady();
-    tagsDocumentReadyMediaElementLoader();
+    tagsDocumentReady();
   }
   if($('#my_documents').length > 0) { // (3) in section documents
     documentsDocumentReady();
@@ -92,7 +93,7 @@ $(document).ready(function() {
     galleriesDocumentReady();
     imageEditorDocumentReady();
     mediaElementEditorDocumentReady();
-    tagsDocumentReadyGlobal();
+    tagsDocumentReady();
   }
   if($('.lesson-editor-container').length > 0) { // (5) in lesson editor
     initTagsAutocomplete($('#slides._new #tags'), 'lesson');
@@ -100,7 +101,7 @@ $(document).ready(function() {
     galleriesDocumentReady();
     lessonEditorDocumentReady();
     playersDocumentReadyGeneral();
-    tagsDocumentReadyGlobal();
+    tagsDocumentReady();
   }
   if($('#my_lessons').length > 0) { // (6) in section lessons
     commonLessonsDocumentReady();
@@ -123,6 +124,7 @@ $(document).ready(function() {
   }
   if($('#my_media_elements').length > 0) { // (8) in section elements
     commonMediaElementsDocumentReady();
+    initTagsAutocomplete($('#load-media-element .medload.tags'), 'media_element');
     mediaElementButtonsDocumentReady();
     mediaElementLoaderDocumentReady();
     notificationsDocumentReady();
@@ -131,8 +133,7 @@ $(document).ready(function() {
     searchDocumentReadyPlaceholders();
     sectionMediaElementsDocumentReady();
     sectionNotificationsDocumentReady();
-    tagsDocumentReadyChangeMediaElementInfo();
-    tagsDocumentReadyMediaElementLoader();
+    tagsDocumentReady();
   }
   if($html.hasClass('prelogin-layout')) { // (9) in prelogin
     locationsDocumentReady();
@@ -158,7 +159,7 @@ $(document).ready(function() {
     searchDocumentReadyPlaceholders();
     sectionNotificationsDocumentReady();
     sectionSearchDocumentReady();
-    tagsDocumentReadyChangeMediaElementInfo();
+    tagsDocumentReady();
   }
   if($('#video_editor').length > 0) { // (12) in video editor
     initTagsAutocomplete($('#form_info_new_media_element_in_editor #new_tags'), 'media_element');
@@ -167,7 +168,7 @@ $(document).ready(function() {
     mediaElementEditorDocumentReady();
     playersDocumentReadyGeneral();
     playersDocumentReadyVideoEditor();
-    tagsDocumentReadyGlobal();
+    tagsDocumentReady();
     videoEditorDocumentReady();
   }
   if($('#my_virtual_classroom').length > 0) { // (13) in virtual classroom

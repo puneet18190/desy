@@ -1,13 +1,13 @@
 /**
 The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>), and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink "AdminAutocomplete/initNotificationsAutocomplete:method"}}{{/crossLink}}).
 <br/><br/>
-The <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink "TagsInitializers/initSearchTagsAutocomplete:method"}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink "TagsDocumentReady"}}{{/crossLink}}).
+The <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink "TagsInitializers/initSearchTagsAutocomplete:method"}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink "TagsInitializers/tagsDocumentReady:method"}}{{/crossLink}}).
 <br/><br/>
 The <b>tagging</b> autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an 'x' to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a <b>container</b> div that contains a list of tag <b>boxes</b> (implemented with span, see {{#crossLink "TagsAccessories/createTagSpan:method"}}{{/crossLink}}) and an <b>tag input</b> where the user writes; when he inserts a new tag and presses <i>enter</i> or <i>comma</i>, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see {{#crossLink "TagsAccessories/disableTagsInputTooHigh:method"}}{{/crossLink}}). During this whole process, a <b>hidden input</b> gets updated with a string representing the current tags separated by comma ({{#crossLink "TagsAccessories/addToTagsValue:method"}}{{/crossLink}}, {{#crossLink "TagsAccessories/removeFromTagsValue:method"}}{{/crossLink}}).
 <br/><br/>
 The system also checks if the inserted tag is not repeated (using {{#crossLink "TagsAccessories/checkNoTagDuplicates:method"}}{{/crossLink}}), and assigns a different color for tags already in the database and for new ones ({{#crossLink "TagsAccessories/addTagWithoutSuggestion:method"}}{{/crossLink}}).
 <br/><br/>
-The <b>tagging autocomplete mode</b> is initialized for six standard forms (see initializers in the class {{#crossLink "TagsDocumentReady"}}{{/crossLink}}).
+The <b>tagging autocomplete mode</b> is initialized for six standard forms (see method {{#crossLink "TagsInitializers/tagsDocumentReady:method"}}{{/crossLink}}).
 @module tags
 **/
 
@@ -148,127 +148,6 @@ function removeFromTagsValue(word, value_input) {
 
 
 /**
-Initializer for tagging autocomplete in the form to <b>change the general information of a media element</b> (see {{#crossLink "DialogsWithForm/showMediaElementInfoPopUp:method"}}{{/crossLink}}).
-@method tagsDocumentReadyChangeMediaElementInfo
-@for TagsDocumentReady
-**/
-function tagsDocumentReadyChangeMediaElementInfo() {
-  $body.on('click', '._change_info_container ._tags_container .remove', function() {
-    var media_element_id = $(this).parent().parent().parent().parent().parent().data('param');
-    removeFromTagsValue($(this).parent().text(), '#dialog-media-element-' + media_element_id + ' ._tags_container ._tags_value');
-    $(this).parent().remove();
-    if($('#dialog-media-element-' + media_element_id + ' .my_new_tag').not(':visible')) {
-      $('#dialog-media-element-' + media_element_id + ' .my_new_tag').show();
-      disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' .my_new_tag');
-    }
-  });
-  $body.on('focus', '._change_info_container ._tags_container', function() {
-    $(this).find('._placeholder').hide();
-  });
-  $body.on('click', '._change_info_container ._tags_container', function() {
-    var media_element_id = $(this).parent().parent().parent().parent().data('param');
-    $('#dialog-media-element-' + media_element_id + ' .my_new_tag').focus();
-    $(this).find('._placeholder').hide();
-  });
-  $body.on('keydown', '._change_info_container .my_new_tag', function(e) {
-    var media_element_id = $(this).parent().parent().parent().parent().data('param');
-    if(e.which === 13 || e.which === 188) {
-      e.preventDefault();
-      addTagWithoutSuggestion(this, '#dialog-media-element-' + media_element_id + ' ._tags_container', '._tags_value');
-    } else if(e.which == 8 && $(this).val() == '') {
-      $(this).prev().find('.remove').trigger('click');
-    }
-  });
-  $body.on('blur', '._change_info_container .my_new_tag', function(e) {
-    var media_element_id = $(this).parent().parent().parent().parent().data('param');
-    addTagWithoutSuggestion(this, '#dialog-media-element-' + media_element_id + ' ._tags_container', '._tags_value');
-  });
-}
-
-/**
-Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink "DialogsWithForm/showLoadMediaElementPopUp:method"}}{{/crossLink}} and the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}).
-@method tagsDocumentReadyMediaElementLoader
-@for TagsDocumentReady
-**/
-function tagsDocumentReadyMediaElementLoader() {
-  $body.on('click', '#load-media-element ._tags_container .remove', function() {
-    removeFromTagsValue($(this).parent().text(), '#load-media-element ._tags_container .medload.tags_value');
-    $(this).parent().remove();
-    if($('#load-media-element .medload.tags').not(':visible')) {
-      $('#load-media-element .medload.tags').show();
-      disableTagsInputTooHigh('#load-media-element ._tags_container', '#load-media-element .medload.tags');
-    }
-  });
-  $body.on('focus', '#load-media-element ._tags_container', function() {
-    $(this).find('._placeholder').hide();
-  });
-  $body.on('click', '#load-media-element ._tags_container', function() {
-    $('#load-media-element .medload.tags').focus();
-    $(this).find('._placeholder').hide();
-  });
-  $body.on('keydown', '#load-media-element .medload.tags', function(e) {
-    if(e.which === 13 || e.which === 188) {
-      e.preventDefault();
-      addTagWithoutSuggestion(this, '#load-media-element ._tags_container', '.medload.tags_value');
-    } else if(e.which == 8 && $(this).val() == '') {
-      $(this).prev().find('.remove').trigger('click');
-    }
-  });
-  $body.on('blur', '#load-media-element .medload.tags', function(e) {
-    addTagWithoutSuggestion(this, '#load-media-element ._tags_container', '.medload.tags_value');
-  });
-  initTagsAutocomplete($('#load-media-element .medload.tags'), 'media_element');
-}
-
-
-
-
-
-
-
-
-
-
-
-function tagsDocumentReadyGlobal() {
-  $body.on('click', '._tags_container .remove', function() {
-    var container = $(this).parents('._tags_container');
-    var span = $(this).parent();
-    var tags = container.find('.tags');
-    removeFromTagsValue(span.text(), container.find('.tags_value'));
-    span.remove();
-    if(tags.not(':visible')) {
-      tags.show();
-      disableTagsInputTooHigh(container);
-    }
-  });
-  $body.on('focus', '._tags_container', function() {
-    $(this).find('._placeholder').hide();
-  });
-  $body.on('click', '._tags_container', function() {
-    $(this).find('.tags').focus();
-    $(this).find('._placeholder').hide();
-  });
-  $body.on('keydown', '._tags_container .tags', function(e) {
-    var container = $(this).parents('._tags_container');
-    if(e.which === 13 || e.which === 188) {
-      e.preventDefault();
-      addTagWithoutSuggestion($(this), container, container.find('.tags_value'));
-    } else if(e.which == 8 && $(this).val() == '') {
-      $(this).prev().find('.remove').trigger('click');
-    }
-  });
-  $body.on('blur', '._tags_container #tags', function(e) {
-    var container = $(this).parents('._tags_container');
-    addTagWithoutSuggestion($(this), container, container.find('.tags_value'));
-  });
-}
-
-
-
-
-
-/**
 Initializer for search autocompĺete.
 @method initSearchTagsAutocomplete
 @for TagsInitializers
@@ -328,5 +207,44 @@ function initTagsAutocomplete(target, item) {
         return false;
       }
     }
+  });
+}
+
+/**
+Global document ready for tags functionality.
+@method tagsDocumentReady
+@for TagsInitializers
+**/
+function tagsDocumentReady() {
+  $body.on('click', '._tags_container .remove', function() {
+    var container = $(this).parents('._tags_container');
+    var span = $(this).parent();
+    var tags = container.find('.tags');
+    removeFromTagsValue(span.text(), container.find('.tags_value'));
+    span.remove();
+    if(tags.not(':visible')) {
+      tags.show();
+      disableTagsInputTooHigh(container);
+    }
+  });
+  $body.on('focus', '._tags_container', function() {
+    $(this).find('._placeholder').hide();
+  });
+  $body.on('click', '._tags_container', function() {
+    $(this).find('.tags').focus();
+    $(this).find('._placeholder').hide();
+  });
+  $body.on('keydown', '._tags_container .tags', function(e) {
+    var container = $(this).parents('._tags_container');
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion($(this), container, container.find('.tags_value'));
+    } else if(e.which == 8 && $(this).val() == '') {
+      $(this).prev().find('.remove').trigger('click');
+    }
+  });
+  $body.on('blur', '._tags_container #tags', function(e) {
+    var container = $(this).parents('._tags_container');
+    addTagWithoutSuggestion($(this), container, container.find('.tags_value'));
   });
 }
