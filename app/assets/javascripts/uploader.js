@@ -102,19 +102,17 @@ function showPercentUploadingBar(container, percent) {
 Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).
 @method uploadDone
 @for UploaderGlobal
-@param selector {String} either 'document' or 'media-element'
+@param container {Object} JQuery object representing the container
 @param errors {Array} an array of strings to be shown on the bottom of the loading popup
-@param fields {Array} an array of fields that must be bordered with red because they correspond to an error
+@param callback {Function} success callback
 **/
-function uploadDone(selector, errors, fields) {
+function uploadDone(container, errors, callback) {
   $window.unbind('beforeunload');
   if(errors != undefined) {
-    top.uploaderErrors(selector, errors, fields);
+    top.uploaderErrors(container, errors);
   } else {
-    $('#load-' + selector + ' .barraLoading .loading-internal').data('can-move', false).css('width', '760px');
-    setTimeout(function() {
-      window.location = '/' + selector.replace('-', '_') + 's';
-    }, 500);
+    $(selector).data('loader-can-move', false);
+    setTimeout(callback, 100);
   }
 }
 
@@ -149,19 +147,6 @@ function uploaderErrors(container, errors) {
   container.find('.part3 .submit').removeClass('disabled');
   container.find('.part1 .attachment .file').unbind('click');
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
 Handles 413 status error, file too large.
@@ -323,91 +308,4 @@ function documentsDocumentReadyUploader() {
   $body.on('keydown', '.docload_title, .docload_description', function() {
     $(this).removeClass('form_error');
   });
-}
-
-
-
-
-
-/**
-Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).
-@method uploadDoneLessonEditor
-@for UploaderLessonEditor
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
-@param errors {Hash} a hash of the kind 'field': 'error'
-@param gallery {String} the HTML content to be replaced into the gallery, if the uploading was successful
-@param pages {Number} number of pages of the newly loaded gallery
-@param count {Number} number of elements inside the gallery
-@param item_id {Number} id of the newly loaded item (used only for documents)
-**/
-function uploadDoneLessonEditor(selector, errors, gallery, pages, count, item_id) {
-  var type = selector.split('-');
-  type = type[type.length - 1];
-  $window.unbind('beforeunload');
-  if(errors != undefined) {
-    top.uploaderErrorsLessonEditor(selector, errors);
-  } else {
-    $(selector).data('loader-can-move', false);
-    setTimeout(function() {
-      var position_now = $(selector).data('loader-position-stop');
-      var coefficient = (100 - position_now) / 500;
-      linearRecursionUploadingBar($(selector), 0, coefficient, position_now, function() {
-        $(selector).data('loader-position-stop', 0);
-        if(type != 'audio' && type != 'document') {
-          var dialogs_selector = (type == 'image') ? '.imageInGalleryPopUp' : '.videoInGalleryPopUp'
-          $(dialogs_selector).each(function() {
-            if($(this).hasClass('ui-dialog-content')) {
-              $(this).dialog('destroy');
-            }
-          });
-        }
-        $(selector + ' .part3 .close').removeClass('disabled');
-        $(selector + ' .part3 .submit').removeClass('disabled');
-        $(selector + ' .part1 .attachment .file').unbind('click');
-        var gallery_scrollable = (type == 'document') ? $('.for-scroll-pain') : $('#' + type + '_gallery_content > div');
-        if(gallery_scrollable.data('jsp') != undefined) {
-          gallery_scrollable.data('jsp').destroy();
-        }
-        var container = $('#lesson_editor_' + type + '_gallery_container');
-        container.data('page', 1);
-        container.data('tot-pages', pages);
-        if(type == 'document') {
-          container.find('#document_gallery .documentsExternal').replaceWith(gallery);
-          $('#document_gallery_filter').val('');
-          if(count > 6) {
-            initializeDocumentGalleryInLessonEditor();
-          }
-          container.find('#document_gallery').data('empty', false)
-          $('#gallery_document_' + item_id + ' .add_remove').click();
-        } else {
-          container.find('#' + type + '_gallery').replaceWith(gallery);
-          $('._close_' + type + '_gallery').addClass('_close_' + type + '_gallery_in_lesson_editor');
-          $('._select_' + type + '_from_gallery').addClass('_add_' + type + '_to_slide');
-          if(type == 'audio') {
-            if(count > 6) {
-              initializeAudioGalleryInLessonEditor();
-            } else {
-              $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
-            }
-          }
-          if(type == 'image') {
-            if(count > 21) {
-              initializeImageGalleryInLessonEditor();
-            } else {
-              $('.image_gallery .scroll-pane').css('overflow', 'hidden');
-            }
-          }
-          if(type == 'video') {
-            if(count > 6) {
-              initializeVideoGalleryInLessonEditor();
-            } else {
-              $('.video_gallery .scroll-pane').css('overflow', 'hidden');
-            }
-          }
-        }
-        $(selector + ' .part3 .close').click();
-        $(selector + ' .loading-square').hide();
-      });
-    }, 100);
-  }
 }

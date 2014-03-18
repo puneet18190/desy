@@ -895,6 +895,79 @@ function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
 }
 
 /**
+Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).
+@method reloadGalleryInLessonEditor
+@for LessonEditorGalleries
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
+@param type {String} 'image', 'audio', 'video', or 'document'
+@param gallery {String} the HTML content to be replaced into the gallery, if the uploading was successful
+@param pages {Number} number of pages of the newly loaded gallery
+@param count {Number} number of elements inside the gallery
+@param item_id {Number} id of the newly loaded item (used only for documents)
+**/
+function reloadGalleryInLessonEditor(container, type, gallery, pages, count, item_id) {
+  var position_now = container.data('loader-position-stop');
+  var coefficient = (100 - position_now) / 500;
+  linearRecursionUploadingBar(container, 0, coefficient, position_now, function() {
+    container.data('loader-position-stop', 0);
+    if(type != 'audio' && type != 'document') {
+      var dialogs_selector = (type == 'image') ? '.imageInGalleryPopUp' : '.videoInGalleryPopUp'
+      $(dialogs_selector).each(function() {
+        if($(this).hasClass('ui-dialog-content')) {
+          $(this).dialog('destroy');
+        }
+      });
+    }
+    container.find('.part3 .close').removeClass('disabled');
+    container.find('.part3 .submit').removeClass('disabled');
+    container.find('.part1 .attachment .file').unbind('click');
+    var gallery_scrollable = (type == 'document') ? $('.for-scroll-pain') : $('#' + type + '_gallery_content > div');
+    if(gallery_scrollable.data('jsp') != undefined) {
+      gallery_scrollable.data('jsp').destroy();
+    }
+    var container = $('#lesson_editor_' + type + '_gallery_container');
+    container.data('page', 1);
+    container.data('tot-pages', pages);
+    if(type == 'document') {
+      container.find('#document_gallery .documentsExternal').replaceWith(gallery);
+      $('#document_gallery_filter').val('');
+      if(count > 6) {
+        initializeDocumentGalleryInLessonEditor();
+      }
+      container.find('#document_gallery').data('empty', false)
+      $('#gallery_document_' + item_id + ' .add_remove').click();
+    } else {
+      container.find('#' + type + '_gallery').replaceWith(gallery);
+      $('._close_' + type + '_gallery').addClass('_close_' + type + '_gallery_in_lesson_editor');
+      $('._select_' + type + '_from_gallery').addClass('_add_' + type + '_to_slide');
+      if(type == 'audio') {
+        if(count > 6) {
+          initializeAudioGalleryInLessonEditor();
+        } else {
+          $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
+        }
+      }
+      if(type == 'image') {
+        if(count > 21) {
+          initializeImageGalleryInLessonEditor();
+        } else {
+          $('.image_gallery .scroll-pane').css('overflow', 'hidden');
+        }
+      }
+      if(type == 'video') {
+        if(count > 6) {
+          initializeVideoGalleryInLessonEditor();
+        } else {
+          $('.video_gallery .scroll-pane').css('overflow', 'hidden');
+        }
+      }
+    }
+    container.find('.part3 .close').click();
+    container.find('.loading-square').hide();
+  });
+}
+
+/**
 Hides media gallery for selected type.
 @method removeGalleryInLessonEditor
 @for LessonEditorGalleries

@@ -1,10 +1,12 @@
 <script>
   window.onload = function() {
     <% if @errors %>
-      top.uploadDoneLessonEditor('#load-gallery-video', <%= @errors.to_json.html_safe %>);
+      top.uploadDoneLessonEditor($('#load-gallery-video'), <%= @errors ? @errors.to_json.html_safe : 'undefined' %>);
     <% else %>
       var html_content = "<%= j(render :partial => 'galleries/video', :locals => {:videos => @videos}) %>";
-      top.uploadDoneLessonEditor('#load-gallery-video', undefined, html_content, <%= @tot_pages %>, <%= @videos.count %>);
+      top.uploadDoneLessonEditor($('#load-gallery-video'), undefined, function() {
+        reloadGalleryInLessonEditor($('#load-gallery-video'), 'video', html_content, <%= @tot_pages %>, <%= @videos.count %>);
+      });
     <% end %>
   }
 </script>
