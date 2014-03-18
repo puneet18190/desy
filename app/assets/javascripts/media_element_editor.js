@@ -8,7 +8,7 @@ This module contains javascript functions common to all the editors ({{#crossLin
 
 
 /**
-One step of the repeated <b>cache</b> saving (used in {{#crossLinkModule "image-editor"}}{{/crossLinkModule}} and {{#crossLinkModule "video-editor"}}{{/crossLinkModule}})
+One step of the repeated <b>cache</b> saving (used in {{#crossLinkModule "image-editor"}}{{/crossLinkModule}} and {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}).
 @method saveCacheLoop
 @for MediaElementEditorCache
 **/
