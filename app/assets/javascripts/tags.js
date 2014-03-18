@@ -110,7 +110,7 @@ function disableTagsInputTooHigh(container) {
       line += 1;
     }
   });
-  if(line > 5) {
+  if(line > container.data('lines')) {
     container.find('.tags').hide();
   }
 }
