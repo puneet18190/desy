@@ -150,6 +150,29 @@ function mediaElementLoaderConversionOverview(list, time) {
   }, time);
 }
 
+/**
+Shows the message after the conversion ended inside Lesson Editor.
+@method uploaderConversionChecker
+@for MediaElementEditorConversion
+@param selector {String} selector for the correct translation to be shown
+@param title {String} the title of the item
+**/
+function uploaderConversionChecker(selector, title) {
+  var message = $captions.data('lesson-editor-conversion-' + selector);
+  if(title != undefined) {
+    message = message.replace('%{item}', title);
+  }
+  var delayed = function() {
+    $('#lesson-title').hide();
+    $('#error-footer-disclaimer').text(message).removeClass('true false').addClass(selector.split('-')[1]).show();
+  }
+  if($('#error-footer-disclaimer').is(':visible')) {
+    setTimeout(delayed, 5000);
+  } else {
+    delayed();
+  }
+}
+
 
 
 

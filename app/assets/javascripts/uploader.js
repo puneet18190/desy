@@ -220,7 +220,7 @@ function mediaElementLoaderDocumentReady() {
       });
       recursionUploadingBar($('#load-media-element'), 0);
       setTimeout(function() {
-        $(this).closest('#new_media_element').submit();
+        $('#load-media-element form').submit();
       }, 1500);
     } else {
       e.preventDefault();
@@ -289,7 +289,7 @@ function documentsDocumentReadyUploader() {
       });
       recursionUploadingBar($('#load-document'), 0);
       setTimeout(function() {
-        $(this).closest('#new_document').submit();
+        $('#load-document form').submit();
       }, 1500);
     } else {
       e.preventDefault();
@@ -435,29 +435,6 @@ function uploaderErrorsLessonEditor(selector, errors) {
   $(selector + ' .part3 .close').removeClass('disabled');
   $(selector + ' .part3 .submit').removeClass('disabled');
   $(selector + ' .part1 .attachment .file').unbind('click');
-}
-
-/**
-Shows the message after the conversion ended inside Lesson Editor.
-@method uploaderConversionChecker
-@for UploaderLessonEditor
-@param selector {String} selector for the correct translation to be shown
-@param title {String} the title of the item
-**/
-function uploaderConversionChecker(selector, title) {
-  var message = $captions.data('lesson-editor-conversion-' + selector);
-  if(title != undefined) {
-    message = message.replace('%{item}', title);
-  }
-  var delayed = function() {
-    $('#lesson-title').hide();
-    $('#error-footer-disclaimer').text(message).removeClass('true false').addClass(selector.split('-')[1]).show();
-  }
-  if($('#error-footer-disclaimer').is(':visible')) {
-    setTimeout(delayed, 5000);
-  } else {
-    delayed();
-  }
 }
 
 /**
