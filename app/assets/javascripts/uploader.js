@@ -134,12 +134,10 @@ function uploaderErrors(container, errors) {
       container.find('.full_folder').show();
     } else {
       container.find('.errors_layer.' + key).text(value).show();
-      if(key == 'media') {
-        container.find('.part1 .galleryMediaShow').addClass('form_error');
-      } else if(key == 'tags') {
-        container.find('.part2 ._tags_container').addClass('form_error');
+      if(key == 'tags') {
+        container.find('._tags_container').addClass('form_error');
       } else {
-        container.find('.part2 .' + key).addClass('form_error');
+        container.find('.' + key).addClass('form_error');
       }
     }
   });

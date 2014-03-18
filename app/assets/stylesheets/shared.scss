@@ -610,8 +610,8 @@ a.cerca.current {
           
           &.form_error {
             
-            height: 19px; /* TODO formms */
-            width: 194px; /* TODO formms */
+            height: 19px;
+            width: 194px;
             
           }
           
@@ -623,19 +623,19 @@ a.cerca.current {
         
         width: 335px;
         height: 85px;
-        padding-right: 5px; /* TODO formms */
+        padding-right: 5px;
         
         h1 {
           
           @include nunito(24px);
-          margin-bottom: 10px; /* TODO formms */
+          margin-bottom: 10px;
           
         }
         
         p {
           
           @include arial-with-line-height(13px, 20px);
-          padding: 0; /* TODO formms */
+          padding: 0;
           
         }
         
@@ -657,25 +657,12 @@ a.cerca.current {
           width: 303px;
           margin: 0 0 10px 0;
           
-          &.form_error {
-            
-            height: 39px; /* TODO formms */
-            padding: 0 13px 0 13px; /* TODO formms */
-            
-          }
-          
         }
         
         .description {
           
           width: 303px;
           height: 115px;
-          
-          &.form_error {
-            
-            padding: 13px; /* TODO formms */
-            
-          }
           
         }
         
@@ -692,8 +679,8 @@ a.cerca.current {
           
           &.form_error {
             
-            width: 362.5px; /* TODO formms */
-            height: 225px; /* TODO formms */
+            width: 320px;
+            height: 187px;
             
           }
           
