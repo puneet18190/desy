@@ -159,16 +159,16 @@ function mediaElementLoaderDocumentReady() {
       e.preventDefault();
     }
   });
-  $body.on('focus', '#load-media-element .medload.title', function() {
-    if($('#load-media-element .medload.title_placeholder').val() == '') {
+  $body.on('focus', '#load-media-element .part2 .title', function() {
+    if($('#load-media-element .part2 .title_placeholder').val() == '') {
       $(this).attr('value', '');
-      $('#load-media-element .medload.title_placeholder').attr('value', '0');
+      $('#load-media-element .part2 .title_placeholder').attr('value', '0');
     }
   });
-  $body.on('focus', '#load-media-element .medload.description', function() {
-    if($('#load-media-element .medload.description_placeholder').val() == '') {
+  $body.on('focus', '#load-media-element .part2 .description', function() {
+    if($('#load-media-element .part2 .description_placeholder').val() == '') {
       $(this).attr('value', '');
-      $('#load-media-element .medload.description_placeholder').attr('value', '0');
+      $('#load-media-element .part2 .description_placeholder').attr('value', '0');
     }
   });
   $body.on('submit', '#new_media_element', function() {
@@ -177,10 +177,10 @@ function mediaElementLoaderDocumentReady() {
       uploadFileTooLarge('media_element');
     }
   });
-  $body.on('keydown', '.medload.title, .medload.description', function() {
+  $body.on('keydown', '.part2 .title, .part2 .description', function() {
     $(this).removeClass('form_error');
   });
-  $body.on('keydown', '.medload.tags', function() {
+  $body.on('keydown', '.part2 ._tags_container .tags', function() {
     $(this).parent().removeClass('form_error');
   });
 }

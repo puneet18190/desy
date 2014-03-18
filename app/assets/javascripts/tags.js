@@ -185,11 +185,11 @@ function initSearchTagsAutocomplete(input, item) {
 Initializer for tagging autocompĺete.
 @method initTagsAutocomplete
 @for TagsInitializers
-@param target {Object} final target of the autocomplete
+@param scope {String} HTML scope to find the unique selector class _tags_container
 @param item {String} lesson or media_element
 **/
-function initTagsAutocomplete(target, item) {
-  target.autocomplete({
+function initTagsAutocomplete(selector, item) {
+  $(selector + ' ._tags_container .tags').autocomplete({
     source: function(request, response) {
       unbindLoader();
       $.ajax({

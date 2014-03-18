@@ -56,8 +56,8 @@ $(document).ready(function() {
   browsersDocumentReady();
   globalDocumentReady();
   if($('#audio_editor').length > 0) { // (1) in audio editor
-    initTagsAutocomplete($('#form_info_new_media_element_in_editor #new_tags'), 'media_element');
-    initTagsAutocomplete($('#form_info_update_media_element_in_editor #update_tags'), 'media_element');
+    initTagsAutocomplete('#form_info_new_media_element_in_editor', 'media_element');
+    initTagsAutocomplete('#form_info_update_media_element_in_editor', 'media_element');
     audioEditorDocumentReady();
     galleriesDocumentReady();
     mediaElementEditorDocumentReady();
@@ -70,7 +70,7 @@ $(document).ready(function() {
     commonMediaElementsDocumentReady();
     dashboardDocumentReady();
     documentsDocumentReadyUploader();
-    initTagsAutocomplete($('#load-media-element .medload.tags'), 'media_element');
+    initTagsAutocomplete('#load-media-element', 'media_element');
     lessonButtonsDocumentReady();
     mediaElementButtonsDocumentReady();
     mediaElementLoaderDocumentReady();
@@ -88,16 +88,16 @@ $(document).ready(function() {
     sectionNotificationsDocumentReady();
   }
   if($('#image_editor').length > 0 || $('#image_gallery_for_image_editor').length > 0) { // (4) in image editor
-    initTagsAutocomplete($('#form_info_new_media_element_in_editor #new_tags'), 'media_element');
-    initTagsAutocomplete($('#form_info_update_media_element_in_editor #update_tags'), 'media_element');
+    initTagsAutocomplete('#form_info_new_media_element_in_editor', 'media_element');
+    initTagsAutocomplete('#form_info_update_media_element_in_editor', 'media_element');
     galleriesDocumentReady();
     imageEditorDocumentReady();
     mediaElementEditorDocumentReady();
     tagsDocumentReady();
   }
   if($('.lesson-editor-container').length > 0) { // (5) in lesson editor
-    initTagsAutocomplete($('#slides._new #tags'), 'lesson');
-    initTagsAutocomplete($('#slides._update #tags'), 'lesson');
+    initTagsAutocomplete('#slides._new', 'lesson');
+    initTagsAutocomplete('#slides._update', 'lesson');
     galleriesDocumentReady();
     lessonEditorDocumentReady();
     playersDocumentReadyGeneral();
@@ -124,7 +124,7 @@ $(document).ready(function() {
   }
   if($('#my_media_elements').length > 0) { // (8) in section elements
     commonMediaElementsDocumentReady();
-    initTagsAutocomplete($('#load-media-element .medload.tags'), 'media_element');
+    initTagsAutocomplete('#load-media-element', 'media_element');
     mediaElementButtonsDocumentReady();
     mediaElementLoaderDocumentReady();
     notificationsDocumentReady();
@@ -162,8 +162,8 @@ $(document).ready(function() {
     tagsDocumentReady();
   }
   if($('#video_editor').length > 0) { // (12) in video editor
-    initTagsAutocomplete($('#form_info_new_media_element_in_editor #new_tags'), 'media_element');
-    initTagsAutocomplete($('#form_info_update_media_element_in_editor #update_tags'), 'media_element');
+    initTagsAutocomplete('#form_info_new_media_element_in_editor', 'media_element');
+    initTagsAutocomplete('#form_info_update_media_element_in_editor', 'media_element');
     galleriesDocumentReady();
     mediaElementEditorDocumentReady();
     playersDocumentReadyGeneral();
