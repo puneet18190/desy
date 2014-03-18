@@ -189,8 +189,6 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
                 <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
@@ -481,7 +479,6 @@ Initializer for the general graphical properties of the editor: position and res
 **/
 function imageEditorDocumentReadyGeneral() {
   $(&#x27;#image_gallery_for_image_editor ._select_image_from_gallery&#x27;).addClass(&#x27;_add_image_to_image_editor&#x27;);
-  $(&#x27;#image_gallery_for_image_editor .gallery-header&#x27;).css(&#x27;left&#x27;, ($window.width()/2) - 420);
   $body.on(&#x27;click&#x27;, &#x27;._add_image_to_image_editor&#x27;, function() {
     var parser = document.createElement(&#x27;a&#x27;);
     parser.href = $(&#x27;._exit_url&#x27;).attr(&#x27;href&#x27;);

@@ -189,8 +189,6 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
                 <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
@@ -453,9 +451,9 @@ function mediaElementLoaderDocumentReady() {
       if(file_name.length &gt; 20) {
         file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
       }
-      $(&#x27;#media_element_media_show&#x27;).text(file_name).removeClass(&#x27;form_error&#x27;);
+      $(&#x27;#media_element_media_show&#x27;).val(file_name).removeClass(&#x27;form_error&#x27;);
     } else {
-      $(&#x27;#media_element_media_show&#x27;).text($(&#x27;#load-media-element&#x27;).data(&#x27;placeholder-media&#x27;)).removeClass(&#x27;form_error&#x27;);
+      $(&#x27;#media_element_media_show&#x27;).val($(&#x27;#load-media-element&#x27;).data(&#x27;placeholder-media&#x27;)).removeClass(&#x27;form_error&#x27;);
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;#load-media-element ._close&#x27;, function() {
@@ -481,16 +479,16 @@ function mediaElementLoaderDocumentReady() {
       e.preventDefault();
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element .medload_title&#x27;, function() {
-    if($(&#x27;#load-media-element .medload_title_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element .medload.title&#x27;, function() {
+    if($(&#x27;#load-media-element .medload.title_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-media-element .medload_title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(&#x27;#load-media-element .medload.title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element .medload_description&#x27;, function() {
-    if($(&#x27;#load-media-element .medload_description_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element .medload.description&#x27;, function() {
+    if($(&#x27;#load-media-element .medload.description_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-media-element .medload_description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(&#x27;#load-media-element .medload.description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     }
   });
   $body.on(&#x27;submit&#x27;, &#x27;#new_media_element&#x27;, function() {
@@ -499,10 +497,10 @@ function mediaElementLoaderDocumentReady() {
       uploadFileTooLarge(&#x27;media_element&#x27;);
     }
   });
-  $body.on(&#x27;keydown&#x27;, &#x27;.medload_title, .medload_description&#x27;, function() {
+  $body.on(&#x27;keydown&#x27;, &#x27;.medload.title, .medload.description&#x27;, function() {
     $(this).removeClass(&#x27;form_error&#x27;);
   });
-  $body.on(&#x27;keydown&#x27;, &#x27;.medload_tags&#x27;, function() {
+  $body.on(&#x27;keydown&#x27;, &#x27;.medload.tags&#x27;, function() {
     $(this).parent().removeClass(&#x27;form_error&#x27;);
   });
 }
@@ -576,28 +574,6 @@ function documentsDocumentReadyUploader() {
 
 
 
-
-/**
-This function replaces {{#crossLink &quot;TagsAccessories/disableTagsInputTooHigh:method&quot;}}{{/crossLink}} in case the tags are used into the lesson editor uploader.
-@method disableTagsInputTooHighForLessonEditorLoader
-@for UploaderLessonEditor
-@param scope_id {String} HTML id for the specific kind of element
-**/
-function disableTagsInputTooHighForLessonEditorLoader(scope_id) {
-  var container = $(&#x27;#&#x27; + scope_id + &#x27; .part2 ._tags_container&#x27;);
-  var line = 1;
-  var curr_width = 12;
-  container.find(&#x27;span&#x27;).each(function() {
-    curr_width += $(this).outerWidth(true);
-    if(curr_width &gt; 377.5) {
-      curr_width = $(this).outerWidth(true) + 12;
-      line += 1;
-    }
-  });
-  if(line &gt; 5) {
-    container.find(&#x27;.tags&#x27;).hide();
-  }
-}
 
 /**
 Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink &quot;MediaElementEditorConversion/mediaElementLoaderConversionOverview:method&quot;}}{{/crossLink}}.

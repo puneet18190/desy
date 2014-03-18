@@ -189,8 +189,6 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
                 <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
@@ -443,19 +441,13 @@
             
                 <li class="arg">
                     
-                        <code>container_selector</code>
+                        <code>container</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>tags_value_selector</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>callback</code>
+                        <code>tags_value</code>
                     
                 </li>
             
@@ -512,13 +504,13 @@
                 <li class="param">
                     
                         <code class="param-name">input</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>HTML selector for the tag input</p>
+                        <p>JQuery object for the tag input</p>
 
                     </div>
 
@@ -527,14 +519,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">container_selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">container</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>HTML selector for the container</p>
+                        <p>JQuery object for the container</p>
 
                     </div>
 
@@ -543,30 +535,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">tags_value_selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">tags_value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>HTML selector for the hidden input</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">callback</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>if it&#39;s undefined, the function calls <a href="../classes/TagsAccessories.html#method_disableTagsInputTooHigh" class="crosslink">disableTagsInputTooHigh</a></p>
+                        <p>JQuery object for the hidden input</p>
 
                     </div>
 
@@ -598,7 +574,7 @@
             
                 <li class="arg">
                     
-                        <code>value_selector</code>
+                        <code>value_input</code>
                     
                 </li>
             
@@ -631,7 +607,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l53"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:53</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l48"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:48</code></a>
         
         </p>
 
@@ -670,14 +646,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">value_selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">value_input</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>HTML selector for the hidden input</p>
+                        <p>JQuery object for the hidden input</p>
 
                     </div>
 
@@ -709,7 +685,7 @@
             
                 <li class="arg">
                     
-                        <code>container_selector</code>
+                        <code>container</code>
                     
                 </li>
             
@@ -746,7 +722,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l70"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:70</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l65"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:65</code></a>
         
         </p>
 
@@ -785,14 +761,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">container_selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">container</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>HTML selector for the container</p>
+                        <p>JQuery object for the container</p>
 
                     </div>
 
@@ -867,7 +843,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l88"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:88</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l83"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:83</code></a>
         
         </p>
 
@@ -937,13 +913,7 @@
             
                 <li class="arg">
                     
-                        <code>container_selector</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>input_selector</code>
+                        <code>container</code>
                     
                 </li>
             
@@ -976,7 +946,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l102"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:102</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l97"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:97</code></a>
         
         </p>
 
@@ -999,30 +969,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">container_selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">container</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>HTML selector for the container</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">input_selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>HTML selector for the tag input</p>
+                        <p>JQuery object for the container</p>
 
                     </div>
 
@@ -1085,7 +1039,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l115"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:115</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l118"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:118</code></a>
         
         </p>
 
@@ -1161,7 +1115,7 @@
             
                 <li class="arg">
                     
-                        <code>value_selector</code>
+                        <code>value_input</code>
                     
                 </li>
             
@@ -1194,7 +1148,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l130"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:130</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l133"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:133</code></a>
         
         </p>
 
@@ -1233,14 +1187,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">value_selector</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">value_input</code>
+                        <span class="type">Obbject</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>HTML selector for the hidden input</p>
+                        <p>Jquery object for the hidden input</p>
 
                     </div>
 

@@ -287,7 +287,6 @@
             "classes": {},
             "fors": {
                 "TagsAccessories": 1,
-                "TagsDocumentReady": 1,
                 "TagsInitializers": 1
             },
             "namespaces": {}
@@ -753,19 +752,17 @@
             "submodules": {},
             "classes": {
                 "TagsAccessories": 1,
-                "TagsDocumentReady": 1,
                 "TagsInitializers": 1
             },
             "fors": {
                 "TagsAccessories": 1,
-                "TagsDocumentReady": 1,
                 "TagsInitializers": 1
             },
             "namespaces": {},
             "tag": "module",
             "file": "app/assets/javascripts/tags.js",
             "line": 1,
-            "description": "The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>), and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink \"AdminAutocomplete/initNotificationsAutocomplete:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink \"TagsInitializers/initSearchTagsAutocomplete:method\"}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons, see {{#crossLink \"TagsDocumentReady\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging</b> autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an 'x' to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a <b>container</b> div that contains a list of tag <b>boxes</b> (implemented with span, see {{#crossLink \"TagsAccessories/createTagSpan:method\"}}{{/crossLink}}) and an <b>tag input</b> where the user writes; when he inserts a new tag and presses <i>enter</i> or <i>comma</i>, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see {{#crossLink \"TagsAccessories/disableTagsInputTooHigh:method\"}}{{/crossLink}}). During this whole process, a <b>hidden input</b> gets updated with a string representing the current tags separated by comma ({{#crossLink \"TagsAccessories/addToTagsValue:method\"}}{{/crossLink}}, {{#crossLink \"TagsAccessories/removeFromTagsValue:method\"}}{{/crossLink}}).\n<br/><br/>\nThe system also checks if the inserted tag is not repeated (using {{#crossLink \"TagsAccessories/checkNoTagDuplicates:method\"}}{{/crossLink}}), and assigns a different color for tags already in the database and for new ones ({{#crossLink \"TagsAccessories/addTagWithoutSuggestion:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging autocomplete mode</b> is initialized for six standard forms (see initializers in the class {{#crossLink \"TagsDocumentReady\"}}{{/crossLink}})."
+            "description": "The functions in this module handle two different functionalities of <b>autocomplete</b> for tags: suggestions for a research (<b>search autocomplete</b>), and suggestions for tagging lessons and media elements (<b>tagging autocomplete</b>). Both modes use the same JQuery plugin called <i>JQueryAutocomplete</i> (the same used in {{#crossLink \"AdminAutocomplete/initNotificationsAutocomplete:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>search</b> autocomplete mode requires a simple initializer (method {{#crossLink \"TagsInitializers/initSearchTagsAutocomplete:method\"}}{{/crossLink}}), which is called for three different keyword inputs of the search engine (the general one, the one for elements and the one for lessons).\n<br/><br/>\nThe <b>tagging</b> autocomplete mode is slightly more complicated, because it must show to the user a friendly view of the tags he added (small boxes with an 'x' to remove it) and at the same time store a string value to be send to the rails backend. The implemented solution is a <b>container</b> div that contains a list of tag <b>boxes</b> (implemented with span, see {{#crossLink \"TagsAccessories/createTagSpan:method\"}}{{/crossLink}}) and an <b>tag input</b> where the user writes; when he inserts a new tag and presses <i>enter</i> or <i>comma</i>, the tag is added to the previous line in the container; if such a line is full, the tag input is moved to the next line; when the lines in the container are over, the tag input gets disabled (see {{#crossLink \"TagsAccessories/disableTagsInputTooHigh:method\"}}{{/crossLink}}). During this whole process, a <b>hidden input</b> gets updated with a string representing the current tags separated by comma ({{#crossLink \"TagsAccessories/addToTagsValue:method\"}}{{/crossLink}}, {{#crossLink \"TagsAccessories/removeFromTagsValue:method\"}}{{/crossLink}}).\n<br/><br/>\nThe system also checks if the inserted tag is not repeated (using {{#crossLink \"TagsAccessories/checkNoTagDuplicates:method\"}}{{/crossLink}}), and assigns a different color for tags already in the database and for new ones ({{#crossLink \"TagsAccessories/addTagWithoutSuggestion:method\"}}{{/crossLink}}).\n<br/><br/>\nThe <b>tagging autocomplete mode</b> is initialized using the scope class '_tags_container' which is unique (see method {{#crossLink \"TagsInitializers/tagsDocumentReady:method\"}}{{/crossLink}})."
         },
         "uploader": {
             "name": "uploader",
@@ -1650,17 +1647,6 @@
         "TagsAccessories": {
             "name": "TagsAccessories",
             "shortname": "TagsAccessories",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "tags",
-            "namespace": ""
-        },
-        "TagsDocumentReady": {
-            "name": "TagsDocumentReady",
-            "shortname": "TagsDocumentReady",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -3454,7 +3440,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 441,
+            "line": 442,
             "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "showMediaElementInfoPopUp",
@@ -3470,7 +3456,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 493,
+            "line": 494,
             "description": "Dialog containing the form to send the public link of a lesson. Used in {{#crossLink \"VirtualClassroomSendLink\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showSendLessonLinkPopUp",
@@ -3486,7 +3472,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 537,
+            "line": 538,
             "description": "Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink \"VirtualClassroomMultipleLoading\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showVirtualClassroomQuickSelectPopUp",
@@ -4001,7 +3987,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 170,
+            "line": 169,
             "description": "Initializer for text inserting mode. It includes the initialization of JQueryUi draggable for the small text areas inside the image.",
             "itemtype": "method",
             "name": "imageEditorDocumentReadyTexts",
@@ -4010,7 +3996,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 271,
+            "line": 270,
             "description": "Initializer for the route linked to the action 'undo', that undoes the last step of editing.",
             "itemtype": "method",
             "name": "imageEditorDocumentReadyUndo",
@@ -4019,7 +4005,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 289,
+            "line": 288,
             "description": "Function that closes the crop mode (notice that the imgAreaSelect initialized in {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyCrop:method\"}}{{/crossLink}} is disabled too).",
             "itemtype": "method",
             "name": "resetImageEditorCrop",
@@ -4028,7 +4014,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 304,
+            "line": 303,
             "description": "Function that is used together with both {{#crossLink \"ImageEditorGraphics/resetImageEditorCrop:method\"}}{{/crossLink}} and {{#crossLink \"ImageEditorGraphics/resetImageEditorTexts:method\"}}{{/crossLink}}: it resets the icons on the left column, and all the accessories of the two editing modes.",
             "itemtype": "method",
             "name": "resetImageEditorOperationsChoice",
@@ -4037,7 +4023,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 317,
+            "line": 316,
             "description": "Function that closes the texts inserting mode (it's removed also the class <i>text enabled</i>, initialized in {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyTexts:method\"}}{{/crossLink}}, that makes the image sensitive to the click of the user for the creation of small text areas).",
             "itemtype": "method",
             "name": "resetImageEditorTexts",
@@ -4046,7 +4032,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 333,
+            "line": 332,
             "description": "Get image relative position into editor container.",
             "itemtype": "method",
             "name": "getRelativePositionInImageEditor",
@@ -4071,7 +4057,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 355,
+            "line": 354,
             "description": "Selects a text area (this function is called when the user clicks on a textarea in the image).",
             "itemtype": "method",
             "name": "enlightTextarea",
@@ -4087,7 +4073,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 367,
+            "line": 366,
             "description": "Gets the coordinates of a textarea while dragging.",
             "itemtype": "method",
             "name": "getDragPosition",
@@ -4107,7 +4093,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 385,
+            "line": 384,
             "description": "Used together with {{#crossLink \"ImageEditorTexts/enlightTextAreas:method\"}}{{/crossLink}}, it disables all text areas in the image.",
             "itemtype": "method",
             "name": "offlightTextarea",
@@ -4116,7 +4102,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 396,
+            "line": 395,
             "description": "Extracts a new empty textarea, and appends it to the image at given coordinates.",
             "itemtype": "method",
             "name": "textAreaImageEditorContent",
@@ -6024,23 +6010,18 @@
             "params": [
                 {
                     "name": "input",
-                    "description": "HTML selector for the tag input",
-                    "type": "String"
+                    "description": "JQuery object for the tag input",
+                    "type": "Object"
                 },
                 {
-                    "name": "container_selector",
-                    "description": "HTML selector for the container",
-                    "type": "String"
+                    "name": "container",
+                    "description": "JQuery object for the container",
+                    "type": "Object"
                 },
                 {
-                    "name": "tags_value_selector",
-                    "description": "HTML selector for the hidden input",
-                    "type": "String"
-                },
-                {
-                    "name": "callback",
-                    "description": "if it's undefined, the function calls {{#crossLink \"TagsAccessories/disableTagsInputTooHigh:method\"}}{{/crossLink}}",
-                    "type": "Function"
+                    "name": "tags_value",
+                    "description": "JQuery object for the hidden input",
+                    "type": "Object"
                 }
             ],
             "class": "TagsAccessories",
@@ -6048,7 +6029,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 53,
+            "line": 48,
             "description": "Adds a tag to the <b>hidden input</b>.",
             "itemtype": "method",
             "name": "addToTagsValue",
@@ -6059,9 +6040,9 @@
                     "type": "String"
                 },
                 {
-                    "name": "value_selector",
-                    "description": "HTML selector for the hidden input",
-                    "type": "String"
+                    "name": "value_input",
+                    "description": "JQuery object for the hidden input",
+                    "type": "Object"
                 }
             ],
             "class": "TagsAccessories",
@@ -6069,7 +6050,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 70,
+            "line": 65,
             "description": "Checks if a tag is already present in the hidden input.",
             "itemtype": "method",
             "name": "checkNoTagDuplicates",
@@ -6080,9 +6061,9 @@
                     "type": "String"
                 },
                 {
-                    "name": "container_selector",
-                    "description": "HTML selector for the container",
-                    "type": "String"
+                    "name": "container",
+                    "description": "JQuery object for the container",
+                    "type": "Object"
                 }
             ],
             "return": {
@@ -6094,7 +6075,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 88,
+            "line": 83,
             "description": "Creates a new span box for a tag.",
             "itemtype": "method",
             "name": "createTagSpan",
@@ -6114,20 +6095,15 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 102,
+            "line": 97,
             "description": "Disables the tag input if the container is full.",
             "itemtype": "method",
             "name": "disableTagsInputTooHigh",
             "params": [
                 {
-                    "name": "container_selector",
-                    "description": "HTML selector for the container",
-                    "type": "String"
-                },
-                {
-                    "name": "input_selector",
-                    "description": "HTML selector for the tag input",
-                    "type": "String"
+                    "name": "container",
+                    "description": "JQuery object for the container",
+                    "type": "Object"
                 }
             ],
             "class": "TagsAccessories",
@@ -6135,7 +6111,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 115,
+            "line": 118,
             "description": "Generates a unique class for a given tag (containing underscores, and taking into consideration special characters).",
             "itemtype": "method",
             "name": "getUnivoqueClassForTag",
@@ -6155,7 +6131,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 130,
+            "line": 133,
             "description": "Removes a tag from the <b>hidden input</b>.",
             "itemtype": "method",
             "name": "removeFromTagsValue",
@@ -6166,9 +6142,9 @@
                     "type": "String"
                 },
                 {
-                    "name": "value_selector",
-                    "description": "HTML selector for the hidden input",
-                    "type": "String"
+                    "name": "value_input",
+                    "description": "Jquery object for the hidden input",
+                    "type": "Obbject"
                 }
             ],
             "class": "TagsAccessories",
@@ -6176,70 +6152,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 147,
-            "description": "Initializer for tagging autocomplete in the form to <b>change the general information of a media element</b> (see {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}).",
-            "itemtype": "method",
-            "name": "tagsDocumentReadyChangeMediaElementInfo",
-            "class": "TagsDocumentReady",
-            "module": "tags"
-        },
-        {
-            "file": "app/assets/javascripts/tags.js",
-            "line": 185,
-            "description": "Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}} and the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}).",
-            "itemtype": "method",
-            "name": "tagsDocumentReadyMediaElementLoader",
-            "class": "TagsDocumentReady",
-            "module": "tags"
-        },
-        {
-            "file": "app/assets/javascripts/tags.js",
-            "line": 220,
-            "description": "Initializer for tagging autocomplete in the form to <b>upload a new media element</b> (see {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}} and the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}).",
-            "itemtype": "method",
-            "name": "tagsDocumentReadyMediaElementGalleryLoader",
-            "class": "TagsDocumentReady",
-            "module": "tags"
-        },
-        {
-            "file": "app/assets/javascripts/tags.js",
-            "line": 261,
-            "description": "Initializer for tagging autocomplete in the form to <b>create a new lesson</b>.",
-            "itemtype": "method",
-            "name": "tagsDocumentReadyNewLesson",
-            "class": "TagsDocumentReady",
-            "module": "tags"
-        },
-        {
-            "file": "app/assets/javascripts/tags.js",
-            "line": 296,
-            "description": "Initializer for tagging autocomplete in the form to <b>save as new an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
-            "itemtype": "method",
-            "name": "tagsDocumentReadyNewMediaElement",
-            "class": "TagsDocumentReady",
-            "module": "tags"
-        },
-        {
-            "file": "app/assets/javascripts/tags.js",
-            "line": 335,
-            "description": "Initializer for tagging autocomplete in the form to <b>overwrite an element in the {{#crossLinkModule \"media-element-editor\"}}{{/crossLinkModule}}</b> (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementEditorForms:method\"}}{{/crossLink}}).",
-            "itemtype": "method",
-            "name": "tagsDocumentReadyOvervriteMediaElement",
-            "class": "TagsDocumentReady",
-            "module": "tags"
-        },
-        {
-            "file": "app/assets/javascripts/tags.js",
-            "line": 370,
-            "description": "Initializer for tagging autocomplete in the form to <b>update the general information of a lesson</b>.",
-            "itemtype": "method",
-            "name": "tagsDocumentReadyUpdateLesson",
-            "class": "TagsDocumentReady",
-            "module": "tags"
-        },
-        {
-            "file": "app/assets/javascripts/tags.js",
-            "line": 408,
+            "line": 150,
             "description": "Initializer for search autocompĺete.",
             "itemtype": "method",
             "name": "initSearchTagsAutocomplete",
@@ -6260,7 +6173,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 442,
+            "line": 184,
             "description": "Initializer for tagging autocompĺete.",
             "itemtype": "method",
             "name": "initTagsAutocomplete",
@@ -6276,6 +6189,15 @@
                     "type": "String"
                 }
             ],
+            "class": "TagsInitializers",
+            "module": "tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 213,
+            "description": "Global document ready for tags functionality.",
+            "itemtype": "method",
+            "name": "tagsDocumentReady",
             "class": "TagsInitializers",
             "module": "tags"
         },
@@ -6399,22 +6321,6 @@
         {
             "file": "app/assets/javascripts/uploader.js",
             "line": 258,
-            "description": "This function replaces {{#crossLink \"TagsAccessories/disableTagsInputTooHigh:method\"}}{{/crossLink}} in case the tags are used into the lesson editor uploader.",
-            "itemtype": "method",
-            "name": "disableTagsInputTooHighForLessonEditorLoader",
-            "params": [
-                {
-                    "name": "scope_id",
-                    "description": "HTML id for the specific kind of element",
-                    "type": "String"
-                }
-            ],
-            "class": "UploaderLessonEditor",
-            "module": "uploader"
-        },
-        {
-            "file": "app/assets/javascripts/uploader.js",
-            "line": 280,
             "description": "Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink \"MediaElementEditorConversion/mediaElementLoaderConversionOverview:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "lessonEditorConversionOverview",
@@ -6435,7 +6341,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 322,
+            "line": 300,
             "description": "Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink \"UploaderLessonEditor/recursionLessonEditorUploadinBar:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "linearRecursionLessonEditorUploadinBar",
@@ -6471,7 +6377,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 343,
+            "line": 321,
             "description": "Handles the recursion of uploading animation.",
             "itemtype": "method",
             "name": "recursionLessonEditorUploadinBar",
@@ -6492,7 +6398,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 372,
+            "line": 350,
             "description": "Shows a percentage of the circular loading bar.",
             "itemtype": "method",
             "name": "showPercentLessonEditorUploadinBar",
@@ -6513,7 +6419,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 409,
+            "line": 387,
             "description": "Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).",
             "itemtype": "method",
             "name": "uploadDoneLessonEditor",
@@ -6554,7 +6460,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 492,
+            "line": 470,
             "description": "Handles the errors of loading in Lesson Editor.",
             "itemtype": "method",
             "name": "uploaderErrorsLessonEditor",
@@ -6575,7 +6481,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 524,
+            "line": 502,
             "description": "Shows the message after the conversion ended inside Lesson Editor.",
             "itemtype": "method",
             "name": "uploaderConversionChecker",
@@ -6596,7 +6502,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 547,
+            "line": 525,
             "description": "Handles 413 status error, file too large, inside Lesson Editor.",
             "itemtype": "method",
             "name": "uploadFileTooLargeLessonEditor",
