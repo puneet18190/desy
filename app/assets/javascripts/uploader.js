@@ -1,7 +1,7 @@
 /**
 Javascript functions used in the media element and document loader.
 <br/><br/>
-The class {{#crossLink "UploaderDashboard"}}{{/crossLink}} contains functions that handle uploading processes in regular sections, such as dashboard, my elements, my documents, whereas the class {{#crossLink "UploaderLessonEditor"}}{{/crossLink}} contains functions to upload files in the {{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}}.
+The class {{#crossLink "UploaderGlobal"}}{{/crossLink}} contains functions that handle uploading processes in regular sections, such as dashboard, my elements, my documents, and also Lesson Editor ({{#crossLinkModule "lesson-editor"}}{{/crossLinkModule}}, see the initializer {{#crossLink "LessonEditorDocumentReady/lessonEditorDocumentReadyUploaderInGallery:method"}}{{/crossLink}}).
 @module uploader
 **/
 
@@ -10,31 +10,59 @@ The class {{#crossLink "UploaderDashboard"}}{{/crossLink}} contains functions th
 
 
 /**
-Recursive animation of the loading bar, according to the function h * x / (x + 1). Time is divided by 400 to slow down the animation.
-@method uploadAnimationRecursion
-@for UploaderDashboard
-@param item {Object} the selected loading bar
-@param time {Number} the current time
-@param increment {Number} the increment of time
-@param max_width {Number} the total width in pixels of loading bar
+Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink "UploaderGlobal/recursionUploadinBar:method"}}{{/crossLink}}.
+@method linearRecursionUploadinBar
+@for UploaderGlobal
+@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
+@param time {Number} current time in the recursion
+@param k {Number} linear coefficient of recursion
+@param start {Number} starting point of recursion
+@param callback {Function} function to be fired after the animation is over
 **/
-function uploadAnimationRecursion(item, time, increment, max_width) {
-  if(item.data('can-move')) {
-    var reduced_time = time / 400;
-    var current_width = max_width * reduced_time / (reduced_time + 1);
-    item.css('width', (current_width + 'px'));
+function linearRecursionUploadinBar(selector, time, k, start, callback) {
+  if(time <= 500) {
+    showPercentLessonEditorUploadinBar(selector, (k * time + start));
     setTimeout(function() {
-      uploadAnimationRecursion(item, (time + increment), increment, max_width);
-    }, increment);
+      linearRecursionUploadinBar(selector, time + 5, k, start, callback)
+    }, 5);
   } else {
-    item.data('can-move', true);
+    setTimeout(callback, 500);
+  }
+}
+
+/**
+Handles the recursion of uploading animation.
+@method recursionUploadinBar
+@for UploaderGlobal
+@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
+@param time {Number} current time in the recursion
+**/
+function recursionUploadinBar(selector, time) {
+  var container = $(selector);
+  if(container.data('loader-can-move')) {
+    if(time < 1500) {
+      showPercentLessonEditorUploadinBar(selector, 5 / 150 * time);
+    } else {
+      showPercentLessonEditorUploadinBar(selector, ((100 * time + 1500) / (time + 1530)));
+    }
+    setTimeout(function() {
+      recursionUploadinBar(selector, time + 5);
+    }, 5);
+  } else {
+    container.data('loader-can-move', true);
+    if(!container.data('loader-with-errors')) {
+      container.data('loader-position-stop', (100 * time + 1500) / (time + 1530));
+    } else {
+      container.data('loader-with-errors', false);
+      showPercentLessonEditorUploadinBar(selector, 0);
+    }
   }
 }
 
 /**
 Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).
 @method uploadDone
-@for UploaderDashboard
+@for UploaderGlobal
 @param selector {String} either 'document' or 'media-element'
 @param errors {Array} an array of strings to be shown on the bottom of the loading popup
 @param fields {Array} an array of fields that must be bordered with red because they correspond to an error
@@ -54,7 +82,7 @@ function uploadDone(selector, errors, fields) {
 /**
 Handles the errors of loading popup.
 @method uploaderErrors
-@for UploaderDashboard
+@for UploaderGlobal
 @param selector {String} either 'document' or 'media-element'
 @param errors {Array} an array of strings to be shown on the bottom of the loading popup
 @param fields {Array} an array of fields that must be bordered with red because they correspond to an error
@@ -69,7 +97,7 @@ function uploaderErrors(selector, errors, fields) {
   loading_errors.show();
   item.find('#new_' + obj_name + '_submit').removeClass('disabled');
   item.find('#new_' + obj_name + '_input').unbind('click');
-  item.find('._close').removeClass('disabled');
+  item.find('.part3 .close').removeClass('disabled');
   errors_appended = '';
   for(var i = 0; i < errors.length; i++) {
     if(i == errors.length - 1) {
@@ -95,7 +123,7 @@ function uploaderErrors(selector, errors, fields) {
 /**
 Handles 413 status error, file too large.
 @method uploadFileTooLarge
-@for UploaderDashboard
+@for UploaderGlobal
 @param selector {String} either 'document' or 'media-element'
 **/
 function uploadFileTooLarge(selector) {
@@ -136,25 +164,25 @@ function mediaElementLoaderDocumentReady() {
       $('#media_element_media_show').val($('#load-media-element').data('placeholder-media')).removeClass('form_error');
     }
   });
-  $body.on('click', '#load-media-element ._close', function() {
+  $body.on('click', '#load-media-element .part3 .close', function() {
     if(!$(this).hasClass('disabled')) {
       closePopUp('load-media-element');
     }
   });
-  $body.on('click', '#new_media_element_submit', function(e) {
+  $body.on('click', '#load-media-element .part3 .submit', function(e) {
     if(!$(this).hasClass('disabled')) {
       $(this).addClass('disabled');
+      $('#load-media-element .part3 .close').addClass('disabled');
       $('#load-media-element #new_media_element_input').on('click', function(e) {
         e.preventDefault();
       });
-      $('#load-media-element ._close').addClass('disabled');
-      $('#load-media-element .barraLoading .loading-errors').html('').hide();
-      $('#load-media-element .barraLoading .loading-internal').show();
       $window.on('beforeunload', function() {
         return $captions.data('dont-leave-page-upload-media-element');
       });
-      uploadAnimationRecursion($('#load-media-element .barraLoading .loading-internal'), 0, 5, 760);
-      $(this).closest('#new_media_element').submit();
+      recursionUploadinBar('#' + scope_id, 0); // TODO formms
+      setTimeout(function() {
+        $(this).closest('#new_media_element').submit();
+      }, 1500);
     } else {
       e.preventDefault();
     }
@@ -205,25 +233,25 @@ function documentsDocumentReadyUploader() {
       $('#document_attachment_show').text($('#load-document').data('placeholder-attachment')).removeClass('form_error');
     }
   });
-  $body.on('click', '#load-document ._close', function() {
+  $body.on('click', '#load-document .part3 .close', function() {
     if(!$(this).hasClass('disabled')) {
       closePopUp('load-document');
     }
   });
-  $body.on('click', '#new_document_submit', function(e) {
+  $body.on('click', '#load-document .part3 .submit', function(e) {
     if(!$(this).hasClass('disabled')) {
       $(this).addClass('disabled');
+      $('#load-document .part3 .close').addClass('disabled');
       $('#load-document #new_document_input').on('click', function(e) {
         e.preventDefault();
       });
-      $('#load-document ._close').addClass('disabled');
-      $('#load-document .barraLoading .loading-errors').html('').hide();
-      $('#load-document .barraLoading .loading-internal').show();
       $window.on('beforeunload', function() {
         return $captions.data('dont-leave-page-upload-document');
       });
-      uploadAnimationRecursion($('#load-document .barraLoading .loading-internal'), 0, 5, 760);
-      $(this).closest('#new_document').submit();
+      recursionUploadinBar('#' + scope_id, 0); // TODO formms
+      setTimeout(function() {
+        $(this).closest('#new_document').submit();
+      }, 1500);
     } else {
       e.preventDefault();
     }
@@ -254,98 +282,6 @@ function documentsDocumentReadyUploader() {
 
 
 
-
-/**
-Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink "MediaElementEditorConversion/mediaElementLoaderConversionOverview:method"}}{{/crossLink}}.
-@method lessonEditorConversionOverview
-@for UploaderLessonEditor
-@param list {Array} list of media elements that are being checked
-@param time {Number} time to iterate the loop
-**/
-function lessonEditorConversionOverview(list, time) {
-  $('#lesson-title').show();
-  $('#error-footer-disclaimer').hide();
-  $('._audio_gallery_thumb._disabled, ._video_gallery_thumb._disabled').each(function() {
-    var my_id = $(this).hasClass('_video_gallery_thumb') ? $(this).data('video-id') : $(this).data('audio-id');
-    if(list.indexOf(my_id) == -1) {
-      list.push(my_id);
-    }
-  });
-  var black_list = $('#info_container').data('media-elements-not-anymore-in-conversion');
-  for(var i = 0; i < black_list.length; i ++) {
-    var j = list.indexOf(black_list[i]);
-    if(j != -1) {
-      list.splice(j, 1);
-    }
-  }
-  if(list.length > 0) {
-    var ajax_url = '/lesson_editor/check_conversion?';
-    for(var i = 0; i < list.length; i ++) {
-      ajax_url += ('me' + list[i] + '=true');
-      if(i != list.length - 1) {
-        ajax_url += '&';
-      }
-    }
-    unbindLoader();
-    $.ajax({
-      url: ajax_url,
-      type: 'get'
-    }).always(bindLoader);
-  }
-  setTimeout(function() {
-    lessonEditorConversionOverview(list, time);
-  }, time);
-}
-
-/**
-Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink "UploaderLessonEditor/recursionLessonEditorUploadinBar:method"}}{{/crossLink}}.
-@method linearRecursionLessonEditorUploadinBar
-@for UploaderLessonEditor
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
-@param time {Number} current time in the recursion
-@param k {Number} linear coefficient of recursion
-@param start {Number} starting point of recursion
-@param callback {Function} function to be fired after the animation is over
-**/
-function linearRecursionLessonEditorUploadinBar(selector, time, k, start, callback) {
-  if(time <= 500) {
-    showPercentLessonEditorUploadinBar(selector, (k * time + start));
-    setTimeout(function() {
-      linearRecursionLessonEditorUploadinBar(selector, time + 5, k, start, callback)
-    }, 5);
-  } else {
-    setTimeout(callback, 500);
-  }
-}
-
-/**
-Handles the recursion of uploading animation.
-@method recursionLessonEditorUploadinBar
-@for UploaderLessonEditor
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
-@param time {Number} current time in the recursion
-**/
-function recursionLessonEditorUploadinBar(selector, time) {
-  var container = $(selector);
-  if(container.data('loader-can-move')) {
-    if(time < 1500) {
-      showPercentLessonEditorUploadinBar(selector, 5 / 150 * time);
-    } else {
-      showPercentLessonEditorUploadinBar(selector, ((100 * time + 1500) / (time + 1530)));
-    }
-    setTimeout(function() {
-      recursionLessonEditorUploadinBar(selector, time + 5);
-    }, 5);
-  } else {
-    container.data('loader-can-move', true);
-    if(!container.data('loader-with-errors')) {
-      container.data('loader-position-stop', (100 * time + 1500) / (time + 1530));
-    } else {
-      container.data('loader-with-errors', false);
-      showPercentLessonEditorUploadinBar(selector, 0);
-    }
-  }
-}
 
 /**
 Shows a percentage of the circular loading bar.
@@ -406,7 +342,7 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count, item_id
     setTimeout(function() {
       var position_now = $(selector).data('loader-position-stop');
       var coefficient = (100 - position_now) / 500;
-      linearRecursionLessonEditorUploadinBar(selector, 0, coefficient, position_now, function() {
+      linearRecursionUploadinBar(selector, 0, coefficient, position_now, function() {
         $(selector).data('loader-position-stop', 0);
         if(type != 'audio' && type != 'document') {
           var dialogs_selector = (type == 'image') ? '.imageInGalleryPopUp' : '.videoInGalleryPopUp'

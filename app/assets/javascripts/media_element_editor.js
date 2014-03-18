@@ -69,7 +69,49 @@ function submitMediaElementEditorCacheForm(form) {
 
 
 /**
-Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink "UploaderLessonEditor/lessonEditorConversionOverview:method"}}{{/crossLink}}.
+Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink "MediaElementEditorConversion/mediaElementLoaderConversionOverview:method"}}{{/crossLink}}.
+@method lessonEditorConversionOverview
+@for MediaElementEditorConversion
+@param list {Array} list of media elements that are being checked
+@param time {Number} time to iterate the loop
+**/
+function lessonEditorConversionOverview(list, time) {
+  $('#lesson-title').show();
+  $('#error-footer-disclaimer').hide();
+  $('._audio_gallery_thumb._disabled, ._video_gallery_thumb._disabled').each(function() {
+    var my_id = $(this).hasClass('_video_gallery_thumb') ? $(this).data('video-id') : $(this).data('audio-id');
+    if(list.indexOf(my_id) == -1) {
+      list.push(my_id);
+    }
+  });
+  var black_list = $('#info_container').data('media-elements-not-anymore-in-conversion');
+  for(var i = 0; i < black_list.length; i ++) {
+    var j = list.indexOf(black_list[i]);
+    if(j != -1) {
+      list.splice(j, 1);
+    }
+  }
+  if(list.length > 0) {
+    var ajax_url = '/lesson_editor/check_conversion?';
+    for(var i = 0; i < list.length; i ++) {
+      ajax_url += ('me' + list[i] + '=true');
+      if(i != list.length - 1) {
+        ajax_url += '&';
+      }
+    }
+    unbindLoader();
+    $.ajax({
+      url: ajax_url,
+      type: 'get'
+    }).always(bindLoader);
+  }
+  setTimeout(function() {
+    lessonEditorConversionOverview(list, time);
+  }, time);
+}
+
+/**
+Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink "MediaElementEditorConversion/lessonEditorConversionOverview:method"}}{{/crossLink}}.
 @method mediaElementLoaderConversionOverview
 @for MediaElementEditorConversion
 @param list {Array} list of media elements that are being checked

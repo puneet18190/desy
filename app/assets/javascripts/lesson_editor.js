@@ -752,7 +752,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
           return $captions.data('dont-leave-page-upload-media-element');
         }
       });
-      recursionLessonEditorUploadinBar('#' + scope_id, 0);
+      recursionUploadinBar('#' + scope_id, 0);
       setTimeout(function() {
         $('#' + scope_id + ' form').submit();
       }, 1500);
