@@ -125,12 +125,8 @@ class MediaElementsController < ApplicationController
     record.user_id = current_user.id
     record.save_tags = true
     record.valid?
-    @errors = convert_item_error_messages(record.errors) + [t('forms.error_captions.media_file_too_large')]
-    @error_fields = []
-    record.errors.messages.keys.each do |f|
-      @error_fields << f.to_s if ![:media, :sti_type].include?(f)
-    end
-    @error_fields << :media
+    @errors = convert_media_element_uploader_messages record.errors
+    @errors[:media] = t('forms.error_captions.media_file_too_large').downcase
   end
   
   # === Description
@@ -163,16 +159,6 @@ class MediaElementsController < ApplicationController
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
       @errors = convert_media_element_uploader_messages record.errors
-      fields = record.errors.messages.keys
-      fields.delete(:media) if fields.include?(:media) && record.errors.messages[:media].empty?
-      if fields.include? :sti_type
-        fields << :media if !fields.include? :media
-        fields.delete :sti_type
-      end
-      @error_fields = []
-      fields.each do |f|
-        @error_fields << f.to_s
-      end
     end
     render :layout => false
   end

@@ -273,7 +273,7 @@ class ApplicationController < ActionController::Base
   end
   
   # Used for errors in forms of element uploader for lesson editor: converts an item of type ActiveModel::Errors into a translated message for the user.
-  def convert_media_element_lesson_editor_uploader_messages(errors)
+  def convert_media_element_uploader_messages(errors)
     return {:full => t('forms.error_captions.media_folder_size_exceeded')} if errors.added? :media, :folder_size_exceeded
     resp = {}
     max_title = t('language_parameters.media_element.length_title')
@@ -295,7 +295,7 @@ class ApplicationController < ActionController::Base
   end
   
   # Used for errors in forms of load documents for lesson editor.
-  def convert_document_lesson_editor_uploader_messages(errors)
+  def convert_document_uploader_messages(errors)
     return {:full => t('forms.error_captions.document_folder_size_exceeded')} if errors.added? :attachment, :folder_size_exceeded
     resp = {}
     max_title = t('language_parameters.document.length_title')
@@ -305,34 +305,6 @@ class ApplicationController < ActionController::Base
     resp[:description] = t('forms.error_captions.description_too_long', :max => max_description).downcase if errors.added? :description, :too_long, {:count => max_description}
     resp[:description] = t('forms.error_captions.description_blank').downcase if errors.added? :description, :blank
     resp[:media] = t('forms.error_captions.document_blank').downcase if errors.messages.has_key?(:attachment) && errors.messages[:attachment].any?
-    resp
-  end
-  
-  # Used for errors in forms of element uploader: converts an item of type ActiveModel::Errors into a translated message for the user.
-  def convert_media_element_uploader_messages(errors)
-    return [t('forms.error_captions.media_folder_size_exceeded')] if errors.added? :media, :folder_size_exceeded
-    resp = convert_item_error_messages errors
-    if errors.messages.has_key?(:media) && errors.messages[:media].any?
-      return ([t('forms.error_captions.media_blank')] + resp) if errors.added? :media, :blank
-      if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil?
-        return [t('forms.error_captions.media_unsupported_format')] + resp
-      end
-      return [t('forms.error_captions.media_generic_error')] + resp
-    else
-      if errors.messages.has_key? :sti_type
-        return [t('forms.error_captions.media_unsupported_format')] + resp
-      else
-        return resp
-      end
-    end
-  end
-  
-  # Used for errors in forms of load documents.
-  def convert_document_uploader_messages(errors)
-    return [t('forms.error_captions.document_folder_size_exceeded')] if errors.added? :attachment, :folder_size_exceeded
-    resp = []
-    resp << t('forms.error_captions.fill_all_the_fields_or_too_long') if errors.messages.has_key?(:title) || errors.messages.has_key?(:description)
-    resp << t('forms.error_captions.document_blank') if errors.messages.has_key?(:attachment) && errors.messages[:attachment].any?
     resp
   end
   

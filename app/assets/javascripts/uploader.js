@@ -119,45 +119,49 @@ function uploadDone(selector, errors, fields) {
 }
 
 /**
-Handles the errors of loading popup.
+Handles the errors of loading files.
 @method uploaderErrors
 @for UploaderGlobal
-@param selector {String} either 'document' or 'media-element'
-@param errors {Array} an array of strings to be shown on the bottom of the loading popup
-@param fields {Array} an array of fields that must be bordered with red because they correspond to an error
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
+@param errors {Hash} a hash of the kind 'field': 'error'. It can't be undefined!
 **/
-function uploaderErrors(selector, errors, fields) {
-  var obj_name = selector.replace('-', '_');
-  var item = $('#load-' + selector);
-  var input_selector = '.' + selector.substr(0, 3) + 'load_';
-  var loading_errors = item.find('.barraLoading .loading-errors');
-  item.find('.form_error').removeClass('form_error');
-  item.find('.barraLoading .loading-internal').data('can-move', false).css('width', '0px').hide();
-  loading_errors.show();
-  item.find('#new_' + obj_name + '_submit').removeClass('disabled');
-  item.find('#new_' + obj_name + '_input').unbind('click');
-  item.find('.part3 .close').removeClass('disabled');
-  errors_appended = '';
-  for(var i = 0; i < errors.length; i++) {
-    if(i == errors.length - 1) {
-      errors_appended += (errors[i] + '');
+function uploaderErrors(container, errors) {
+  container.find('.form_error').removeClass('form_error');
+  container.find('.errors_layer').hide();
+  $.each(errors, function(key, value) {
+    if(key == 'full') {
+      container.find('form').hide();
+      container.find('.full_folder .msge').text(value);
+      container.find('.full_folder').show();
     } else {
-      errors_appended += (errors[i] + '; ');
+      container.find('.errors_layer.' + key).text(value).show();
+      if(key == 'media') {
+        container.find('.part1 .galleryMediaShow').addClass('form_error');
+      } else if(key == 'tags') {
+        container.find('.part2 ._tags_container').addClass('form_error');
+      } else {
+        container.find('.part2 .' + key).addClass('form_error');
+      }
     }
-  }
-  loading_errors.html('<span class="lower">' + errors_appended + '</span>');
-  for(var i = 0; i < fields.length; i++) {
-    if(fields[i] == 'media') {
-      item.find('#media_element_media_show').addClass('form_error');
-    } else if(fields[i] == 'tags') {
-      item.find('._tags_container').addClass('form_error');
-    } else if(fields[i] == 'attachment') {
-      item.find('#document_attachment_show').addClass('form_error');
-    } else {
-      item.find(input_selector + fields[i]).addClass('form_error');
-    }
-  }
+  });
+  container.data('loader-can-move', false).data('loader-with-errors', true);
+  container.find('.part3 .close').removeClass('disabled');
+  container.find('.part3 .submit').removeClass('disabled');
+  container.find('.part1 .attachment .file').unbind('click');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
 Handles 413 status error, file too large.
@@ -406,36 +410,4 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count, item_id
       });
     }, 100);
   }
-}
-
-/**
-Handles the errors of loading in Lesson Editor.
-@method uploaderErrorsLessonEditor
-@for UploaderLessonEditor
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
-@param errors {Hash} a hash of the kind 'field': 'error'. It can't be undefined!
-**/
-function uploaderErrorsLessonEditor(selector, errors) {
-  $(selector + ' .form_error').removeClass('form_error');
-  $(selector + ' .errors_layer').hide();
-  $.each(errors, function(key, value) {
-    if(key == 'full') {
-      $(selector + ' form').hide();
-      $(selector + ' .full_folder .msge').text(value);
-      $(selector + ' .full_folder').show();
-    } else {
-      $(selector + ' .errors_layer.' + key).text(value).show();
-      if(key == 'media') {
-        $(selector + ' .part1 .galleryMediaShow').addClass('form_error');
-      } else if(key == 'tags') {
-        $(selector + ' .part2 ._tags_container').addClass('form_error');
-      } else {
-        $(selector + ' .part2 .' + key).addClass('form_error');
-      }
-    }
-  });
-  $(selector).data('loader-can-move', false).data('loader-with-errors', true);
-  $(selector + ' .part3 .close').removeClass('disabled');
-  $(selector + ' .part3 .submit').removeClass('disabled');
-  $(selector + ' .part1 .attachment .file').unbind('click');
 }
