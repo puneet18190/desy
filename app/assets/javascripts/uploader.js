@@ -10,20 +10,20 @@ The class {{#crossLink "UploaderGlobal"}}{{/crossLink}} contains functions that 
 
 
 /**
-Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink "UploaderGlobal/recursionUploadinBar:method"}}{{/crossLink}}.
-@method linearRecursionUploadinBar
+Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink "UploaderGlobal/recursionUploadingBar:method"}}{{/crossLink}}.
+@method linearRecursionUploadingBar
 @for UploaderGlobal
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
 @param time {Number} current time in the recursion
 @param k {Number} linear coefficient of recursion
 @param start {Number} starting point of recursion
 @param callback {Function} function to be fired after the animation is over
 **/
-function linearRecursionUploadinBar(selector, time, k, start, callback) {
+function linearRecursionUploadingBar(container, time, k, start, callback) {
   if(time <= 500) {
-    showPercentLessonEditorUploadinBar(selector, (k * time + start));
+    showPercentUploadingBar(container, (k * time + start));
     setTimeout(function() {
-      linearRecursionUploadinBar(selector, time + 5, k, start, callback)
+      linearRecursionUploadingBar(container, time + 5, k, start, callback)
     }, 5);
   } else {
     setTimeout(callback, 500);
@@ -32,21 +32,20 @@ function linearRecursionUploadinBar(selector, time, k, start, callback) {
 
 /**
 Handles the recursion of uploading animation.
-@method recursionUploadinBar
+@method recursionUploadingBar
 @for UploaderGlobal
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
 @param time {Number} current time in the recursion
 **/
-function recursionUploadinBar(selector, time) {
-  var container = $(selector);
+function recursionUploadingBar(container, time) {
   if(container.data('loader-can-move')) {
     if(time < 1500) {
-      showPercentLessonEditorUploadinBar(selector, 5 / 150 * time);
+      showPercentUploadingBar(container, 5 / 150 * time);
     } else {
-      showPercentLessonEditorUploadinBar(selector, ((100 * time + 1500) / (time + 1530)));
+      showPercentUploadingBar(container, ((100 * time + 1500) / (time + 1530)));
     }
     setTimeout(function() {
-      recursionUploadinBar(selector, time + 5);
+      recursionUploadingBar(container, time + 5);
     }, 5);
   } else {
     container.data('loader-can-move', true);
@@ -54,8 +53,48 @@ function recursionUploadinBar(selector, time) {
       container.data('loader-position-stop', (100 * time + 1500) / (time + 1530));
     } else {
       container.data('loader-with-errors', false);
-      showPercentLessonEditorUploadinBar(selector, 0);
+      showPercentUploadingBar(container, 0);
     }
+  }
+}
+
+/**
+Shows a percentage of the circular loading bar.
+@method showPercentUploadingBar
+@for UploaderGlobal
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
+@param percent {Float} percentage of loading shown
+**/
+function showPercentUploadingBar(container, percent) {
+  container.find('.loading-square').hide();
+  var width = container.data('bar-width');
+  var height = container.data('bar-height');
+  var padding = container.data('bar-padding');
+  var pixels = percent * (width * 2 + height * 2 + 4) / 100;
+  if(pixels > (width / 2)) {
+    container.find('.loading-square-1').css('width', ((width / 2) + 'px')).css('left', ('-' + padding + 'px')).show();
+    pixels -= (width / 2);
+    if(pixels > height) {
+      container.find('.loading-square-2').css('height', (height + 'px')).css('top', ('-' + padding + 'px')).show();
+      pixels -= height;
+      if(pixels > width) {
+        container.find('.loading-square-3').css('width', (width + 'px')).show();
+        pixels -= width;
+        if(pixels > height) {
+          container.find('.loading-square-4').css('height', (height + 'px')).show();
+          pixels -= height;
+          container.find('.loading-square-5').css('width', (pixels + 'px')).css('left', ((width - padding - pixels) + 'px')).show();
+        } else {
+          container.find('.loading-square-4').css('height', (pixels + 'px')).show();
+        }
+      } else {
+        container.find('.loading-square-3').css('width', (pixels + 'px')).show();
+      }
+    } else {
+      container.find('.loading-square-2').css('height', (pixels + 'px')).css('top', ((height - padding - pixels) + 'px')).show();
+    }
+  } else {
+    container.find('.loading-square-1').css('width', (pixels + 'px')).css('left', (((width / 2) - padding - pixels) + 'px')).show();
   }
 }
 
@@ -179,7 +218,7 @@ function mediaElementLoaderDocumentReady() {
       $window.on('beforeunload', function() {
         return $captions.data('dont-leave-page-upload-media-element');
       });
-      recursionUploadinBar('#' + scope_id, 0); // TODO formms
+      recursionUploadingBar($('#load-media-element'), 0);
       setTimeout(function() {
         $(this).closest('#new_media_element').submit();
       }, 1500);
@@ -248,7 +287,7 @@ function documentsDocumentReadyUploader() {
       $window.on('beforeunload', function() {
         return $captions.data('dont-leave-page-upload-document');
       });
-      recursionUploadinBar('#' + scope_id, 0); // TODO formms
+      recursionUploadingBar($('#load-document'), 0);
       setTimeout(function() {
         $(this).closest('#new_document').submit();
       }, 1500);
@@ -284,43 +323,6 @@ function documentsDocumentReadyUploader() {
 
 
 /**
-Shows a percentage of the circular loading bar.
-@method showPercentLessonEditorUploadinBar
-@for UploaderLessonEditor
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
-@param percent {Float} percentage of loading shown
-**/
-function showPercentLessonEditorUploadinBar(selector, percent) {
-  $(selector + ' .loading-square').hide();
-  var pixels = percent * 2984 / 100;
-  if(pixels > 450) {
-    $(selector + ' .loading-square-1').css('width', '450px').css('left', '-50px').show();
-    pixels -= 450;
-    if(pixels > 590) {
-      $(selector + ' .loading-square-2').css('height', '590px').css('top', '-50px').show();
-      pixels -= 590;
-      if(pixels > 900) {
-        $(selector + ' .loading-square-3').css('width', '900px').show();
-        pixels -= 900;
-        if(pixels > 590) {
-          $(selector + ' .loading-square-4').css('height', '590px').show();
-          pixels -= 590;
-          $(selector + ' .loading-square-5').css('width', (pixels + 'px')).css('left', ((850 - pixels) + 'px')).show();
-        } else {
-          $(selector + ' .loading-square-4').css('height', (pixels + 'px')).show();
-        }
-      } else {
-        $(selector + ' .loading-square-3').css('width', (pixels + 'px')).show();
-      }
-    } else {
-      $(selector + ' .loading-square-2').css('height', (pixels + 'px')).css('top', ((540 - pixels) + 'px')).show();
-    }
-  } else {
-    $(selector + ' .loading-square-1').css('width', (pixels + 'px')).css('left', ((400 - pixels) + 'px')).show();
-  }
-}
-
-/**
 Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).
 @method uploadDoneLessonEditor
 @for UploaderLessonEditor
@@ -342,7 +344,7 @@ function uploadDoneLessonEditor(selector, errors, gallery, pages, count, item_id
     setTimeout(function() {
       var position_now = $(selector).data('loader-position-stop');
       var coefficient = (100 - position_now) / 500;
-      linearRecursionUploadinBar(selector, 0, coefficient, position_now, function() {
+      linearRecursionUploadingBar($(selector), 0, coefficient, position_now, function() {
         $(selector).data('loader-position-stop', 0);
         if(type != 'audio' && type != 'document') {
           var dialogs_selector = (type == 'image') ? '.imageInGalleryPopUp' : '.videoInGalleryPopUp'

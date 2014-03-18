@@ -740,21 +740,21 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   $body.on('click', '.loadInGallery .part3 .submit', function(e) {
     if(!$(this).hasClass('disabled')) {
       $(this).addClass('disabled');
-      var scope_id = $(this).parents('.loadInGallery').attr('id');
-      $('#' + scope_id + ' .part3 .close').addClass('disabled');
-      $('#' + scope_id + ' .part1 .attachment .file').on('click', function(e) {
+      var container = $(this).parents('.loadInGallery');
+      container.find('.part3 .close').addClass('disabled');
+      container.find('.part1 .attachment .file').on('click', function(e) {
         e.preventDefault();
       });
       $window.on('beforeunload', function() {
-        if(scope_id == 'load-gallery-document') {
+        if(container.attr('id') == 'load-gallery-document') {
           return $captions.data('dont-leave-page-upload-document');
         } else {
           return $captions.data('dont-leave-page-upload-media-element');
         }
       });
-      recursionUploadinBar('#' + scope_id, 0);
+      recursionUploadingBar(container, 0);
       setTimeout(function() {
-        $('#' + scope_id + ' form').submit();
+        container.find('form').submit();
       }, 1500);
     } else {
       e.preventDefault();
