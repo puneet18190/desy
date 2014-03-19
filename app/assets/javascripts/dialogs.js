@@ -395,6 +395,7 @@ function showLoadPopUp(type) {
           obj.find('.tags_value').val('');
           obj.find('._tags_container span').remove();
           obj.find('._tags_container ._placeholder').show();
+          obj.find('._tags_container .tags').show();
           obj.find('.part1 .attachment .media').val(obj.data('placeholder-media'));
           obj.find('.form_error').removeClass('form_error');
           obj.find('.errors_layer').hide();
