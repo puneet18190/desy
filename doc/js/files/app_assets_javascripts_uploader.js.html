@@ -328,6 +328,37 @@ The class {{#crossLink &quot;UploaderGlobal&quot;}}{{/crossLink}} contains funct
 
 
 /**
+Disables the loading form while uploading is working.
+@method disableUploadForm
+@for UploaderGlobal
+@param container {Object} JQuery object representing the container
+@param window_caption {String} message that is shown to the user if he tries to reload the window while the uploader is working
+**/
+function disableUploadForm(container, window_caption) {
+  container.find(&#x27;.part3 .submit&#x27;).addClass(&#x27;disabled&#x27;);
+  container.find(&#x27;.part3 .close&#x27;).addClass(&#x27;disabled&#x27;);
+  container.find(&#x27;.part1 .attachment .file&#x27;).on(&#x27;click&#x27;, function(e) {
+    e.preventDefault();
+  });
+  $window.on(&#x27;beforeunload&#x27;, function() {
+    return window_caption;
+  });
+}
+
+/**
+Enables the loading form when uploading ended.
+@method enableUploadForm
+@for UploaderGlobal
+@param container {Object} JQuery object representing the container
+**/
+function enableUploadForm(container) {
+  $window.unbind(&#x27;beforeunload&#x27;);
+  container.find(&#x27;.part3 .close&#x27;).removeClass(&#x27;disabled&#x27;);
+  container.find(&#x27;.part3 .submit&#x27;).removeClass(&#x27;disabled&#x27;);
+  container.find(&#x27;.part1 .attachment .file&#x27;).unbind(&#x27;click&#x27;);
+}
+
+/**
 Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink &quot;UploaderGlobal/recursionUploadingBar:method&quot;}}{{/crossLink}}.
 @method linearRecursionUploadingBar
 @for UploaderGlobal
@@ -341,7 +372,7 @@ function linearRecursionUploadingBar(container, time, k, start, callback) {
   if(time &lt;= 500) {
     showPercentUploadingBar(container, (k * time + start));
     setTimeout(function() {
-      linearRecursionUploadingBar(container, time + 5, k, start, callback)
+      linearRecursionUploadingBar(container, time + 5, k, start, callback);
     }, 5);
   } else {
     setTimeout(callback, 500);
@@ -426,12 +457,19 @@ Handles correct uploading process (correct in the sense that the file is not too
 **/
 function uploadDone(selector, errors, callback) {
   var container = $(selector);
-  $window.unbind(&#x27;beforeunload&#x27;);
+  enableUploadForm(container);
   if(errors != undefined) {
     uploaderErrors(container, errors);
   } else {
     $(selector).data(&#x27;loader-can-move&#x27;, false);
-    setTimeout(callback, 100);
+    setTimeout(function() {
+      var position_now = container.data(&#x27;loader-position-stop&#x27;);
+      var coefficient = (100 - position_now) / 500;
+      linearRecursionUploadingBar(container, 0, coefficient, position_now, function() {
+        container.data(&#x27;loader-position-stop&#x27;, 0);
+        callback();
+      });
+    }, 100);
   }
 }
 
@@ -460,9 +498,6 @@ function uploaderErrors(container, errors) {
     }
   });
   container.data(&#x27;loader-can-move&#x27;, false).data(&#x27;loader-with-errors&#x27;, true);
-  container.find(&#x27;.part3 .close&#x27;).removeClass(&#x27;disabled&#x27;);
-  container.find(&#x27;.part3 .submit&#x27;).removeClass(&#x27;disabled&#x27;);
-  container.find(&#x27;.part1 .attachment .file&#x27;).unbind(&#x27;click&#x27;);
 }
 
 /**
@@ -515,17 +550,11 @@ function documentLoaderDocumentReady() {
   });
   $body.on(&#x27;click&#x27;, &#x27;#load-document .part3 .submit&#x27;, function(e) {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      $(this).addClass(&#x27;disabled&#x27;);
-      $(&#x27;#load-document .part3 .close&#x27;).addClass(&#x27;disabled&#x27;);
-      $(&#x27;#load-document #new_document_input&#x27;).on(&#x27;click&#x27;, function(e) {
-        e.preventDefault();
-      });
-      $window.on(&#x27;beforeunload&#x27;, function() {
-        return $captions.data(&#x27;dont-leave-page-upload-document&#x27;);
-      });
-      recursionUploadingBar($(&#x27;#load-document&#x27;), 0);
+      var container = $(&#x27;#load-document&#x27;);
+      disableUploadForm(container, $captions.data(&#x27;dont-leave-page-upload-document&#x27;));
+      recursionUploadingBar(container, 0);
       setTimeout(function() {
-        $(&#x27;#load-document form&#x27;).submit();
+        container.find(&#x27;form&#x27;).submit();
       }, 1500);
     } else {
       e.preventDefault();
@@ -592,17 +621,11 @@ function mediaElementLoaderDocumentReady() {
   });
   $body.on(&#x27;click&#x27;, &#x27;#load-media-element .part3 .submit&#x27;, function(e) {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      $(this).addClass(&#x27;disabled&#x27;);
-      $(&#x27;#load-media-element .part3 .close&#x27;).addClass(&#x27;disabled&#x27;);
-      $(&#x27;#load-media-element #new_media_element_input&#x27;).on(&#x27;click&#x27;, function(e) {
-        e.preventDefault();
-      });
-      $window.on(&#x27;beforeunload&#x27;, function() {
-        return $captions.data(&#x27;dont-leave-page-upload-media-element&#x27;);
-      });
-      recursionUploadingBar($(&#x27;#load-media-element&#x27;), 0);
+      var container = $(&#x27;#load-media-element&#x27;);
+      disableUploadForm(container, $captions.data(&#x27;dont-leave-page-upload-media-element&#x27;));
+      recursionUploadingBar(container, 0);
       setTimeout(function() {
-        $(&#x27;#load-media-element form&#x27;).submit();
+        container.find(&#x27;form&#x27;).submit();
       }, 1500);
     } else {
       e.preventDefault();

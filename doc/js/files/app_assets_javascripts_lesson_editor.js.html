@@ -1057,19 +1057,12 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   });
   $body.on(&#x27;click&#x27;, &#x27;.loadInGallery .part3 .submit&#x27;, function(e) {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      $(this).addClass(&#x27;disabled&#x27;);
       var container = $(this).parents(&#x27;.loadInGallery&#x27;);
-      container.find(&#x27;.part3 .close&#x27;).addClass(&#x27;disabled&#x27;);
-      container.find(&#x27;.part1 .attachment .file&#x27;).on(&#x27;click&#x27;, function(e) {
-        e.preventDefault();
-      });
-      $window.on(&#x27;beforeunload&#x27;, function() {
-        if(container.attr(&#x27;id&#x27;) == &#x27;load-gallery-document&#x27;) {
-          return $captions.data(&#x27;dont-leave-page-upload-document&#x27;);
-        } else {
-          return $captions.data(&#x27;dont-leave-page-upload-media-element&#x27;);
-        }
-      });
+      if(container.attr(&#x27;id&#x27;) == &#x27;load-gallery-document&#x27;) {
+        disableUploadForm(container, $captions.data(&#x27;dont-leave-page-upload-document&#x27;));
+      } else {
+        disableUploadForm(container, $captions.data(&#x27;dont-leave-page-upload-media-element&#x27;));
+      }
       recursionUploadingBar(container, 0);
       setTimeout(function() {
         container.find(&#x27;form&#x27;).submit();
@@ -1224,65 +1217,57 @@ Handles correct uploading process in the Lesson Editor (correct in the sense tha
 @param item_id {Number} id of the newly loaded item (used only for documents)
 **/
 function reloadGalleryInLessonEditor(container, type, gallery, pages, count, item_id) {
-  var position_now = container.data(&#x27;loader-position-stop&#x27;);
-  var coefficient = (100 - position_now) / 500;
-  linearRecursionUploadingBar(container, 0, coefficient, position_now, function() {
-    container.data(&#x27;loader-position-stop&#x27;, 0);
-    if(type != &#x27;audio&#x27; &amp;&amp; type != &#x27;document&#x27;) {
-      var dialogs_selector = (type == &#x27;image&#x27;) ? &#x27;.imageInGalleryPopUp&#x27; : &#x27;.videoInGalleryPopUp&#x27;
-      $(dialogs_selector).each(function() {
-        if($(this).hasClass(&#x27;ui-dialog-content&#x27;)) {
-          $(this).dialog(&#x27;destroy&#x27;);
-        }
-      });
+  if(type != &#x27;audio&#x27; &amp;&amp; type != &#x27;document&#x27;) {
+    var dialogs_selector = (type == &#x27;image&#x27;) ? &#x27;.imageInGalleryPopUp&#x27; : &#x27;.videoInGalleryPopUp&#x27;
+    $(dialogs_selector).each(function() {
+      if($(this).hasClass(&#x27;ui-dialog-content&#x27;)) {
+        $(this).dialog(&#x27;destroy&#x27;);
+      }
+    });
+  }
+  var gallery_scrollable = (type == &#x27;document&#x27;) ? $(&#x27;.for-scroll-pain&#x27;) : $(&#x27;#&#x27; + type + &#x27;_gallery_content &gt; div&#x27;);
+  if(gallery_scrollable.data(&#x27;jsp&#x27;) != undefined) {
+    gallery_scrollable.data(&#x27;jsp&#x27;).destroy();
+  }
+  var container = $(&#x27;#lesson_editor_&#x27; + type + &#x27;_gallery_container&#x27;);
+  container.data(&#x27;page&#x27;, 1);
+  container.data(&#x27;tot-pages&#x27;, pages);
+  if(type == &#x27;document&#x27;) {
+    container.find(&#x27;#document_gallery .documentsExternal&#x27;).replaceWith(gallery);
+    $(&#x27;#document_gallery_filter&#x27;).val(&#x27;&#x27;);
+    if(count &gt; 6) {
+      initializeDocumentGalleryInLessonEditor();
     }
-    container.find(&#x27;.part3 .close&#x27;).removeClass(&#x27;disabled&#x27;);
-    container.find(&#x27;.part3 .submit&#x27;).removeClass(&#x27;disabled&#x27;);
-    container.find(&#x27;.part1 .attachment .file&#x27;).unbind(&#x27;click&#x27;);
-    var gallery_scrollable = (type == &#x27;document&#x27;) ? $(&#x27;.for-scroll-pain&#x27;) : $(&#x27;#&#x27; + type + &#x27;_gallery_content &gt; div&#x27;);
-    if(gallery_scrollable.data(&#x27;jsp&#x27;) != undefined) {
-      gallery_scrollable.data(&#x27;jsp&#x27;).destroy();
-    }
-    var container = $(&#x27;#lesson_editor_&#x27; + type + &#x27;_gallery_container&#x27;);
-    container.data(&#x27;page&#x27;, 1);
-    container.data(&#x27;tot-pages&#x27;, pages);
-    if(type == &#x27;document&#x27;) {
-      container.find(&#x27;#document_gallery .documentsExternal&#x27;).replaceWith(gallery);
-      $(&#x27;#document_gallery_filter&#x27;).val(&#x27;&#x27;);
+    container.find(&#x27;#document_gallery&#x27;).data(&#x27;empty&#x27;, false)
+    $(&#x27;#gallery_document_&#x27; + item_id + &#x27; .add_remove&#x27;).click();
+  } else {
+    container.find(&#x27;#&#x27; + type + &#x27;_gallery&#x27;).replaceWith(gallery);
+    $(&#x27;._close_&#x27; + type + &#x27;_gallery&#x27;).addClass(&#x27;_close_&#x27; + type + &#x27;_gallery_in_lesson_editor&#x27;);
+    $(&#x27;._select_&#x27; + type + &#x27;_from_gallery&#x27;).addClass(&#x27;_add_&#x27; + type + &#x27;_to_slide&#x27;);
+    if(type == &#x27;audio&#x27;) {
       if(count &gt; 6) {
-        initializeDocumentGalleryInLessonEditor();
-      }
-      container.find(&#x27;#document_gallery&#x27;).data(&#x27;empty&#x27;, false)
-      $(&#x27;#gallery_document_&#x27; + item_id + &#x27; .add_remove&#x27;).click();
-    } else {
-      container.find(&#x27;#&#x27; + type + &#x27;_gallery&#x27;).replaceWith(gallery);
-      $(&#x27;._close_&#x27; + type + &#x27;_gallery&#x27;).addClass(&#x27;_close_&#x27; + type + &#x27;_gallery_in_lesson_editor&#x27;);
-      $(&#x27;._select_&#x27; + type + &#x27;_from_gallery&#x27;).addClass(&#x27;_add_&#x27; + type + &#x27;_to_slide&#x27;);
-      if(type == &#x27;audio&#x27;) {
-        if(count &gt; 6) {
-          initializeAudioGalleryInLessonEditor();
-        } else {
-          $(&#x27;.audio_gallery .scroll-pane&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
-        }
-      }
-      if(type == &#x27;image&#x27;) {
-        if(count &gt; 21) {
-          initializeImageGalleryInLessonEditor();
-        } else {
-          $(&#x27;.image_gallery .scroll-pane&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
-        }
-      }
-      if(type == &#x27;video&#x27;) {
-        if(count &gt; 6) {
-          initializeVideoGalleryInLessonEditor();
-        } else {
-          $(&#x27;.video_gallery .scroll-pane&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
-        }
+        initializeAudioGalleryInLessonEditor();
+      } else {
+        $(&#x27;.audio_gallery .scroll-pane&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
       }
     }
-    container.find(&#x27;.part3 .close&#x27;).click();
-    container.find(&#x27;.loading-square&#x27;).hide();
-  });
+    if(type == &#x27;image&#x27;) {
+      if(count &gt; 21) {
+        initializeImageGalleryInLessonEditor();
+      } else {
+        $(&#x27;.image_gallery .scroll-pane&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
+      }
+    }
+    if(type == &#x27;video&#x27;) {
+      if(count &gt; 6) {
+        initializeVideoGalleryInLessonEditor();
+      } else {
+        $(&#x27;.video_gallery .scroll-pane&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
+      }
+    }
+  }
+  container.find(&#x27;.part3 .close&#x27;).click();
+  container.find(&#x27;.loading-square&#x27;).hide();
 }
 
 /**
