@@ -103,7 +103,7 @@ class DocumentsController < ApplicationController
   # Html
   #
   def create
-    record = Document.new :attachment => params[:attachment]
+    record = Document.new :attachment => params[:media]
     record.title = params[:title_placeholder] != '0' ? '' : params[:title]
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
     record.user_id = current_user.id
