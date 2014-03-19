@@ -89,7 +89,7 @@ function uploaderDocumentReady() {
   });
   $body.on('click', '.globalLoader .full_folder .back_to_gallery', function() {
     var container = $(this).parents('.globalLoader');
-    container.find('.part1 .attachment .media').val(container.data('placeholder-attachment'));
+    container.find('.part1 .attachment .media').val(container.data('placeholder-media'));
     container.find('.form_error').removeClass('form_error');
     container.find('.errors_layer').hide();
     container.find('.part1 .attachment .file').val('');
