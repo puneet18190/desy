@@ -277,7 +277,7 @@ function documentLoaderDocumentReady() {
     var container = $('#load-document');
     container.find('.part3 .close').click();
     container.find('form').show();
-    container.find('·full_folder').hide();
+    container.find('.full_folder').hide();
   });
 }
 
@@ -357,6 +357,6 @@ function mediaElementLoaderDocumentReady() {
     var container = $('#load-media-element');
     container.find('.part3 .close').click();
     container.find('form').show();
-    container.find('·full_folder').hide();
+    container.find('.full_folder').hide();
   });
 }
