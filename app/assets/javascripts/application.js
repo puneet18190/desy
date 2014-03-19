@@ -69,23 +69,22 @@ $(document).ready(function() {
     commonLessonsDocumentReady();
     commonMediaElementsDocumentReady();
     dashboardDocumentReady();
-    documentLoaderDocumentReady();
     initTagsAutocomplete('#load-media-element', 'media_element');
     lessonButtonsDocumentReady();
     mediaElementButtonsDocumentReady();
-    mediaElementLoaderDocumentReady();
     notificationsDocumentReady();
     playersDocumentReadyGeneral();
     reportsDocumentReady();
     searchDocumentReadyPlaceholders();
     sectionNotificationsDocumentReady();
     tagsDocumentReady();
+    uploaderDocumentReady();
   }
   if($('#my_documents').length > 0) { // (3) in section documents
     documentsDocumentReady();
-    documentLoaderDocumentReady();
     notificationsDocumentReady();
     sectionNotificationsDocumentReady();
+    uploaderDocumentReady();
   }
   if($('#image_editor').length > 0 || $('#image_gallery_for_image_editor').length > 0) { // (4) in image editor
     initTagsAutocomplete('#form_info_new_media_element_in_editor', 'media_element');
@@ -126,7 +125,6 @@ $(document).ready(function() {
     commonMediaElementsDocumentReady();
     initTagsAutocomplete('#load-media-element', 'media_element');
     mediaElementButtonsDocumentReady();
-    mediaElementLoaderDocumentReady();
     notificationsDocumentReady();
     playersDocumentReadyGeneral();
     reportsDocumentReady();
@@ -134,6 +132,7 @@ $(document).ready(function() {
     sectionMediaElementsDocumentReady();
     sectionNotificationsDocumentReady();
     tagsDocumentReady();
+    uploaderDocumentReady();
   }
   if($html.hasClass('prelogin-layout')) { // (9) in prelogin
     locationsDocumentReady();
