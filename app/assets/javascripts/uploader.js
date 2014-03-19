@@ -275,6 +275,10 @@ function documentLoaderDocumentReady() {
   });
   $body.on('click', '#load-document .full_folder .back_to_gallery', function() {
     var container = $('#load-document');
+    $('#document_attachment_show').text(container.data('placeholder-attachment'));
+    container.find('.form_error').removeClass('form_error');
+    container.find('.errors_layer').hide();
+    $('#new_document_input').val('');
     container.find('form').show();
     container.find('.full_folder').hide();
   });
@@ -354,6 +358,10 @@ function mediaElementLoaderDocumentReady() {
   });
   $body.on('click', '#load-media-element .full_folder .back_to_gallery', function() {
     var container = $('#load-media-element');
+    $('#media_element_attachment_show').text(container.data('placeholder-attachment'));
+    container.find('.form_error').removeClass('form_error');
+    container.find('.errors_layer').hide();
+    $('#new_media_element_input').val('');
     container.find('form').show();
     container.find('.full_folder').hide();
   });
