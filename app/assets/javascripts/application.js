@@ -69,7 +69,7 @@ $(document).ready(function() {
     commonLessonsDocumentReady();
     commonMediaElementsDocumentReady();
     dashboardDocumentReady();
-    documentsDocumentReadyUploader();
+    documentLoaderDocumentReady();
     initTagsAutocomplete('#load-media-element', 'media_element');
     lessonButtonsDocumentReady();
     mediaElementButtonsDocumentReady();
@@ -83,7 +83,7 @@ $(document).ready(function() {
   }
   if($('#my_documents').length > 0) { // (3) in section documents
     documentsDocumentReady();
-    documentsDocumentReadyUploader();
+    documentLoaderDocumentReady();
     notificationsDocumentReady();
     sectionNotificationsDocumentReady();
   }

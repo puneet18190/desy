@@ -172,6 +172,82 @@ function uploadFileTooLarge(container) {
 
 /**
 Initializer for the loading form.
+@method documentLoaderDocumentReady
+@for UploaderDocumentReady
+**/
+function documentLoaderDocumentReady() {
+  $body.on('click', '._load_document', function() {
+    showLoadDocumentPopUp();
+  });
+  $body.on('change', 'input#new_document_input', function() {
+    var file_name = $(this).val().replace("C:\\fakepath\\", '');
+    if(file_name.replace(/^[\s\t]+/, '') != '') {
+      if(file_name.length > 20) {
+        file_name = file_name.substring(0, 20) + '...';
+      }
+      $('#document_attachment_show').text(file_name).removeClass('form_error');
+    } else {
+      $('#document_attachment_show').text($('#load-document').data('placeholder-attachment')).removeClass('form_error');
+    }
+  });
+  $body.on('click', '#load-document .part3 .close', function() {
+    if(!$(this).hasClass('disabled')) {
+      closePopUp('load-document');
+    }
+  });
+  $body.on('click', '#load-document .part3 .submit', function(e) {
+    if(!$(this).hasClass('disabled')) {
+      $(this).addClass('disabled');
+      $('#load-document .part3 .close').addClass('disabled');
+      $('#load-document #new_document_input').on('click', function(e) {
+        e.preventDefault();
+      });
+      $window.on('beforeunload', function() {
+        return $captions.data('dont-leave-page-upload-document');
+      });
+      recursionUploadingBar($('#load-document'), 0);
+      setTimeout(function() {
+        $('#load-document form').submit();
+      }, 1500);
+    } else {
+      e.preventDefault();
+    }
+  });
+  $body.on('focus', '#load-document .docload_title', function() {
+    if($('#load-document .docload_title_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#load-document .docload_title_placeholder').attr('value', '0');
+    }
+  });
+  $body.on('focus', '#load-document .docload_description', function() {
+    if($('#load-document .docload_description_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#load-document .docload_description_placeholder').attr('value', '0');
+    }
+  });
+  $body.on('submit', '#new_document', function() {
+    document.getElementById('new_document').target = 'upload_target';
+    document.getElementById('upload_target').onload = function() {
+      uploadFileTooLarge($('#load-document'));
+    }
+  });
+  $body.on('keydown', '.docload_title, .docload_description', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('click', '#load-document .errors_layer', function() {
+    var myself = $(this);
+    if(!myself.hasClass('media')) {
+      myself.hide();
+      $('#load-document ' + myself.data('selector')).focus();
+    }
+  });
+  $body.on('click', '#load-document .attachment label', function() {
+    $('#load-document .errors_layer.media').hide();
+  });
+}
+
+/**
+Initializer for the loading form.
 @method mediaElementLoaderDocumentReady
 @for UploaderDocumentReady
 **/
@@ -247,81 +323,5 @@ function mediaElementLoaderDocumentReady() {
   });
   $body.on('click', '#load-media-element .attachment label', function() {
     $('#load-media-element .errors_layer.media').hide();
-  });
-}
-
-/**
-Initializer for the loading form.
-@method documentsDocumentReadyUploader
-@for UploaderDocumentReady
-**/
-function documentsDocumentReadyUploader() {
-  $body.on('click', '._load_document', function() {
-    showLoadDocumentPopUp();
-  });
-  $body.on('change', 'input#new_document_input', function() {
-    var file_name = $(this).val().replace("C:\\fakepath\\", '');
-    if(file_name.replace(/^[\s\t]+/, '') != '') {
-      if(file_name.length > 20) {
-        file_name = file_name.substring(0, 20) + '...';
-      }
-      $('#document_attachment_show').text(file_name).removeClass('form_error');
-    } else {
-      $('#document_attachment_show').text($('#load-document').data('placeholder-attachment')).removeClass('form_error');
-    }
-  });
-  $body.on('click', '#load-document .part3 .close', function() {
-    if(!$(this).hasClass('disabled')) {
-      closePopUp('load-document');
-    }
-  });
-  $body.on('click', '#load-document .part3 .submit', function(e) {
-    if(!$(this).hasClass('disabled')) {
-      $(this).addClass('disabled');
-      $('#load-document .part3 .close').addClass('disabled');
-      $('#load-document #new_document_input').on('click', function(e) {
-        e.preventDefault();
-      });
-      $window.on('beforeunload', function() {
-        return $captions.data('dont-leave-page-upload-document');
-      });
-      recursionUploadingBar($('#load-document'), 0);
-      setTimeout(function() {
-        $('#load-document form').submit();
-      }, 1500);
-    } else {
-      e.preventDefault();
-    }
-  });
-  $body.on('focus', '#load-document .docload_title', function() {
-    if($('#load-document .docload_title_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#load-document .docload_title_placeholder').attr('value', '0');
-    }
-  });
-  $body.on('focus', '#load-document .docload_description', function() {
-    if($('#load-document .docload_description_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#load-document .docload_description_placeholder').attr('value', '0');
-    }
-  });
-  $body.on('submit', '#new_document', function() {
-    document.getElementById('new_document').target = 'upload_target';
-    document.getElementById('upload_target').onload = function() {
-      uploadFileTooLarge($('#load-document'));
-    }
-  });
-  $body.on('keydown', '.docload_title, .docload_description', function() {
-    $(this).removeClass('form_error');
-  });
-  $body.on('click', '#load-document .errors_layer', function() {
-    var myself = $(this);
-    if(!myself.hasClass('media')) {
-      myself.hide();
-      $('#load-document ' + myself.data('selector')).focus();
-    }
-  });
-  $body.on('click', '#load-document .attachment label', function() {
-    $('#load-document .errors_layer.media').hide();
   });
 }

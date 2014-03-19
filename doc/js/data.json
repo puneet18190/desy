@@ -5190,7 +5190,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 10,
-            "description": "One step of the repeated <b>cache</b> saving (used in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}})",
+            "description": "One step of the repeated <b>cache</b> saving (used in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}).",
             "itemtype": "method",
             "name": "saveCacheLoop",
             "class": "MediaElementEditorCache",
@@ -6416,16 +6416,16 @@
             "line": 173,
             "description": "Initializer for the loading form.",
             "itemtype": "method",
-            "name": "mediaElementLoaderDocumentReady",
+            "name": "documentLoaderDocumentReady",
             "class": "UploaderDocumentReady",
             "module": "uploader"
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 253,
+            "line": 249,
             "description": "Initializer for the loading form.",
             "itemtype": "method",
-            "name": "documentsDocumentReadyUploader",
+            "name": "mediaElementLoaderDocumentReady",
             "class": "UploaderDocumentReady",
             "module": "uploader"
         },
