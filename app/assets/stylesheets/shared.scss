@@ -486,7 +486,7 @@ a.cerca.current {
   
 }
 
-.globalLoader {
+.globalLoader#load-media-element, .globalLoader#load-document {
   
   width: 680px;
   height: 360px;
@@ -794,7 +794,7 @@ a.cerca.current {
   
 }
 
-.loadInGallery, .mediaElementLoader {
+.loadInGallery, .globalLoader {
   
   display: none;
   width: 800px;
