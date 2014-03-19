@@ -792,6 +792,87 @@ a.cerca.current {
     
   }
   
+  &.document {
+    
+    form {
+      
+      .errors_layer {
+        
+        &.description, &.title {
+          
+          width: 648px;
+          
+        }
+        
+      }
+      
+      .loading-square {
+        
+        background-color: #5D5C5C;
+        
+      }
+      
+      .part1 {
+        
+        .attachment {
+          
+          label {
+            
+            @include svg-circle-icon-handler($assets-bottone-add-document_svg, 65px, 1, 1, 1, 0, 0, 0.5, 0, 0);
+            
+          }
+          
+        }
+        
+      }
+      
+      .part2 {
+        
+        .title_and_description {
+          
+          width: 680px;
+          
+          .title {
+            
+            width: 648px;
+            
+          }
+          
+          .description {
+            
+            width: 648px;
+            
+          }
+          
+        }
+        
+      }
+      
+      .part3 {
+        
+        .close, .submit {
+          
+          color: #333333;
+          background-color: white;
+          
+          &:hover {
+            
+            background-color: #908F8F;
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  
+  
+  
+  
 }
 
 .loadInGallery, .globalLoader {
@@ -1301,51 +1382,13 @@ a.cerca.current {
     
   }
   
-  &.document form#new_gallery_document {
+  &.document {
     
-    .errors_layer {
+    form {
       
-      &.description, &.title {
+      .errors_layer {
         
-        width: 738px;
-        
-      }
-      
-    }
-    
-    .loading-square {
-      
-      background-color: #5D5C5C;
-      
-    }
-    
-    .part1 {
-      
-      .attachment {
-        
-        label {
-          
-          @include svg-circle-icon-handler($assets-bottone-add-document_svg, 75px, 1, 1, 1, 0, 0, 0.5, 0, 0);
-          
-        }
-        
-      }
-      
-    }
-    
-    .part2 {
-      
-      .title_and_description {
-        
-        width: 770px;
-        
-        .title {
-          
-          width: 738px;
-          
-        }
-        
-        .description {
+        &.description, &.title {
           
           width: 738px;
           
@@ -1353,22 +1396,65 @@ a.cerca.current {
         
       }
       
-    }
-    
-    .part3 {
+      .loading-square {
+        
+        background-color: #5D5C5C;
+        
+      }
       
-      .close, .submit {
+      .part1 {
         
-        color: #333333;
-        background-color: white;
-        
-        &:hover {
+        .attachment {
           
-          background-color: #908F8F;
+          label {
+            
+            @include svg-circle-icon-handler($assets-bottone-add-document_svg, 75px, 1, 1, 1, 0, 0, 0.5, 0, 0);
+            
+          }
           
         }
         
       }
+      
+      .part2 {
+        
+        .title_and_description {
+          
+          width: 770px;
+          
+          .title {
+            
+            width: 738px;
+            
+          }
+          
+          .description {
+            
+            width: 738px;
+            
+          }
+          
+        }
+        
+      }
+      
+      .part3 {
+        
+        .close, .submit {
+          
+          color: #333333;
+          background-color: white;
+          
+          &:hover {
+            
+            background-color: #908F8F;
+            
+          }
+          
+        }
+      
+      }
+      
     }
     
   }
