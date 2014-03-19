@@ -113,7 +113,14 @@ function uploadDone(selector, errors, callback) {
     uploaderErrors(container, errors);
   } else {
     $(selector).data('loader-can-move', false);
-    setTimeout(callback, 100);
+    setTimeout(function() {
+      var position_now = container.data('loader-position-stop');
+      var coefficient = (100 - position_now) / 500;
+      linearRecursionUploadingBar(container, 0, coefficient, position_now, function() {
+        container.data('loader-position-stop', 0);
+        callback();
+      });
+    }, 100);
   }
 }
 

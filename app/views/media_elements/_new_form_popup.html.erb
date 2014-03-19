@@ -4,7 +4,7 @@
   tags_max = t('forms.placeholders.tags', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
 
-<div id="load-media-element" class="mediaElementLoader" style="display:none" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>" data-placeholder-media="<%= t('forms.placeholders.media').downcase %>" data-bar-width="760" data-bar-height="440" data-bar-padding="40" data-loader-can-move="true" data-loader-with-errors="false" data-fake-url="/media_elements/create/fake">
+<div id="load-media-element" class="mediaElementLoader" style="display:none" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>" data-placeholder-media="<%= t('forms.placeholders.media').downcase %>" data-loader-can-move="true" data-loader-with-errors="false" data-loader-position-stop="0" data-fake-url="/media_elements/create/fake" data-bar-width="760" data-bar-height="440" data-bar-padding="40">
   <%= form_tag media_elements_path, :method => :post, :id => 'new_media_element', :multipart => true, :autocomplete => 'off' do %>
     <div class="part1">
       <div class="attachment">
