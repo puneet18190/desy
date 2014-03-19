@@ -980,15 +980,15 @@ Initializer for specific media elements or documents uploader inside the Lesson 
 **/
 function lessonEditorDocumentReadyUploaderInGallery() {
   $body.on(&#x27;change&#x27;, &#x27;.loadInGallery .part1 .attachment input.file&#x27;, function() {
-    var father = $(this).parents(&#x27;.attachment&#x27;);
+    var container = $(this).parents(&#x27;.loadInGallery&#x27;);
     var file_name = $(this).val().replace(&quot;C:\\fakepath\\&quot;, &#x27;&#x27;);
     if(file_name.replace(/^[\s\t]+/, &#x27;&#x27;) != &#x27;&#x27;) {
       if(file_name.length &gt; 20) {
         file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
       }
-      father.find(&#x27;.galleryMediaShow&#x27;).val(file_name).removeClass(&#x27;form_error&#x27;);
+      container.find(&#x27;.part1 .attachment .media&#x27;).val(file_name).removeClass(&#x27;form_error&#x27;);
     } else {
-      father.find(&#x27;.galleryMediaShow&#x27;).val(father.parents(&#x27;.loadInGallery&#x27;).data(&#x27;placeholder-media&#x27;)).removeClass(&#x27;form_error&#x27;);
+      container.find(&#x27;.part1 .attachment .media&#x27;).val(container.data(&#x27;placeholder-media&#x27;)).removeClass(&#x27;form_error&#x27;);
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;.gallery_upload_container a&#x27;, function() {
@@ -1004,7 +1004,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find(&#x27;.part2 .tags_loader .tags_value&#x27;).val(&#x27;&#x27;);
     popup.find(&#x27;.part2 .tags_loader ._tags_container span&#x27;).remove();
     popup.find(&#x27;.part2 .tags_loader ._tags_container ._placeholder&#x27;).show();
-    popup.find(&#x27;.part1 .attachment .galleryMediaShow&#x27;).val(popup.data(&#x27;placeholder-media&#x27;));
+    popup.find(&#x27;.part1 .attachment .media&#x27;).val(popup.data(&#x27;placeholder-media&#x27;));
     popup.find(&#x27;.part1 .attachment label input&#x27;).val(&#x27;&#x27;);
     popup.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
     popup.find(&#x27;.errors_layer&#x27;).hide();
@@ -1019,7 +1019,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find(&#x27;.part2 .title_and_description .description&#x27;).val(popup.data(&#x27;placeholder-description&#x27;));
     popup.find(&#x27;.part2 .title_and_description .title_placeholder&#x27;).val(&#x27;&#x27;);
     popup.find(&#x27;.part2 .title_and_description .description_placeholder&#x27;).val(&#x27;&#x27;);
-    popup.find(&#x27;.part1 .attachment .galleryMediaShow&#x27;).val(popup.data(&#x27;placeholder-media&#x27;));
+    popup.find(&#x27;.part1 .attachment .media&#x27;).val(popup.data(&#x27;placeholder-media&#x27;));
     popup.find(&#x27;.part1 .attachment label input&#x27;).val(&#x27;&#x27;);
     popup.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
     popup.find(&#x27;.errors_layer&#x27;).hide();

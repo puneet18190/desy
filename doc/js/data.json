@@ -3409,24 +3409,22 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 368,
-            "description": "Dialog containing the form to upload a new document. This function interacts with the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}.",
+            "description": "Dialog containing the form to upload a new document or media element. This function interacts with the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
-            "name": "showLoadDocumentPopUp",
+            "name": "showLoadPopUp",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "either 'document' or 'media-element'",
+                    "type": "String"
+                }
+            ],
             "class": "DialogsWithForm",
             "module": "dialogs"
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 403,
-            "description": "Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule \"uploader\"}}{{/crossLinkModule}}.",
-            "itemtype": "method",
-            "name": "showLoadMediaElementPopUp",
-            "class": "DialogsWithForm",
-            "module": "dialogs"
-        },
-        {
-            "file": "app/assets/javascripts/dialogs.js",
-            "line": 442,
+            "line": 408,
             "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "showMediaElementInfoPopUp",
@@ -3442,7 +3440,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 494,
+            "line": 460,
             "description": "Dialog containing the form to send the public link of a lesson. Used in {{#crossLink \"VirtualClassroomSendLink\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showSendLessonLinkPopUp",
@@ -3458,7 +3456,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 538,
+            "line": 504,
             "description": "Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink \"VirtualClassroomMultipleLoading\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showVirtualClassroomQuickSelectPopUp",
@@ -5298,7 +5296,7 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 236,
-            "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadMediaElementPopUp:method\"}}{{/crossLink}}.",
+            "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "resetMediaElementChangeInfo",
             "params": [
@@ -6453,16 +6451,7 @@
             "line": 208,
             "description": "Initializer for the loading form.",
             "itemtype": "method",
-            "name": "documentLoaderDocumentReady",
-            "class": "UploaderDocumentReady",
-            "module": "uploader"
-        },
-        {
-            "file": "app/assets/javascripts/uploader.js",
-            "line": 278,
-            "description": "Initializer for the loading form.",
-            "itemtype": "method",
-            "name": "mediaElementLoaderDocumentReady",
+            "name": "uploaderDocumentReady",
             "class": "UploaderDocumentReady",
             "module": "uploader"
         },

@@ -525,33 +525,35 @@ function uploadFileTooLarge(container) {
 
 /**
 Initializer for the loading form.
-@method documentLoaderDocumentReady
+@method uploaderDocumentReady
 @for UploaderDocumentReady
 **/
-function documentLoaderDocumentReady() {
-  $body.on(&#x27;click&#x27;, &#x27;._load_document&#x27;, function() {
-    showLoadDocumentPopUp();
+function uploaderDocumentReady() {
+  $body.on(&#x27;click&#x27;, &#x27;.openLoader&#x27;, function() {
+    showLoadPopUp($(this).data(&#x27;type&#x27;));
   });
-  $body.on(&#x27;change&#x27;, &#x27;input#new_document_input&#x27;, function() {
+  $body.on(&#x27;change&#x27;, &#x27;.globalLoader .part1 .attachment .file&#x27;, function() {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
     var file_name = $(this).val().replace(&quot;C:\\fakepath\\&quot;, &#x27;&#x27;);
     if(file_name.replace(/^[\s\t]+/, &#x27;&#x27;) != &#x27;&#x27;) {
       if(file_name.length &gt; 20) {
         file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
       }
-      $(&#x27;#document_attachment_show&#x27;).text(file_name).removeClass(&#x27;form_error&#x27;);
+      container.find(&#x27;.part1 .attachment .media&#x27;).val(file_name).removeClass(&#x27;form_error&#x27;);
     } else {
-      $(&#x27;#document_attachment_show&#x27;).text($(&#x27;#load-document&#x27;).data(&#x27;placeholder-attachment&#x27;)).removeClass(&#x27;form_error&#x27;);
+      container.find(&#x27;.part1 .attachment .media&#x27;).val(container.data(&#x27;placeholder-media&#x27;)).removeClass(&#x27;form_error&#x27;);
     }
   });
-  $body.on(&#x27;click&#x27;, &#x27;#load-document .part3 .close&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;.globalLoader .part3 .close&#x27;, function() {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      closePopUp(&#x27;load-document&#x27;);
+      var container = $(this).parents(&#x27;.globalLoader&#x27;);
+      closePopUp(container.attr(&#x27;id&#x27;));
     }
   });
-  $body.on(&#x27;click&#x27;, &#x27;#load-document .part3 .submit&#x27;, function(e) {
+  $body.on(&#x27;click&#x27;, &#x27;.globalLoader .part3 .submit&#x27;, function(e) {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      var container = $(&#x27;#load-document&#x27;);
-      disableUploadForm(container, $captions.data(&#x27;dont-leave-page-upload-document&#x27;));
+      disableUploadForm(container, $captions.data(&#x27;dont-leave-page-up&#x27; + container.attr(&#x27;id&#x27;)));
       recursionUploadingBar(container, 0);
       setTimeout(function() {
         container.find(&#x27;form&#x27;).submit();
@@ -560,110 +562,53 @@ function documentLoaderDocumentReady() {
       e.preventDefault();
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-document .docload_title&#x27;, function() {
-    if($(&#x27;#load-document .docload_title_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;focus&#x27;, &#x27;.globalLoader .part2 .title&#x27;, function() {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
+    if(container.find(&#x27;.part2 .title_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-document .docload_title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      container.find(&#x27;.part2 .title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-document .docload_description&#x27;, function() {
-    if($(&#x27;#load-document .docload_description_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;focus&#x27;, &#x27;.globalLoader .part2 .description&#x27;, function() {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
+    if(container.find(&#x27;.part2 .description_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-document .docload_description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      container.find(&#x27;.part2 .description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
     }
   });
-  $body.on(&#x27;submit&#x27;, &#x27;#new_document&#x27;, function() {
-    document.getElementById(&#x27;new_document&#x27;).target = &#x27;upload_target&#x27;;
-    document.getElementById(&#x27;upload_target&#x27;).onload = function() {
-      uploadFileTooLarge($(&#x27;#load-document&#x27;));
+  $body.on(&#x27;submit&#x27;, &#x27;.globalLoader form&#x27;, function() {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
+    $(this).target = &#x27;upload_target&#x27;;
+    $(&#x27;upload_target&#x27;).onload = function() {
+      uploadFileTooLarge(container);
     }
   });
-  $body.on(&#x27;keydown&#x27;, &#x27;.docload_title, .docload_description&#x27;, function() {
+  $body.on(&#x27;keydown&#x27;, &#x27;.globalLoader .part2 .title, .globalLoader .part2 .description&#x27;, function() {
     $(this).removeClass(&#x27;form_error&#x27;);
   });
-  $body.on(&#x27;click&#x27;, &#x27;#load-document .errors_layer&#x27;, function() {
-    var myself = $(this);
-    if(!myself.hasClass(&#x27;media&#x27;)) {
-      myself.hide();
-      $(&#x27;#load-document &#x27; + myself.data(&#x27;selector&#x27;)).focus();
-    }
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#load-document .attachment label&#x27;, function() {
-    $(&#x27;#load-document .errors_layer.media&#x27;).hide();
-  });
-}
-
-/**
-Initializer for the loading form.
-@method mediaElementLoaderDocumentReady
-@for UploaderDocumentReady
-**/
-function mediaElementLoaderDocumentReady() {
-  $body.on(&#x27;click&#x27;, &#x27;._load_media_element&#x27;, function(e) {
-    e.preventDefault();
-    showLoadMediaElementPopUp();
-  });
-  $body.on(&#x27;change&#x27;, &#x27;input#new_media_element_input&#x27;, function() {
-    var file_name = $(this).val().replace(&quot;C:\\fakepath\\&quot;, &#x27;&#x27;);
-    if(file_name.replace(/^[\s\t]+/, &#x27;&#x27;) != &#x27;&#x27;) {
-      if(file_name.length &gt; 20) {
-        file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
-      }
-      $(&#x27;#media_element_media_show&#x27;).val(file_name).removeClass(&#x27;form_error&#x27;);
-    } else {
-      $(&#x27;#media_element_media_show&#x27;).val($(&#x27;#load-media-element&#x27;).data(&#x27;placeholder-media&#x27;)).removeClass(&#x27;form_error&#x27;);
-    }
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#load-media-element .part3 .close&#x27;, function() {
-    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      closePopUp(&#x27;load-media-element&#x27;);
-    }
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#load-media-element .part3 .submit&#x27;, function(e) {
-    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      var container = $(&#x27;#load-media-element&#x27;);
-      disableUploadForm(container, $captions.data(&#x27;dont-leave-page-upload-media-element&#x27;));
-      recursionUploadingBar(container, 0);
-      setTimeout(function() {
-        container.find(&#x27;form&#x27;).submit();
-      }, 1500);
-    } else {
-      e.preventDefault();
-    }
-  });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element .part2 .title&#x27;, function() {
-    if($(&#x27;#load-media-element .part2 .title_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-media-element .part2 .title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
-    }
-  });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element .part2 .description&#x27;, function() {
-    if($(&#x27;#load-media-element .part2 .description_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-media-element .part2 .description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
-    }
-  });
-  $body.on(&#x27;submit&#x27;, &#x27;#new_media_element&#x27;, function() {
-    document.getElementById(&#x27;new_media_element&#x27;).target = &#x27;upload_target&#x27;;
-    document.getElementById(&#x27;upload_target&#x27;).onload = function() {
-      uploadFileTooLarge($(&#x27;#load-media-element&#x27;));
-    }
-  });
-  $body.on(&#x27;keydown&#x27;, &#x27;.part2 .title, .part2 .description&#x27;, function() {
-    $(this).removeClass(&#x27;form_error&#x27;);
-  });
-  $body.on(&#x27;keydown&#x27;, &#x27;.part2 ._tags_container .tags&#x27;, function() {
+  $body.on(&#x27;keydown&#x27;, &#x27;.globalLoader .part2 ._tags_container .tags&#x27;, function() {
     $(this).parent().removeClass(&#x27;form_error&#x27;);
   });
-  $body.on(&#x27;click&#x27;, &#x27;#load-media-element .errors_layer&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;.globalLoader .errors_layer&#x27;, function() {
     var myself = $(this);
+    var container = myself.parents(&#x27;.globalLoader&#x27;);
     if(!myself.hasClass(&#x27;media&#x27;)) {
       myself.hide();
-      $(&#x27;#load-media-element &#x27; + myself.data(&#x27;selector&#x27;)).focus();
+      container.find(myself.data(&#x27;selector&#x27;)).focus();
     }
   });
-  $body.on(&#x27;click&#x27;, &#x27;#load-media-element .attachment label&#x27;, function() {
-    $(&#x27;#load-media-element .errors_layer.media&#x27;).hide();
+  $body.on(&#x27;click&#x27;, &#x27;.globalLoader .attachment label&#x27;, function() {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
+    container.find(&#x27;.errors_layer.media&#x27;).hide();
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.globalLoader .full_folder .back_to_gallery&#x27;, function() {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
+    container.find(&#x27;.part1 .attachment .media&#x27;).val(container.data(&#x27;placeholder-attachment&#x27;));
+    container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+    container.find(&#x27;.errors_layer&#x27;).hide();
+    container.find(&#x27;.part1 .attachment .file&#x27;).val(&#x27;&#x27;);
+    container.find(&#x27;form&#x27;).show();
+    container.find(&#x27;.full_folder&#x27;).hide();
   });
 }
 

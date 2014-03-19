@@ -486,7 +486,7 @@ function commonMediaElementsDocumentReady() {
     $(this).removeClass(&#x27;change_info&#x27;);
     $(this).addClass(&#x27;change_info_light&#x27;);
     $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._audio_preview_in_media_element_popup&#x27;).hide();
-    disableTagsInputTooHigh(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container&#x27;, &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; .my_new_tag&#x27;);
+    disableTagsInputTooHigh(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container&#x27;, &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; .&#x27;); // TODO formms
   });
   $body.on(&#x27;mouseenter&#x27;, &#x27;.boxViewCompactMediaElement&#x27;, function() {
     var item = $(this);
