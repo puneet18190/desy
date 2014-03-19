@@ -566,7 +566,7 @@ function secondsToDateString(seconds) {
 }
 
 /**
-Handles the errors of loading files.
+Handles the errors inside standard forms.
 @method showFormErrors
 @for GeneralMiscellanea
 @param container {Object} JQuery object for the specific uploader (audio, video, image or document)
