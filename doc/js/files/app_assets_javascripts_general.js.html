@@ -195,6 +195,8 @@
             
                 <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
             
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
+            
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
                 <li><a href="../classes/VideoEditorComponents.html">VideoEditorComponents</a></li>
@@ -881,6 +883,33 @@ function secondsToDateString(seconds) {
     resp = resp + &#x27;0&#x27; + ss;
   }
   return resp;
+}
+
+/**
+Handles the errors of loading files.
+@method showFormErrors
+@for GeneralMiscellanea
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
+@param errors {Hash} a hash of the kind &#x27;field&#x27;: &#x27;error&#x27;. It can&#x27;t be undefined!
+**/
+function showFormErrors(container, errors) {
+  container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+  container.find(&#x27;.errors_layer&#x27;).hide();
+  $.each(errors, function(key, value) {
+    if(key == &#x27;full&#x27;) {
+      container.find(&#x27;form&#x27;).hide();
+      container.find(&#x27;.full_folder .msge&#x27;).text(value);
+      container.find(&#x27;.full_folder&#x27;).show();
+    } else {
+      container.find(&#x27;.errors_layer.&#x27; + key).text(value).show();
+      if(key == &#x27;tags&#x27;) {
+        container.find(&#x27;._tags_container&#x27;).addClass(&#x27;form_error&#x27;);
+      } else {
+        container.find(&#x27;.&#x27; + key).addClass(&#x27;form_error&#x27;);
+      }
+    }
+  });
+  container.data(&#x27;loader-can-move&#x27;, false).data(&#x27;loader-with-errors&#x27;, true);
 }
 
 /**

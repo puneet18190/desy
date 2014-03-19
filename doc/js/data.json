@@ -298,8 +298,9 @@
             },
             "classes": {},
             "fors": {
+                "UploaderDocumentReady": 1,
                 "UploaderGlobal": 1,
-                "UploaderDocumentReady": 1
+                "UploaderLoadingBar": 1
             },
             "namespaces": {}
         },
@@ -767,12 +768,14 @@
             "name": "uploader",
             "submodules": {},
             "classes": {
+                "UploaderDocumentReady": 1,
                 "UploaderGlobal": 1,
-                "UploaderDocumentReady": 1
+                "UploaderLoadingBar": 1
             },
             "fors": {
+                "UploaderDocumentReady": 1,
                 "UploaderGlobal": 1,
-                "UploaderDocumentReady": 1
+                "UploaderLoadingBar": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -1663,6 +1666,17 @@
             "module": "tags",
             "namespace": ""
         },
+        "UploaderDocumentReady": {
+            "name": "UploaderDocumentReady",
+            "shortname": "UploaderDocumentReady",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "uploader",
+            "namespace": ""
+        },
         "UploaderGlobal": {
             "name": "UploaderGlobal",
             "shortname": "UploaderGlobal",
@@ -1674,9 +1688,9 @@
             "module": "uploader",
             "namespace": ""
         },
-        "UploaderDocumentReady": {
-            "name": "UploaderDocumentReady",
-            "shortname": "UploaderDocumentReady",
+        "UploaderLoadingBar": {
+            "name": "UploaderLoadingBar",
+            "shortname": "UploaderLoadingBar",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -3865,6 +3879,27 @@
         {
             "file": "app/assets/javascripts/general.js",
             "line": 568,
+            "description": "Handles the errors of loading files.",
+            "itemtype": "method",
+            "name": "showFormErrors",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "JQuery object for the specific uploader (audio, video, image or document)",
+                    "type": "Object"
+                },
+                {
+                    "name": "errors",
+                    "description": "a hash of the kind 'field': 'error'. It can't be undefined!",
+                    "type": "Hash"
+                }
+            ],
+            "class": "GeneralMiscellanea",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 595,
             "description": "Shows the mini thumbnail of a compact media element.",
             "itemtype": "method",
             "name": "showMiniThumbnailForMediaElementCompact",
@@ -3880,7 +3915,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 611,
+            "line": 638,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3905,7 +3940,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 637,
+            "line": 664,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -6271,6 +6306,15 @@
         {
             "file": "app/assets/javascripts/uploader.js",
             "line": 12,
+            "description": "Initializer for the loading form.",
+            "itemtype": "method",
+            "name": "uploaderDocumentReady",
+            "class": "UploaderDocumentReady",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 105,
             "description": "Disables the loading form while uploading is working.",
             "itemtype": "method",
             "name": "disableUploadForm",
@@ -6291,7 +6335,7 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 30,
+            "line": 123,
             "description": "Enables the loading form when uploading ended.",
             "itemtype": "method",
             "name": "enableUploadForm",
@@ -6307,7 +6351,49 @@
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 43,
+            "line": 136,
+            "description": "Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).",
+            "itemtype": "method",
+            "name": "uploadDone",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "HTML selector representing the container",
+                    "type": "String"
+                },
+                {
+                    "name": "errors",
+                    "description": "an array of strings to be shown on the bottom of the loading popup",
+                    "type": "Array"
+                },
+                {
+                    "name": "callback",
+                    "description": "success callback",
+                    "type": "Function"
+                }
+            ],
+            "class": "UploaderGlobal",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 162,
+            "description": "Handles 413 status error, file too large.",
+            "itemtype": "method",
+            "name": "uploadFileTooLarge",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "JQuery object for the specific uploader (audio, video, image or document)",
+                    "type": "Object"
+                }
+            ],
+            "class": "UploaderGlobal",
+            "module": "uploader"
+        },
+        {
+            "file": "app/assets/javascripts/uploader.js",
+            "line": 185,
             "description": "Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink \"UploaderGlobal/recursionUploadingBar:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "linearRecursionUploadingBar",
@@ -6338,12 +6424,12 @@
                     "type": "Function"
                 }
             ],
-            "class": "UploaderGlobal",
+            "class": "UploaderLoadingBar",
             "module": "uploader"
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 64,
+            "line": 206,
             "description": "Handles the recursion of uploading animation.",
             "itemtype": "method",
             "name": "recursionUploadingBar",
@@ -6359,12 +6445,12 @@
                     "type": "Number"
                 }
             ],
-            "class": "UploaderGlobal",
+            "class": "UploaderLoadingBar",
             "module": "uploader"
         },
         {
             "file": "app/assets/javascripts/uploader.js",
-            "line": 92,
+            "line": 234,
             "description": "Shows a percentage of the circular loading bar.",
             "itemtype": "method",
             "name": "showPercentUploadingBar",
@@ -6380,79 +6466,7 @@
                     "type": "Float"
                 }
             ],
-            "class": "UploaderGlobal",
-            "module": "uploader"
-        },
-        {
-            "file": "app/assets/javascripts/uploader.js",
-            "line": 132,
-            "description": "Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).",
-            "itemtype": "method",
-            "name": "uploadDone",
-            "params": [
-                {
-                    "name": "selector",
-                    "description": "HTML selector representing the container",
-                    "type": "String"
-                },
-                {
-                    "name": "errors",
-                    "description": "an array of strings to be shown on the bottom of the loading popup",
-                    "type": "Array"
-                },
-                {
-                    "name": "callback",
-                    "description": "success callback",
-                    "type": "Function"
-                }
-            ],
-            "class": "UploaderGlobal",
-            "module": "uploader"
-        },
-        {
-            "file": "app/assets/javascripts/uploader.js",
-            "line": 158,
-            "description": "Handles the errors of loading files.",
-            "itemtype": "method",
-            "name": "uploaderErrors",
-            "params": [
-                {
-                    "name": "container",
-                    "description": "JQuery object for the specific uploader (audio, video, image or document)",
-                    "type": "Object"
-                },
-                {
-                    "name": "errors",
-                    "description": "a hash of the kind 'field': 'error'. It can't be undefined!",
-                    "type": "Hash"
-                }
-            ],
-            "class": "UploaderGlobal",
-            "module": "uploader"
-        },
-        {
-            "file": "app/assets/javascripts/uploader.js",
-            "line": 185,
-            "description": "Handles 413 status error, file too large.",
-            "itemtype": "method",
-            "name": "uploadFileTooLarge",
-            "params": [
-                {
-                    "name": "container",
-                    "description": "JQuery object for the specific uploader (audio, video, image or document)",
-                    "type": "Object"
-                }
-            ],
-            "class": "UploaderGlobal",
-            "module": "uploader"
-        },
-        {
-            "file": "app/assets/javascripts/uploader.js",
-            "line": 208,
-            "description": "Initializer for the loading form.",
-            "itemtype": "method",
-            "name": "uploaderDocumentReady",
-            "class": "UploaderDocumentReady",
+            "class": "UploaderLoadingBar",
             "module": "uploader"
         },
         {

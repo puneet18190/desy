@@ -195,6 +195,8 @@
             
                 <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
             
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
+            
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
                 <li><a href="../classes/VideoEditorComponents.html">VideoEditorComponents</a></li>
@@ -374,35 +376,7 @@
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_linearRecursionUploadingBar">linearRecursionUploadingBar</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_recursionUploadingBar">recursionUploadingBar</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_showPercentUploadingBar">showPercentUploadingBar</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
                                 <a href="#method_uploadDone">uploadDone</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_uploaderErrors">uploaderErrors</a>
 
                                 
                                 
@@ -479,7 +453,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_uploader.js.html#l12"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:12</code></a>
+        <a href="../files/app_assets_javascripts_uploader.js.html#l105"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:105</code></a>
         
         </p>
 
@@ -584,7 +558,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_uploader.js.html#l30"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:30</code></a>
+        <a href="../files/app_assets_javascripts_uploader.js.html#l123"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:123</code></a>
         
         </p>
 
@@ -615,405 +589,6 @@
 
                     <div class="param-description">
                         <p>JQuery object representing the container</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_linearRecursionUploadingBar" class="method item">
-    <h3 class="name"><code>linearRecursionUploadingBar</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>container</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>time</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>k</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>start</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>callback</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_uploader.js.html#l43"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:43</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by <a href="../classes/UploaderGlobal.html#method_recursionUploadingBar" class="crosslink">recursionUploadingBar</a>.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">container</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JQuery object for the specific uploader (audio, video, image or document)</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">time</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>current time in the recursion</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">k</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>linear coefficient of recursion</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">start</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>starting point of recursion</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">callback</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>function to be fired after the animation is over</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_recursionUploadingBar" class="method item">
-    <h3 class="name"><code>recursionUploadingBar</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>container</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>time</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_uploader.js.html#l64"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:64</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Handles the recursion of uploading animation.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">container</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JQuery object for the specific uploader (audio, video, image or document)</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">time</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>current time in the recursion</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_showPercentUploadingBar" class="method item">
-    <h3 class="name"><code>showPercentUploadingBar</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>container</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>percent</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_uploader.js.html#l92"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:92</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Shows a percentage of the circular loading bar.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">container</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JQuery object for the specific uploader (audio, video, image or document)</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">percent</code>
-                        <span class="type">Float</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>percentage of loading shown</p>
 
                     </div>
 
@@ -1084,7 +659,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_uploader.js.html#l132"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:132</code></a>
+        <a href="../files/app_assets_javascripts_uploader.js.html#l136"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:136</code></a>
         
         </p>
 
@@ -1163,117 +738,6 @@
 </div>
 
                 
-                    <div id="method_uploaderErrors" class="method item">
-    <h3 class="name"><code>uploaderErrors</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>container</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>errors</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/app_assets_javascripts_uploader.js.html#l158"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:158</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Handles the errors of loading files.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">container</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JQuery object for the specific uploader (audio, video, image or document)</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">errors</code>
-                        <span class="type">Hash</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>a hash of the kind &#39;field&#39;: &#39;error&#39;. It can&#39;t be undefined!</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
                     <div id="method_uploadFileTooLarge" class="method item">
     <h3 class="name"><code>uploadFileTooLarge</code></h3>
 
@@ -1316,7 +780,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_uploader.js.html#l185"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:185</code></a>
+        <a href="../files/app_assets_javascripts_uploader.js.html#l162"><code>app&#x2F;assets&#x2F;javascripts&#x2F;uploader.js:162</code></a>
         
         </p>
 

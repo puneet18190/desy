@@ -195,6 +195,8 @@
             
                 <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
             
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
+            
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
                 <li><a href="../classes/VideoEditorComponents.html">VideoEditorComponents</a></li>
@@ -328,202 +330,6 @@ The class {{#crossLink &quot;UploaderGlobal&quot;}}{{/crossLink}} contains funct
 
 
 /**
-Disables the loading form while uploading is working.
-@method disableUploadForm
-@for UploaderGlobal
-@param container {Object} JQuery object representing the container
-@param window_caption {String} message that is shown to the user if he tries to reload the window while the uploader is working
-**/
-function disableUploadForm(container, window_caption) {
-  container.find(&#x27;.part3 .submit&#x27;).addClass(&#x27;disabled&#x27;);
-  container.find(&#x27;.part3 .close&#x27;).addClass(&#x27;disabled&#x27;);
-  container.find(&#x27;.part1 .attachment .file&#x27;).on(&#x27;click&#x27;, function(e) {
-    e.preventDefault();
-  });
-  $window.on(&#x27;beforeunload&#x27;, function() {
-    return window_caption;
-  });
-}
-
-/**
-Enables the loading form when uploading ended.
-@method enableUploadForm
-@for UploaderGlobal
-@param container {Object} JQuery object representing the container
-**/
-function enableUploadForm(container) {
-  $window.unbind(&#x27;beforeunload&#x27;);
-  container.find(&#x27;.part3 .close&#x27;).removeClass(&#x27;disabled&#x27;);
-  container.find(&#x27;.part3 .submit&#x27;).removeClass(&#x27;disabled&#x27;);
-  container.find(&#x27;.part1 .attachment .file&#x27;).unbind(&#x27;click&#x27;);
-}
-
-/**
-Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink &quot;UploaderGlobal/recursionUploadingBar:method&quot;}}{{/crossLink}}.
-@method linearRecursionUploadingBar
-@for UploaderGlobal
-@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
-@param time {Number} current time in the recursion
-@param k {Number} linear coefficient of recursion
-@param start {Number} starting point of recursion
-@param callback {Function} function to be fired after the animation is over
-**/
-function linearRecursionUploadingBar(container, time, k, start, callback) {
-  if(time &lt;= 500) {
-    showPercentUploadingBar(container, (k * time + start));
-    setTimeout(function() {
-      linearRecursionUploadingBar(container, time + 5, k, start, callback);
-    }, 5);
-  } else {
-    setTimeout(callback, 500);
-  }
-}
-
-/**
-Handles the recursion of uploading animation.
-@method recursionUploadingBar
-@for UploaderGlobal
-@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
-@param time {Number} current time in the recursion
-**/
-function recursionUploadingBar(container, time) {
-  if(container.data(&#x27;loader-can-move&#x27;)) {
-    if(time &lt; 1500) {
-      showPercentUploadingBar(container, 5 / 150 * time);
-    } else {
-      showPercentUploadingBar(container, ((100 * time + 1500) / (time + 1530)));
-    }
-    setTimeout(function() {
-      recursionUploadingBar(container, time + 5);
-    }, 5);
-  } else {
-    container.data(&#x27;loader-can-move&#x27;, true);
-    if(!container.data(&#x27;loader-with-errors&#x27;)) {
-      container.data(&#x27;loader-position-stop&#x27;, (100 * time + 1500) / (time + 1530));
-    } else {
-      container.data(&#x27;loader-with-errors&#x27;, false);
-      showPercentUploadingBar(container, 0);
-    }
-  }
-}
-
-/**
-Shows a percentage of the circular loading bar.
-@method showPercentUploadingBar
-@for UploaderGlobal
-@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
-@param percent {Float} percentage of loading shown
-**/
-function showPercentUploadingBar(container, percent) {
-  container.find(&#x27;.loading-square&#x27;).hide();
-  var width = container.data(&#x27;bar-width&#x27;);
-  var height = container.data(&#x27;bar-height&#x27;);
-  var padding = container.data(&#x27;bar-padding&#x27;);
-  var pixels = percent * (width * 2 + height * 2 + 4) / 100;
-  if(pixels &gt; (width / 2)) {
-    container.find(&#x27;.loading-square-1&#x27;).css(&#x27;width&#x27;, ((width / 2) + &#x27;px&#x27;)).css(&#x27;left&#x27;, (&#x27;-&#x27; + padding + &#x27;px&#x27;)).show();
-    pixels -= (width / 2);
-    if(pixels &gt; height) {
-      container.find(&#x27;.loading-square-2&#x27;).css(&#x27;height&#x27;, (height + &#x27;px&#x27;)).css(&#x27;top&#x27;, (&#x27;-&#x27; + padding + &#x27;px&#x27;)).show();
-      pixels -= height;
-      if(pixels &gt; width) {
-        container.find(&#x27;.loading-square-3&#x27;).css(&#x27;width&#x27;, (width + &#x27;px&#x27;)).show();
-        pixels -= width;
-        if(pixels &gt; height) {
-          container.find(&#x27;.loading-square-4&#x27;).css(&#x27;height&#x27;, (height + &#x27;px&#x27;)).show();
-          pixels -= height;
-          container.find(&#x27;.loading-square-5&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;left&#x27;, ((width - padding - pixels) + &#x27;px&#x27;)).show();
-        } else {
-          container.find(&#x27;.loading-square-4&#x27;).css(&#x27;height&#x27;, (pixels + &#x27;px&#x27;)).show();
-        }
-      } else {
-        container.find(&#x27;.loading-square-3&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).show();
-      }
-    } else {
-      container.find(&#x27;.loading-square-2&#x27;).css(&#x27;height&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;top&#x27;, ((height - padding - pixels) + &#x27;px&#x27;)).show();
-    }
-  } else {
-    container.find(&#x27;.loading-square-1&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;left&#x27;, (((width / 2) - padding - pixels) + &#x27;px&#x27;)).show();
-  }
-}
-
-/**
-Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).
-@method uploadDone
-@for UploaderGlobal
-@param selector {String} HTML selector representing the container
-@param errors {Array} an array of strings to be shown on the bottom of the loading popup
-@param callback {Function} success callback
-**/
-function uploadDone(selector, errors, callback) {
-  var container = $(selector);
-  enableUploadForm(container);
-  if(errors != undefined) {
-    uploaderErrors(container, errors);
-  } else {
-    $(selector).data(&#x27;loader-can-move&#x27;, false);
-    setTimeout(function() {
-      var position_now = container.data(&#x27;loader-position-stop&#x27;);
-      var coefficient = (100 - position_now) / 500;
-      linearRecursionUploadingBar(container, 0, coefficient, position_now, function() {
-        container.data(&#x27;loader-position-stop&#x27;, 0);
-        callback();
-      });
-    }, 100);
-  }
-}
-
-/**
-Handles the errors of loading files.
-@method uploaderErrors
-@for UploaderGlobal
-@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
-@param errors {Hash} a hash of the kind &#x27;field&#x27;: &#x27;error&#x27;. It can&#x27;t be undefined!
-**/
-function uploaderErrors(container, errors) {
-  container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
-  container.find(&#x27;.errors_layer&#x27;).hide();
-  $.each(errors, function(key, value) {
-    if(key == &#x27;full&#x27;) {
-      container.find(&#x27;form&#x27;).hide();
-      container.find(&#x27;.full_folder .msge&#x27;).text(value);
-      container.find(&#x27;.full_folder&#x27;).show();
-    } else {
-      container.find(&#x27;.errors_layer.&#x27; + key).text(value).show();
-      if(key == &#x27;tags&#x27;) {
-        container.find(&#x27;._tags_container&#x27;).addClass(&#x27;form_error&#x27;);
-      } else {
-        container.find(&#x27;.&#x27; + key).addClass(&#x27;form_error&#x27;);
-      }
-    }
-  });
-  container.data(&#x27;loader-can-move&#x27;, false).data(&#x27;loader-with-errors&#x27;, true);
-}
-
-/**
-Handles 413 status error, file too large.
-@method uploadFileTooLarge
-@for UploaderGlobal
-@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
-**/
-function uploadFileTooLarge(container) {
-  var ret = document.getElementById(&#x27;upload_target&#x27;).contentWindow.document.title;
-  if(ret &amp;&amp; ret.match(/413/g)) {
-    $window.unbind(&#x27;beforeunload&#x27;);
-    unbindLoader();
-    $.ajax({
-      type: &#x27;get&#x27;,
-      url: container.data(&#x27;fake-url&#x27;),
-      data: container.find(&#x27;form&#x27;).serialize()
-    }).always(bindLoader);
-  }
-}
-
-
-
-
-
-/**
 Initializer for the loading form.
 @method uploaderDocumentReady
 @for UploaderDocumentReady
@@ -610,6 +416,179 @@ function uploaderDocumentReady() {
     container.find(&#x27;form&#x27;).show();
     container.find(&#x27;.full_folder&#x27;).hide();
   });
+}
+
+
+
+
+
+/**
+Disables the loading form while uploading is working.
+@method disableUploadForm
+@for UploaderGlobal
+@param container {Object} JQuery object representing the container
+@param window_caption {String} message that is shown to the user if he tries to reload the window while the uploader is working
+**/
+function disableUploadForm(container, window_caption) {
+  container.find(&#x27;.part3 .submit&#x27;).addClass(&#x27;disabled&#x27;);
+  container.find(&#x27;.part3 .close&#x27;).addClass(&#x27;disabled&#x27;);
+  container.find(&#x27;.part1 .attachment .file&#x27;).on(&#x27;click&#x27;, function(e) {
+    e.preventDefault();
+  });
+  $window.on(&#x27;beforeunload&#x27;, function() {
+    return window_caption;
+  });
+}
+
+/**
+Enables the loading form when uploading ended.
+@method enableUploadForm
+@for UploaderGlobal
+@param container {Object} JQuery object representing the container
+**/
+function enableUploadForm(container) {
+  $window.unbind(&#x27;beforeunload&#x27;);
+  container.find(&#x27;.part3 .close&#x27;).removeClass(&#x27;disabled&#x27;);
+  container.find(&#x27;.part3 .submit&#x27;).removeClass(&#x27;disabled&#x27;);
+  container.find(&#x27;.part1 .attachment .file&#x27;).unbind(&#x27;click&#x27;);
+}
+
+/**
+Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).
+@method uploadDone
+@for UploaderGlobal
+@param selector {String} HTML selector representing the container
+@param errors {Array} an array of strings to be shown on the bottom of the loading popup
+@param callback {Function} success callback
+**/
+function uploadDone(selector, errors, callback) {
+  var container = $(selector);
+  enableUploadForm(container);
+  if(errors != undefined) {
+    showFormErrors(container, errors);
+  } else {
+    $(selector).data(&#x27;loader-can-move&#x27;, false);
+    setTimeout(function() {
+      var position_now = container.data(&#x27;loader-position-stop&#x27;);
+      var coefficient = (100 - position_now) / 500;
+      linearRecursionUploadingBar(container, 0, coefficient, position_now, function() {
+        container.data(&#x27;loader-position-stop&#x27;, 0);
+        callback();
+      });
+    }, 100);
+  }
+}
+
+/**
+Handles 413 status error, file too large.
+@method uploadFileTooLarge
+@for UploaderGlobal
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
+**/
+function uploadFileTooLarge(container) {
+  var ret = document.getElementById(&#x27;upload_target&#x27;).contentWindow.document.title;
+  if(ret &amp;&amp; ret.match(/413/g)) {
+    $window.unbind(&#x27;beforeunload&#x27;);
+    unbindLoader();
+    $.ajax({
+      type: &#x27;get&#x27;,
+      url: container.data(&#x27;fake-url&#x27;),
+      data: container.find(&#x27;form&#x27;).serialize()
+    }).always(bindLoader);
+  }
+}
+
+
+
+
+
+/**
+Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink &quot;UploaderGlobal/recursionUploadingBar:method&quot;}}{{/crossLink}}.
+@method linearRecursionUploadingBar
+@for UploaderLoadingBar
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
+@param time {Number} current time in the recursion
+@param k {Number} linear coefficient of recursion
+@param start {Number} starting point of recursion
+@param callback {Function} function to be fired after the animation is over
+**/
+function linearRecursionUploadingBar(container, time, k, start, callback) {
+  if(time &lt;= 500) {
+    showPercentUploadingBar(container, (k * time + start));
+    setTimeout(function() {
+      linearRecursionUploadingBar(container, time + 5, k, start, callback);
+    }, 5);
+  } else {
+    setTimeout(callback, 500);
+  }
+}
+
+/**
+Handles the recursion of uploading animation.
+@method recursionUploadingBar
+@for UploaderLoadingBar
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
+@param time {Number} current time in the recursion
+**/
+function recursionUploadingBar(container, time) {
+  if(container.data(&#x27;loader-can-move&#x27;)) {
+    if(time &lt; 1500) {
+      showPercentUploadingBar(container, 5 / 150 * time);
+    } else {
+      showPercentUploadingBar(container, ((100 * time + 1500) / (time + 1530)));
+    }
+    setTimeout(function() {
+      recursionUploadingBar(container, time + 5);
+    }, 5);
+  } else {
+    container.data(&#x27;loader-can-move&#x27;, true);
+    if(!container.data(&#x27;loader-with-errors&#x27;)) {
+      container.data(&#x27;loader-position-stop&#x27;, (100 * time + 1500) / (time + 1530));
+    } else {
+      container.data(&#x27;loader-with-errors&#x27;, false);
+      showPercentUploadingBar(container, 0);
+    }
+  }
+}
+
+/**
+Shows a percentage of the circular loading bar.
+@method showPercentUploadingBar
+@for UploaderLoadingBar
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
+@param percent {Float} percentage of loading shown
+**/
+function showPercentUploadingBar(container, percent) {
+  container.find(&#x27;.loading-square&#x27;).hide();
+  var width = container.data(&#x27;bar-width&#x27;);
+  var height = container.data(&#x27;bar-height&#x27;);
+  var padding = container.data(&#x27;bar-padding&#x27;);
+  var pixels = percent * (width * 2 + height * 2 + 4) / 100;
+  if(pixels &gt; (width / 2)) {
+    container.find(&#x27;.loading-square-1&#x27;).css(&#x27;width&#x27;, ((width / 2) + &#x27;px&#x27;)).css(&#x27;left&#x27;, (&#x27;-&#x27; + padding + &#x27;px&#x27;)).show();
+    pixels -= (width / 2);
+    if(pixels &gt; height) {
+      container.find(&#x27;.loading-square-2&#x27;).css(&#x27;height&#x27;, (height + &#x27;px&#x27;)).css(&#x27;top&#x27;, (&#x27;-&#x27; + padding + &#x27;px&#x27;)).show();
+      pixels -= height;
+      if(pixels &gt; width) {
+        container.find(&#x27;.loading-square-3&#x27;).css(&#x27;width&#x27;, (width + &#x27;px&#x27;)).show();
+        pixels -= width;
+        if(pixels &gt; height) {
+          container.find(&#x27;.loading-square-4&#x27;).css(&#x27;height&#x27;, (height + &#x27;px&#x27;)).show();
+          pixels -= height;
+          container.find(&#x27;.loading-square-5&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;left&#x27;, ((width - padding - pixels) + &#x27;px&#x27;)).show();
+        } else {
+          container.find(&#x27;.loading-square-4&#x27;).css(&#x27;height&#x27;, (pixels + &#x27;px&#x27;)).show();
+        }
+      } else {
+        container.find(&#x27;.loading-square-3&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).show();
+      }
+    } else {
+      container.find(&#x27;.loading-square-2&#x27;).css(&#x27;height&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;top&#x27;, ((height - padding - pixels) + &#x27;px&#x27;)).show();
+    }
+  } else {
+    container.find(&#x27;.loading-square-1&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;left&#x27;, (((width / 2) - padding - pixels) + &#x27;px&#x27;)).show();
+  }
 }
 
     </pre>

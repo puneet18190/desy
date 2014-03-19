@@ -78,6 +78,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "TagsInitializers",
         "UploaderDocumentReady",
         "UploaderGlobal",
+        "UploaderLoadingBar",
         "VideoEditorAddComponents",
         "VideoEditorComponents",
         "VideoEditorCutters",
