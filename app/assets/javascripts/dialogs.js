@@ -366,47 +366,13 @@ function showLessonNotificationPopUp(lesson_id) {
 }
 
 /**
-Dialog containing the form to upload a new document. This function interacts with the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}.
-@method showLoadDocumentPopUp
+Dialog containing the form to upload a new document or media element. This function interacts with the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}.
+@method showLoadPopUp
+@param type {String} either 'document' or 'media-element'
 @for DialogsWithForm
 **/
-function showLoadDocumentPopUp() {
-  var obj = $('#load-document');
-  if(obj.data('dialog')) {
-    obj.dialog('open');
-  } else {
-    obj.show();
-    obj.dialog({
-      modal: true,
-      resizable: false,
-      draggable: false,
-      width: 760,
-      show: 'fade',
-      hide: {effect: 'fade'},
-      open: function(event, ui) {
-        setTimeout(function() {
-          obj.find('input').blur();
-          obj.find('.title').val(obj.data('placeholder-title'));
-          obj.find('.description').val(obj.data('placeholder-description'));
-          obj.find('.title_placeholder').val('');
-          obj.find('.description_placeholder').val('');
-          obj.find('.part1 .attachment .media').val(obj.data('placeholder-media'));
-          obj.find('.form_error').removeClass('form_error');
-          obj.find('.errors_layer').hide();
-          obj.find('.part1 .attachment .file').val('');
-        }, 100);
-      }
-    });
-  }
-}
-
-/**
-Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}.
-@method showLoadMediaElementPopUp
-@for DialogsWithForm
-**/
-function showLoadMediaElementPopUp() {
-  var obj = $('#load-media-element');
+function showLoadPopUp(type) {
+  var obj = $('#load-' + type);
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {

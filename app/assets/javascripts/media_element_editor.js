@@ -234,7 +234,7 @@ function mediaElementEditorDocumentReady() {
 
 
 /**
-Resets the media element loading form; used in {{#crossLink "DialogsWithForm/showLoadMediaElementPopUp:method"}}{{/crossLink}}.
+Resets the media element loading form; used in {{#crossLink "DialogsWithForm/showLoadPopUp:method"}}{{/crossLink}}.
 @method resetMediaElementChangeInfo
 @for MediaElementEditorForms
 @param media_element_id {Number} id of the element in the database, used to extract the HTML id

@@ -207,95 +207,15 @@ function uploadFileTooLarge(container) {
 
 /**
 Initializer for the loading form.
-@method documentLoaderDocumentReady
+@method uploaderDocumentReady
 @for UploaderDocumentReady
 **/
-function documentLoaderDocumentReady() {
-  $body.on('click', '._load_document', function() {
-    showLoadDocumentPopUp();
+function uploaderDocumentReady() {
+  $body.on('click', '.openLoader', function() {
+    showLoadPopUp($(this).data('type'));
   });
-  $body.on('change', 'input#stocazzo', function() {
-    var file_name = $(this).val().replace("C:\\fakepath\\", '');
-    if(file_name.replace(/^[\s\t]+/, '') != '') {
-      if(file_name.length > 20) {
-        file_name = file_name.substring(0, 20) + '...';
-      }
-      $('#stocazzo').text(file_name).removeClass('form_error');
-    } else {
-      $('#stocazzo').text($('#load-document').data('placeholder-attachment')).removeClass('form_error');
-    }
-  });
-  $body.on('click', '#load-document .part3 .close', function() {
-    if(!$(this).hasClass('disabled')) {
-      closePopUp('load-document');
-    }
-  });
-  $body.on('click', '#load-document .part3 .submit', function(e) {
-    if(!$(this).hasClass('disabled')) {
-      var container = $('#load-document');
-      disableUploadForm(container, $captions.data('dont-leave-page-upload-document'));
-      recursionUploadingBar(container, 0);
-      setTimeout(function() {
-        container.find('form').submit();
-      }, 1500);
-    } else {
-      e.preventDefault();
-    }
-  });
-  $body.on('focus', '#load-document .title', function() {
-    if($('#load-document .title_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#load-document .title_placeholder').attr('value', '0');
-    }
-  });
-  $body.on('focus', '#load-document .description', function() {
-    if($('#load-document .description_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#load-document .description_placeholder').attr('value', '0');
-    }
-  });
-  $body.on('submit', '#new_document', function() {
-    document.getElementById('new_document').target = 'upload_target';
-    document.getElementById('upload_target').onload = function() {
-      uploadFileTooLarge($('#load-document'));
-    }
-  });
-  $body.on('keydown', '.title, .description', function() {
-    $(this).removeClass('form_error');
-  });
-  $body.on('click', '#load-document .errors_layer', function() {
-    var myself = $(this);
-    if(!myself.hasClass('media')) {
-      myself.hide();
-      $('#load-document ' + myself.data('selector')).focus();
-    }
-  });
-  $body.on('click', '#load-document .attachment label', function() {
-    $('#load-document .errors_layer.media').hide();
-  });
-  $body.on('click', '#load-document .full_folder .back_to_gallery', function() {
-    var container = $('#load-document');
-    container.find('.part1 .attachment .media').val(container.data('placeholder-attachment'));
-    container.find('.form_error').removeClass('form_error');
-    container.find('.errors_layer').hide();
-    container.find('.part1 .attachment .file').val('');
-    container.find('form').show();
-    container.find('.full_folder').hide();
-  });
-}
-
-/**
-Initializer for the loading form.
-@method mediaElementLoaderDocumentReady
-@for UploaderDocumentReady
-**/
-function mediaElementLoaderDocumentReady() {
-  $body.on('click', '._load_media_element', function(e) {
-    e.preventDefault();
-    showLoadMediaElementPopUp();
-  });
-  $body.on('change', '#load-media-element .part1 .attachment .file', function() {
-    var container = $('#load-media-element');
+  $body.on('change', '.globalLoader .part1 .attachment .file', function() {
+    var container = $(this).parents('.globalLoader');
     var file_name = $(this).val().replace("C:\\fakepath\\", '');
     if(file_name.replace(/^[\s\t]+/, '') != '') {
       if(file_name.length > 20) {
@@ -303,18 +223,19 @@ function mediaElementLoaderDocumentReady() {
       }
       container.find('.part1 .attachment .media').val(file_name).removeClass('form_error');
     } else {
-      container.find('.part1 .attachment .media').val($('#load-media-element').data('placeholder-media')).removeClass('form_error');
+      container.find('.part1 .attachment .media').val(container.data('placeholder-media')).removeClass('form_error');
     }
   });
-  $body.on('click', '#load-media-element .part3 .close', function() {
+  $body.on('click', '.globalLoader .part3 .close', function() {
     if(!$(this).hasClass('disabled')) {
-      closePopUp('load-media-element');
+      var container = $(this).parents('.globalLoader');
+      closePopUp(container.attr('id'));
     }
   });
-  $body.on('click', '#load-media-element .part3 .submit', function(e) {
+  $body.on('click', '.globalLoader .part3 .submit', function(e) {
+    var container = $(this).parents('.globalLoader');
     if(!$(this).hasClass('disabled')) {
-      var container = $('#load-media-element');
-      disableUploadForm(container, $captions.data('dont-leave-page-upload-media-element'));
+      disableUploadForm(container, $captions.data('dont-leave-page-up' + container.attr('id')));
       recursionUploadingBar(container, 0);
       setTimeout(function() {
         container.find('form').submit();
@@ -323,42 +244,47 @@ function mediaElementLoaderDocumentReady() {
       e.preventDefault();
     }
   });
-  $body.on('focus', '#load-media-element .part2 .title', function() {
-    if($('#load-media-element .part2 .title_placeholder').val() == '') {
+  $body.on('focus', '.globalLoader .part2 .title', function() {
+    var container = $(this).parents('.globalLoader');
+    if(container.find('.part2 .title_placeholder').val() == '') {
       $(this).attr('value', '');
-      $('#load-media-element .part2 .title_placeholder').attr('value', '0');
+      container.find('.part2 .title_placeholder').attr('value', '0');
     }
   });
-  $body.on('focus', '#load-media-element .part2 .description', function() {
-    if($('#load-media-element .part2 .description_placeholder').val() == '') {
+  $body.on('focus', '.globalLoader .part2 .description', function() {
+    var container = $(this).parents('.globalLoader');
+    if(container.find('.part2 .description_placeholder').val() == '') {
       $(this).attr('value', '');
-      $('#load-media-element .part2 .description_placeholder').attr('value', '0');
+      container.find('.part2 .description_placeholder').attr('value', '0');
     }
   });
-  $body.on('submit', '#new_media_element', function() {
-    document.getElementById('new_media_element').target = 'upload_target';
-    document.getElementById('upload_target').onload = function() {
-      uploadFileTooLarge($('#load-media-element'));
+  $body.on('submit', '.globalLoader form', function() {
+    var container = $(this).parents('.globalLoader');
+    $(this).target = 'upload_target';
+    $('upload_target').onload = function() {
+      uploadFileTooLarge(container);
     }
   });
-  $body.on('keydown', '.part2 .title, .part2 .description', function() {
+  $body.on('keydown', '.globalLoader .part2 .title, .globalLoader .part2 .description', function() {
     $(this).removeClass('form_error');
   });
-  $body.on('keydown', '.part2 ._tags_container .tags', function() {
+  $body.on('keydown', '.globalLoader .part2 ._tags_container .tags', function() {
     $(this).parent().removeClass('form_error');
   });
-  $body.on('click', '#load-media-element .errors_layer', function() {
+  $body.on('click', '.globalLoader .errors_layer', function() {
     var myself = $(this);
+    var container = myself.parents('.globalLoader');
     if(!myself.hasClass('media')) {
       myself.hide();
-      $('#load-media-element ' + myself.data('selector')).focus();
+      container.find(myself.data('selector')).focus();
     }
   });
-  $body.on('click', '#load-media-element .attachment label', function() {
-    $('#load-media-element .errors_layer.media').hide();
+  $body.on('click', '.globalLoader .attachment label', function() {
+    var container = $(this).parents('.globalLoader');
+    container.find('.errors_layer.media').hide();
   });
-  $body.on('click', '#load-media-element .full_folder .back_to_gallery', function() {
-    var container = $('#load-media-element');
+  $body.on('click', '.globalLoader .full_folder .back_to_gallery', function() {
+    var container = $(this).parents('.globalLoader');
     container.find('.part1 .attachment .media').val(container.data('placeholder-attachment'));
     container.find('.form_error').removeClass('form_error');
     container.find('.errors_layer').hide();

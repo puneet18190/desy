@@ -1,7 +1,7 @@
 <%= render :partial => 'media_elements/new_form_popup' %>
 <%= render :partial => 'shared/upload_target' %>
 <div class="gray-bar">
-  <a class="navlist-item b-media_element lower _load_media_element"><%= t('media_elements.load_new') %></a>
+  <a class="navlist-item b-media_element lower openLoader" data-type="media-element"><%= t('media_elements.load_new') %></a>
   <%= link_to t('media_elements.editor.menu_link'), new_media_elements_editor_path, :class => 'navlist-item b-media_element lower' %>
   <%= render :partial => 'shared/search' %>
 </div>
