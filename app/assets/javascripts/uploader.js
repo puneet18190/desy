@@ -64,8 +64,8 @@ function uploaderDocumentReady() {
   });
   $body.on('submit', '.globalLoader form', function() {
     var container = $(this).parents('.globalLoader');
-    $(this).target = 'upload_target';
-    $('upload_target').onload = function() {
+    document.getElementById($(this).attr('id')).target = 'upload_target';
+    document.getElementById('upload_target').onload = function() {
       uploadFileTooLarge(container);
     }
   });
