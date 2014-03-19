@@ -773,7 +773,7 @@ a.cerca.current {
     
    .msge {
       
-      @include nunito(17x);
+      @include nunito(17px);
       margin-top: 80px;
       margin-bottom: 50px;
       
@@ -782,8 +782,8 @@ a.cerca.current {
     a.back_to_gallery {
       
       @include nunito(17px);
-      margin-left: 272.5px; /* TODO formms */
-      width: 225px; /* TODO formms */
+      margin-left: 250px;
+      width: 160px;
       color: white;
       padding: 6px 0 0 0;
       height: 28px;
