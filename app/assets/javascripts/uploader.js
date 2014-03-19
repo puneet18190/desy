@@ -275,7 +275,6 @@ function documentLoaderDocumentReady() {
   });
   $body.on('click', '#load-document .full_folder .back_to_gallery', function() {
     var container = $('#load-document');
-    container.find('.part3 .close').click();
     container.find('form').show();
     container.find('.full_folder').hide();
   });
@@ -355,7 +354,6 @@ function mediaElementLoaderDocumentReady() {
   });
   $body.on('click', '#load-media-element .full_folder .back_to_gallery', function() {
     var container = $('#load-media-element');
-    container.find('.part3 .close').click();
     container.find('form').show();
     container.find('.full_folder').hide();
   });
