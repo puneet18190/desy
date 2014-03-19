@@ -294,15 +294,16 @@ function mediaElementLoaderDocumentReady() {
     e.preventDefault();
     showLoadMediaElementPopUp();
   });
-  $body.on('change', 'input#new_media_element_input', function() {
+  $body.on('change', '#load-media-element .part1 .attachment .file', function() {
+    var container = $('#load-media-element');
     var file_name = $(this).val().replace("C:\\fakepath\\", '');
     if(file_name.replace(/^[\s\t]+/, '') != '') {
       if(file_name.length > 20) {
         file_name = file_name.substring(0, 20) + '...';
       }
-      $('#media_element_media_show').val(file_name).removeClass('form_error');
+      container.find('.part1 .attachment .media').val(file_name).removeClass('form_error');
     } else {
-      $('#media_element_media_show').val($('#load-media-element').data('placeholder-media')).removeClass('form_error');
+      container.find('.part1 .attachment .media').val($('#load-media-element').data('placeholder-media')).removeClass('form_error');
     }
   });
   $body.on('click', '#load-media-element .part3 .close', function() {

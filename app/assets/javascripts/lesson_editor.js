@@ -662,15 +662,15 @@ Initializer for specific media elements or documents uploader inside the Lesson 
 **/
 function lessonEditorDocumentReadyUploaderInGallery() {
   $body.on('change', '.loadInGallery .part1 .attachment input.file', function() {
-    var father = $(this).parents('.attachment');
+    var container = $(this).parents('.loadInGallery');
     var file_name = $(this).val().replace("C:\\fakepath\\", '');
     if(file_name.replace(/^[\s\t]+/, '') != '') {
       if(file_name.length > 20) {
         file_name = file_name.substring(0, 20) + '...';
       }
-      father.find('.galleryMediaShow').val(file_name).removeClass('form_error');
+      container.find('.part1 .attachment .media').val(file_name).removeClass('form_error');
     } else {
-      father.find('.galleryMediaShow').val(father.parents('.loadInGallery').data('placeholder-media')).removeClass('form_error');
+      container.find('.part1 .attachment .media').val(container.data('placeholder-media')).removeClass('form_error');
     }
   });
   $body.on('click', '.gallery_upload_container a', function() {
@@ -686,7 +686,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find('.part2 .tags_loader .tags_value').val('');
     popup.find('.part2 .tags_loader ._tags_container span').remove();
     popup.find('.part2 .tags_loader ._tags_container ._placeholder').show();
-    popup.find('.part1 .attachment .galleryMediaShow').val(popup.data('placeholder-media'));
+    popup.find('.part1 .attachment .media').val(popup.data('placeholder-media'));
     popup.find('.part1 .attachment label input').val('');
     popup.find('.form_error').removeClass('form_error');
     popup.find('.errors_layer').hide();
@@ -701,7 +701,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find('.part2 .title_and_description .description').val(popup.data('placeholder-description'));
     popup.find('.part2 .title_and_description .title_placeholder').val('');
     popup.find('.part2 .title_and_description .description_placeholder').val('');
-    popup.find('.part1 .attachment .galleryMediaShow').val(popup.data('placeholder-media'));
+    popup.find('.part1 .attachment .media').val(popup.data('placeholder-media'));
     popup.find('.part1 .attachment label input').val('');
     popup.find('.form_error').removeClass('form_error');
     popup.find('.errors_layer').hide();
