@@ -432,7 +432,7 @@ function showLoadMediaElementPopUp() {
           obj.find('.part1 .attachment .media').val(obj.data('placeholder-media'));
           obj.find('.form_error').removeClass('form_error');
           obj.find('.errors_layer').hide();
-          $('#new_media_element_input').val('');
+          obj.find('.part1 .attachment .file').val('');
         }, 100);
       }
     });
