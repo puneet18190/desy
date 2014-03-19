@@ -10,6 +10,37 @@ The class {{#crossLink "UploaderGlobal"}}{{/crossLink}} contains functions that 
 
 
 /**
+Disables the loading form while uploading is working.
+@method disableUploadForm
+@for UploaderGlobal
+@param container {Object} JQuery object representing the container
+@param window_caption {String} message that is shown to the user if he tries to reload the window while the uploader is working
+**/
+function disableUploadForm(container, window_caption) {
+  container.find('.part3 .submit').addClass('disabled');
+  container.find('.part3 .close').addClass('disabled');
+  container.find('.part1 .attachment .file').on('click', function(e) {
+    e.preventDefault();
+  });
+  $window.on('beforeunload', function() {
+    return window_caption;
+  });
+}
+
+/**
+Enables the loading form when uploading ended.
+@method enableUploadForm
+@for UploaderGlobal
+@param container {Object} JQuery object representing the container
+**/
+function enableUploadForm(container) {
+  $window.unbind('beforeunload');
+  container.find('.part3 .close').removeClass('disabled');
+  container.find('.part3 .submit').removeClass('disabled');
+  container.find('.part1 .attachment .file').unbind('click');
+}
+
+/**
 Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink "UploaderGlobal/recursionUploadingBar:method"}}{{/crossLink}}.
 @method linearRecursionUploadingBar
 @for UploaderGlobal
@@ -23,7 +54,7 @@ function linearRecursionUploadingBar(container, time, k, start, callback) {
   if(time <= 500) {
     showPercentUploadingBar(container, (k * time + start));
     setTimeout(function() {
-      linearRecursionUploadingBar(container, time + 5, k, start, callback)
+      linearRecursionUploadingBar(container, time + 5, k, start, callback);
     }, 5);
   } else {
     setTimeout(callback, 500);
@@ -108,7 +139,7 @@ Handles correct uploading process (correct in the sense that the file is not too
 **/
 function uploadDone(selector, errors, callback) {
   var container = $(selector);
-  $window.unbind('beforeunload');
+  enableUploadForm(container);
   if(errors != undefined) {
     uploaderErrors(container, errors);
   } else {
@@ -149,9 +180,6 @@ function uploaderErrors(container, errors) {
     }
   });
   container.data('loader-can-move', false).data('loader-with-errors', true);
-  container.find('.part3 .close').removeClass('disabled');
-  container.find('.part3 .submit').removeClass('disabled');
-  container.find('.part1 .attachment .file').unbind('click');
 }
 
 /**
@@ -204,17 +232,11 @@ function documentLoaderDocumentReady() {
   });
   $body.on('click', '#load-document .part3 .submit', function(e) {
     if(!$(this).hasClass('disabled')) {
-      $(this).addClass('disabled');
-      $('#load-document .part3 .close').addClass('disabled');
-      $('#load-document #new_document_input').on('click', function(e) {
-        e.preventDefault();
-      });
-      $window.on('beforeunload', function() {
-        return $captions.data('dont-leave-page-upload-document');
-      });
-      recursionUploadingBar($('#load-document'), 0);
+      var container = $('#load-document');
+      disableUploadForm(container, $captions.data('dont-leave-page-upload-document'));
+      recursionUploadingBar(container, 0);
       setTimeout(function() {
-        $('#load-document form').submit();
+        container.find('form').submit();
       }, 1500);
     } else {
       e.preventDefault();
@@ -281,17 +303,11 @@ function mediaElementLoaderDocumentReady() {
   });
   $body.on('click', '#load-media-element .part3 .submit', function(e) {
     if(!$(this).hasClass('disabled')) {
-      $(this).addClass('disabled');
-      $('#load-media-element .part3 .close').addClass('disabled');
-      $('#load-media-element #new_media_element_input').on('click', function(e) {
-        e.preventDefault();
-      });
-      $window.on('beforeunload', function() {
-        return $captions.data('dont-leave-page-upload-media-element');
-      });
-      recursionUploadingBar($('#load-media-element'), 0);
+      var container = $('#load-media-element');
+      disableUploadForm(container, $captions.data('dont-leave-page-upload-media-element'));
+      recursionUploadingBar(container, 0);
       setTimeout(function() {
-        $('#load-media-element form').submit();
+        container.find('form').submit();
       }, 1500);
     } else {
       e.preventDefault();

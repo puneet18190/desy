@@ -739,19 +739,12 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   });
   $body.on('click', '.loadInGallery .part3 .submit', function(e) {
     if(!$(this).hasClass('disabled')) {
-      $(this).addClass('disabled');
       var container = $(this).parents('.loadInGallery');
-      container.find('.part3 .close').addClass('disabled');
-      container.find('.part1 .attachment .file').on('click', function(e) {
-        e.preventDefault();
-      });
-      $window.on('beforeunload', function() {
-        if(container.attr('id') == 'load-gallery-document') {
-          return $captions.data('dont-leave-page-upload-document');
-        } else {
-          return $captions.data('dont-leave-page-upload-media-element');
-        }
-      });
+      if(container.attr('id') == 'load-gallery-document') {
+        disableUploadForm(container, $captions.data('dont-leave-page-upload-document'));
+      } else {
+        disableUploadForm(container, $captions.data('dont-leave-page-upload-media-element'));
+      }
       recursionUploadingBar(container, 0);
       setTimeout(function() {
         container.find('form').submit();
@@ -914,9 +907,6 @@ function reloadGalleryInLessonEditor(container, type, gallery, pages, count, ite
       }
     });
   }
-  container.find('.part3 .close').removeClass('disabled');
-  container.find('.part3 .submit').removeClass('disabled');
-  container.find('.part1 .attachment .file').unbind('click');
   var gallery_scrollable = (type == 'document') ? $('.for-scroll-pain') : $('#' + type + '_gallery_content > div');
   if(gallery_scrollable.data('jsp') != undefined) {
     gallery_scrollable.data('jsp').destroy();
