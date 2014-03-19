@@ -386,14 +386,14 @@ function showLoadDocumentPopUp() {
       open: function(event, ui) {
         setTimeout(function() {
           obj.find('input').blur();
-          obj.find('.docload_title').val(obj.data('placeholder-title'));
-          obj.find('.docload_description').val(obj.data('placeholder-description'));
-          obj.find('.docload_title_placeholder').val('');
-          obj.find('.docload_description_placeholder').val('');
-          $('#document_attachment_show').text(obj.data('placeholder-attachment'));
+          obj.find('.title').val(obj.data('placeholder-title'));
+          obj.find('.description').val(obj.data('placeholder-description'));
+          obj.find('.title_placeholder').val('');
+          obj.find('.description_placeholder').val('');
+          obj.find('.part1 .attachment .media').val(obj.data('placeholder-media'));
           obj.find('.form_error').removeClass('form_error');
           obj.find('.errors_layer').hide();
-          $('#new_document_input').val('');
+          obj.find('.part1 .attachment .file').val('');
         }, 100);
       }
     });

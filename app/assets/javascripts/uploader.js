@@ -214,15 +214,15 @@ function documentLoaderDocumentReady() {
   $body.on('click', '._load_document', function() {
     showLoadDocumentPopUp();
   });
-  $body.on('change', 'input#new_document_input', function() {
+  $body.on('change', 'input#stocazzo', function() {
     var file_name = $(this).val().replace("C:\\fakepath\\", '');
     if(file_name.replace(/^[\s\t]+/, '') != '') {
       if(file_name.length > 20) {
         file_name = file_name.substring(0, 20) + '...';
       }
-      $('#document_attachment_show').text(file_name).removeClass('form_error');
+      $('#stocazzo').text(file_name).removeClass('form_error');
     } else {
-      $('#document_attachment_show').text($('#load-document').data('placeholder-attachment')).removeClass('form_error');
+      $('#stocazzo').text($('#load-document').data('placeholder-attachment')).removeClass('form_error');
     }
   });
   $body.on('click', '#load-document .part3 .close', function() {
