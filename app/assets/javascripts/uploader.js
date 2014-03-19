@@ -242,16 +242,16 @@ function documentLoaderDocumentReady() {
       e.preventDefault();
     }
   });
-  $body.on('focus', '#load-document .docload_title', function() {
-    if($('#load-document .docload_title_placeholder').val() == '') {
+  $body.on('focus', '#load-document .title', function() {
+    if($('#load-document .title_placeholder').val() == '') {
       $(this).attr('value', '');
-      $('#load-document .docload_title_placeholder').attr('value', '0');
+      $('#load-document .title_placeholder').attr('value', '0');
     }
   });
-  $body.on('focus', '#load-document .docload_description', function() {
-    if($('#load-document .docload_description_placeholder').val() == '') {
+  $body.on('focus', '#load-document .description', function() {
+    if($('#load-document .description_placeholder').val() == '') {
       $(this).attr('value', '');
-      $('#load-document .docload_description_placeholder').attr('value', '0');
+      $('#load-document .description_placeholder').attr('value', '0');
     }
   });
   $body.on('submit', '#new_document', function() {
@@ -260,7 +260,7 @@ function documentLoaderDocumentReady() {
       uploadFileTooLarge($('#load-document'));
     }
   });
-  $body.on('keydown', '.docload_title, .docload_description', function() {
+  $body.on('keydown', '.title, .description', function() {
     $(this).removeClass('form_error');
   });
   $body.on('click', '#load-document .errors_layer', function() {

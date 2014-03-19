@@ -168,7 +168,7 @@ function commonMediaElementsDocumentReady() {
     $(this).removeClass('change_info');
     $(this).addClass('change_info_light');
     $('#dialog-media-element-' + media_element_id + ' ._audio_preview_in_media_element_popup').hide();
-    disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' .my_new_tag');
+    disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' .'); // TODO formms
   });
   $body.on('mouseenter', '.boxViewCompactMediaElement', function() {
     var item = $(this);

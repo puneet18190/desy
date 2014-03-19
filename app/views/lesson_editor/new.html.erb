@@ -15,13 +15,13 @@
       </h3>
       <div class="_error_messages"></div>
       <%= form_tag('/lessons/create', :remote => true, :id => 'lesson-create') do %>
-        <%= text_field_tag 'title', title_max, :class => 'pull-left basta_caos_porca_miseria' %>
+        <%= text_field_tag 'title', title_max, :class => 'pull-left' %>
         <%= hidden_field_tag 'title_placeholder', '' %>
-        <%= select_tag 'subject', select_your_subjects(@subjects), :include_blank => false, :class => 'pull-right basta_caos_porca_miseria', :id => 'lesson_subject' %>
-        <%= text_area_tag 'description', description_max, :class => 'pull-left basta_caos_porca_miseria' %>
+        <%= select_tag 'subject', select_your_subjects(@subjects), :include_blank => false, :class => 'pull-right', :id => 'lesson_subject' %>
+        <%= text_area_tag 'description', description_max, :class => 'pull-left' %>
         <%= hidden_field_tag 'description_placeholder', '' %>
         <div class="ui-widget pull-right _tags_container">
-          <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower basta_caos_porca_miseria' %>
+          <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
           <div class="_placeholder">
             <%= tags_max %>
           </div>
