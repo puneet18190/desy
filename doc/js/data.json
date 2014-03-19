@@ -6394,7 +6394,7 @@
         {
             "file": "app/assets/javascripts/uploader.js",
             "line": 185,
-            "description": "Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink \"UploaderGlobal/recursionUploadingBar:method\"}}{{/crossLink}}.",
+            "description": "Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink \"UploaderLoadingBar/recursionUploadingBar:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "linearRecursionUploadingBar",
             "params": [

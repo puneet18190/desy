@@ -566,6 +566,33 @@ function secondsToDateString(seconds) {
 }
 
 /**
+Handles the errors of loading files.
+@method showFormErrors
+@for GeneralMiscellanea
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
+@param errors {Hash} a hash of the kind 'field': 'error'. It can't be undefined!
+**/
+function showFormErrors(container, errors) {
+  container.find('.form_error').removeClass('form_error');
+  container.find('.errors_layer').hide();
+  $.each(errors, function(key, value) {
+    if(key == 'full') {
+      container.find('form').hide();
+      container.find('.full_folder .msge').text(value);
+      container.find('.full_folder').show();
+    } else {
+      container.find('.errors_layer.' + key).text(value).show();
+      if(key == 'tags') {
+        container.find('._tags_container').addClass('form_error');
+      } else {
+        container.find('.' + key).addClass('form_error');
+      }
+    }
+  });
+  container.data('loader-can-move', false).data('loader-with-errors', true);
+}
+
+/**
 Shows the mini thumbnail of a compact media element.
 @method showMiniThumbnailForMediaElementCompact
 @for GeneralMiscellanea
