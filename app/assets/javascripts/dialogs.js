@@ -431,7 +431,8 @@ function showMediaElementInfoPopUp(media_element_id) {
         modal: true,
         resizable: false,
         draggable: false,
-        width: 874,
+        width: 760,
+        height: 440,
         show: 'fade',
         hide: {effect: 'fade'},
         open: function() {
