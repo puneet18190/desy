@@ -1028,6 +1028,34 @@
       width: 720px;
       height: 355px;
       
+      .description {
+        
+        h2 {
+          
+          @include nunito(14px);
+          color: $green;
+          padding: 0;
+          
+        }
+        
+        h3 {
+          
+          @include nunito(21px);
+          color: white;
+          padding: 0;
+          
+        }
+        
+        p {
+          
+          @include arial(12px);
+          color: white;
+          padding-top: 15px;
+          
+        }
+        
+      }
+      
       &.audio {
         
         
@@ -1036,7 +1064,20 @@
       
       &.image {
         
+        .content {
+          
+          float: left;
+          height: 355px;
+          
+        }
         
+        .description {
+          
+          height: 355px;
+          margin-left: 20px;
+          float: left;
+          
+        }
         
       }
       
@@ -1100,10 +1141,10 @@
         
         .description {
           
-          float: left;
           height: 355px;
           width: 200px;
           margin-left: 20px;
+          float: left;
           
         }
         

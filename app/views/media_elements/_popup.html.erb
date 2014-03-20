@@ -1,16 +1,20 @@
 <%
-  image_width = '0'
-  additional_style = ''
+  image_width = 0
+  additional_style = {
+    :left => '',
+    :righ => ''
+  }
   if media_element.image?
     width = media_element.width.to_f
     height = media_element.height.to_f
-    ratio = (340.to_f / 500.to_f)
+    ratio = (355.to_f / 500.to_f)
     if (height / width) <= ratio
-      image_width = '314px'
+      image_width = 500
     else
-      image_width = "#{(814 - width * 340.to_f / height).to_i}px"
+      image_width = (width * 355.to_f / height).to_i
     end
-    additional_style = "width:#{image_width}"
+    additional_style[:left] = "width:#{image_width}px".html_safe
+    additional_style[:right] = "width:#{700 - image_width}px".html_safe
   end
 %>
 
@@ -29,10 +33,10 @@
               <%= render :partial => 'media_elements/previews/audio', :locals => {:media_element => media_element} %>
             </div>
           <% else %>
-            <div class="content">
+            <div class="content" <%= additional_style[:left] %>>
               <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals => {:media_element => media_element} %>
             </div>
-            <div class="description" <%= additional_style %>>
+            <div class="description" <%= additional_style[:right] %>>
               <h2><%= media_element.sti_type_to_s %></h2>
               <h3><%= media_element.title %></h3>
               <p><%= media_element.description %></p>
