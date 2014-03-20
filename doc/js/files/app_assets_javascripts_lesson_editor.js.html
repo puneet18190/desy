@@ -1074,8 +1074,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     }
   });
   $body.on(&#x27;submit&#x27;, &#x27;.loadInGallery form&#x27;, function() {
-    var my_id = $(this).attr(&#x27;id&#x27;);
-    document.getElementById(my_id).target = &#x27;upload_target&#x27;;
+    document.getElementById($(this).attr(&#x27;id&#x27;)).target = &#x27;upload_target&#x27;;
     document.getElementById(&#x27;upload_target&#x27;).onload = function() {
       uploadFileTooLarge($(this).parents(&#x27;.loadInGallery&#x27;));
     }

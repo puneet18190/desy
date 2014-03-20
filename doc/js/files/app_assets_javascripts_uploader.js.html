@@ -384,8 +384,8 @@ function uploaderDocumentReady() {
   });
   $body.on(&#x27;submit&#x27;, &#x27;.globalLoader form&#x27;, function() {
     var container = $(this).parents(&#x27;.globalLoader&#x27;);
-    $(this).target = &#x27;upload_target&#x27;;
-    $(&#x27;upload_target&#x27;).onload = function() {
+    document.getElementById($(this).attr(&#x27;id&#x27;)).target = &#x27;upload_target&#x27;;
+    document.getElementById(&#x27;upload_target&#x27;).onload = function() {
       uploadFileTooLarge(container);
     }
   });
@@ -409,7 +409,7 @@ function uploaderDocumentReady() {
   });
   $body.on(&#x27;click&#x27;, &#x27;.globalLoader .full_folder .back_to_gallery&#x27;, function() {
     var container = $(this).parents(&#x27;.globalLoader&#x27;);
-    container.find(&#x27;.part1 .attachment .media&#x27;).val(container.data(&#x27;placeholder-attachment&#x27;));
+    container.find(&#x27;.part1 .attachment .media&#x27;).val(container.data(&#x27;placeholder-media&#x27;));
     container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
     container.find(&#x27;.errors_layer&#x27;).hide();
     container.find(&#x27;.part1 .attachment .file&#x27;).val(&#x27;&#x27;);
