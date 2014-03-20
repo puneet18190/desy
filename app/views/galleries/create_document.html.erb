@@ -5,7 +5,7 @@
     <% else %>
       var html_content = "<%= j(render :partial => 'galleries/contents/document', :locals => {:documents => @documents, :empty => false, :display_docs => ['block', 'none']}) %>";
       top.uploadDone('#load-gallery-document', undefined, function() {
-        top.reloadGalleryInLessonEditor($('#load-gallery-document'), 'document', html_content, <%= @tot_pages %>, <%= @documents.count %>, <%= @document_id %>);
+        top.reloadGalleryInLessonEditor('#load-gallery-document', 'document', html_content, <%= @tot_pages %>, <%= @documents.count %>, <%= @document_id %>);
       });
     <% end %>
   }

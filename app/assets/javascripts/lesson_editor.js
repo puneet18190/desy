@@ -890,14 +890,15 @@ function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
 Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).
 @method reloadGalleryInLessonEditor
 @for LessonEditorGalleries
-@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
+@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
 @param type {String} 'image', 'audio', 'video', or 'document'
 @param gallery {String} the HTML content to be replaced into the gallery, if the uploading was successful
 @param pages {Number} number of pages of the newly loaded gallery
 @param count {Number} number of elements inside the gallery
 @param item_id {Number} id of the newly loaded item (used only for documents)
 **/
-function reloadGalleryInLessonEditor(container, type, gallery, pages, count, item_id) {
+function reloadGalleryInLessonEditor(selector, type, gallery, pages, count, item_id) {
+  var container = $(selector);
   if(type != 'audio' && type != 'document') {
     var dialogs_selector = (type == 'image') ? '.imageInGalleryPopUp' : '.videoInGalleryPopUp'
     $(dialogs_selector).each(function() {
