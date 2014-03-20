@@ -686,6 +686,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find('.part2 .tags_loader .tags_value').val('');
     popup.find('.part2 .tags_loader ._tags_container span').remove();
     popup.find('.part2 .tags_loader ._tags_container ._placeholder').show();
+    popup.find('._tags_container .tags').show();
     popup.find('.part1 .attachment .media').val(popup.data('placeholder-media'));
     popup.find('.part1 .attachment label input').val('');
     popup.find('.form_error').removeClass('form_error');

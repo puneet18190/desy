@@ -18,13 +18,16 @@
 %>
 
 <div class="stoCazzo" id="dialog-media-element-<%= media_element.id %>" style="display:none"> <!-- TODO formms -->
-  
   <% if !locked %>
-    
     <% if media_element.buttons.include? Buttons::PREVIEW %>
-      
       <div class="stoCazzo" data-param="<%= media_element.id %>"> <!-- TODO formms -->
         <% if media_element.info_changeable %>
+          
+          
+          
+          
+          
+          
           <% my_tags = Tagging.includes(:tag).where(:taggable_type => 'MediaElement', :taggable_id => media_element.id).order(:tag_id) %>
           <div class="_change_info_container ChangeInfoContainer" style="display:none" data-param="<%= media_element.id %>" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>" data-tags="<%= media_element.tags %>">
             <h1><%= t('forms.change_info_media_element.title') %></h1>
@@ -55,27 +58,28 @@
             <% end %>
             <div class="_error_messages"></div>
           </div>
+          
+          
+          
+          
+          
+          
+          
         <% end %>
-        
         <% if !media_element.audio? %>
           <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals => {:media_element => media_element} %>
         <% end %>
-        
         <div style="width:<%= maxwidths[media_element.sti_type] %>; float:<%= media_element.audio? ? 'none' : 'left' %>">
           <h2><%= media_element.sti_type_to_s %></h2>
           <h3><%= media_element.title %></h3>
           <p><%= media_element.description %></p>
         </div>
-        
         <% if media_element.audio? %>
           <div class="contentAudioElement _audio_preview_in_media_element_popup">
             <%= render :partial => "media_elements/previews/audio", :locals => {:media_element => media_element} %>
           </div>
         <% end %>
-        
       </div>
-      
-      
       <div class="menuPopUp">
         <div class="menuIconButton at_left">
           <%= render :partial => "shared/buttons/#{Buttons::EDIT}", :locals => {:item => media_element} %>
@@ -91,10 +95,6 @@
           <a class="close _close_media_element_preview_popup" data-param="<%= media_element.id %>" title="<%= t('titles.close') %>"></a>
         </div>
       </div>
-      
-      
     <% end %>
-    
   <% end %>
-  
 </div>
