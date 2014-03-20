@@ -1064,6 +1064,12 @@
               
             }
             
+            .pause {
+              
+              @include svg-circle-icon-handler($assets-icone-player_svg, 31px, 5, 4, 0.3, 2, 2, 1, 2, 0);
+              
+            }
+            
             .videoSlider {
               
               height: 11px;
@@ -1098,7 +1104,6 @@
           height: 355px;
           width: 200px;
           margin-left: 20px;
-          background-color: red;
           
         }
         
