@@ -1047,12 +1047,46 @@
           float: left;
           height: 355px;
           width: 500px;
-          background-color: blue;
           
-          video {
+          .videoPlayer {
             
-            width: 500px;
-            height: 282px;
+            video {
+              
+              width: 500px;
+              height: 282px;
+              margin-bottom: 21px;
+              
+            }
+            
+            .play {
+              
+              @include svg-circle-icon-handler($assets-icone-player_svg, 31px, 5, 4, 0.3, 0, 2, 1, 0, 0);
+              
+            }
+            
+            .videoSlider {
+              
+              height: 11px;
+              width: 328px;
+              margin-top: 10px;
+              margin-left: 5px;
+              margin-right: 5px;
+              
+            }
+            
+            .secondTime {
+              
+              @include arial(11px);
+              width: 50px;
+              
+            }
+            
+            .fullScreen {
+              
+              @include svg-circle-icon-handler($assets-icone-player_svg, 31px, 5, 4, 0.3, 3, 2, 1, 3, 0);
+              margin: 0;
+              
+            }
             
           }
           
