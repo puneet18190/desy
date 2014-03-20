@@ -5,7 +5,7 @@
     <% else %>
       var html_content = "<%= j(render :partial => 'galleries/audio', :locals => {:audios => @audios}) %>";
       top.uploadDone('#load-gallery-audio', undefined, function() {
-        reloadGalleryInLessonEditor($('#load-gallery-audio'), 'audio', html_content, <%= @tot_pages %>, <%= @audios.count %>);
+        top.reloadGalleryInLessonEditor($('#load-gallery-audio'), 'audio', html_content, <%= @tot_pages %>, <%= @audios.count %>);
       });
     <% end %>
   }
