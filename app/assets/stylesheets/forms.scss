@@ -1058,7 +1058,39 @@
       
       &.audio {
         
+        .content {
+          
+          height: 31px;
+          padding: 14px;
+          border: 1px solid #524F4F;
+          width: 670px;
+          
+          .audioPlayer {
+            
+            background-color: transparent;
+            width: 670px;
+            
+            .audioSlider {
+              
+              height: 11px;
+              width: 529px;
+              margin-top: 10px;
+              margin-left: 5px;
+              margin-right: 5px;
+              
+            }
+            
+          }
+          
+        }
         
+        .description {
+          
+          height: 274px;
+          width: 700px;
+          margin-bottom: 20px;
+          
+        }
         
       }
       
@@ -1106,18 +1138,6 @@
               
             }
             
-            .play {
-              
-              @include svg-circle-icon-handler($assets-icone-player_svg, 31px, 5, 4, 0.3, 0, 2, 1, 0, 0);
-              
-            }
-            
-            .pause {
-              
-              @include svg-circle-icon-handler($assets-icone-player_svg, 31px, 5, 4, 0.3, 2, 2, 1, 2, 0);
-              
-            }
-            
             .videoSlider {
               
               height: 11px;
@@ -1125,20 +1145,6 @@
               margin-top: 10px;
               margin-left: 5px;
               margin-right: 5px;
-              
-            }
-            
-            .secondTime {
-              
-              @include arial(11px);
-              width: 50px;
-              
-            }
-            
-            .fullScreen {
-              
-              @include svg-circle-icon-handler($assets-icone-player_svg, 31px, 5, 4, 0.3, 3, 2, 1, 3, 0);
-              margin: 0;
               
             }
             
@@ -1152,6 +1158,36 @@
           width: 200px;
           margin-left: 20px;
           float: left;
+          
+        }
+        
+      }
+      
+      &.video .content .videoPlayer, &.audio .content .audioPlayer {
+        
+        .play {
+          
+          @include svg-circle-icon-handler($assets-icone-player_svg, 31px, 5, 4, 0.3, 0, 2, 1, 0, 0);
+          
+        }
+        
+        .pause {
+          
+          @include svg-circle-icon-handler($assets-icone-player_svg, 31px, 5, 4, 0.3, 2, 2, 1, 2, 0);
+          
+        }
+        
+        .secondTime {
+          
+          @include arial(11px);
+          width: 50px;
+          
+        }
+        
+        .fullScreen {
+          
+          @include svg-circle-icon-handler($assets-icone-player_svg, 31px, 5, 4, 0.3, 3, 2, 1, 3, 0);
+          margin: 0;
           
         }
         
