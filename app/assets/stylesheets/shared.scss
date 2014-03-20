@@ -867,11 +867,17 @@ a.cerca.current {
       
     }
     
+    .full_folder {
+      
+      a.back_to_gallery {
+        
+        color: #333333;
+        
+      }
+      
+    }
+    
   }
-  
-  
-  
-  
   
 }
 
@@ -1453,6 +1459,27 @@ a.cerca.current {
           
         }
       
+      }
+      
+    }
+    
+  }
+  
+}
+
+#load-gallery-document, #load-document {
+  
+  .full_folder {
+    
+    .back_to_gallery {
+      
+      color: #333333;
+      background-color: white;
+      
+      &:hover {
+        
+        background-color: #908F8F;
+        
       }
       
     }
