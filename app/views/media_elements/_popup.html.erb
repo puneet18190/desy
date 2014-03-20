@@ -13,8 +13,8 @@
     else
       image_width = (width * 355.to_f / height).to_i
     end
-    additional_style[:left] = "width:#{image_width}px".html_safe
-    additional_style[:right] = "width:#{700 - image_width}px".html_safe
+    additional_style[:left] = "style=\"width:#{image_width}px\"".html_safe
+    additional_style[:right] = "style=\"width:#{700 - image_width}px\"".html_safe
   end
 %>
 
