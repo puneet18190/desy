@@ -1006,3 +1006,80 @@
   }
   
 }
+
+.dialogMediaElement.triceratopo.camaleonte.opossum {
+  
+  padding: 0;
+  background-color: #252323;
+  color: #fff;
+  -webkit-box-shadow: 1px 5px 5px #999;
+  box-shadow: 1px 5px 5px #999;
+  width: 760px;
+  height: 440px;
+  
+  .wrapper {
+    
+    padding: 20px;
+    width: 720px;
+    height: 355px;
+    
+    .preview {
+      
+      width: 720px;
+      height: 355px;
+      
+      &.audio {
+        
+        
+        
+      }
+      
+      &.image {
+        
+        
+        
+      }
+      
+      &.video {
+        
+        .content {
+          
+          float: left;
+          height: 355px;
+          width: 500px;
+          background-color: blue;
+          
+          video {
+            
+            width: 500px;
+            height: 282px;
+            
+          }
+          
+        }
+        
+        .description {
+          
+          float: left;
+          height: 355px;
+          width: 200px;
+          margin-left: 20px;
+          background-color: red;
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  .menu {
+    
+    width: 760px;
+    height: 45px;
+    background-color: white;
+    
+  }
+  
+}

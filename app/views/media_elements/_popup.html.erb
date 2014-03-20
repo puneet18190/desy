@@ -14,10 +14,31 @@
   end
 %>
 
-<div id="dialog-media-element-<%= media_element.id %>" class="dialogMediaElement" style="display:none">
+<div id="dialog-media-element-<%= media_element.id %>" class="dialogMediaElement triceratopo camaleonte opossum" style="display:none">
   <% if !locked %>
     <% if media_element.buttons.include? Buttons::PREVIEW %>
       <div class="wrapper" data-param="<%= media_element.id %>">
+        <div class="preview <%= media_element.sti_type.downcase %>">
+          <% if media_element.audio? %>
+            <div class="description">
+              <h2><%= media_element.sti_type_to_s %></h2>
+              <h3><%= media_element.title %></h3>
+              <p><%= media_element.description %></p>
+            </div>
+            <div class="content">
+              <%= render :partial => 'media_elements/previews/audio', :locals => {:media_element => media_element} %>
+            </div>
+          <% else %>
+            <div class="content">
+              <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals => {:media_element => media_element} %>
+            </div>
+            <div class="description" <%= additional_style %>>
+              <h2><%= media_element.sti_type_to_s %></h2>
+              <h3><%= media_element.title %></h3>
+              <p><%= media_element.description %></p>
+            </div>
+          <% end %>
+        </div>
         <% if media_element.info_changeable %>
           <% my_tags = Tagging.includes(:tag).where(:taggable_type => 'MediaElement', :taggable_id => media_element.id).order(:tag_id) %>
           <div class="change-info" style="display:none" data-param="<%= media_element.id %>" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>" data-tags="<%= media_element.tags %>">
@@ -61,27 +82,6 @@
             <% end %>
           </div>
         <% end %>
-        <div class="preview">
-          <% if media_element.audio? %>
-            <div class="description audio">
-              <h2><%= media_element.sti_type_to_s %></h2>
-              <h3><%= media_element.title %></h3>
-              <p><%= media_element.description %></p>
-            </div>
-            <div class="content audio">
-              <%= render :partial => 'media_elements/previews/audio', :locals => {:media_element => media_element} %>
-            </div>
-          <% else %>
-            <div class="content <%= media_element.sti_type.downcase %>">
-              <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals => {:media_element => media_element} %>
-            </div>
-            <div class="description <%= media_element.sti_type.downcase %>" <%= additional_style %>>
-              <h2><%= media_element.sti_type_to_s %></h2>
-              <h3><%= media_element.title %></h3>
-              <p><%= media_element.description %></p>
-            </div>
-          <% end %>
-        </div>
       </div>
       <div class="menu">
         <div class="on-left">
