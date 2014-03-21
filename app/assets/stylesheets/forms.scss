@@ -401,7 +401,7 @@
   
 }
 
-.loadInGallery, .globalLoader {
+.loadInGallery, .globalLoader, .dialogMediaElement.triceratopo.camaleonte .wrapper .change-info {
   
   display: none;
   width: 800px;
@@ -1192,6 +1192,15 @@
         }
         
       }
+      
+    }
+    
+    .change-info {
+      
+      width: 720px;
+      height: 355px;
+      padding: 0;
+      background-color: blue;
       
     }
     
