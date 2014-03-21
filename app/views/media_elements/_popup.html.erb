@@ -70,12 +70,12 @@
                       <span><%= t.tag.word.strip %><a class="remove"></a></span>
                     <% end %>
                     <input class="tags" type="text" value="" maxlength="<%= SETTINGS['max_tag_length'] %>"/>
-                    <div class="hidden_tags" style="display:none">
-                      <% my_tags.reverse.each do |t| %>
-                        <span><%= t.tag.word.strip %><a class="remove"></a></span>
-                      <% end %>
-                    </div>
                     <input class="tags_value" type="hidden" value="" name="tags_value"/>
+                  </div>
+                  <div class="hidden-tags" style="display:none">
+                    <% my_tags.reverse.each do |t| %>
+                      <span><%= t.tag.word.strip %><a class="remove"></a></span>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -83,6 +83,9 @@
                 <a class="submit"><%= t('forms.change_info_media_element.done').downcase %></a>
                 <a class="close"><%= t('forms.change_info_media_element.cancel').downcase %></a>
               </div>
+              <div class="errors_layer description" data-selector=".part2 .description"></div>
+              <div class="errors_layer tags" data-selector=".part2 ._tags_container .tags"></div>
+              <div class="errors_layer title" data-selector=".part2 .title"></div>
             <% end %>
           </div>
         <% end %>

@@ -239,18 +239,19 @@ Resets the media element loading form; used in {{#crossLink "DialogsWithForm/sho
 @for MediaElementEditorForms
 @param media_element_id {Number} id of the element in the database, used to extract the HTML id
 **/
-function resetMediaElementChangeInfo(media_element_id) { // TODO formms
-  var container = $('#dialog-media-element-' + media_element_id + ' .stocazzo');
-  container.find('#title').val(container.data('title'));
-  container.find('#description').val(container.data('description'));
-  container.find('.form_error').removeClass('form_error');
-  container.find('._error_messages').html('');
-  container.find('._tags_container span').remove();
-  container.find('._tags_placeholder span').each(function() {
+function resetMediaElementChangeInfo(media_element_id) {
+  var container = $('#dialog-media-element-' + media_element_id + ' .wrapper .change-info');
+  var tags_container = container.find('.part2 ._tags_container');
+  container.find('.part2 .title').val(container.data('title'));
+  container.find('.part2 .description').val(container.data('description'));
+  container.find('.part2 ._tags_container span').remove();
+  container.find('.part2 .hidden-tags').each(function() {
     var copy = $(this)[0].outerHTML;
-    container.find('._tags_container').prepend(copy);
+    tags_container.prepend(copy);
   });
-  container.find('#tags_value').val(container.data('tags'));
+  container.find('.part2 ._tags_container .tags_value').val(container.data('tags'));
+  container.find('.form_error').removeClass('form_error');
+  container.find('.errors_layer').hide();
 }
 
 /**
@@ -258,7 +259,7 @@ Resets the <b>commit forms</b> used in {{#crossLinkModule "audio-editor"}}{{/cro
 @method resetMediaElementEditorForms
 @for MediaElementEditorForms
 **/
-function resetMediaElementEditorForms() {
+function resetMediaElementEditorForms() { // TODO formms
   $('#form_info_new_media_element_in_editor .error_messages, #form_info_update_media_element_in_editor .error_messages').html('');
   var new_form = $('#form_info_new_media_element_in_editor');
   var update_form = $('#form_info_update_media_element_in_editor');
