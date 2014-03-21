@@ -179,7 +179,7 @@ class Admin::MediaElementsController < AdminController
         @media_element.publication_date = Time.zone.now
       end
       if !@media_element.save
-        @errors = convert_item_error_messages @media_element.errors
+        @errors = convert_media_element_error_messages @media_element.errors # TODO formms
         @error_fields = @media_element.errors.messages.keys
       end
     end

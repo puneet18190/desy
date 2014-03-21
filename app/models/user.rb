@@ -1023,7 +1023,7 @@ class User < ActiveRecord::Base
   #
   # === Returns
   #
-  # If the lesson was correctly created, it returns a new object of type Lesson; otherwise, its errors (this is used in ApplicationController#convert_lesson_editor_messages)
+  # If the lesson was correctly created, it returns a new object of type Lesson; otherwise, its errors.
   #
   def create_lesson(title, description, subject_id, tags)
     return nil if self.new_record?

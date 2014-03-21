@@ -70,8 +70,7 @@ class DocumentsController < ApplicationController
       @document.title = params[:title]
       @document.description = params[:description_placeholder].blank? ? params[:description] : ''
       if !@document.save
-        @errors = convert_item_error_messages @document.errors
-        @error_fields = @document.errors.messages.keys
+        @errors = convert_document_error_messages @document.errors
       end
     end
   end

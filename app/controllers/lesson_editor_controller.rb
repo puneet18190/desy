@@ -91,8 +91,7 @@ class LessonEditorController < ApplicationController
     if new_lesson.instance_of?(Lesson)
       @lesson = new_lesson
     else
-      @errors = convert_lesson_editor_messages new_lesson
-      @error_fields = new_lesson.keys
+      @errors = convert_lesson_error_messages new_lesson
     end
     p new_lesson
   end
@@ -121,8 +120,7 @@ class LessonEditorController < ApplicationController
       @lesson.tags = params[:tags_value]
       @lesson.save_tags = true
       if !@lesson.save
-        @errors = convert_item_error_messages @lesson.errors
-        @error_fields = @lesson.errors.messages.keys
+        @errors = convert_lesson_error_messages @lesson.errors
       else
         @lesson.modify
       end
