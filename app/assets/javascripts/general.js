@@ -175,6 +175,10 @@ function commonMediaElementsDocumentReady() {
     container.find('.menu .change-info').removeClass('encendido');
     resetMediaElementChangeInfo(form);
   });
+  $body.on('click', '.dialogMediaElement .wrapper .change-info .part3 .submit', function() {
+    var container = $(this).parents('.dialogMediaElement');
+    container.find('form').submit();
+  });
   $body.on('mouseenter', '.boxViewCompactMediaElement', function() {
     var item = $(this);
     item.data('loading-mini-thumb', true);
