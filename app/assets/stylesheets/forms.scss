@@ -1203,6 +1203,49 @@
     height: 45px;
     background-color: white;
     
+    .on-left, .on-right {
+      
+      float: left;
+      width: 370px;
+      height: 35px;
+      padding: 5px;
+      
+    }
+    
+    .on-left {
+      
+      .edit {
+        
+        @include svg-circle-icon-handler($assets-icons-set-1_svg, 35px, 2, 5, 1, 0, 2, 1, 1, 2);
+        
+      }
+      
+      .change-info {
+        
+        @include svg-circle-icon-handler($assets-icons-set-1_svg, 35px, 2, 5, 1, 0, 3, 1, 1, 3);
+        margin-left: 5px;
+        
+      }
+      
+    }
+    
+    .on-right {
+      
+      .report {
+        
+        @include svg-circle-icon-handler($assets-icons-set-1_svg, 35px, 2, 5, 1, 0, 0, 1, 1, 0, right);
+        margin-right: 5px;
+        
+      }
+      
+      .close {
+        
+        @include svg-circle-icon-handler($assets-icons-set-1_svg, 35px, 2, 5, 1, 0, 1, 1, 1, 1, right);
+        
+      }
+      
+    }
+    
   }
   
 }

@@ -95,11 +95,11 @@
           <% end %>
         </div>
         <div class="on-right">
+          <a class="close" title="<%= t('titles.close') %>"></a>
           <% if media_element.is_reportable %>
             <a class="report" title="<%= t('titles.report') %>"></a>
             <%= render :partial => 'reports/form', :locals => {:item => media_element} %>
           <% end %>
-          <a class="close" title="<%= t('titles.close') %>"></a>
         </div>
       </div>
     <% end %>
