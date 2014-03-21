@@ -316,13 +316,13 @@ Initializes reports forms for both lessons and media elements.
 @for GeneralDocumentReady
 **/
 function reportsDocumentReady() {
-  $body.on('mouseenter', '.report-lesson', function() {
-    $(this).find('.report').addClass('encendido');
+  $body.on('mouseenter', '._lesson_expanded .report', function() {
+    $(this).addClass('encendido');
   });
-  $body.on('mouseleave', '.report-lesson', function() {
-    $(this).find('.report').removeClass('encendido');
+  $body.on('mouseleave', '._lesson_expanded .report', function() {
+    $(this).removeClass('encendido');
   });
-  $body.on('click', '.report-lesson', function() {
+  $body.on('click', '._lesson_expanded .report', function() {
     var button = $(this).find('.report');
     var form = $(this).next();
     if(!button.hasClass('encendido')) {

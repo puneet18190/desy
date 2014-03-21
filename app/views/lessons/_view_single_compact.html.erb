@@ -43,9 +43,9 @@
           <div class="text"><%= t('lessons.users_follow_this', :followers => bookmarks_count) %></div>
         </div>
         <% if lesson.is_reportable %>
-          <a class="report-lesson">
-            <div class="report"></div>
-            <span class="report-title"><%= t('reports.title') %></span>
+          <a class="report">
+            <div class="icon"></div>
+            <span class="title"><%= t('reports.title') %></span>
           </a>
           <%= render :partial => 'reports/form', :locals => {:item => lesson} %>
         <% end %>

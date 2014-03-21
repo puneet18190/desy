@@ -215,31 +215,31 @@ a.cerca.current {
         
       }
       
-      .report-lesson {
+      .report {
         
         display: inline-table;
         height: 22px;
         margin-top: 42px;
         margin-left: 1px;
         
-        .report {
+        .icon {
           
           @include svg-circle-icon-handler($assets-icons-set-1_svg, 24px, 2, 5, 1, 0, 0, 1, 1, 0);
           
-          &.encendido {
-            
-            @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 24px, 2, 5, 1, 1, 0);
-            
-          }
-          
         }
         
-        .report-title {
+        .title {
           
           @include nunito-with-line-height(10px, 24px);
           float: left;
           color: #262626;
           margin-left: 7px;
+          
+        }
+        
+        &.encendido .icon {
+          
+          @include svg-circle-icon-handler-without-hover($assets-icons-set-1_svg, 24px, 2, 5, 1, 1, 0);
           
         }
         
