@@ -149,25 +149,25 @@ function commonMediaElementsDocumentReady() { // TODO formms
   $body.on('keydown', '._stocazzo ._tags_container input', function() {
     $(this).parent().removeClass('form_error');
   });
-  $body.on('click', '._close_media_element_preview_popup', function() {
+  $body.on('click', '.stocazzo_close', function() {
     var param = $(this).data('param');
     closePopUp('dialog-media-element-' + param);
   });
-  $body.on('click', '._stocazzo ._cancel, ._change_info_to_pick.change_info_light', function() {
-    $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').show();
+  $body.on('click', '._stocazzo ._cancel, .stocazzo.blablabla', function() {
+    $('#dialog-media-element-' + $(this).data('param') + ' .stocazzoaudio').show();
     $('#dialog-media-element-' + $(this).data('param') + ' ._stocazzo').hide('fade', {}, 500, function() {
-      var icon = $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_to_pick');
+      var icon = $('#dialog-media-element-' + $(this).data('param') + ' .stocazzo');
       icon.addClass('change_info');
-      icon.removeClass('change_info_light');
+      icon.removeClass('encendido');
       resetMediaElementChangeInfo($(this).data('param'));
     });
   });
-  $body.on('click', '._change_info_to_pick.change_info', function() {
+  $body.on('click', '.stocazzo.blablabla', function() {
     var media_element_id = $(this).data('param');
     $('#dialog-media-element-' + media_element_id + ' ._stocazzo').show('fade', {}, 500);
     $(this).removeClass('change_info');
-    $(this).addClass('change_info_light');
-    $('#dialog-media-element-' + media_element_id + ' ._audio_preview_in_media_element_popup').hide();
+    $(this).addClass('encendido');
+    $('#dialog-media-element-' + media_element_id + ' .stocazzoaudio').hide();
     disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' .'); // TODO formms
   });
   $body.on('mouseenter', '.boxViewCompactMediaElement', function() {
@@ -330,7 +330,7 @@ function reportsDocumentReady() {
     }
     return false;
   });
-  $body.on('click', '._report_media_element_click', function() {
+  $body.on('click', '.stocazzo', function() { // TODO formms
     var obj = $(this).next();
     if(!obj.is(':visible')) {
       $(this).removeClass('report');

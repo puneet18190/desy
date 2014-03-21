@@ -54,7 +54,7 @@ function documentsDocumentReadyButtons() {
           container.find('.form_error').removeClass('form_error');
           container.find('._error_messages').html('');
           $('#dialog-document-' + document_id + ' .stocazzo').hide(); // TODO formms
-          var change_info_button = $('#dialog-document-' + document_id + ' ._document_change_info_to_pick');
+          var change_info_button = $('#dialog-document-' + document_id + ' .stocazzo'); // TODO formms
           change_info_button.addClass('change_info').removeClass('change_info_light');
         }
       });
@@ -120,10 +120,10 @@ function documentsDocumentReadyGeneral() {
     var document_id = $(this).data('document-id');
     closePopUp('dialog-document-' + document_id);
   });
-  $body.on('click', '.stocazzo ._cancel, ._document_change_info_to_pick.change_info_light', function() { // TODO formms
+  $body.on('click', '.stocazzo ._cancel, .stocazzo.change_info_light', function() { // TODO formms
     var document_id = $(this).data('document-id');
     $('#dialog-document-' + document_id + ' .stocazzo').hide('fade', {}, 500, function() { // TODO formms
-      var icon = $('#dialog-document-' + document_id + ' ._document_change_info_to_pick');
+      var icon = $('#dialog-document-' + document_id + ' .stocazzo'); // TODO formms
       icon.addClass('change_info');
       icon.removeClass('change_info_light');
       var container = $('#dialog-document-' + document_id);
@@ -134,7 +134,7 @@ function documentsDocumentReadyGeneral() {
       container.find('._error_messages').html('');
     });
   });
-  $body.on('click', '._document_change_info_to_pick.change_info', function() {
+  $body.on('click', '.stocazzo.change_info', function() { // TODO formms
     var document_id = $(this).data('document-id');
     $('#dialog-document-' + document_id + ' .stocazzo').show('fade', {}, 500); // TODO formms
     $(this).removeClass('change_info');
