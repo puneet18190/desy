@@ -71,7 +71,7 @@
                       <span><%= t.tag.word.strip %><a class="remove"></a></span>
                     <% end %>
                     <input class="tags" type="text" value="" maxlength="<%= SETTINGS['max_tag_length'] %>"/>
-                    <input class="tags_value" type="hidden" value="" name="tags_value"/>
+                    <input class="tags_value" type="hidden" value="<%= media_element.tags %>" name="tags_value"/>
                   </div>
                   <div class="hidden-tags" style="display:none">
                     <% my_tags.reverse.each do |t| %>

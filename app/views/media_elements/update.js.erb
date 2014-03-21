@@ -1,7 +1,7 @@
 <% if @ok %>
   
   <% if @errors %>
-    uploadDone('#dialog-media-element-<%= @media_element.id %>', <%= @errors.to_json.html_safe %>);
+    showFormErrors($('#dialog-media-element-<%= @media_element.id %>'), <%= @errors.to_json.html_safe %>);
   <% else %>
     <% used_in_private_lessons = @media_element.media_elements_slides.any? %>
     closePopUp("dialog-media-element-<%= @media_element_id %>");
