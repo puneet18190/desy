@@ -442,12 +442,12 @@ function showMediaElementInfoPopUp(media_element_id) {
           removeCustomOverlayClose();
         },
         close: function() {
-          resetMediaElementChangeInfo(container.find('.wrapper .change-info'));
           var container = $('#dialog-media-element-' + media_element_id);
           var player = container.find('.preview .content ._instance_of_player');
           if(player.length > 0) {
             stopMedia('#dialog-media-element-' + media_element_id + ' ' + player.data('media-type'));
           }
+          resetMediaElementChangeInfo(container.find('.wrapper .change-info'));
           container.find('.preview').show();
           container.find('._report_form_content').hide();
           container.find('.menu .report').removeClass('encendido');
