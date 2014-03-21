@@ -103,10 +103,11 @@ Disables the tag input if the container is full.
 function disableTagsInputTooHigh(container) {
   var line = 1;
   var curr_width = 12;
-  container.find('span').each(function() {
-    curr_width += $(this).outerWidth(true);
+  container.find('span a.remove').each(function() {
+    var mywidth = $(this).parent().outerWidth(true)
+    curr_width += mywidth;
     if(curr_width > container.data('max-width')) {
-      curr_width = $(this).outerWidth(true) + 12;
+      curr_width = mywidth + 12;
       line += 1;
     }
   });
