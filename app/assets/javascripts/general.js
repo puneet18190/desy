@@ -322,7 +322,7 @@ function reportsDocumentReady() {
   $body.on('mouseleave', '.report-lesson', function() {
     $(this).find('.report').removeClass('encendido');
   });
-  $body.on('click', '.report-lesson', function() { // TODO formms
+  $body.on('click', '.report-lesson', function() {
     var button = $(this).find('.report');
     var form = $(this).next();
     if(!button.hasClass('encendido')) {
