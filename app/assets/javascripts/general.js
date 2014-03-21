@@ -142,33 +142,37 @@ Initializer for functionalities which are common to sections containing media el
 @method commonMediaElementsDocumentReady
 @for GeneralDocumentReady
 **/
-function commonMediaElementsDocumentReady() { // TODO formms
-  $body.on('keydown', '._stocazzo .description, ._stocazzo .title', function() {
+function commonMediaElementsDocumentReady() {
+  $body.on('keydown', '.dialogMediaElement .wrapper .change-info .part2 .title, .dialogMediaElement .wrapper .change-info .part2 .description', function() {
     $(this).removeClass('form_error');
   });
-  $body.on('keydown', '._stocazzo ._tags_container input', function() {
-    $(this).parent().removeClass('form_error');
+  $body.on('keydown', '.dialogMediaElement .wrapper .change-info .part2 .tags_container .tags', function() {
+    $(this).parents('._tags_container').removeClass('form_error');
   });
-  $body.on('click', '.stocazzo_close', function() {
-    var param = $(this).data('param');
-    closePopUp('dialog-media-element-' + param);
+  $body.on('click', '.dialogMediaElement .menu .close', function() {
+    closePopUp($(this).parents('.dialogMediaElement').attr('id'));
   });
-  $body.on('click', '._stocazzo ._cancel, .stocazzo.blablabla', function() {
-    $('#dialog-media-element-' + $(this).data('param') + ' .stocazzoaudio').show();
-    $('#dialog-media-element-' + $(this).data('param') + ' ._stocazzo').hide('fade', {}, 500, function() {
-      var icon = $('#dialog-media-element-' + $(this).data('param') + ' .stocazzo');
-      icon.addClass('change_info');
-      icon.removeClass('encendido');
-      resetMediaElementChangeInfo($(this).data('param'));
-    });
+  $body.on('click', '.dialogMediaElement .menu .change-info', function() {
+    var container = $(this).parents('.dialogMediaElement');
+    var form = container.find('.wrapper .change-info');
+    if($(this).hasClass('encendido')) {
+      form.hide();
+      container.find('.preview').show();
+      resetMediaElementChangeInfo(form);
+      $(this).removeClass('encendido');
+    } else {
+      container.find('.preview').hide();
+      form.show();
+      $(this).addClass('encendido');
+      disableTagsInputTooHigh(form.find('.part2 ._tags_container'));
+    }
   });
-  $body.on('click', '.stocazzo.blablabla', function() {
-    var media_element_id = $(this).data('param');
-    $('#dialog-media-element-' + media_element_id + ' ._stocazzo').show('fade', {}, 500);
-    $(this).removeClass('change_info');
-    $(this).addClass('encendido');
-    $('#dialog-media-element-' + media_element_id + ' .stocazzoaudio').hide();
-    disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' .'); // TODO formms
+  $body.on('click', '.dialogMediaElement .wrapper .change-info .part3 .close', function() {
+    var container = $(this).parents('.dialogMediaElement');
+    var form = container.find('.wrapper .change-info');
+    form.hide();
+    container.find('.preview').show();
+    resetMediaElementChangeInfo(form);
   });
   $body.on('mouseenter', '.boxViewCompactMediaElement', function() {
     var item = $(this);

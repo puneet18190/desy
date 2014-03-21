@@ -237,10 +237,9 @@ function mediaElementEditorDocumentReady() {
 Resets the media element loading form; used in {{#crossLink "DialogsWithForm/showLoadPopUp:method"}}{{/crossLink}}.
 @method resetMediaElementChangeInfo
 @for MediaElementEditorForms
-@param media_element_id {Number} id of the element in the database, used to extract the HTML id
+@param container {Object} JQuery object of the form
 **/
-function resetMediaElementChangeInfo(media_element_id) {
-  var container = $('#dialog-media-element-' + media_element_id + ' .wrapper .change-info');
+function resetMediaElementChangeInfo(container) {
   var tags_container = container.find('.part2 ._tags_container');
   container.find('.part2 .title').val(container.data('title'));
   container.find('.part2 .description').val(container.data('description'));
@@ -252,6 +251,7 @@ function resetMediaElementChangeInfo(media_element_id) {
   container.find('.part2 ._tags_container .tags_value').val(container.data('tags'));
   container.find('.form_error').removeClass('form_error');
   container.find('.errors_layer').hide();
+  container.find('.part2 .tags').show();
 }
 
 /**

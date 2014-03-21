@@ -442,7 +442,7 @@ function showMediaElementInfoPopUp(media_element_id) {
           removeCustomOverlayClose();
         },
         close: function() {
-          resetMediaElementChangeInfo(media_element_id);
+          resetMediaElementChangeInfo(container.find('.wrapper .change-info'));
           var container = $('#dialog-media-element-' + media_element_id);
           var player = container.find('.preview .content ._instance_of_player');
           if(player.length > 0) {
