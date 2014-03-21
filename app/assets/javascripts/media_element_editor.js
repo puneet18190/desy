@@ -244,7 +244,7 @@ function resetMediaElementChangeInfo(container) {
   container.find('.part2 .title').val(container.data('title'));
   container.find('.part2 .description').val(container.data('description'));
   container.find('.part2 ._tags_container span').remove();
-  container.find('.part2 .hidden-tags').each(function() {
+  container.find('.part2 .hidden-tags span').each(function() {
     var copy = $(this)[0].outerHTML;
     tags_container.prepend(copy);
   });

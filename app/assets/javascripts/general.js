@@ -172,6 +172,7 @@ function commonMediaElementsDocumentReady() {
     var form = container.find('.wrapper .change-info');
     form.hide();
     container.find('.preview').show();
+    container.find('.menu .change-info').removeClass('encendido');
     resetMediaElementChangeInfo(form);
   });
   $body.on('mouseenter', '.boxViewCompactMediaElement', function() {
