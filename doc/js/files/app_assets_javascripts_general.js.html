@@ -463,32 +463,37 @@ Initializer for functionalities which are common to sections containing media el
 @for GeneralDocumentReady
 **/
 function commonMediaElementsDocumentReady() {
-  $body.on(&#x27;keydown&#x27;, &#x27;._change_info_container .description, ._change_info_container .title&#x27;, function() {
+  $body.on(&#x27;keydown&#x27;, &#x27;.dialogMediaElement .wrapper .change-info .part2 .title, .dialogMediaElement .wrapper .change-info .part2 .description&#x27;, function() {
     $(this).removeClass(&#x27;form_error&#x27;);
   });
-  $body.on(&#x27;keydown&#x27;, &#x27;._change_info_container ._tags_container input&#x27;, function() {
-    $(this).parent().removeClass(&#x27;form_error&#x27;);
+  $body.on(&#x27;keydown&#x27;, &#x27;.dialogMediaElement .wrapper .change-info .part2 .tags_container .tags&#x27;, function() {
+    $(this).parents(&#x27;._tags_container&#x27;).removeClass(&#x27;form_error&#x27;);
   });
-  $body.on(&#x27;click&#x27;, &#x27;._close_media_element_preview_popup&#x27;, function() {
-    var param = $(this).data(&#x27;param&#x27;);
-    closePopUp(&#x27;dialog-media-element-&#x27; + param);
+  $body.on(&#x27;click&#x27;, &#x27;.dialogMediaElement .menu .close&#x27;, function() {
+    closePopUp($(this).parents(&#x27;.dialogMediaElement&#x27;).attr(&#x27;id&#x27;));
   });
-  $body.on(&#x27;click&#x27;, &#x27;._change_info_container ._cancel, ._change_info_to_pick.change_info_light&#x27;, function() {
-    $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).show();
-    $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_container&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
-      var icon = $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_to_pick&#x27;);
-      icon.addClass(&#x27;change_info&#x27;);
-      icon.removeClass(&#x27;change_info_light&#x27;);
-      resetMediaElementChangeInfo($(this).data(&#x27;param&#x27;));
-    });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogMediaElement .menu .change-info&#x27;, function() {
+    var container = $(this).parents(&#x27;.dialogMediaElement&#x27;);
+    var form = container.find(&#x27;.wrapper .change-info&#x27;);
+    if($(this).hasClass(&#x27;encendido&#x27;)) {
+      form.hide();
+      container.find(&#x27;.preview&#x27;).show();
+      resetMediaElementChangeInfo(form);
+      $(this).removeClass(&#x27;encendido&#x27;);
+    } else {
+      container.find(&#x27;.preview&#x27;).hide();
+      form.show();
+      $(this).addClass(&#x27;encendido&#x27;);
+      disableTagsInputTooHigh(form.find(&#x27;.part2 ._tags_container&#x27;));
+    }
   });
-  $body.on(&#x27;click&#x27;, &#x27;._change_info_to_pick.change_info&#x27;, function() {
-    var media_element_id = $(this).data(&#x27;param&#x27;);
-    $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._change_info_container&#x27;).show(&#x27;fade&#x27;, {}, 500);
-    $(this).removeClass(&#x27;change_info&#x27;);
-    $(this).addClass(&#x27;change_info_light&#x27;);
-    $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._audio_preview_in_media_element_popup&#x27;).hide();
-    disableTagsInputTooHigh(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._tags_container&#x27;, &#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; .&#x27;); // TODO formms
+  $body.on(&#x27;click&#x27;, &#x27;.dialogMediaElement .wrapper .change-info .part3 .close&#x27;, function() {
+    var container = $(this).parents(&#x27;.dialogMediaElement&#x27;);
+    var form = container.find(&#x27;.wrapper .change-info&#x27;);
+    form.hide();
+    container.find(&#x27;.preview&#x27;).show();
+    container.find(&#x27;.menu .change-info&#x27;).removeClass(&#x27;encendido&#x27;);
+    resetMediaElementChangeInfo(form);
   });
   $body.on(&#x27;mouseenter&#x27;, &#x27;.boxViewCompactMediaElement&#x27;, function() {
     var item = $(this);
@@ -650,7 +655,7 @@ function reportsDocumentReady() {
     }
     return false;
   });
-  $body.on(&#x27;click&#x27;, &#x27;._report_media_element_click&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;.stocazzo&#x27;, function() { // TODO formms
     var obj = $(this).next();
     if(!obj.is(&#x27;:visible&#x27;)) {
       $(this).removeClass(&#x27;report&#x27;);

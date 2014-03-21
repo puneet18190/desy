@@ -751,7 +751,8 @@ function showMediaElementInfoPopUp(media_element_id) {
         modal: true,
         resizable: false,
         draggable: false,
-        width: 874,
+        width: 760,
+        height: 440,
         show: &#x27;fade&#x27;,
         hide: {effect: &#x27;fade&#x27;},
         open: function() {
@@ -761,17 +762,17 @@ function showMediaElementInfoPopUp(media_element_id) {
           removeCustomOverlayClose();
         },
         close: function() {
-          resetMediaElementChangeInfo(media_element_id);
-          $(this).find(&#x27;._report_form_content&#x27;).hide();
-          $(this).find(&#x27;._report_media_element_click&#x27;).removeClass(&#x27;report_light&#x27;);
-          var player_container = $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._instance_of_player&#x27;);
-          if(player_container.length &gt; 0) {
-            stopMedia(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; &#x27; + player_container.data(&#x27;media-type&#x27;));
+          var container = $(&#x27;#dialog-media-element-&#x27; + media_element_id);
+          var player = container.find(&#x27;.preview .content ._instance_of_player&#x27;);
+          if(player.length &gt; 0) {
+            stopMedia(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; &#x27; + player.data(&#x27;media-type&#x27;));
           }
-          $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._audio_preview_in_media_element_popup&#x27;).show();
-          $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._change_info_container&#x27;).hide();
-          var change_info_button = $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._change_info_to_pick&#x27;);
-          change_info_button.addClass(&#x27;change_info&#x27;).removeClass(&#x27;change_info_light&#x27;);
+          resetMediaElementChangeInfo(container.find(&#x27;.wrapper .change-info&#x27;));
+          container.find(&#x27;.preview&#x27;).show();
+          container.find(&#x27;._report_form_content&#x27;).hide();
+          container.find(&#x27;.menu .report&#x27;).removeClass(&#x27;encendido&#x27;);
+          container.find(&#x27;.wrapper .change-info&#x27;).hide();
+          container.find(&#x27;.menu .change-info&#x27;).removeClass(&#x27;encendido&#x27;);
         }
       });
     }
