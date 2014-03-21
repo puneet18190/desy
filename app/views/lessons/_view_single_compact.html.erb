@@ -19,16 +19,13 @@
   current_class = "#{current_class} _lesson_change_not_notified" if lesson_not_notified
 %>
 
-
 <div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson <%= current_class %> <%= additional_class %>" <%= forced_margin %>>
-  
   <div class="contentInterno _lesson_compact">
     <h3><%= lesson.title %></h3>
     <p><%= lesson.subject.description %></p>
     <p><%= lesson.status(true) %></p>
     <%= render :partial => 'lessons/action_buttons', :locals => {:lesson => lesson, :destination => destination, :additional_class => additional_class} %>
   </div>
-  
   <% if !disabled %>
     <div class="_lesson_expanded">
       <%= render :partial => 'lessons/thumbnail', :locals => {:lesson => lesson, :cover => cover} %>
@@ -46,8 +43,8 @@
           <div class="text"><%= t('lessons.users_follow_this', :followers => bookmarks_count) %></div>
         </div>
         <% if lesson.is_reportable %>
-          <a class="_reportable_lesson_icon">
-            <div class="icon-content report"></div>
+          <a class="report-lesson">
+            <div class="report"></div>
             <span class="report-title"><%= t('reports.title') %></span>
           </a>
           <%= render :partial => 'reports/form', :locals => {:item => lesson} %>
@@ -77,7 +74,6 @@
       </div>
     </div>
   <% end %>
-  
 </div>
 
 <script>

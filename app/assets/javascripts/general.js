@@ -206,7 +206,6 @@ function commonLessonsDocumentReady() {
       var my_id = $(this).parent().attr('id');
       var my_expanded = $('#' + my_id + ' ._lesson_expanded');
       if(my_expanded.is(':visible')) {
-        my_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
         my_expanded.hide('blind', {}, 500, function() {
           my_expanded.hide();
         });
@@ -222,7 +221,6 @@ function commonLessonsDocumentReady() {
       } else {
         var there_is_expanded = $('._lesson_expanded:visible');
         if(there_is_expanded.length > 0) {
-          there_is_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
           there_is_expanded.hide('blind', {}, 500, function() {
             there_is_expanded.hide();
           });
@@ -318,20 +316,21 @@ Initializes reports forms for both lessons and media elements.
 @for GeneralDocumentReady
 **/
 function reportsDocumentReady() {
-  $body.on('mouseenter', '._reportable_lesson_icon', function() {
-    $(this).find('.icon-content').removeClass('report').addClass('report_light');
+  $body.on('mouseenter', '.report-lesson', function() {
+    $(this).find('.report').addClass('encendido');
   });
-  $body.on('mouseleave', '._reportable_lesson_icon', function() {
-    $(this).find('.icon-content').addClass('report').removeClass('report_light');
+  $body.on('mouseleave', '.report-lesson', function() {
+    $(this).find('.report').removeClass('encendido');
   });
-  $body.on('click', '._reportable_lesson_icon', function() {
-    var obj = $(this).next();
-    if(!obj.is(':visible')) {
-      $(this).find('.icon-content').removeClass('report').addClass('report_light report_selected');
-      obj.show('fade', {}, 500);
+  $body.on('click', '.report-lesson', function() { // TODO formms
+    var button = $(this).find('.report');
+    var form = $(this).next();
+    if(!button.hasClass('encendido')) {
+      button.addClass('encendido');
+      form.show();
     } else {
-      $(this).find('.icon-content').addClass('report').removeClass('report_light report_selected');
-      obj.hide();
+      button.removeClass('encendido');
+      form.hide();
     }
     return false;
   });
