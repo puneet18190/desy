@@ -443,16 +443,16 @@ function showMediaElementInfoPopUp(media_element_id) {
         },
         close: function() {
           resetMediaElementChangeInfo(media_element_id);
-          $(this).find('._report_form_content').hide();
-          $(this).find('._report_media_element_click').removeClass('report_light');
-          var player_container = $('#dialog-media-element-' + media_element_id + ' ._instance_of_player');
-          if(player_container.length > 0) {
-            stopMedia('#dialog-media-element-' + media_element_id + ' ' + player_container.data('media-type'));
+          var container = $('#dialog-media-element-' + media_element_id);
+          var player = container.find('.preview .content ._instance_of_player');
+          if(player.length > 0) {
+            stopMedia('#dialog-media-element-' + media_element_id + ' ' + player.data('media-type'));
           }
-          $('#dialog-media-element-' + media_element_id + ' ._audio_preview_in_media_element_popup').show();
-          $('#dialog-media-element-' + media_element_id + ' ._change_info_container').hide();
-          var change_info_button = $('#dialog-media-element-' + media_element_id + ' ._change_info_to_pick');
-          change_info_button.addClass('change_info').removeClass('change_info_light');
+          container.find('.preview').show();
+          container.find('._report_form_content').hide();
+          container.find('.menu .report').removeClass('encendido');
+          container.find('.change-info').hide();
+          container.find('.menu .change-info').removeClass('encendido');
         }
       });
     }

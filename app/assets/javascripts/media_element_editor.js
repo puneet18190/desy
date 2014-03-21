@@ -239,8 +239,8 @@ Resets the media element loading form; used in {{#crossLink "DialogsWithForm/sho
 @for MediaElementEditorForms
 @param media_element_id {Number} id of the element in the database, used to extract the HTML id
 **/
-function resetMediaElementChangeInfo(media_element_id) {
-  var container = $('#dialog-media-element-' + media_element_id + ' ._change_info_container');
+function resetMediaElementChangeInfo(media_element_id) { // TODO formms
+  var container = $('#dialog-media-element-' + media_element_id + ' .stocazzo');
   container.find('#title').val(container.data('title'));
   container.find('#description').val(container.data('description'));
   container.find('.form_error').removeClass('form_error');

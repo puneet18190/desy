@@ -142,20 +142,20 @@ Initializer for functionalities which are common to sections containing media el
 @method commonMediaElementsDocumentReady
 @for GeneralDocumentReady
 **/
-function commonMediaElementsDocumentReady() {
-  $body.on('keydown', '._change_info_container .description, ._change_info_container .title', function() {
+function commonMediaElementsDocumentReady() { // TODO formms
+  $body.on('keydown', '._stocazzo .description, ._stocazzo .title', function() {
     $(this).removeClass('form_error');
   });
-  $body.on('keydown', '._change_info_container ._tags_container input', function() {
+  $body.on('keydown', '._stocazzo ._tags_container input', function() {
     $(this).parent().removeClass('form_error');
   });
   $body.on('click', '._close_media_element_preview_popup', function() {
     var param = $(this).data('param');
     closePopUp('dialog-media-element-' + param);
   });
-  $body.on('click', '._change_info_container ._cancel, ._change_info_to_pick.change_info_light', function() {
+  $body.on('click', '._stocazzo ._cancel, ._change_info_to_pick.change_info_light', function() {
     $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').show();
-    $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').hide('fade', {}, 500, function() {
+    $('#dialog-media-element-' + $(this).data('param') + ' ._stocazzo').hide('fade', {}, 500, function() {
       var icon = $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_to_pick');
       icon.addClass('change_info');
       icon.removeClass('change_info_light');
@@ -164,7 +164,7 @@ function commonMediaElementsDocumentReady() {
   });
   $body.on('click', '._change_info_to_pick.change_info', function() {
     var media_element_id = $(this).data('param');
-    $('#dialog-media-element-' + media_element_id + ' ._change_info_container').show('fade', {}, 500);
+    $('#dialog-media-element-' + media_element_id + ' ._stocazzo').show('fade', {}, 500);
     $(this).removeClass('change_info');
     $(this).addClass('change_info_light');
     $('#dialog-media-element-' + media_element_id + ' ._audio_preview_in_media_element_popup').hide();

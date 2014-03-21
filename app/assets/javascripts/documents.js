@@ -53,7 +53,7 @@ function documentsDocumentReadyButtons() {
           container.find('._doc_description_placeholder').val(container.data('description-placeholder'));
           container.find('.form_error').removeClass('form_error');
           container.find('._error_messages').html('');
-          $('#dialog-document-' + document_id + ' ._document_change_info_container').hide();
+          $('#dialog-document-' + document_id + ' .stocazzo').hide(); // TODO formms
           var change_info_button = $('#dialog-document-' + document_id + ' ._document_change_info_to_pick');
           change_info_button.addClass('change_info').removeClass('change_info_light');
         }
@@ -109,7 +109,7 @@ function documentsDocumentReadyGeneral() {
     $('#search_documents_hidden_order').val(order);
     $.get('/documents?word=' + word + '&word_placeholder=' + word_placeholder + '&order=' + order);
   });
-  $body.on('focus', '._document_change_info_container ._doc_description', function() {
+  $body.on('focus', '.stocazzo ._doc_description', function() { // TODO formms
     var placeholder = $('#dialog-document-' + $(this).data('document-id') + ' ._doc_description_placeholder');
     if(placeholder.val() != '') {
       placeholder.val('');
@@ -120,9 +120,9 @@ function documentsDocumentReadyGeneral() {
     var document_id = $(this).data('document-id');
     closePopUp('dialog-document-' + document_id);
   });
-  $body.on('click', '._document_change_info_container ._cancel, ._document_change_info_to_pick.change_info_light', function() {
+  $body.on('click', '.stocazzo ._cancel, ._document_change_info_to_pick.change_info_light', function() { // TODO formms
     var document_id = $(this).data('document-id');
-    $('#dialog-document-' + document_id + ' ._document_change_info_container').hide('fade', {}, 500, function() {
+    $('#dialog-document-' + document_id + ' .stocazzo').hide('fade', {}, 500, function() { // TODO formms
       var icon = $('#dialog-document-' + document_id + ' ._document_change_info_to_pick');
       icon.addClass('change_info');
       icon.removeClass('change_info_light');
@@ -136,11 +136,11 @@ function documentsDocumentReadyGeneral() {
   });
   $body.on('click', '._document_change_info_to_pick.change_info', function() {
     var document_id = $(this).data('document-id');
-    $('#dialog-document-' + document_id + ' ._document_change_info_container').show('fade', {}, 500);
+    $('#dialog-document-' + document_id + ' .stocazzo').show('fade', {}, 500); // TODO formms
     $(this).removeClass('change_info');
     $(this).addClass('change_info_light');
   });
-  $body.on('keydown', '._document_change_info_container ._doc_title, ._document_change_info_container ._doc_description', function() {
+  $body.on('keydown', '.stocazzo ._doc_title, .stocazzo ._doc_description', function() { // TODO formms
     $(this).removeClass('form_error');
   });
   $('#order_documents option[selected]').first().attr('selected', 'selected');

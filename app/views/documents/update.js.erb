@@ -2,7 +2,7 @@
   
   <% if @errors %>
     $('.form_error').removeClass('form_error');
-    $('#dialog-document-<%= @document_id %> ._document_change_info_container ._error_messages').html('<%= j standard_form_error_messages(@errors) %>');
+    $('#dialog-document-<%= @document_id %> .stocazzo ._error_messages').html('<%= j standard_form_error_messages(@errors) %>'); // TODO formms
     <% @error_fields.each do |err| %>
       <% if err.to_s == 'title' %>
         $('#dialog-document-<%= @document_id %> ._doc_title').addClass('form_error');
