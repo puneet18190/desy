@@ -137,8 +137,7 @@ class ImageEditorController < ApplicationController
       new_image.save_tags = true
       if !new_image.save
         @error_ids = 'new'
-        @errors = convert_item_error_messages(new_image.errors)
-        @error_fields = new_image.errors.messages.keys
+        @errors = convert_media_element_error_messages(new_image.errors)
       end
     else
       @redirect = true
@@ -169,8 +168,7 @@ class ImageEditorController < ApplicationController
       @image.save_tags = true
       if !@image.save
         @error_ids = 'update'
-        @errors = convert_item_error_messages(@image.errors)
-        @error_fields = @image.errors.messages.keys
+        @errors = convert_media_element_error_messages(@image.errors)
       else
         MediaElementsSlide.where(:media_element_id => @image.id).each do |mes|
           mes.alignment = 0
