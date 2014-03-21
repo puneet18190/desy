@@ -179,6 +179,12 @@ function commonMediaElementsDocumentReady() {
     var container = $(this).parents('.dialogMediaElement');
     container.find('form').submit();
   });
+  $body.on('click', '.dialogMediaElement .wrapper .change-info .errors_layer', function() {
+    var myself = $(this);
+    var container = myself.parents('.dialogMediaElement');
+    myself.hide();
+    container.find(myself.data('selector')).focus();
+  });
   $body.on('mouseenter', '.boxViewCompactMediaElement', function() {
     var item = $(this);
     item.data('loading-mini-thumb', true);

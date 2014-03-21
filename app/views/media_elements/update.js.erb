@@ -1,15 +1,7 @@
 <% if @ok %>
   
   <% if @errors %>
-    $('.form_error').removeClass('form_error');
-    $('#dialog-media-element-<%= @media_element_id %> .stocazzo ._error_messages').html('<%= j stocazzo(@errors) %>'); // TODO formms
-    <% @error_fields.each do |err| %>
-      <% if err.to_s == 'tags' %>
-        $('#dialog-media-element-<%= @media_element_id %> ._tags_container').addClass('form_error');
-      <% else %>
-        $('#dialog-media-element-<%= @media_element_id %> .<%= err %>').addClass('form_error');
-      <% end %>
-    <% end %>
+    uploadDone('#dialog-media-element-<%= @media_element.id %>', <%= @errors.to_json.html_safe %>);
   <% else %>
     <% used_in_private_lessons = @media_element.media_elements_slides.any? %>
     closePopUp("dialog-media-element-<%= @media_element_id %>");
