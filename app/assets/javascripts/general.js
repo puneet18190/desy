@@ -335,16 +335,15 @@ function reportsDocumentReady() {
     }
     return false;
   });
-  $body.on('click', '.stocazzo', function() { // TODO formms
-    var obj = $(this).next();
-    if(!obj.is(':visible')) {
-      $(this).removeClass('report');
-      $(this).addClass('report_light');
-      obj.show('fade', {}, 500);
+  $body.on('click', '.dialogMediaElement .menu .report', function() {
+    var button = $(this);
+    var form = button.next();
+    if(!button.hasClass('encendido')) {
+      button.addClass('encendido');
+      form.show();
     } else {
-      $(this).removeClass('report_light');
-      $(this).addClass('report');
-      obj.hide();
+      button.removeClass('encendido');
+      form.hide();
     }
     return false;
   });
@@ -453,7 +452,7 @@ function sectionNotificationsDocumentReady() {
       }
     }
     if(my_report.length > 0 && $(e.target).parents('#' + my_report.attr('id')).length == 0) {
-      my_report.parent().find('.report_light, ._reportable_lesson_icon').click();
+      my_report.parent().find('.report').click();
     }
   });
   $('#which_item_to_search option[selected]').first().attr('selected', 'selected');
