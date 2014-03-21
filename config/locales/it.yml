@@ -688,15 +688,12 @@ it:
       document_blank: "Scegliere un allegato"
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       fill_all_the_fields_or_too_long: "Compila tutti i campi senza superare la lunghezza massima"
       # The user didn't write the minimum amount of tags
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       tags_are_not_enough: "Numero dei tags (etichette) non sufficiente"
       # The user inserted too many tags
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       tags_too_many: "Hai inserito troppe tags"
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb

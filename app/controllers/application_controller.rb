@@ -247,6 +247,7 @@ class ApplicationController < ActionController::Base
   # Used for errors of a lesson.
   def convert_lesson_error_messages(errors)
     # TODO formms
+    t('forms.error_captions.subject_missing_in_lesson')
   end
   
   # Used for errors of a media element.
