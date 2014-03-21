@@ -323,7 +323,7 @@ function reportsDocumentReady() {
     $(this).removeClass('encendido');
   });
   $body.on('click', '._lesson_expanded .report', function() {
-    var button = $(this).find('.report');
+    var button = $(this).find('.icon');
     var form = $(this).next();
     if(!button.hasClass('encendido')) {
       button.addClass('encendido');
