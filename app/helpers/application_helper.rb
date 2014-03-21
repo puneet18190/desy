@@ -15,13 +15,6 @@ module ApplicationHelper
     "<option value=\"\">#{t('forms.placeholders.subject_id')}</option>#{options_from_collection_for_select(subjects, 'id', 'description')}".html_safe
   end
   
-  # Standard form error message, it attaches the image to the message and includes it in an error frame. Used after ApplicationController#convert_item_error_messages and similar methods.
-  def standard_form_error_messages(errors, color = 'white')
-    msg = "<img src='/assets/puntoesclamativo.png' style='margin: 0 5px -3px 0' /><span class=\"lower\" style=\"color:#{h color}\">"
-    msg << errors.map{ |e| h e }.join('; ')
-    return "#{msg}</span>".html_safe
-  end
-  
   # Extracts the time from seconds.
   def seconds_to_time(seconds)
     Time.at(seconds).utc.strftime(seconds >= 3600 ? '%T' : '%M:%S')

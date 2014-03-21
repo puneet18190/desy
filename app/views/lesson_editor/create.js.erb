@@ -1,6 +1,6 @@
 <% if @errors %>
   $('.form_error').removeClass('form_error');
-  $('#slides._new ._error_messages').html('<%= j standard_form_error_messages(@errors) %>');
+  $('#slides._new ._error_messages').html('<%= j stocazzo(@errors) %>'); // TODO formms
   <% @error_fields.each do |err| %>
     <% if err.to_s == 'tags' %>
       $('#slides._new ._tags_container').addClass('form_error');

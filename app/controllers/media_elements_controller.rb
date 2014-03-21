@@ -125,7 +125,7 @@ class MediaElementsController < ApplicationController
     record.user_id = current_user.id
     record.save_tags = true
     record.valid?
-    @errors = convert_media_element_uploader_messages record.errors
+    @errors = convert_media_element_error_messages record.errors
     @errors[:media] = t('forms.error_captions.media_file_too_large').downcase
   end
   
@@ -158,7 +158,7 @@ class MediaElementsController < ApplicationController
       if record.errors.added? :media, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
-      @errors = convert_media_element_uploader_messages record.errors
+      @errors = convert_media_element_error_messages record.errors
     end
     render :layout => false
   end
@@ -286,8 +286,7 @@ class MediaElementsController < ApplicationController
       @media_element.tags = params[:tags_value]
       @media_element.save_tags = true
       if !@media_element.save
-        @errors = convert_item_error_messages @media_element.errors
-        @error_fields = @media_element.errors.messages.keys
+        @errors = convert_media_element_error_messages @media_element.errors
       else
         @media_element.set_status current_user.id
       end

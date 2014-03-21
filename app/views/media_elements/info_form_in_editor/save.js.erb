@@ -9,7 +9,7 @@
       closePopUp('dialog-confirm');
     } catch(err) {}
     $('.form_error').removeClass('form_error');
-    $('#form_info_<%= @error_ids %>_media_element_in_editor .error_messages').html('<%= j standard_form_error_messages(@errors) %>');
+    $('#form_info_<%= @error_ids %>_media_element_in_editor .error_messages').html('<%= j stocazzo(@errors) %>'); // TODO formms
     <% @error_fields.each do |err| %>
       <% if err.to_s == 'tags' %>
         $('#form_info_<%= @error_ids %>_media_element_in_editor ._tags_container').addClass('form_error');

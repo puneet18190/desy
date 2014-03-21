@@ -90,7 +90,7 @@ class DocumentsController < ApplicationController
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
     record.user_id = current_user.id
     record.valid?
-    @errors = convert_document_uploader_messages record.errors
+    @errors = convert_document_error_messages record.errors
     @errors[:media] = t('documents.upload_form.attachment_too_large').downcase
   end
   
@@ -111,7 +111,7 @@ class DocumentsController < ApplicationController
       if record.errors.added? :attachment, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
-      @errors = convert_document_uploader_messages record.errors
+      @errors = convert_document_error_messages record.errors
     end
     render :layout => false
   end
