@@ -1200,7 +1200,154 @@
       width: 720px;
       height: 355px;
       padding: 0;
-      background-color: blue;
+      
+      form {
+        
+        width: 720px;
+        height: 355px;
+        padding: 0;
+        
+        .errors_layer {
+          
+          &.description {
+            
+            width: 323px;
+            height: 141px;
+            top: 163px;
+            left: 3px;
+            
+          }
+          
+          &.tags {
+            
+            width: 323px;
+            height: 196px;
+            top: 108px;
+            left: 348px;
+            
+          }
+          
+          &.title {
+            
+            width: 323px;
+            top: 108px;
+            left: 3px;
+            
+          }
+          
+        }
+        
+        .part1 {
+          
+          height: 80px;
+          margin-bottom: 20px;
+          
+          .attachment {
+            
+            width: 360px;
+            height: 80px;
+            /* TODO formms */
+            
+          }
+          
+          .title_and_subtitle {
+            
+            width: 355px;
+            height: 80px;
+            padding-right: 5px;
+            
+            h1 {
+              
+              @include nunito(24px);
+              margin-bottom: 10px;
+              
+            }
+            
+            p {
+              
+              @include arial-with-line-height(13px, 20px);
+              padding: 0;
+              
+            }
+            
+          }
+          
+        }
+        
+        .part2 {
+          
+          height: 202px;
+          margin-bottom: 20px;
+          
+          .title_and_description {
+            
+            width: 360px;
+            
+            .title {
+              
+              width: 323px;
+              margin: 0 0 10px 0;
+              
+            }
+            
+            .description {
+              
+              width: 323px;
+              height: 115px;
+              
+            }
+            
+          }
+          
+          .tags_loader {
+            
+            width: 360px;
+            
+            ._tags_container {
+              
+              width: 343px;
+              height: 190px;
+              
+              &.form_error {
+                
+                height: 187px;
+                
+              }
+              
+              .tags {
+                
+                width: 323px;
+                
+              }
+              
+            }
+            
+          }
+          
+        }
+        
+        .part3 {
+          
+          height: 33px;
+          
+          .close, .submit {
+            
+            @include nunito(18px);
+            width: 120px;
+            padding: 4px 0 0 0;
+            height: 29px;
+            
+          }
+          
+          .close {
+            
+            margin-right: 20px;
+            
+          }
+          
+        }
+        
+      }
       
     }
     
