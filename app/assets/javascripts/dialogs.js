@@ -451,7 +451,7 @@ function showMediaElementInfoPopUp(media_element_id) {
           container.find('.preview').show();
           container.find('._report_form_content').hide();
           container.find('.menu .report').removeClass('encendido');
-          container.find('.change-info').hide();
+          container.find('.wrapper .change-info').hide();
           container.find('.menu .change-info').removeClass('encendido');
         }
       });
