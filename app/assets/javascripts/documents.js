@@ -35,7 +35,8 @@ function documentsDocumentReadyButtons() {
         modal: true,
         resizable: false,
         draggable: false,
-        width: 586,
+        width: 760,
+        height: 440,
         show: 'fade',
         hide: {effect: 'fade'},
         open: function() {
