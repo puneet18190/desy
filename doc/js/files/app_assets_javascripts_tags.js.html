@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -244,8 +242,6 @@
                 <li><a href="../modules/dashboard.html">dashboard</a></li>
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
-            
-                <li><a href="../modules/documents.html">documents</a></li>
             
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
@@ -423,10 +419,11 @@ Disables the tag input if the container is full.
 function disableTagsInputTooHigh(container) {
   var line = 1;
   var curr_width = 12;
-  container.find(&#x27;span&#x27;).each(function() {
-    curr_width += $(this).outerWidth(true);
+  container.find(&#x27;span a.remove&#x27;).each(function() {
+    var mywidth = $(this).parent().outerWidth(true)
+    curr_width += mywidth;
     if(curr_width &gt; container.data(&#x27;max-width&#x27;)) {
-      curr_width = $(this).outerWidth(true) + 12;
+      curr_width = mywidth + 12;
       line += 1;
     }
   });

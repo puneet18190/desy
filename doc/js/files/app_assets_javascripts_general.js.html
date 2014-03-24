@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -244,8 +242,6 @@
                 <li><a href="../modules/dashboard.html">dashboard</a></li>
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
-            
-                <li><a href="../modules/documents.html">documents</a></li>
             
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
@@ -495,6 +491,16 @@ function commonMediaElementsDocumentReady() {
     container.find(&#x27;.menu .change-info&#x27;).removeClass(&#x27;encendido&#x27;);
     resetMediaElementChangeInfo(form);
   });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogMediaElement .wrapper .change-info .part3 .submit&#x27;, function() {
+    var container = $(this).parents(&#x27;.dialogMediaElement&#x27;);
+    container.find(&#x27;form&#x27;).submit();
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogMediaElement .wrapper .change-info .errors_layer&#x27;, function() {
+    var myself = $(this);
+    var container = myself.parents(&#x27;.dialogMediaElement&#x27;);
+    myself.hide();
+    container.find(myself.data(&#x27;selector&#x27;)).focus();
+  });
   $body.on(&#x27;mouseenter&#x27;, &#x27;.boxViewCompactMediaElement&#x27;, function() {
     var item = $(this);
     item.data(&#x27;loading-mini-thumb&#x27;, true);
@@ -526,7 +532,6 @@ function commonLessonsDocumentReady() {
       var my_id = $(this).parent().attr(&#x27;id&#x27;);
       var my_expanded = $(&#x27;#&#x27; + my_id + &#x27; ._lesson_expanded&#x27;);
       if(my_expanded.is(&#x27;:visible&#x27;)) {
-        my_expanded.find(&#x27;.tooltipForm:visible&#x27;).parent().find(&#x27;._reportable_lesson_icon&#x27;).click();
         my_expanded.hide(&#x27;blind&#x27;, {}, 500, function() {
           my_expanded.hide();
         });
@@ -542,7 +547,6 @@ function commonLessonsDocumentReady() {
       } else {
         var there_is_expanded = $(&#x27;._lesson_expanded:visible&#x27;);
         if(there_is_expanded.length &gt; 0) {
-          there_is_expanded.find(&#x27;.tooltipForm:visible&#x27;).parent().find(&#x27;._reportable_lesson_icon&#x27;).click();
           there_is_expanded.hide(&#x27;blind&#x27;, {}, 500, function() {
             there_is_expanded.hide();
           });
@@ -638,33 +642,33 @@ Initializes reports forms for both lessons and media elements.
 @for GeneralDocumentReady
 **/
 function reportsDocumentReady() {
-  $body.on(&#x27;mouseenter&#x27;, &#x27;._reportable_lesson_icon&#x27;, function() {
-    $(this).find(&#x27;.icon-content&#x27;).removeClass(&#x27;report&#x27;).addClass(&#x27;report_light&#x27;);
+  $body.on(&#x27;mouseenter&#x27;, &#x27;._lesson_expanded .report&#x27;, function() {
+    $(this).addClass(&#x27;encendido&#x27;);
   });
-  $body.on(&#x27;mouseleave&#x27;, &#x27;._reportable_lesson_icon&#x27;, function() {
-    $(this).find(&#x27;.icon-content&#x27;).addClass(&#x27;report&#x27;).removeClass(&#x27;report_light&#x27;);
+  $body.on(&#x27;mouseleave&#x27;, &#x27;._lesson_expanded .report&#x27;, function() {
+    $(this).removeClass(&#x27;encendido&#x27;);
   });
-  $body.on(&#x27;click&#x27;, &#x27;._reportable_lesson_icon&#x27;, function() {
-    var obj = $(this).next();
-    if(!obj.is(&#x27;:visible&#x27;)) {
-      $(this).find(&#x27;.icon-content&#x27;).removeClass(&#x27;report&#x27;).addClass(&#x27;report_light report_selected&#x27;);
-      obj.show(&#x27;fade&#x27;, {}, 500);
+  $body.on(&#x27;click&#x27;, &#x27;._lesson_expanded .report&#x27;, function() {
+    var button = $(this).find(&#x27;.icon&#x27;);
+    var form = $(this).next();
+    if(!button.hasClass(&#x27;encendido&#x27;)) {
+      button.addClass(&#x27;encendido&#x27;);
+      form.show();
     } else {
-      $(this).find(&#x27;.icon-content&#x27;).addClass(&#x27;report&#x27;).removeClass(&#x27;report_light report_selected&#x27;);
-      obj.hide();
+      button.removeClass(&#x27;encendido&#x27;);
+      form.hide();
     }
     return false;
   });
-  $body.on(&#x27;click&#x27;, &#x27;.stocazzo&#x27;, function() { // TODO formms
-    var obj = $(this).next();
-    if(!obj.is(&#x27;:visible&#x27;)) {
-      $(this).removeClass(&#x27;report&#x27;);
-      $(this).addClass(&#x27;report_light&#x27;);
-      obj.show(&#x27;fade&#x27;, {}, 500);
+  $body.on(&#x27;click&#x27;, &#x27;.dialogMediaElement .menu .report&#x27;, function() {
+    var button = $(this);
+    var form = button.next();
+    if(!button.hasClass(&#x27;encendido&#x27;)) {
+      button.addClass(&#x27;encendido&#x27;);
+      form.show();
     } else {
-      $(this).removeClass(&#x27;report_light&#x27;);
-      $(this).addClass(&#x27;report&#x27;);
-      obj.hide();
+      button.removeClass(&#x27;encendido&#x27;);
+      form.hide();
     }
     return false;
   });
@@ -674,6 +678,115 @@ function reportsDocumentReady() {
   });
   $body.on(&#x27;click&#x27;, &#x27;._report_form_content ._send&#x27;, function(e) {
     $(this).closest(&#x27;form&#x27;).submit();
+  });
+}
+
+/**
+Functionalities necessary only for the section &#x27;my documents&#x27;.
+@method sectionDocumentsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionDocumentsDocumentReady() {
+  $body.on(&#x27;click&#x27;, &#x27;#my_documents .buttons .preview&#x27;, function() {
+    showDocumentInfoPopUp($(this).data(&#x27;document-id&#x27;));
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#my_documents .buttons .destroy&#x27;, function() {
+    var current_url = $(&#x27;#info_container&#x27;).data(&#x27;currenturl&#x27;);
+    var document_id = $(this).data(&#x27;document-id&#x27;);
+    var captions = $captions;
+    var title = captions.data(&#x27;destroy-document-title&#x27;);
+    var confirm = captions.data(&#x27;destroy-document-confirm&#x27;);
+    var yes = captions.data(&#x27;destroy-document-yes&#x27;);
+    var no = captions.data(&#x27;destroy-document-no&#x27;);
+    if($(this).data(&#x27;used-in-your-lessons&#x27;)) {
+      confirm = captions.data(&#x27;destroy-document-confirm-bis&#x27;);
+    }
+    showConfirmPopUp(title, confirm, yes, no, function() {
+      $(&#x27;#dialog-confirm&#x27;).hide();
+      var redirect_url = addDeleteItemToCurrentUrl(current_url, &#x27;document_&#x27; + document_id);
+      $.ajax({
+        type: &#x27;delete&#x27;,
+        dataType: &#x27;json&#x27;,
+        url: &#x27;/documents/&#x27; + document_id,
+        success: function(data) {
+          if(data.ok) {
+            $.ajax({
+              type: &#x27;get&#x27;,
+              url: redirect_url
+            });
+          } else {
+            showErrorPopUp(data.msg);
+          }
+        }
+      });
+      closePopUp(&#x27;dialog-confirm&#x27;);
+    }, function() {
+      closePopUp(&#x27;dialog-confirm&#x27;);
+    });
+  });
+  $body.on(&#x27;change&#x27;, &#x27;#order_documents&#x27;, function() {
+    var order = $(&#x27;#order_documents option:selected&#x27;).val();
+    var word = $(&#x27;#search_documents ._word_input&#x27;).val();
+    var word_placeholder = $(&#x27;#search_documents_placeholder&#x27;).val();
+    $(&#x27;#search_documents_hidden_order&#x27;).val(order);
+    $.get(&#x27;/documents?word=&#x27; + word + &#x27;&amp;word_placeholder=&#x27; + word_placeholder + &#x27;&amp;order=&#x27; + order);
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;.dialogDocument .wrapper .change-info .part2 .title, .dialogDocument .wrapper .change-info .part2 .description&#x27;, function() {
+    $(this).removeClass(&#x27;form_error&#x27;);
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogDocument .menu .close&#x27;, function() {
+    closePopUp($(this).parents(&#x27;.dialogDocument&#x27;).attr(&#x27;id&#x27;));
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogDocument .menu .change-info&#x27;, function() {
+    var container = $(this).parents(&#x27;.dialogDocument&#x27;);
+    var form = container.find(&#x27;.wrapper .change-info&#x27;);
+    if($(this).hasClass(&#x27;encendido&#x27;)) {
+      form.hide();
+      container.find(&#x27;.preview&#x27;).show();
+      resetDocumentChangeInfo(form);
+      $(this).removeClass(&#x27;encendido&#x27;);
+    } else {
+      container.find(&#x27;.preview&#x27;).hide();
+      form.show();
+      $(this).addClass(&#x27;encendido&#x27;);
+      disableTagsInputTooHigh(form.find(&#x27;.part2 ._tags_container&#x27;));
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogDocument .wrapper .change-info .part3 .close&#x27;, function() {
+    var container = $(this).parents(&#x27;.dialogDocument&#x27;);
+    var form = container.find(&#x27;.wrapper .change-info&#x27;);
+    form.hide();
+    container.find(&#x27;.preview&#x27;).show();
+    container.find(&#x27;.menu .change-info&#x27;).removeClass(&#x27;encendido&#x27;);
+    resetDocumentChangeInfo(form);
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogDocument .wrapper .change-info .part3 .submit&#x27;, function() {
+    var container = $(this).parents(&#x27;.dialogDocument&#x27;);
+    container.find(&#x27;form&#x27;).submit();
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogDocument .wrapper .change-info .errors_layer&#x27;, function() {
+    var myself = $(this);
+    var container = myself.parents(&#x27;.dialogDocument&#x27;);
+    myself.hide();
+    container.find(myself.data(&#x27;selector&#x27;)).focus();
+  });
+  $(&#x27;#order_documents option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+  $(&#x27;#order_documents&#x27;).selectbox();
+  $body.on(&#x27;keydown&#x27;, &#x27;#search_documents ._word_input&#x27;, function(e) {
+    if(e.which == 13) {
+      e.preventDefault();
+    } else if(e.which != 39 &amp;&amp; e.which != 37) {
+      var letters = $(this).data(&#x27;letters&#x27;);
+      letters += 1;
+      $(this).data(&#x27;letters&#x27;, letters);
+      $(&#x27;#search_documents ._loader&#x27;).show();
+      setTimeout(function() {
+        if($(&#x27;#search_documents ._word_input&#x27;).data(&#x27;letters&#x27;) == letters) {
+          $(&#x27;#search_documents ._loader&#x27;).hide();
+          $(&#x27;#search_documents&#x27;).submit();
+        }
+      }, 1500);
+    }
   });
 }
 
@@ -773,7 +886,7 @@ function sectionNotificationsDocumentReady() {
       }
     }
     if(my_report.length &gt; 0 &amp;&amp; $(e.target).parents(&#x27;#&#x27; + my_report.attr(&#x27;id&#x27;)).length == 0) {
-      my_report.parent().find(&#x27;.report_light, ._reportable_lesson_icon&#x27;).click();
+      my_report.parent().find(&#x27;.report&#x27;).click();
     }
   });
   $(&#x27;#which_item_to_search option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);

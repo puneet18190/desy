@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -244,8 +242,6 @@
                 <li><a href="../modules/dashboard.html">dashboard</a></li>
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
-            
-                <li><a href="../modules/documents.html">documents</a></li>
             
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
@@ -721,6 +717,49 @@ function showLoadPopUp(type) {
           obj.find(&#x27;.errors_layer&#x27;).hide();
           obj.find(&#x27;.part1 .attachment .file&#x27;).val(&#x27;&#x27;);
         }, 100);
+      }
+    });
+  }
+}
+
+/**
+Dialog containing the document general information. This dialog contains also the form to change title and description (see the method {{#crossLink &quot;MediaElementEditorForms/resetDocumentChangeInfo:method&quot;}}{{/crossLink}}).
+@method showDocumentInfoPopUp
+@for DialogsWithForm
+@param document_id {Number} id in the database of the document
+**/
+function showDocumentInfoPopUp(document_id) { // TODO formms
+  var obj = $(&#x27;#dialog-document-&#x27; + document_id);
+  if(obj.data(&#x27;dialog&#x27;)) {
+    obj.dialog(&#x27;open&#x27;);
+  } else {
+    obj.show();
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      draggable: false,
+      width: 760,
+      height: 440,
+      show: &#x27;fade&#x27;,
+      hide: {effect: &#x27;fade&#x27;},
+      open: function() {
+        customOverlayClose();
+        var word = $(&#x27;#search_documents ._word_input&#x27;).val()
+        $(&#x27;#dialog-document-&#x27; + document_id + &#x27; .hidden_word&#x27;).val(word);
+      },
+      beforeClose: function() {
+        removeCustomOverlayClose();
+      },
+      close: function() {
+        var container = $(&#x27;#dialog-document-&#x27; + document_id);
+        resetDocumentChangeInfo(); // TODO formms eliminare robaccia e inficcarla qui dentro
+        container.find(&#x27;.stocazzo&#x27;).val(container.data(&#x27;title&#x27;));
+        container.find(&#x27;.stocazzo&#x27;).val(container.data(&#x27;description&#x27;));
+        container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+        container.find(&#x27;._error_messages&#x27;).html(&#x27;&#x27;);
+        $(&#x27;#dialog-document-&#x27; + document_id + &#x27; .stocazzo&#x27;).hide();
+        var change_info_button = $(&#x27;#dialog-document-&#x27; + document_id + &#x27; .stocazzo&#x27;);
+        change_info_button.addClass(&#x27;change_info&#x27;).removeClass(&#x27;change_info_light&#x27;);
       }
     });
   }

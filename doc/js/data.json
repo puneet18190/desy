@@ -105,17 +105,6 @@
             },
             "namespaces": {}
         },
-        "app/assets/javascripts/documents.js": {
-            "name": "app/assets/javascripts/documents.js",
-            "modules": {
-                "documents": 1
-            },
-            "classes": {},
-            "fors": {
-                "DocumentsDocumentReady": 1
-            },
-            "namespaces": {}
-        },
         "app/assets/javascripts/galleries.js": {
             "name": "app/assets/javascripts/galleries.js",
             "modules": {
@@ -489,21 +478,6 @@
             "file": "app/assets/javascripts/dialogs.js",
             "line": 1,
             "description": "This module contains the javascript functions that use JQueryUi dialogs. Some of them are closed with a time delay (class {{#crossLink \"DialogsTimed\"}}{{/crossLink}}), other are closed with buttons by the user (class {{#crossLink \"DialogsConfirmation\"}}{{/crossLink}}), and other ones contain a form to be filled in by the user (class {{#crossLink \"DialogsWithForm\"}}{{/crossLink}})."
-        },
-        "documents": {
-            "name": "documents",
-            "submodules": {},
-            "classes": {
-                "DocumentsDocumentReady": 1
-            },
-            "fors": {
-                "DocumentsDocumentReady": 1
-            },
-            "namespaces": {},
-            "tag": "module",
-            "file": "app/assets/javascripts/documents.js",
-            "line": 1,
-            "description": "Javascript  functions to be used in the section 'documents'."
         },
         "galleries": {
             "name": "galleries",
@@ -1158,17 +1132,6 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "dialogs",
-            "namespace": ""
-        },
-        "DocumentsDocumentReady": {
-            "name": "DocumentsDocumentReady",
-            "shortname": "DocumentsDocumentReady",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "documents",
             "namespace": ""
         },
         "GalleriesAccessories": {
@@ -3439,6 +3402,22 @@
         {
             "file": "app/assets/javascripts/dialogs.js",
             "line": 409,
+            "description": "Dialog containing the document general information. This dialog contains also the form to change title and description (see the method {{#crossLink \"MediaElementEditorForms/resetDocumentChangeInfo:method\"}}{{/crossLink}}).",
+            "itemtype": "method",
+            "name": "showDocumentInfoPopUp",
+            "params": [
+                {
+                    "name": "document_id",
+                    "description": "id in the database of the document",
+                    "type": "Number"
+                }
+            ],
+            "class": "DialogsWithForm",
+            "module": "dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/dialogs.js",
+            "line": 452,
             "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "showMediaElementInfoPopUp",
@@ -3454,7 +3433,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 462,
+            "line": 505,
             "description": "Dialog containing the form to send the public link of a lesson. Used in {{#crossLink \"VirtualClassroomSendLink\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showSendLessonLinkPopUp",
@@ -3470,7 +3449,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 506,
+            "line": 549,
             "description": "Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink \"VirtualClassroomMultipleLoading\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showVirtualClassroomQuickSelectPopUp",
@@ -3483,42 +3462,6 @@
             ],
             "class": "DialogsWithForm",
             "module": "dialogs"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 10,
-            "description": "Initializer for documents functionality.",
-            "itemtype": "method",
-            "name": "documentsDocumentReady",
-            "class": "DocumentsDocumentReady",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 21,
-            "description": "Initializer for documents functionality (buttons javascripts).",
-            "itemtype": "method",
-            "name": "documentsDocumentReadyButtons",
-            "class": "DocumentsDocumentReady",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 99,
-            "description": "Initializer for documents functionality (general javascripts).",
-            "itemtype": "method",
-            "name": "documentsDocumentReadyGeneral",
-            "class": "DocumentsDocumentReady",
-            "module": "documents"
-        },
-        {
-            "file": "app/assets/javascripts/documents.js",
-            "line": 150,
-            "description": "Initializer for documents functionality (search and placeholders javascripts).",
-            "itemtype": "method",
-            "name": "documentsDocumentReadySearch",
-            "class": "DocumentsDocumentReady",
-            "module": "documents"
         },
         {
             "file": "app/assets/javascripts/galleries.js",
@@ -3747,7 +3690,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 196,
+            "line": 206,
             "description": "Initializer for functionalities which are common to sections containing lessons.",
             "itemtype": "method",
             "name": "commonLessonsDocumentReady",
@@ -3756,7 +3699,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 247,
+            "line": 255,
             "description": "Initializer for global functionalities, used throughout the application.",
             "itemtype": "method",
             "name": "globalDocumentReady",
@@ -3765,7 +3708,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 282,
+            "line": 290,
             "description": "Initializer for locations automatic filling.",
             "itemtype": "method",
             "name": "locationsDocumentReady",
@@ -3774,7 +3717,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 315,
+            "line": 323,
             "description": "Initializes reports forms for both lessons and media elements.",
             "itemtype": "method",
             "name": "reportsDocumentReady",
@@ -3783,7 +3726,16 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 360,
+            "line": 368,
+            "description": "Functionalities necessary only for the section 'my documents'.",
+            "itemtype": "method",
+            "name": "sectionDocumentsDocumentReady",
+            "class": "GeneralDocumentReady",
+            "module": "general"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 477,
             "description": "Functionalities necessary only for the section 'my lessons'.",
             "itemtype": "method",
             "name": "sectionLessonsDocumentReady",
@@ -3792,7 +3744,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 376,
+            "line": 493,
             "description": "Functionalities necessary only for the section 'my media elements'.",
             "itemtype": "method",
             "name": "sectionMediaElementsDocumentReady",
@@ -3801,7 +3753,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 429,
+            "line": 546,
             "description": "Functionalities necessary only for the sections containing notifications.",
             "itemtype": "method",
             "name": "sectionNotificationsDocumentReady",
@@ -3810,7 +3762,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 463,
+            "line": 580,
             "description": "Functionalities necessary only for the section 'search'.",
             "itemtype": "method",
             "name": "sectionSearchDocumentReady",
@@ -3819,7 +3771,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 488,
+            "line": 605,
             "description": "Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink \"BrowserSupportMain/browserSupportMain:method\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "browserSupport",
@@ -3828,7 +3780,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 496,
+            "line": 613,
             "description": "Hides the mini thumbnail of a compact media element.",
             "itemtype": "method",
             "name": "hideMiniThumbnailForMediaElementCompact",
@@ -3844,7 +3796,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 518,
+            "line": 635,
             "description": "Initializes global variables used throughout the javascripts.",
             "itemtype": "method",
             "name": "initializeGlobalVariables",
@@ -3853,7 +3805,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 534,
+            "line": 651,
             "description": "Shows a red error icon when somethings goes wrong. Widely used in {{#crossLinkModule \"lesson-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "redError",
@@ -3862,7 +3814,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 545,
+            "line": 662,
             "description": "Function to convert seconds into a time string of the kind <i>02:35</i>; used in {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}} and in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}.",
             "itemtype": "method",
             "name": "secondsToDateString",
@@ -3878,7 +3830,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 573,
+            "line": 690,
             "description": "Handles the errors inside standard forms.",
             "itemtype": "method",
             "name": "showFormErrors",
@@ -3899,7 +3851,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 600,
+            "line": 717,
             "description": "Shows the mini thumbnail of a compact media element.",
             "itemtype": "method",
             "name": "showMiniThumbnailForMediaElementCompact",
@@ -3915,7 +3867,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 643,
+            "line": 760,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3940,7 +3892,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 669,
+            "line": 786,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -5331,7 +5283,23 @@
         {
             "file": "app/assets/javascripts/media_element_editor.js",
             "line": 236,
-            "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showLoadPopUp:method\"}}{{/crossLink}}.",
+            "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showDocumentInfoPopUp:method\"}}{{/crossLink}}.",
+            "itemtype": "method",
+            "name": "resetDocumentChangeInfo",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "JQuery object of the form",
+                    "type": "Object"
+                }
+            ],
+            "class": "MediaElementEditorForms",
+            "module": "media-element-editor"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_editor.js",
+            "line": 246,
+            "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "resetMediaElementChangeInfo",
             "params": [
@@ -5346,7 +5314,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 257,
+            "line": 267,
             "description": "Resets the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method\"}}{{/crossLink}}, {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method\"}}{{/crossLink}} and {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "resetMediaElementEditorForms",
@@ -5355,7 +5323,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 297,
+            "line": 307,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>left</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollLeft",
@@ -5380,7 +5348,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 313,
+            "line": 323,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>right</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollRight",
@@ -5405,7 +5373,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 325,
+            "line": 335,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the absolute position to be assigned to <b>a div that must be aligned to the component</b> after having been moved to first position.",
             "itemtype": "method",
             "name": "getAbsolutePositionTimelineHorizontalScrollPane",
@@ -5440,7 +5408,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 347,
+            "line": 357,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: gets how many components are hidden to the left of the scroll pane.",
             "itemtype": "method",
             "name": "getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane",
@@ -5465,7 +5433,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 360,
+            "line": 370,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: exactly the same as {{#crossLink \"MediaElementEditorHorizontalTimelines/getAbsolutePositionTimelineHorizontalScrollPane:method\"}}{{/crossLink}}, but <b>it returns the position of the scroll pane</b> instead of the absolute pixels for an external div.",
             "itemtype": "method",
             "name": "getNormalizedPositionTimelineHorizontalScrollPane",
@@ -6213,7 +6181,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 118,
+            "line": 119,
             "description": "Generates a unique class for a given tag (containing underscores, and taking into consideration special characters).",
             "itemtype": "method",
             "name": "getUnivoqueClassForTag",
@@ -6233,7 +6201,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 133,
+            "line": 134,
             "description": "Removes a tag from the <b>hidden input</b>.",
             "itemtype": "method",
             "name": "removeFromTagsValue",
@@ -6254,7 +6222,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 150,
+            "line": 151,
             "description": "Initializer for search autocompĺete.",
             "itemtype": "method",
             "name": "initSearchTagsAutocomplete",
@@ -6275,7 +6243,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 184,
+            "line": 185,
             "description": "Initializer for tagging autocompĺete.",
             "itemtype": "method",
             "name": "initTagsAutocomplete",
@@ -6296,7 +6264,7 @@
         },
         {
             "file": "app/assets/javascripts/tags.js",
-            "line": 213,
+            "line": 214,
             "description": "Global document ready for tags functionality.",
             "itemtype": "method",
             "name": "tagsDocumentReady",
