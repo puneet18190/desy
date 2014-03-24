@@ -247,8 +247,8 @@ class ApplicationController < ActionController::Base
   # Used for errors of a lesson.
   def convert_lesson_error_messages(errors)
     resp = {}
-    max_title = t('language_parameters.lesson.length_title') # TODO traduzz
-    max_description = t('language_parameters.lesson.length_description') # TODO traduzz
+    max_title = t('language_parameters.lesson.length_title')
+    max_description = t('language_parameters.lesson.length_description')
     resp[:title] = t('forms.error_captions.title_too_long', :max => max_title).downcase if errors.added? :title, :too_long, {:count => max_title} # TODO traduzz
     resp[:title] = t('forms.error_captions.title_blank').downcase if errors.added? :title, :blank # TODO traduzz
     resp[:description] = t('forms.error_captions.description_too_long', :max => max_description).downcase if errors.added? :description, :too_long, {:count => max_description} # TODO traduzz
