@@ -435,15 +435,11 @@ function showDocumentInfoPopUp(document_id) { // TODO formms
         removeCustomOverlayClose();
       },
       close: function() {
-        var container = $('#dialog-document-' + document_id);
-        resetDocumentChangeInfo(); // TODO formms eliminare robaccia e inficcarla qui dentro
-        container.find('.stocazzo').val(container.data('title'));
-        container.find('.stocazzo').val(container.data('description'));
-        container.find('.form_error').removeClass('form_error');
-        container.find('._error_messages').html('');
-        $('#dialog-document-' + document_id + ' .stocazzo').hide();
-        var change_info_button = $('#dialog-document-' + document_id + ' .stocazzo');
-        change_info_button.addClass('change_info').removeClass('change_info_light');
+        var container = $('#dialog-media-element-' + media_element_id);
+        resetDocumentChangeInfo(container.find('.wrapper .change-info'));
+        container.find('.preview').show();
+        container.find('.wrapper .change-info').hide();
+        container.find('.menu .change-info').removeClass('encendido');
       }
     });
   }
