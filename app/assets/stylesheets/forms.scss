@@ -401,7 +401,7 @@
   
 }
 
-.loadInGallery, .globalLoader, .dialogMediaElement.triceratopo.camaleonte .wrapper .change-info, .dialogDocument.ornitorinco.echidna .wrapper .change-info {
+.lessonForm, .loadInGallery, .globalLoader, .dialogMediaElement.triceratopo.camaleonte .wrapper .change-info, .dialogDocument.ornitorinco.echidna .wrapper .change-info {
   
   display: none;
   width: 800px;
@@ -1714,6 +1714,224 @@
       .close {
         
         @include svg-circle-icon-handler($assets-icons-set-1_svg, 35px, 2, 5, 1, 0, 1, 1, 1, 1, right);
+        
+      }
+      
+    }
+    
+  }
+  
+}
+
+#new-lesson.lessonForm, #edit-lesson.lessonForm {
+  
+  display: block;
+  width: 900px;
+  height: 590px;
+  padding: 0px;
+  background-color: $orange;
+  
+  form {
+    
+    width: 810px;
+    height: 470px;
+    padding: 35px;
+    position: relative;
+    
+    .errors_layer {
+      
+      color: #8A8686; /* TODO formms */
+      background-color: #454343; /* TODO formms */
+      
+      &.description {
+        
+        width: 365.5px;
+        height: 174px; /* TODO formms */
+        top: 223px; /* TODO formms */
+        left: 18px; /* TODO formms */
+        
+      }
+      
+      &.subject {
+        
+        height: 19px;  /* TODO formms */
+        width: 365.5px;
+        top: 48px; /* TODO formms */
+        left: 128px; /* TODO formms */
+        
+      }
+      
+      &.tags {
+        
+        width: 365px;
+        height: 234px; /* TODO formms */
+        top: 163px; /* TODO formms */
+        left: 411px; /* TODO formms */
+        
+      }
+      
+      &.title {
+        
+        width: 365.5px;
+        height: 38.5px; /* TODO formms */
+        top: 163px; /* TODO formms */
+        left: 18px; /* TODO formms */
+        
+      }
+      
+    }
+    
+    .part1 .attachment .media, .part2 .title_and_description .title, .part2 .title_and_description .description, .part2 .tags_loader ._tags_container {
+      
+      color: white; /* TODO formms */
+      box-shadow: 0px 2px 2px rgba(10, 10, 10, 0.2) inset; /* TODO formms */
+      background-color: #454343; /* TODO formms */
+      
+    }
+    
+    .part1 {
+      
+      height: 103px;
+      margin-bottom: 30px;
+      
+      .attachment {
+        
+        width: 405px;
+        height: 103px;
+        
+        /* TODO formms manca icona */
+        
+      }
+      
+      .title_and_subtitle {
+        
+        width: 400px;
+        height: 103px;
+        
+        h1 {
+          
+          color: white; /* TODO formms */
+          margin-bottom: 10px; /* TODO formms allineare verticalmente */
+          
+        }
+        
+        p {
+          
+          color: white; /* TODO formms */
+          
+        }
+        
+      }
+      
+    }
+    
+    .part2 {
+      
+      height: 262px;
+      margin-bottom: 30px;
+      
+      .title_and_description {
+        
+        width: 405px;
+        
+        .title {
+          
+          width: 365.5px;
+          height: 45px;
+          
+        }
+        
+        .description {
+          
+          width: 365.5px;
+          height: 148px; /* TODO formms */
+          
+        }
+        
+      }
+      
+      .tags_loader {
+        
+        float: left;
+        width: 405px;
+        
+        /* TODO formms manca il selettore di materie */
+        
+        ._tags_container {
+          
+          width: 385.5px;
+          height: 228px; /* TODO formms */
+          
+          span {
+            
+            background-color: white; /* TODO formms */
+            color: #373737; /* TODO formms */
+            
+            &.new_tag {
+              
+              color: white; /* TODO formms */
+              background-color: #373636; /* TODO formms */
+              
+              a:hover {
+                
+                background-image: $assets-bianca_png; /* TODO formms */
+                opacity: 1; /* TODO formms */
+                
+              }
+              
+            }
+            
+            a {
+              
+              color: #373737; /* TODO formms */
+              background-image: $assets-grigia_png; /* TODO formms */
+              
+              &:hover {
+                
+                background-image: $assets-grigia_png; /* TODO formms */
+                opacity: 0.6; /* TODO formms */
+                
+              }
+              
+            }
+            
+          }
+          
+          .tags {
+            
+            color: white; /* TODO formms */
+            width: 365.5px;
+            
+          }
+          
+          ._placeholder {
+            
+            width: 365.5px;
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+    .part3 {
+      
+      height: 45px;
+      
+      .close, .submit {
+        
+        background-color: $green; /* TODO formms */
+        color: white; /* TODO formms */
+        padding: 9px 0 0 0;
+        height: 36px;
+        
+        &:hover {
+          
+          background-color: #67B855; /* TODO formms */
+          
+        }
         
       }
       
