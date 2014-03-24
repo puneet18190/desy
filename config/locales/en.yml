@@ -2823,12 +2823,8 @@ en:
       title: "Change info"
     # Placeholder in the form to change description and title (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_new_form_popup.html.erb
-    # 2 - views/documents/_view_single_compact.html.erb
-    # 3 - views/galleries/wrappers/_document.html.erb
+    # 2 - views/galleries/wrappers/_document.html.erb
     description_placeholder: "Insert a description (max %{num} characters)"
-    # Placeholder in the popup not editable
-    # 1 - views/documents/_view_single_compact.html.erb
-    description_readonly_placeholder: "[No description given]"
     # Button to download a document
     # 1 - views/documents/_view_single_compact.html.erb
     # 2 - views/lesson_viewer/_documents.html.erb
@@ -3019,10 +3015,9 @@ en:
     document:
       # Maximum number of characters allowed in the description of a document
       # 1 - models/document.rb
-      # 2 - views/documents/_view_single_compact.html.erb
-      # 3 - views/documents/_new_form_popup.html.erb
-      # 4 - views/galleries/wrappers/_document.html.erb
-      # 5 - controllers/application_controller.rb
+      # 2 - views/documents/_new_form_popup.html.erb
+      # 3 - views/galleries/wrappers/_document.html.erb
+      # 4 - controllers/application_controller.rb
       length_description: 280
       # Maximum number of characters allowed in the title of a document
       # 1 - models/document.rb

@@ -1,10 +1,3 @@
-<%
-  popup_readonly_description = document.description
-  popup_readonly_description = t('documents.description_readonly_placeholder') if popup_readonly_description.blank? # TODO traduzz
-  popup_description = document.description
-  popup_description = t('documents.description_placeholder', :num => t('language_parameters.document.length_description')) if popup_description.blank? # TODO traduzz
-%>
-
 <div id="dialog-document-<%= document.id %>" class="dialogDocument ornitorinco echidna pippofranco" style="display:none">
   <div class="wrapper">
     <div class="preview">
@@ -16,10 +9,10 @@
       </div>
       <div class="description">
         <h3><%= document.title %></h3>
-        <p><%= popup_readonly_description %></p>
+        <p><%= document.description %></p>
       </div>
     </div>
-    <div class="change-info" style="display:none" data-title="<%= document.title %>" data-description="<%= popup_description %>" data-description-placeholder="<%= (document.description.blank? ? '1' : '') %>">
+    <div class="change-info" style="display:none" data-title="<%= document.title %>" data-description="<%= document.description %>" data-description-placeholder="<%= (document.description.blank? ? '1' : '') %>">
       <%= form_tag document_path(document.id), :remote => true do %>
         <div class="part1">
           <div class="attachment">
@@ -38,7 +31,7 @@
           <div class="title_and_description"> <!-- TODO formms riordina gli attributi di questi inputs -->
             <input type="hidden" value="" name="word" class="hidden_word">
             <input class="title" type="text" value="<%= document.title %>" name="title"/>
-            <textarea class="description" name="description"><%= popup_description %></textarea>
+            <textarea class="description" name="description"><%= document.description %></textarea>
             <%= hidden_field_tag 'description_placeholder', (document.description.blank? ? '1' : ''), :class => 'description_placeholder' %> <!-- TODO formms scriverlo senza erb -->
           </div>
         </div>
