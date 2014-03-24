@@ -68,7 +68,7 @@ class DocumentsController < ApplicationController
     if @ok
       @word = params[:word].blank? ? nil : params[:word]
       @document.title = params[:title]
-      @document.description = params[:description_placeholder].blank? ? params[:description] : ''
+      @document.description = params[:description]
       if !@document.save
         @errors = convert_document_error_messages @document.errors
       end
