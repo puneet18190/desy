@@ -711,6 +711,7 @@ cn:
       # The user didn't insert a title
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
       description_blank: "描述是空的"
       # The user didn't insert a title
       # 1 - controllers/application_controller.rb
@@ -776,6 +777,7 @@ cn:
       # The description is too long (the variable %{max} is replaced by the maximum amount of characters available for description)
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
       description_too_long: "描述超过字符(最大%{max}字符数)"
       # The title is too long (the variable %{max} is replaced by the maximum amount of characters available for title)
       # 1 - controllers/application_controller.rb

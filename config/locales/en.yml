@@ -711,6 +711,7 @@ en:
       # The user didn't insert a title
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
       description_blank: "Description is blank"
       # The user didn't insert a title
       # 1 - controllers/application_controller.rb
@@ -776,6 +777,7 @@ en:
       # The description is too long (the variable %{max} is replaced by the maximum amount of characters available for description)
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
       description_too_long: "Description is too long (max %{max} characters)"
       # The title is too long (the variable %{max} is replaced by the maximum amount of characters available for title)
       # 1 - controllers/application_controller.rb
