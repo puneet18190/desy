@@ -4,8 +4,11 @@
   tags_max = t('forms.placeholders.tags', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
 
-<ul id="slides" class="new _new">
-  <li class="info slides">
+<ul id="slides">
+  <li class="slides">
+    
+    
+    
     <div class="box">
       <span class="infoButtonWhite"></span>
       <br/>
@@ -36,7 +39,7 @@
         </div>
       <% end %>
     </div>
-    <div class="info-slide-footer">
+    <div class="stocazzo"> <!-- TODO formms -->
       <div class="school-level pull-left">
         <%= t('lessons.school_level') %>: <%= current_user.school_level.description %>
       </div>
@@ -44,6 +47,8 @@
         <%= t('lessons.author') %>: <span class="name"><%= current_user.full_name %></span>
       </div>
     </div>
-    <div id="info_container" data-tag-just-selected="false"></div>
+    
+    
+    
   </li>
 </ul>
