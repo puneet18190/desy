@@ -1,48 +1,47 @@
 <ul id="slides">
   <li class="slides">
-    
-    
-    
     <div id="edit-lesson" class="lessonForm">
-    
-    
-    
-
-
-      <h2><%= t('forms.update_lesson.title') %></h2>
-      <h3><%= t('forms.update_lesson.description') %></h3>
-      <div class="_error_messages"><%= media_elements_error_messages(params[:errors]) if params[:errors] %></div>
-      <%= form_tag lesson_path, :remote => true, :method => :put do |f| %>
-        <%= text_field_tag 'title', @lesson.title, :class => 'pull-left' %>
-        <%= select_tag 'lesson_subject', options_from_collection_for_select(@subjects, 'id', 'description'), :include_blank => false, :class => 'pull-right' %>
-        <%= text_area_tag 'description', @lesson.description, :class => 'pull-left' %>
-        <div class="ui-widget pull-right _tags_container">
-          <% @my_tags.each do |t| %>
-            <span><%= t.tag.word.strip %><a class="remove"></a></span>
-          <% end %>
-          <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
-          <%= hidden_field_tag 'tags_value', @lesson.tags %>
-        </div>
-        <br style="clear:both"/>
-        <div class="fltrt" style="margin-top:30px">
-          <div class="fltlft"><%= link_to t('forms.update_lesson.cancel').downcase, lesson_editor_path(@lesson), :class => 'buttonForm pull-right' %></div>
-          <div class="fltrt">
-            <%= submit_tag t('forms.update_lesson.done').downcase, :class => 'lesson-create pull-right' %>
+      <%= form_tag lesson_path, :remote => true, :method => :put, :autocomplete => 'off' do |f| %>
+        <div class="part1">
+          <div class="attachment">
+            <div class="icon <%= media_element.sti_type.downcase %>"></div>
+          </div>
+          <div class="title_and_subtitle">
+            <h1>
+              <%= t('forms.update_lesson.title') %>
+            </h1>
+            <p>
+              <%= t('forms.update_lesson.description') %>
+            </p>
           </div>
         </div>
+        <div class="part2">
+          <div class="title_and_description">
+            <input class="title" type="text" value="<%= @lesson.title %>" name="title"/>
+            <textarea class="description" name="description"><%= @lesson.description %></textarea>
+          </div>
+          <div class="tags_loader">
+            <!-- TODO formms mettere materie -->
+            <!-- TODO formms incollare tags da media element popup -->
+          </div>
+        </div>
+        <div class="part3">
+          <a class="submit"><%= t('forms.update_lesson.done').downcase %></a>
+          <a class="close" href="/lessons/<%= @lesson.id %>/slides/edit"><%= t('forms.update_lesson.cancel').downcase %></a>
+        </div>
+        <div class="errors_layer description" data-selector=".part2 .description"></div>
+        <div class="errors_layer tags" data-selector=".part2 ._tags_container .tags"></div>
+        <div class="errors_layer title" data-selector=".part2 .title"></div>
       <% end %>
-    </div>
-    <div class="stocazzo"> <!-- TODO formms -->
-      <div class="school-level pull-left">
-        <%= t('lessons.school_level') %>: <%= current_user.school_level.description %>
+      <div class="menu">
+        <div class="school-level">
+          <%= t('lessons.school_level') %>: <%= current_user.school_level.description %>
+        </div>
+        <div class="author">
+          <%= t('lessons.author') %>: <span class="name"><%= current_user.full_name %></span>
+        </div>
       </div>
-      <div class="author pull-right">
-        <%= t('lessons.author') %>: <span class="name"><%= current_user.full_name %></span>
-      </div>
     </div>
-    
-    
-    
   </li>
 </ul>
 
