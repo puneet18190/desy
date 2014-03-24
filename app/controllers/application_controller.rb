@@ -246,8 +246,16 @@ class ApplicationController < ActionController::Base
   
   # Used for errors of a lesson.
   def convert_lesson_error_messages(errors)
-    # TODO formms
-    t('forms.error_captions.subject_missing_in_lesson')
+    resp = {}
+    max_title = t('language_parameters.lesson.length_title') # TODO traduzz
+    max_description = t('language_parameters.lesson.length_description') # TODO traduzz
+    resp[:title] = t('forms.error_captions.title_too_long', :max => max_title).downcase if errors.added? :title, :too_long, {:count => max_title} # TODO traduzz
+    resp[:title] = t('forms.error_captions.title_blank').downcase if errors.added? :title, :blank # TODO traduzz
+    resp[:description] = t('forms.error_captions.description_too_long', :max => max_description).downcase if errors.added? :description, :too_long, {:count => max_description} # TODO traduzz
+    resp[:description] = t('forms.error_captions.description_blank').downcase if errors.added? :description, :blank # TODO traduzz
+    resp[:tags] = t('forms.error_captions.tags_are_not_enough').downcase if errors.added? :tags, :are_not_enough # TODO traduzz
+    resp[:tags] = t('forms.error_captions.tags_too_many').downcase if errors.added? :tags, :too_many # TODO traduzz
+    resp[:subject] = t('forms.error_captions.subject_missing_in_lesson') if errors.added? :subject_id, :blank
   end
   
   # Used for errors of a media element.
