@@ -366,6 +366,115 @@ function reportsDocumentReady() {
 }
 
 /**
+Functionalities necessary only for the section 'my documents'.
+@method sectionDocumentsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionDocumentsDocumentReady() {
+  $body.on('click', '#my_documents .buttons .preview', function() { // TODO formms uniformarla con media elements, e spostarla in dialogs
+    
+  });
+  $body.on('click', '#my_documents .buttons .destroy', function() {
+    var current_url = $('#info_container').data('currenturl');
+    var document_id = $(this).data('document-id');
+    var captions = $captions;
+    var title = captions.data('destroy-document-title');
+    var confirm = captions.data('destroy-document-confirm');
+    var yes = captions.data('destroy-document-yes');
+    var no = captions.data('destroy-document-no');
+    if($(this).data('used-in-your-lessons')) {
+      confirm = captions.data('destroy-document-confirm-bis');
+    }
+    showConfirmPopUp(title, confirm, yes, no, function() {
+      $('#dialog-confirm').hide();
+      var redirect_url = addDeleteItemToCurrentUrl(current_url, 'document_' + document_id);
+      $.ajax({
+        type: 'delete',
+        dataType: 'json',
+        url: '/documents/' + document_id,
+        success: function(data) {
+          if(data.ok) {
+            $.ajax({
+              type: 'get',
+              url: redirect_url
+            });
+          } else {
+            showErrorPopUp(data.msg);
+          }
+        }
+      });
+      closePopUp('dialog-confirm');
+    }, function() {
+      closePopUp('dialog-confirm');
+    });
+  });
+  $body.on('change', '#order_documents', function() {
+    var order = $('#order_documents option:selected').val();
+    var word = $('#search_documents ._word_input').val();
+    var word_placeholder = $('#search_documents_placeholder').val();
+    $('#search_documents_hidden_order').val(order);
+    $.get('/documents?word=' + word + '&word_placeholder=' + word_placeholder + '&order=' + order);
+  });
+  $body.on('keydown', '.dialogDocument .wrapper .change-info .part2 .title, .dialogDocument .wrapper .change-info .part2 .description', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('click', '.dialogDocument .menu .close', function() {
+    closePopUp($(this).parents('.dialogDocument').attr('id'));
+  });
+  $body.on('click', '.dialogDocument .menu .change-info', function() {
+    var container = $(this).parents('.dialogDocument');
+    var form = container.find('.wrapper .change-info');
+    if($(this).hasClass('encendido')) {
+      form.hide();
+      container.find('.preview').show();
+      resetMediaElementChangeInfo(form); // TODO formms
+      $(this).removeClass('encendido');
+    } else {
+      container.find('.preview').hide();
+      form.show();
+      $(this).addClass('encendido');
+      disableTagsInputTooHigh(form.find('.part2 ._tags_container'));
+    }
+  });
+  $body.on('click', '.dialogDocument .wrapper .change-info .part3 .close', function() {
+    var container = $(this).parents('.dialogDocument');
+    var form = container.find('.wrapper .change-info');
+    form.hide();
+    container.find('.preview').show();
+    container.find('.menu .change-info').removeClass('encendido');
+    resetMediaElementChangeInfo(form); // TODO formms
+  });
+  $body.on('click', '.dialogDocument .wrapper .change-info .part3 .submit', function() {
+    var container = $(this).parents('.dialogDocument');
+    container.find('form').submit();
+  });
+  $body.on('click', '.dialogDocument .wrapper .change-info .errors_layer', function() {
+    var myself = $(this);
+    var container = myself.parents('.dialogDocument');
+    myself.hide();
+    container.find(myself.data('selector')).focus();
+  });
+  $('#order_documents option[selected]').first().attr('selected', 'selected');
+  $('#order_documents').selectbox();
+  $body.on('keydown', '#search_documents ._word_input', function(e) {
+    if(e.which == 13) {
+      e.preventDefault();
+    } else if(e.which != 39 && e.which != 37) {
+      var letters = $(this).data('letters');
+      letters += 1;
+      $(this).data('letters', letters);
+      $('#search_documents ._loader').show();
+      setTimeout(function() {
+        if($('#search_documents ._word_input').data('letters') == letters) {
+          $('#search_documents ._loader').hide();
+          $('#search_documents').submit();
+        }
+      }, 1500);
+    }
+  });
+}
+
+/**
 Functionalities necessary only for the section 'my lessons'.
 @method sectionLessonsDocumentReady
 @for GeneralDocumentReady

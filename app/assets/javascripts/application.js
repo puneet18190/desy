@@ -34,7 +34,6 @@
 //= require buttons
 //= require dashboard
 //= require dialogs
-//= require documents
 //= require galleries
 //= require general
 //= require image_editor
@@ -81,7 +80,7 @@ $(document).ready(function() {
     uploaderDocumentReady();
   }
   if($('#my_documents').length > 0) { // (3) in section documents
-    documentsDocumentReady();
+    sectionDocumentsDocumentReady();
     notificationsDocumentReady();
     sectionNotificationsDocumentReady();
     uploaderDocumentReady();
