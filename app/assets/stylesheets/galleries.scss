@@ -508,21 +508,6 @@
         
       }
       
-      .infoTrack {
-        
-        float: left;
-        padding: 5px 10px;
-        border-left: 1px solid #2D2D2D;
-        height: 26px;
-        
-        a {
-          
-          color: #fff;
-          
-        }
-        
-      }
-      
       .addButtonContent {
         
         @include svg-circle-icon-handler($assets-icone-player_svg, 26px, 5, 4, 0.5, 4, 2, 1, 4, 0);
@@ -561,21 +546,6 @@
       padding: 5px 10px;
       height: 34px;
       margin-top: 8px;
-      
-      .infoTrack {
-        
-        float: left;
-        padding: 5px 10px;
-        border-left: 1px solid #2D2D2D;
-        height: 26px;
-        
-        a {
-          
-          color: #fff;
-          
-        }
-        
-      }
       
     }
     
