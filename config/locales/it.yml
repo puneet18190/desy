@@ -936,7 +936,7 @@ it:
         remove: "Rimuovi"
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
-    # 2 - views/documents/_view_single_compact.html.erb
+    # 2 - views/documents/_popup.html.erb
     close: "Chiudi"
     # Titles for compressed dashboard
     dashboard:
@@ -2826,7 +2826,7 @@ it:
     # 2 - views/galleries/wrappers/_document.html.erb
     description_placeholder: "Inserisci una descrizione (max %{num} caratteri)"
     # Button to download a document
-    # 1 - views/documents/_view_single_compact.html.erb
+    # 1 - views/documents/_popup.html.erb
     # 2 - views/lesson_viewer/_documents.html.erb
     download: "Scarica"
     # When there are no documents in your section
