@@ -13,7 +13,7 @@
         <p><%= document.description %></p>
       </div>
     </div>
-    <div class="change-info" style="display:none" data-title="<%= document.title %>" data-description="<%= document.description %>" data-description-placeholder="<%= (document.description.blank? ? '1' : '') %>">
+    <div class="change-info" style="display:none" data-title="<%= document.title %>" data-description="<%= document.description %>">
       <%= form_tag document_path(document.id), :remote => true do %>
         <div class="part1">
           <div class="attachment">

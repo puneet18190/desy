@@ -1524,7 +1524,7 @@
           
           &.description {
             
-            width: 323px;
+            width: 688px;
             height: 141px;
             top: 158px;
             left: 3px;
@@ -1533,7 +1533,7 @@
           
           &.title {
             
-            width: 323px;
+            width: 688px;
             top: 103px;
             left: 3px;
             
@@ -1553,7 +1553,7 @@
             
             .icon {
               
-              @include svg-circle-icon-handler-without-hover($assets-icone-editor-elementi_svg, 65px, 3, 4, 1, 0, 1); /* TODO metti icona giusta */
+              @include svg-circle-icon-handler-without-hover($assets-set-icone-editor_svg, 65px, 4, 12, 1, 3, 11);
               margin-left: 5px;
               margin-top: 7.5px;
               
@@ -1596,14 +1596,14 @@
             
             .title {
               
-              width: 323px;
+              width: 688px;
               margin: 0 0 10px 0;
               
             }
             
             .description {
               
-              width: 323px;
+              width: 688px;
               height: 115px;
               
             }
@@ -1622,6 +1622,14 @@
             width: 120px;
             padding: 4px 0 0 0;
             height: 29px;
+            color: #333333;
+            background-color: white;
+            
+            &:hover {
+              
+              background-color: #908F8F;
+              
+            }
             
           }
           
