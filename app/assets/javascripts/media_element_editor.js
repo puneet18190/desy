@@ -234,7 +234,17 @@ function mediaElementEditorDocumentReady() {
 
 
 /**
-Resets the media element loading form; used in {{#crossLink "DialogsWithForm/showLoadPopUp:method"}}{{/crossLink}}.
+Resets the media element loading form; used in {{#crossLink "DialogsWithForm/showDocumentInfoPopUp:method"}}{{/crossLink}}.
+@method resetDocumentChangeInfo
+@for MediaElementEditorForms
+@param container {Object} JQuery object of the form
+**/
+function resetDocumentChangeInfo(container) { // TODO formms
+  
+}
+
+/**
+Resets the media element loading form; used in {{#crossLink "DialogsWithForm/showMediaElementInfoPopUp:method"}}{{/crossLink}}.
 @method resetMediaElementChangeInfo
 @for MediaElementEditorForms
 @param container {Object} JQuery object of the form

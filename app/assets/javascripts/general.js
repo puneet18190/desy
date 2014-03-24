@@ -371,8 +371,8 @@ Functionalities necessary only for the section 'my documents'.
 @for GeneralDocumentReady
 **/
 function sectionDocumentsDocumentReady() {
-  $body.on('click', '#my_documents .buttons .preview', function() { // TODO formms uniformarla con media elements, e spostarla in dialogs
-    
+  $body.on('click', '#my_documents .buttons .preview', function() {
+    showDocumentInfoPopUp($(this).data('document-id'));
   });
   $body.on('click', '#my_documents .buttons .destroy', function() {
     var current_url = $('#info_container').data('currenturl');
@@ -427,7 +427,7 @@ function sectionDocumentsDocumentReady() {
     if($(this).hasClass('encendido')) {
       form.hide();
       container.find('.preview').show();
-      resetMediaElementChangeInfo(form); // TODO formms
+      resetDocumentChangeInfo(form);
       $(this).removeClass('encendido');
     } else {
       container.find('.preview').hide();
@@ -442,7 +442,7 @@ function sectionDocumentsDocumentReady() {
     form.hide();
     container.find('.preview').show();
     container.find('.menu .change-info').removeClass('encendido');
-    resetMediaElementChangeInfo(form); // TODO formms
+    resetDocumentChangeInfo(form);
   });
   $body.on('click', '.dialogDocument .wrapper .change-info .part3 .submit', function() {
     var container = $(this).parents('.dialogDocument');

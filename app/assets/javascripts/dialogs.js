@@ -407,6 +407,49 @@ function showLoadPopUp(type) {
 }
 
 /**
+Dialog containing the document general information. This dialog contains also the form to change title and description (see the method {{#crossLink "MediaElementEditorForms/resetDocumentChangeInfo:method"}}{{/crossLink}}).
+@method showDocumentInfoPopUp
+@for DialogsWithForm
+@param document_id {Number} id in the database of the document
+**/
+function showDocumentInfoPopUp(document_id) { // TODO formms
+  var obj = $('#dialog-document-' + document_id);
+  if(obj.data('dialog')) {
+    obj.dialog('open');
+  } else {
+    obj.show();
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      draggable: false,
+      width: 760,
+      height: 440,
+      show: 'fade',
+      hide: {effect: 'fade'},
+      open: function() {
+        customOverlayClose();
+        var word = $('#search_documents ._word_input').val()
+        $('#dialog-document-' + document_id + ' .hidden_word').val(word);
+      },
+      beforeClose: function() {
+        removeCustomOverlayClose();
+      },
+      close: function() {
+        var container = $('#dialog-document-' + document_id);
+        resetDocumentChangeInfo(); // TODO formms eliminare robaccia e inficcarla qui dentro
+        container.find('.stocazzo').val(container.data('title'));
+        container.find('.stocazzo').val(container.data('description'));
+        container.find('.form_error').removeClass('form_error');
+        container.find('._error_messages').html('');
+        $('#dialog-document-' + document_id + ' .stocazzo').hide();
+        var change_info_button = $('#dialog-document-' + document_id + ' .stocazzo');
+        change_info_button.addClass('change_info').removeClass('change_info_light');
+      }
+    });
+  }
+}
+
+/**
 Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink "MediaElementEditorForms/resetMediaElementChangeInfo:method"}}{{/crossLink}}).
 @method showMediaElementInfoPopUp
 @for DialogsWithForm
