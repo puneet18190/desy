@@ -1,6 +1,6 @@
 <% if @ok %>
   <% if @errors %>
-    showFormErrors($('#dialog-document-<%= @media_element.id %>'), <%= @errors.to_json.html_safe %>);
+    showFormErrors($('#dialog-document-<%= @document.id %>'), <%= @errors.to_json.html_safe %>);
   <% else %>
     closePopUp('dialog-document-<%= @document_id %>');
     removeCompletelyDocumentPopup(<%= @document_id %>);
