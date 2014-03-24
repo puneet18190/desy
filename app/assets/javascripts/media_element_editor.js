@@ -239,8 +239,11 @@ Resets the media element loading form; used in {{#crossLink "DialogsWithForm/sho
 @for MediaElementEditorForms
 @param container {Object} JQuery object of the form
 **/
-function resetDocumentChangeInfo(container) { // TODO formms
-  
+function resetDocumentChangeInfo(container) {
+  container.find('.part2 .title').val(container.data('title'));
+  container.find('.part2 .description').val(container.data('description'));
+  container.find('.form_error').removeClass('form_error');
+  container.find('.errors_layer').hide();
 }
 
 /**
