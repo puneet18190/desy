@@ -1,19 +1,9 @@
 <% if @ok %>
-  
   <% if @errors %>
-    $('.form_error').removeClass('form_error');
-    $('#dialog-document-<%= @document_id %> .stocazzo ._error_messages').html('<%= j stocazzo(@errors) %>'); // TODO formms
-    <% @error_fields.each do |err| %>
-      <% if err.to_s == 'title' %>
-        $('#dialog-document-<%= @document_id %> .stocazzo').addClass('form_error'); // TODO formms
-      <% else %>
-        $('#dialog-document-<%= @document_id %> .stocazzo').addClass('form_error'); // TODO formms
-      <% end %>
-    <% end %>
+    showFormErrors($('#dialog-document-<%= @media_element.id %>'), <%= @errors.to_json.html_safe %>);
   <% else %>
     closePopUp('dialog-document-<%= @document_id %>');
     removeCompletelyDocumentPopup(<%= @document_id %>);
     $('#document_<%= @document_id %>').replaceWith('<%= j render(:partial => "documents/view_single_compact", :locals => {:document => @document, :word => @word, :used_in_your_lessons => @document.used_in_your_lessons?}) %>');
   <% end %>
-  
 <% end %>

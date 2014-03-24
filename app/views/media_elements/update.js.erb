@@ -1,5 +1,4 @@
 <% if @ok %>
-  
   <% if @errors %>
     showFormErrors($('#dialog-media-element-<%= @media_element.id %>'), <%= @errors.to_json.html_safe %>);
   <% else %>
@@ -22,5 +21,4 @@
       $('#' + destination + '_<%= @media_element_id %>').replaceWith('<%= j render(:partial => "media_elements/view_single_compact", :locals => {:media_element => @media_element, :destination => ButtonDestinations::FOUND_MEDIA_ELEMENT, :used_in_private_lessons => used_in_private_lessons}) %>');
     }
   <% end %>
-  
 <% end %>
