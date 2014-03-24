@@ -923,7 +923,7 @@ cn:
         # 1 - views/lesson_viewer/_documents.html.erb
         attached_view: "下载连接的文档"
         # Modify title and description of the document
-        # 1 - views/documents/_view_single_compact.html.erb
+        # 1 - views/documents/_popup.html.erb
         change_info: "修改标题和文档"
         # Destroy a document
         # 1 - views/documents/_view_single_compact.html.erb

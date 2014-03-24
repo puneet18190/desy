@@ -923,7 +923,7 @@ it:
         # 1 - views/lesson_viewer/_documents.html.erb
         attached_view: "Scarica documenti allegati"
         # Modify title and description of the document
-        # 1 - views/documents/_view_single_compact.html.erb
+        # 1 - views/documents/_popup.html.erb
         change_info: "Modifica titolo e descrizione del documento"
         # Destroy a document
         # 1 - views/documents/_view_single_compact.html.erb

@@ -923,7 +923,7 @@ en:
         # 1 - views/lesson_viewer/_documents.html.erb
         attached_view: "Download attached documents"
         # Modify title and description of the document
-        # 1 - views/documents/_view_single_compact.html.erb
+        # 1 - views/documents/_popup.html.erb
         change_info: "Modify title and description of the document"
         # Destroy a document
         # 1 - views/documents/_view_single_compact.html.erb
