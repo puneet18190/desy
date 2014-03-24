@@ -20,10 +20,10 @@
           </div>
           <div class="title_and_subtitle">
             <h1>
-              <%= t('documents.change_info.title') %> <!-- TODO traduzz deve essere spostato in forms -->
+              <%= t('forms.change_info_document.title') %>
             </h1>
             <p>
-              descrizione FORM DOCC  <!-- TODO traduzz deve essere creato e poi spostato in forms -->
+              <%= t('forms.change_info_document.description') %>
             </p>
           </div>
         </div>
@@ -36,8 +36,8 @@
           </div>
         </div>
         <div class="part3">
-          <a class="submit"><%= submit_tag t('documents.change_info.done').downcase %></a> <!-- TODO traduzz deve essere spostato in forms -->
-          <a class="close"><%= t('documents.change_info.cancel').downcase %></a> <!-- TODO traduzz deve essere spostato in forms -->
+          <a class="submit"><%= t('forms.change_info_document.done').downcase %></a>
+          <a class="close"><%= t('forms.change_info_document.cancel').downcase %></a>
         </div>
       <% end %>
     </div>

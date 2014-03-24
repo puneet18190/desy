@@ -602,6 +602,16 @@ cn:
       cancel: "终止"
       # 1 - views/media_elements/_new_form_popup.html.erb
       done: "上传"
+    # Form for modifying a document
+    change_info_document:
+      # 1 - views/documents/_popup.html.erb
+      title: "文档信息"
+      # 1 - views/documents/_popup.html.erb
+      description: "修改数据填写以下表格"
+      # 1 - views/documents/_popup.html.erb
+      cancel: "终止"
+      # 1 - views/documents/_popup.html.erb
+      done: "保存"
     # Form for modifying a media element
     change_info_media_element:
       # 1 - views/media_elements/_popup.html.erb
@@ -2813,14 +2823,6 @@ cn:
   # SECTION 2.18: labels in the section 'documents'
   
   documents:
-    # Form to change info
-    change_info:
-      # 1 - views/documents/_view_single_compact.html.erb
-      cancel: "终止"
-      # 1 - views/documents/_view_single_compact.html.erb
-      done: "保存"
-      # 1 - views/documents/_view_single_compact.html.erb
-      title: "变更信息"
     # Placeholder in the form to change description and title (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_new_form_popup.html.erb
     # 2 - views/galleries/wrappers/_document.html.erb

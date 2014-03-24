@@ -602,6 +602,16 @@ it:
       cancel: "Annulla"
       # 1 - views/media_elements/_new_form_popup.html.erb
       done: "Carica"
+    # Form for modifying a document
+    change_info_document:
+      # 1 - views/documents/_popup.html.erb
+      title: "Informazioni sul documento"
+      # 1 - views/documents/_popup.html.erb
+      description: "Compila il modulo per modificare i dati"
+      # 1 - views/documents/_popup.html.erb
+      cancel: "Annulla"
+      # 1 - views/documents/_popup.html.erb
+      done: "Aggiorna"
     # Form for modifying a media element
     change_info_media_element:
       # 1 - views/media_elements/_popup.html.erb
@@ -2813,14 +2823,6 @@ it:
   # SECTION 2.18: labels in the section 'documents'
   
   documents:
-    # Form to change info
-    change_info:
-      # 1 - views/documents/_view_single_compact.html.erb
-      cancel: "Annulla"
-      # 1 - views/documents/_view_single_compact.html.erb
-      done: "Salva"
-      # 1 - views/documents/_view_single_compact.html.erb
-      title: "Modifica dati"
     # Placeholder in the form to change description and title (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_new_form_popup.html.erb
     # 2 - views/galleries/wrappers/_document.html.erb
