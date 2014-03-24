@@ -3,9 +3,12 @@
     
     
     
-    <div class="box">
-      <span class="infoButtonWhite"></span>
-      <br />
+    <div id="edit-lesson" class="lessonForm">
+    
+    
+    
+
+
       <h2><%= t('forms.update_lesson.title') %></h2>
       <h3><%= t('forms.update_lesson.description') %></h3>
       <div class="_error_messages"><%= media_elements_error_messages(params[:errors]) if params[:errors] %></div>

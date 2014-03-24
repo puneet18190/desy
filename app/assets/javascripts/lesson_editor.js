@@ -638,13 +638,13 @@ function lessonEditorDocumentReadyTextFields() {
       $('#slides._update #description_placeholder').attr('value', '0');
     }
   });
-  $body.on('keydown', 'form#lesson-create input#title, form#lesson-create textarea', function() {
+  $body.on('keydown', 'form#stocazzo input#title, form#stocazzo textarea', function() { // TODO formms
     $(this).removeClass('form_error');
   });
-  $body.on('keydown', 'form#lesson-create input#tags', function() {
+  $body.on('keydown', 'form#stocazzo input#tags', function() { // TODO formms
     $(this).parent().removeClass('form_error');
   });
-  $body.on('click', '#lesson-create .sbHolder', function() {
+  $body.on('click', '#stocazzo .sbHolder', function() { // TODO formms
     $(this).removeClass('form_error');
   });
   $body.on('keydown', '#slides._update #title, #slides._update #description', function() {

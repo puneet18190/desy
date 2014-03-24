@@ -6,49 +6,56 @@
 
 <ul id="slides">
   <li class="slides">
-    
-    
-    
-    <div class="box">
-      <span class="infoButtonWhite"></span>
-      <br/>
-      <h2><%= t('forms.new_lesson.title') %></h2>
-      <h3>
-        <%= t('forms.new_lesson.description') %>
-      </h3>
-      <div class="_error_messages"></div>
-      <%= form_tag('/lessons/create', :remote => true, :id => 'lesson-create') do %>
-        <%= text_field_tag 'title', title_max, :class => 'pull-left' %>
-        <%= hidden_field_tag 'title_placeholder', '' %>
-        <%= select_tag 'subject', select_your_subjects(@subjects), :include_blank => false, :class => 'pull-right', :id => 'lesson_subject' %>
-        <%= text_area_tag 'description', description_max, :class => 'pull-left' %>
-        <%= hidden_field_tag 'description_placeholder', '' %>
-        <div class="ui-widget pull-right _tags_container">
-          <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
-          <div class="_placeholder">
-            <%= tags_max %>
+    <div id="new-lesson" class="lessonForm">
+      <%= form_tag '/lessons/create', :remote => true, :autocomplete => 'off' do %>
+        <div class="part1">
+          <div class="attachment">
+            <div class="icon <%= media_element.sti_type.downcase %>"></div>
           </div>
-          <%= hidden_field_tag 'tags_value', '' %>
-        </div>
-        <br style="clear:both"/>
-        <div class="fltrt" style="margin-top:30px">
-          <div class="fltlft" style="margin-top:5px;"><%= link_to t('forms.new_lesson.cancel').downcase, my_lessons_path, :class => 'buttonForm' %></div>
-          <div class="fltrt">
-            <%= submit_tag t('forms.new_lesson.done').downcase, :class => 'lesson-create' %>
+          <div class="title_and_subtitle">
+            <h1>
+              <%= t('forms.new_lesson.title') %>
+            </h1>
+            <p>
+              <%= t('forms.new_lesson.description') %>
+            </p>
           </div>
         </div>
+        <div class="part2">
+          <div class="title_and_description">
+            <input class="title" type="text" value="<%= title_max %>" name="title"/>
+            <input class="title_placeholder" type="hidden" value="" name="title_placeholder"/>
+            <textarea class="description" name="description"><%= description_max %></textarea>
+            <input class="description_placeholder" type="hidden" value="" name="description_placeholder"/>
+          </div>
+          <div class="tags_loader">
+            <!-- TODO formms mettere materie -->
+            <div class="_tags_container" data-max-width="377.5" data-lines="5">
+              <input class="tags" type="text" value="" maxlength="<%= SETTINGS['max_tag_length'] %>"/>
+              <div class="_placeholder">
+                <%= tags_max %>
+              </div>
+              <input class="tags_value" type="hidden" value="" name="tags_value"/>
+            </div>
+          </div>
+        </div>
+        <div class="part3">
+          <a class="submit"><%= t('forms.new_lesson.done').downcase %></a>
+          <a class="close" href="/lessons"><%= t('forms.new_lesson.cancel').downcase %></a>
+        </div>
+        <div class="errors_layer description" data-selector=".part2 .description"></div>
+        <div class="errors_layer subject" data-selector=".stocazzo"></div> <!-- TODO formms decidere come gestirlo -->
+        <div class="errors_layer tags" data-selector=".part2 ._tags_container .tags"></div>
+        <div class="errors_layer title" data-selector=".part2 .title"></div>
       <% end %>
-    </div>
-    <div class="stocazzo"> <!-- TODO formms -->
-      <div class="school-level pull-left">
-        <%= t('lessons.school_level') %>: <%= current_user.school_level.description %>
+      <div class="menu">
+        <div class="school-level">
+          <%= t('lessons.school_level') %>: <%= current_user.school_level.description %>
+        </div>
+        <div class="author">
+          <%= t('lessons.author') %>: <span class="name"><%= current_user.full_name %></span>
+        </div>
       </div>
-      <div class="author pull-right">
-        <%= t('lessons.author') %>: <span class="name"><%= current_user.full_name %></span>
-      </div>
     </div>
-    
-    
-    
   </li>
 </ul>

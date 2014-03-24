@@ -394,13 +394,6 @@ html.lesson-editor-layout {
     
   }
   
-  .infoButtonWhite {
-    
-    @include svg-circle-icon-handler-without-hover($assets-set-icone-editor_svg, 59px, 4, 12, 1, 0, 2);
-    margin: 5px 15px 0 0;
-    
-  }
-  
   #footer {
     
     display: block;
