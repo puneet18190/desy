@@ -5,12 +5,12 @@
 %>
 
 <ul id="slides">
-  <li class="slides">
+  <li class="slides" style="opacity:1">
     <div id="new-lesson" class="lessonForm">
       <%= form_tag '/lessons/create', :remote => true, :autocomplete => 'off' do %>
         <div class="part1">
           <div class="attachment">
-            <div class="icon <%= media_element.sti_type.downcase %>"></div>
+            <div class="icon"></div>
           </div>
           <div class="title_and_subtitle">
             <h1>

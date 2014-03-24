@@ -1939,4 +1939,21 @@
     
   }
   
+  .menu { /* TODO formms controllare tutto quanto contenuto qui dentro menu */
+    
+    width: 760px;
+    height: 45px;
+    background-color: white;
+    
+    .on-left, .on-right {
+      
+      float: left;
+      width: 370px;
+      height: 35px;
+      padding: 5px;
+      
+    }
+    
+  }
+  
 }
