@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="change-info" style="display:none" data-title="<%= document.title %>" data-description="<%= document.description %>">
-      <%= form_tag document_path(document.id), :remote => true do %>
+      <%= form_tag document_path(document.id), :remote => true, :autocomplete => 'off' do %>
         <div class="part1">
           <div class="attachment">
             <div class="icon"></div>
@@ -39,6 +39,8 @@
           <a class="submit"><%= t('forms.change_info_document.done').downcase %></a>
           <a class="close"><%= t('forms.change_info_document.cancel').downcase %></a>
         </div>
+        <div class="errors_layer description" data-selector=".part2 .description"></div>
+        <div class="errors_layer title" data-selector=".part2 .title"></div>
       <% end %>
     </div>
   </div>
