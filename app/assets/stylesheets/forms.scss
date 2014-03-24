@@ -1471,6 +1471,14 @@
         margin-left: 20px;
         float: left;
         
+        h2 {
+          
+          @include nunito(14px);
+          color: $black;
+          padding: 0;
+          
+        }
+        
         h3 {
           
           @include nunito(21px);
