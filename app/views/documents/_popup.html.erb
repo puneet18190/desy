@@ -9,8 +9,8 @@
         <h3><%= document.title %></h3>
         <p><%= document.description %></p>
         <a href="<%= document.url %>"><%= t('documents.download') %></a>
-        <h4>size: <%= document.human_size %></h4> <!-- TODO traduzz -->
-        <h4>format: <%= document.extension %></h4> <!-- TODO traduzz -->
+        <h4><%= t('documents.human_size', :number => document.human_size).downcase %></h4>
+        <h4><%= t('documents.format', :type => document.extension).downcase %></h4>
       </div>
     </div>
     <div class="change-info" style="display:none" data-title="<%= document.title %>" data-description="<%= document.description %>">

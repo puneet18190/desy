@@ -2846,6 +2846,12 @@ cn:
     # When the document search produced no results
     # 1 - views/documents/_empty_word.html.erb
     empty_word: "没有发现配匹的文档 <%{word}>"
+    # Format of the document (the variable %{type} is replaced by the format)
+    # 1 - views/documents/_popup.html.erb
+    format: "格式: %{type}"
+    # Size of the document (the variable %{number} is replaced by the humanized size)
+    # 1 - views/documents/_popup.html.erb
+    human_size: "大小: %{number}"
     # Placeholder to search a document
     # 1 - views/documents/_search.html.erb
     search: "过滤字符:"
