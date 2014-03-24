@@ -412,7 +412,7 @@ Dialog containing the document general information. This dialog contains also th
 @for DialogsWithForm
 @param document_id {Number} id in the database of the document
 **/
-function showDocumentInfoPopUp(document_id) { // TODO formms
+function showDocumentInfoPopUp(document_id) {
   var obj = $('#dialog-document-' + document_id);
   if(obj.data('dialog')) {
     obj.dialog('open');
@@ -435,7 +435,7 @@ function showDocumentInfoPopUp(document_id) { // TODO formms
         removeCustomOverlayClose();
       },
       close: function() {
-        var container = $('#dialog-media-element-' + media_element_id);
+        var container = $('#dialog-document-' + document_id);
         resetDocumentChangeInfo(container.find('.wrapper .change-info'));
         container.find('.preview').show();
         container.find('.wrapper .change-info').hide();
