@@ -2823,6 +2823,9 @@ cn:
   # SECTION 2.18: labels in the section 'documents'
   
   documents:
+    # General caption for a document
+    # 1 - views/documents/_popup.html.erb
+    caption: "文件"
     # Placeholder in the form to change description and title (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_new_form_popup.html.erb
     # 2 - views/galleries/wrappers/_document.html.erb
