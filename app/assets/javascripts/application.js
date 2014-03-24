@@ -94,8 +94,12 @@ $(document).ready(function() {
     tagsDocumentReady();
   }
   if($('.lesson-editor-container').length > 0) { // (5) in lesson editor
-    initTagsAutocomplete('#slides._new', 'lesson');
-    initTagsAutocomplete('#slides._update', 'lesson');
+    if($('#new-lesson').length > 0) {
+      initTagsAutocomplete('#new-lesson', 'lesson');
+    }
+    if($('#edit-lesson').length > 0) {
+      initTagsAutocomplete('#edit-lesson', 'lesson');
+    }
     galleriesDocumentReady();
     lessonEditorDocumentReady();
     playersDocumentReadyGeneral();
