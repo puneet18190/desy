@@ -715,6 +715,7 @@ cn:
       # The user didn't insert a title
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
       title_blank: "标题是空的"
       # The media elements folder exceeded the maximum size available
       # 1 - controllers/application_controller.rb
@@ -779,6 +780,7 @@ cn:
       # The title is too long (the variable %{max} is replaced by the maximum amount of characters available for title)
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
       title_too_long: "标题超过字符(最大%{max}字符数)"
       # These captions are used in the media element uploader inside Lesson Editor, if the user tries to load a file in a wrong format
       wrong_sti_type:
