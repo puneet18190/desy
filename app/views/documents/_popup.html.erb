@@ -3,14 +3,14 @@
     <div class="preview">
       <div class="content">
         <%= image_tag document.icon_url %>
-        <a href="<%= document.url %>"><%= t('documents.download') %></a>
-        <%= document.size_and_extension %>
-        <!-- TODO formms organizzarlo in due spazi di 282 e il resto alti, come per i media element di tipo video -->
       </div>
       <div class="description">
         <h2><%= t('documents.caption') %></h2>
         <h3><%= document.title %></h3>
         <p><%= document.description %></p>
+        <a href="<%= document.url %>"><%= t('documents.download') %></a>
+        <h4>size: <%= document.human_size %></h4> <!-- TODO traduzz -->
+        <h4>format: <%= document.extension %></h4> <!-- TODO traduzz -->
       </div>
     </div>
     <div class="change-info" style="display:none" data-title="<%= document.title %>" data-description="<%= document.description %>">

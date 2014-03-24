@@ -1488,11 +1488,33 @@
           
         }
         
+        h4 {
+          
+          @include arial(13px);
+          color: #908F8F;
+          padding: 0;
+          
+        }
+        
+        a {
+          
+          @include nunito(15px);
+          color: white;
+          
+          &:hover {
+            
+            text-decoration: underline;
+            
+          }
+          
+        }
+        
         p {
           
           @include arial(12px);
           color: white;
           padding-top: 15px;
+          padding-bottom: 40px;
           
         }
         
@@ -1503,6 +1525,14 @@
         float: left;
         height: 355px;
         width: 500px;
+        
+        img {
+          
+          width: 200px;
+          height: 200px;
+          margin: 77.5px 150px 77.5px 150px;
+          
+        }
         
       }
       
