@@ -24,7 +24,7 @@ Initializer for documents functionality (buttons javascripts).
 @for DocumentsDocumentReady
 **/
 function documentsDocumentReadyButtons() {
-  $body.on('click', '#my_documents .buttons .preview', function() {
+  $body.on('click', '#my_documents .buttons .preview', function() { // TODO formms uniformarla con media elements
     var document_id = $(this).data('document-id');
     var obj = $('#dialog-document-' + document_id);
     if(obj.data('dialog')) {
@@ -42,20 +42,19 @@ function documentsDocumentReadyButtons() {
         open: function() {
           customOverlayClose();
           var word = $('#search_documents ._word_input').val()
-          $('#dialog-document-' + document_id + ' ._hidden_word').val(word);
+          $('#dialog-document-' + document_id + ' .hidden_word').val(word);
         },
         beforeClose: function() {
           removeCustomOverlayClose();
         },
         close: function() {
           var container = $('#dialog-document-' + document_id);
-          container.find('._doc_title').val(container.data('title'));
-          container.find('._doc_description').val(container.data('description'));
-          container.find('._doc_description_placeholder').val(container.data('description-placeholder'));
+          container.find('.stocazzo').val(container.data('title'));
+          container.find('.stocazzo').val(container.data('description'));
           container.find('.form_error').removeClass('form_error');
           container.find('._error_messages').html('');
-          $('#dialog-document-' + document_id + ' .stocazzo').hide(); // TODO formms
-          var change_info_button = $('#dialog-document-' + document_id + ' .stocazzo'); // TODO formms
+          $('#dialog-document-' + document_id + ' .stocazzo').hide();
+          var change_info_button = $('#dialog-document-' + document_id + ' .stocazzo');
           change_info_button.addClass('change_info').removeClass('change_info_light');
         }
       });
@@ -110,39 +109,44 @@ function documentsDocumentReadyGeneral() {
     $('#search_documents_hidden_order').val(order);
     $.get('/documents?word=' + word + '&word_placeholder=' + word_placeholder + '&order=' + order);
   });
-  $body.on('focus', '.stocazzo ._doc_description', function() { // TODO formms
-    var placeholder = $('#dialog-document-' + $(this).data('document-id') + ' ._doc_description_placeholder');
-    if(placeholder.val() != '') {
-      placeholder.val('');
-      $(this).val('');
+  $body.on('keydown', '.dialogDocument .wrapper .change-info .part2 .title, .dialogDocument .wrapper .change-info .part2 .description', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('click', '.dialogDocument .menu .close', function() {
+    closePopUp($(this).parents('.dialogDocument').attr('id'));
+  });
+  $body.on('click', '.dialogDocument .menu .change-info', function() {
+    var container = $(this).parents('.dialogDocument');
+    var form = container.find('.wrapper .change-info');
+    if($(this).hasClass('encendido')) {
+      form.hide();
+      container.find('.preview').show();
+      resetMediaElementChangeInfo(form); // TODO formms
+      $(this).removeClass('encendido');
+    } else {
+      container.find('.preview').hide();
+      form.show();
+      $(this).addClass('encendido');
+      disableTagsInputTooHigh(form.find('.part2 ._tags_container'));
     }
   });
-  $body.on('click', '._close_document_preview_popup', function() {
-    var document_id = $(this).data('document-id');
-    closePopUp('dialog-document-' + document_id);
+  $body.on('click', '.dialogDocument .wrapper .change-info .part3 .close', function() {
+    var container = $(this).parents('.dialogDocument');
+    var form = container.find('.wrapper .change-info');
+    form.hide();
+    container.find('.preview').show();
+    container.find('.menu .change-info').removeClass('encendido');
+    resetMediaElementChangeInfo(form); // TODO formms
   });
-  $body.on('click', '.stocazzo ._cancel, .stocazzo.change_info_light', function() { // TODO formms
-    var document_id = $(this).data('document-id');
-    $('#dialog-document-' + document_id + ' .stocazzo').hide('fade', {}, 500, function() { // TODO formms
-      var icon = $('#dialog-document-' + document_id + ' .stocazzo'); // TODO formms
-      icon.addClass('change_info');
-      icon.removeClass('change_info_light');
-      var container = $('#dialog-document-' + document_id);
-      container.find('._doc_title').val(container.data('title'));
-      container.find('._doc_description').val(container.data('description'));
-      container.find('._doc_description_placeholder').val(container.data('description-placeholder'));
-      container.find('.form_error').removeClass('form_error');
-      container.find('._error_messages').html('');
-    });
+  $body.on('click', '.dialogDocument .wrapper .change-info .part3 .submit', function() {
+    var container = $(this).parents('.dialogDocument');
+    container.find('form').submit();
   });
-  $body.on('click', '.stocazzo.change_info', function() { // TODO formms
-    var document_id = $(this).data('document-id');
-    $('#dialog-document-' + document_id + ' .stocazzo').show('fade', {}, 500); // TODO formms
-    $(this).removeClass('change_info');
-    $(this).addClass('change_info_light');
-  });
-  $body.on('keydown', '.stocazzo ._doc_title, .stocazzo ._doc_description', function() { // TODO formms
-    $(this).removeClass('form_error');
+  $body.on('click', '.dialogDocument .wrapper .change-info .errors_layer', function() {
+    var myself = $(this);
+    var container = myself.parents('.dialogDocument');
+    myself.hide();
+    container.find(myself.data('selector')).focus();
   });
   $('#order_documents option[selected]').first().attr('selected', 'selected');
   $('#order_documents').selectbox();

@@ -5,9 +5,9 @@
     $('#dialog-document-<%= @document_id %> .stocazzo ._error_messages').html('<%= j stocazzo(@errors) %>'); // TODO formms
     <% @error_fields.each do |err| %>
       <% if err.to_s == 'title' %>
-        $('#dialog-document-<%= @document_id %> ._doc_title').addClass('form_error');
+        $('#dialog-document-<%= @document_id %> .stocazzo').addClass('form_error'); // TODO formms
       <% else %>
-        $('#dialog-document-<%= @document_id %> ._doc_description').addClass('form_error');
+        $('#dialog-document-<%= @document_id %> .stocazzo').addClass('form_error'); // TODO formms
       <% end %>
     <% end %>
   <% else %>

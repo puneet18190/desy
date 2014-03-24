@@ -29,11 +29,10 @@
           </div>
         </div>
         <div class="part2">
-          <div class="title_and_description"> <!-- TODO formms riordina gli attributi di questi inputs -->
+          <div class="title_and_description">
             <input type="hidden" value="" name="word" class="hidden_word">
             <input class="title" type="text" value="<%= document.title %>" name="title"/>
             <textarea class="description" name="description"><%= document.description %></textarea>
-            <%= hidden_field_tag 'description_placeholder', (document.description.blank? ? '1' : ''), :class => 'description_placeholder' %> <!-- TODO formms scriverlo senza erb -->
           </div>
         </div>
         <div class="part3">
