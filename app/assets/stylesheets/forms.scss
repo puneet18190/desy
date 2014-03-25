@@ -1740,15 +1740,15 @@
     
     .errors_layer {
       
-      color: #8A8686; /* TODO formms */
-      background-color: #454343; /* TODO formms */
+      color: #F2DBBD;
+      background-color: #E48D1F;
       
       &.description {
         
         width: 365.5px;
-        height: 174px; /* TODO formms */
-        top: 223px; /* TODO formms */
-        left: 18px; /* TODO formms */
+        height: 196px;
+        top: 241px;
+        left: 48px;
         
       }
       
@@ -1764,18 +1764,18 @@
       &.tags {
         
         width: 365px;
-        height: 234px; /* TODO formms */
-        top: 163px; /* TODO formms */
-        left: 411px; /* TODO formms */
+        height: 196px;
+        top: 241px;
+        left: 460px;
         
       }
       
       &.title {
         
         width: 365.5px;
-        height: 38.5px; /* TODO formms */
-        top: 163px; /* TODO formms */
-        left: 18px; /* TODO formms */
+        height: 38.5px;
+        top: 182px;
+        left: 48px;
         
       }
       
@@ -1846,6 +1846,12 @@
           
           width: 365.5px;
           height: 45px;
+          
+          &.form_error {
+            
+            height: 39px;
+            
+          }
           
         }
         
@@ -1939,7 +1945,7 @@
           
           &.form_error {
             
-            border: 3px solid #CF2B2B;
+            border: 3px solid #B40404;
             padding: 0;
             width: 391.5px;
             
@@ -1997,6 +2003,13 @@
           ._placeholder {
             
             width: 365.5px;
+            
+          }
+          
+          &.form_error {
+            
+            padding-bottom: 6px;
+            padding-right: 6px;
             
           }
           

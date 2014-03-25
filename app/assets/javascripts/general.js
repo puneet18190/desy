@@ -703,12 +703,9 @@ function showFormErrors(container, errors) {
       container.find('.full_folder .msge').text(value);
       container.find('.full_folder').show();
     } else {
-      container.find('.errors_layer.' + key).text(value).show();
-      if(key == 'tags') {
-        container.find('._tags_container').addClass('form_error');
-      } else {
-        container.find('.' + key).addClass('form_error');
-      }
+      var layer = container.find('.errors_layer.' + key);
+      layer.text(value).show();
+      container.find(layer.data('form-error-selector')).addClass('form_error');
     }
   });
   container.data('loader-can-move', false).data('loader-with-errors', true);
