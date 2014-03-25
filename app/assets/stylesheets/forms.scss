@@ -1870,34 +1870,13 @@
           
           span {
             
-            background-color: white; /* TODO formms */
-            color: #373737; /* TODO formms */
+            background-color: white;
+            color: #373737;
             
             &.new_tag {
               
-              color: white; /* TODO formms */
-              background-color: #373636; /* TODO formms */
-              
-              a:hover {
-                
-                background-image: $assets-bianca_png; /* TODO formms */
-                opacity: 1; /* TODO formms */
-                
-              }
-              
-            }
-            
-            a {
-              
-              color: #373737; /* TODO formms */
-              background-image: $assets-grigia_png; /* TODO formms */
-              
-              &:hover {
-                
-                background-image: $assets-grigia_png; /* TODO formms */
-                opacity: 0.6; /* TODO formms */
-                
-              }
+              color: #373737;
+              background-color: #F5A933;
               
             }
             
@@ -1905,7 +1884,7 @@
           
           .tags {
             
-            color: white; /* TODO formms */
+            color: white;
             width: 365.5px;
             
           }
@@ -1935,7 +1914,7 @@
         
         &:hover {
           
-          background-color: #67B855; /* TODO formms */
+          background-color: #F5A933;
           
         }
         
