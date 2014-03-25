@@ -1,15 +1,5 @@
 <% if @errors %>
-  $('.form_error').removeClass('form_error');
-  $('#slides._update ._error_messages').html('<%= j (@errors) %>'); // TODO formms
-  <% @error_fields.each do |err| %>
-    <% if err.to_s == 'tags' %>
-      $('#slides._update ._tags_container').addClass('form_error');
-    <% else %>
-      $('#slides._update #<%= err %>').addClass('form_error');
-    <% end %>
-  <% end %>
+  showFormErrors($('#edit-lesson'), <%= @errors.to_json.html_safe %>);
 <% else %>
-  $('.form_error').removeClass('form_error');
-  $('#slides._update ._error_messages').html('');
   window.location = '/lessons/<%= @lesson.id %>/slides/edit/';
 <% end %>
