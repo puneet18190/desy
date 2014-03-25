@@ -80,7 +80,7 @@ function uploaderDocumentReady() {
     var container = myself.parents('.globalLoader');
     if(!myself.hasClass('media')) {
       myself.hide();
-      container.find(myself.data('selector')).focus();
+      container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
     }
   });
   $body.on('click', '.globalLoader .attachment label', function() {

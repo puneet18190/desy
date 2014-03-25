@@ -757,9 +757,10 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   });
   $body.on('click', '.loadInGallery .errors_layer', function() {
     var myself = $(this);
+    var container = myself.parents('.loadInGallery');
     if(!myself.hasClass('media')) {
       myself.hide();
-      $('.loadInGallery ' + myself.data('selector')).focus();
+      container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
     }
   });
   $body.on('click', '.loadInGallery .part1 .attachment label', function() {

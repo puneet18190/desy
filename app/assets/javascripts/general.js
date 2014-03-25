@@ -183,7 +183,7 @@ function commonMediaElementsDocumentReady() {
     var myself = $(this);
     var container = myself.parents('.dialogMediaElement');
     myself.hide();
-    container.find(myself.data('selector')).focus();
+    container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
   });
   $body.on('mouseenter', '.boxViewCompactMediaElement', function() {
     var item = $(this);
@@ -452,7 +452,7 @@ function sectionDocumentsDocumentReady() {
     var myself = $(this);
     var container = myself.parents('.dialogDocument');
     myself.hide();
-    container.find(myself.data('selector')).focus();
+    container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
   });
   $('#order_documents option[selected]').first().attr('selected', 'selected');
   $('#order_documents').selectbox();
