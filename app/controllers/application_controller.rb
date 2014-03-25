@@ -256,6 +256,7 @@ class ApplicationController < ActionController::Base
     resp[:tags] = t('forms.error_captions.tags_are_not_enough').downcase if errors.added? :tags, :are_not_enough
     resp[:tags] = t('forms.error_captions.tags_too_many').downcase if errors.added? :tags, :too_many
     resp[:subject] = t('forms.error_captions.subject_missing_in_lesson') if errors.added? :subject_id, :blank
+    resp
   end
   
   # Used for errors of a media element.
