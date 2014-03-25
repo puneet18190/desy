@@ -877,19 +877,22 @@
     
     ._switch_video {
       
-      @include svg-circle-icon-handler($assets-icone-editor-elementi_svg, 60px, 3, 4, 0.5, 1, 0, 1, 0, 0);
+      @include svg-circle-icon-handler($assets-icone-editor-elementi_svg, 52px, 3, 4, 0.5, 1, 0, 1, 0, 0);
+      cursor: pointer;
       
     }
     
     ._switch_image {
       
-      @include svg-circle-icon-handler($assets-icone-editor-elementi_svg, 60px, 3, 4, 0.5, 1, 2, 1, 0, 2);
+      @include svg-circle-icon-handler($assets-icone-editor-elementi_svg, 52px, 3, 4, 0.5, 1, 2, 1, 0, 2);
+      cursor: pointer;
       
     }
     
     ._switch_text {
       
-      @include svg-circle-icon-handler($assets-icone-editor-elementi_svg, 60px, 3, 4, 0.5, 1, 3, 1, 0, 3);
+      @include svg-circle-icon-handler($assets-icone-editor-elementi_svg, 52px, 3, 4, 0.5, 1, 3, 1, 0, 3);
+      cursor: pointer;
       
     }
     
