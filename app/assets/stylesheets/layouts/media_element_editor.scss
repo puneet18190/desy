@@ -150,238 +150,6 @@ html.media_element_editor-layout {
     top: 68px;
     z-index: 101;
     
-    .videoIcon {
-      
-      background-position: -6em 0;
-      font-size: 1em;
-      margin-right: 15px;
-      
-    }
-    
-    .imageIcon {
-      
-      background-position: -6em -11.2em;
-      font-size: 1em;
-      margin-right: 15px;
-      
-    }
-    
-    .audioIcon {
-      
-      background-position: -6em -5.6em;
-      font-size: 1em;
-      margin-right: 15px;
-      
-    }
-    
-    .contentFormInfoMediaElementEditor {
-      
-      padding-top: 60px;
-      width: 670px;
-      margin: 0 auto;
-      
-      .titleFormInfo {
-        
-        padding-bottom: 40px;
-        display: inline-block;
-        width: 670px;
-        
-        h1 {
-          
-          color: #fff;
-          text-align: left;
-          font-size: 30px;
-          line-height: 30px;
-          margin-top: 10px;
-          
-        }
-        
-        h2 {
-          
-          font-size: 15px;
-          line-height: 30px;
-          color: #fff;
-          text-align: left;
-          
-        }
-        
-      }
-      
-      .error_messages {
-        
-        padding: 0;
-        margin-left: 87px;
-        height: 18px;
-        text-align: left;
-        
-      }
-      
-      .cols {
-        
-        padding-top: 40px;
-        text-align: left;
-        
-        &.ad_hoc_per_check {
-          
-          width: 670px;
-          
-          a {
-            
-            float: right;
-            
-            &._cancel {
-              
-              margin-right: 5px;
-              
-            }
-            
-          }
-          
-          .checkboxMediaElement {
-            
-            @include nunito(16px);
-            border-radius: 5px;
-            -webkit-border-radius: 5px;
-            padding: 8px;
-            width: 15px;
-            float: left;
-            margin-right: 5%;
-            margin-bottom: 30px;
-            display: block;
-            color: #7D7D7D;
-            
-            input {
-              
-              display: none;
-              
-            }
-            
-            input + label, label {
-              
-              box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
-              float: left;
-              cursor: pointer;
-              background-color: #fff;
-              padding: 3px 9px;
-              border-radius: 3px;
-              height: 15px;
-              width: 4px;
-              box-shadow: none;
-              
-            }
-            
-            input:checked + label {
-              
-              background-color: #CDCDCE;
-              cursor: default;
-              
-            }
-            
-            input:checked + label:after {
-              
-              color: $green;
-              cursor: pointer;
-              padding: 2px 3px;
-              content: '\2714';
-              font-size: 14px;
-              bottom: 3px;
-              right: 6px;
-              display: inline-block;
-              position: relative;
-              
-            }
-            
-          }
-          
-        }
-        
-      }
-      
-      #error_messages {
-        
-        width: 580px;
-        text-align: left;
-        margin: auto 90px;
-        height: 30px;
-        display: block;
-        
-      }
-      
-      .form_error,textarea.form_error, input.form_error {
-        
-        border: 3px solid rgba(250, 0, 0, 0.5);
-        
-      }
-      
-      input, textarea {
-        
-        @include arial(12px);
-        background-color: #454343;
-        border-radius: 10px;
-        box-shadow: 0px 2px 2px rgba(10, 10, 10, 0.5) inset;
-        padding: 5px 14px;
-        width: 272px;
-        color: #fff;
-        resize: none;
-        
-      }
-      
-      ._tags_container {
-        
-        box-shadow: 0px 2px 2px rgba(10, 10, 10, 0.5) inset;
-        
-      }
-      
-      input {
-        
-        height: 25px;
-        margin-bottom: 12px;
-        
-      }
-      
-      textarea {
-        
-        height: 112px;
-        
-      }
-      
-      textarea#new_tags, textarea#update_tags {
-        
-        height: 161px;
-        
-      }
-      
-      input[type="submit"] {
-        
-        @include nunito(130%);
-        color: #fff;
-        width: 160px;
-        background-color: $green;
-        
-        &:hover {
-          
-          background-color: #67B855;
-          cursor: pointer;
-          
-        }
-        
-      }
-      
-      .buttonForm {
-        
-        background-color: #000;
-        color: white;
-        
-        &:hover {
-          
-          background-color: #67B855;
-          
-        }
-        
-      }
-      
-    }
-    
   }
   
   #audio_editor #form_info_new_media_element_in_editor.formInfoMediaElementEditor, #audio_editor #form_info_update_media_element_in_editor.formInfoMediaElementEditor {
@@ -655,19 +423,19 @@ html.media_element_editor-layout {
       float: left;
       padding-top: 45px;
       
-      .videoButton {
+      .video {
         
         @include svg-circle-icon-handler($assets-set-editor-elementi_svg, 146px, 3, 4, 0.4, 1, 0, 1, 0, 0);
         
       }
       
-      .photoButton {
+      .image {
         
         @include svg-circle-icon-handler($assets-set-editor-elementi_svg, 146px, 3, 4, 0.4, 1, 2, 1, 0, 2);
         
       }
       
-      .audioButton {
+      .audio {
         
         @include svg-circle-icon-handler($assets-set-editor-elementi_svg, 146px, 3, 4, 0.4, 1, 1, 1, 0, 1);
         
@@ -827,16 +595,6 @@ html.media_element_editor-layout {
           outline: 2px solid #fff;
           
         }
-        
-      }
-      
-      .photoIcon, .audioIcon, .videoIcon, .textIcon {
-        
-        margin-right: 0px;
-        position: absolute;
-        bottom: 10px;
-        right: 3px;
-        font-size: 0.3em;
         
       }
       

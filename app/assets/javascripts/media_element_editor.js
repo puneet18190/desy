@@ -208,7 +208,7 @@ function mediaElementEditorDocumentReady() {
       form.find('#new_title_placeholder').val('0');
       form.find('#new_description').val(form.find('#only_to_conserve_tags .edited_container .edited_description').val());
       form.find('#new_description_placeholder').val('0');
-      var old_tags_placeholder = form.find('._tags_container ._placeholder')[0].outerHTML;
+      var old_tags_placeholder = form.find('._tags_container ._placeholder')[0].outerHTML; // TODO formms tutta merda, devo usare il data placeholder!
       var old_tags_value = form.find('._tags_container #new_tags_value')[0].outerHTML;
       var old_tags = form.find('#new_tags')[0].outerHTML;
       form.find('._tags_container').html(form.find('#only_to_conserve_tags .edited_container .edited_tags_container').html());

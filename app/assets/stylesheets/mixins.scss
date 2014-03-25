@@ -442,19 +442,6 @@
   
 }
 
-@mixin iconEditorElement($font-size) {
-  
-  float: left;
-  width: $shared-editor-player-icon-size;
-  height: $shared-editor-player-icon-size;
-  background-image: $assets-icone-editor-elementi_svg;
-  background-repeat: no-repeat;
-  background-size: ($shared-editor-player-icon-size * 3) ($shared-editor-player-icon-size * 4);
-  padding: 0;
-  font-size: $font-size;
-  
-}
-
 @mixin call {
   
   z-index: 20;
