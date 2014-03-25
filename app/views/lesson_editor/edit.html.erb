@@ -33,7 +33,7 @@
                 <span><%= t.tag.word.strip %><a class="remove"></a></span>
               <% end %>
               <input class="tags" type="text" value="" maxlength="<%= SETTINGS['max_tag_length'] %>"/>
-              <input class="tags_value" type="hidden" value="<%= lesson.tags %>" name="tags_value"/>
+              <input class="tags_value" type="hidden" value="<%= @lesson.tags %>" name="tags_value"/>
             </div>
           </div>
         </div>
@@ -64,6 +64,6 @@
         $(this).attr('selected', 'selected');
       }
     });
-    disableTagsInputTooHigh(); // TODO formms
+    disableTagsInputTooHigh($('#edit-lesson .part2 ._tags_container'));
   });
 </script>
