@@ -255,7 +255,7 @@ class ApplicationController < ActionController::Base
     resp[:description] = t('forms.error_captions.description_blank').downcase if errors.added? :description, :blank
     resp[:tags] = t('forms.error_captions.tags_are_not_enough').downcase if errors.added? :tags, :are_not_enough
     resp[:tags] = t('forms.error_captions.tags_too_many').downcase if errors.added? :tags, :too_many
-    resp[:subject_id] = t('forms.error_captions.subject_missing_in_lesson') if errors.added? :subject_id, :blank
+    resp[:subject_id] = t('forms.error_captions.subject_missing_in_lesson').downcase if errors.added? :subject_id, :blank
     resp
   end
   
