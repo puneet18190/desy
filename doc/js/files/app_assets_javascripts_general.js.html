@@ -497,9 +497,9 @@ function commonMediaElementsDocumentReady() {
   });
   $body.on(&#x27;click&#x27;, &#x27;.dialogMediaElement .wrapper .change-info .errors_layer&#x27;, function() {
     var myself = $(this);
-    var container = myself.parents(&#x27;.dialogMediaElement&#x27;);
+    var container = myself.parents(&#x27;.dialogMediaElement&#x27;).find(&#x27;.wrapper .change-info&#x27;);
     myself.hide();
-    container.find(myself.data(&#x27;selector&#x27;)).focus();
+    container.find(myself.data(&#x27;focus-selector&#x27;)).trigger(myself.data(&#x27;focus-action&#x27;));
   });
   $body.on(&#x27;mouseenter&#x27;, &#x27;.boxViewCompactMediaElement&#x27;, function() {
     var item = $(this);
@@ -766,9 +766,9 @@ function sectionDocumentsDocumentReady() {
   });
   $body.on(&#x27;click&#x27;, &#x27;.dialogDocument .wrapper .change-info .errors_layer&#x27;, function() {
     var myself = $(this);
-    var container = myself.parents(&#x27;.dialogDocument&#x27;);
+    var container = myself.parents(&#x27;.dialogDocument&#x27;).find(&#x27;.wrapper .change-info&#x27;);
     myself.hide();
-    container.find(myself.data(&#x27;selector&#x27;)).focus();
+    container.find(myself.data(&#x27;focus-selector&#x27;)).trigger(myself.data(&#x27;focus-action&#x27;));
   });
   $(&#x27;#order_documents option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $(&#x27;#order_documents&#x27;).selectbox();
@@ -1019,12 +1019,9 @@ function showFormErrors(container, errors) {
       container.find(&#x27;.full_folder .msge&#x27;).text(value);
       container.find(&#x27;.full_folder&#x27;).show();
     } else {
-      container.find(&#x27;.errors_layer.&#x27; + key).text(value).show();
-      if(key == &#x27;tags&#x27;) {
-        container.find(&#x27;._tags_container&#x27;).addClass(&#x27;form_error&#x27;);
-      } else {
-        container.find(&#x27;.&#x27; + key).addClass(&#x27;form_error&#x27;);
-      }
+      var layer = container.find(&#x27;.errors_layer.&#x27; + key);
+      layer.text(value).show();
+      container.find(layer.data(&#x27;form-error-selector&#x27;)).addClass(&#x27;form_error&#x27;);
     }
   });
   container.data(&#x27;loader-can-move&#x27;, false).data(&#x27;loader-with-errors&#x27;, true);

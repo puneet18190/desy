@@ -396,7 +396,7 @@ function uploaderDocumentReady() {
     var container = myself.parents(&#x27;.globalLoader&#x27;);
     if(!myself.hasClass(&#x27;media&#x27;)) {
       myself.hide();
-      container.find(myself.data(&#x27;selector&#x27;)).focus();
+      container.find(myself.data(&#x27;focus-selector&#x27;)).trigger(myself.data(&#x27;focus-action&#x27;));
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;.globalLoader .attachment label&#x27;, function() {

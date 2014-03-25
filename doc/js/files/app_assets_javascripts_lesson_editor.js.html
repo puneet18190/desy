@@ -930,44 +930,45 @@ function lessonEditorDocumentReadyTextFields() {
       $(this).data(&#x27;placeholder&#x27;, false);
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#slides._new #title&#x27;, function() {
-    if($(&#x27;#slides._new #title_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;focus&#x27;, &#x27;.lessonForm .part2 .title&#x27;, function() {
+    var container = $(this).parents(&#x27;.lessonForm&#x27;);
+    var placeholder = container.find(&#x27;.title_placeholder&#x27;);
+    if(placeholder.val() == &#x27;&#x27;) {
       $(this).val(&#x27;&#x27;);
-      $(&#x27;#slides._new #title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      placeholder.val(&#x27;0&#x27;);
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#slides._new #description&#x27;, function() {
-    if($(&#x27;#slides._new #description_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;focus&#x27;, &#x27;.lessonForm .part2 .description&#x27;, function() {
+    var container = $(this).parents(&#x27;.lessonForm&#x27;);
+    var placeholder = container.find(&#x27;.description_placeholder&#x27;);
+    if(placeholder.val() == &#x27;&#x27;) {
       $(this).val(&#x27;&#x27;);
-      $(&#x27;#slides._new #description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      placeholder.val(&#x27;0&#x27;);
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#slides._update #title&#x27;, function() {
-    if($(&#x27;#slides._update #title_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).val(&#x27;&#x27;);
-      $(&#x27;#slides._update #title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
-    }
-  });
-  $body.on(&#x27;focus&#x27;, &#x27;#slides._update #description&#x27;, function() {
-    if($(&#x27;#slides._update #description_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).val(&#x27;&#x27;);
-      $(&#x27;#slides._update #description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
-    }
-  });
-  $body.on(&#x27;keydown&#x27;, &#x27;form#lesson-create input#title, form#lesson-create textarea&#x27;, function() {
+  $body.on(&#x27;keydown&#x27;, &#x27;.lessonForm .part2 .title, .lessonForm .part2 .description&#x27;, function() {
     $(this).removeClass(&#x27;form_error&#x27;);
   });
-  $body.on(&#x27;keydown&#x27;, &#x27;form#lesson-create input#tags&#x27;, function() {
-    $(this).parent().removeClass(&#x27;form_error&#x27;);
+  $body.on(&#x27;keydown&#x27;, &#x27;.lessonForm .part2 ._tags_container .tags&#x27;, function() {
+    $(this).parents(&#x27;._tags_container&#x27;).removeClass(&#x27;form_error&#x27;);
   });
-  $body.on(&#x27;click&#x27;, &#x27;#lesson-create .sbHolder&#x27;, function() {
-    $(this).removeClass(&#x27;form_error&#x27;);
+  $body.on(&#x27;click&#x27;, &#x27;.lessonForm .part3 .submit&#x27;, function() {
+    var container = $(this).parents(&#x27;.lessonForm&#x27;);
+    container.find(&#x27;form&#x27;).submit();
   });
-  $body.on(&#x27;keydown&#x27;, &#x27;#slides._update #title, #slides._update #description&#x27;, function() {
-    $(this).removeClass(&#x27;form_error&#x27;);
+  $body.on(&#x27;click&#x27;, &#x27;.lessonForm .errors_layer&#x27;, function() {
+    var myself = $(this);
+    var container = myself.parents(&#x27;.lessonForm&#x27;);
+    myself.hide();
+    container.find(myself.data(&#x27;focus-selector&#x27;)).trigger(myself.data(&#x27;focus-action&#x27;));
   });
-  $body.on(&#x27;keydown&#x27;, &#x27;#slides._update input#tags&#x27;, function() {
-    $(this).parent().removeClass(&#x27;form_error&#x27;);
+  $body.on(&#x27;change&#x27;, &#x27;.lessonForm .part2 #lesson_subject&#x27;, function() {
+    var myself = $(this);
+    if(myself.val() != &#x27;&#x27;) {
+      myself.find(&#x27;.delete_me&#x27;).remove();
+      myself.selectbox(&#x27;detach&#x27;);
+      myself.selectbox();
+    }
   });
 }
 
@@ -1085,9 +1086,10 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   });
   $body.on(&#x27;click&#x27;, &#x27;.loadInGallery .errors_layer&#x27;, function() {
     var myself = $(this);
+    var container = myself.parents(&#x27;.loadInGallery&#x27;);
     if(!myself.hasClass(&#x27;media&#x27;)) {
       myself.hide();
-      $(&#x27;.loadInGallery &#x27; + myself.data(&#x27;selector&#x27;)).focus();
+      container.find(myself.data(&#x27;focus-selector&#x27;)).trigger(myself.data(&#x27;focus-action&#x27;));
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;.loadInGallery .part1 .attachment label&#x27;, function() {

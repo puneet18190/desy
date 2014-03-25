@@ -3417,7 +3417,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 452,
+            "line": 448,
             "description": "Dialog containing the media element general information. If the element is private, this same dialog contains the form to change title, description and tags (see the method {{#crossLink \"MediaElementEditorForms/resetMediaElementChangeInfo:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "showMediaElementInfoPopUp",
@@ -3433,7 +3433,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 505,
+            "line": 501,
             "description": "Dialog containing the form to send the public link of a lesson. Used in {{#crossLink \"VirtualClassroomSendLink\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showSendLessonLinkPopUp",
@@ -3449,7 +3449,7 @@
         },
         {
             "file": "app/assets/javascripts/dialogs.js",
-            "line": 549,
+            "line": 545,
             "description": "Dialog containing a list of lessons to be loaded in the Virtual Classroom. Used in {{#crossLink \"VirtualClassroomMultipleLoading\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "showVirtualClassroomQuickSelectPopUp",
@@ -3851,7 +3851,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 717,
+            "line": 714,
             "description": "Shows the mini thumbnail of a compact media element.",
             "itemtype": "method",
             "name": "showMiniThumbnailForMediaElementCompact",
@@ -3867,7 +3867,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 760,
+            "line": 757,
             "description": "Removes a parameter from an url.",
             "itemtype": "method",
             "name": "removeURLParameter",
@@ -3892,7 +3892,7 @@
         },
         {
             "file": "app/assets/javascripts/general.js",
-            "line": 786,
+            "line": 783,
             "description": "Adds or update new parameters to an url.",
             "itemtype": "method",
             "name": "updateURLParameter",
@@ -4296,7 +4296,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 658,
+            "line": 659,
             "description": "Initializer for specific media elements or documents uploader inside the Lesson Editor.",
             "itemtype": "method",
             "name": "lessonEditorDocumentReadyUploaderInGallery",
@@ -4305,7 +4305,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 792,
+            "line": 794,
             "description": "Save current slide. It sends tinyMCE editor content to form data to be serialized, it handles form placeholders.",
             "itemtype": "method",
             "name": "saveCurrentSlide",
@@ -4326,7 +4326,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 851,
+            "line": 853,
             "description": "Hides the small popup containing the description of a document inside the document gallery.",
             "itemtype": "method",
             "name": "hidePopuppina",
@@ -4342,7 +4342,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 861,
+            "line": 863,
             "description": "Loads the documents from the slide to the gallery.",
             "itemtype": "method",
             "name": "loadDocumentGalleryContent",
@@ -4358,7 +4358,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 879,
+            "line": 881,
             "description": "Loads the specific gallery for documents relative to a slide. The gallery is supposed to have already been loaded previously, by {{#crossLink \"LessonEditorGalleries/showDocumentGalleryInLessonEditor:method\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "loadDocumentGalleryForSlideInLessonEditor",
@@ -4374,7 +4374,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 891,
+            "line": 893,
             "description": "Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).",
             "itemtype": "method",
             "name": "reloadGalleryInLessonEditor",
@@ -4415,7 +4415,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 957,
+            "line": 959,
             "description": "Hides media gallery for selected type.",
             "itemtype": "method",
             "name": "removeGalleryInLessonEditor",
@@ -4431,7 +4431,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 969,
+            "line": 971,
             "description": "Resets the filter of documents in the gallery.",
             "itemtype": "method",
             "name": "resetDocumentGalleryFilter",
@@ -4452,7 +4452,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1000,
+            "line": 1002,
             "description": "Shows document gallery.",
             "itemtype": "method",
             "name": "showDocumentGalleryInLessonEditor",
@@ -4461,7 +4461,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1037,
+            "line": 1039,
             "description": "Shows media gallery for selected type.",
             "itemtype": "method",
             "name": "showGalleryInLessonEditor",
@@ -4482,7 +4482,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1063,
+            "line": 1065,
             "description": "Shows the small popup containing the description of a document inside the document gallery.",
             "itemtype": "method",
             "name": "showPopuppina",
@@ -4498,7 +4498,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1112,
+            "line": 1114,
             "description": "Unloads the documents to the slide.",
             "itemtype": "method",
             "name": "unLoadDocumentGalleryContent",
@@ -4514,7 +4514,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1130,
+            "line": 1132,
             "description": "Updates the faded documents and the gallery is locked if three documents are loaded.",
             "itemtype": "method",
             "name": "updateEffectsInsideDocumentGallery",
@@ -4523,7 +4523,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1166,
+            "line": 1168,
             "description": "Returns the width of the image space for the kind of slide.",
             "itemtype": "method",
             "name": "getHorizontalStandardSizeOfSlideImage",
@@ -4543,7 +4543,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1190,
+            "line": 1192,
             "description": "Returns the height of the image space for the kind of slide.",
             "itemtype": "method",
             "name": "getVerticalStandardSizeOfSlideImage",
@@ -4563,7 +4563,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1214,
+            "line": 1216,
             "description": "Check if image ratio is bigger then kind ratio.",
             "itemtype": "method",
             "name": "isHorizontalMask",
@@ -4593,7 +4593,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1242,
+            "line": 1244,
             "description": "Gets scaled height to slide images.",
             "itemtype": "method",
             "name": "resizeHeight",
@@ -4623,7 +4623,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1255,
+            "line": 1257,
             "description": "Gets scaled width to slide images.",
             "itemtype": "method",
             "name": "resizeWidth",
@@ -4653,7 +4653,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1272,
+            "line": 1274,
             "description": "Inizializes jQueryUI <b>sortable</b> function on top navigation numbers, so that they can be sorted (see also {{#crossLink \"LessonEditorDocumentReady/lessonEditorDocumentReadySlidesNavigator:method\"}}{{/crossLink}} and {{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "initializeSortableNavs",
@@ -4662,7 +4662,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1317,
+            "line": 1319,
             "description": "Method that deinscribes the image.",
             "itemtype": "method",
             "name": "lessonEditorDeinscribeImage",
@@ -4678,7 +4678,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1358,
+            "line": 1360,
             "description": "Method that inscribes the image.",
             "itemtype": "method",
             "name": "lessonEditorInscribeImage",
@@ -4694,7 +4694,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1399,
+            "line": 1401,
             "description": "Inizializes jQueryUI <b>draggable</b> function on slide image containers.",
             "itemtype": "method",
             "name": "makeDraggable",
@@ -4710,7 +4710,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1488,
+            "line": 1490,
             "description": "Asynchronously loads current slide, previous and following.",
             "itemtype": "method",
             "name": "loadSlideAndAdhiacentInLessonEditor",
@@ -4726,7 +4726,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1501,
+            "line": 1503,
             "description": "Asynchronous slide loading. It checks if the slide has been loaded or not.",
             "itemtype": "method",
             "name": "loadSlideInLessonEditor",
@@ -4742,7 +4742,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1520,
+            "line": 1522,
             "description": "Initialize slides position to center.",
             "itemtype": "method",
             "name": "initLessonEditorPositions",
@@ -4751,7 +4751,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1539,
+            "line": 1541,
             "description": "Re-initialize slides position to center after ajax events.",
             "itemtype": "method",
             "name": "reInitializeSlidePositionsInLessonEditor",
@@ -4760,7 +4760,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1551,
+            "line": 1553,
             "description": "Scrolls navigation scrollPane ({{#crossLink \"LessonEditorSlidesNavigation\"}}{{/crossLink}}) when moving to another slide.",
             "itemtype": "method",
             "name": "scrollPaneUpdate",
@@ -4780,7 +4780,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1568,
+            "line": 1570,
             "description": "Moves to a slide, update current slide in top navigation.",
             "itemtype": "method",
             "name": "slideTo",
@@ -4801,7 +4801,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1623,
+            "line": 1625,
             "description": "TinyMCE callback to clean spans containing classes for font size: these classes are attached to the first ol, ul, p",
             "itemtype": "method",
             "name": "cleanTinyMCESpanTagsFontSize",
@@ -4817,7 +4817,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1644,
+            "line": 1646,
             "description": "Initialize tinyMCE editor for a single textarea.",
             "itemtype": "method",
             "name": "initTinymce",
@@ -4833,7 +4833,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1696,
+            "line": 1698,
             "description": "TinyMCE callback to show warning when texearea content exceeds the available space. Adds a red border to the textarea.This function is used in tinyMCE setup ({{#crossLink \"LessonEditorTinyMCE/initTinymce:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "handleTinyMCEOveflow",
@@ -4854,7 +4854,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 1719,
+            "line": 1721,
             "description": "Function to strip tags in a text pasted inside TinyMCE.",
             "itemtype": "method",
             "name": "stripTagsForCutAndPaste",
@@ -5298,7 +5298,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 246,
+            "line": 249,
             "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "resetMediaElementChangeInfo",
@@ -5314,7 +5314,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 267,
+            "line": 270,
             "description": "Resets the <b>commit forms</b> used in {{#crossLinkModule \"audio-editor\"}}{{/crossLinkModule}}, {{#crossLinkModule \"image-editor\"}}{{/crossLinkModule}} and {{#crossLinkModule \"video-editor\"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink \"AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method\"}}{{/crossLink}}, {{#crossLink \"ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method\"}}{{/crossLink}} and {{#crossLink \"VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method\"}}{{/crossLink}}).",
             "itemtype": "method",
             "name": "resetMediaElementEditorForms",
@@ -5323,7 +5323,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 307,
+            "line": 310,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>left</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollLeft",
@@ -5348,7 +5348,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 323,
+            "line": 326,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>right</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollRight",
@@ -5373,7 +5373,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 335,
+            "line": 338,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the absolute position to be assigned to <b>a div that must be aligned to the component</b> after having been moved to first position.",
             "itemtype": "method",
             "name": "getAbsolutePositionTimelineHorizontalScrollPane",
@@ -5408,7 +5408,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 357,
+            "line": 360,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: gets how many components are hidden to the left of the scroll pane.",
             "itemtype": "method",
             "name": "getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane",
@@ -5433,7 +5433,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 370,
+            "line": 373,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: exactly the same as {{#crossLink \"MediaElementEditorHorizontalTimelines/getAbsolutePositionTimelineHorizontalScrollPane:method\"}}{{/crossLink}}, but <b>it returns the position of the scroll pane</b> instead of the absolute pixels for an external div.",
             "itemtype": "method",
             "name": "getNormalizedPositionTimelineHorizontalScrollPane",
