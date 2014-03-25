@@ -39,8 +39,8 @@
           <a class="submit"><%= t('forms.change_info_document.done').downcase %></a>
           <a class="close"><%= t('forms.change_info_document.cancel').downcase %></a>
         </div>
-        <div class="errors_layer description" data-selector=".part2 .description"></div>
-        <div class="errors_layer title" data-selector=".part2 .title"></div>
+        <div class="errors_layer description" data-focus-selector=".part2 .description" data-form-error-selector=".part2 .description" data-focus-action="focus"></div>
+        <div class="errors_layer title" data-focus-selector=".part2 .title" data-form-error-selector=".part2 .title" data-focus-action="focus"></div>
       <% end %>
     </div>
   </div>
