@@ -43,7 +43,7 @@
     
     .icon {
       
-      @include svg-circle-icon-handler-without-hover($assets-set-editor-elementi_svg, 60px, 3, 4, 1, 0, 2);
+      @include svg-circle-icon-handler-without-hover($assets-icone-editor-elementi_svg, 52px, 3, 4, 1, 0, 2);
       cursor: default;
       
     }
@@ -485,7 +485,7 @@
     
     .icon {
       
-      @include svg-circle-icon-handler-without-hover($assets-set-editor-elementi_svg, 60px, 3, 4, 1, 0, 1);
+      @include svg-circle-icon-handler-without-hover($assets-icone-editor-elementi_svg, 52px, 3, 4, 1, 0, 1);
       cursor: default;
       
     }
@@ -594,7 +594,7 @@
     
     .icon {
       
-      @include svg-circle-icon-handler-without-hover($assets-set-editor-elementi_svg, 60px, 3, 4, 1, 0, 0);
+      @include svg-circle-icon-handler-without-hover($assets-icone-editor-elementi_svg, 52px, 3, 4, 1, 0, 0);
       cursor: default;
       
     }

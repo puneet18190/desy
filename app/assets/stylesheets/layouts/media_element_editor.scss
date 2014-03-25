@@ -425,19 +425,19 @@ html.media_element_editor-layout {
       
       .video {
         
-        @include svg-circle-icon-handler($assets-set-editor-elementi_svg, 146px, 3, 4, 0.4, 1, 0, 1, 0, 0);
+        @include svg-circle-icon-handler($assets-icone-editor-elementi_svg, 120px, 3, 4, 0.4, 1, 0, 1, 0, 0);
         
       }
       
       .image {
         
-        @include svg-circle-icon-handler($assets-set-editor-elementi_svg, 146px, 3, 4, 0.4, 1, 2, 1, 0, 2);
+        @include svg-circle-icon-handler($assets-icone-editor-elementi_svg, 120px, 3, 4, 0.4, 1, 2, 1, 0, 2);
         
       }
       
       .audio {
         
-        @include svg-circle-icon-handler($assets-set-editor-elementi_svg, 146px, 3, 4, 0.4, 1, 1, 1, 0, 1);
+        @include svg-circle-icon-handler($assets-icone-editor-elementi_svg, 120px, 3, 4, 0.4, 1, 1, 1, 0, 1);
         
       }
       
