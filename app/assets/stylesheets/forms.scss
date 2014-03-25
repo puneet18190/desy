@@ -1781,7 +1781,8 @@
       
     }
     
-    .part1 .attachment .media, .part2 .title_and_description .title, .part2 .title_and_description .description, .part2 .tags_loader ._tags_container {
+    .part1 .attachment .media, .part2 .title_and_description .title, .part2 .title_and_description .description,
+    .part2 .tags_loader ._tags_container, .part2 .tags_loader .sbHolder {
       
       color: white;
       box-shadow: 0px 2px 2px rgba(50, 50, 50, 0.1) inset;
@@ -1862,11 +1863,48 @@
         float: left;
         width: 405px;
         
+        .sbHolder {
+          
+          float: right;
+          height: 39px;
+          padding-top: 3px;
+          padding-bottom: 3px;
+          margin-bottom: 15px;
+          width: 397.5px;
+          text-indent: 0px;
+          
+          .sbToggle {
+            
+            @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 25px, 5, 2, 1, 2, 1);
+            
+            &.sbToggleOpen {
+              
+              @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 25px, 5, 2, 1, 2, 0);
+              
+            }
+            
+          }
+          
+          .sbSelector {
+            
+            @include arial-with-line-height(13px, 13px);
+            height: 29px;
+            padding-top: 16px;
+            padding-bottom: 0;
+            padding-left: 16px;
+            width: 381.5px;
+            color: white;
+            text-indent: 0px; /* TODO formms metterlo anche in sbOptions */
+            box-shadow: none;
+            
+          }
+          
+        }
+        
         ._tags_container {
           
           width: 385.5px;
           height: 190px;
-          margin-top: 60px; /* TODO formms va rimosso per fare spazio alle materie */
           
           span {
             
