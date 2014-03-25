@@ -1872,6 +1872,7 @@
           margin-bottom: 15px;
           width: 397.5px;
           text-indent: 0px;
+          border-radius: 5px;
           
           .sbToggle {
             
@@ -1895,7 +1896,8 @@
             width: 381.5px;
             color: white;
             text-indent: 0px; /* TODO formms metterlo anche in sbOptions */
-            box-shadow: none;
+            box-shadow: none; /* TODO formms metterlo anche in sbOptions */
+            border-radius: 5px; /* TODO formms metterlo anche in sbOptions */
             
           }
           
