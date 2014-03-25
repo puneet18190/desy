@@ -1735,7 +1735,7 @@
     
     width: 810px;
     height: 470px;
-    padding: 35px;
+    padding: 45px;
     position: relative;
     
     .errors_layer {
@@ -1799,7 +1799,13 @@
         width: 405px;
         height: 103px;
         
-        /* TODO formms manca icona */
+        .icon {
+          
+          @include svg-circle-icon-handler-without-hover($assets-set-icone-editor_svg, 75px, 4, 12, 1, 0, 2);
+          margin-left: 5px;
+          margin-top: 5px;
+          
+        }
         
       }
       
@@ -1844,7 +1850,7 @@
         .description {
           
           width: 365.5px;
-          height: 148px; /* TODO formms */
+          height: 170px;
           
         }
         
@@ -1855,12 +1861,11 @@
         float: left;
         width: 405px;
         
-        /* TODO formms manca il selettore di materie */
-        
         ._tags_container {
           
           width: 385.5px;
-          height: 228px; /* TODO formms */
+          height: 190px;
+          margin-top: 60px; /* TODO formms va rimosso per fare spazio alle materie */
           
           span {
             
@@ -1939,18 +1944,30 @@
     
   }
   
-  .menu { /* TODO formms controllare tutto quanto contenuto qui dentro menu */
+  .menu {
     
-    width: 760px;
-    height: 45px;
+    width: 900px;
+    height: 30px;
     background-color: white;
     
-    .on-left, .on-right {
+    .school-level, .author { /* TODO formms sistemare font e line-height */
       
       float: left;
-      width: 370px;
-      height: 35px;
+      width: 440px;
+      height: 20px;
       padding: 5px;
+      
+    }
+    
+    .school-level {
+      
+      text-align: left;
+      
+    }
+    
+    .author {
+      
+      text-align: right;
       
     }
     
