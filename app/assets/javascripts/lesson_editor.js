@@ -614,45 +614,29 @@ function lessonEditorDocumentReadyTextFields() {
       $(this).data('placeholder', false);
     }
   });
-  $body.on('focus', '#slides._new #title', function() {
-    if($('#slides._new #title_placeholder').val() == '') {
+  $body.on('focus', '.lessonForm .part2 .title', function() {
+    var container = $(this).parents('.lessonForm');
+    var placeholder = container.find('.title_placeholder');
+    if(placeholder.val() == '') {
       $(this).val('');
-      $('#slides._new #title_placeholder').attr('value', '0');
+      placeholder.val('0');
     }
   });
-  $body.on('focus', '#slides._new #description', function() {
-    if($('#slides._new #description_placeholder').val() == '') {
+  $body.on('focus', '.lessonForm .part2 .description', function() {
+    var container = $(this).parents('.lessonForm');
+    var placeholder = container.find('.description_placeholder');
+    if(placeholder.val() == '') {
       $(this).val('');
-      $('#slides._new #description_placeholder').attr('value', '0');
+      placeholder.val('0');
     }
   });
-  $body.on('focus', '#slides._update #title', function() {
-    if($('#slides._update #title_placeholder').val() == '') {
-      $(this).val('');
-      $('#slides._update #title_placeholder').attr('value', '0');
-    }
-  });
-  $body.on('focus', '#slides._update #description', function() {
-    if($('#slides._update #description_placeholder').val() == '') {
-      $(this).val('');
-      $('#slides._update #description_placeholder').attr('value', '0');
-    }
-  });
-  $body.on('keydown', 'form#stocazzo input#title, form#stocazzo textarea', function() { // TODO formms
+  $body.on('keydown', '.lessonForm .part2 .title, .lessonForm .part2 .description', function() {
     $(this).removeClass('form_error');
   });
-  $body.on('keydown', 'form#stocazzo input#tags', function() { // TODO formms
-    $(this).parent().removeClass('form_error');
+  $body.on('keydown', '.lessonForm .part2 ._tags_container .tags', function() {
+    $(this).parents('._tags_container').removeClass('form_error');
   });
-  $body.on('click', '#stocazzo .sbHolder', function() { // TODO formms
-    $(this).removeClass('form_error');
-  });
-  $body.on('keydown', '#slides._update #title, #slides._update #description', function() {
-    $(this).removeClass('form_error');
-  });
-  $body.on('keydown', '#slides._update input#tags', function() {
-    $(this).parent().removeClass('form_error');
-  });
+  // TODO formms manca la gestione degli errors_layer, e anche la gestione del bordo rosso di select subjects
 }
 
 /**
