@@ -646,6 +646,9 @@ function lessonEditorDocumentReadyTextFields() {
     myself.hide();
     container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
   });
+  $body.on('change', '.lessonForm .part2 #lesson_subject', function() {
+    console.log('changeee'); // TODO formms
+  });
 }
 
 /**
