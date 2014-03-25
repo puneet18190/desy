@@ -28,7 +28,7 @@
                 <option value="<%= s.id %>"><%= s.description %></option>
               <% end %>
             </select>
-            <div class="_tags_container" data-max-width="392.5" data-lines="4">
+            <div class="_tags_container" data-max-width="397.5" data-lines="4">
               <% Tagging.includes(:tag).where(:taggable_type => 'Lesson', :taggable_id => @lesson.id).order(:tag_id).each do |t| %>
                 <span><%= t.tag.word.strip %><a class="remove"></a></span>
               <% end %>
