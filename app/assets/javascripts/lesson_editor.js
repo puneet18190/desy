@@ -636,6 +636,10 @@ function lessonEditorDocumentReadyTextFields() {
   $body.on('keydown', '.lessonForm .part2 ._tags_container .tags', function() {
     $(this).parents('._tags_container').removeClass('form_error');
   });
+  $body.on('click', '.lessonForm .part3 .submit', function() {
+    var container = $(this).parents('.lessonForm');
+    container.find('form').submit();
+  });
   // TODO formms manca la gestione degli errors_layer, e anche la gestione del bordo rosso di select subjects
 }
 
