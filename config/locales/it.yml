@@ -810,7 +810,7 @@ it:
       # 1 - views/media_elements/_new_form_popup.html.erb
       media: "Seleziona un file da caricare"
       # Subject (used only for lessons)
-      # 1 - helpers/application_helper.rb
+      # 1 - views/lesson_editor/new.html.erb
       subject_id: "Seleziona una materia"
       # Tags (the variable %{num} represents the maximum number of characters for each tags, the variable %{items} represents the minimum amount of tags)
       # 1 - views/media_elements/_new_form_popup.html.erb
