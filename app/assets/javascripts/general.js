@@ -181,7 +181,7 @@ function commonMediaElementsDocumentReady() {
   });
   $body.on('click', '.dialogMediaElement .wrapper .change-info .errors_layer', function() {
     var myself = $(this);
-    var container = myself.parents('.dialogMediaElement');
+    var container = myself.parents('.dialogMediaElement').find('.wrapper .change-info');
     myself.hide();
     container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
   });
@@ -450,7 +450,7 @@ function sectionDocumentsDocumentReady() {
   });
   $body.on('click', '.dialogDocument .wrapper .change-info .errors_layer', function() {
     var myself = $(this);
-    var container = myself.parents('.dialogDocument');
+    var container = myself.parents('.dialogDocument').find('.wrapper .change-info');
     myself.hide();
     container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
   });

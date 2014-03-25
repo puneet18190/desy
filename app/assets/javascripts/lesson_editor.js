@@ -640,7 +640,12 @@ function lessonEditorDocumentReadyTextFields() {
     var container = $(this).parents('.lessonForm');
     container.find('form').submit();
   });
-  // TODO formms manca la gestione degli errors_layer, e anche la gestione del bordo rosso di select subjects
+  $body.on('click', '.lessonForm .errors_layer', function() {
+    var myself = $(this);
+    var container = myself.parents('.lessonForm');
+    myself.hide();
+    container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
+  });
 }
 
 /**
