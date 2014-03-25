@@ -1924,30 +1924,30 @@
     
   }
   
-  .menu {
+  .menu { /* questo va tenuto allineato con lo stesso stile di .cover .footer-container definito in slides.scss */
     
-    width: 900px;
-    height: 30px;
+    @include arial($footer-font-size-in-cover);
     background-color: white;
-    
-    .school-level, .author { /* TODO formms sistemare font e line-height */
-      
-      float: left;
-      width: 440px;
-      height: 20px;
-      padding: 5px;
-      
-    }
+    color: #373737;
+    height: $footer-inner-height-in-cover;
+    width: $footer-inner-width-in-cover;
+    padding: $footer-vertical-padding-in-cover $footer-horizontal-padding-in-cover;
     
     .school-level {
       
-      text-align: left;
+      float: left;
       
     }
     
     .author {
       
-      text-align: right;
+      float: right;
+      
+      .name {
+        
+        color: $orange;
+        
+      }
       
     }
     
