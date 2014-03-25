@@ -1937,6 +1937,35 @@
             
           }
           
+          &.form_error {
+            
+            border: 3px solid #CF2B2B;
+            padding: 0;
+            width: 391.5px;
+            
+            .sbToggle {
+              
+              top: 10px;
+              right: 10px;
+              
+            }
+            
+            .sbSelector {
+              
+              padding-top: 13px;
+              padding-left: 13px;
+              
+            }
+            
+            .sbOptions {
+              
+              top: 42px !important;
+              left: -3px !important;
+              
+            }
+            
+          }
+          
         }
         
         ._tags_container {
