@@ -23,6 +23,7 @@
             <textarea class="description" name="description"><%= @lesson.description %></textarea>
           </div>
           <div class="tags_loader">
+            <!-- TODO formms mettere materie -->
             <div class="_tags_container" data-max-width="392.5" data-lines="4">
               <% Tagging.includes(:tag).where(:taggable_type => 'Lesson', :taggable_id => @lesson.id).order(:tag_id).each do |t| %>
                 <span><%= t.tag.word.strip %><a class="remove"></a></span>
@@ -30,7 +31,6 @@
               <input class="tags" type="text" value="" maxlength="<%= SETTINGS['max_tag_length'] %>"/>
               <input class="tags_value" type="hidden" value="<%= lesson.tags %>" name="tags_value"/>
             </div>
-            <!-- TODO formms mettere materie -->
           </div>
         </div>
         <div class="part3">
