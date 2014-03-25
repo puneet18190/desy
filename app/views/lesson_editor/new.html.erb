@@ -31,7 +31,12 @@
             <input class="description_placeholder" type="hidden" value="" name="description_placeholder"/>
           </div>
           <div class="tags_loader">
-            <!-- TODO formms mettere materie -->
+            <select id="lesson_subject" name="subject_id">
+              <option value=""><%= t('forms.placeholders.subject_id') %></option> <!-- TODO traduzz -->
+              <% @subjects.each do |s| %>
+                <option value="<%= s.id %>"><%= s.description %></option>
+              <% end %>
+            </select>
             <div class="_tags_container" data-max-width="392.5" data-lines="4">
               <input class="tags" type="text" value="" maxlength="<%= SETTINGS['max_tag_length'] %>"/>
               <div class="_placeholder">
@@ -46,7 +51,7 @@
           <a class="close" href="/lessons"><%= t('forms.new_lesson.cancel').downcase %></a>
         </div>
         <div class="errors_layer description" data-selector=".part2 .description"></div>
-        <div class="errors_layer subject" data-selector=".stocazzo"></div> <!-- TODO formms decidere come gestirlo -->
+        <div class="errors_layer subject_id" data-selector=".stocazzo"></div> <!-- TODO formms decidere come gestirlo -->
         <div class="errors_layer tags" data-selector=".part2 ._tags_container .tags"></div>
         <div class="errors_layer title" data-selector=".part2 .title"></div>
       <% end %>

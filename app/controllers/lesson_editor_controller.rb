@@ -87,13 +87,12 @@ class LessonEditorController < ApplicationController
     title = params[:title_placeholder] != '0' ? '' : params[:title]
     description = params[:description_placeholder] != '0' ? '' : params[:description]
     tags = params[:tags_value]
-    new_lesson = current_user.create_lesson title, description, params[:subject], tags
+    new_lesson = current_user.create_lesson title, description, params[:subject_id], tags
     if new_lesson.instance_of?(Lesson)
       @lesson = new_lesson
     else
       @errors = convert_lesson_error_messages new_lesson
     end
-    p new_lesson
   end
   
   # === Description

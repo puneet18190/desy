@@ -10,11 +10,6 @@ module ApplicationHelper
     Document::COLORS_BY_TYPE[document.type]
   end
   
-  # Select for a list of subjects.
-  def select_your_subjects(subjects)
-    "<option value=\"\">#{t('forms.placeholders.subject_id')}</option>#{options_from_collection_for_select(subjects, 'id', 'description')}".html_safe
-  end
-  
   # Extracts the time from seconds.
   def seconds_to_time(seconds)
     Time.at(seconds).utc.strftime(seconds >= 3600 ? '%T' : '%M:%S')
