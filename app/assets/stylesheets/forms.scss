@@ -1897,7 +1897,7 @@
             padding-left: 16px;
             width: 381.5px;
             color: white;
-            text-indent: 0px; /* TODO formms metterlo anche in sbOptions */
+            text-indent: 0px;
             box-shadow: none;
             border-radius: 5px;
             
@@ -1908,12 +1908,28 @@
             border-radius: 5px;
             box-shadow: none;
             width: 397.5px;
+            top: 45px !important;
             
             li {
               
+              padding: 5px;
+              width: 387.5px;
+              
               a {
                 
-                padding: 0;
+                @include arial-with-line-height(13px, 13px);
+                text-indent: 0px;
+                padding: 6px 11px 0 11px;
+                width: 365.5px;
+                height: 20px;
+                color: #333333;
+                
+                &:hover, &:focus, &.sbFocus {
+                  
+                  color: white;
+                  background-color: $orange;
+                  
+                }
                 
               }
               
