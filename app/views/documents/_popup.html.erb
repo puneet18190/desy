@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="change-info" style="display:none" data-title="<%= document.title %>" data-description="<%= document.description %>">
-      <%= form_tag document_path(document.id), :remote => true, :autocomplete => 'off' do %>
+      <%= form_tag document_path(document.id), :remote => true, :class => 'form-selector-class', :autocomplete => 'off' do %>
         <div class="part1">
           <div class="attachment">
             <div class="icon"></div>

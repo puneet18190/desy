@@ -5,7 +5,7 @@
 %>
 
 <div id="load-gallery-<%= kind %>" class="loadInGallery stegosauro" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>" data-placeholder-media="<%= t('forms.placeholders.media').downcase %>" data-loader-can-move="true" data-loader-with-errors="false" data-loader-position-stop="0" data-bar-width="900" data-bar-height="590" data-bar-padding="50" data-fake-url="/lessons/galleries/media_elements/create/fake">
-  <%= form_tag "/lessons/galleries/#{kind}s", :method => :post, :id => "new_gallery_#{kind}", :multipart => true, :autocomplete => 'off' do %>
+  <%= form_tag "/lessons/galleries/#{kind}s", :method => :post, :id => "new_gallery_#{kind}", :class => 'form-selector-class', :multipart => true, :autocomplete => 'off' do %>
     <div class="part1">
       <div class="attachment">
         <label>
