@@ -418,7 +418,7 @@
     
     .errors_layer {
       
-      @include arial-with-line-height(13px, 38.5px);
+      @include arial-with-line-height(13px, 39px);
       color: #8A8686;
       position: absolute;
       background-color: #454343;
@@ -451,10 +451,10 @@
       &.tags {
         
         padding: 0 13px 0 13px;
-        width: 345px;
+        width: 345.5px;
         height: 234px;
         top: 163px;
-        left: 411px;
+        left: 410.5px;
         
       }
       
@@ -462,7 +462,7 @@
         
         padding: 0 13px 0 13px;
         width: 345.5px;
-        height: 38.5px;
+        height: 39px;
         top: 163px;
         left: 18px;
         
