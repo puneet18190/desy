@@ -5,48 +5,43 @@
 %>
 
 <div id="new-media-element" class="formMediaElement" style="display:none" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-
-      
-      <h1 class="pull-left"><%= t('forms.new_media_element_in_editor.title') %></h1>
-      <br class="clearfloat"/>
-      <h2 class="pull-left"><%= t('forms.new_media_element_in_editor.description') %></h2>
-
-    <div class="cols" style="float:left">
-      <%= text_field_tag 'new_title', title_max %>
-      <%= hidden_field_tag 'new_title_placeholder', '' %><br/>
-      <%= text_area_tag 'new_description', description_max  %>
-      <%= hidden_field_tag 'new_description_placeholder', '' %>
-    </div>
-    <div class="cols" style="float:right">
-      <div class="ui-widget pull-right _tags_container">
-        <%= text_field_tag 'new_tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
-        <div class="_placeholder">
-          <%= tags_max %>
-        </div>
-        <%= hidden_field_tag 'new_tags_value', '' %>
+  <div class="form-selector-class">
+    <div class="part1">
+      <div class="attachment">
+        <div class="icon video"></div> <!-- TODO formms mettere il tipo giusto -->
+      </div>
+      <div class="title_and_subtitle">
+        <h1>
+          <%= t('forms.new_media_element_in_editor.title') %>
+        </h1>
+        <p>
+          <%= t('forms.new_media_element_in_editor.description') %>
+        </p>
       </div>
     </div>
-    <br class="clearfloat"/>
-    <div class="cols ad_hoc_per_check" style="float:right">
-      <% if edited %>
-        <div id="only_to_conserve_tags">
-          <div class="checkboxMediaElement">
-            <input id="check_ad_hoc" type="checkbox"/>
-            <label for="check_ad_hoc"></label>
+    <div class="part2">
+      <div class="title_and_description">
+        <input class="title" type="text" value="" name="title"/>
+        <input class="title_placeholder" type="hidden" value="" name="title_placeholder"/>
+        <textarea class="description" name="description"></textarea>
+        <input class="description_placeholder" type="hidden" value="" name="description_placeholder"/>
+      </div>
+      <div class="tags_loader">
+        <div class="_tags_container" data-max-width="377.5" data-lines="5">
+          <input class="tags" type="text" value="" maxlength="<%= SETTINGS['max_tag_length'] %>"/>
+          <div class="_placeholder">
+            <%= tags_max %>
           </div>
-          <p style="padding-top:10px"><%= t('forms.new_media_element_in_editor.conserve_tags') %></p>
-          <div class="edited_container" style="display:none">
-            <div class="edited_tags_container">
+          <input class="tags_value" type="hidden" value="" name="tags_value"/>
+        </div>
+      </div>
+    </div>
+    <div class="part3">
+      <div class="on-left">
+        <% if edited %> <!-- TODO formms sistemarlo, decidere la struttura, rinominare gli inputs -->
+          <%= t('forms.new_media_element_in_editor.conserve_tags') %>
+          <div class="hidden" style="display:none">
+            <div class="tags_boh">
               <% Tagging.includes(:tag).where(:taggable_type => 'MediaElement', :taggable_id => edited.id).order(:tag_id).reverse.each do |t| %>
                 <span><%= t.tag.word.strip %><a class="remove"></a></span>
               <% end %>
@@ -55,10 +50,11 @@
             <input class="edited_title" type="hidden" value="<%= edited.title %>"/>
             <input class="edited_description" type="hidden" value="<%= edited.description %>"/>
           </div>
-        </div>
-      <% end %>
-      <a class="_commit buttonForm lower"><%= t('forms.new_media_element_in_editor.done') %></a>
-      <a class="_cancel buttonForm lower"><%= t('forms.new_media_element_in_editor.cancel') %></a>
+        <% end %>
+      </div>
+      <div class="on-right">
+        <a class="submit"><%= t('forms.new_media_element_in_editor.done').downcase %></a>
+        <a class="close"><%= t('forms.new_media_element_in_editor.cancel').downcase %></a>
+      </div>
     </div>
-
 </div>
