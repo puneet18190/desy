@@ -333,13 +333,11 @@ function mediaElementEditorDocumentReady() {
       $('#image_editor_title ._titled').show();
       $('#image_editor_title ._untitled').hide();
     }
-    $('._image_editor_bottom_bar').show();
-    $('#image_editor #form_info_new_media_element_in_editor').hide();
+    hideCommitMediaElementEditorForm('image', 'new');
   });
   $body.on('click', '#image_editor #form_info_update_media_element_in_editor ._cancel', function() {
     resetMediaElementEditorForms();
-    $('._image_editor_bottom_bar').show();
-    $('#image_editor #form_info_update_media_element_in_editor').hide();
+    hideCommitMediaElementEditorForm('image', 'edit');
   });
   
   
@@ -457,15 +455,13 @@ function mediaElementEditorDocumentReady() {
       $('#video_editor_title ._titled').show();
       $('#video_editor_title ._untitled').hide();
     }
-    $('._video_editor_bottom_bar').show();
-    $('#video_editor #form_info_new_media_element_in_editor').hide();
+    hideCommitMediaElementEditorForm('video', 'new');
     startCacheLoop();
   });
   $body.on('click', '#video_editor #form_info_update_media_element_in_editor ._cancel', function() {
     $('#video_editor_form').attr('action', '/videos/cache/save');
     resetMediaElementEditorForms();
-    $('._video_editor_bottom_bar').show();
-    $('#video_editor #form_info_update_media_element_in_editor').hide();
+    hideCommitMediaElementEditorForm('video', 'edit');
     startCacheLoop();
   });
   
