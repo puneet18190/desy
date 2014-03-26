@@ -238,7 +238,7 @@ function mediaElementEditorDocumentReady() {
   
   $body.on('click', '#image_editor #form_info_new_media_element_in_editor ._commit', function() {
     var form = $('#image_editor_form');
-    form.attr('action', '/images/' + form.data('param') + '/commit/new');
+    form.attr('action', '/images/commit/new');
     form.submit();
   });
   $body.on('click', '#image_editor #form_info_update_media_element_in_editor ._commit', function() {
@@ -251,14 +251,14 @@ function mediaElementEditorDocumentReady() {
       showConfirmPopUp(title, confirm, yes, no, function() {
         $('dialog-confirm').hide();
         var form = $('#image_editor_form');
-        form.attr('action', '/images/' + form.data('param') + '/commit/overwrite');
+        form.attr('action', '/images/commit/overwrite');
         form.submit();
       }, function() {
         closePopUp('dialog-confirm');
       });
     } else {
       var form = $('#image_editor_form');
-      form.attr('action', '/images/' + form.data('param') + '/commit/overwrite');
+      form.attr('action', '/images/commit/overwrite');
       form.submit();
     }
   });

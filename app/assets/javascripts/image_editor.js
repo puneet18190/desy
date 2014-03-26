@@ -73,7 +73,7 @@ function imageEditorDocumentReadyCrop() {
   $body.on('click', '#image_editor_crop_buttons ._do', function() {
     if(!$(this).hasClass('disabled')) {
       var form = $('#image_editor_form');
-      form.attr('action', '/images/' + form.data('param') + '/crop');
+      form.attr('action', '/images/crop');
       form.submit();
     }
   });
@@ -188,7 +188,7 @@ function imageEditorDocumentReadyTexts() {
         var font = '<input class="_additional" type="hidden" name="font_' + id + '" value="' + $(this).data('size') + '"/>';
         form.prepend(coords).prepend(text).prepend(color).prepend(font);
       });
-      form.attr('action', '/images/' + form.data('param') + '/add_text');
+      form.attr('action', '/images/add_text');
       form.submit();
     }
   });
@@ -202,7 +202,7 @@ Initializer for the route linked to the action 'undo', that undoes the last step
 function imageEditorDocumentReadyUndo() {
   $body.on('click', '#image_editor_empty_buttons ._undo', function() {
     $.ajax({
-      url: '/images/' + $('#image_editor_form').data('param') + '/undo',
+      url: '/images/undo',
       type: 'post'
     });
   });
