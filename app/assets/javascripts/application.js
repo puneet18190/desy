@@ -55,8 +55,8 @@ $(document).ready(function() {
   browsersDocumentReady();
   globalDocumentReady();
   if($('#audio_editor').length > 0) { // (1) in audio editor
-    initTagsAutocomplete('#form_info_new_media_element_in_editor', 'media_element');
-    initTagsAutocomplete('#form_info_update_media_element_in_editor', 'media_element');
+    initTagsAutocomplete($('#new-media-element .part2 ._tags_container .tags'), 'media_element');
+    initTagsAutocomplete($('#edit-media-element .part2 ._tags_container .tags'), 'media_element');
     audioEditorDocumentReady();
     galleriesDocumentReady();
     mediaElementEditorDocumentReady();
@@ -68,7 +68,7 @@ $(document).ready(function() {
     commonLessonsDocumentReady();
     commonMediaElementsDocumentReady();
     dashboardDocumentReady();
-    initTagsAutocomplete('#load-media-element', 'media_element');
+    initTagsAutocomplete($('#load-media-element .part2 ._tags_container .tags'), 'media_element');
     lessonButtonsDocumentReady();
     mediaElementButtonsDocumentReady();
     notificationsDocumentReady();
@@ -86,8 +86,8 @@ $(document).ready(function() {
     uploaderDocumentReady();
   }
   if($('#image_editor').length > 0 || $('#image_gallery_for_image_editor').length > 0) { // (4) in image editor
-    initTagsAutocomplete('#form_info_new_media_element_in_editor', 'media_element');
-    initTagsAutocomplete('#form_info_update_media_element_in_editor', 'media_element');
+    initTagsAutocomplete($('#new-media-element .part2 ._tags_container .tags'), 'media_element');
+    initTagsAutocomplete($('#edit-media-element .part2 ._tags_container .tags'), 'media_element');
     galleriesDocumentReady();
     imageEditorDocumentReady();
     mediaElementEditorDocumentReady();
@@ -95,10 +95,10 @@ $(document).ready(function() {
   }
   if($('.lesson-editor-container').length > 0) { // (5) in lesson editor
     if($('#new-lesson').length > 0) {
-      initTagsAutocomplete('#new-lesson', 'lesson');
+      initTagsAutocomplete($('#new-lesson .part2 ._tags_container .tags'), 'lesson');
     }
     if($('#edit-lesson').length > 0) {
-      initTagsAutocomplete('#edit-lesson', 'lesson');
+      initTagsAutocomplete($('#edit-lesson .part2 ._tags_container .tags'), 'lesson');
     }
     galleriesDocumentReady();
     lessonEditorDocumentReady();
@@ -126,7 +126,7 @@ $(document).ready(function() {
   }
   if($('#my_media_elements').length > 0) { // (8) in section elements
     commonMediaElementsDocumentReady();
-    initTagsAutocomplete('#load-media-element', 'media_element');
+    initTagsAutocomplete($('#load-media-element .part2 ._tags_container .tags'), 'media_element');
     mediaElementButtonsDocumentReady();
     notificationsDocumentReady();
     playersDocumentReadyGeneral();
@@ -164,8 +164,8 @@ $(document).ready(function() {
     tagsDocumentReady();
   }
   if($('#video_editor').length > 0) { // (12) in video editor
-    initTagsAutocomplete('#form_info_new_media_element_in_editor', 'media_element');
-    initTagsAutocomplete('#form_info_update_media_element_in_editor', 'media_element');
+    initTagsAutocomplete($('#new-media-element .part2 ._tags_container .tags'), 'media_element');
+    initTagsAutocomplete($('#edit-media-element .part2 ._tags_container .tags'), 'media_element');
     galleriesDocumentReady();
     mediaElementEditorDocumentReady();
     playersDocumentReadyGeneral();

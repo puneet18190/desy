@@ -141,24 +141,6 @@ html.media_element_editor-layout {
     
   }
   
-  #form_info_new_media_element_in_editor.formInfoMediaElementEditor, #form_info_update_media_element_in_editor.formInfoMediaElementEditor {
-    
-    background-color: $green;
-    width: 990px;
-    height: 600px;
-    position: absolute;
-    top: 68px;
-    z-index: 101;
-    
-  }
-  
-  #audio_editor #form_info_new_media_element_in_editor.formInfoMediaElementEditor, #audio_editor #form_info_update_media_element_in_editor.formInfoMediaElementEditor {
-    
-    top: 0;
-    left: 0;
-    
-  }
-  
   .mediaEditorAudioContainer {
     
     width: 984px;
@@ -186,13 +168,6 @@ html.media_element_editor-layout {
       height: 360px;
      
     }
-  }
-  
-  #video_editor #form_info_new_media_element_in_editor.formInfoMediaElementEditor, #video_editor #form_info_update_media_element_in_editor.formInfoMediaElementEditor {
-    
-    top: 0;
-    left: 0;
-    
   }
   
   .mediaEditorVideoContainer {
@@ -1097,13 +1072,6 @@ html.media_element_editor-layout {
     margin-top: 40px;
     position: relative;
     display: inline-block;
-    
-    #form_info_new_media_element_in_editor, #form_info_update_media_element_in_editor {
-      
-      top: 0;
-      left: 0;
-      
-    }
     
     .imagesContainer {
       
