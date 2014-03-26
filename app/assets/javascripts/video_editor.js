@@ -55,7 +55,7 @@ The audio track is handled while playing a video component inside the video cutt
 <br/><br/>
 Unlike the {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, in Video Editor the <b>preview mode</b> is not left automatically when the user stops the global preview: The system has different behaviors for each item in the editor while being in preview mode. While the global preview is playing it sets to true the HTML data <b>preview mode in-use</b>.
 <br/><br/>
-While in preview mode, the <b>preview</b> button in the right column is substituted by a button <b>play / pause</b>; the <i>arrow</i> on the bottom used to commit changes (see {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method"}}{{/crossLink}}) is replaced by <b>a button 'X'</b> that is used to leave the preview mode. Furthermore, in preview mode many graphical details are slightly changed respect to the normal mode (for instance it's not possible to open the cutters, remove components, etc).
+While in preview mode, the <b>preview</b> button in the right column is substituted by a button <b>play / pause</b>; the <i>arrow</i> on the bottom used to commit changes (see {{#crossLink "MediaElementEditorDocumentReady/mediaElementEditorDocumentReady:method"}}{{/crossLink}}) is replaced by <b>a button 'X'</b> that is used to leave the preview mode. Furthermore, in preview mode many graphical details are slightly changed respect to the normal mode (for instance it's not possible to open the cutters, remove components, etc).
 <br/><br/>
 The general methods relative to the preview mode are contained in {{#crossLink "VideoEditorPreview"}}{{/crossLink}}; the method to enter in preview mode is {{#crossLink "VideoEditorPreview/openPreviewModeInVideoEditor:method"}}{{/crossLink}}; the initializer, which contains also the functionality of <b>leaving</b> the preview mode, is {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyPreview:method"}}{{/crossLink}}.
 <br/><br/>
@@ -76,7 +76,7 @@ To include the <b>background audio track</b> in the global preview, the system u
 <br/><br/>
 Finally, let's have a look at the functionalities of the JScrollPain: the method {{#crossLink "VideoEditorScrollPain/followPreviewComponentsWithHorizontalScrollInVideoEditor:method"}}{{/crossLink}} is called at any time the selected component changes inside the preview mode (that is, either while reproducing the global preview, or if the user changes component using the arrows); this method re-implements many functionalities that were badly implemented or absent in the original plugin, such as for instance the uniform speed to scroll different amounts of components. The method uses the class {{#crossLink "MediaElementEditorHorizontalTimelines"}}{{/crossLink}}
 <br/><br/>
-As for the other Element Editors ({{#crossLinkModule "image-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule "media-element-editor"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}); the part of this functionality specific for the Video Editor is handled in {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method"}}{{/crossLink}}.
+As for the other Element Editors ({{#crossLinkModule "image-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule "media-element-editor"}}{{/crossLinkModule}} (more specificly in the class {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}); the part of this functionality specific for the Video Editor is handled in {{#crossLink "MediaElementEditorDocumentReady/mediaElementEditorDocumentReady:method"}}{{/crossLink}}.
 @module video-editor
 **/
 
@@ -537,7 +537,6 @@ Global initializer.
 function videoEditorDocumentReady() {
   videoEditorDocumentReadyPreview();
   videoEditorDocumentReadyCutters();
-  videoEditorDocumentReadyCommit();
   videoEditorDocumentReadyRemoveComponent();
   videoEditorDocumentReadyComponentsCommon();
   videoEditorDocumentReadyGalleries();
@@ -673,107 +672,6 @@ function videoEditorDocumentReadyAudioTrack() {
     $('#audio_track_in_video_editor_input').val('');
     $('#full_audio_track_placeholder_in_video_editor').hide();
     $('#empty_audio_track_placeholder_in_video_editor').show();
-  });
-}
-
-/**
-Initializer for the functionalities of committing changes (click on 'commit', on 'cancel', popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink "MediaElementEditorForms"}}{{/crossLink}}.
-@method videoEditorDocumentReadyCommit
-@for VideoEditorDocumentReady
-**/
-function videoEditorDocumentReadyCommit() {
-  $body.on('click', '._exit_video_editor', function() {
-    stopCacheLoop();
-    var captions = $captions;
-    showConfirmPopUp(captions.data('exit-video-editor-title'), captions.data('exit-video-editor-confirm'), captions.data('exit-video-editor-yes'), captions.data('exit-video-editor-no'), function() {
-      $('dialog-confirm').hide();
-      unbindLoader();
-      $.ajax({
-        type: 'post',
-        url: '/videos/cache/empty',
-        success: function() {
-          window.location = '/media_elements';
-        }
-      }).always(bindLoader);
-    }, function() {
-      if($('#form_info_update_media_element_in_editor').length == 0) {
-        if(!$('#form_info_new_media_element_in_editor').is(':visible')) {
-          startCacheLoop();
-        }
-      } else {
-        if(!$('#form_info_new_media_element_in_editor').is(':visible') && !$('#form_info_update_media_element_in_editor').is(':visible')) {
-          startCacheLoop();
-        }
-      }
-      closePopUp('dialog-confirm');
-    });
-  });
-  $body.on('click', '#commit_video_editor', function() {
-    stopCacheLoop();
-    submitMediaElementEditorCacheForm($('#video_editor_form'));
-    if($(this).hasClass('_with_choice')) {
-      var captions = $captions;
-      var title = captions.data('save-media-element-editor-title');
-      var confirm = captions.data('save-media-element-editor-confirm');
-      var yes = captions.data('save-media-element-editor-yes');
-      var no = captions.data('save-media-element-editor-no');
-      showConfirmPopUp(title, confirm, yes, no, function() {
-        closePopUp('dialog-confirm');
-        $('._video_editor_bottom_bar').hide();
-        $('#video_editor #form_info_update_media_element_in_editor').show();
-        disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
-      }, function() {
-        closePopUp('dialog-confirm');
-        $('#video_editor_title ._titled').hide();
-        $('#video_editor_title ._untitled').show();
-        $('._video_editor_bottom_bar').hide();
-        $('#video_editor #form_info_new_media_element_in_editor').show();
-      });
-    } else {
-      $('._video_editor_bottom_bar').hide();
-      $('#video_editor #form_info_new_media_element_in_editor').show();
-    }
-  });
-  $body.on('click', '#video_editor #form_info_new_media_element_in_editor ._commit', function() {
-    $('#video_editor_form').attr('action', '/videos/commit/new');
-    $('#video_editor_form').submit();
-  });
-  $body.on('click', '#video_editor #form_info_update_media_element_in_editor ._commit', function() {
-    if($('#info_container').data('used-in-private-lessons')) {
-      var captions = $captions;
-      var title = captions.data('overwrite-media-element-editor-title');
-      var confirm = captions.data('overwrite-media-element-editor-confirm');
-      var yes = captions.data('overwrite-media-element-editor-yes');
-      var no = captions.data('overwrite-media-element-editor-no');
-      showConfirmPopUp(title, confirm, yes, no, function() {
-        $('dialog-confirm').hide();
-        $('#video_editor_form').attr('action', '/videos/commit/overwrite');
-        $('#video_editor_form').submit();
-      }, function() {
-        closePopUp('dialog-confirm');
-      });
-    } else {
-      $('#video_editor_form').attr('action', '/videos/commit/overwrite');
-      $('#video_editor_form').submit();
-    }
-  });
-  $body.on('click', '#video_editor #form_info_new_media_element_in_editor ._cancel', function() {
-    $('#video_editor_form').attr('action', '/videos/cache/save');
-    resetMediaElementEditorForms();
-    if($('#video_editor_title ._titled').length > 0) {
-      $('#video_editor_title ._titled').show();
-      $('#video_editor_title ._untitled').hide();
-    }
-    $('._video_editor_bottom_bar').show();
-    $('#video_editor #form_info_new_media_element_in_editor').hide();
-    startCacheLoop();
-  });
-  $body.on('click', '#video_editor #form_info_update_media_element_in_editor ._cancel', function() {
-    $('#video_editor_form').attr('action', '/videos/cache/save');
-    resetMediaElementEditorForms();
-    $('._video_editor_bottom_bar').show();
-    $('#video_editor #form_info_update_media_element_in_editor').hide();
-    startCacheLoop();
   });
 }
 

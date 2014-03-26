@@ -182,7 +182,7 @@ Initializes the placeholder of the <b>commit forms</b> used in {{#crossLinkModul
 @method mediaElementEditorDocumentReady
 @for MediaElementEditorDocumentReady
 **/
-function mediaElementEditorDocumentReady() {
+function mediaElementEditorDocumentReady() { // TODO formms compattala e sistemala!!!!
   $body.on('focus', '#form_info_new_media_element_in_editor #new_title', function() {
     $('#form_info_new_media_element_in_editor #only_to_conserve_tags').removeClass('disabled');
     $('#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc').removeAttr('disabled').removeAttr('checked');
@@ -227,6 +227,284 @@ function mediaElementEditorDocumentReady() {
   $body.on('keydown', '#form_info_update_media_element_in_editor #update_tags, #form_info_new_media_element_in_editor #new_tags', function() {
     $(this).parent().removeClass('form_error');
   });
+  
+  
+  
+  
+  
+  
+  
+  $body.on('click', '#commit_image_editor', function() {
+    if($(this).hasClass('_with_choice')) {
+      var captions = $captions;
+      var title = captions.data('save-media-element-editor-title');
+      var confirm = captions.data('save-media-element-editor-confirm');
+      var yes = captions.data('save-media-element-editor-yes');
+      var no = captions.data('save-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        closePopUp('dialog-confirm');
+        $('._image_editor_bottom_bar').hide();
+        $('#image_editor #form_info_update_media_element_in_editor').show();
+        disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
+      }, function() {
+        closePopUp('dialog-confirm');
+        $('#image_editor_title ._titled').hide();
+        $('#image_editor_title ._untitled').show();
+        $('._image_editor_bottom_bar').hide();
+        $('#image_editor #form_info_new_media_element_in_editor').show();
+      });
+    } else {
+      $('._image_editor_bottom_bar').hide();
+      $('#image_editor #form_info_new_media_element_in_editor').show();
+    }
+  });
+  $body.on('click', '#image_editor #form_info_new_media_element_in_editor ._commit', function() {
+    var form = $('#image_editor_form');
+    form.attr('action', '/images/' + form.data('param') + '/commit/new');
+    form.submit();
+  });
+  $body.on('click', '#image_editor #form_info_update_media_element_in_editor ._commit', function() {
+    if($('#info_container').data('used-in-private-lessons')) {
+      var captions = $captions;
+      var title = captions.data('overwrite-media-element-editor-title');
+      var confirm = captions.data('overwrite-media-element-editor-confirm');
+      var yes = captions.data('overwrite-media-element-editor-yes');
+      var no = captions.data('overwrite-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        $('dialog-confirm').hide();
+        var form = $('#image_editor_form');
+        form.attr('action', '/images/' + form.data('param') + '/commit/overwrite');
+        form.submit();
+      }, function() {
+        closePopUp('dialog-confirm');
+      });
+    } else {
+      var form = $('#image_editor_form');
+      form.attr('action', '/images/' + form.data('param') + '/commit/overwrite');
+      form.submit();
+    }
+  });
+  $body.on('click', '#image_editor #form_info_new_media_element_in_editor ._cancel', function() {
+    resetMediaElementEditorForms();
+    if($('#image_editor_title ._titled').length > 0) {
+      $('#image_editor_title ._titled').show();
+      $('#image_editor_title ._untitled').hide();
+    }
+    $('._image_editor_bottom_bar').show();
+    $('#image_editor #form_info_new_media_element_in_editor').hide();
+  });
+  $body.on('click', '#image_editor #form_info_update_media_element_in_editor ._cancel', function() {
+    resetMediaElementEditorForms();
+    $('._image_editor_bottom_bar').show();
+    $('#image_editor #form_info_update_media_element_in_editor').hide();
+  });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  $body.on('click', '._exit_audio_editor', function() {
+    stopCacheLoop();
+    var captions = $captions;
+    showConfirmPopUp(captions.data('exit-audio-editor-title'), captions.data('exit-audio-editor-confirm'), captions.data('exit-audio-editor-yes'), captions.data('exit-audio-editor-no'), function() {
+      $('dialog-confirm').hide();
+      unbindLoader();
+      $.ajax({
+        type: 'post',
+        url: '/audios/cache/empty',
+        success: function() {
+          window.location = '/media_elements';
+        }
+      }).always(bindLoader);
+    }, function() {
+      if($('#form_info_update_media_element_in_editor').length == 0) {
+        if(!$('#form_info_new_media_element_in_editor').is(':visible')) {
+          startCacheLoop();
+        }
+      } else {
+        if(!$('#form_info_new_media_element_in_editor').is(':visible') && !$('#form_info_update_media_element_in_editor').is(':visible')) {
+          startCacheLoop();
+        }
+      }
+      closePopUp('dialog-confirm');
+    });
+  });
+  $body.on('click', '#commit_audio_editor', function() {
+    stopCacheLoop();
+    submitMediaElementEditorCacheForm($('#audio_editor_form'));
+    if($(this).hasClass('_with_choice')) {
+      var captions = $captions;
+      var title = captions.data('save-media-element-editor-title');
+      var confirm = captions.data('save-media-element-editor-confirm');
+      var yes = captions.data('save-media-element-editor-yes');
+      var no = captions.data('save-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        closePopUp('dialog-confirm');
+        showCommitAudioEditorForm('update');
+        disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
+      }, function() {
+        closePopUp('dialog-confirm');
+        $('#audio_editor_title ._titled').hide();
+        $('#audio_editor_title ._untitled').show();
+        showCommitAudioEditorForm('new');
+      });
+    } else {
+      showCommitAudioEditorForm('new');
+    }
+  });
+  $body.on('click', '#audio_editor #form_info_new_media_element_in_editor ._cancel', function() {
+    $('#audio_editor_form').attr('action', '/audios/cache/save');
+    resetMediaElementEditorForms();
+    if($('#audio_editor_title ._titled').length > 0) {
+      $('#audio_editor_title ._titled').show();
+      $('#audio_editor_title ._untitled').hide();
+    }
+    hideCommitAudioEditorForm('new');
+    startCacheLoop();
+  });
+  $body.on('click', '#audio_editor #form_info_update_media_element_in_editor ._cancel', function() {
+    $('#audio_editor_form').attr('action', '/audios/cache/save');
+    resetMediaElementEditorForms();
+    hideCommitAudioEditorForm('update');
+    startCacheLoop();
+  });
+  $body.on('click', '#audio_editor #form_info_new_media_element_in_editor ._commit', function() {
+    $('#audio_editor_form').attr('action', '/audios/commit/new');
+    $('#audio_editor_form').submit();
+  });
+  $body.on('click', '#audio_editor #form_info_update_media_element_in_editor ._commit', function() {
+    if($('#info_container').data('used-in-private-lessons')) {
+      var captions = $captions;
+      var title = captions.data('overwrite-media-element-editor-title');
+      var confirm = captions.data('overwrite-media-element-editor-confirm');
+      var yes = captions.data('overwrite-media-element-editor-yes');
+      var no = captions.data('overwrite-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        $('dialog-confirm').hide();
+        $('#audio_editor_form').attr('action', '/audios/commit/overwrite');
+        $('#audio_editor_form').submit();
+      }, function() {
+        closePopUp('dialog-confirm');
+      });
+    } else {
+      $('#audio_editor_form').attr('action', '/audios/commit/overwrite');
+      $('#audio_editor_form').submit();
+    }
+  });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  $body.on('click', '._exit_video_editor', function() {
+    stopCacheLoop();
+    var captions = $captions;
+    showConfirmPopUp(captions.data('exit-video-editor-title'), captions.data('exit-video-editor-confirm'), captions.data('exit-video-editor-yes'), captions.data('exit-video-editor-no'), function() {
+      $('dialog-confirm').hide();
+      unbindLoader();
+      $.ajax({
+        type: 'post',
+        url: '/videos/cache/empty',
+        success: function() {
+          window.location = '/media_elements';
+        }
+      }).always(bindLoader);
+    }, function() {
+      if($('#form_info_update_media_element_in_editor').length == 0) {
+        if(!$('#form_info_new_media_element_in_editor').is(':visible')) {
+          startCacheLoop();
+        }
+      } else {
+        if(!$('#form_info_new_media_element_in_editor').is(':visible') && !$('#form_info_update_media_element_in_editor').is(':visible')) {
+          startCacheLoop();
+        }
+      }
+      closePopUp('dialog-confirm');
+    });
+  });
+  $body.on('click', '#commit_video_editor', function() {
+    stopCacheLoop();
+    submitMediaElementEditorCacheForm($('#video_editor_form'));
+    if($(this).hasClass('_with_choice')) {
+      var captions = $captions;
+      var title = captions.data('save-media-element-editor-title');
+      var confirm = captions.data('save-media-element-editor-confirm');
+      var yes = captions.data('save-media-element-editor-yes');
+      var no = captions.data('save-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        closePopUp('dialog-confirm');
+        $('._video_editor_bottom_bar').hide();
+        $('#video_editor #form_info_update_media_element_in_editor').show();
+        disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
+      }, function() {
+        closePopUp('dialog-confirm');
+        $('#video_editor_title ._titled').hide();
+        $('#video_editor_title ._untitled').show();
+        $('._video_editor_bottom_bar').hide();
+        $('#video_editor #form_info_new_media_element_in_editor').show();
+      });
+    } else {
+      $('._video_editor_bottom_bar').hide();
+      $('#video_editor #form_info_new_media_element_in_editor').show();
+    }
+  });
+  $body.on('click', '#video_editor #form_info_new_media_element_in_editor ._commit', function() {
+    $('#video_editor_form').attr('action', '/videos/commit/new');
+    $('#video_editor_form').submit();
+  });
+  $body.on('click', '#video_editor #form_info_update_media_element_in_editor ._commit', function() {
+    if($('#info_container').data('used-in-private-lessons')) {
+      var captions = $captions;
+      var title = captions.data('overwrite-media-element-editor-title');
+      var confirm = captions.data('overwrite-media-element-editor-confirm');
+      var yes = captions.data('overwrite-media-element-editor-yes');
+      var no = captions.data('overwrite-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        $('dialog-confirm').hide();
+        $('#video_editor_form').attr('action', '/videos/commit/overwrite');
+        $('#video_editor_form').submit();
+      }, function() {
+        closePopUp('dialog-confirm');
+      });
+    } else {
+      $('#video_editor_form').attr('action', '/videos/commit/overwrite');
+      $('#video_editor_form').submit();
+    }
+  });
+  $body.on('click', '#video_editor #form_info_new_media_element_in_editor ._cancel', function() {
+    $('#video_editor_form').attr('action', '/videos/cache/save');
+    resetMediaElementEditorForms();
+    if($('#video_editor_title ._titled').length > 0) {
+      $('#video_editor_title ._titled').show();
+      $('#video_editor_title ._untitled').hide();
+    }
+    $('._video_editor_bottom_bar').show();
+    $('#video_editor #form_info_new_media_element_in_editor').hide();
+    startCacheLoop();
+  });
+  $body.on('click', '#video_editor #form_info_update_media_element_in_editor ._cancel', function() {
+    $('#video_editor_form').attr('action', '/videos/cache/save');
+    resetMediaElementEditorForms();
+    $('._video_editor_bottom_bar').show();
+    $('#video_editor #form_info_update_media_element_in_editor').hide();
+    startCacheLoop();
+  });
+  
+  
+  
+  
+  
+  
+  
 }
 
 
@@ -268,7 +546,7 @@ function resetMediaElementChangeInfo(container) {
 }
 
 /**
-Resets the <b>commit forms</b> used in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "image-editor"}}{{/crossLinkModule}} and {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink "AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method"}}{{/crossLink}}, {{#crossLink "ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method"}}{{/crossLink}} and {{#crossLink "VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method"}}{{/crossLink}}).
+Resets the <b>commit forms</b> used in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "image-editor"}}{{/crossLinkModule}} and {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink "MediaElementEditorDocumentReady/mediaElementEditorDocumentReady:method"}}{{/crossLink}}).
 @method resetMediaElementEditorForms
 @for MediaElementEditorForms
 **/
