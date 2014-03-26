@@ -129,12 +129,12 @@ Desy::Application.routes.draw do
   post 'lessons/galleries/videos'                     => 'galleries#create_video'
   
   # IMAGE EDITOR
-  post 'images/:image_id/add_text'         => 'image_editor#add_text'
-  post 'images/:image_id/commit/new'       => 'image_editor#save'
-  post 'images/:image_id/commit/overwrite' => 'image_editor#overwrite'
-  post 'images/:image_id/crop'             => 'image_editor#crop'
-  get  'images/:image_id/edit'             => 'image_editor#edit'
-  post 'images/:image_id/undo'             => 'image_editor#undo'
+  post 'images/add_text'         => 'image_editor#add_text'
+  post 'images/commit/new'       => 'image_editor#save'
+  post 'images/commit/overwrite' => 'image_editor#overwrite'
+  post 'images/crop'             => 'image_editor#crop'
+  get  'images/:image_id/edit'   => 'image_editor#edit'
+  post 'images/undo'             => 'image_editor#undo'
   
   # LESSON BUTTONS
   post 'lessons/:lesson_id/add'                      => 'lessons#add'

@@ -236,6 +236,93 @@ function mediaElementEditorDocumentReady() {
   
   
   
+  $body.on('click', '#image_editor #form_info_new_media_element_in_editor ._commit', function() {
+    var form = $('#image_editor_form');
+    form.attr('action', '/images/' + form.data('param') + '/commit/new');
+    form.submit();
+  });
+  $body.on('click', '#image_editor #form_info_update_media_element_in_editor ._commit', function() {
+    if($('#info_container').data('used-in-private-lessons')) {
+      var captions = $captions;
+      var title = captions.data('overwrite-media-element-editor-title');
+      var confirm = captions.data('overwrite-media-element-editor-confirm');
+      var yes = captions.data('overwrite-media-element-editor-yes');
+      var no = captions.data('overwrite-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        $('dialog-confirm').hide();
+        var form = $('#image_editor_form');
+        form.attr('action', '/images/' + form.data('param') + '/commit/overwrite');
+        form.submit();
+      }, function() {
+        closePopUp('dialog-confirm');
+      });
+    } else {
+      var form = $('#image_editor_form');
+      form.attr('action', '/images/' + form.data('param') + '/commit/overwrite');
+      form.submit();
+    }
+  });
+  
+  $body.on('click', '#audio_editor #form_info_new_media_element_in_editor ._commit', function() {
+    $('#audio_editor_form').attr('action', '/audios/commit/new');
+    $('#audio_editor_form').submit();
+  });
+  $body.on('click', '#audio_editor #form_info_update_media_element_in_editor ._commit', function() {
+    if($('#info_container').data('used-in-private-lessons')) {
+      var captions = $captions;
+      var title = captions.data('overwrite-media-element-editor-title');
+      var confirm = captions.data('overwrite-media-element-editor-confirm');
+      var yes = captions.data('overwrite-media-element-editor-yes');
+      var no = captions.data('overwrite-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        $('dialog-confirm').hide();
+        $('#audio_editor_form').attr('action', '/audios/commit/overwrite');
+        $('#audio_editor_form').submit();
+      }, function() {
+        closePopUp('dialog-confirm');
+      });
+    } else {
+      $('#audio_editor_form').attr('action', '/audios/commit/overwrite');
+      $('#audio_editor_form').submit();
+    }
+  });
+  
+  $body.on('click', '#video_editor #form_info_new_media_element_in_editor ._commit', function() {
+    $('#video_editor_form').attr('action', '/videos/commit/new');
+    $('#video_editor_form').submit();
+  });
+  $body.on('click', '#video_editor #form_info_update_media_element_in_editor ._commit', function() {
+    if($('#info_container').data('used-in-private-lessons')) {
+      var captions = $captions;
+      var title = captions.data('overwrite-media-element-editor-title');
+      var confirm = captions.data('overwrite-media-element-editor-confirm');
+      var yes = captions.data('overwrite-media-element-editor-yes');
+      var no = captions.data('overwrite-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        $('dialog-confirm').hide();
+        $('#video_editor_form').attr('action', '/videos/commit/overwrite');
+        $('#video_editor_form').submit();
+      }, function() {
+        closePopUp('dialog-confirm');
+      });
+    } else {
+      $('#video_editor_form').attr('action', '/videos/commit/overwrite');
+      $('#video_editor_form').submit();
+    }
+  });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
 
@@ -301,32 +388,7 @@ function mediaElementEditorDocumentReady() {
   
   
   
-  $body.on('click', '#image_editor #form_info_new_media_element_in_editor ._commit', function() {
-    var form = $('#image_editor_form');
-    form.attr('action', '/images/' + form.data('param') + '/commit/new');
-    form.submit();
-  });
-  $body.on('click', '#image_editor #form_info_update_media_element_in_editor ._commit', function() {
-    if($('#info_container').data('used-in-private-lessons')) {
-      var captions = $captions;
-      var title = captions.data('overwrite-media-element-editor-title');
-      var confirm = captions.data('overwrite-media-element-editor-confirm');
-      var yes = captions.data('overwrite-media-element-editor-yes');
-      var no = captions.data('overwrite-media-element-editor-no');
-      showConfirmPopUp(title, confirm, yes, no, function() {
-        $('dialog-confirm').hide();
-        var form = $('#image_editor_form');
-        form.attr('action', '/images/' + form.data('param') + '/commit/overwrite');
-        form.submit();
-      }, function() {
-        closePopUp('dialog-confirm');
-      });
-    } else {
-      var form = $('#image_editor_form');
-      form.attr('action', '/images/' + form.data('param') + '/commit/overwrite');
-      form.submit();
-    }
-  });
+  
   $body.on('click', '#image_editor #form_info_new_media_element_in_editor ._cancel', function() {
     resetMediaElementEditorForms();
     if($('#image_editor_title ._titled').length > 0) {
@@ -339,30 +401,6 @@ function mediaElementEditorDocumentReady() {
     resetMediaElementEditorForms();
     hideCommitMediaElementEditorForm('image', 'edit');
   });
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -390,29 +428,6 @@ function mediaElementEditorDocumentReady() {
     hideCommitMediaElementEditorForm('audio', 'edit');
     startCacheLoop();
   });
-  $body.on('click', '#audio_editor #form_info_new_media_element_in_editor ._commit', function() {
-    $('#audio_editor_form').attr('action', '/audios/commit/new');
-    $('#audio_editor_form').submit();
-  });
-  $body.on('click', '#audio_editor #form_info_update_media_element_in_editor ._commit', function() {
-    if($('#info_container').data('used-in-private-lessons')) {
-      var captions = $captions;
-      var title = captions.data('overwrite-media-element-editor-title');
-      var confirm = captions.data('overwrite-media-element-editor-confirm');
-      var yes = captions.data('overwrite-media-element-editor-yes');
-      var no = captions.data('overwrite-media-element-editor-no');
-      showConfirmPopUp(title, confirm, yes, no, function() {
-        $('dialog-confirm').hide();
-        $('#audio_editor_form').attr('action', '/audios/commit/overwrite');
-        $('#audio_editor_form').submit();
-      }, function() {
-        closePopUp('dialog-confirm');
-      });
-    } else {
-      $('#audio_editor_form').attr('action', '/audios/commit/overwrite');
-      $('#audio_editor_form').submit();
-    }
-  });
   
   
   
@@ -424,30 +439,6 @@ function mediaElementEditorDocumentReady() {
   
   
   
-  
-  $body.on('click', '#video_editor #form_info_new_media_element_in_editor ._commit', function() {
-    $('#video_editor_form').attr('action', '/videos/commit/new');
-    $('#video_editor_form').submit();
-  });
-  $body.on('click', '#video_editor #form_info_update_media_element_in_editor ._commit', function() {
-    if($('#info_container').data('used-in-private-lessons')) {
-      var captions = $captions;
-      var title = captions.data('overwrite-media-element-editor-title');
-      var confirm = captions.data('overwrite-media-element-editor-confirm');
-      var yes = captions.data('overwrite-media-element-editor-yes');
-      var no = captions.data('overwrite-media-element-editor-no');
-      showConfirmPopUp(title, confirm, yes, no, function() {
-        $('dialog-confirm').hide();
-        $('#video_editor_form').attr('action', '/videos/commit/overwrite');
-        $('#video_editor_form').submit();
-      }, function() {
-        closePopUp('dialog-confirm');
-      });
-    } else {
-      $('#video_editor_form').attr('action', '/videos/commit/overwrite');
-      $('#video_editor_form').submit();
-    }
-  });
   $body.on('click', '#video_editor #form_info_new_media_element_in_editor ._cancel', function() {
     $('#video_editor_form').attr('action', '/videos/cache/save');
     resetMediaElementEditorForms();
