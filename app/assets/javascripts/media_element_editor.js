@@ -198,25 +198,12 @@ function mediaElementEditorDocumentReady() {
       closePopUp('dialog-confirm');
     });
   });
-  
-   // TODO formms compattala e sistemala!!!! fatto fin qui
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   $body.on('click', '._commit_media_element_editor', function() {
     var type = $(this).data('type');
-    
-    
-    
-    stopCacheLoop();
-    submitMediaElementEditorCacheForm($('#audio_editor_form'));
+    if(type != 'image') {
+      stopCacheLoop();
+      submitMediaElementEditorCacheForm($('#' + type + '_editor_form'));
+    }
     if($(this).hasClass('_with_choice')) {
       var captions = $captions;
       var title = captions.data('save-media-element-editor-title');
@@ -225,84 +212,49 @@ function mediaElementEditorDocumentReady() {
       var no = captions.data('save-media-element-editor-no');
       showConfirmPopUp(title, confirm, yes, no, function() {
         closePopUp('dialog-confirm');
-        showCommitAudioEditorForm('update');
+        if(type == 'audio') { // TODO formms accorparlo in un unico metodo che si sposterà in media_element_editor.js!!!! farlo quando ho finito tutto
+          showCommitAudioEditorForm('update');
+        } else {
+          $('._' + type + '_editor_bottom_bar').hide();
+          $('#' + type + '_editor #form_info_update_media_element_in_editor').show();
+        }
         disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
       }, function() {
         closePopUp('dialog-confirm');
-        $('#audio_editor_title ._titled').hide();
-        $('#audio_editor_title ._untitled').show();
-        showCommitAudioEditorForm('new');
+        $('#' + type + '_editor_title ._titled').hide();
+        $('#' + type + '_editor_title ._untitled').show();
+        if(type == 'audio') { // TODO formms accorparlo in un unico metodo che si sposterà in media_element_editor.js!!!! farlo quando ho finito tutto
+          showCommitAudioEditorForm('new');
+        } else {
+          $('._image_editor_bottom_bar').hide();
+          $('#image_editor #form_info_new_media_element_in_editor').show();
+        }
       });
     } else {
-      showCommitAudioEditorForm('new');
+      if(type == 'audio') { // TODO formms accorparlo in un unico metodo che si sposterà in media_element_editor.js!!!! farlo quando ho finito tutto
+        showCommitAudioEditorForm('new');
+      } else {
+        $('._' + type + '_editor_bottom_bar').hide();
+        $('#' + type + '_editor #form_info_new_media_element_in_editor').show();
+      }
     }
   });
   
-
-    if($(this).hasClass('_with_choice')) {
-      var captions = $captions;
-      var title = captions.data('save-media-element-editor-title');
-      var confirm = captions.data('save-media-element-editor-confirm');
-      var yes = captions.data('save-media-element-editor-yes');
-      var no = captions.data('save-media-element-editor-no');
-      showConfirmPopUp(title, confirm, yes, no, function() {
-        closePopUp('dialog-confirm');
-        $('._image_editor_bottom_bar').hide();
-        $('#image_editor #form_info_update_media_element_in_editor').show();
-        disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
-      }, function() {
-        closePopUp('dialog-confirm');
-        $('#image_editor_title ._titled').hide();
-        $('#image_editor_title ._untitled').show();
-        $('._image_editor_bottom_bar').hide();
-        $('#image_editor #form_info_new_media_element_in_editor').show();
-      });
-    } else {
-      $('._image_editor_bottom_bar').hide();
-      $('#image_editor #form_info_new_media_element_in_editor').show();
-    }
-
+  // TODO formms compattala e sistemala!!!! fatto fin qui
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
 
-    stopCacheLoop();
-    submitMediaElementEditorCacheForm($('#video_editor_form'));
-    if($(this).hasClass('_with_choice')) {
-      var captions = $captions;
-      var title = captions.data('save-media-element-editor-title');
-      var confirm = captions.data('save-media-element-editor-confirm');
-      var yes = captions.data('save-media-element-editor-yes');
-      var no = captions.data('save-media-element-editor-no');
-      showConfirmPopUp(title, confirm, yes, no, function() {
-        closePopUp('dialog-confirm');
-        $('._video_editor_bottom_bar').hide();
-        $('#video_editor #form_info_update_media_element_in_editor').show();
-        disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
-      }, function() {
-        closePopUp('dialog-confirm');
-        $('#video_editor_title ._titled').hide();
-        $('#video_editor_title ._untitled').show();
-        $('._video_editor_bottom_bar').hide();
-        $('#video_editor #form_info_new_media_element_in_editor').show();
-      });
-    } else {
-      $('._video_editor_bottom_bar').hide();
-      $('#video_editor #form_info_new_media_element_in_editor').show();
-    }
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -356,6 +308,12 @@ function mediaElementEditorDocumentReady() {
   $body.on('keydown', '#form_info_update_media_element_in_editor #update_tags, #form_info_new_media_element_in_editor #new_tags', function() {
     $(this).parent().removeClass('form_error');
   });
+  
+  
+  
+  
+  
+  
   
   
   $body.on('click', '#image_editor #form_info_new_media_element_in_editor ._commit', function() {
