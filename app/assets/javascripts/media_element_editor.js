@@ -212,31 +212,16 @@ function mediaElementEditorDocumentReady() {
       var no = captions.data('save-media-element-editor-no');
       showConfirmPopUp(title, confirm, yes, no, function() {
         closePopUp('dialog-confirm');
-        if(type == 'audio') { // TODO formms accorparlo in un unico metodo che si sposterà in media_element_editor.js!!!! farlo quando ho finito tutto
-          showCommitAudioEditorForm('update');
-        } else {
-          $('._' + type + '_editor_bottom_bar').hide();
-          $('#' + type + '_editor #form_info_update_media_element_in_editor').show();
-        }
+        showCommitMediaElementEditorForm(type, 'edit')
         disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
       }, function() {
         closePopUp('dialog-confirm');
         $('#' + type + '_editor_title ._titled').hide();
         $('#' + type + '_editor_title ._untitled').show();
-        if(type == 'audio') { // TODO formms accorparlo in un unico metodo che si sposterà in media_element_editor.js!!!! farlo quando ho finito tutto
-          showCommitAudioEditorForm('new');
-        } else {
-          $('._image_editor_bottom_bar').hide();
-          $('#image_editor #form_info_new_media_element_in_editor').show();
-        }
+        showCommitMediaElementEditorForm(type, 'new')
       });
     } else {
-      if(type == 'audio') { // TODO formms accorparlo in un unico metodo che si sposterà in media_element_editor.js!!!! farlo quando ho finito tutto
-        showCommitAudioEditorForm('new');
-      } else {
-        $('._' + type + '_editor_bottom_bar').hide();
-        $('#' + type + '_editor #form_info_new_media_element_in_editor').show();
-      }
+      showCommitMediaElementEditorForm(type, 'new')
     }
   });
   
@@ -398,13 +383,13 @@ function mediaElementEditorDocumentReady() {
       $('#audio_editor_title ._titled').show();
       $('#audio_editor_title ._untitled').hide();
     }
-    hideCommitAudioEditorForm('new');
+    hideCommitMediaElementEditorForm('audio', 'new');
     startCacheLoop();
   });
   $body.on('click', '#audio_editor #form_info_update_media_element_in_editor ._cancel', function() {
     $('#audio_editor_form').attr('action', '/audios/cache/save');
     resetMediaElementEditorForms();
-    hideCommitAudioEditorForm('update');
+    hideCommitMediaElementEditorForm('audio', 'edit');
     startCacheLoop();
   });
   $body.on('click', '#audio_editor #form_info_new_media_element_in_editor ._commit', function() {
@@ -497,6 +482,21 @@ function mediaElementEditorDocumentReady() {
 
 
 /**
+Hides the commit form for overwrite or for new element (depending on the parameter).
+@method hideCommitMediaElementEditorForm
+@for MediaElementEditorForms
+@param type {String} 'audio', 'image', or 'video'
+@param scope {String} it can be either 'edit' or 'new'
+**/
+function hideCommitMediaElementEditorForm(type, scope) {
+  $('._' + type + '_editor_bottom_bar').show();
+  $('#' + scope + '-media-element').hide();
+  if(type == 'audio') {
+    setBackAllZIndexesInAudioEditor();
+  }
+}
+
+/**
 Resets the media element loading form; used in {{#crossLink "DialogsWithForm/showDocumentInfoPopUp:method"}}{{/crossLink}}.
 @method resetDocumentChangeInfo
 @for MediaElementEditorForms
@@ -564,6 +564,21 @@ function resetMediaElementEditorForms() { // TODO formms
   });
   update_form.find('#update_tags_value').val(update_form.find('._tags_placeholder').data('tags'));
   update_form.find('._tags_container').removeClass('form_error');
+}
+
+/**
+Shows the commit form for overwrite or for new element (depending on the parameter).
+@method showCommitMediaElementEditorForm
+@for MediaElementEditorForms
+@param type {String} 'audio', 'image', or 'video'
+@param scope {String} it can be either 'edit' or 'new'
+**/
+function showCommitMediaElementEditorForm(type, scope) {
+  $('._' + type + '_editor_bottom_bar').hide();
+  $('#' + scope + '-media-element').show();
+  if(type == 'audio') {
+    setToZeroAllZIndexesInAudioEditor();
+  }
 }
 
 

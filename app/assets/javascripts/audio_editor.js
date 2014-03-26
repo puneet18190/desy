@@ -570,18 +570,6 @@ function enableCommitAndPreviewInAudioEditor() {
 }
 
 /**
-Hides the commit form for overwrite or for new element (depending on the parameter).
-@method hideCommitAudioEditorForm
-@for AudioEditorGraphics
-@param scope {String} it can be either 'overwrite' or 'new'
-**/
-function hideCommitAudioEditorForm(scope) {
-  $('._audio_editor_bottom_bar').show();
-  $('#audio_editor #form_info_' + scope + '_media_element_in_editor').hide();
-  setBackAllZIndexesInAudioEditor();
-}
-
-/**
 Function that sets the correct value to all the z-indexes: there are in total three hidden layers for each component, one global, plus two sliders in each cutter, and each of them needs its specific z-index. Used at any time the components are hidden and need to be shown (for instance {{#crossLink "AudioEditorGalleries/showGalleryInAudioEditor:method"}}{{/crossLink}}).
 @method setBackAllZIndexesInAudioEditor
 @for AudioEditorGraphics
@@ -607,18 +595,6 @@ function setToZeroAllZIndexesInAudioEditor() {
   $('._audio_editor_component ._double_slider').css('z-index', 0);
   $('._audio_editor_component ._under_double_slider').css('z-index', 0);
   $('._audio_editor_component ._media_player_slider').css('z-index', 0);
-}
-
-/**
-Shows the commit form for overwrite or for new element (depending on the parameter).
-@method showCommitAudioEditorForm
-@for AudioEditorGraphics
-@param scope {String} it can be either 'overwrite' or 'new'
-**/
-function showCommitAudioEditorForm(scope) {
-  $('._audio_editor_bottom_bar').hide();
-  $('#audio_editor #form_info_' + scope + '_media_element_in_editor').show();
-  setToZeroAllZIndexesInAudioEditor();
 }
 
 
