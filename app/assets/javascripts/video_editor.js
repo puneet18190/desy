@@ -144,7 +144,7 @@ function addImageComponentInVideoEditor(image_id, component, preview, duration) 
   if(!$('#video_editor_global_preview').hasClass('_enabled')) {
     $('#video_editor_global_preview').addClass('_enabled');
     $('#video_editor_global_preview a').removeClass('disabled');
-    $('#commit_video_editor').css('visibility', 'visible');
+    $('._commit_media_element_editor').css('visibility', 'visible');
   }
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position));
@@ -220,7 +220,7 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   if(!$('#video_editor_global_preview').hasClass('_enabled')) {
     $('#video_editor_global_preview').addClass('_enabled');
     $('#video_editor_global_preview a').removeClass('disabled');
-    $('#commit_video_editor').css('visibility', 'visible');
+    $('._commit_media_element_editor').css('visibility', 'visible');
   }
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position));
@@ -299,7 +299,7 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   if(!$('#video_editor_global_preview').hasClass('_enabled')) {
     $('#video_editor_global_preview').addClass('_enabled');
     $('#video_editor_global_preview a').removeClass('disabled');
-    $('#commit_video_editor').css('visibility', 'visible');
+    $('._commit_media_element_editor').css('visibility', 'visible');
   }
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position));
@@ -435,7 +435,7 @@ Closes the cutter that is visible at the moment, regardless of its type.
 function closeGenericVideoComponentCutter() {
   $('._video_component_cutter_arrow').hide('fade', {}, 250);
   $('._video_component_cutter').hide('fade', {}, 250, function() {
-    $('#commit_video_editor').show();
+    $('._commit_media_element_editor').show();
     $('#video_editor_global_preview a').removeClass('disabled');
     $('._video_editor_bottom_bar').css('visibility', 'visible');
     resetVisibilityOfVideoEditorTransitions();
@@ -500,7 +500,7 @@ Scrolls (using {{#crossLink "MediaElementEditorHorizontalTimelines"}}{{/crossLin
 **/
 function showVideoEditorCutter(component_id) {
   $('._video_editor_bottom_bar').css('visibility', 'hidden');
-  $('#commit_video_editor').hide();
+  $('._commit_media_element_editor').hide();
   $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#' + component_id + ' ._video_component_cutter_arrow').show('fade', {}, 250);
   $('#' + component_id + '_cutter').show('fade', {}, 250, function() {
@@ -1002,7 +1002,7 @@ function videoEditorDocumentReadyPreview() {
     $('#visual_video_editor_current_time').css('visibility', 'hidden')
     $('#video_editor_global_preview').show();
     $('#video_editor_global_preview_play').hide();
-    $('#commit_video_editor').show();
+    $('._commit_media_element_editor').show();
     $('#exit_video_editor_preview').hide();
     $('#video_editor_box_ghost').hide();
   });
@@ -1070,7 +1070,7 @@ function videoEditorDocumentReadyRemoveComponent() {
       if($('._video_editor_component').length == 0) {
         $('#video_editor_global_preview').removeClass('_enabled');
         $('#video_editor_global_preview a').addClass('disabled');
-        $('#commit_video_editor').css('visibility', 'hidden');
+        $('._commit_media_element_editor').css('visibility', 'hidden');
       }
     });
   });
@@ -1295,7 +1295,7 @@ function openPreviewModeInVideoEditor() {
   $('#visual_video_editor_total_length').css('color', '#787575');
   $('#video_editor_global_preview').hide();
   $('#video_editor_global_preview_pause').show();
-  $('#commit_video_editor').hide();
+  $('._commit_media_element_editor').hide();
   $('#video_editor_box_ghost').show();
   $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
   $('#media_elements_list_in_video_editor').data('jsp').destroy();

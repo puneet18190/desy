@@ -46,7 +46,7 @@
         <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
         <div class="fltrt">
           <div class="fltrt">
-            <a id="commit_video_editor" class="nextButton <%= @parameters[:initial_video].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.video_editor.commit') %>" style="visibility:<%= @parameters[:components].any? ? 'visible'.html_safe : 'hidden'.html_safe %>">
+            <a class="_commit_media_element_editor nextButton <%= @parameters[:initial_video].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.video_editor.commit') %>" style="visibility:<%= @parameters[:components].any? ? 'visible'.html_safe : 'hidden'.html_safe %>" data-type="video">
             </a>
             <a id="exit_video_editor_preview" class="closeButton" style="display:none" title="<%= t('titles.video_editor.close_preview') %>"></a>
           </div>

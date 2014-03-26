@@ -58,7 +58,7 @@
     <p id="image_editor_real_dimensions"><%= t('image_editor.original_size') %>: <%= @image.width %>x<%= @image.height %>px</p>
     <div class="fltrt">
       <div class="fltrt">
-        <a id="commit_image_editor" class="nextButton <%= @is_public ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.image_editor.commit') %>"></a>
+        <a class="_commit_media_element_editor nextButton <%= @is_public ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.image_editor.commit') %>" data-type="image"></a>
       </div>
     </div>
     <br class="clearfloat"/>

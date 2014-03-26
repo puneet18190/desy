@@ -58,7 +58,7 @@ function imageEditorDocumentReadyCrop() {
       $('#image_editor_empty_buttons').hide();
       $('#image_editor_crop_buttons').show();
       $('#image_wrapper img').addClass('forCrop');
-      $('#commit_image_editor').css('visibility', 'hidden');
+      $('._commit_media_element_editor').css('visibility', 'hidden');
       $('#cropped_image').imgAreaSelect({
         hide: false,
         disable: false
@@ -68,7 +68,7 @@ function imageEditorDocumentReadyCrop() {
   $body.on('click', '#image_editor_crop_buttons ._cancel', function() {
     resetImageEditorOperationsChoice();
     resetImageEditorCrop();
-    $('#commit_image_editor').css('visibility', 'visible');
+    $('._commit_media_element_editor').css('visibility', 'visible');
   });
   $body.on('click', '#image_editor_crop_buttons ._do', function() {
     if(!$(this).hasClass('disabled')) {
@@ -107,14 +107,14 @@ function imageEditorDocumentReadyTexts() {
       $('#image_editor_empty_buttons').hide();
       $('#image_editor_text_buttons').show();
       $('#image_wrapper img').addClass('forText');
-      $('#commit_image_editor').css('visibility', 'hidden');
+      $('._commit_media_element_editor').css('visibility', 'hidden');
       $('#image_editor_container').addClass('_text_enabled');
     }
   });
   $body.on('click', '#image_editor_text_buttons ._cancel', function() {
     resetImageEditorOperationsChoice();
     resetImageEditorTexts();
-    $('#commit_image_editor').css('visibility', 'visible');
+    $('._commit_media_element_editor').css('visibility', 'visible');
   });
   $body.on('click', '#image_editor_container._text_enabled img', function(e) {
     var coords = getRelativePositionInImageEditor($(this), e);

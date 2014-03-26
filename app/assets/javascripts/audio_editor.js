@@ -552,7 +552,7 @@ Disables the buttons <i>commit</i> and <i>prewiev</i>.
 **/
 function disableCommitAndPreviewInAudioEditor() {
   $('#empty_audio_editor').show();
-  $('#commit_audio_editor').hide();
+  $('._commit_media_element_editor').hide();
   $('#start_audio_editor_preview').addClass('disabled');
   $('#rewind_audio_editor_preview').addClass('disabled');
 }
@@ -564,7 +564,7 @@ Enables the buttons <i>commit</i> and <i>preview</i>.
 **/
 function enableCommitAndPreviewInAudioEditor() {
   $('#empty_audio_editor').hide();
-  $('#commit_audio_editor').show();
+  $('._commit_media_element_editor').show();
   $('#start_audio_editor_preview').removeClass('disabled');
   $('#rewind_audio_editor_preview').removeClass('disabled');
 }
@@ -649,7 +649,7 @@ Function that sets all the graphical details that characterize the preview mode.
 function enterAudioEditorPreviewMode() {
   $('#info_container').data('in-preview', true);
   $('#audio_editor_box_ghost').show();
-  $('#commit_audio_editor').hide();
+  $('._commit_media_element_editor').hide();
   $('#add_new_audio_component_in_audio_editor').addClass('disabled');
   $('#start_audio_editor_preview').addClass('disabled');
   $('#rewind_audio_editor_preview').addClass('disabled');
@@ -734,7 +734,7 @@ function leaveAudioEditorPreviewMode(forced_component) {
   $('#visual_audio_editor_current_time').css('color', '#787575');
   $('#visual_audio_editor_total_length').css('color', 'white');
   $('#visual_audio_editor_current_time').hide();
-  $('#commit_audio_editor').show();
+  $('._commit_media_element_editor').show();
   $('#add_new_audio_component_in_audio_editor').removeClass('disabled');
   $('#start_audio_editor_preview').show();
   $('#stop_audio_editor_preview').hide();

@@ -25,7 +25,7 @@
   
   <div class="goToNextStep _audio_editor_bottom_bar">
     <div class="fltrt">
-      <a id="commit_audio_editor" class="nextButton <%= @parameters[:initial_audio].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.audio_editor.commit') %>" style="display:<%= @parameters[:components].empty? ? 'none'.html_safe : 'block'.html_safe %>">
+      <a class="_commit_media_element_editor nextButton <%= @parameters[:initial_audio].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.audio_editor.commit') %>" style="display:<%= @parameters[:components].empty? ? 'none'.html_safe : 'block'.html_safe %>" data-type="audio">
       </a>
     </div>
   </div>
