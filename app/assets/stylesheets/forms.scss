@@ -401,7 +401,7 @@
   
 }
 
-.lessonForm, .loadInGallery, .globalLoader, .dialogMediaElement.triceratopo.camaleonte .wrapper .change-info, .dialogDocument.ornitorinco.echidna .wrapper .change-info {
+.lessonForm, .loadInGallery, .globalLoader, .dialogMediaElement.triceratopo.camaleonte .wrapper .change-info, .dialogDocument.ornitorinco.echidna .wrapper .change-info, .formMediaElement {
   
   display: none;
   width: 800px;
@@ -2072,5 +2072,11 @@
     }
     
   }
+  
+}
+
+.formMediaElement#new-media-element, .formMediaElement#edit-media-element {
+  
+  /* TODO formms */
   
 }
