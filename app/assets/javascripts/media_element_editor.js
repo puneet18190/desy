@@ -228,14 +228,11 @@ function mediaElementEditorDocumentReady() {
       showCommitMediaElementEditorForm(type, 'new')
     }
   });
-  
-  // TODO formms compattala e sistemala!!!! fatto fin qui
-  
-  $body.on('click', '#image_editor #form_info_new_media_element_in_editor ._commit', function() {
-    $('#image_editor_form').attr('action', '/images/commit/new').submit();
-  });
-  $body.on('click', '#image_editor #form_info_update_media_element_in_editor ._commit', function() {
-    if($('#info_container').data('used-in-private-lessons')) {
+  $body.on('click', '.formMediaElement .part3 .done', function() {
+    var container = $(this).parents('.formMediaElement');
+    var action = container.data('form-action');
+    var type = container.data('form-type');
+    if(action == 'overwrite' && $('#info_container').data('used-in-private-lessons')) {
       var captions = $captions;
       var title = captions.data('overwrite-media-element-editor-title');
       var confirm = captions.data('overwrite-media-element-editor-confirm');
@@ -243,17 +240,16 @@ function mediaElementEditorDocumentReady() {
       var no = captions.data('overwrite-media-element-editor-no');
       showConfirmPopUp(title, confirm, yes, no, function() {
         $('dialog-confirm').hide();
-        $('#image_editor_form').attr('action', '/images/commit/overwrite').submit();
+        $('#' + type + '_editor_form').attr('action', '/' + type + 's/commit/overwrite').submit();
       }, function() {
         closePopUp('dialog-confirm');
       });
     } else {
-      $('#image_editor_form').attr('action', '/images/commit/overwrite').submit();
+      $('#' + type + '_editor_form').attr('action', ('/' + type + 's/commit/' + action)).submit();
     }
   });
   
-  
-  
+  // TODO formms compattala e sistemala!!!! fatto fin qui
   
   
   

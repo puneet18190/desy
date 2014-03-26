@@ -2,7 +2,7 @@
   my_tags = Tagging.includes(:tag).where(:taggable_type => 'MediaElement', :taggable_id => media_element.id).order(:tag_id)
 %>
 
-<div id="edit-media-element" class="formMediaElement" style="display:none" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>" data-tags="<%= media_element.tags %>">
+<div id="edit-media-element" class="formMediaElement" style="display:none" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>" data-tags="<%= media_element.tags %>" data-form-action="overwrite" data-form-type="<%= media_element.sti_type.downcase %>">
   <div class="form-selector-class">
     <div class="part1">
       <div class="attachment">
