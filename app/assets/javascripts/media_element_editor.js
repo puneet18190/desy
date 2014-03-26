@@ -13,15 +13,9 @@ One step of the repeated <b>cache</b> saving (used in {{#crossLinkModule "image-
 @for MediaElementEditorCache
 **/
 function saveCacheLoop() {
-  var cache_form = '';
-  if( $html.hasClass('video_editor-controller') ) {
-    cache_form = $('#video_editor_form');
-  }
-  if( $html.hasClass('audio_editor-controller') ) {
-    cache_form = $('#audio_editor_form');
-  }
+  var cache_form = $('#video_editor_form, #audio_editor_form');
   var time = $parameters.data('cache-time');
-  if(cache_form != '' && $('#info_container').data('save-cache')) {
+  if(cache_form.length > 0 && $('#info_container').data('save-cache')) {
     submitMediaElementEditorCacheForm(cache_form);
     setTimeout(function() {
       saveCacheLoop();
@@ -182,7 +176,58 @@ Initializes the placeholder of the <b>commit forms</b> used in {{#crossLinkModul
 @method mediaElementEditorDocumentReady
 @for MediaElementEditorDocumentReady
 **/
-function mediaElementEditorDocumentReady() { // TODO formms compattala e sistemala!!!!
+function mediaElementEditorDocumentReady() {
+  $body.on('click', '._exit_media_element_editor', function() {
+    stopCacheLoop();
+    var type = $(this).data('type');
+    var captions = $captions;
+    showConfirmPopUp(captions.data('exit-' + type + '-editor-title'), captions.data('exit-' + type + '-editor-confirm'), captions.data('exit-' + type + '-editor-yes'), captions.data('exit-' + type + '-editor-no'), function() {
+      $('dialog-confirm').hide();
+      unbindLoader();
+      $.ajax({
+        type: 'post',
+        url: '/' + type + 's/cache/empty',
+        success: function() {
+          window.location = '/media_elements';
+        }
+      }).always(bindLoader);
+    }, function() {
+      if($('#form_info_update_media_element_in_editor').length == 0) {
+        if(!$('#form_info_new_media_element_in_editor').is(':visible')) {
+          startCacheLoop();
+        }
+      } else {
+        if(!$('#form_info_new_media_element_in_editor').is(':visible') && !$('#form_info_update_media_element_in_editor').is(':visible')) {
+          startCacheLoop();
+        }
+      }
+      closePopUp('dialog-confirm');
+    });
+  });
+  
+   // TODO formms compattala e sistemala!!!! fatto fin qui
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   $body.on('focus', '#form_info_new_media_element_in_editor #new_title', function() {
     $('#form_info_new_media_element_in_editor #only_to_conserve_tags').removeClass('disabled');
     $('#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc').removeAttr('disabled').removeAttr('checked');
@@ -307,32 +352,31 @@ function mediaElementEditorDocumentReady() { // TODO formms compattala e sistema
   
   
   
-  $body.on('click', '._exit_audio_editor', function() {
-    stopCacheLoop();
-    var captions = $captions;
-    showConfirmPopUp(captions.data('exit-audio-editor-title'), captions.data('exit-audio-editor-confirm'), captions.data('exit-audio-editor-yes'), captions.data('exit-audio-editor-no'), function() {
-      $('dialog-confirm').hide();
-      unbindLoader();
-      $.ajax({
-        type: 'post',
-        url: '/audios/cache/empty',
-        success: function() {
-          window.location = '/media_elements';
-        }
-      }).always(bindLoader);
-    }, function() {
-      if($('#form_info_update_media_element_in_editor').length == 0) {
-        if(!$('#form_info_new_media_element_in_editor').is(':visible')) {
-          startCacheLoop();
-        }
-      } else {
-        if(!$('#form_info_new_media_element_in_editor').is(':visible') && !$('#form_info_update_media_element_in_editor').is(':visible')) {
-          startCacheLoop();
-        }
-      }
-      closePopUp('dialog-confirm');
-    });
-  });
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   $body.on('click', '#commit_audio_editor', function() {
     stopCacheLoop();
     submitMediaElementEditorCacheForm($('#audio_editor_form'));
@@ -405,32 +449,7 @@ function mediaElementEditorDocumentReady() { // TODO formms compattala e sistema
   
   
   
-  $body.on('click', '._exit_video_editor', function() {
-    stopCacheLoop();
-    var captions = $captions;
-    showConfirmPopUp(captions.data('exit-video-editor-title'), captions.data('exit-video-editor-confirm'), captions.data('exit-video-editor-yes'), captions.data('exit-video-editor-no'), function() {
-      $('dialog-confirm').hide();
-      unbindLoader();
-      $.ajax({
-        type: 'post',
-        url: '/videos/cache/empty',
-        success: function() {
-          window.location = '/media_elements';
-        }
-      }).always(bindLoader);
-    }, function() {
-      if($('#form_info_update_media_element_in_editor').length == 0) {
-        if(!$('#form_info_new_media_element_in_editor').is(':visible')) {
-          startCacheLoop();
-        }
-      } else {
-        if(!$('#form_info_new_media_element_in_editor').is(':visible') && !$('#form_info_update_media_element_in_editor').is(':visible')) {
-          startCacheLoop();
-        }
-      }
-      closePopUp('dialog-confirm');
-    });
-  });
+  
   $body.on('click', '#commit_video_editor', function() {
     stopCacheLoop();
     submitMediaElementEditorCacheForm($('#video_editor_form'));
