@@ -4,7 +4,7 @@
   
   <%= render :partial => 'audio_editor/lateral_controls', :locals => {:parameters => @parameters, :total_length => @total_length} %>
   
-  <%= form_tag audio_editor_save_cache_path, :id => 'audio_editor_form', :remote => true do %>
+  <%= form_tag audio_editor_save_cache_path, :id => 'audio_editor_form', :remote => true, :autocomplete => 'off' do %>
     <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:type => MediaElement::AUDIO_TYPE.downcase, :edited => @edited_audio} %>
     <% if @parameters[:initial_audio] %>
       <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @parameters[:initial_audio]} %>

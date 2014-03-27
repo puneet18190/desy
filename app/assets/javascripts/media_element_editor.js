@@ -287,9 +287,9 @@ function mediaElementEditorDocumentReady() {
       hideCommitMediaElementEditorForm(type, 'new');
       container.find('.part3 .on-left .reuse-old-data').removeClass('disabled');
       container.find('.part3 .on-left .reuse-old-data #reuse-old-data').removeAttr('disabled').removeAttr('checked');
-      container.find('.part2 .title').val(container.data('title'));
+      container.find('.part2 .title').val(container.data('placeholder-title'));
       container.find('.part2 .title_placeholder').val('');
-      container.find('.part2 .description').val(container.data('description'));
+      container.find('.part2 .description').val(container.data('placeholder-description'));
       container.find('.part2 .description_placeholder').val('');
       container.find('.part2 ._tags_container span').remove();
       container.find('.part2 ._tags_container ._placeholder').show();
