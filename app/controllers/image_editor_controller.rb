@@ -126,12 +126,13 @@ class ImageEditorController < ApplicationController
   #
   def save
     if @ok
+      params_with_standard_keys('new')
       @image.enter_edit_mode current_user.id
       @redirect = false
       new_image = Image.new
       new_image.title = params[:title_placeholder] != '0' ? '' : params[:title]
       new_image.description = params[:description_placeholder] != '0' ? '' : params[:description]
-      new_image.tags = params[:tags_value]
+      new_image.tags = params[:tags]
       new_image.user_id = current_user.id
       new_image.media = File.open @image.current_editing_image
       new_image.save_tags = true
@@ -156,11 +157,12 @@ class ImageEditorController < ApplicationController
   #
   def overwrite
     if @ok
+      params_with_standard_keys('edit')
       @redirect = false
       @image.enter_edit_mode current_user.id
       @image.title = params[:title]
       @image.description = params[:description]
-      @image.tags = params[:tags_value]
+      @image.tags = params[:tags]
       @image.media = File.open @image.current_editing_image
       @image.save_tags = true
       if !@image.save
@@ -178,6 +180,13 @@ class ImageEditorController < ApplicationController
   end
   
   private
+  
+  # Sets the variable params[] with the regular keys like :title, :description, :tags
+  def params_with_standard_keys(scope)
+    params[:title] = params[:"#{scope}_title"]
+    params[:description] = params[:"#{scope}_description"]
+    params[:tags] = params[:"#{scope}_tags"]
+  end
   
   # Extracts the params of the textareas in the image
   def extract_textareas_params(params)
