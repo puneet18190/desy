@@ -575,7 +575,7 @@ it:
     # Form to create a new lesson
     new_lesson:
       # 1 - views/lesson_editor/new.html.erb
-      title: "Stai creando una nuova lezione"
+      title: "Nuova lezione"
       # 1 - views/lesson_editor/new.html.erb
       description: "Inserire tutte le informazioni richieste nel modulo"
       # 1 - views/lesson_editor/new.html.erb
@@ -585,7 +585,7 @@ it:
     # Form to modify a lesson
     update_lesson:
       # 1 - views/lesson_editor/edit.html.erb
-      title: "Stai facendo modifiche importanti?"
+      title: "Modifiche importanti?"
       # 1 - views/lesson_editor/edit.html.erb
       description: "Aggiorna le informazioni sulla lezione in virtù del nuovo contenuto"
       # 1 - views/lesson_editor/edit.html.erb
@@ -625,7 +625,7 @@ it:
     # Form for creating a new media element with one of the three editors (image / audio / video)
     new_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      title: "Stai creando un nuovo elemento"
+      title: "Nuovo elemento"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       description: "Inserire tutti i dettagli nel modulo"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
@@ -637,7 +637,7 @@ it:
     # Form for editing general information of an element after having overwritten its content with one of the three editors (image / audio / video)
     overwrite_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      title: "Hai fatto modifiche importanti?"
+      title: "Modifiche importanti?"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       description: "Aggiorna le informazioni sull'elemento in virtù del nuovo contenuto"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
