@@ -296,26 +296,17 @@ function mediaElementEditorDocumentReady() {
       container.find('.part2 .tags_value').val('');
     } else {
       hideCommitMediaElementEditorForm(type, 'edit');
-      
-      
-      
-      // TODO formms, fai attenzione che sia identico per le tags a quello dei media elemetn popup, e anche la struttura html delle tags nascoste!!! +++ ricordati di fare .tags.show()!! in quanto viene chiamato solo quando si chiude
-      var update_form = $('#form_info_update_media_element_in_editor');
-      update_form.find('#update_title').val(update_form.data('title'));
-      update_form.find('#update_title').removeClass('form_error');
-      update_form.find('#update_title_placeholder').val('');
-      update_form.find('#update_description').val(update_form.data('description'));
-      update_form.find('#update_description').removeClass('form_error');
-      update_form.find('#update_description_placeholder').val('');
-      update_form.find('._tags_container span').remove();
-      update_form.find('._tags_placeholder span').each(function() {
+      container.find('.part2 .title').val(container.data('title'));
+      container.find('.part2 .title_placeholder').val('');
+      container.find('.part2 .description').val(container.data('description'));
+      container.find('.part2 .description_placeholder').val('');
+      container.find('.part2 ._tags_container span').remove();
+      container.find('.part2 .hidden-tags span').each(function() {
         var copy = $(this)[0].outerHTML;
-        update_form.find('._tags_container').prepend(copy);
+        tags_container.prepend(copy);
       });
-      update_form.find('#update_tags_value').val(update_form.find('._tags_placeholder').data('tags'));
-      update_form.find('._tags_container').removeClass('form_error');
-      
-      
+      container.find('.part2 ._tags_container .tags_value').val(container.data('tags'));
+      container.find('.part2 .tags').show();
     }
     container.find('.form_error').removeClass('form_error');
     container.find('.errors_layer').hide();
