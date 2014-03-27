@@ -135,10 +135,7 @@ class ImageEditorController < ApplicationController
       new_image.user_id = current_user.id
       new_image.media = File.open @image.current_editing_image
       new_image.save_tags = true
-      if !new_image.save
-        @error_ids = 'new'
-        @errors = convert_media_element_error_messages(new_image.errors)
-      end
+      @errors = convert_media_element_error_messages(new_image.errors) if !new_image.save
     else
       @redirect = true
     end
@@ -167,7 +164,6 @@ class ImageEditorController < ApplicationController
       @image.media = File.open @image.current_editing_image
       @image.save_tags = true
       if !@image.save
-        @error_ids = 'update'
         @errors = convert_media_element_error_messages(@image.errors)
       else
         MediaElementsSlide.where(:media_element_id => @image.id).each do |mes|
