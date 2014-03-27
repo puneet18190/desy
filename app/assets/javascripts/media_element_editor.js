@@ -290,32 +290,30 @@ function mediaElementEditorDocumentReady() {
     }
     resetMediaElementEditorForms();
   });
+  $body.on('focus', '#new-media-element.formMediaElement .part2 .title', function() {
+    var container = $(this).parents('.formMediaElement');
+    container.find('.part3 .on-left .reuse-old-data').removeClass('disabled');
+    container.find('.part3 .on-left .reuse-old-data #reuse-old-data').removeAttr('disabled').removeAttr('checked')
+    if(container.find('.part2 .title_placeholder').val() == '') {
+      $(this).val('');
+      container.find('.part2 .title_placeholder').val('0');
+    }
+  });
+  $body.on('focus', '#new-media-element.formMediaElement .part2 .description', function() {
+    var container = $(this).parents('.formMediaElement');
+    container.find('.part3 .on-left .reuse-old-data').removeClass('disabled');
+    container.find('.part3 .on-left .reuse-old-data #reuse-old-data').removeAttr('disabled').removeAttr('checked')
+    if(container.find('.part2 .description_placeholder').val() == '') {
+      $(this).val('');
+      container.find('.part2 .description_placeholder').val('0');
+    }
+  });
   
   // TODO formms compattala e sistemala!!!! fatto fin qui
   
   
   
   
-  
-  
-  
-  
-  $body.on('focus', '#form_info_new_media_element_in_editor #new_title', function() {
-    $('#form_info_new_media_element_in_editor #only_to_conserve_tags').removeClass('disabled');
-    $('#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc').removeAttr('disabled').removeAttr('checked');
-    if($('#form_info_new_media_element_in_editor #new_title_placeholder').val() == '') {
-      $(this).val('');
-      $('#form_info_new_media_element_in_editor #new_title_placeholder').val('0');
-    }
-  });
-  $body.on('focus', '#form_info_new_media_element_in_editor #new_description', function() {
-    $('#form_info_new_media_element_in_editor #only_to_conserve_tags').removeClass('disabled');
-    $('#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc').removeAttr('disabled').removeAttr('checked');
-    if($('#form_info_new_media_element_in_editor #new_description_placeholder').val() == '') {
-      $(this).val('');
-      $('#form_info_new_media_element_in_editor #new_description_placeholder').val('0');
-    }
-  });
   
   $body.on('keydown', '#form_info_update_media_element_in_editor #update_title, #form_info_update_media_element_in_editor #update_description', function() {
     $(this).removeClass('form_error');
@@ -328,13 +326,8 @@ function mediaElementEditorDocumentReady() {
   });
   
   
-  
-  
-  
   // TODO formms manca error layer click gestione
   
-  
-
   
 }
 
