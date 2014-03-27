@@ -217,7 +217,7 @@ function mediaElementEditorDocumentReady() {
       showConfirmPopUp(title, confirm, yes, no, function() {
         closePopUp('dialog-confirm');
         showCommitMediaElementEditorForm(type, 'edit')
-        disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
+        disableTagsInputTooHigh($('#edit-media-element ._tags_container'));
       }, function() {
         closePopUp('dialog-confirm');
         $('#' + type + '_editor_title ._titled').hide();
