@@ -51,15 +51,15 @@ function uploaderDocumentReady() {
   $body.on('focus', '.globalLoader .part2 .title', function() {
     var container = $(this).parents('.globalLoader');
     if(container.find('.part2 .title_placeholder').val() == '') {
-      $(this).attr('value', '');
-      container.find('.part2 .title_placeholder').attr('value', '0');
+      $(this).val('');
+      container.find('.part2 .title_placeholder').val('0');
     }
   });
   $body.on('focus', '.globalLoader .part2 .description', function() {
     var container = $(this).parents('.globalLoader');
     if(container.find('.part2 .description_placeholder').val() == '') {
-      $(this).attr('value', '');
-      container.find('.part2 .description_placeholder').attr('value', '0');
+      $(this).val('');
+      container.find('.part2 .description_placeholder').val('0');
     }
   });
   $body.on('submit', '.globalLoader form', function() {

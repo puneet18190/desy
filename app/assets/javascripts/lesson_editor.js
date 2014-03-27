@@ -728,15 +728,15 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   $body.on('focus', '.loadInGallery .part2 .title_and_description .description', function() {
     var placeholder = $(this).parent().find('.description_placeholder');
     if(placeholder.val() == '') {
-      $(this).attr('value', '');
-      placeholder.attr('value', '0');
+      $(this).val('');
+      placeholder.val('0');
     }
   });
   $body.on('focus', '.loadInGallery .part2 .title_and_description .title', function() {
     var placeholder = $(this).parent().find('.title_placeholder');
     if(placeholder.val() == '') {
-      $(this).attr('value', '');
-      placeholder.attr('value', '0');
+      $(this).val('');
+      placeholder.val('0');
     }
   });
   $body.on('click', '.loadInGallery .part3 .submit', function(e) {

@@ -187,14 +187,14 @@ function virtualClassroomDocumentReadySendLink() {
   });
   $body.on('focus', '#virtual_classroom_emails_selector', function() {
     if($(this).data('placeholdered')) {
-      $(this).attr('value', '');
+      $(this).val('');
       $(this).data('placeholdered', false);
     }
   });
   $body.on('focus', '#virtual_classroom_send_link_message', function() {
     var placeholder = $('#virtual_classroom_send_link_message_placeholder');
     if(placeholder.val() === '') {
-      $(this).attr('value', '');
+      $(this).val('');
       placeholder.val('0');
     }
   });
