@@ -129,9 +129,9 @@ class ImageEditorController < ApplicationController
       @image.enter_edit_mode current_user.id
       @redirect = false
       new_image = Image.new
-      new_image.title = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
-      new_image.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
-      new_image.tags = params[:new_tags_value]
+      new_image.title = params[:title_placeholder] != '0' ? '' : params[:title]
+      new_image.description = params[:description_placeholder] != '0' ? '' : params[:description]
+      new_image.tags = params[:tags_value]
       new_image.user_id = current_user.id
       new_image.media = File.open @image.current_editing_image
       new_image.save_tags = true
@@ -161,9 +161,9 @@ class ImageEditorController < ApplicationController
     if @ok
       @redirect = false
       @image.enter_edit_mode current_user.id
-      @image.title = params[:update_title]
-      @image.description = params[:update_description]
-      @image.tags = params[:update_tags_value]
+      @image.title = params[:title]
+      @image.description = params[:description]
+      @image.tags = params[:tags_value]
       @image.media = File.open @image.current_editing_image
       @image.save_tags = true
       if !@image.save

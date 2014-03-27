@@ -498,7 +498,12 @@ Shows the commit form for overwrite or for new element (depending on the paramet
 **/
 function showCommitMediaElementEditorForm(type, scope) {
   $('._' + type + '_editor_bottom_bar').hide();
-  $('#' + scope + '-media-element').show();
+  var container = $('#' + scope + '-media-element');
+  $('.form-selector-class .part2 .title, .form-selector-class .part2 .description, .form-selector-class .part2 .tags_value').removeAttr('name');
+  container.find('.part2 .title').attr('name', 'title');
+  container.find('.part2 .description').attr('name', 'description');
+  container.find('.part2 .tags_value').attr('name', 'tags_value');
+  container.show();
   if(type == 'audio') {
     setToZeroAllZIndexesInAudioEditor();
   }
