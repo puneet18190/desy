@@ -503,14 +503,14 @@ function virtualClassroomDocumentReadySendLink() {
   });
   $body.on(&#x27;focus&#x27;, &#x27;#virtual_classroom_emails_selector&#x27;, function() {
     if($(this).data(&#x27;placeholdered&#x27;)) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
+      $(this).val(&#x27;&#x27;);
       $(this).data(&#x27;placeholdered&#x27;, false);
     }
   });
   $body.on(&#x27;focus&#x27;, &#x27;#virtual_classroom_send_link_message&#x27;, function() {
     var placeholder = $(&#x27;#virtual_classroom_send_link_message_placeholder&#x27;);
     if(placeholder.val() === &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
+      $(this).val(&#x27;&#x27;);
       placeholder.val(&#x27;0&#x27;);
     }
   });

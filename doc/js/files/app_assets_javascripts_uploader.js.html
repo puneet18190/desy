@@ -367,15 +367,15 @@ function uploaderDocumentReady() {
   $body.on(&#x27;focus&#x27;, &#x27;.globalLoader .part2 .title&#x27;, function() {
     var container = $(this).parents(&#x27;.globalLoader&#x27;);
     if(container.find(&#x27;.part2 .title_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      container.find(&#x27;.part2 .title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(this).val(&#x27;&#x27;);
+      container.find(&#x27;.part2 .title_placeholder&#x27;).val(&#x27;0&#x27;);
     }
   });
   $body.on(&#x27;focus&#x27;, &#x27;.globalLoader .part2 .description&#x27;, function() {
     var container = $(this).parents(&#x27;.globalLoader&#x27;);
     if(container.find(&#x27;.part2 .description_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      container.find(&#x27;.part2 .description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(this).val(&#x27;&#x27;);
+      container.find(&#x27;.part2 .description_placeholder&#x27;).val(&#x27;0&#x27;);
     }
   });
   $body.on(&#x27;submit&#x27;, &#x27;.globalLoader form&#x27;, function() {

@@ -323,7 +323,7 @@ Clicking on the icon &#x27;crop&#x27;, the user enters in the &lt;b&gt;crop mode
 &lt;br/&gt;&lt;br/&gt;
 The image in editing is conserved in a temporary folder, together with the version of the image before the last step of editing. Each time a new operation is performed, the temporary image is saved in the place of its old version: this way it&#x27;s always possible to undo the last operation (there is a specific route for this, initialized in the method {{#crossLink &quot;ImageEditorDocumentReady/imageEditorDocumentReadyUndo:method&quot;}}{{/crossLink}}).
 &lt;br/&gt;&lt;br/&gt;
-As for the other Element Editors ({{#crossLinkModule &quot;audio-editor&quot;}}{{/crossLinkModule}}, {{#crossLinkModule &quot;video-editor&quot;}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule &quot;media-element-editor&quot;}}{{/crossLinkModule}} (more specificly in the class {{#crossLink &quot;MediaElementEditorForms&quot;}}{{/crossLink}}); the part of this functionality specific for the Image Editor is handled in {{#crossLink &quot;ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method&quot;}}{{/crossLink}}.
+As for the other Element Editors ({{#crossLinkModule &quot;audio-editor&quot;}}{{/crossLinkModule}}, {{#crossLinkModule &quot;video-editor&quot;}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule &quot;media-element-editor&quot;}}{{/crossLinkModule}} (more specificly in the class {{#crossLink &quot;MediaElementEditorForms&quot;}}{{/crossLink}}); the part of this functionality specific for the Image Editor is handled in {{#crossLink &quot;MediaElementEditorDocumentReady/mediaElementEditorDocumentReady:method&quot;}}{{/crossLink}}.
 @module image-editor
 **/
 
@@ -341,79 +341,6 @@ function imageEditorDocumentReady() {
   imageEditorDocumentReadyCrop();
   imageEditorDocumentReadyTexts();
   imageEditorDocumentReadyUndo();
-  imageEditorDocumentReadyCommit();
-}
-
-/**
-Initializer for the functionalities of committing changes (click on &#x27;commit&#x27;, on &#x27;cancel&#x27;, popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink &quot;MediaElementEditorForms&quot;}}{{/crossLink}}.
-@method imageEditorDocumentReadyCommit
-@for ImageEditorDocumentReady
-**/
-function imageEditorDocumentReadyCommit() {
-  $body.on(&#x27;click&#x27;, &#x27;#commit_image_editor&#x27;, function() {
-    if($(this).hasClass(&#x27;_with_choice&#x27;)) {
-      var captions = $captions;
-      var title = captions.data(&#x27;save-media-element-editor-title&#x27;);
-      var confirm = captions.data(&#x27;save-media-element-editor-confirm&#x27;);
-      var yes = captions.data(&#x27;save-media-element-editor-yes&#x27;);
-      var no = captions.data(&#x27;save-media-element-editor-no&#x27;);
-      showConfirmPopUp(title, confirm, yes, no, function() {
-        closePopUp(&#x27;dialog-confirm&#x27;);
-        $(&#x27;._image_editor_bottom_bar&#x27;).hide();
-        $(&#x27;#image_editor #form_info_update_media_element_in_editor&#x27;).show();
-        disableTagsInputTooHigh(&#x27;#form_info_update_media_element_in_editor ._tags_container&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags&#x27;);
-      }, function() {
-        closePopUp(&#x27;dialog-confirm&#x27;);
-        $(&#x27;#image_editor_title ._titled&#x27;).hide();
-        $(&#x27;#image_editor_title ._untitled&#x27;).show();
-        $(&#x27;._image_editor_bottom_bar&#x27;).hide();
-        $(&#x27;#image_editor #form_info_new_media_element_in_editor&#x27;).show();
-      });
-    } else {
-      $(&#x27;._image_editor_bottom_bar&#x27;).hide();
-      $(&#x27;#image_editor #form_info_new_media_element_in_editor&#x27;).show();
-    }
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#image_editor #form_info_new_media_element_in_editor ._commit&#x27;, function() {
-    var form = $(&#x27;#image_editor_form&#x27;);
-    form.attr(&#x27;action&#x27;, &#x27;/images/&#x27; + form.data(&#x27;param&#x27;) + &#x27;/commit/new&#x27;);
-    form.submit();
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#image_editor #form_info_update_media_element_in_editor ._commit&#x27;, function() {
-    if($(&#x27;#info_container&#x27;).data(&#x27;used-in-private-lessons&#x27;)) {
-      var captions = $captions;
-      var title = captions.data(&#x27;overwrite-media-element-editor-title&#x27;);
-      var confirm = captions.data(&#x27;overwrite-media-element-editor-confirm&#x27;);
-      var yes = captions.data(&#x27;overwrite-media-element-editor-yes&#x27;);
-      var no = captions.data(&#x27;overwrite-media-element-editor-no&#x27;);
-      showConfirmPopUp(title, confirm, yes, no, function() {
-        $(&#x27;dialog-confirm&#x27;).hide();
-        var form = $(&#x27;#image_editor_form&#x27;);
-        form.attr(&#x27;action&#x27;, &#x27;/images/&#x27; + form.data(&#x27;param&#x27;) + &#x27;/commit/overwrite&#x27;);
-        form.submit();
-      }, function() {
-        closePopUp(&#x27;dialog-confirm&#x27;);
-      });
-    } else {
-      var form = $(&#x27;#image_editor_form&#x27;);
-      form.attr(&#x27;action&#x27;, &#x27;/images/&#x27; + form.data(&#x27;param&#x27;) + &#x27;/commit/overwrite&#x27;);
-      form.submit();
-    }
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#image_editor #form_info_new_media_element_in_editor ._cancel&#x27;, function() {
-    resetMediaElementEditorForms();
-    if($(&#x27;#image_editor_title ._titled&#x27;).length &gt; 0) {
-      $(&#x27;#image_editor_title ._titled&#x27;).show();
-      $(&#x27;#image_editor_title ._untitled&#x27;).hide();
-    }
-    $(&#x27;._image_editor_bottom_bar&#x27;).show();
-    $(&#x27;#image_editor #form_info_new_media_element_in_editor&#x27;).hide();
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#image_editor #form_info_update_media_element_in_editor ._cancel&#x27;, function() {
-    resetMediaElementEditorForms();
-    $(&#x27;._image_editor_bottom_bar&#x27;).show();
-    $(&#x27;#image_editor #form_info_update_media_element_in_editor&#x27;).hide();
-  });
 }
 
 /**
@@ -447,7 +374,7 @@ function imageEditorDocumentReadyCrop() {
       $(&#x27;#image_editor_empty_buttons&#x27;).hide();
       $(&#x27;#image_editor_crop_buttons&#x27;).show();
       $(&#x27;#image_wrapper img&#x27;).addClass(&#x27;forCrop&#x27;);
-      $(&#x27;#commit_image_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+      $(&#x27;._commit_media_element_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
       $(&#x27;#cropped_image&#x27;).imgAreaSelect({
         hide: false,
         disable: false
@@ -457,12 +384,12 @@ function imageEditorDocumentReadyCrop() {
   $body.on(&#x27;click&#x27;, &#x27;#image_editor_crop_buttons ._cancel&#x27;, function() {
     resetImageEditorOperationsChoice();
     resetImageEditorCrop();
-    $(&#x27;#commit_image_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
+    $(&#x27;._commit_media_element_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
   });
   $body.on(&#x27;click&#x27;, &#x27;#image_editor_crop_buttons ._do&#x27;, function() {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
       var form = $(&#x27;#image_editor_form&#x27;);
-      form.attr(&#x27;action&#x27;, &#x27;/images/&#x27; + form.data(&#x27;param&#x27;) + &#x27;/crop&#x27;);
+      form.attr(&#x27;action&#x27;, &#x27;/images/crop&#x27;);
       form.submit();
     }
   });
@@ -496,14 +423,14 @@ function imageEditorDocumentReadyTexts() {
       $(&#x27;#image_editor_empty_buttons&#x27;).hide();
       $(&#x27;#image_editor_text_buttons&#x27;).show();
       $(&#x27;#image_wrapper img&#x27;).addClass(&#x27;forText&#x27;);
-      $(&#x27;#commit_image_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+      $(&#x27;._commit_media_element_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
       $(&#x27;#image_editor_container&#x27;).addClass(&#x27;_text_enabled&#x27;);
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;#image_editor_text_buttons ._cancel&#x27;, function() {
     resetImageEditorOperationsChoice();
     resetImageEditorTexts();
-    $(&#x27;#commit_image_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
+    $(&#x27;._commit_media_element_editor&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
   });
   $body.on(&#x27;click&#x27;, &#x27;#image_editor_container._text_enabled img&#x27;, function(e) {
     var coords = getRelativePositionInImageEditor($(this), e);
@@ -577,7 +504,7 @@ function imageEditorDocumentReadyTexts() {
         var font = &#x27;&lt;input class=&quot;_additional&quot; type=&quot;hidden&quot; name=&quot;font_&#x27; + id + &#x27;&quot; value=&quot;&#x27; + $(this).data(&#x27;size&#x27;) + &#x27;&quot;/&gt;&#x27;;
         form.prepend(coords).prepend(text).prepend(color).prepend(font);
       });
-      form.attr(&#x27;action&#x27;, &#x27;/images/&#x27; + form.data(&#x27;param&#x27;) + &#x27;/add_text&#x27;);
+      form.attr(&#x27;action&#x27;, &#x27;/images/add_text&#x27;);
       form.submit();
     }
   });
@@ -591,7 +518,7 @@ Initializer for the route linked to the action &#x27;undo&#x27;, that undoes the
 function imageEditorDocumentReadyUndo() {
   $body.on(&#x27;click&#x27;, &#x27;#image_editor_empty_buttons ._undo&#x27;, function() {
     $.ajax({
-      url: &#x27;/images/&#x27; + $(&#x27;#image_editor_form&#x27;).data(&#x27;param&#x27;) + &#x27;/undo&#x27;,
+      url: &#x27;/images/undo&#x27;,
       type: &#x27;post&#x27;
     });
   });

@@ -1044,15 +1044,15 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   $body.on(&#x27;focus&#x27;, &#x27;.loadInGallery .part2 .title_and_description .description&#x27;, function() {
     var placeholder = $(this).parent().find(&#x27;.description_placeholder&#x27;);
     if(placeholder.val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      placeholder.attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(this).val(&#x27;&#x27;);
+      placeholder.val(&#x27;0&#x27;);
     }
   });
   $body.on(&#x27;focus&#x27;, &#x27;.loadInGallery .part2 .title_and_description .title&#x27;, function() {
     var placeholder = $(this).parent().find(&#x27;.title_placeholder&#x27;);
     if(placeholder.val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      placeholder.attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(this).val(&#x27;&#x27;);
+      placeholder.val(&#x27;0&#x27;);
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;.loadInGallery .part3 .submit&#x27;, function(e) {
