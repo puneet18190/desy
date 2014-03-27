@@ -271,17 +271,27 @@ function mediaElementEditorDocumentReady() {
       disableTagsInputTooHigh(tags_container);
     }
   });
+  $body.on('click', '.formMediaElement .part3 .close', function() {
+    var type = $(this).data('form-type');
+    var action = $(this).data('form-action');
+    var container = $(this).parents('');
+    if(type != 'image') {
+      $('#' + type + '_editor_form').attr('action', '/audios/cache/save');
+      startCacheLoop();
+    }
+    if(action == 'new') {
+      if($('#' + type + '_editor_title ._titled').length > 0) {
+        $('#' + type + '_editor_title ._titled').show();
+        $('#' + type + '_editor_title ._untitled').hide();
+      }
+      hideCommitMediaElementEditorForm(type, 'new');
+    } else {
+      hideCommitMediaElementEditorForm(type, 'overwrite');
+    }
+    resetMediaElementEditorForms();
+  });
   
   // TODO formms compattala e sistemala!!!! fatto fin qui
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -324,79 +334,7 @@ function mediaElementEditorDocumentReady() {
   // TODO formms manca error layer click gestione
   
   
-  
-  $body.on('click', '#image_editor #form_info_new_media_element_in_editor ._cancel', function() {
-    resetMediaElementEditorForms();
-    if($('#image_editor_title ._titled').length > 0) {
-      $('#image_editor_title ._titled').show();
-      $('#image_editor_title ._untitled').hide();
-    }
-    hideCommitMediaElementEditorForm('image', 'new');
-  });
-  $body.on('click', '#image_editor #form_info_update_media_element_in_editor ._cancel', function() {
-    resetMediaElementEditorForms();
-    hideCommitMediaElementEditorForm('image', 'edit');
-  });
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  $body.on('click', '#audio_editor #form_info_new_media_element_in_editor ._cancel', function() {
-    $('#audio_editor_form').attr('action', '/audios/cache/save');
-    resetMediaElementEditorForms();
-    if($('#audio_editor_title ._titled').length > 0) {
-      $('#audio_editor_title ._titled').show();
-      $('#audio_editor_title ._untitled').hide();
-    }
-    hideCommitMediaElementEditorForm('audio', 'new');
-    startCacheLoop();
-  });
-  $body.on('click', '#audio_editor #form_info_update_media_element_in_editor ._cancel', function() {
-    $('#audio_editor_form').attr('action', '/audios/cache/save');
-    resetMediaElementEditorForms();
-    hideCommitMediaElementEditorForm('audio', 'edit');
-    startCacheLoop();
-  });
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  $body.on('click', '#video_editor #form_info_new_media_element_in_editor ._cancel', function() {
-    $('#video_editor_form').attr('action', '/videos/cache/save');
-    resetMediaElementEditorForms();
-    if($('#video_editor_title ._titled').length > 0) {
-      $('#video_editor_title ._titled').show();
-      $('#video_editor_title ._untitled').hide();
-    }
-    hideCommitMediaElementEditorForm('video', 'new');
-    startCacheLoop();
-  });
-  $body.on('click', '#video_editor #form_info_update_media_element_in_editor ._cancel', function() {
-    $('#video_editor_form').attr('action', '/videos/cache/save');
-    resetMediaElementEditorForms();
-    hideCommitMediaElementEditorForm('video', 'edit');
-    startCacheLoop();
-  });
-  
-  
-  
-  
-  
-  
+
   
 }
 
