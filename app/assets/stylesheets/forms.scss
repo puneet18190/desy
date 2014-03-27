@@ -2077,6 +2077,10 @@
 
 .formMediaElement#new-media-element, .formMediaElement#edit-media-element {
   
+  top: 0;
+  left: 0;
+  position: absolute;
+  
   /* TODO formms */
   
 }

@@ -272,9 +272,9 @@ function mediaElementEditorDocumentReady() {
     }
   });
   $body.on('click', '.formMediaElement .part3 .close', function() {
-    var type = $(this).data('form-type');
-    var action = $(this).data('form-action');
     var container = $(this).parents('.formMediaElement');
+    var type = container.data('form-type');
+    var action = container.data('form-action');
     if(type != 'image') {
       $('#' + type + '_editor_form').attr('action', '/audios/cache/save');
       startCacheLoop();
