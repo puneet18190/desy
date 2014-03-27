@@ -308,27 +308,13 @@ function mediaElementEditorDocumentReady() {
       container.find('.part2 .description_placeholder').val('0');
     }
   });
-  
-  // TODO formms compattala e sistemala!!!! fatto fin qui
-  
-  
-  
-  
-  
-  $body.on('keydown', '#form_info_update_media_element_in_editor #update_title, #form_info_update_media_element_in_editor #update_description', function() {
+  $body.on('keydown', '.formMediaElement .part2 .title, .formMediaElement .part2 .description', function() {
     $(this).removeClass('form_error');
   });
-  $body.on('keydown', '#form_info_new_media_element_in_editor #new_title, #form_info_new_media_element_in_editor #new_description', function() {
-    $(this).removeClass('form_error');
-  });
-  $body.on('keydown', '#form_info_update_media_element_in_editor #update_tags, #form_info_new_media_element_in_editor #new_tags', function() {
+  $body.on('keydown', '.formMediaElement .part2 ._tags_container .tags', function() {
     $(this).parent().removeClass('form_error');
   });
-  
-  
   // TODO formms manca error layer click gestione
-  
-  
 }
 
 
