@@ -274,7 +274,7 @@ function mediaElementEditorDocumentReady() {
   $body.on('click', '.formMediaElement .part3 .close', function() {
     var type = $(this).data('form-type');
     var action = $(this).data('form-action');
-    var container = $(this).parents('');
+    var container = $(this).parents('.formMediaElement');
     if(type != 'image') {
       $('#' + type + '_editor_form').attr('action', '/audios/cache/save');
       startCacheLoop();
@@ -285,15 +285,45 @@ function mediaElementEditorDocumentReady() {
         $('#' + type + '_editor_title ._untitled').hide();
       }
       hideCommitMediaElementEditorForm(type, 'new');
+      container.find('.part3 .on-left .reuse-old-data').removeClass('disabled');
+      container.find('.part3 .on-left .reuse-old-data #reuse-old-data').removeAttr('disabled').removeAttr('checked');
+      container.find('.part2 .title').val(container.data('title'));
+      container.find('.part2 .title_placeholder').val('');
+      container.find('.part2 .description').val(container.data('description'));
+      container.find('.part2 .description_placeholder').val('');
+      container.find('.part2 ._tags_container span').remove();
+      container.find('.part2 ._tags_container ._placeholder').show();
+      container.find('.part2 .tags_value').val('');
     } else {
-      hideCommitMediaElementEditorForm(type, 'overwrite');
+      hideCommitMediaElementEditorForm(type, 'edit');
+      
+      
+      
+      // TODO formms, fai attenzione che sia identico per le tags a quello dei media elemetn popup, e anche la struttura html delle tags nascoste!!! +++ ricordati di fare .tags.show()!! in quanto viene chiamato solo quando si chiude
+      var update_form = $('#form_info_update_media_element_in_editor');
+      update_form.find('#update_title').val(update_form.data('title'));
+      update_form.find('#update_title').removeClass('form_error');
+      update_form.find('#update_title_placeholder').val('');
+      update_form.find('#update_description').val(update_form.data('description'));
+      update_form.find('#update_description').removeClass('form_error');
+      update_form.find('#update_description_placeholder').val('');
+      update_form.find('._tags_container span').remove();
+      update_form.find('._tags_placeholder span').each(function() {
+        var copy = $(this)[0].outerHTML;
+        update_form.find('._tags_container').prepend(copy);
+      });
+      update_form.find('#update_tags_value').val(update_form.find('._tags_placeholder').data('tags'));
+      update_form.find('._tags_container').removeClass('form_error');
+      
+      
     }
-    resetMediaElementEditorForms();
+    container.find('.form_error').removeClass('form_error');
+    container.find('.errors_layer').hide();
   });
   $body.on('focus', '#new-media-element.formMediaElement .part2 .title', function() {
     var container = $(this).parents('.formMediaElement');
     container.find('.part3 .on-left .reuse-old-data').removeClass('disabled');
-    container.find('.part3 .on-left .reuse-old-data #reuse-old-data').removeAttr('disabled').removeAttr('checked')
+    container.find('.part3 .on-left .reuse-old-data #reuse-old-data').removeAttr('disabled').removeAttr('checked');
     if(container.find('.part2 .title_placeholder').val() == '') {
       $(this).val('');
       container.find('.part2 .title_placeholder').val('0');
@@ -302,7 +332,7 @@ function mediaElementEditorDocumentReady() {
   $body.on('focus', '#new-media-element.formMediaElement .part2 .description', function() {
     var container = $(this).parents('.formMediaElement');
     container.find('.part3 .on-left .reuse-old-data').removeClass('disabled');
-    container.find('.part3 .on-left .reuse-old-data #reuse-old-data').removeAttr('disabled').removeAttr('checked')
+    container.find('.part3 .on-left .reuse-old-data #reuse-old-data').removeAttr('disabled').removeAttr('checked');
     if(container.find('.part2 .description_placeholder').val() == '') {
       $(this).val('');
       container.find('.part2 .description_placeholder').val('0');
@@ -368,42 +398,6 @@ function resetMediaElementChangeInfo(container) {
   container.find('.form_error').removeClass('form_error');
   container.find('.errors_layer').hide();
   container.find('.part2 .tags').show();
-}
-
-/**
-Resets the <b>commit forms</b> used in {{#crossLinkModule "audio-editor"}}{{/crossLinkModule}}, {{#crossLinkModule "image-editor"}}{{/crossLinkModule}} and {{#crossLinkModule "video-editor"}}{{/crossLinkModule}}. This method is associated to the button 'cancel' in these forms (see {{#crossLink "MediaElementEditorDocumentReady/mediaElementEditorDocumentReady:method"}}{{/crossLink}}).
-@method resetMediaElementEditorForms
-@for MediaElementEditorForms
-**/
-function resetMediaElementEditorForms() { // TODO formms, fai attenzione che sia identico per le tags a quello dei media elemetn popup, e anche la struttura html delle tags nascoste!!! +++ manca error layer rimuovi ++ cambia anche nome della funzione +++ ricordati di fare .tags.show()!! in quanto viene chiamato solo quando si chiude
-  $('#form_info_new_media_element_in_editor .error_messages, #form_info_update_media_element_in_editor .error_messages').html('');
-  var new_form = $('#form_info_new_media_element_in_editor');
-  var update_form = $('#form_info_update_media_element_in_editor');
-  new_form.find('#only_to_conserve_tags').removeClass('disabled');
-  new_form.find('#only_to_conserve_tags #check_ad_hoc').removeAttr('disabled').removeAttr('checked');
-  new_form.find('#new_title').val(new_form.data('title'));
-  new_form.find('#new_title').removeClass('form_error');
-  new_form.find('#new_title_placeholder').val('');
-  new_form.find('#new_description').val(new_form.data('description'));
-  new_form.find('#new_description').removeClass('form_error');
-  new_form.find('#new_description_placeholder').val('');
-  new_form.find('._tags_container span').remove();
-  new_form.find('._tags_container').removeClass('form_error');
-  new_form.find('._tags_container ._placeholder').show();
-  new_form.find('#new_tags_value').val('');
-  update_form.find('#update_title').val(update_form.data('title'));
-  update_form.find('#update_title').removeClass('form_error');
-  update_form.find('#update_title_placeholder').val('');
-  update_form.find('#update_description').val(update_form.data('description'));
-  update_form.find('#update_description').removeClass('form_error');
-  update_form.find('#update_description_placeholder').val('');
-  update_form.find('._tags_container span').remove();
-  update_form.find('._tags_placeholder span').each(function() {
-    var copy = $(this)[0].outerHTML;
-    update_form.find('._tags_container').prepend(copy);
-  });
-  update_form.find('#update_tags_value').val(update_form.find('._tags_placeholder').data('tags'));
-  update_form.find('._tags_container').removeClass('form_error');
 }
 
 /**
