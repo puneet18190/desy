@@ -21,9 +21,9 @@
     </div>
     <div class="part2">
       <div class="title_and_description">
-        <input class="title" type="text" value=""/>
+        <input class="title" type="text" name="tmp_new_title" value="<%= title_max %>"/>
         <input class="title_placeholder" type="hidden" value="" name="title_placeholder"/>
-        <textarea class="description"></textarea>
+        <textarea class="description" name="tmp_new_description"><%= description_max %></textarea>
         <input class="description_placeholder" type="hidden" value="" name="description_placeholder"/>
       </div>
       <div class="tags_loader">
@@ -32,7 +32,7 @@
           <div class="_placeholder">
             <%= tags_max %>
           </div>
-          <input class="tags_value" type="hidden" value=""/>
+          <input class="tags_value" name="tmp_new_tags" type="hidden" value=""/>
         </div>
       </div>
     </div>

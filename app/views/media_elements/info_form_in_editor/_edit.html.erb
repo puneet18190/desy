@@ -16,8 +16,8 @@
     </div>
     <div class="part2">
       <div class="title_and_description">
-        <input class="title" type="text" value="<%= media_element.title %>"/>
-        <textarea class="description"><%= media_element.description %></textarea>
+        <input class="title" type="text" name="tmp_edit_title" value="<%= media_element.title %>"/>
+        <textarea class="description" name="tmp_edit_description"><%= media_element.description %></textarea>
       </div>
       <div class="tags_loader">
         <div class="_tags_container" data-max-width="377.5" data-lines="5">
@@ -25,7 +25,7 @@
             <span><%= t.tag.word.strip %><a class="remove"></a></span>
           <% end %>
           <input class="tags" type="text" value="" maxlength="<%= SETTINGS['max_tag_length'] %>"/>
-          <input class="tags_value" type="hidden" value="<%= media_element.tags %>"/>
+          <input class="tags_value" name="tmp_edit_tags" type="hidden" value="<%= media_element.tags %>"/>
         </div>
         <div class="hidden-tags" style="display:none">
           <% my_tags.reverse.each do |t| %>
