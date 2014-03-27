@@ -335,7 +335,12 @@ function mediaElementEditorDocumentReady() {
   $body.on('keydown', '.formMediaElement .part2 ._tags_container .tags', function() {
     $(this).parent().removeClass('form_error');
   });
-  // TODO formms manca error layer click gestione
+  $body.on('click', '.formMediaElement .errors_layer', function() {
+    var myself = $(this);
+    var container = myself.parents('.formMediaElement');
+    myself.hide();
+    container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
+  });
 }
 
 
