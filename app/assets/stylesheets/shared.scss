@@ -26,15 +26,6 @@ a.cerca.current {
   
 }
 
-._error_messages {
-  
-  height: 10px;
-  padding-top: 10px;
-  width: 700px;
-  display: block;
-  
-}
-
 .boxViewSingleLesson {
   
   width: 99.4%;
@@ -827,15 +818,6 @@ a.cerca.current {
     font-size: 90%;
     
   }
-  
-}
-
-.buttonForm {
-  
-  @include nunito(18px);
-  padding: 5px 30px;
-  color: #000;
-  background-color: white;
   
 }
 
