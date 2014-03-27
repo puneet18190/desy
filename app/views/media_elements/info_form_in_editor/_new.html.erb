@@ -38,17 +38,16 @@
     </div>
     <div class="part3">
       <div class="on-left">
-        <% if edited %> <!-- TODO formms sistemarlo, decidere la struttura, rinominare gli inputs -->
-          <%= t('forms.new_media_element_in_editor.conserve_tags') %>
-          <div class="hidden" style="display:none">
-            <div class="tags_boh">
-              <% Tagging.includes(:tag).where(:taggable_type => 'MediaElement', :taggable_id => edited.id).order(:tag_id).reverse.each do |t| %>
-                <span><%= t.tag.word.strip %><a class="remove"></a></span>
-              <% end %>
-            </div>
-            <input class="edited_tags" type="hidden" value="<%= edited.tags %>"/>
-            <input class="edited_title" type="hidden" value="<%= edited.title %>"/>
-            <input class="edited_description" type="hidden" value="<%= edited.description %>"/>
+        <% if edited %>
+          <div class="reuse-old-data">
+            <input id="reuse-old-data" type="checkbox" value="">
+            <label for="reuse-old-data"></label>
+            <p><%= t('forms.new_media_element_in_editor.conserve_tags') %></p>
+          </div>
+          <div class="hidden-data" style="display:none" data-title="<%= edited.title %>" data-description="<%= edited.description %>" data-tags="<%= edited.tags %>">
+            <% Tagging.includes(:tag).where(:taggable_type => 'MediaElement', :taggable_id => edited.id).order(:tag_id).reverse.each do |t| %>
+              <span><%= t.tag.word.strip %><a class="remove"></a></span>
+            <% end %>
           </div>
         <% end %>
       </div>
