@@ -228,7 +228,7 @@ function mediaElementEditorDocumentReady() {
       showCommitMediaElementEditorForm(type, 'new')
     }
   });
-  $body.on('click', '.formMediaElement .part3 .done', function() {
+  $body.on('click', '.formMediaElement .part3 .submit', function() {
     var container = $(this).parents('.formMediaElement');
     var action = container.data('form-action');
     var type = container.data('form-type');
@@ -303,7 +303,7 @@ function mediaElementEditorDocumentReady() {
       container.find('.part2 ._tags_container span').remove();
       container.find('.part2 .hidden-tags span').each(function() {
         var copy = $(this)[0].outerHTML;
-        tags_container.prepend(copy);
+        container.find('.part2 ._tags_container').prepend(copy);
       });
       container.find('.part2 ._tags_container .tags_value').val(container.data('tags'));
       container.find('.part2 .tags').show();
