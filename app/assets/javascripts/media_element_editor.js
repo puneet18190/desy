@@ -248,7 +248,6 @@ function mediaElementEditorDocumentReady() {
       $('#' + type + '_editor_form').attr('action', ('/' + type + 's/commit/' + action)).submit();
     }
   });
-  
   $body.on('click', '#new-media-element.formMediaElement .part3 .on-left .reuse-old-data', function() {
     var reuse = $(this);
     var container = reuse.parents('.formMediaElement');
@@ -269,9 +268,7 @@ function mediaElementEditorDocumentReady() {
       container.find('.part2 ._tags_container .tags_value').val(reuse_hidden.data('tags'));
       container.find('.form_error').removeClass('form_error');
       container.find('.errors_layer').hide();
-      
-      // TODO formms manca gestione tags piene
-      
+      disableTagsInputTooHigh(tags_container);
     }
   });
   
@@ -461,7 +458,7 @@ Resets the <b>commit forms</b> used in {{#crossLinkModule "audio-editor"}}{{/cro
 @method resetMediaElementEditorForms
 @for MediaElementEditorForms
 **/
-function resetMediaElementEditorForms() { // TODO formms, fai attenzione che sia identico per le tags a quello dei media elemetn popup, e anche la struttura html delle tags nascoste!!! +++ manca error layer rimuovi ++ cambia anche nome della funzione
+function resetMediaElementEditorForms() { // TODO formms, fai attenzione che sia identico per le tags a quello dei media elemetn popup, e anche la struttura html delle tags nascoste!!! +++ manca error layer rimuovi ++ cambia anche nome della funzione +++ ricordati di fare .tags.show()!! in quanto viene chiamato solo quando si chiude
   $('#form_info_new_media_element_in_editor .error_messages, #form_info_update_media_element_in_editor .error_messages').html('');
   var new_form = $('#form_info_new_media_element_in_editor');
   var update_form = $('#form_info_update_media_element_in_editor');
