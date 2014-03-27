@@ -249,7 +249,39 @@ function mediaElementEditorDocumentReady() {
     }
   });
   
+  $body.on('click', '#new-media-element.formMediaElement .part3 .on-left .reuse-old-data', function() {
+    var reuse = $(this);
+    var container = reuse.parents('.formMediaElement');
+    var reuse_hidden = container.find('part3 .on-left .hidden-data');
+    if(!reuse.hasClass('disabled')) {
+      reuse.addClass('disabled');
+      reuse.find('#reuse-old-data').attr('checked', 'checked').attr('disabled', 'disabled');
+      container.find('.part2 .title').val(reuse_hidden.data('title'));
+      container.find('.part2 .title_placeholder').val('0');
+      container.find('.part2 .description').val(reuse_hidden.data('description'));
+      container.find('.part2 .description_placeholder').val('0');
+      var tags_container = container.find('.part2 ._tags_container');
+      container.find('.part2 ._tags_container span').remove();
+      reuse_hidden.find('span').each(function() {
+        var copy = $(this)[0].outerHTML;
+        tags_container.prepend(copy);
+      });
+      container.find('.part2 ._tags_container .tags_value').val(reuse_hidden.data('tags'));
+      container.find('.form_error').removeClass('form_error');
+      container.find('.errors_layer').hide();
+      
+      // TODO formms manca gestione tags piene
+      
+    }
+  });
+  
   // TODO formms compattala e sistemala!!!! fatto fin qui
+  
+  
+  
+  
+  
+  
   
   
   
@@ -277,25 +309,7 @@ function mediaElementEditorDocumentReady() {
       $('#form_info_new_media_element_in_editor #new_description_placeholder').val('0');
     }
   });
-  $body.on('click', '#form_info_new_media_element_in_editor #only_to_conserve_tags', function() {
-    if(!$(this).hasClass('disabled')) {
-      var form = $('#form_info_new_media_element_in_editor');
-      $(this).addClass('disabled');
-      form.find('#only_to_conserve_tags #check_ad_hoc').attr('checked', 'checked').attr('disabled', 'disabled');
-      form.find('#new_title').val(form.find('#only_to_conserve_tags .edited_container .edited_title').val());
-      form.find('#new_title_placeholder').val('0');
-      form.find('#new_description').val(form.find('#only_to_conserve_tags .edited_container .edited_description').val());
-      form.find('#new_description_placeholder').val('0');
-      var old_tags_placeholder = form.find('._tags_container ._placeholder')[0].outerHTML; // TODO formms tutta merda, devo usare il data placeholder!
-      var old_tags_value = form.find('._tags_container #new_tags_value')[0].outerHTML;
-      var old_tags = form.find('#new_tags')[0].outerHTML;
-      form.find('._tags_container').html(form.find('#only_to_conserve_tags .edited_container .edited_tags_container').html());
-      form.find('._tags_container').append(old_tags + old_tags_placeholder + old_tags_value);
-      form.find('._tags_container ._placeholder').hide();
-      form.find('#new_tags_value').val(form.find('#only_to_conserve_tags .edited_container .edited_tags').val());
-      form.find('._tags_container, #new_title, #new_description').removeClass('form_error');
-    }
-  });
+  
   $body.on('keydown', '#form_info_update_media_element_in_editor #update_title, #form_info_update_media_element_in_editor #update_description', function() {
     $(this).removeClass('form_error');
   });
@@ -310,7 +324,7 @@ function mediaElementEditorDocumentReady() {
   
   
   
-  
+  // TODO formms manca error layer click gestione
   
   
   
@@ -447,7 +461,7 @@ Resets the <b>commit forms</b> used in {{#crossLinkModule "audio-editor"}}{{/cro
 @method resetMediaElementEditorForms
 @for MediaElementEditorForms
 **/
-function resetMediaElementEditorForms() { // TODO formms
+function resetMediaElementEditorForms() { // TODO formms, fai attenzione che sia identico per le tags a quello dei media elemetn popup, e anche la struttura html delle tags nascoste!!! +++ manca error layer rimuovi ++ cambia anche nome della funzione
   $('#form_info_new_media_element_in_editor .error_messages, #form_info_update_media_element_in_editor .error_messages').html('');
   var new_form = $('#form_info_new_media_element_in_editor');
   var update_form = $('#form_info_update_media_element_in_editor');

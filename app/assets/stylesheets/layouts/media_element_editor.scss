@@ -3,21 +3,6 @@
 
 html.media_element_editor-layout {
   
-  #only_to_conserve_tags {
-    
-    float: left;
-    position: relative;
-    font-size: 12px;
-    cursor: pointer;
-    
-    &.disabled {
-      
-      cursor: default;
-      
-    }
-    
-  }
-  
   #video_editor_preview_slider_box_ghost.boxGhost {
     
     position: absolute;
