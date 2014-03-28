@@ -726,6 +726,7 @@
           height: 228px;
           padding: 0 12px 12px 0;
           position: relative;
+          overflow: hidden;
           cursor: text;
           
           &.form_error {
