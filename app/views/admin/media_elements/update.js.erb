@@ -1,6 +1,6 @@
 <% if @ok %>
   $('#element_<%= @media_element_id %> ._form_input').css('border-color', '#CCCCCC').css('color', '#555555');
-  <% if @errors.nil? %>
+  <% if @error_fields.nil? %>
     <% if @media_element.is_public %>
       window.location = '/admin/media_elements/edit';
     <% else %>
