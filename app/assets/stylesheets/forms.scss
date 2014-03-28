@@ -2165,6 +2165,7 @@
           float: left;
           width: 100%;
           margin-top: 10px;
+          cursor: pointer;
           
           input {
             
@@ -2213,6 +2214,30 @@
             margin-left: 10px;
             float: left;
             margin-top: 4px;
+            
+          }
+          
+          &.disabled {
+            
+            cursor: default;
+            
+            input:checked + label:after {
+              
+              cursor: default;
+              
+            }
+            
+            input + label, label {
+              
+              cursor: default;
+              
+            }
+            
+            input:checked + label {
+              
+              cursor: default;
+              
+            }
             
           }
           
