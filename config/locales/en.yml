@@ -627,19 +627,19 @@ en:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       title: "Creating a new element"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      description: "Enter in the form below<br/>title, description and tags"
+      description: "Enter all the details in the form below:<br/>title, description and tags"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       cancel: "Cancel"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       done: "Save"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      conserve_tags: "Conserve title, description and tags<br/>of the original element"
+      conserve_tags: "Conserve title, description and tags of the original element"
     # Form for editing general information of an element after having overwritten its content with one of the three editors (image / audio / video)
     overwrite_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       title: "Made significant changes?"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      description: "Update here the element's info according to its new content"
+      description: "Update here the element's info<br/>according to its new content"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       cancel: "Cancel"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb

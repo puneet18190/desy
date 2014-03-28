@@ -627,7 +627,7 @@ it:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       title: "Nuovo elemento"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      description: "Inserire nel modulo<br/>titolo, descrizione e tags"
+      description: "Inserire tutti i dettagli nel modulo<br/>titolo, descrizione e tags"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       cancel: "Annulla"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
