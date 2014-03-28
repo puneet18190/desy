@@ -2164,6 +2164,57 @@
           @include nunito(11px);
           float: left;
           width: 100%;
+          margin-top: 10px;
+          
+          input {
+            
+            display: none;
+            
+          }
+          
+          input + label, label {
+            
+            box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
+            float: left;
+            cursor: pointer;
+            background-color: #fff;
+            padding: 3px 9px;
+            border-radius: 3px;
+            height: 15px;
+            width: 4px;
+            box-shadow: none;
+            
+          }
+          
+          input:checked + label {
+            
+            background-color: #CDCDCE;
+            cursor: default;
+            
+          }
+          
+          input:checked + label:after {
+            
+            color: $green;
+            cursor: pointer;
+            padding: 2px 3px;
+            content: '\2714';
+            font-size: 14px;
+            bottom: 3px;
+            right: 6px;
+            display: inline-block;
+            position: relative;
+            
+          }
+          
+          p {
+            
+            text-align: left;
+            margin-left: 10px;
+            float: left;
+            margin-top: 4px;
+            
+          }
           
         }
         
