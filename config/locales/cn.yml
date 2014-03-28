@@ -627,7 +627,7 @@ cn:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       title: "你正在建立一新课程"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      description: "在以下表格输入所有的详细"
+      description: "請在下面的標題，<br/>描述和標籤的形式"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       cancel: "终止"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
@@ -639,7 +639,7 @@ cn:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       title: "你已经发生重要改变吗?"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      description: "基于新账号，在这里上传素材信息"
+      description: "基于新账号，<br/>在这里上传素材信息"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       cancel: "终止"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb

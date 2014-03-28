@@ -627,7 +627,7 @@ it:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       title: "Nuovo elemento"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      description: "Inserire tutti i dettagli nel modulo"
+      description: "Inserire nel modulo<br/>titolo, descrizione e tags"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       cancel: "Annulla"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
@@ -639,7 +639,7 @@ it:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       title: "Modifiche importanti?"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      description: "Aggiorna le informazioni sull'elemento in virtù del nuovo contenuto"
+      description: "Aggiorna le informazioni sull'elemento<br/>in virtù del nuovo contenuto"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       cancel: "Annulla"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
