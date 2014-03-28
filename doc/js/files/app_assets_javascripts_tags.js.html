@@ -544,12 +544,10 @@ function tagsDocumentReady() {
       disableTagsInputTooHigh(container);
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;._tags_container&#x27;, function() {
-    $(this).find(&#x27;._placeholder&#x27;).hide();
-  });
   $body.on(&#x27;click&#x27;, &#x27;._tags_container&#x27;, function() {
     $(this).find(&#x27;.tags&#x27;).focus();
     $(this).find(&#x27;._placeholder&#x27;).hide();
+    $(this).find(&#x27;.tags&#x27;).show();
   });
   $body.on(&#x27;keydown&#x27;, &#x27;._tags_container .tags&#x27;, function(e) {
     var container = $(this).parents(&#x27;._tags_container&#x27;);

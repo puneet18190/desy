@@ -1,8 +1,8 @@
-Thu, 27 Mar 2014 15:52:35 +0100
+Fri, 28 Mar 2014 16:04:08 +0100
 app/controllers/admin/dashboard_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/admin/documents_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
 app/controllers/admin/lessons_controller.rb	Wed, 12 Mar 2014 12:51:16 +0100
-app/controllers/admin/media_elements_controller.rb	Fri, 21 Mar 2014 17:01:59 +0100
+app/controllers/admin/media_elements_controller.rb	Fri, 28 Mar 2014 16:03:31 +0100
 app/controllers/admin/messages_controller.rb	Mon, 10 Feb 2014 14:27:22 +0100
 app/controllers/admin/personifications_controller.rb	Wed, 27 Nov 2013 10:38:42 +0100
 app/controllers/admin/purchases_controller.rb	Mon, 10 Feb 2014 11:08:12 +0100
@@ -10,19 +10,19 @@ app/controllers/admin/reports_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/admin/settings_controller.rb	Wed, 29 Jan 2014 11:03:32 +0100
 app/controllers/admin/users_controller.rb	Fri, 28 Feb 2014 09:54:24 +0100
 app/controllers/admin_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/controllers/application_controller.rb	Tue, 25 Mar 2014 15:19:18 +0100
-app/controllers/audio_editor_controller.rb	Thu, 27 Mar 2014 15:38:49 +0100
+app/controllers/application_controller.rb	Fri, 28 Mar 2014 12:51:01 +0100
+app/controllers/audio_editor_controller.rb	Fri, 28 Mar 2014 12:51:01 +0100
 app/controllers/dashboard_controller.rb	Tue, 07 Jan 2014 16:52:25 +0100
-app/controllers/documents_controller.rb	Mon, 24 Mar 2014 14:29:14 +0100
+app/controllers/documents_controller.rb	Fri, 28 Mar 2014 12:51:01 +0100
 app/controllers/faqs_controller.rb	Wed, 27 Nov 2013 10:38:42 +0100
-app/controllers/galleries_controller.rb	Fri, 21 Mar 2014 16:21:06 +0100
-app/controllers/image_editor_controller.rb	Thu, 27 Mar 2014 15:38:31 +0100
-app/controllers/lesson_editor_controller.rb	Tue, 25 Mar 2014 14:22:53 +0100
+app/controllers/galleries_controller.rb	Fri, 28 Mar 2014 12:51:01 +0100
+app/controllers/image_editor_controller.rb	Fri, 28 Mar 2014 12:51:01 +0100
+app/controllers/lesson_editor_controller.rb	Fri, 28 Mar 2014 12:51:01 +0100
 app/controllers/lesson_export_controller.rb	Wed, 15 Jan 2014 15:13:38 +0100
 app/controllers/lesson_viewer_controller.rb	Thu, 16 Jan 2014 15:04:10 +0100
 app/controllers/lessons_controller.rb	Wed, 12 Feb 2014 16:13:48 +0100
 app/controllers/mailing_lists_controller.rb	Thu, 14 Nov 2013 12:46:56 +0100
-app/controllers/media_elements_controller.rb	Fri, 21 Mar 2014 17:33:54 +0100
+app/controllers/media_elements_controller.rb	Fri, 28 Mar 2014 12:51:01 +0100
 app/controllers/notifications_controller.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/controllers/prelogin_controller.rb	Mon, 17 Mar 2014 16:51:57 +0100
 app/controllers/reports_controller.rb	Tue, 26 Nov 2013 16:04:55 +0100
@@ -30,10 +30,10 @@ app/controllers/search_controller.rb	Wed, 12 Mar 2014 18:15:32 +0100
 app/controllers/tags_controller.rb	Mon, 17 Feb 2014 15:26:57 +0100
 app/controllers/users/sessions_controller.rb	Mon, 18 Nov 2013 11:40:45 +0100
 app/controllers/users_controller.rb	Thu, 13 Mar 2014 12:54:19 +0100
-app/controllers/video_editor_controller.rb	Thu, 27 Mar 2014 15:39:00 +0100
+app/controllers/video_editor_controller.rb	Fri, 28 Mar 2014 12:51:01 +0100
 app/controllers/virtual_classroom_controller.rb	Mon, 10 Feb 2014 11:08:12 +0100
 app/helpers/admin_helper.rb	Wed, 12 Mar 2014 12:24:16 +0100
-app/helpers/application_helper.rb	Tue, 25 Mar 2014 10:51:57 +0100
+app/helpers/application_helper.rb	Fri, 28 Mar 2014 12:51:01 +0100
 app/mailers/maintainer_notifications_mailer.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/mailers/user_mailer.rb	Fri, 07 Feb 2014 17:19:21 +0100
 app/models/admin_search_form.rb	Wed, 12 Mar 2014 14:17:20 +0100
@@ -57,7 +57,7 @@ app/models/slide.rb	Fri, 10 Jan 2014 11:45:56 +0100
 app/models/subject.rb	Wed, 27 Nov 2013 10:38:42 +0100
 app/models/tag.rb	Wed, 19 Feb 2014 12:56:27 +0100
 app/models/tagging.rb	Wed, 06 Nov 2013 17:10:38 +0100
-app/models/user.rb	Tue, 25 Mar 2014 14:20:35 +0100
+app/models/user.rb	Fri, 28 Mar 2014 12:51:01 +0100
 app/models/users_subject.rb	Wed, 06 Nov 2013 17:10:38 +0100
 app/models/video.rb	Thu, 09 Jan 2014 12:06:10 +0100
 app/models/virtual_classroom_lesson.rb	Wed, 06 Nov 2013 17:10:38 +0100

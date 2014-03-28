@@ -5232,7 +5232,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 350,
+            "line": 357,
             "description": "Hides the commit form for overwrite or for new element (depending on the parameter).",
             "itemtype": "method",
             "name": "hideCommitMediaElementEditorForm",
@@ -5253,7 +5253,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 365,
+            "line": 372,
             "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showDocumentInfoPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "resetDocumentChangeInfo",
@@ -5269,7 +5269,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 378,
+            "line": 385,
             "description": "Resets the media element loading form; used in {{#crossLink \"DialogsWithForm/showMediaElementInfoPopUp:method\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "resetMediaElementChangeInfo",
@@ -5285,7 +5285,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 399,
+            "line": 406,
             "description": "Shows the commit form for overwrite or for new element (depending on the parameter).",
             "itemtype": "method",
             "name": "showCommitMediaElementEditorForm",
@@ -5306,7 +5306,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 423,
+            "line": 425,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>left</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollLeft",
@@ -5331,7 +5331,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 439,
+            "line": 441,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the correct movement that a horizontal <b>right</b> scroll must do taking into consideration the space available (thing that obviously JScrollPain doesn't do itself).",
             "itemtype": "method",
             "name": "calculateCorrectMovementHorizontalScrollRight",
@@ -5356,7 +5356,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 451,
+            "line": 453,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: calculates the absolute position to be assigned to <b>a div that must be aligned to the component</b> after having been moved to first position.",
             "itemtype": "method",
             "name": "getAbsolutePositionTimelineHorizontalScrollPane",
@@ -5391,7 +5391,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 473,
+            "line": 475,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: gets how many components are hidden to the left of the scroll pane.",
             "itemtype": "method",
             "name": "getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane",
@@ -5416,7 +5416,7 @@
         },
         {
             "file": "app/assets/javascripts/media_element_editor.js",
-            "line": 486,
+            "line": 488,
             "description": "Submethod used in the methods of {{#crossLink \"VideoEditorScrollPain\"}}{{/crossLink}}: exactly the same as {{#crossLink \"MediaElementEditorHorizontalTimelines/getAbsolutePositionTimelineHorizontalScrollPane:method\"}}{{/crossLink}}, but <b>it returns the position of the scroll pane</b> instead of the absolute pixels for an external div.",
             "itemtype": "method",
             "name": "getNormalizedPositionTimelineHorizontalScrollPane",

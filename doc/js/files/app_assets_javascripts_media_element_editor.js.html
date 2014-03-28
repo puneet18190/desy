@@ -544,7 +544,7 @@ function mediaElementEditorDocumentReady() {
       showCommitMediaElementEditorForm(type, &#x27;new&#x27;)
     }
   });
-  $body.on(&#x27;click&#x27;, &#x27;.formMediaElement .part3 .done&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;.formMediaElement .part3 .submit&#x27;, function() {
     var container = $(this).parents(&#x27;.formMediaElement&#x27;);
     var action = container.data(&#x27;form-action&#x27;);
     var type = container.data(&#x27;form-type&#x27;);
@@ -567,7 +567,7 @@ function mediaElementEditorDocumentReady() {
   $body.on(&#x27;click&#x27;, &#x27;#new-media-element.formMediaElement .part3 .on-left .reuse-old-data&#x27;, function() {
     var reuse = $(this);
     var container = reuse.parents(&#x27;.formMediaElement&#x27;);
-    var reuse_hidden = container.find(&#x27;part3 .on-left .hidden-data&#x27;);
+    var reuse_hidden = container.find(&#x27;.part3 .on-left .hidden-data&#x27;);
     if(!reuse.hasClass(&#x27;disabled&#x27;)) {
       reuse.addClass(&#x27;disabled&#x27;);
       reuse.find(&#x27;#reuse-old-data&#x27;).attr(&#x27;checked&#x27;, &#x27;checked&#x27;).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
@@ -577,6 +577,7 @@ function mediaElementEditorDocumentReady() {
       container.find(&#x27;.part2 .description_placeholder&#x27;).val(&#x27;0&#x27;);
       var tags_container = container.find(&#x27;.part2 ._tags_container&#x27;);
       container.find(&#x27;.part2 ._tags_container span&#x27;).remove();
+      container.find(&#x27;.part2 ._tags_container ._placeholder&#x27;).hide();
       reuse_hidden.find(&#x27;span&#x27;).each(function() {
         var copy = $(this)[0].outerHTML;
         tags_container.prepend(copy);
@@ -588,11 +589,11 @@ function mediaElementEditorDocumentReady() {
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;.formMediaElement .part3 .close&#x27;, function() {
-    var type = $(this).data(&#x27;form-type&#x27;);
-    var action = $(this).data(&#x27;form-action&#x27;);
     var container = $(this).parents(&#x27;.formMediaElement&#x27;);
+    var type = container.data(&#x27;form-type&#x27;);
+    var action = container.data(&#x27;form-action&#x27;);
     if(type != &#x27;image&#x27;) {
-      $(&#x27;#&#x27; + type + &#x27;_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;/audios/cache/save&#x27;);
+      $(&#x27;#&#x27; + type + &#x27;_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;/&#x27; + type + &#x27;s/cache/save&#x27;);
       startCacheLoop();
     }
     if(action == &#x27;new&#x27;) {
@@ -603,13 +604,14 @@ function mediaElementEditorDocumentReady() {
       hideCommitMediaElementEditorForm(type, &#x27;new&#x27;);
       container.find(&#x27;.part3 .on-left .reuse-old-data&#x27;).removeClass(&#x27;disabled&#x27;);
       container.find(&#x27;.part3 .on-left .reuse-old-data #reuse-old-data&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
-      container.find(&#x27;.part2 .title&#x27;).val(container.data(&#x27;title&#x27;));
+      container.find(&#x27;.part2 .title&#x27;).val(container.data(&#x27;placeholder-title&#x27;));
       container.find(&#x27;.part2 .title_placeholder&#x27;).val(&#x27;&#x27;);
-      container.find(&#x27;.part2 .description&#x27;).val(container.data(&#x27;description&#x27;));
+      container.find(&#x27;.part2 .description&#x27;).val(container.data(&#x27;placeholder-description&#x27;));
       container.find(&#x27;.part2 .description_placeholder&#x27;).val(&#x27;&#x27;);
       container.find(&#x27;.part2 ._tags_container span&#x27;).remove();
       container.find(&#x27;.part2 ._tags_container ._placeholder&#x27;).show();
       container.find(&#x27;.part2 .tags_value&#x27;).val(&#x27;&#x27;);
+      container.find(&#x27;.part2 .tags&#x27;).val(&#x27;&#x27;);
     } else {
       hideCommitMediaElementEditorForm(type, &#x27;edit&#x27;);
       container.find(&#x27;.part2 .title&#x27;).val(container.data(&#x27;title&#x27;));
@@ -619,10 +621,10 @@ function mediaElementEditorDocumentReady() {
       container.find(&#x27;.part2 ._tags_container span&#x27;).remove();
       container.find(&#x27;.part2 .hidden-tags span&#x27;).each(function() {
         var copy = $(this)[0].outerHTML;
-        tags_container.prepend(copy);
+        container.find(&#x27;.part2 ._tags_container&#x27;).prepend(copy);
       });
       container.find(&#x27;.part2 ._tags_container .tags_value&#x27;).val(container.data(&#x27;tags&#x27;));
-      container.find(&#x27;.part2 .tags&#x27;).show();
+      container.find(&#x27;.part2 .tags&#x27;).val(&#x27;&#x27;).show();
     }
     container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
     container.find(&#x27;.errors_layer&#x27;).hide();
@@ -644,6 +646,11 @@ function mediaElementEditorDocumentReady() {
       $(this).val(&#x27;&#x27;);
       container.find(&#x27;.part2 .description_placeholder&#x27;).val(&#x27;0&#x27;);
     }
+  });
+  $body.on(&#x27;focus&#x27;, &#x27;#new-media-element.formMediaElement .part2 ._tags_container .tags&#x27;, function() {
+    var container = $(this).parents(&#x27;.formMediaElement&#x27;);
+    container.find(&#x27;.part3 .on-left .reuse-old-data&#x27;).removeClass(&#x27;disabled&#x27;);
+    container.find(&#x27;.part3 .on-left .reuse-old-data #reuse-old-data&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
   });
   $body.on(&#x27;keydown&#x27;, &#x27;.formMediaElement .part2 .title, .formMediaElement .part2 .description&#x27;, function() {
     $(this).removeClass(&#x27;form_error&#x27;);
@@ -671,8 +678,8 @@ Hides the commit form for overwrite or for new element (depending on the paramet
 @param scope {String} it can be either &#x27;edit&#x27; or &#x27;new&#x27;
 **/
 function hideCommitMediaElementEditorForm(type, scope) {
-  $(&#x27;._&#x27; + type + &#x27;_editor_bottom_bar&#x27;).show();
   $(&#x27;#&#x27; + scope + &#x27;-media-element&#x27;).hide();
+  $(&#x27;#&#x27; + type + &#x27;_editor .hideMe&#x27;).show();
   if(type == &#x27;audio&#x27;) {
     setBackAllZIndexesInAudioEditor();
   }
@@ -709,7 +716,7 @@ function resetMediaElementChangeInfo(container) {
   container.find(&#x27;.part2 ._tags_container .tags_value&#x27;).val(container.data(&#x27;tags&#x27;));
   container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
   container.find(&#x27;.errors_layer&#x27;).hide();
-  container.find(&#x27;.part2 .tags&#x27;).show();
+  container.find(&#x27;.part2 .tags&#x27;).val(&#x27;&#x27;).show();
 }
 
 /**
@@ -720,13 +727,8 @@ Shows the commit form for overwrite or for new element (depending on the paramet
 @param scope {String} it can be either &#x27;edit&#x27; or &#x27;new&#x27;
 **/
 function showCommitMediaElementEditorForm(type, scope) {
-  $(&#x27;._&#x27; + type + &#x27;_editor_bottom_bar&#x27;).hide();
-  var container = $(&#x27;#&#x27; + scope + &#x27;-media-element&#x27;);
-  $(&#x27;.form-selector-class .part2 .title, .form-selector-class .part2 .description, .form-selector-class .part2 .tags_value&#x27;).removeAttr(&#x27;name&#x27;);
-  container.find(&#x27;.part2 .title&#x27;).attr(&#x27;name&#x27;, &#x27;title&#x27;);
-  container.find(&#x27;.part2 .description&#x27;).attr(&#x27;name&#x27;, &#x27;description&#x27;);
-  container.find(&#x27;.part2 .tags_value&#x27;).attr(&#x27;name&#x27;, &#x27;tags_value&#x27;);
-  container.show();
+  $(&#x27;#&#x27; + scope + &#x27;-media-element&#x27;).show();
+  $(&#x27;#&#x27; + type + &#x27;_editor .hideMe&#x27;).hide();
   if(type == &#x27;audio&#x27;) {
     setToZeroAllZIndexesInAudioEditor();
   }
