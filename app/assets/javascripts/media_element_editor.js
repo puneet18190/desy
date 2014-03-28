@@ -355,8 +355,8 @@ Hides the commit form for overwrite or for new element (depending on the paramet
 @param scope {String} it can be either 'edit' or 'new'
 **/
 function hideCommitMediaElementEditorForm(type, scope) {
-  $('._' + type + '_editor_bottom_bar').show();
   $('#' + scope + '-media-element').hide();
+  $('#' + type + '_editor .hideMe').show();
   if(type == 'audio') {
     setBackAllZIndexesInAudioEditor();
   }
@@ -404,9 +404,8 @@ Shows the commit form for overwrite or for new element (depending on the paramet
 @param scope {String} it can be either 'edit' or 'new'
 **/
 function showCommitMediaElementEditorForm(type, scope) {
-  $('._' + type + '_editor_bottom_bar').hide();
-  var container = $('#' + scope + '-media-element');
-  container.show();
+  $('#' + scope + '-media-element').show();
+  $('#' + type + '_editor .hideMe').hide();
   if(type == 'audio') {
     setToZeroAllZIndexesInAudioEditor();
   }

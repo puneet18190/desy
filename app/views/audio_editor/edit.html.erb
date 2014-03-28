@@ -13,7 +13,7 @@
       <%= hidden_field_tag 'initial_audio_id', @parameters[:initial_audio].id, :id => 'initial_audio_in_audio_editor_input' %>
     <% end %>
     
-    <div id="audio_editor_box_ghost" style="display:none;"></div>
+    <div id="audio_editor_box_ghost" style="display:none"></div>
     <div id="empty_audio_editor" style="display:<%= @parameters[:components].empty? ? 'block'.html_safe : 'none'.html_safe %>">
       <div class="emptyAudioEditor">
         <p><%= t('audio_editor.empty') %></p>
@@ -23,7 +23,7 @@
     
   <% end %>
   
-  <div class="goToNextStep _audio_editor_bottom_bar">
+  <div class="goToNextStep hideMe _audio_editor_bottom_bar">
     <div class="fltrt">
       <a class="_commit_media_element_editor nextButton <%= @parameters[:initial_audio].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.audio_editor.commit') %>" style="display:<%= @parameters[:components].empty? ? 'none'.html_safe : 'block'.html_safe %>" data-type="audio">
       </a>

@@ -4,7 +4,7 @@
   
   <%= render :partial => 'video_editor/preview_container', :locals => {:parameters => @parameters} %>
   
-  <div class="global-data">
+  <div class="global-data hideMe">
     
     <% if @parameters[:components].any? %>
       <div id="video_editor_global_preview" class="bottoniVerdi _enabled" data-current-component="0" data-current-time="0" data-in-use="false" data-arrows="true">
@@ -34,7 +34,7 @@
     <% if @parameters[:initial_video] %>
       <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @parameters[:initial_video]} %>
     <% end %>
-    <div class="mediaEditorListaElementi">
+    <div class="mediaEditorListaElementi hideMe">
       <% if @parameters[:initial_video] %>
         <%= hidden_field_tag 'initial_video_id', @parameters[:initial_video].id, :id => 'initial_video_in_video_editor_input' %>
       <% end %>
