@@ -2080,7 +2080,102 @@
   top: 0;
   left: 42px;
   position: absolute;
+  background-color: $green;
   
-  /* TODO formms */
+  .form-selector-class {
+    
+    .part1 {
+      
+      .attachment {
+        
+        .icon {
+          
+          &.audio {
+            
+            @include svg-circle-icon-handler-without-hover($assets-icone-editor-elementi_svg, 85px, 3, 4, 1, 1, 1);
+            
+          }
+          
+          &.image {
+            
+            @include svg-circle-icon-handler-without-hover($assets-icone-editor-elementi_svg, 85px, 3, 4, 1, 1, 2);
+            
+          }
+          
+          &.video {
+            
+            @include svg-circle-icon-handler-without-hover($assets-icone-editor-elementi_svg, 85px, 3, 4, 1, 1, 0);
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+    .part2 {
+      
+      .title_and_description .title, .title_and_description .description, .tags_loader ._tags_container {
+        
+        background-color: #3F8A2D;
+        
+      }
+      
+      .title {
+        
+        float: left;
+        
+      }
+      
+      .description {
+        
+        float: left;
+        
+      }
+      
+      ._tags_container {
+        
+        float: right;
+        
+        ._placeholder {
+          
+          text-align: left;
+          
+        }
+        
+      }
+      
+    }
+    
+    .part3 {
+      
+      .on-left, .on-right {
+        
+        float: left;
+        width: 385px;
+        
+      }
+      
+      .on-right {
+        
+        .close, .submit {
+          
+          color: #333333;
+          background-color: white;
+          
+          &:hover {
+            
+            background-color: #67B855;
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+  }
   
 }
