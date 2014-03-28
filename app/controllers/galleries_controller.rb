@@ -384,7 +384,7 @@ class GalleriesController < ApplicationController
       if record.errors.added? :media, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
-      @errors = convert_media_element_lesson_editor_uploader_messages record.errors
+      @errors = convert_media_element_error_messages record.errors
       @errors[:media] = t('forms.error_captions.wrong_sti_type.audio').downcase if !@errors.has_key?(:media) && record.sti_type != 'Audio'
     end
     render :layout => false
@@ -411,7 +411,7 @@ class GalleriesController < ApplicationController
       if record.errors.added? :media, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
-      @errors = convert_media_element_lesson_editor_uploader_messages record.errors
+      @errors = convert_media_element_error_messages record.errors
       @errors[:media] = t('forms.error_captions.wrong_sti_type.image').downcase if !@errors.has_key?(:media) && record.sti_type != 'Image'
     end
     render :layout => false
@@ -445,7 +445,7 @@ class GalleriesController < ApplicationController
       if record.errors.added? :media, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
-      @errors = convert_media_element_lesson_editor_uploader_messages record.errors
+      @errors = convert_media_element_error_messages record.errors
       @errors[:media] = t('forms.error_captions.wrong_sti_type.video').downcase if !@errors.has_key?(:media) && record.sti_type != 'Video'
     end
     render :layout => false
@@ -467,7 +467,7 @@ class GalleriesController < ApplicationController
     record.user_id = current_user.id
     record.save_tags = true
     record.valid?
-    @errors = convert_media_element_lesson_editor_uploader_messages record.errors
+    @errors = convert_media_element_error_messages record.errors
     @errors[:media] = t('forms.error_captions.media_file_too_large').downcase
   end
   
@@ -488,7 +488,7 @@ class GalleriesController < ApplicationController
       if record.errors.added? :attachment, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
-      @errors = convert_document_lesson_editor_uploader_messages record.errors
+      @errors = convert_document_error_messages record.errors
     else
       get_documents(1)
       @document_id = record.id
@@ -510,7 +510,7 @@ class GalleriesController < ApplicationController
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
     record.user_id = current_user.id
     record.valid?
-    @errors = convert_media_element_lesson_editor_uploader_messages record.errors
+    @errors = convert_document_error_messages record.errors
     @errors[:media] = t('documents.upload_form.attachment_too_large').downcase
   end
   

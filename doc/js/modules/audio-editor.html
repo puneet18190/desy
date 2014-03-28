@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -189,15 +187,13 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
-            
-                <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
             
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
-                <li><a href="../classes/UploaderLessonEditor.html">UploaderLessonEditor</a></li>
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
+            
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -246,8 +242,6 @@
                 <li><a href="../modules/dashboard.html">dashboard</a></li>
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
-            
-                <li><a href="../modules/documents.html">documents</a></li>
             
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
@@ -342,7 +336,7 @@ On the top of the right column are positioned the time durations (updated with <
 <br/><br/>
 On the bottom of the right column are positioned the controls for the <b>global preview</b> (which plays all the components globally). Similarly to the module <a href="../modules/video-editor.html">video-editor</a>, before playing the global preview the system must enter in <b>preview mode</b>: the difference is that in the Audio Editor this mode is switched automatically by the system, whereas in the Video Editor it&#39;s the user who decides to enter and leave the preview mode. To enter in preview mode we use the method <a href="../classes/AudioEditorPreview.html#method_enterAudioEditorPreviewMode" class="crosslink">enterAudioEditorPreviewMode</a>, which calls <a href="../classes/AudioEditorPreview.html#method_switchAudioComponentsToPreviewMode" class="crosslink">switchAudioComponentsToPreviewMode</a> or each component. A component in preview mode can be <b>selected</b> (using a differente method respect to the normal component selection: see <a href="../classes/AudioEditorPreview.html#method_selectAudioEditorComponentInPreviewMode" class="crosslink">selectAudioEditorComponentInPreviewMode</a>). Each component in the global preview is played using the method <a href="../classes/AudioEditorPreview.html#method_startAudioEditorPreview" class="crosslink">startAudioEditorPreview</a> (to which we pass the component to start with); the main part of the functionality of passing from a component to the next one during the global preview is handled in the module <a href="../modules/players.html">players</a> (more specificly, in the method <a href="../classes/PlayersAudioEditor.html#method_initializeActionOfMediaTimeUpdaterInAudioEditor" class="crosslink">initializeActionOfMediaTimeUpdaterInAudioEditor</a>.
 <br/><br/>
-As for the other Element Editors (<a href="../modules/image-editor.html">image-editor</a>, <a href="../modules/video-editor.html">video-editor</a>) the core of the process of committing changes is handled in the module <a href="../modules/media-element-editor.html">media-element-editor</a> (more specificly in the class <a href="../classes/MediaElementEditorForms.html" class="crosslink">MediaElementEditorForms</a>); the part of this functionality specific for the Audio Editor is handled in <a href="../classes/AudioEditorDocumentReady.html#method_audioEditorDocumentReadyCommit" class="crosslink">audioEditorDocumentReadyCommit</a>.</p>
+As for the other Element Editors (<a href="../modules/image-editor.html">image-editor</a>, <a href="../modules/video-editor.html">video-editor</a>) the core of the process of committing changes is handled in the module <a href="../modules/media-element-editor.html">media-element-editor</a> (more specificly in the class <a href="../classes/MediaElementEditorForms.html" class="crosslink">MediaElementEditorForms</a>); the part of this functionality specific for the Audio Editor is handled in <a href="../classes/MediaElementEditorDocumentReady.html#method_mediaElementEditorDocumentReady" class="crosslink">mediaElementEditorDocumentReady</a>.</p>
 
 </div>
 

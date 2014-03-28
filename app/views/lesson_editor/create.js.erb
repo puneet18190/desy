@@ -1,21 +1,5 @@
 <% if @errors %>
-  $('.form_error').removeClass('form_error');
-  $('#slides._new ._error_messages').html('<%= j standard_form_error_messages(@errors) %>');
-  <% @error_fields.each do |err| %>
-    <% if err.to_s == 'tags' %>
-      $('#slides._new ._tags_container').addClass('form_error');
-      $('#slides._new ._placeholder').hide();
-    <% elsif err.to_s == 'subject_id' %>
-      $('#slides._new #lesson_subject').next().addClass('form_error');
-    <% else %>
-      $('#slides._new #<%= err %>').addClass('form_error');
-      if($('#slides._new #<%= err %>_placeholder').val() == '') {
-        $('#slides._new #<%= err %>').val('');
-      }
-    <% end %>
-  <% end %>
+  showFormErrors($('#new-lesson'), <%= @errors.to_json.html_safe %>);
 <% else %>
-  $('.form_error').removeClass('form_error');
-  $('#slides._new ._error_messages').html('');
   window.location = '/lessons/<%= @lesson.id %>/slides/edit/';
 <% end %>

@@ -1,15 +1,6 @@
 <% if @ok %>
-  
   <% if @errors %>
-    $('.form_error').removeClass('form_error');
-    $('#dialog-media-element-<%= @media_element_id %> ._change_info_container ._error_messages').html('<%= j standard_form_error_messages(@errors) %>');
-    <% @error_fields.each do |err| %>
-      <% if err.to_s == 'tags' %>
-        $('#dialog-media-element-<%= @media_element_id %> ._tags_container').addClass('form_error');
-      <% else %>
-        $('#dialog-media-element-<%= @media_element_id %> .<%= err %>').addClass('form_error');
-      <% end %>
-    <% end %>
+    showFormErrors($('#dialog-media-element-<%= @media_element.id %>'), <%= @errors.to_json.html_safe %>);
   <% else %>
     <% used_in_private_lessons = @media_element.media_elements_slides.any? %>
     closePopUp("dialog-media-element-<%= @media_element_id %>");
@@ -30,5 +21,4 @@
       $('#' + destination + '_<%= @media_element_id %>').replaceWith('<%= j render(:partial => "media_elements/view_single_compact", :locals => {:media_element => @media_element, :destination => ButtonDestinations::FOUND_MEDIA_ELEMENT, :used_in_private_lessons => used_in_private_lessons}) %>');
     }
   <% end %>
-  
 <% end %>

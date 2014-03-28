@@ -244,36 +244,23 @@ class ApplicationController < ActionController::Base
     @ok = !!(@ok && condition)
   end
   
-  # Used for errors in forms of elements general information: converts an item of type ActiveModel::Errors into a translated message for the user.
-  def convert_item_error_messages(errors_ext)
-    errors = errors_ext.messages
-    resp = []
-    media_errors = errors.delete(:media)
-    sti_type_errors = errors.delete(:sti_type)
-    subject_id_errors = errors.delete(:subject_id)
-    if errors.has_key?(:title) || errors.has_key?(:description)
-      resp << t('forms.error_captions.fill_all_the_fields_or_too_long')
-    end
-    flag = false
-    if errors.has_key? :tags
-      resp << t('forms.error_captions.tags_are_not_enough') if errors_ext.added? :tags, :are_not_enough
-      resp << t('forms.error_captions.tags_too_many') if errors_ext.added? :tags, :too_many
-    end
-    errors[:media] = media_errors if !media_errors.nil?
-    errors[:sti_type] = sti_type_errors if !sti_type_errors.nil?
-    errors[:subject_id] = subject_id_errors if !subject_id_errors.nil?
+  # Used for errors of a lesson.
+  def convert_lesson_error_messages(errors)
+    resp = {}
+    max_title = t('language_parameters.lesson.length_title')
+    max_description = t('language_parameters.lesson.length_description')
+    resp[:title] = t('forms.error_captions.title_too_long', :max => max_title).downcase if errors.added? :title, :too_long, {:count => max_title}
+    resp[:title] = t('forms.error_captions.title_blank').downcase if errors.added? :title, :blank
+    resp[:description] = t('forms.error_captions.description_too_long', :max => max_description).downcase if errors.added? :description, :too_long, {:count => max_description}
+    resp[:description] = t('forms.error_captions.description_blank').downcase if errors.added? :description, :blank
+    resp[:tags] = t('forms.error_captions.tags_are_not_enough').downcase if errors.added? :tags, :are_not_enough
+    resp[:tags] = t('forms.error_captions.tags_too_many').downcase if errors.added? :tags, :too_many
+    resp[:subject_id] = t('forms.error_captions.subject_missing_in_lesson').downcase if errors.added? :subject_id, :blank
     resp
   end
   
-  # Used for errors in forms of lessons general information: converts an item of type ActiveModel::Errors into a translated message for the user.
-  def convert_lesson_editor_messages(errors)
-    resp = convert_item_error_messages errors
-    resp << t('forms.error_captions.subject_missing_in_lesson') if errors.has_key? :subject_id
-    resp
-  end
-  
-  # Used for errors in forms of element uploader for lesson editor: converts an item of type ActiveModel::Errors into a translated message for the user.
-  def convert_media_element_lesson_editor_uploader_messages(errors)
+  # Used for errors of a media element.
+  def convert_media_element_error_messages(errors)
     return {:full => t('forms.error_captions.media_folder_size_exceeded')} if errors.added? :media, :folder_size_exceeded
     resp = {}
     max_title = t('language_parameters.media_element.length_title')
@@ -294,8 +281,8 @@ class ApplicationController < ActionController::Base
     resp
   end
   
-  # Used for errors in forms of load documents for lesson editor.
-  def convert_document_lesson_editor_uploader_messages(errors)
+  # Used for errors of a document.
+  def convert_document_error_messages(errors)
     return {:full => t('forms.error_captions.document_folder_size_exceeded')} if errors.added? :attachment, :folder_size_exceeded
     resp = {}
     max_title = t('language_parameters.document.length_title')
@@ -308,35 +295,7 @@ class ApplicationController < ActionController::Base
     resp
   end
   
-  # Used for errors in forms of element uploader: converts an item of type ActiveModel::Errors into a translated message for the user.
-  def convert_media_element_uploader_messages(errors)
-    return [t('forms.error_captions.media_folder_size_exceeded')] if errors.added? :media, :folder_size_exceeded
-    resp = convert_item_error_messages errors
-    if errors.messages.has_key?(:media) && errors.messages[:media].any?
-      return ([t('forms.error_captions.media_blank')] + resp) if errors.added? :media, :blank
-      if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil?
-        return [t('forms.error_captions.media_unsupported_format')] + resp
-      end
-      return [t('forms.error_captions.media_generic_error')] + resp
-    else
-      if errors.messages.has_key? :sti_type
-        return [t('forms.error_captions.media_unsupported_format')] + resp
-      else
-        return resp
-      end
-    end
-  end
-  
-  # Used for errors in forms of load documents.
-  def convert_document_uploader_messages(errors)
-    return [t('forms.error_captions.document_folder_size_exceeded')] if errors.added? :attachment, :folder_size_exceeded
-    resp = []
-    resp << t('forms.error_captions.fill_all_the_fields_or_too_long') if errors.messages.has_key?(:title) || errors.messages.has_key?(:description)
-    resp << t('forms.error_captions.document_blank') if errors.messages.has_key?(:attachment) && errors.messages[:attachment].any?
-    resp
-  end
-  
-  # Used for errors in forms of user profile: converts an item of type ActiveModel::Errors into a translated message for the user.
+  # Used for errors of a user.
   def convert_user_error_messages(errors)
     pas_min = SETTINGS['minimum_password_length']
     pas_max = SETTINGS['maximum_password_length']

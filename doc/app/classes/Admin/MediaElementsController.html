@@ -682,7 +682,7 @@ href="../ApplicationController.html#method-i-initialize_media_element_with_owner
       <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">publication_date</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_item_error_messages</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">errors</span>
+      <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_media_element_error_messages</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">errors</span>
       <span class="ruby-ivar">@error_fields</span> = <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>

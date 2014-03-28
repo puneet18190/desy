@@ -68,10 +68,9 @@ class DocumentsController < ApplicationController
     if @ok
       @word = params[:word].blank? ? nil : params[:word]
       @document.title = params[:title]
-      @document.description = params[:description_placeholder].blank? ? params[:description] : ''
+      @document.description = params[:description]
       if !@document.save
-        @errors = convert_item_error_messages @document.errors
-        @error_fields = @document.errors.messages.keys
+        @errors = convert_document_error_messages @document.errors
       end
     end
   end
@@ -90,12 +89,8 @@ class DocumentsController < ApplicationController
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
     record.user_id = current_user.id
     record.valid?
-    @errors = convert_item_error_messages(record.errors) + [t('documents.upload_form.attachment_too_large')]
-    @error_fields = []
-    record.errors.messages.keys.each do |f|
-      @error_fields << f.to_s if f != :attachment
-    end
-    @error_fields << :attachment
+    @errors = convert_document_error_messages record.errors
+    @errors[:media] = t('documents.upload_form.attachment_too_large').downcase
   end
   
   # === Description
@@ -107,7 +102,7 @@ class DocumentsController < ApplicationController
   # Html
   #
   def create
-    record = Document.new :attachment => params[:attachment]
+    record = Document.new :attachment => params[:media]
     record.title = params[:title_placeholder] != '0' ? '' : params[:title]
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
     record.user_id = current_user.id
@@ -115,12 +110,7 @@ class DocumentsController < ApplicationController
       if record.errors.added? :attachment, :too_large
         return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
       end
-      @errors = convert_document_uploader_messages record.errors
-      fields = record.errors.messages.keys
-      @error_fields = []
-      fields.each do |f|
-        @error_fields << f.to_s if record.errors.messages[f].any?
-      end
+      @errors = convert_document_error_messages record.errors
     end
     render :layout => false
   end

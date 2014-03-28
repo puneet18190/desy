@@ -575,7 +575,7 @@ it:
     # Form to create a new lesson
     new_lesson:
       # 1 - views/lesson_editor/new.html.erb
-      title: "Stai creando una nuova lezione"
+      title: "Nuova lezione"
       # 1 - views/lesson_editor/new.html.erb
       description: "Inserire tutte le informazioni richieste nel modulo"
       # 1 - views/lesson_editor/new.html.erb
@@ -585,7 +585,7 @@ it:
     # Form to modify a lesson
     update_lesson:
       # 1 - views/lesson_editor/edit.html.erb
-      title: "Stai facendo modifiche importanti?"
+      title: "Modifiche importanti?"
       # 1 - views/lesson_editor/edit.html.erb
       description: "Aggiorna le informazioni sulla lezione in virtù del nuovo contenuto"
       # 1 - views/lesson_editor/edit.html.erb
@@ -602,6 +602,16 @@ it:
       cancel: "Annulla"
       # 1 - views/media_elements/_new_form_popup.html.erb
       done: "Carica"
+    # Form for modifying a document
+    change_info_document:
+      # 1 - views/documents/_popup.html.erb
+      title: "Informazioni sul documento"
+      # 1 - views/documents/_popup.html.erb
+      description: "Compila il modulo per modificare i dati"
+      # 1 - views/documents/_popup.html.erb
+      cancel: "Annulla"
+      # 1 - views/documents/_popup.html.erb
+      done: "Aggiorna"
     # Form for modifying a media element
     change_info_media_element:
       # 1 - views/media_elements/_popup.html.erb
@@ -615,9 +625,9 @@ it:
     # Form for creating a new media element with one of the three editors (image / audio / video)
     new_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      title: "Stai creando un nuovo elemento"
+      title: "Nuovo elemento"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      description: "Inserire tutti i dettagli nel modulo"
+      description: "Inserire tutti i dettagli nel modulo<br/>titolo, descrizione e tags"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       cancel: "Annulla"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
@@ -627,9 +637,9 @@ it:
     # Form for editing general information of an element after having overwritten its content with one of the three editors (image / audio / video)
     overwrite_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      title: "Hai fatto modifiche importanti?"
+      title: "Modifiche importanti?"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      description: "Aggiorna le informazioni sull'elemento in virtù del nuovo contenuto"
+      description: "Aggiorna le informazioni sull'elemento<br/>in virtù del nuovo contenuto"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       cancel: "Annulla"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
@@ -682,15 +692,12 @@ it:
         media_element: "Stai caricando un elemento didattico, se lasci la pagina interromperai il processo"
       # The documents folder is full
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       document_folder_size_exceeded: "Il caricamento di documenti è temporaneamente disabilitato: riprova più tardi"
       # The document is blank
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       document_blank: "Scegliere un allegato"
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       fill_all_the_fields_or_too_long: "Compila tutti i campi senza superare la lunghezza massima"
       # The user didn't write the minimum amount of tags
       # 1 - controllers/application_controller.rb
@@ -702,21 +709,19 @@ it:
       tags_too_many: "Hai inserito troppe tags"
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       media_blank: "Nessun file caricato"
       # The user didn't insert a title
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
       description_blank: "La descrizione è vuota"
       # The user didn't insert a title
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
       title_blank: "Il titolo è vuoto"
       # The media elements folder exceeded the maximum size available
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/video_editor_controller.rb
-      # 3 - controllers/video_editor_controller.rb
-      # 4 - controllers/application_controller.rb
       media_folder_size_exceeded: "Il caricamento dei media è temporaneamente disabliltato, roprovare più tardi"
       # If the media folder is full, and the user tried to upload from the lesson editor: this is the caption of the button to come back to the gallery, since uploading is temporarily not available
       # 1 - views/galleries/wrappers/_media_element.html.erb
@@ -724,15 +729,18 @@ it:
       # If the document folder is full, and the user tried to upload from the lesson editor: this is the caption of the button to come back to the gallery, since uploading is temporarily not available
       # 1 - views/galleries/wrappers/_document.html.erb
       document_folder_full_button: "Torna alla galleria"
+      # Same of media_folder_full_button, but in the dashboard
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      media_folder_full_button_from_dashboard: "Ritorna"
+      # Same of document_folder_full_button, but in the dashboard
+      # 1 - views/documents/_new_form_popup.html.erb
+      document_folder_full_button_from_dashboard: "Ritorna"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
-      # 3 - controllers/application_controller.rb
-      # 4 - controllers/application_controller.rb
       media_unsupported_format: "Formato del file non supportato"
       # The user tried to upload a file which was damaged or invalid
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       media_generic_error: "File non valido o danneggiato"
       # The user tried to load a file exceeding the maximum size
       # 1 - controllers/media_elements_controller.rb
@@ -771,10 +779,12 @@ it:
       # The description is too long (the variable %{max} is replaced by the maximum amount of characters available for description)
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
       description_too_long: "La descrizione è troppo lunga (massimo %{max} caratteri)"
       # The title is too long (the variable %{max} is replaced by the maximum amount of characters available for title)
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
       title_too_long: "Il titolo è troppo lungo (massimo %{max} caratteri)"
       # These captions are used in the media element uploader inside Lesson Editor, if the user tries to load a file in a wrong format
       wrong_sti_type:
@@ -800,7 +810,7 @@ it:
       # 1 - views/media_elements/_new_form_popup.html.erb
       media: "Seleziona un file da caricare"
       # Subject (used only for lessons)
-      # 1 - helpers/application_helper.rb
+      # 1 - views/lesson_editor/new.html.erb
       subject_id: "Seleziona una materia"
       # Tags (the variable %{num} represents the maximum number of characters for each tags, the variable %{items} represents the minimum amount of tags)
       # 1 - views/media_elements/_new_form_popup.html.erb
@@ -887,6 +897,7 @@ it:
       dislike: "Clicca per cancellare il tuo 'Mi piace'"
       # To edit a lesson or a media element (the little pencil)
       # 1 - views/shared/buttons/_edit.html.erb
+      # 2 - views/media_elements/_popup.html.erb
       edit: "Modifica questo oggetto"
       # Title of the icon which appears instead of 'unpublish' in the case the lesson has been modified and the followers don't know about it
       # 1 - views/shared/_popups.html.erb
@@ -928,7 +939,7 @@ it:
         # 1 - views/lesson_viewer/_documents.html.erb
         attached_view: "Scarica documenti allegati"
         # Modify title and description of the document
-        # 1 - views/documents/_view_single_compact.html.erb
+        # 1 - views/documents/_popup.html.erb
         change_info: "Modifica titolo e descrizione del documento"
         # Destroy a document
         # 1 - views/documents/_view_single_compact.html.erb
@@ -941,7 +952,7 @@ it:
         remove: "Rimuovi"
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
-    # 2 - views/documents/_view_single_compact.html.erb
+    # 2 - views/documents/_popup.html.erb
     close: "Chiudi"
     # Titles for compressed dashboard
     dashboard:
@@ -2818,24 +2829,15 @@ it:
   # SECTION 2.18: labels in the section 'documents'
   
   documents:
-    # Form to change info
-    change_info:
-      # 1 - views/documents/_view_single_compact.html.erb
-      cancel: "Annulla"
-      # 1 - views/documents/_view_single_compact.html.erb
-      done: "Salva"
-      # 1 - views/documents/_view_single_compact.html.erb
-      title: "Modifica dati"
+    # General caption for a document
+    # 1 - views/documents/_popup.html.erb
+    caption: "Documento"
     # Placeholder in the form to change description and title (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_new_form_popup.html.erb
-    # 2 - views/documents/_view_single_compact.html.erb
-    # 3 - views/galleries/wrappers/_document.html.erb
+    # 2 - views/galleries/wrappers/_document.html.erb
     description_placeholder: "Inserisci una descrizione (max %{num} caratteri)"
-    # Placeholder in the popup not editable
-    # 1 - views/documents/_view_single_compact.html.erb
-    description_readonly_placeholder: "[Nessuna descrizione inserita]"
     # Button to download a document
-    # 1 - views/documents/_view_single_compact.html.erb
+    # 1 - views/documents/_popup.html.erb
     # 2 - views/lesson_viewer/_documents.html.erb
     download: "Scarica"
     # When there are no documents in your section
@@ -2844,6 +2846,12 @@ it:
     # When the document search produced no results
     # 1 - views/documents/_empty_word.html.erb
     empty_word: "Non sono stati trovati documenti contenenti <%{word}>"
+    # Format of the document (the variable %{type} is replaced by the format)
+    # 1 - views/documents/_popup.html.erb
+    format: "Formato: %{type}"
+    # Size of the document (the variable %{number} is replaced by the humanized size)
+    # 1 - views/documents/_popup.html.erb
+    human_size: "Dimensione: %{number}"
     # Placeholder to search a document
     # 1 - views/documents/_search.html.erb
     search: "Filtra per parola:"
@@ -3013,6 +3021,7 @@ it:
       # Maximum number of characters allowed in the description of a lesson
       # 1 - models/lesson.rb
       # 2 - views/lesson_editor/new.html.erb
+      # 3 - controllers/application_controller.rb
       length_description: 280
       # Maximum number of characters allowed in the title of a lesson
       # 1 - models/lesson.rb
@@ -3020,14 +3029,14 @@ it:
       # 3 - models/slide.rb
       # 4 - models/slide.rb
       # 5 - views/lesson_editor/new.html.erb
+      # 6 - controllers/application_controller.rb
       length_title: 35
     document:
       # Maximum number of characters allowed in the description of a document
       # 1 - models/document.rb
-      # 2 - views/documents/_view_single_compact.html.erb
-      # 3 - views/documents/_new_form_popup.html.erb
-      # 4 - views/galleries/wrappers/_document.html.erb
-      # 5 - controllers/application_controller.rb
+      # 2 - views/documents/_new_form_popup.html.erb
+      # 3 - views/galleries/wrappers/_document.html.erb
+      # 4 - controllers/application_controller.rb
       length_description: 280
       # Maximum number of characters allowed in the title of a document
       # 1 - models/document.rb

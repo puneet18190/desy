@@ -1,28 +1,12 @@
 <% if @redirect %>
-  
   window.location = '<%= dashboard_path %>'
-  
 <% else %>
-  
   <% if @errors %>
     try {
       closePopUp('dialog-confirm');
     } catch(err) {}
-    $('.form_error').removeClass('form_error');
-    $('#form_info_<%= @error_ids %>_media_element_in_editor .error_messages').html('<%= j standard_form_error_messages(@errors) %>');
-    <% @error_fields.each do |err| %>
-      <% if err.to_s == 'tags' %>
-        $('#form_info_<%= @error_ids %>_media_element_in_editor ._tags_container').addClass('form_error');
-        $('#form_info_new_media_element_in_editor ._tags_container ._placeholder').hide();
-      <% else %>
-        $('#<%= @error_ids %>_<%= err %>').addClass('form_error');
-        if($('#<%= @error_ids %>_<%= err %>_placeholder').val() == '') {
-          $('#<%= @error_ids %>_<%= err %>').val('');
-        }
-      <% end %>
-    <% end %>
+    showFormErrors($('#<%= (action_name == "save") ? "new" : "edit" %>-media-element'), <%= @errors.to_json.html_safe %>);
   <% else %>
     window.location = '<%= my_media_elements_path %>';
   <% end %>
-  
 <% end %>

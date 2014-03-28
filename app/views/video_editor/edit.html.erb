@@ -4,7 +4,7 @@
   
   <%= render :partial => 'video_editor/preview_container', :locals => {:parameters => @parameters} %>
   
-  <div class="info">
+  <div class="global-data hideMe">
     
     <% if @parameters[:components].any? %>
       <div id="video_editor_global_preview" class="bottoniVerdi _enabled" data-current-component="0" data-current-time="0" data-in-use="false" data-arrows="true">
@@ -29,12 +29,12 @@
     </p>
   </div>
   
-  <%= form_tag video_editor_save_cache_path, :id => 'video_editor_form', :remote => true do %>
-    <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => MediaElement::VIDEO_TYPE, :edited => @edited_video} %>
+  <%= form_tag video_editor_save_cache_path, :id => 'video_editor_form', :remote => true, :autocomplete => 'off' do %>
+    <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:type => MediaElement::VIDEO_TYPE.downcase, :edited => @edited_video} %>
     <% if @parameters[:initial_video] %>
       <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @parameters[:initial_video]} %>
     <% end %>
-    <div class="mediaEditorListaElementi">
+    <div class="mediaEditorListaElementi hideMe">
       <% if @parameters[:initial_video] %>
         <%= hidden_field_tag 'initial_video_id', @parameters[:initial_video].id, :id => 'initial_video_in_video_editor_input' %>
       <% end %>
@@ -46,7 +46,7 @@
         <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
         <div class="fltrt">
           <div class="fltrt">
-            <a id="commit_video_editor" class="nextButton <%= @parameters[:initial_video].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.video_editor.commit') %>" style="visibility:<%= @parameters[:components].any? ? 'visible'.html_safe : 'hidden'.html_safe %>">
+            <a class="_commit_media_element_editor nextButton <%= @parameters[:initial_video].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.video_editor.commit') %>" style="visibility:<%= @parameters[:components].any? ? 'visible'.html_safe : 'hidden'.html_safe %>" data-type="video">
             </a>
             <a id="exit_video_editor_preview" class="closeButton" style="display:none" title="<%= t('titles.video_editor.close_preview') %>"></a>
           </div>

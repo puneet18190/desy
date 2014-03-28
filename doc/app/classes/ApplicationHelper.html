@@ -162,17 +162,7 @@
             
               
               <li>
-                <a href="#method-i-seconds_to_time">seconds_to_time</a>,
-              </li>
-            
-              
-              <li>
-                <a href="#method-i-select_your_subjects">select_your_subjects</a>,
-              </li>
-            
-              
-              <li>
-                <a href="#method-i-standard_form_error_messages">standard_form_error_messages</a>
+                <a href="#method-i-seconds_to_time">seconds_to_time</a>
               </li>
             
           </ul>
@@ -256,7 +246,7 @@
                 
               </p>
               <div id="method-i-action_html_class_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 36</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">action_html_class</span>
   <span class="ruby-node">&quot;#{h action_name}-action&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -326,7 +316,7 @@
                 
               </p>
               <div id="method-i-controller_html_class_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 31</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">controller_html_class</span>
   <span class="ruby-node">&quot;#{h controller_path}-controller&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -396,7 +386,7 @@
                 
               </p>
               <div id="method-i-ie_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 80</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ie</span>(<span class="ruby-identifier">x</span>)
   <span class="ruby-identifier">strip_tags</span>(<span class="ruby-identifier">x</span>).<span class="ruby-identifier">html_safe</span>
 <span class="ruby-keyword">end</span></pre>
@@ -431,7 +421,7 @@
                 
               </p>
               <div id="method-i-jsd_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 66</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">jsd</span>(<span class="ruby-identifier">object</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -465,7 +455,7 @@
                 
               </p>
               <div id="method-i-manipulate_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 41</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">manipulate_url</span>(<span class="ruby-identifier">options</span> = {})
   <span class="ruby-identifier">params_to_remove</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:remove_query_param</span>]
   <span class="ruby-identifier">page</span>             = <span class="ruby-identifier">options</span>[<span class="ruby-value">:page</span>]
@@ -519,84 +509,9 @@
                 
               </p>
               <div id="method-i-seconds_to_time_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 26</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">seconds_to_time</span>(<span class="ruby-identifier">seconds</span>)
   <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">seconds</span>).<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-identifier">seconds</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-number">3600</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;%T&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;%M:%S&#39;</span>)
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-select_your_subjects">
-            
-              <b>select_your_subjects</b>(subjects)
-            
-            <a href="../classes/ApplicationHelper.html#method-i-select_your_subjects" name="method-i-select_your_subjects" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Select for a list of subjects.</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-select_your_subjects_source')" id="l_method-i-select_your_subjects_source">show</a>
-                
-              </p>
-              <div id="method-i-select_your_subjects_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 14</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">select_your_subjects</span>(<span class="ruby-identifier">subjects</span>)
-  <span class="ruby-node">&quot;&lt;option value=\&quot;\&quot;&gt;#{t(&#39;forms.placeholders.subject_id&#39;)}&lt;/option&gt;#{options_from_collection_for_select(subjects, &#39;id&#39;, &#39;description&#39;)}&quot;</span>.<span class="ruby-identifier">html_safe</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-standard_form_error_messages">
-            
-              <b>standard_form_error_messages</b>(errors, color = &#x27;white&#x27;)
-            
-            <a href="../classes/ApplicationHelper.html#method-i-standard_form_error_messages" name="method-i-standard_form_error_messages" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Standard form error message, it attaches the image to the message and
-includes it in an error frame. Used after <a
-href="ApplicationController.html#method-i-convert_item_error_messages">ApplicationController#convert_item_error_messages</a>
-and similar methods.</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-standard_form_error_messages_source')" id="l_method-i-standard_form_error_messages_source">show</a>
-                
-              </p>
-              <div id="method-i-standard_form_error_messages_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">standard_form_error_messages</span>(<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">color</span> = <span class="ruby-string">&#39;white&#39;</span>)
-  <span class="ruby-identifier">msg</span> = <span class="ruby-node">&quot;&lt;img src=&#39;/assets/puntoesclamativo.png&#39; style=&#39;margin: 0 5px -3px 0&#39; /&gt;&lt;span class=\&quot;lower\&quot; style=\&quot;color:#{h color}\&quot;&gt;&quot;</span>
-  <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span> <span class="ruby-identifier">e</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;; &#39;</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;#{msg}&lt;/span&gt;&quot;</span>.<span class="ruby-identifier">html_safe</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -629,7 +544,7 @@ and similar methods.</p>
                 
               </p>
               <div id="method-i-two_digits_number_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 75</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">two_digits_number</span>(<span class="ruby-identifier">x</span>)
   <span class="ruby-identifier">x</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">10</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;0#{x}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -666,7 +581,7 @@ and similar methods.</p>
                 
               </p>
               <div id="method-i-full_url_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 136</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">full_url</span>(<span class="ruby-identifier">path</span>)
   <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">path</span>
   <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">port</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">host</span>, (<span class="ruby-identifier">request</span>.<span class="ruby-identifier">port</span> <span class="ruby-operator">==</span> <span class="ruby-number">80</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">port</span>)
@@ -705,7 +620,7 @@ that takes into consideration nested url parameters.</p>
                 
               </p>
               <div id="method-i-get_recursive_array_from_params_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 87</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_recursive_array_from_params</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">params</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Hash</span>)
   <span class="ruby-identifier">resp</span> = []
@@ -757,7 +672,7 @@ that takes into consideration nested url parameters.</p>
                 
               </p>
               <div id="method-i-title_tag_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 109</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">title_tag</span>(<span class="ruby-identifier">slides</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">controller</span>, <span class="ruby-identifier">desy</span> = <span class="ruby-identifier">controller_path</span>, <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;application_name&#39;</span>]
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;captions.titles.admin&#39;</span>, <span class="ruby-value">:desy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">desy</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">start_with?</span> <span class="ruby-string">&#39;admin/&#39;</span>
@@ -814,7 +729,7 @@ that takes into consideration nested url parameters.</p>
                 
               </p>
               <div id="method-i-url_by_url_type_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 143</span>
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 131</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">url_by_url_type</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">url_type</span>)
   <span class="ruby-constant">UrlTypes</span>.<span class="ruby-identifier">url_by_url_type</span> <span class="ruby-identifier">url</span> ,<span class="ruby-identifier">url_type</span>
 <span class="ruby-keyword">end</span></pre>

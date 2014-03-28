@@ -2,7 +2,7 @@
 
 <div id="image_editor" class="mediaEditorElementContainer image_editor_only">
   
-  <div class="menuLeftEditorElement">
+  <div class="menuLeftEditorElement hideMe">
     <h2><%= t('image_editor.left_column.title') %></h2><p><%= t('image_editor.left_column.description') %></p>
     <div class="menuModifyImages">
       <ul>
@@ -14,21 +14,22 @@
   
   <div id="image_editor_container" class="imagesContainer">
     <div id="image_wrapper">
-      <%= image_tag @image.url, :id => "cropped_image", "data-width" => @image.width, "data-height"=>@image.height %>
-      <form id="image_editor_form" data-param="<%= @image.id %>" action="" method="post" data-remote="true">
+      <%= image_tag @image.url, :id => 'cropped_image', :class => 'hideMe', :data => {:width => @image.width, :height => @image.height} %>
+      <%= form_tag '/images/commit/new', :id => 'image_editor_form', :remote => true, :autocomplete => 'off' do %>
+        <input type="hidden" name="image_id" value="<%= @image.id %>"/>
         <input type="hidden" name="x1" value="" class="_coord"/>
         <input type="hidden" name="y1" value="" class="_coord"/>
         <input type="hidden" name="x2" value="" class="_coord"/>
         <input type="hidden" name="y2" value="" class="_coord"/>
-        <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => @image.sti_type, :edited => @image} %>
+        <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:type => @image.sti_type.downcase, :edited => @image} %>
         <% if !@is_public %>
           <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @image} %>
         <% end %>
-      </form>
+      <% end %>
     </div>
   </div>
   
-  <div class="menuBottomEditorElement">
+  <div class="menuBottomEditorElement hideMe">
     
     <div id="image_editor_empty_buttons" class="menuTextImages upper">
       <div class="bottoniVerdi fltrt">
@@ -54,11 +55,11 @@
     
   </div>
   
-  <div class="menuFooterEditorElement _image_editor_bottom_bar">
+  <div class="menuFooterEditorElement hideMe _image_editor_bottom_bar">
     <p id="image_editor_real_dimensions"><%= t('image_editor.original_size') %>: <%= @image.width %>x<%= @image.height %>px</p>
     <div class="fltrt">
       <div class="fltrt">
-        <a id="commit_image_editor" class="nextButton <%= @is_public ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.image_editor.commit') %>"></a>
+        <a class="_commit_media_element_editor nextButton <%= @is_public ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.image_editor.commit') %>" data-type="image"></a>
       </div>
     </div>
     <br class="clearfloat"/>

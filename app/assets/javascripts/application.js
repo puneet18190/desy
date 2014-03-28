@@ -34,7 +34,6 @@
 //= require buttons
 //= require dashboard
 //= require dialogs
-//= require documents
 //= require galleries
 //= require general
 //= require image_editor
@@ -56,49 +55,55 @@ $(document).ready(function() {
   browsersDocumentReady();
   globalDocumentReady();
   if($('#audio_editor').length > 0) { // (1) in audio editor
+    initTagsAutocomplete($('#new-media-element .part2 ._tags_container .tags'), 'media_element');
+    initTagsAutocomplete($('#edit-media-element .part2 ._tags_container .tags'), 'media_element');
     audioEditorDocumentReady();
     galleriesDocumentReady();
     mediaElementEditorDocumentReady();
     playersDocumentReadyAudioEditor();
     playersDocumentReadyGeneral();
-    tagsDocumentReadyOvervriteMediaElement();
-    tagsDocumentReadyNewMediaElement();
+    tagsDocumentReady();
   }
   if($('#dashboard_container').length > 0) { // (2) in dashboard
     commonLessonsDocumentReady();
     commonMediaElementsDocumentReady();
     dashboardDocumentReady();
-    documentsDocumentReadyUploader();
+    initTagsAutocomplete($('#load-media-element .part2 ._tags_container .tags'), 'media_element');
     lessonButtonsDocumentReady();
     mediaElementButtonsDocumentReady();
-    mediaElementLoaderDocumentReady();
     notificationsDocumentReady();
     playersDocumentReadyGeneral();
     reportsDocumentReady();
     searchDocumentReadyPlaceholders();
     sectionNotificationsDocumentReady();
-    tagsDocumentReadyMediaElementLoader();
+    tagsDocumentReady();
+    uploaderDocumentReady();
   }
   if($('#my_documents').length > 0) { // (3) in section documents
-    documentsDocumentReady();
-    documentsDocumentReadyUploader();
+    sectionDocumentsDocumentReady();
     notificationsDocumentReady();
     sectionNotificationsDocumentReady();
+    uploaderDocumentReady();
   }
   if($('#image_editor').length > 0 || $('#image_gallery_for_image_editor').length > 0) { // (4) in image editor
+    initTagsAutocomplete($('#new-media-element .part2 ._tags_container .tags'), 'media_element');
+    initTagsAutocomplete($('#edit-media-element .part2 ._tags_container .tags'), 'media_element');
     galleriesDocumentReady();
     imageEditorDocumentReady();
     mediaElementEditorDocumentReady();
-    tagsDocumentReadyOvervriteMediaElement();
-    tagsDocumentReadyNewMediaElement();
+    tagsDocumentReady();
   }
   if($('.lesson-editor-container').length > 0) { // (5) in lesson editor
+    if($('#new-lesson').length > 0) {
+      initTagsAutocomplete($('#new-lesson .part2 ._tags_container .tags'), 'lesson');
+    }
+    if($('#edit-lesson').length > 0) {
+      initTagsAutocomplete($('#edit-lesson .part2 ._tags_container .tags'), 'lesson');
+    }
     galleriesDocumentReady();
     lessonEditorDocumentReady();
     playersDocumentReadyGeneral();
-    tagsDocumentReadyMediaElementGalleryLoader();
-    tagsDocumentReadyNewLesson();
-    tagsDocumentReadyUpdateLesson();
+    tagsDocumentReady();
   }
   if($('#my_lessons').length > 0) { // (6) in section lessons
     commonLessonsDocumentReady();
@@ -121,16 +126,16 @@ $(document).ready(function() {
   }
   if($('#my_media_elements').length > 0) { // (8) in section elements
     commonMediaElementsDocumentReady();
+    initTagsAutocomplete($('#load-media-element .part2 ._tags_container .tags'), 'media_element');
     mediaElementButtonsDocumentReady();
-    mediaElementLoaderDocumentReady();
     notificationsDocumentReady();
     playersDocumentReadyGeneral();
     reportsDocumentReady();
     searchDocumentReadyPlaceholders();
     sectionMediaElementsDocumentReady();
     sectionNotificationsDocumentReady();
-    tagsDocumentReadyChangeMediaElementInfo();
-    tagsDocumentReadyMediaElementLoader();
+    tagsDocumentReady();
+    uploaderDocumentReady();
   }
   if($html.hasClass('prelogin-layout')) { // (9) in prelogin
     locationsDocumentReady();
@@ -156,15 +161,16 @@ $(document).ready(function() {
     searchDocumentReadyPlaceholders();
     sectionNotificationsDocumentReady();
     sectionSearchDocumentReady();
-    tagsDocumentReadyChangeMediaElementInfo();
+    tagsDocumentReady();
   }
   if($('#video_editor').length > 0) { // (12) in video editor
+    initTagsAutocomplete($('#new-media-element .part2 ._tags_container .tags'), 'media_element');
+    initTagsAutocomplete($('#edit-media-element .part2 ._tags_container .tags'), 'media_element');
     galleriesDocumentReady();
     mediaElementEditorDocumentReady();
     playersDocumentReadyGeneral();
     playersDocumentReadyVideoEditor();
-    tagsDocumentReadyOvervriteMediaElement();
-    tagsDocumentReadyNewMediaElement();
+    tagsDocumentReady();
     videoEditorDocumentReady();
   }
   if($('#my_virtual_classroom').length > 0) { // (13) in virtual classroom

@@ -132,6 +132,7 @@ class AudioEditorController < ApplicationController
   # * AudioEditorController#check_available_for_user
   #
   def save
+    params_with_standard_keys('new')
     parameters = Audio.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false
     if parameters.nil?
@@ -141,9 +142,9 @@ class AudioEditorController < ApplicationController
       return
     end
     record = Audio.new do |r|
-      r.title       = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
-      r.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
-      r.tags        = params[:new_tags_value]
+      r.title       = params[:title_placeholder] != '0' ? '' : params[:title]
+      r.description = params[:description_placeholder] != '0' ? '' : params[:description]
+      r.tags        = params[:tags]
       r.user_id     = current_user.id
       r.composing   = true
       r.save_tags = true
@@ -158,9 +159,7 @@ class AudioEditorController < ApplicationController
       )
       Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
     else
-      @error_ids = 'new'
-      @errors = convert_item_error_messages(record.errors)
-      @error_fields = record.errors.messages.keys
+      @errors = convert_media_element_error_messages(record.errors)
     end
     render 'media_elements/info_form_in_editor/save'
   end
@@ -178,6 +177,7 @@ class AudioEditorController < ApplicationController
   # * AudioEditorController#check_available_for_user
   #
   def overwrite
+    params_with_standard_keys('edit')
     parameters = Audio.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false
     if parameters.nil?
@@ -187,16 +187,16 @@ class AudioEditorController < ApplicationController
       return
     end
     record = Audio.find_by_id parameters[:initial_audio]
-    record.title = params[:update_title]
-    record.description = params[:update_description]
-    record.tags = params[:update_tags_value]
+    record.title = params[:title]
+    record.description = params[:description]
+    record.tags = params[:tags]
     record.save_tags = true
     if record.valid?
       parameters[:initial_audio] = {
         :id => parameters[:initial_audio],
-        :title => params[:update_title],
-        :description => params[:update_description],
-        :tags => params[:update_tags_value]
+        :title => params[:title],
+        :description => params[:description],
+        :tags => params[:tags]
       }
       record.overwrite!
       Notification.send_to(
@@ -207,14 +207,19 @@ class AudioEditorController < ApplicationController
       )
       Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
     else
-      @error_ids = 'update'
-      @errors = convert_item_error_messages(record.errors)
-      @error_fields = record.errors.messages.keys
+      @errors = convert_media_element_error_messages(record.errors)
     end
     render 'media_elements/info_form_in_editor/save'
   end
   
   private
+  
+  # Sets the variable params[] with the regular keys like :title, :description, :tags
+  def params_with_standard_keys(scope)
+    params[:title] = params[:"#{scope}_title"]
+    params[:description] = params[:"#{scope}_description"]
+    params[:tags] = params[:"#{scope}_tags"]
+  end
   
   # Checks if the audio is being used in private lessons
   def used_in_private_lessons

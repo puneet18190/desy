@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -189,15 +187,13 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
-            
-                <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
             
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
-                <li><a href="../classes/UploaderLessonEditor.html">UploaderLessonEditor</a></li>
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
+            
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -246,8 +242,6 @@
                 <li><a href="../modules/dashboard.html">dashboard</a></li>
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
-            
-                <li><a href="../modules/documents.html">documents</a></li>
             
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
@@ -936,44 +930,45 @@ function lessonEditorDocumentReadyTextFields() {
       $(this).data(&#x27;placeholder&#x27;, false);
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#slides._new #title&#x27;, function() {
-    if($(&#x27;#slides._new #title_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;focus&#x27;, &#x27;.lessonForm .part2 .title&#x27;, function() {
+    var container = $(this).parents(&#x27;.lessonForm&#x27;);
+    var placeholder = container.find(&#x27;.title_placeholder&#x27;);
+    if(placeholder.val() == &#x27;&#x27;) {
       $(this).val(&#x27;&#x27;);
-      $(&#x27;#slides._new #title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      placeholder.val(&#x27;0&#x27;);
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#slides._new #description&#x27;, function() {
-    if($(&#x27;#slides._new #description_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;focus&#x27;, &#x27;.lessonForm .part2 .description&#x27;, function() {
+    var container = $(this).parents(&#x27;.lessonForm&#x27;);
+    var placeholder = container.find(&#x27;.description_placeholder&#x27;);
+    if(placeholder.val() == &#x27;&#x27;) {
       $(this).val(&#x27;&#x27;);
-      $(&#x27;#slides._new #description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      placeholder.val(&#x27;0&#x27;);
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#slides._update #title&#x27;, function() {
-    if($(&#x27;#slides._update #title_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).val(&#x27;&#x27;);
-      $(&#x27;#slides._update #title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
-    }
-  });
-  $body.on(&#x27;focus&#x27;, &#x27;#slides._update #description&#x27;, function() {
-    if($(&#x27;#slides._update #description_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).val(&#x27;&#x27;);
-      $(&#x27;#slides._update #description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
-    }
-  });
-  $body.on(&#x27;keydown&#x27;, &#x27;form#lesson-create input#title, form#lesson-create textarea&#x27;, function() {
+  $body.on(&#x27;keydown&#x27;, &#x27;.lessonForm .part2 .title, .lessonForm .part2 .description&#x27;, function() {
     $(this).removeClass(&#x27;form_error&#x27;);
   });
-  $body.on(&#x27;keydown&#x27;, &#x27;form#lesson-create input#tags&#x27;, function() {
-    $(this).parent().removeClass(&#x27;form_error&#x27;);
+  $body.on(&#x27;keydown&#x27;, &#x27;.lessonForm .part2 ._tags_container .tags&#x27;, function() {
+    $(this).parents(&#x27;._tags_container&#x27;).removeClass(&#x27;form_error&#x27;);
   });
-  $body.on(&#x27;click&#x27;, &#x27;#lesson-create .sbHolder&#x27;, function() {
-    $(this).removeClass(&#x27;form_error&#x27;);
+  $body.on(&#x27;click&#x27;, &#x27;.lessonForm .part3 .submit&#x27;, function() {
+    var container = $(this).parents(&#x27;.lessonForm&#x27;);
+    container.find(&#x27;form&#x27;).submit();
   });
-  $body.on(&#x27;keydown&#x27;, &#x27;#slides._update #title, #slides._update #description&#x27;, function() {
-    $(this).removeClass(&#x27;form_error&#x27;);
+  $body.on(&#x27;click&#x27;, &#x27;.lessonForm .errors_layer&#x27;, function() {
+    var myself = $(this);
+    var container = myself.parents(&#x27;.lessonForm&#x27;);
+    myself.hide();
+    container.find(myself.data(&#x27;focus-selector&#x27;)).trigger(myself.data(&#x27;focus-action&#x27;));
   });
-  $body.on(&#x27;keydown&#x27;, &#x27;#slides._update input#tags&#x27;, function() {
-    $(this).parent().removeClass(&#x27;form_error&#x27;);
+  $body.on(&#x27;change&#x27;, &#x27;.lessonForm .part2 #lesson_subject&#x27;, function() {
+    var myself = $(this);
+    if(myself.val() != &#x27;&#x27;) {
+      myself.find(&#x27;.delete_me&#x27;).remove();
+      myself.selectbox(&#x27;detach&#x27;);
+      myself.selectbox();
+    }
   });
 }
 
@@ -984,15 +979,15 @@ Initializer for specific media elements or documents uploader inside the Lesson 
 **/
 function lessonEditorDocumentReadyUploaderInGallery() {
   $body.on(&#x27;change&#x27;, &#x27;.loadInGallery .part1 .attachment input.file&#x27;, function() {
-    var father = $(this).parents(&#x27;.attachment&#x27;);
+    var container = $(this).parents(&#x27;.loadInGallery&#x27;);
     var file_name = $(this).val().replace(&quot;C:\\fakepath\\&quot;, &#x27;&#x27;);
     if(file_name.replace(/^[\s\t]+/, &#x27;&#x27;) != &#x27;&#x27;) {
       if(file_name.length &gt; 20) {
         file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
       }
-      father.find(&#x27;.galleryMediaShow&#x27;).val(file_name).removeClass(&#x27;form_error&#x27;);
+      container.find(&#x27;.part1 .attachment .media&#x27;).val(file_name).removeClass(&#x27;form_error&#x27;);
     } else {
-      father.find(&#x27;.galleryMediaShow&#x27;).val(father.parents(&#x27;.loadInGallery&#x27;).data(&#x27;placeholder-media&#x27;)).removeClass(&#x27;form_error&#x27;);
+      container.find(&#x27;.part1 .attachment .media&#x27;).val(container.data(&#x27;placeholder-media&#x27;)).removeClass(&#x27;form_error&#x27;);
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;.gallery_upload_container a&#x27;, function() {
@@ -1008,7 +1003,8 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find(&#x27;.part2 .tags_loader .tags_value&#x27;).val(&#x27;&#x27;);
     popup.find(&#x27;.part2 .tags_loader ._tags_container span&#x27;).remove();
     popup.find(&#x27;.part2 .tags_loader ._tags_container ._placeholder&#x27;).show();
-    popup.find(&#x27;.part1 .attachment .galleryMediaShow&#x27;).val(popup.data(&#x27;placeholder-media&#x27;));
+    popup.find(&#x27;._tags_container .tags&#x27;).show();
+    popup.find(&#x27;.part1 .attachment .media&#x27;).val(popup.data(&#x27;placeholder-media&#x27;));
     popup.find(&#x27;.part1 .attachment label input&#x27;).val(&#x27;&#x27;);
     popup.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
     popup.find(&#x27;.errors_layer&#x27;).hide();
@@ -1023,7 +1019,7 @@ function lessonEditorDocumentReadyUploaderInGallery() {
     popup.find(&#x27;.part2 .title_and_description .description&#x27;).val(popup.data(&#x27;placeholder-description&#x27;));
     popup.find(&#x27;.part2 .title_and_description .title_placeholder&#x27;).val(&#x27;&#x27;);
     popup.find(&#x27;.part2 .title_and_description .description_placeholder&#x27;).val(&#x27;&#x27;);
-    popup.find(&#x27;.part1 .attachment .galleryMediaShow&#x27;).val(popup.data(&#x27;placeholder-media&#x27;));
+    popup.find(&#x27;.part1 .attachment .media&#x27;).val(popup.data(&#x27;placeholder-media&#x27;));
     popup.find(&#x27;.part1 .attachment label input&#x27;).val(&#x27;&#x27;);
     popup.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
     popup.find(&#x27;.errors_layer&#x27;).hide();
@@ -1048,46 +1044,38 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   $body.on(&#x27;focus&#x27;, &#x27;.loadInGallery .part2 .title_and_description .description&#x27;, function() {
     var placeholder = $(this).parent().find(&#x27;.description_placeholder&#x27;);
     if(placeholder.val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      placeholder.attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(this).val(&#x27;&#x27;);
+      placeholder.val(&#x27;0&#x27;);
     }
   });
   $body.on(&#x27;focus&#x27;, &#x27;.loadInGallery .part2 .title_and_description .title&#x27;, function() {
     var placeholder = $(this).parent().find(&#x27;.title_placeholder&#x27;);
     if(placeholder.val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      placeholder.attr(&#x27;value&#x27;, &#x27;0&#x27;);
+      $(this).val(&#x27;&#x27;);
+      placeholder.val(&#x27;0&#x27;);
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;.loadInGallery .part3 .submit&#x27;, function(e) {
     if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      $(this).addClass(&#x27;disabled&#x27;);
-      var scope_id = $(this).parents(&#x27;.loadInGallery&#x27;).attr(&#x27;id&#x27;);
-      $(&#x27;#&#x27; + scope_id + &#x27; .part3 .close&#x27;).addClass(&#x27;disabled&#x27;);
-      $(&#x27;#&#x27; + scope_id + &#x27; .part1 .attachment .file&#x27;).on(&#x27;click&#x27;, function(e) {
-        e.preventDefault();
-      });
-      $window.on(&#x27;beforeunload&#x27;, function() {
-        if(scope_id == &#x27;load-gallery-document&#x27;) {
-          return $captions.data(&#x27;dont-leave-page-upload-document&#x27;);
-        } else {
-          return $captions.data(&#x27;dont-leave-page-upload-media-element&#x27;);
-        }
-      });
-      recursionLessonEditorUploadinBar(&#x27;#&#x27; + scope_id, 0);
+      var container = $(this).parents(&#x27;.loadInGallery&#x27;);
+      if(container.attr(&#x27;id&#x27;) == &#x27;load-gallery-document&#x27;) {
+        disableUploadForm(container, $captions.data(&#x27;dont-leave-page-upload-document&#x27;));
+      } else {
+        disableUploadForm(container, $captions.data(&#x27;dont-leave-page-upload-media-element&#x27;));
+      }
+      recursionUploadingBar(container, 0);
       setTimeout(function() {
-        $(&#x27;#&#x27; + scope_id + &#x27; form&#x27;).submit();
+        container.find(&#x27;form&#x27;).submit();
       }, 1500);
     } else {
       e.preventDefault();
     }
   });
   $body.on(&#x27;submit&#x27;, &#x27;.loadInGallery form&#x27;, function() {
-    var my_id = $(this).attr(&#x27;id&#x27;);
-    var parent_id = $(this).parents(&#x27;.loadInGallery&#x27;).attr(&#x27;id&#x27;);
-    document.getElementById(my_id).target = &#x27;upload_target&#x27;;
+    var container = $(this).parents(&#x27;.loadInGallery&#x27;);
+    document.getElementById($(this).attr(&#x27;id&#x27;)).target = &#x27;upload_target&#x27;;
     document.getElementById(&#x27;upload_target&#x27;).onload = function() {
-      uploadFileTooLargeLessonEditor(&#x27;#&#x27; + parent_id);
+      uploadFileTooLarge(container);
     }
   });
   $body.on(&#x27;keydown&#x27;, &#x27;.loadInGallery .part2 .title, .loadInGallery .part2 .description&#x27;, function() {
@@ -1098,9 +1086,10 @@ function lessonEditorDocumentReadyUploaderInGallery() {
   });
   $body.on(&#x27;click&#x27;, &#x27;.loadInGallery .errors_layer&#x27;, function() {
     var myself = $(this);
+    var container = myself.parents(&#x27;.loadInGallery&#x27;);
     if(!myself.hasClass(&#x27;media&#x27;)) {
       myself.hide();
-      $(&#x27;.loadInGallery &#x27; + myself.data(&#x27;selector&#x27;)).focus();
+      container.find(myself.data(&#x27;focus-selector&#x27;)).trigger(myself.data(&#x27;focus-action&#x27;));
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;.loadInGallery .part1 .attachment label&#x27;, function() {
@@ -1215,6 +1204,72 @@ function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
   loadDocumentGalleryContent(slide_id);
   updateEffectsInsideDocumentGallery();
   $(&#x27;#lesson_editor_document_gallery_container&#x27;).data(&#x27;slide-id&#x27;, slide_id);
+}
+
+/**
+Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).
+@method reloadGalleryInLessonEditor
+@for LessonEditorGalleries
+@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
+@param type {String} &#x27;image&#x27;, &#x27;audio&#x27;, &#x27;video&#x27;, or &#x27;document&#x27;
+@param gallery {String} the HTML content to be replaced into the gallery, if the uploading was successful
+@param pages {Number} number of pages of the newly loaded gallery
+@param count {Number} number of elements inside the gallery
+@param item_id {Number} id of the newly loaded item (used only for documents)
+**/
+function reloadGalleryInLessonEditor(selector, type, gallery, pages, count, item_id) {
+  var container = $(selector);
+  if(type != &#x27;audio&#x27; &amp;&amp; type != &#x27;document&#x27;) {
+    var dialogs_selector = (type == &#x27;image&#x27;) ? &#x27;.imageInGalleryPopUp&#x27; : &#x27;.videoInGalleryPopUp&#x27;
+    $(dialogs_selector).each(function() {
+      if($(this).hasClass(&#x27;ui-dialog-content&#x27;)) {
+        $(this).dialog(&#x27;destroy&#x27;);
+      }
+    });
+  }
+  var gallery_scrollable = (type == &#x27;document&#x27;) ? $(&#x27;.for-scroll-pain&#x27;) : $(&#x27;#&#x27; + type + &#x27;_gallery_content &gt; div&#x27;);
+  if(gallery_scrollable.data(&#x27;jsp&#x27;) != undefined) {
+    gallery_scrollable.data(&#x27;jsp&#x27;).destroy();
+  }
+  var container = $(&#x27;#lesson_editor_&#x27; + type + &#x27;_gallery_container&#x27;);
+  container.data(&#x27;page&#x27;, 1);
+  container.data(&#x27;tot-pages&#x27;, pages);
+  if(type == &#x27;document&#x27;) {
+    container.find(&#x27;#document_gallery .documentsExternal&#x27;).replaceWith(gallery);
+    $(&#x27;#document_gallery_filter&#x27;).val(&#x27;&#x27;);
+    if(count &gt; 6) {
+      initializeDocumentGalleryInLessonEditor();
+    }
+    container.find(&#x27;#document_gallery&#x27;).data(&#x27;empty&#x27;, false)
+    $(&#x27;#gallery_document_&#x27; + item_id + &#x27; .add_remove&#x27;).click();
+  } else {
+    container.find(&#x27;#&#x27; + type + &#x27;_gallery&#x27;).replaceWith(gallery);
+    $(&#x27;._close_&#x27; + type + &#x27;_gallery&#x27;).addClass(&#x27;_close_&#x27; + type + &#x27;_gallery_in_lesson_editor&#x27;);
+    $(&#x27;._select_&#x27; + type + &#x27;_from_gallery&#x27;).addClass(&#x27;_add_&#x27; + type + &#x27;_to_slide&#x27;);
+    if(type == &#x27;audio&#x27;) {
+      if(count &gt; 6) {
+        initializeAudioGalleryInLessonEditor();
+      } else {
+        $(&#x27;.audio_gallery .scroll-pane&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
+      }
+    }
+    if(type == &#x27;image&#x27;) {
+      if(count &gt; 21) {
+        initializeImageGalleryInLessonEditor();
+      } else {
+        $(&#x27;.image_gallery .scroll-pane&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
+      }
+    }
+    if(type == &#x27;video&#x27;) {
+      if(count &gt; 6) {
+        initializeVideoGalleryInLessonEditor();
+      } else {
+        $(&#x27;.video_gallery .scroll-pane&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
+      }
+    }
+  }
+  container.find(&#x27;.part3 .close&#x27;).click();
+  container.find(&#x27;.loading-square&#x27;).hide();
 }
 
 /**

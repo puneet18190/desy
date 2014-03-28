@@ -1,4 +1,4 @@
-<div id="video_editor_preview_container" class="contentVideo">
+<div id="video_editor_preview_container" class="contentVideo hideMe">
   <% cont = 1 %>
   <% parameters[:components].each do |c| %>
     <%= render :partial => "video_editor/previews/#{c[:type]}", :locals => {:component => c, :identifier => cont, :empty => false, :mute => !parameters[:audio_track].nil?} %>

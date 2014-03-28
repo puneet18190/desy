@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -189,15 +187,13 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
-            
-                <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
             
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
-                <li><a href="../classes/UploaderLessonEditor.html">UploaderLessonEditor</a></li>
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
+            
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -246,8 +242,6 @@
                 <li><a href="../modules/dashboard.html">dashboard</a></li>
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
-            
-                <li><a href="../modules/documents.html">documents</a></li>
             
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
@@ -323,7 +317,7 @@
 /**
 Javascript functions used in the media element and document loader.
 &lt;br/&gt;&lt;br/&gt;
-The class {{#crossLink &quot;UploaderDashboard&quot;}}{{/crossLink}} contains functions that handle uploading processes in regular sections, such as dashboard, my elements, my documents, whereas the class {{#crossLink &quot;UploaderLessonEditor&quot;}}{{/crossLink}} contains functions to upload files in the {{#crossLinkModule &quot;lesson-editor&quot;}}{{/crossLinkModule}}.
+The class {{#crossLink &quot;UploaderGlobal&quot;}}{{/crossLink}} contains functions that handle uploading processes in regular sections, such as dashboard, my elements, my documents, and also Lesson Editor ({{#crossLinkModule &quot;lesson-editor&quot;}}{{/crossLinkModule}}, see the initializer {{#crossLink &quot;LessonEditorDocumentReady/lessonEditorDocumentReadyUploaderInGallery:method&quot;}}{{/crossLink}}).
 @module uploader
 **/
 
@@ -332,103 +326,170 @@ The class {{#crossLink &quot;UploaderDashboard&quot;}}{{/crossLink}} contains fu
 
 
 /**
-Recursive animation of the loading bar, according to the function h * x / (x + 1). Time is divided by 400 to slow down the animation.
-@method uploadAnimationRecursion
-@for UploaderDashboard
-@param item {Object} the selected loading bar
-@param time {Number} the current time
-@param increment {Number} the increment of time
-@param max_width {Number} the total width in pixels of loading bar
+Initializer for the loading form.
+@method uploaderDocumentReady
+@for UploaderDocumentReady
 **/
-function uploadAnimationRecursion(item, time, increment, max_width) {
-  if(item.data(&#x27;can-move&#x27;)) {
-    var reduced_time = time / 400;
-    var current_width = max_width * reduced_time / (reduced_time + 1);
-    item.css(&#x27;width&#x27;, (current_width + &#x27;px&#x27;));
-    setTimeout(function() {
-      uploadAnimationRecursion(item, (time + increment), increment, max_width);
-    }, increment);
-  } else {
-    item.data(&#x27;can-move&#x27;, true);
-  }
+function uploaderDocumentReady() {
+  $body.on(&#x27;click&#x27;, &#x27;.openLoader&#x27;, function() {
+    showLoadPopUp($(this).data(&#x27;type&#x27;));
+  });
+  $body.on(&#x27;change&#x27;, &#x27;.globalLoader .part1 .attachment .file&#x27;, function() {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
+    var file_name = $(this).val().replace(&quot;C:\\fakepath\\&quot;, &#x27;&#x27;);
+    if(file_name.replace(/^[\s\t]+/, &#x27;&#x27;) != &#x27;&#x27;) {
+      if(file_name.length &gt; 20) {
+        file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
+      }
+      container.find(&#x27;.part1 .attachment .media&#x27;).val(file_name).removeClass(&#x27;form_error&#x27;);
+    } else {
+      container.find(&#x27;.part1 .attachment .media&#x27;).val(container.data(&#x27;placeholder-media&#x27;)).removeClass(&#x27;form_error&#x27;);
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.globalLoader .part3 .close&#x27;, function() {
+    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
+      var container = $(this).parents(&#x27;.globalLoader&#x27;);
+      closePopUp(container.attr(&#x27;id&#x27;));
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.globalLoader .part3 .submit&#x27;, function(e) {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
+    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
+      disableUploadForm(container, $captions.data(&#x27;dont-leave-page-up&#x27; + container.attr(&#x27;id&#x27;)));
+      recursionUploadingBar(container, 0);
+      setTimeout(function() {
+        container.find(&#x27;form&#x27;).submit();
+      }, 1500);
+    } else {
+      e.preventDefault();
+    }
+  });
+  $body.on(&#x27;focus&#x27;, &#x27;.globalLoader .part2 .title&#x27;, function() {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
+    if(container.find(&#x27;.part2 .title_placeholder&#x27;).val() == &#x27;&#x27;) {
+      $(this).val(&#x27;&#x27;);
+      container.find(&#x27;.part2 .title_placeholder&#x27;).val(&#x27;0&#x27;);
+    }
+  });
+  $body.on(&#x27;focus&#x27;, &#x27;.globalLoader .part2 .description&#x27;, function() {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
+    if(container.find(&#x27;.part2 .description_placeholder&#x27;).val() == &#x27;&#x27;) {
+      $(this).val(&#x27;&#x27;);
+      container.find(&#x27;.part2 .description_placeholder&#x27;).val(&#x27;0&#x27;);
+    }
+  });
+  $body.on(&#x27;submit&#x27;, &#x27;.globalLoader form&#x27;, function() {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
+    document.getElementById($(this).attr(&#x27;id&#x27;)).target = &#x27;upload_target&#x27;;
+    document.getElementById(&#x27;upload_target&#x27;).onload = function() {
+      uploadFileTooLarge(container);
+    }
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;.globalLoader .part2 .title, .globalLoader .part2 .description&#x27;, function() {
+    $(this).removeClass(&#x27;form_error&#x27;);
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;.globalLoader .part2 ._tags_container .tags&#x27;, function() {
+    $(this).parent().removeClass(&#x27;form_error&#x27;);
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.globalLoader .errors_layer&#x27;, function() {
+    var myself = $(this);
+    var container = myself.parents(&#x27;.globalLoader&#x27;);
+    if(!myself.hasClass(&#x27;media&#x27;)) {
+      myself.hide();
+      container.find(myself.data(&#x27;focus-selector&#x27;)).trigger(myself.data(&#x27;focus-action&#x27;));
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.globalLoader .attachment label&#x27;, function() {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
+    container.find(&#x27;.errors_layer.media&#x27;).hide();
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.globalLoader .full_folder .back_to_gallery&#x27;, function() {
+    var container = $(this).parents(&#x27;.globalLoader&#x27;);
+    container.find(&#x27;.part1 .attachment .media&#x27;).val(container.data(&#x27;placeholder-media&#x27;));
+    container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+    container.find(&#x27;.errors_layer&#x27;).hide();
+    container.find(&#x27;.part1 .attachment .file&#x27;).val(&#x27;&#x27;);
+    container.find(&#x27;form&#x27;).show();
+    container.find(&#x27;.full_folder&#x27;).hide();
+  });
+}
+
+
+
+
+
+/**
+Disables the loading form while uploading is working.
+@method disableUploadForm
+@for UploaderGlobal
+@param container {Object} JQuery object representing the container
+@param window_caption {String} message that is shown to the user if he tries to reload the window while the uploader is working
+**/
+function disableUploadForm(container, window_caption) {
+  container.find(&#x27;.part3 .submit&#x27;).addClass(&#x27;disabled&#x27;);
+  container.find(&#x27;.part3 .close&#x27;).addClass(&#x27;disabled&#x27;);
+  container.find(&#x27;.part1 .attachment .file&#x27;).on(&#x27;click&#x27;, function(e) {
+    e.preventDefault();
+  });
+  $window.on(&#x27;beforeunload&#x27;, function() {
+    return window_caption;
+  });
+}
+
+/**
+Enables the loading form when uploading ended.
+@method enableUploadForm
+@for UploaderGlobal
+@param container {Object} JQuery object representing the container
+**/
+function enableUploadForm(container) {
+  $window.unbind(&#x27;beforeunload&#x27;);
+  container.find(&#x27;.part3 .close&#x27;).removeClass(&#x27;disabled&#x27;);
+  container.find(&#x27;.part3 .submit&#x27;).removeClass(&#x27;disabled&#x27;);
+  container.find(&#x27;.part1 .attachment .file&#x27;).unbind(&#x27;click&#x27;);
 }
 
 /**
 Handles correct uploading process (correct in the sense that the file is not too large and could correctly be received by the web server).
 @method uploadDone
-@for UploaderDashboard
-@param selector {String} either &#x27;document&#x27; or &#x27;media-element&#x27;
+@for UploaderGlobal
+@param selector {String} HTML selector representing the container
 @param errors {Array} an array of strings to be shown on the bottom of the loading popup
-@param fields {Array} an array of fields that must be bordered with red because they correspond to an error
+@param callback {Function} success callback
 **/
-function uploadDone(selector, errors, fields) {
-  $window.unbind(&#x27;beforeunload&#x27;);
+function uploadDone(selector, errors, callback) {
+  var container = $(selector);
+  enableUploadForm(container);
   if(errors != undefined) {
-    top.uploaderErrors(selector, errors, fields);
+    showFormErrors(container, errors);
   } else {
-    $(&#x27;#load-&#x27; + selector + &#x27; .barraLoading .loading-internal&#x27;).data(&#x27;can-move&#x27;, false).css(&#x27;width&#x27;, &#x27;760px&#x27;);
+    $(selector).data(&#x27;loader-can-move&#x27;, false);
     setTimeout(function() {
-      window.location = &#x27;/&#x27; + selector.replace(&#x27;-&#x27;, &#x27;_&#x27;) + &#x27;s&#x27;;
-    }, 500);
-  }
-}
-
-/**
-Handles the errors of loading popup.
-@method uploaderErrors
-@for UploaderDashboard
-@param selector {String} either &#x27;document&#x27; or &#x27;media-element&#x27;
-@param errors {Array} an array of strings to be shown on the bottom of the loading popup
-@param fields {Array} an array of fields that must be bordered with red because they correspond to an error
-**/
-function uploaderErrors(selector, errors, fields) {
-  var obj_name = selector.replace(&#x27;-&#x27;, &#x27;_&#x27;);
-  var item = $(&#x27;#load-&#x27; + selector);
-  var input_selector = &#x27;.&#x27; + selector.substr(0, 3) + &#x27;load_&#x27;;
-  var loading_errors = item.find(&#x27;.barraLoading .loading-errors&#x27;);
-  item.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
-  item.find(&#x27;.barraLoading .loading-internal&#x27;).data(&#x27;can-move&#x27;, false).css(&#x27;width&#x27;, &#x27;0px&#x27;).hide();
-  loading_errors.show();
-  item.find(&#x27;#new_&#x27; + obj_name + &#x27;_submit&#x27;).removeClass(&#x27;disabled&#x27;);
-  item.find(&#x27;#new_&#x27; + obj_name + &#x27;_input&#x27;).unbind(&#x27;click&#x27;);
-  item.find(&#x27;._close&#x27;).removeClass(&#x27;disabled&#x27;);
-  errors_appended = &#x27;&#x27;;
-  for(var i = 0; i &lt; errors.length; i++) {
-    if(i == errors.length - 1) {
-      errors_appended += (errors[i] + &#x27;&#x27;);
-    } else {
-      errors_appended += (errors[i] + &#x27;; &#x27;);
-    }
-  }
-  loading_errors.html(&#x27;&lt;span class=&quot;lower&quot;&gt;&#x27; + errors_appended + &#x27;&lt;/span&gt;&#x27;);
-  for(var i = 0; i &lt; fields.length; i++) {
-    if(fields[i] == &#x27;media&#x27;) {
-      item.find(&#x27;#media_element_media_show&#x27;).addClass(&#x27;form_error&#x27;);
-    } else if(fields[i] == &#x27;tags&#x27;) {
-      item.find(&#x27;._tags_container&#x27;).addClass(&#x27;form_error&#x27;);
-    } else if(fields[i] == &#x27;attachment&#x27;) {
-      item.find(&#x27;#document_attachment_show&#x27;).addClass(&#x27;form_error&#x27;);
-    } else {
-      item.find(input_selector + fields[i]).addClass(&#x27;form_error&#x27;);
-    }
+      var position_now = container.data(&#x27;loader-position-stop&#x27;);
+      var coefficient = (100 - position_now) / 500;
+      linearRecursionUploadingBar(container, 0, coefficient, position_now, function() {
+        container.data(&#x27;loader-position-stop&#x27;, 0);
+        callback();
+      });
+    }, 100);
   }
 }
 
 /**
 Handles 413 status error, file too large.
 @method uploadFileTooLarge
-@for UploaderDashboard
-@param selector {String} either &#x27;document&#x27; or &#x27;media-element&#x27;
+@for UploaderGlobal
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
 **/
-function uploadFileTooLarge(selector) {
+function uploadFileTooLarge(container) {
   var ret = document.getElementById(&#x27;upload_target&#x27;).contentWindow.document.title;
   if(ret &amp;&amp; ret.match(/413/g)) {
     $window.unbind(&#x27;beforeunload&#x27;);
     unbindLoader();
     $.ajax({
       type: &#x27;get&#x27;,
-      url: &#x27;/&#x27; + selector + &#x27;s/create/fake&#x27;,
-      data: $(&#x27;#new_&#x27; + selector).serialize()
+      url: container.data(&#x27;fake-url&#x27;),
+      data: container.find(&#x27;form&#x27;).serialize()
     }).always(bindLoader);
   }
 }
@@ -438,224 +499,20 @@ function uploadFileTooLarge(selector) {
 
 
 /**
-Initializer for the loading form.
-@method mediaElementLoaderDocumentReady
-@for UploaderDocumentReady
-**/
-function mediaElementLoaderDocumentReady() {
-  $body.on(&#x27;click&#x27;, &#x27;._load_media_element&#x27;, function(e) {
-    e.preventDefault();
-    showLoadMediaElementPopUp();
-  });
-  $body.on(&#x27;change&#x27;, &#x27;input#new_media_element_input&#x27;, function() {
-    var file_name = $(this).val().replace(&quot;C:\\fakepath\\&quot;, &#x27;&#x27;);
-    if(file_name.replace(/^[\s\t]+/, &#x27;&#x27;) != &#x27;&#x27;) {
-      if(file_name.length &gt; 20) {
-        file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
-      }
-      $(&#x27;#media_element_media_show&#x27;).text(file_name).removeClass(&#x27;form_error&#x27;);
-    } else {
-      $(&#x27;#media_element_media_show&#x27;).text($(&#x27;#load-media-element&#x27;).data(&#x27;placeholder-media&#x27;)).removeClass(&#x27;form_error&#x27;);
-    }
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#load-media-element ._close&#x27;, function() {
-    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      closePopUp(&#x27;load-media-element&#x27;);
-    }
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#new_media_element_submit&#x27;, function(e) {
-    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      $(this).addClass(&#x27;disabled&#x27;);
-      $(&#x27;#load-media-element #new_media_element_input&#x27;).on(&#x27;click&#x27;, function(e) {
-        e.preventDefault();
-      });
-      $(&#x27;#load-media-element ._close&#x27;).addClass(&#x27;disabled&#x27;);
-      $(&#x27;#load-media-element .barraLoading .loading-errors&#x27;).html(&#x27;&#x27;).hide();
-      $(&#x27;#load-media-element .barraLoading .loading-internal&#x27;).show();
-      $window.on(&#x27;beforeunload&#x27;, function() {
-        return $captions.data(&#x27;dont-leave-page-upload-media-element&#x27;);
-      });
-      uploadAnimationRecursion($(&#x27;#load-media-element .barraLoading .loading-internal&#x27;), 0, 5, 760);
-      $(this).closest(&#x27;#new_media_element&#x27;).submit();
-    } else {
-      e.preventDefault();
-    }
-  });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element .medload_title&#x27;, function() {
-    if($(&#x27;#load-media-element .medload_title_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-media-element .medload_title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
-    }
-  });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-media-element .medload_description&#x27;, function() {
-    if($(&#x27;#load-media-element .medload_description_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-media-element .medload_description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
-    }
-  });
-  $body.on(&#x27;submit&#x27;, &#x27;#new_media_element&#x27;, function() {
-    document.getElementById(&#x27;new_media_element&#x27;).target = &#x27;upload_target&#x27;;
-    document.getElementById(&#x27;upload_target&#x27;).onload = function() {
-      uploadFileTooLarge(&#x27;media_element&#x27;);
-    }
-  });
-  $body.on(&#x27;keydown&#x27;, &#x27;.medload_title, .medload_description&#x27;, function() {
-    $(this).removeClass(&#x27;form_error&#x27;);
-  });
-  $body.on(&#x27;keydown&#x27;, &#x27;.medload_tags&#x27;, function() {
-    $(this).parent().removeClass(&#x27;form_error&#x27;);
-  });
-}
-
-/**
-Initializer for the loading form.
-@method documentsDocumentReadyUploader
-@for UploaderDocumentReady
-**/
-function documentsDocumentReadyUploader() {
-  $body.on(&#x27;click&#x27;, &#x27;._load_document&#x27;, function() {
-    showLoadDocumentPopUp();
-  });
-  $body.on(&#x27;change&#x27;, &#x27;input#new_document_input&#x27;, function() {
-    var file_name = $(this).val().replace(&quot;C:\\fakepath\\&quot;, &#x27;&#x27;);
-    if(file_name.replace(/^[\s\t]+/, &#x27;&#x27;) != &#x27;&#x27;) {
-      if(file_name.length &gt; 20) {
-        file_name = file_name.substring(0, 20) + &#x27;...&#x27;;
-      }
-      $(&#x27;#document_attachment_show&#x27;).text(file_name).removeClass(&#x27;form_error&#x27;);
-    } else {
-      $(&#x27;#document_attachment_show&#x27;).text($(&#x27;#load-document&#x27;).data(&#x27;placeholder-attachment&#x27;)).removeClass(&#x27;form_error&#x27;);
-    }
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#load-document ._close&#x27;, function() {
-    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      closePopUp(&#x27;load-document&#x27;);
-    }
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#new_document_submit&#x27;, function(e) {
-    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      $(this).addClass(&#x27;disabled&#x27;);
-      $(&#x27;#load-document #new_document_input&#x27;).on(&#x27;click&#x27;, function(e) {
-        e.preventDefault();
-      });
-      $(&#x27;#load-document ._close&#x27;).addClass(&#x27;disabled&#x27;);
-      $(&#x27;#load-document .barraLoading .loading-errors&#x27;).html(&#x27;&#x27;).hide();
-      $(&#x27;#load-document .barraLoading .loading-internal&#x27;).show();
-      $window.on(&#x27;beforeunload&#x27;, function() {
-        return $captions.data(&#x27;dont-leave-page-upload-document&#x27;);
-      });
-      uploadAnimationRecursion($(&#x27;#load-document .barraLoading .loading-internal&#x27;), 0, 5, 760);
-      $(this).closest(&#x27;#new_document&#x27;).submit();
-    } else {
-      e.preventDefault();
-    }
-  });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-document .docload_title&#x27;, function() {
-    if($(&#x27;#load-document .docload_title_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-document .docload_title_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
-    }
-  });
-  $body.on(&#x27;focus&#x27;, &#x27;#load-document .docload_description&#x27;, function() {
-    if($(&#x27;#load-document .docload_description_placeholder&#x27;).val() == &#x27;&#x27;) {
-      $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
-      $(&#x27;#load-document .docload_description_placeholder&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
-    }
-  });
-  $body.on(&#x27;submit&#x27;, &#x27;#new_document&#x27;, function() {
-    document.getElementById(&#x27;new_document&#x27;).target = &#x27;upload_target&#x27;;
-    document.getElementById(&#x27;upload_target&#x27;).onload = function() {
-      uploadFileTooLarge(&#x27;document&#x27;);
-    }
-  });
-  $body.on(&#x27;keydown&#x27;, &#x27;.docload_title, .docload_description&#x27;, function() {
-    $(this).removeClass(&#x27;form_error&#x27;);
-  });
-}
-
-
-
-
-
-/**
-This function replaces {{#crossLink &quot;TagsAccessories/disableTagsInputTooHigh:method&quot;}}{{/crossLink}} in case the tags are used into the lesson editor uploader.
-@method disableTagsInputTooHighForLessonEditorLoader
-@for UploaderLessonEditor
-@param scope_id {String} HTML id for the specific kind of element
-**/
-function disableTagsInputTooHighForLessonEditorLoader(scope_id) {
-  var container = $(&#x27;#&#x27; + scope_id + &#x27; .part2 ._tags_container&#x27;);
-  var line = 1;
-  var curr_width = 12;
-  container.find(&#x27;span&#x27;).each(function() {
-    curr_width += $(this).outerWidth(true);
-    if(curr_width &gt; 377.5) {
-      curr_width = $(this).outerWidth(true) + 12;
-      line += 1;
-    }
-  });
-  if(line &gt; 5) {
-    container.find(&#x27;.tags&#x27;).hide();
-  }
-}
-
-/**
-Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink &quot;MediaElementEditorConversion/mediaElementLoaderConversionOverview:method&quot;}}{{/crossLink}}.
-@method lessonEditorConversionOverview
-@for UploaderLessonEditor
-@param list {Array} list of media elements that are being checked
-@param time {Number} time to iterate the loop
-**/
-function lessonEditorConversionOverview(list, time) {
-  $(&#x27;#lesson-title&#x27;).show();
-  $(&#x27;#error-footer-disclaimer&#x27;).hide();
-  $(&#x27;._audio_gallery_thumb._disabled, ._video_gallery_thumb._disabled&#x27;).each(function() {
-    var my_id = $(this).hasClass(&#x27;_video_gallery_thumb&#x27;) ? $(this).data(&#x27;video-id&#x27;) : $(this).data(&#x27;audio-id&#x27;);
-    if(list.indexOf(my_id) == -1) {
-      list.push(my_id);
-    }
-  });
-  var black_list = $(&#x27;#info_container&#x27;).data(&#x27;media-elements-not-anymore-in-conversion&#x27;);
-  for(var i = 0; i &lt; black_list.length; i ++) {
-    var j = list.indexOf(black_list[i]);
-    if(j != -1) {
-      list.splice(j, 1);
-    }
-  }
-  if(list.length &gt; 0) {
-    var ajax_url = &#x27;/lesson_editor/check_conversion?&#x27;;
-    for(var i = 0; i &lt; list.length; i ++) {
-      ajax_url += (&#x27;me&#x27; + list[i] + &#x27;=true&#x27;);
-      if(i != list.length - 1) {
-        ajax_url += &#x27;&amp;&#x27;;
-      }
-    }
-    unbindLoader();
-    $.ajax({
-      url: ajax_url,
-      type: &#x27;get&#x27;
-    }).always(bindLoader);
-  }
-  setTimeout(function() {
-    lessonEditorConversionOverview(list, time);
-  }, time);
-}
-
-/**
-Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink &quot;UploaderLessonEditor/recursionLessonEditorUploadinBar:method&quot;}}{{/crossLink}}.
-@method linearRecursionLessonEditorUploadinBar
-@for UploaderLessonEditor
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
+Handles the recursion of uploading animation, in a linear way, until a fixed time which is defined as 500 seconds. It is called by {{#crossLink &quot;UploaderLoadingBar/recursionUploadingBar:method&quot;}}{{/crossLink}}.
+@method linearRecursionUploadingBar
+@for UploaderLoadingBar
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
 @param time {Number} current time in the recursion
 @param k {Number} linear coefficient of recursion
 @param start {Number} starting point of recursion
 @param callback {Function} function to be fired after the animation is over
 **/
-function linearRecursionLessonEditorUploadinBar(selector, time, k, start, callback) {
+function linearRecursionUploadingBar(container, time, k, start, callback) {
   if(time &lt;= 500) {
-    showPercentLessonEditorUploadinBar(selector, (k * time + start));
+    showPercentUploadingBar(container, (k * time + start));
     setTimeout(function() {
-      linearRecursionLessonEditorUploadinBar(selector, time + 5, k, start, callback)
+      linearRecursionUploadingBar(container, time + 5, k, start, callback);
     }, 5);
   } else {
     setTimeout(callback, 500);
@@ -664,21 +521,20 @@ function linearRecursionLessonEditorUploadinBar(selector, time, k, start, callba
 
 /**
 Handles the recursion of uploading animation.
-@method recursionLessonEditorUploadinBar
-@for UploaderLessonEditor
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
+@method recursionUploadingBar
+@for UploaderLoadingBar
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
 @param time {Number} current time in the recursion
 **/
-function recursionLessonEditorUploadinBar(selector, time) {
-  var container = $(selector);
+function recursionUploadingBar(container, time) {
   if(container.data(&#x27;loader-can-move&#x27;)) {
     if(time &lt; 1500) {
-      showPercentLessonEditorUploadinBar(selector, 5 / 150 * time);
+      showPercentUploadingBar(container, 5 / 150 * time);
     } else {
-      showPercentLessonEditorUploadinBar(selector, ((100 * time + 1500) / (time + 1530)));
+      showPercentUploadingBar(container, ((100 * time + 1500) / (time + 1530)));
     }
     setTimeout(function() {
-      recursionLessonEditorUploadinBar(selector, time + 5);
+      recursionUploadingBar(container, time + 5);
     }, 5);
   } else {
     container.data(&#x27;loader-can-move&#x27;, true);
@@ -686,203 +542,48 @@ function recursionLessonEditorUploadinBar(selector, time) {
       container.data(&#x27;loader-position-stop&#x27;, (100 * time + 1500) / (time + 1530));
     } else {
       container.data(&#x27;loader-with-errors&#x27;, false);
-      showPercentLessonEditorUploadinBar(selector, 0);
+      showPercentUploadingBar(container, 0);
     }
   }
 }
 
 /**
 Shows a percentage of the circular loading bar.
-@method showPercentLessonEditorUploadinBar
-@for UploaderLessonEditor
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
+@method showPercentUploadingBar
+@for UploaderLoadingBar
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
 @param percent {Float} percentage of loading shown
 **/
-function showPercentLessonEditorUploadinBar(selector, percent) {
-  $(selector + &#x27; .loading-square&#x27;).hide();
-  var pixels = percent * 2984 / 100;
-  if(pixels &gt; 450) {
-    $(selector + &#x27; .loading-square-1&#x27;).css(&#x27;width&#x27;, &#x27;450px&#x27;).css(&#x27;left&#x27;, &#x27;-50px&#x27;).show();
-    pixels -= 450;
-    if(pixels &gt; 590) {
-      $(selector + &#x27; .loading-square-2&#x27;).css(&#x27;height&#x27;, &#x27;590px&#x27;).css(&#x27;top&#x27;, &#x27;-50px&#x27;).show();
-      pixels -= 590;
-      if(pixels &gt; 900) {
-        $(selector + &#x27; .loading-square-3&#x27;).css(&#x27;width&#x27;, &#x27;900px&#x27;).show();
-        pixels -= 900;
-        if(pixels &gt; 590) {
-          $(selector + &#x27; .loading-square-4&#x27;).css(&#x27;height&#x27;, &#x27;590px&#x27;).show();
-          pixels -= 590;
-          $(selector + &#x27; .loading-square-5&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;left&#x27;, ((850 - pixels) + &#x27;px&#x27;)).show();
+function showPercentUploadingBar(container, percent) {
+  container.find(&#x27;.loading-square&#x27;).hide();
+  var width = container.data(&#x27;bar-width&#x27;);
+  var height = container.data(&#x27;bar-height&#x27;);
+  var padding = container.data(&#x27;bar-padding&#x27;);
+  var pixels = percent * (width * 2 + height * 2 + 4) / 100;
+  if(pixels &gt; (width / 2)) {
+    container.find(&#x27;.loading-square-1&#x27;).css(&#x27;width&#x27;, ((width / 2) + &#x27;px&#x27;)).css(&#x27;left&#x27;, (&#x27;-&#x27; + padding + &#x27;px&#x27;)).show();
+    pixels -= (width / 2);
+    if(pixels &gt; height) {
+      container.find(&#x27;.loading-square-2&#x27;).css(&#x27;height&#x27;, (height + &#x27;px&#x27;)).css(&#x27;top&#x27;, (&#x27;-&#x27; + padding + &#x27;px&#x27;)).show();
+      pixels -= height;
+      if(pixels &gt; width) {
+        container.find(&#x27;.loading-square-3&#x27;).css(&#x27;width&#x27;, (width + &#x27;px&#x27;)).show();
+        pixels -= width;
+        if(pixels &gt; height) {
+          container.find(&#x27;.loading-square-4&#x27;).css(&#x27;height&#x27;, (height + &#x27;px&#x27;)).show();
+          pixels -= height;
+          container.find(&#x27;.loading-square-5&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;left&#x27;, ((width - padding - pixels) + &#x27;px&#x27;)).show();
         } else {
-          $(selector + &#x27; .loading-square-4&#x27;).css(&#x27;height&#x27;, (pixels + &#x27;px&#x27;)).show();
+          container.find(&#x27;.loading-square-4&#x27;).css(&#x27;height&#x27;, (pixels + &#x27;px&#x27;)).show();
         }
       } else {
-        $(selector + &#x27; .loading-square-3&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).show();
+        container.find(&#x27;.loading-square-3&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).show();
       }
     } else {
-      $(selector + &#x27; .loading-square-2&#x27;).css(&#x27;height&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;top&#x27;, ((540 - pixels) + &#x27;px&#x27;)).show();
+      container.find(&#x27;.loading-square-2&#x27;).css(&#x27;height&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;top&#x27;, ((height - padding - pixels) + &#x27;px&#x27;)).show();
     }
   } else {
-    $(selector + &#x27; .loading-square-1&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;left&#x27;, ((400 - pixels) + &#x27;px&#x27;)).show();
-  }
-}
-
-/**
-Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).
-@method uploadDoneLessonEditor
-@for UploaderLessonEditor
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
-@param errors {Hash} a hash of the kind &#x27;field&#x27;: &#x27;error&#x27;
-@param gallery {String} the HTML content to be replaced into the gallery, if the uploading was successful
-@param pages {Number} number of pages of the newly loaded gallery
-@param count {Number} number of elements inside the gallery
-@param item_id {Number} id of the newly loaded item (used only for documents)
-**/
-function uploadDoneLessonEditor(selector, errors, gallery, pages, count, item_id) {
-  var type = selector.split(&#x27;-&#x27;);
-  type = type[type.length - 1];
-  $window.unbind(&#x27;beforeunload&#x27;);
-  if(errors != undefined) {
-    top.uploaderErrorsLessonEditor(selector, errors);
-  } else {
-    $(selector).data(&#x27;loader-can-move&#x27;, false);
-    setTimeout(function() {
-      var position_now = $(selector).data(&#x27;loader-position-stop&#x27;);
-      var coefficient = (100 - position_now) / 500;
-      linearRecursionLessonEditorUploadinBar(selector, 0, coefficient, position_now, function() {
-        $(selector).data(&#x27;loader-position-stop&#x27;, 0);
-        if(type != &#x27;audio&#x27; &amp;&amp; type != &#x27;document&#x27;) {
-          var dialogs_selector = (type == &#x27;image&#x27;) ? &#x27;.imageInGalleryPopUp&#x27; : &#x27;.videoInGalleryPopUp&#x27;
-          $(dialogs_selector).each(function() {
-            if($(this).hasClass(&#x27;ui-dialog-content&#x27;)) {
-              $(this).dialog(&#x27;destroy&#x27;);
-            }
-          });
-        }
-        $(selector + &#x27; .part3 .close&#x27;).removeClass(&#x27;disabled&#x27;);
-        $(selector + &#x27; .part3 .submit&#x27;).removeClass(&#x27;disabled&#x27;);
-        $(selector + &#x27; .part1 .attachment .file&#x27;).unbind(&#x27;click&#x27;);
-        var gallery_scrollable = (type == &#x27;document&#x27;) ? $(&#x27;.for-scroll-pain&#x27;) : $(&#x27;#&#x27; + type + &#x27;_gallery_content &gt; div&#x27;);
-        if(gallery_scrollable.data(&#x27;jsp&#x27;) != undefined) {
-          gallery_scrollable.data(&#x27;jsp&#x27;).destroy();
-        }
-        var container = $(&#x27;#lesson_editor_&#x27; + type + &#x27;_gallery_container&#x27;);
-        container.data(&#x27;page&#x27;, 1);
-        container.data(&#x27;tot-pages&#x27;, pages);
-        if(type == &#x27;document&#x27;) {
-          container.find(&#x27;#document_gallery .documentsExternal&#x27;).replaceWith(gallery);
-          $(&#x27;#document_gallery_filter&#x27;).val(&#x27;&#x27;);
-          if(count &gt; 6) {
-            initializeDocumentGalleryInLessonEditor();
-          }
-          container.find(&#x27;#document_gallery&#x27;).data(&#x27;empty&#x27;, false)
-          $(&#x27;#gallery_document_&#x27; + item_id + &#x27; .add_remove&#x27;).click();
-        } else {
-          container.find(&#x27;#&#x27; + type + &#x27;_gallery&#x27;).replaceWith(gallery);
-          $(&#x27;._close_&#x27; + type + &#x27;_gallery&#x27;).addClass(&#x27;_close_&#x27; + type + &#x27;_gallery_in_lesson_editor&#x27;);
-          $(&#x27;._select_&#x27; + type + &#x27;_from_gallery&#x27;).addClass(&#x27;_add_&#x27; + type + &#x27;_to_slide&#x27;);
-          if(type == &#x27;audio&#x27;) {
-            if(count &gt; 6) {
-              initializeAudioGalleryInLessonEditor();
-            } else {
-              $(&#x27;.audio_gallery .scroll-pane&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
-            }
-          }
-          if(type == &#x27;image&#x27;) {
-            if(count &gt; 21) {
-              initializeImageGalleryInLessonEditor();
-            } else {
-              $(&#x27;.image_gallery .scroll-pane&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
-            }
-          }
-          if(type == &#x27;video&#x27;) {
-            if(count &gt; 6) {
-              initializeVideoGalleryInLessonEditor();
-            } else {
-              $(&#x27;.video_gallery .scroll-pane&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
-            }
-          }
-        }
-        $(selector + &#x27; .part3 .close&#x27;).click();
-        $(selector + &#x27; .loading-square&#x27;).hide();
-      });
-    }, 100);
-  }
-}
-
-/**
-Handles the errors of loading in Lesson Editor.
-@method uploaderErrorsLessonEditor
-@for UploaderLessonEditor
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
-@param errors {Hash} a hash of the kind &#x27;field&#x27;: &#x27;error&#x27;. It can&#x27;t be undefined!
-**/
-function uploaderErrorsLessonEditor(selector, errors) {
-  $(selector + &#x27; .form_error&#x27;).removeClass(&#x27;form_error&#x27;);
-  $(selector + &#x27; .errors_layer&#x27;).hide();
-  $.each(errors, function(key, value) {
-    if(key == &#x27;full&#x27;) {
-      $(selector + &#x27; form&#x27;).hide();
-      $(selector + &#x27; .full_folder .msge&#x27;).text(value);
-      $(selector + &#x27; .full_folder&#x27;).show();
-    } else {
-      $(selector + &#x27; .errors_layer.&#x27; + key).text(value).show();
-      if(key == &#x27;media&#x27;) {
-        $(selector + &#x27; .part1 .galleryMediaShow&#x27;).addClass(&#x27;form_error&#x27;);
-      } else if(key == &#x27;tags&#x27;) {
-        $(selector + &#x27; .part2 ._tags_container&#x27;).addClass(&#x27;form_error&#x27;);
-      } else {
-        $(selector + &#x27; .part2 .&#x27; + key).addClass(&#x27;form_error&#x27;);
-      }
-    }
-  });
-  $(selector).data(&#x27;loader-can-move&#x27;, false).data(&#x27;loader-with-errors&#x27;, true);
-  $(selector + &#x27; .part3 .close&#x27;).removeClass(&#x27;disabled&#x27;);
-  $(selector + &#x27; .part3 .submit&#x27;).removeClass(&#x27;disabled&#x27;);
-  $(selector + &#x27; .part1 .attachment .file&#x27;).unbind(&#x27;click&#x27;);
-}
-
-/**
-Shows the message after the conversion ended inside Lesson Editor.
-@method uploaderConversionChecker
-@for UploaderLessonEditor
-@param selector {String} selector for the correct translation to be shown
-@param title {String} the title of the item
-**/
-function uploaderConversionChecker(selector, title) {
-  var message = $captions.data(&#x27;lesson-editor-conversion-&#x27; + selector);
-  if(title != undefined) {
-    message = message.replace(&#x27;%{item}&#x27;, title);
-  }
-  var delayed = function() {
-    $(&#x27;#lesson-title&#x27;).hide();
-    $(&#x27;#error-footer-disclaimer&#x27;).text(message).removeClass(&#x27;true false&#x27;).addClass(selector.split(&#x27;-&#x27;)[1]).show();
-  }
-  if($(&#x27;#error-footer-disclaimer&#x27;).is(&#x27;:visible&#x27;)) {
-    setTimeout(delayed, 5000);
-  } else {
-    delayed();
-  }
-}
-
-/**
-Handles 413 status error, file too large, inside Lesson Editor.
-@method uploadFileTooLargeLessonEditor
-@for UploaderLessonEditor
-@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
-**/
-function uploadFileTooLargeLessonEditor(selector) {
-  var ret = document.getElementById(&#x27;upload_target&#x27;).contentWindow.document.title;
-  if(ret &amp;&amp; ret.match(/413/g)) {
-    $window.unbind(&#x27;beforeunload&#x27;);
-    unbindLoader();
-    var fake_url = (selector == &#x27;document&#x27;) ? &#x27;/lessons/galleries/documents/create/fake&#x27; : &#x27;/lessons/galleries/media_elements/create/fake&#x27;
-    $.ajax({
-      type: &#x27;get&#x27;,
-      url: fake_url,
-      data: $(selector + &#x27; form&#x27;).serialize()
-    }).always(bindLoader);
+    container.find(&#x27;.loading-square-1&#x27;).css(&#x27;width&#x27;, (pixels + &#x27;px&#x27;)).css(&#x27;left&#x27;, (((width / 2) - padding - pixels) + &#x27;px&#x27;)).show();
   }
 }
 

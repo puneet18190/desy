@@ -125,6 +125,10 @@ html.virtual_classroom-controller {
     
     a.buttonForm {
       
+      @include nunito(18px);
+      padding: 5px 30px;
+      color: #000;
+      background-color: white;
       margin-right: 5px;
       background-color: #42B9E9;
       color: #fff;

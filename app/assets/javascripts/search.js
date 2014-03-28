@@ -101,9 +101,9 @@ function searchDocumentReadyPlaceholders() {
     }
   });
   $body.on('focus', '#general_tag_reader_for_search', function() {
-    $(this).attr('value', '');
+    $(this).val('');
     $(this).css('color', '#939393');
-    $('#general_tag_kind_for_search').attr('value', '0');
+    $('#general_tag_kind_for_search').val('0');
     $('#search_general_submit').removeClass('current');
   });
   $body.on('click', '#search_general_submit', function() {

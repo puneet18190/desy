@@ -366,12 +366,13 @@ function showLessonNotificationPopUp(lesson_id) {
 }
 
 /**
-Dialog containing the form to upload a new document. This function interacts with the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}.
-@method showLoadDocumentPopUp
+Dialog containing the form to upload a new document or media element. This function interacts with the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}.
+@method showLoadPopUp
+@param type {String} either 'document' or 'media-element'
 @for DialogsWithForm
 **/
-function showLoadDocumentPopUp() {
-  var obj = $('#load-document');
+function showLoadPopUp(type) {
+  var obj = $('#load-' + type);
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
@@ -381,19 +382,24 @@ function showLoadDocumentPopUp() {
       resizable: false,
       draggable: false,
       width: 760,
+      height: 440,
       show: 'fade',
       hide: {effect: 'fade'},
       open: function(event, ui) {
         setTimeout(function() {
           obj.find('input').blur();
-          obj.find('.docload_title').val(obj.data('placeholder-title'));
-          obj.find('.docload_description').val(obj.data('placeholder-description'));
-          obj.find('.docload_title_placeholder').val('');
-          obj.find('.docload_description_placeholder').val('');
-          $('#document_attachment_show').text(obj.data('placeholder-attachment'));
+          obj.find('.title').val(obj.data('placeholder-title'));
+          obj.find('.description').val(obj.data('placeholder-description'));
+          obj.find('.title_placeholder').val('');
+          obj.find('.description_placeholder').val('');
+          obj.find('.tags_value').val('');
+          obj.find('._tags_container span').remove();
+          obj.find('._tags_container ._placeholder').show();
+          obj.find('._tags_container .tags').val('').show();
+          obj.find('.part1 .attachment .media').val(obj.data('placeholder-media'));
           obj.find('.form_error').removeClass('form_error');
-          $('#new_document_input').val('');
-          obj.find('.barraLoading .loading-errors').html('');
+          obj.find('.errors_layer').hide();
+          obj.find('.part1 .attachment .file').val('');
         }, 100);
       }
     });
@@ -401,12 +407,13 @@ function showLoadDocumentPopUp() {
 }
 
 /**
-Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule "uploader"}}{{/crossLinkModule}}.
-@method showLoadMediaElementPopUp
+Dialog containing the document general information. This dialog contains also the form to change title and description (see the method {{#crossLink "MediaElementEditorForms/resetDocumentChangeInfo:method"}}{{/crossLink}}).
+@method showDocumentInfoPopUp
 @for DialogsWithForm
+@param document_id {Number} id in the database of the document
 **/
-function showLoadMediaElementPopUp() {
-  var obj = $('#load-media-element');
+function showDocumentInfoPopUp(document_id) {
+  var obj = $('#dialog-document-' + document_id);
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
@@ -416,23 +423,23 @@ function showLoadMediaElementPopUp() {
       resizable: false,
       draggable: false,
       width: 760,
+      height: 440,
       show: 'fade',
       hide: {effect: 'fade'},
-      open: function(event, ui) {
-        setTimeout(function() {
-          obj.find('input').blur();
-          obj.find('.medload_title').val(obj.data('placeholder-title'));
-          obj.find('.medload_description').val(obj.data('placeholder-description'));
-          obj.find('.medload_title_placeholder').val('');
-          obj.find('.medload_description_placeholder').val('');
-          obj.find('.medload_tags_value').val('');
-          obj.find('._tags_container span').remove();
-          obj.find('._tags_container ._placeholder').show();
-          $('#media_element_media_show').text(obj.data('placeholder-media'));
-          obj.find('.form_error').removeClass('form_error');
-          $('#new_media_element_input').val('');
-          obj.find('.barraLoading .loading-errors').html('');
-        }, 100);
+      open: function() {
+        customOverlayClose();
+        var word = $('#search_documents ._word_input').val()
+        $('#dialog-document-' + document_id + ' .hidden_word').val(word);
+      },
+      beforeClose: function() {
+        removeCustomOverlayClose();
+      },
+      close: function() {
+        var container = $('#dialog-document-' + document_id);
+        resetDocumentChangeInfo(container.find('.wrapper .change-info'));
+        container.find('.preview').show();
+        container.find('.wrapper .change-info').hide();
+        container.find('.menu .change-info').removeClass('encendido');
       }
     });
   }
@@ -463,7 +470,8 @@ function showMediaElementInfoPopUp(media_element_id) {
         modal: true,
         resizable: false,
         draggable: false,
-        width: 874,
+        width: 760,
+        height: 440,
         show: 'fade',
         hide: {effect: 'fade'},
         open: function() {
@@ -473,17 +481,17 @@ function showMediaElementInfoPopUp(media_element_id) {
           removeCustomOverlayClose();
         },
         close: function() {
-          resetMediaElementChangeInfo(media_element_id);
-          $(this).find('._report_form_content').hide();
-          $(this).find('._report_media_element_click').removeClass('report_light');
-          var player_container = $('#dialog-media-element-' + media_element_id + ' ._instance_of_player');
-          if(player_container.length > 0) {
-            stopMedia('#dialog-media-element-' + media_element_id + ' ' + player_container.data('media-type'));
+          var container = $('#dialog-media-element-' + media_element_id);
+          var player = container.find('.preview .content ._instance_of_player');
+          if(player.length > 0) {
+            stopMedia('#dialog-media-element-' + media_element_id + ' ' + player.data('media-type'));
           }
-          $('#dialog-media-element-' + media_element_id + ' ._audio_preview_in_media_element_popup').show();
-          $('#dialog-media-element-' + media_element_id + ' ._change_info_container').hide();
-          var change_info_button = $('#dialog-media-element-' + media_element_id + ' ._change_info_to_pick');
-          change_info_button.addClass('change_info').removeClass('change_info_light');
+          resetMediaElementChangeInfo(container.find('.wrapper .change-info'));
+          container.find('.preview').show();
+          container.find('._report_form_content').hide();
+          container.find('.menu .report').removeClass('encendido');
+          container.find('.wrapper .change-info').hide();
+          container.find('.menu .change-info').removeClass('encendido');
         }
       });
     }

@@ -440,40 +440,6 @@
   
 }
 
-.mediaElementInfoPopUp.ui-dialog-content.ui-widget-content, .documentInfoPopUp.ui-dialog-content.ui-widget-content {
-  
-  padding: 0;
-  background-color: #373737;
-  color: #fff;
-  -webkit-box-shadow: 1px 5px 5px #999;
-  box-shadow: 1px 5px 5px #999;
-  
-  input[type="text"], textarea, .fk_carica_elemento_file {
-    
-    border: 3px solid #373737;
-    
-  }
-  
-  textarea.campoTesto {
-    
-    border: 1px solid #F0E5E5;
-    
-  }
-  
-  .form_error, textarea.form_error, input.form_error {
-    
-    border: 3px solid rgba(250, 0, 0, 0.5);
-    
-  }
-  
-}
-
-#load-media-element ._tags_container.form_error {
-  
-  border: 3px solid rgba(250, 0, 0, 0.5);
-  
-}
-
 .imageInGalleryPopUp.ui-dialog-content.ui-widget-content {
   
   background-color: #48484A;

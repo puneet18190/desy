@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -189,15 +187,13 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
-            
-                <li><a href="../classes/UploaderDashboard.html">UploaderDashboard</a></li>
             
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
             
-                <li><a href="../classes/UploaderLessonEditor.html">UploaderLessonEditor</a></li>
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
+            
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -246,8 +242,6 @@
                 <li><a href="../modules/dashboard.html">dashboard</a></li>
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
-            
-                <li><a href="../modules/documents.html">documents</a></li>
             
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
@@ -330,20 +324,14 @@ This module contains javascript functions common to all the editors ({{#crossLin
 
 
 /**
-One step of the repeated &lt;b&gt;cache&lt;/b&gt; saving (used in {{#crossLinkModule &quot;image-editor&quot;}}{{/crossLinkModule}} and {{#crossLinkModule &quot;video-editor&quot;}}{{/crossLinkModule}})
+One step of the repeated &lt;b&gt;cache&lt;/b&gt; saving (used in {{#crossLinkModule &quot;image-editor&quot;}}{{/crossLinkModule}} and {{#crossLinkModule &quot;video-editor&quot;}}{{/crossLinkModule}}).
 @method saveCacheLoop
 @for MediaElementEditorCache
 **/
 function saveCacheLoop() {
-  var cache_form = &#x27;&#x27;;
-  if( $html.hasClass(&#x27;video_editor-controller&#x27;) ) {
-    cache_form = $(&#x27;#video_editor_form&#x27;);
-  }
-  if( $html.hasClass(&#x27;audio_editor-controller&#x27;) ) {
-    cache_form = $(&#x27;#audio_editor_form&#x27;);
-  }
+  var cache_form = $(&#x27;#video_editor_form, #audio_editor_form&#x27;);
   var time = $parameters.data(&#x27;cache-time&#x27;);
-  if(cache_form != &#x27;&#x27; &amp;&amp; $(&#x27;#info_container&#x27;).data(&#x27;save-cache&#x27;)) {
+  if(cache_form.length &gt; 0 &amp;&amp; $(&#x27;#info_container&#x27;).data(&#x27;save-cache&#x27;)) {
     submitMediaElementEditorCacheForm(cache_form);
     setTimeout(function() {
       saveCacheLoop();
@@ -391,7 +379,49 @@ function submitMediaElementEditorCacheForm(form) {
 
 
 /**
-Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink &quot;UploaderLessonEditor/lessonEditorConversionOverview:method&quot;}}{{/crossLink}}.
+Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink &quot;MediaElementEditorConversion/mediaElementLoaderConversionOverview:method&quot;}}{{/crossLink}}.
+@method lessonEditorConversionOverview
+@for MediaElementEditorConversion
+@param list {Array} list of media elements that are being checked
+@param time {Number} time to iterate the loop
+**/
+function lessonEditorConversionOverview(list, time) {
+  $(&#x27;#lesson-title&#x27;).show();
+  $(&#x27;#error-footer-disclaimer&#x27;).hide();
+  $(&#x27;._audio_gallery_thumb._disabled, ._video_gallery_thumb._disabled&#x27;).each(function() {
+    var my_id = $(this).hasClass(&#x27;_video_gallery_thumb&#x27;) ? $(this).data(&#x27;video-id&#x27;) : $(this).data(&#x27;audio-id&#x27;);
+    if(list.indexOf(my_id) == -1) {
+      list.push(my_id);
+    }
+  });
+  var black_list = $(&#x27;#info_container&#x27;).data(&#x27;media-elements-not-anymore-in-conversion&#x27;);
+  for(var i = 0; i &lt; black_list.length; i ++) {
+    var j = list.indexOf(black_list[i]);
+    if(j != -1) {
+      list.splice(j, 1);
+    }
+  }
+  if(list.length &gt; 0) {
+    var ajax_url = &#x27;/lesson_editor/check_conversion?&#x27;;
+    for(var i = 0; i &lt; list.length; i ++) {
+      ajax_url += (&#x27;me&#x27; + list[i] + &#x27;=true&#x27;);
+      if(i != list.length - 1) {
+        ajax_url += &#x27;&amp;&#x27;;
+      }
+    }
+    unbindLoader();
+    $.ajax({
+      url: ajax_url,
+      type: &#x27;get&#x27;
+    }).always(bindLoader);
+  }
+  setTimeout(function() {
+    lessonEditorConversionOverview(list, time);
+  }, time);
+}
+
+/**
+Function that checks the conversion of the unconverted media elements in the page. Same structure of {{#crossLink &quot;MediaElementEditorConversion/lessonEditorConversionOverview:method&quot;}}{{/crossLink}}.
 @method mediaElementLoaderConversionOverview
 @for MediaElementEditorConversion
 @param list {Array} list of media elements that are being checked
@@ -430,6 +460,29 @@ function mediaElementLoaderConversionOverview(list, time) {
   }, time);
 }
 
+/**
+Shows the message after the conversion ended inside Lesson Editor.
+@method uploaderConversionChecker
+@for MediaElementEditorConversion
+@param selector {String} selector for the correct translation to be shown
+@param title {String} the title of the item
+**/
+function uploaderConversionChecker(selector, title) {
+  var message = $captions.data(&#x27;lesson-editor-conversion-&#x27; + selector);
+  if(title != undefined) {
+    message = message.replace(&#x27;%{item}&#x27;, title);
+  }
+  var delayed = function() {
+    $(&#x27;#lesson-title&#x27;).hide();
+    $(&#x27;#error-footer-disclaimer&#x27;).text(message).removeClass(&#x27;true false&#x27;).addClass(selector.split(&#x27;-&#x27;)[1]).show();
+  }
+  if($(&#x27;#error-footer-disclaimer&#x27;).is(&#x27;:visible&#x27;)) {
+    setTimeout(delayed, 5000);
+  } else {
+    delayed();
+  }
+}
+
 
 
 
@@ -440,50 +493,177 @@ Initializes the placeholder of the &lt;b&gt;commit forms&lt;/b&gt; used in {{#cr
 @for MediaElementEditorDocumentReady
 **/
 function mediaElementEditorDocumentReady() {
-  $body.on(&#x27;focus&#x27;, &#x27;#form_info_new_media_element_in_editor #new_title&#x27;, function() {
-    $(&#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags&#x27;).removeClass(&#x27;disabled&#x27;);
-    $(&#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
-    if($(&#x27;#form_info_new_media_element_in_editor #new_title_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;click&#x27;, &#x27;._exit_media_element_editor&#x27;, function() {
+    stopCacheLoop();
+    var type = $(this).data(&#x27;type&#x27;);
+    var captions = $captions;
+    var title = captions.data(&#x27;exit-&#x27; + type + &#x27;-editor-title&#x27;);
+    var confirm = captions.data(&#x27;exit-&#x27; + type + &#x27;-editor-confirm&#x27;);
+    var yes = captions.data(&#x27;exit-&#x27; + type + &#x27;-editor-yes&#x27;);
+    var no = captions.data(&#x27;exit-&#x27; + type + &#x27;-editor-no&#x27;);
+    showConfirmPopUp(title, confirm, yes, no, function() {
+      $(&#x27;dialog-confirm&#x27;).hide();
+      unbindLoader();
+      $.ajax({
+        type: &#x27;post&#x27;,
+        url: &#x27;/&#x27; + type + &#x27;s/cache/empty&#x27;,
+        success: function() {
+          window.location = &#x27;/media_elements&#x27;;
+        }
+      }).always(bindLoader);
+    }, function() {
+      if($(&#x27;.formMediaElement&#x27;).is(&#x27;:visible&#x27;)) {
+        startCacheLoop();
+      }
+      closePopUp(&#x27;dialog-confirm&#x27;);
+    });
+  });
+  $body.on(&#x27;click&#x27;, &#x27;._commit_media_element_editor&#x27;, function() {
+    var type = $(this).data(&#x27;type&#x27;);
+    if(type != &#x27;image&#x27;) {
+      stopCacheLoop();
+      submitMediaElementEditorCacheForm($(&#x27;#&#x27; + type + &#x27;_editor_form&#x27;));
+    }
+    if($(this).hasClass(&#x27;_with_choice&#x27;)) {
+      var captions = $captions;
+      var title = captions.data(&#x27;save-media-element-editor-title&#x27;);
+      var confirm = captions.data(&#x27;save-media-element-editor-confirm&#x27;);
+      var yes = captions.data(&#x27;save-media-element-editor-yes&#x27;);
+      var no = captions.data(&#x27;save-media-element-editor-no&#x27;);
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        closePopUp(&#x27;dialog-confirm&#x27;);
+        showCommitMediaElementEditorForm(type, &#x27;edit&#x27;)
+        disableTagsInputTooHigh($(&#x27;#edit-media-element ._tags_container&#x27;));
+      }, function() {
+        closePopUp(&#x27;dialog-confirm&#x27;);
+        $(&#x27;#&#x27; + type + &#x27;_editor_title ._titled&#x27;).hide();
+        $(&#x27;#&#x27; + type + &#x27;_editor_title ._untitled&#x27;).show();
+        showCommitMediaElementEditorForm(type, &#x27;new&#x27;)
+      });
+    } else {
+      showCommitMediaElementEditorForm(type, &#x27;new&#x27;)
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.formMediaElement .part3 .submit&#x27;, function() {
+    var container = $(this).parents(&#x27;.formMediaElement&#x27;);
+    var action = container.data(&#x27;form-action&#x27;);
+    var type = container.data(&#x27;form-type&#x27;);
+    if(action == &#x27;overwrite&#x27; &amp;&amp; $(&#x27;#info_container&#x27;).data(&#x27;used-in-private-lessons&#x27;)) {
+      var captions = $captions;
+      var title = captions.data(&#x27;overwrite-media-element-editor-title&#x27;);
+      var confirm = captions.data(&#x27;overwrite-media-element-editor-confirm&#x27;);
+      var yes = captions.data(&#x27;overwrite-media-element-editor-yes&#x27;);
+      var no = captions.data(&#x27;overwrite-media-element-editor-no&#x27;);
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        $(&#x27;dialog-confirm&#x27;).hide();
+        $(&#x27;#&#x27; + type + &#x27;_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;/&#x27; + type + &#x27;s/commit/overwrite&#x27;).submit();
+      }, function() {
+        closePopUp(&#x27;dialog-confirm&#x27;);
+      });
+    } else {
+      $(&#x27;#&#x27; + type + &#x27;_editor_form&#x27;).attr(&#x27;action&#x27;, (&#x27;/&#x27; + type + &#x27;s/commit/&#x27; + action)).submit();
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#new-media-element.formMediaElement .part3 .on-left .reuse-old-data&#x27;, function() {
+    var reuse = $(this);
+    var container = reuse.parents(&#x27;.formMediaElement&#x27;);
+    var reuse_hidden = container.find(&#x27;.part3 .on-left .hidden-data&#x27;);
+    if(!reuse.hasClass(&#x27;disabled&#x27;)) {
+      reuse.addClass(&#x27;disabled&#x27;);
+      reuse.find(&#x27;#reuse-old-data&#x27;).attr(&#x27;checked&#x27;, &#x27;checked&#x27;).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
+      container.find(&#x27;.part2 .title&#x27;).val(reuse_hidden.data(&#x27;title&#x27;));
+      container.find(&#x27;.part2 .title_placeholder&#x27;).val(&#x27;0&#x27;);
+      container.find(&#x27;.part2 .description&#x27;).val(reuse_hidden.data(&#x27;description&#x27;));
+      container.find(&#x27;.part2 .description_placeholder&#x27;).val(&#x27;0&#x27;);
+      var tags_container = container.find(&#x27;.part2 ._tags_container&#x27;);
+      container.find(&#x27;.part2 ._tags_container span&#x27;).remove();
+      container.find(&#x27;.part2 ._tags_container ._placeholder&#x27;).hide();
+      reuse_hidden.find(&#x27;span&#x27;).each(function() {
+        var copy = $(this)[0].outerHTML;
+        tags_container.prepend(copy);
+      });
+      container.find(&#x27;.part2 ._tags_container .tags_value&#x27;).val(reuse_hidden.data(&#x27;tags&#x27;));
+      container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+      container.find(&#x27;.errors_layer&#x27;).hide();
+      disableTagsInputTooHigh(tags_container);
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.formMediaElement .part3 .close&#x27;, function() {
+    var container = $(this).parents(&#x27;.formMediaElement&#x27;);
+    var type = container.data(&#x27;form-type&#x27;);
+    var action = container.data(&#x27;form-action&#x27;);
+    if(type != &#x27;image&#x27;) {
+      $(&#x27;#&#x27; + type + &#x27;_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;/&#x27; + type + &#x27;s/cache/save&#x27;);
+      startCacheLoop();
+    }
+    if(action == &#x27;new&#x27;) {
+      if($(&#x27;#&#x27; + type + &#x27;_editor_title ._titled&#x27;).length &gt; 0) {
+        $(&#x27;#&#x27; + type + &#x27;_editor_title ._titled&#x27;).show();
+        $(&#x27;#&#x27; + type + &#x27;_editor_title ._untitled&#x27;).hide();
+      }
+      hideCommitMediaElementEditorForm(type, &#x27;new&#x27;);
+      container.find(&#x27;.part3 .on-left .reuse-old-data&#x27;).removeClass(&#x27;disabled&#x27;);
+      container.find(&#x27;.part3 .on-left .reuse-old-data #reuse-old-data&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
+      container.find(&#x27;.part2 .title&#x27;).val(container.data(&#x27;placeholder-title&#x27;));
+      container.find(&#x27;.part2 .title_placeholder&#x27;).val(&#x27;&#x27;);
+      container.find(&#x27;.part2 .description&#x27;).val(container.data(&#x27;placeholder-description&#x27;));
+      container.find(&#x27;.part2 .description_placeholder&#x27;).val(&#x27;&#x27;);
+      container.find(&#x27;.part2 ._tags_container span&#x27;).remove();
+      container.find(&#x27;.part2 ._tags_container ._placeholder&#x27;).show();
+      container.find(&#x27;.part2 .tags_value&#x27;).val(&#x27;&#x27;);
+      container.find(&#x27;.part2 .tags&#x27;).val(&#x27;&#x27;);
+    } else {
+      hideCommitMediaElementEditorForm(type, &#x27;edit&#x27;);
+      container.find(&#x27;.part2 .title&#x27;).val(container.data(&#x27;title&#x27;));
+      container.find(&#x27;.part2 .title_placeholder&#x27;).val(&#x27;&#x27;);
+      container.find(&#x27;.part2 .description&#x27;).val(container.data(&#x27;description&#x27;));
+      container.find(&#x27;.part2 .description_placeholder&#x27;).val(&#x27;&#x27;);
+      container.find(&#x27;.part2 ._tags_container span&#x27;).remove();
+      container.find(&#x27;.part2 .hidden-tags span&#x27;).each(function() {
+        var copy = $(this)[0].outerHTML;
+        container.find(&#x27;.part2 ._tags_container&#x27;).prepend(copy);
+      });
+      container.find(&#x27;.part2 ._tags_container .tags_value&#x27;).val(container.data(&#x27;tags&#x27;));
+      container.find(&#x27;.part2 .tags&#x27;).val(&#x27;&#x27;).show();
+    }
+    container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+    container.find(&#x27;.errors_layer&#x27;).hide();
+  });
+  $body.on(&#x27;focus&#x27;, &#x27;#new-media-element.formMediaElement .part2 .title&#x27;, function() {
+    var container = $(this).parents(&#x27;.formMediaElement&#x27;);
+    container.find(&#x27;.part3 .on-left .reuse-old-data&#x27;).removeClass(&#x27;disabled&#x27;);
+    container.find(&#x27;.part3 .on-left .reuse-old-data #reuse-old-data&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
+    if(container.find(&#x27;.part2 .title_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).val(&#x27;&#x27;);
-      $(&#x27;#form_info_new_media_element_in_editor #new_title_placeholder&#x27;).val(&#x27;0&#x27;);
+      container.find(&#x27;.part2 .title_placeholder&#x27;).val(&#x27;0&#x27;);
     }
   });
-  $body.on(&#x27;focus&#x27;, &#x27;#form_info_new_media_element_in_editor #new_description&#x27;, function() {
-    $(&#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags&#x27;).removeClass(&#x27;disabled&#x27;);
-    $(&#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags #check_ad_hoc&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
-    if($(&#x27;#form_info_new_media_element_in_editor #new_description_placeholder&#x27;).val() == &#x27;&#x27;) {
+  $body.on(&#x27;focus&#x27;, &#x27;#new-media-element.formMediaElement .part2 .description&#x27;, function() {
+    var container = $(this).parents(&#x27;.formMediaElement&#x27;);
+    container.find(&#x27;.part3 .on-left .reuse-old-data&#x27;).removeClass(&#x27;disabled&#x27;);
+    container.find(&#x27;.part3 .on-left .reuse-old-data #reuse-old-data&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
+    if(container.find(&#x27;.part2 .description_placeholder&#x27;).val() == &#x27;&#x27;) {
       $(this).val(&#x27;&#x27;);
-      $(&#x27;#form_info_new_media_element_in_editor #new_description_placeholder&#x27;).val(&#x27;0&#x27;);
+      container.find(&#x27;.part2 .description_placeholder&#x27;).val(&#x27;0&#x27;);
     }
   });
-  $body.on(&#x27;click&#x27;, &#x27;#form_info_new_media_element_in_editor #only_to_conserve_tags&#x27;, function() {
-    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
-      var form = $(&#x27;#form_info_new_media_element_in_editor&#x27;);
-      $(this).addClass(&#x27;disabled&#x27;);
-      form.find(&#x27;#only_to_conserve_tags #check_ad_hoc&#x27;).attr(&#x27;checked&#x27;, &#x27;checked&#x27;).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
-      form.find(&#x27;#new_title&#x27;).val(form.find(&#x27;#only_to_conserve_tags .edited_container .edited_title&#x27;).val());
-      form.find(&#x27;#new_title_placeholder&#x27;).val(&#x27;0&#x27;);
-      form.find(&#x27;#new_description&#x27;).val(form.find(&#x27;#only_to_conserve_tags .edited_container .edited_description&#x27;).val());
-      form.find(&#x27;#new_description_placeholder&#x27;).val(&#x27;0&#x27;);
-      var old_tags_placeholder = form.find(&#x27;._tags_container ._placeholder&#x27;)[0].outerHTML;
-      var old_tags_value = form.find(&#x27;._tags_container #new_tags_value&#x27;)[0].outerHTML;
-      var old_tags = form.find(&#x27;#new_tags&#x27;)[0].outerHTML;
-      form.find(&#x27;._tags_container&#x27;).html(form.find(&#x27;#only_to_conserve_tags .edited_container .edited_tags_container&#x27;).html());
-      form.find(&#x27;._tags_container&#x27;).append(old_tags + old_tags_placeholder + old_tags_value);
-      form.find(&#x27;._tags_container ._placeholder&#x27;).hide();
-      form.find(&#x27;#new_tags_value&#x27;).val(form.find(&#x27;#only_to_conserve_tags .edited_container .edited_tags&#x27;).val());
-      form.find(&#x27;._tags_container, #new_title, #new_description&#x27;).removeClass(&#x27;form_error&#x27;);
-    }
+  $body.on(&#x27;focus&#x27;, &#x27;#new-media-element.formMediaElement .part2 ._tags_container .tags&#x27;, function() {
+    var container = $(this).parents(&#x27;.formMediaElement&#x27;);
+    container.find(&#x27;.part3 .on-left .reuse-old-data&#x27;).removeClass(&#x27;disabled&#x27;);
+    container.find(&#x27;.part3 .on-left .reuse-old-data #reuse-old-data&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
   });
-  $body.on(&#x27;keydown&#x27;, &#x27;#form_info_update_media_element_in_editor #update_title, #form_info_update_media_element_in_editor #update_description&#x27;, function() {
+  $body.on(&#x27;keydown&#x27;, &#x27;.formMediaElement .part2 .title, .formMediaElement .part2 .description&#x27;, function() {
     $(this).removeClass(&#x27;form_error&#x27;);
   });
-  $body.on(&#x27;keydown&#x27;, &#x27;#form_info_new_media_element_in_editor #new_title, #form_info_new_media_element_in_editor #new_description&#x27;, function() {
-    $(this).removeClass(&#x27;form_error&#x27;);
-  });
-  $body.on(&#x27;keydown&#x27;, &#x27;#form_info_update_media_element_in_editor #update_tags, #form_info_new_media_element_in_editor #new_tags&#x27;, function() {
+  $body.on(&#x27;keydown&#x27;, &#x27;.formMediaElement .part2 ._tags_container .tags&#x27;, function() {
     $(this).parent().removeClass(&#x27;form_error&#x27;);
   });
+  $body.on(&#x27;click&#x27;, &#x27;.formMediaElement .errors_layer&#x27;, function() {
+    var myself = $(this);
+    var container = myself.parents(&#x27;.formMediaElement&#x27;);
+    myself.hide();
+    container.find(myself.data(&#x27;focus-selector&#x27;)).trigger(myself.data(&#x27;focus-action&#x27;));
+  });
 }
 
 
@@ -491,59 +671,67 @@ function mediaElementEditorDocumentReady() {
 
 
 /**
-Resets the media element loading form; used in {{#crossLink &quot;DialogsWithForm/showLoadMediaElementPopUp:method&quot;}}{{/crossLink}}.
+Hides the commit form for overwrite or for new element (depending on the parameter).
+@method hideCommitMediaElementEditorForm
+@for MediaElementEditorForms
+@param type {String} &#x27;audio&#x27;, &#x27;image&#x27;, or &#x27;video&#x27;
+@param scope {String} it can be either &#x27;edit&#x27; or &#x27;new&#x27;
+**/
+function hideCommitMediaElementEditorForm(type, scope) {
+  $(&#x27;#&#x27; + scope + &#x27;-media-element&#x27;).hide();
+  $(&#x27;#&#x27; + type + &#x27;_editor .hideMe&#x27;).show();
+  if(type == &#x27;audio&#x27;) {
+    setBackAllZIndexesInAudioEditor();
+  }
+}
+
+/**
+Resets the media element loading form; used in {{#crossLink &quot;DialogsWithForm/showDocumentInfoPopUp:method&quot;}}{{/crossLink}}.
+@method resetDocumentChangeInfo
+@for MediaElementEditorForms
+@param container {Object} JQuery object of the form
+**/
+function resetDocumentChangeInfo(container) {
+  container.find(&#x27;.part2 .title&#x27;).val(container.data(&#x27;title&#x27;));
+  container.find(&#x27;.part2 .description&#x27;).val(container.data(&#x27;description&#x27;));
+  container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+  container.find(&#x27;.errors_layer&#x27;).hide();
+}
+
+/**
+Resets the media element loading form; used in {{#crossLink &quot;DialogsWithForm/showMediaElementInfoPopUp:method&quot;}}{{/crossLink}}.
 @method resetMediaElementChangeInfo
 @for MediaElementEditorForms
-@param media_element_id {Number} id of the element in the database, used to extract the HTML id
+@param container {Object} JQuery object of the form
 **/
-function resetMediaElementChangeInfo(media_element_id) {
-  var container = $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._change_info_container&#x27;);
-  container.find(&#x27;#title&#x27;).val(container.data(&#x27;title&#x27;));
-  container.find(&#x27;#description&#x27;).val(container.data(&#x27;description&#x27;));
-  container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
-  container.find(&#x27;._error_messages&#x27;).html(&#x27;&#x27;);
-  container.find(&#x27;._tags_container span&#x27;).remove();
-  container.find(&#x27;._tags_placeholder span&#x27;).each(function() {
+function resetMediaElementChangeInfo(container) {
+  var tags_container = container.find(&#x27;.part2 ._tags_container&#x27;);
+  container.find(&#x27;.part2 .title&#x27;).val(container.data(&#x27;title&#x27;));
+  container.find(&#x27;.part2 .description&#x27;).val(container.data(&#x27;description&#x27;));
+  container.find(&#x27;.part2 ._tags_container span&#x27;).remove();
+  container.find(&#x27;.part2 .hidden-tags span&#x27;).each(function() {
     var copy = $(this)[0].outerHTML;
-    container.find(&#x27;._tags_container&#x27;).prepend(copy);
+    tags_container.prepend(copy);
   });
-  container.find(&#x27;#tags_value&#x27;).val(container.data(&#x27;tags&#x27;));
+  container.find(&#x27;.part2 ._tags_container .tags_value&#x27;).val(container.data(&#x27;tags&#x27;));
+  container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+  container.find(&#x27;.errors_layer&#x27;).hide();
+  container.find(&#x27;.part2 .tags&#x27;).val(&#x27;&#x27;).show();
 }
 
 /**
-Resets the &lt;b&gt;commit forms&lt;/b&gt; used in {{#crossLinkModule &quot;audio-editor&quot;}}{{/crossLinkModule}}, {{#crossLinkModule &quot;image-editor&quot;}}{{/crossLinkModule}} and {{#crossLinkModule &quot;video-editor&quot;}}{{/crossLinkModule}}. This method is associated to the button &#x27;cancel&#x27; in these forms (see {{#crossLink &quot;AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method&quot;}}{{/crossLink}}, {{#crossLink &quot;ImageEditorDocumentReady/imageEditorDocumentReadyCommit:method&quot;}}{{/crossLink}} and {{#crossLink &quot;VideoEditorDocumentReady/videoEditorDocumentReadyCommit:method&quot;}}{{/crossLink}}).
-@method resetMediaElementEditorForms
+Shows the commit form for overwrite or for new element (depending on the parameter).
+@method showCommitMediaElementEditorForm
 @for MediaElementEditorForms
+@param type {String} &#x27;audio&#x27;, &#x27;image&#x27;, or &#x27;video&#x27;
+@param scope {String} it can be either &#x27;edit&#x27; or &#x27;new&#x27;
 **/
-function resetMediaElementEditorForms() {
-  $(&#x27;#form_info_new_media_element_in_editor .error_messages, #form_info_update_media_element_in_editor .error_messages&#x27;).html(&#x27;&#x27;);
-  var new_form = $(&#x27;#form_info_new_media_element_in_editor&#x27;);
-  var update_form = $(&#x27;#form_info_update_media_element_in_editor&#x27;);
-  new_form.find(&#x27;#only_to_conserve_tags&#x27;).removeClass(&#x27;disabled&#x27;);
-  new_form.find(&#x27;#only_to_conserve_tags #check_ad_hoc&#x27;).removeAttr(&#x27;disabled&#x27;).removeAttr(&#x27;checked&#x27;);
-  new_form.find(&#x27;#new_title&#x27;).val(new_form.data(&#x27;title&#x27;));
-  new_form.find(&#x27;#new_title&#x27;).removeClass(&#x27;form_error&#x27;);
-  new_form.find(&#x27;#new_title_placeholder&#x27;).val(&#x27;&#x27;);
-  new_form.find(&#x27;#new_description&#x27;).val(new_form.data(&#x27;description&#x27;));
-  new_form.find(&#x27;#new_description&#x27;).removeClass(&#x27;form_error&#x27;);
-  new_form.find(&#x27;#new_description_placeholder&#x27;).val(&#x27;&#x27;);
-  new_form.find(&#x27;._tags_container span&#x27;).remove();
-  new_form.find(&#x27;._tags_container&#x27;).removeClass(&#x27;form_error&#x27;);
-  new_form.find(&#x27;._tags_container ._placeholder&#x27;).show();
-  new_form.find(&#x27;#new_tags_value&#x27;).val(&#x27;&#x27;);
-  update_form.find(&#x27;#update_title&#x27;).val(update_form.data(&#x27;title&#x27;));
-  update_form.find(&#x27;#update_title&#x27;).removeClass(&#x27;form_error&#x27;);
-  update_form.find(&#x27;#update_title_placeholder&#x27;).val(&#x27;&#x27;);
-  update_form.find(&#x27;#update_description&#x27;).val(update_form.data(&#x27;description&#x27;));
-  update_form.find(&#x27;#update_description&#x27;).removeClass(&#x27;form_error&#x27;);
-  update_form.find(&#x27;#update_description_placeholder&#x27;).val(&#x27;&#x27;);
-  update_form.find(&#x27;._tags_container span&#x27;).remove();
-  update_form.find(&#x27;._tags_placeholder span&#x27;).each(function() {
-    var copy = $(this)[0].outerHTML;
-    update_form.find(&#x27;._tags_container&#x27;).prepend(copy);
-  });
-  update_form.find(&#x27;#update_tags_value&#x27;).val(update_form.find(&#x27;._tags_placeholder&#x27;).data(&#x27;tags&#x27;));
-  update_form.find(&#x27;._tags_container&#x27;).removeClass(&#x27;form_error&#x27;);
+function showCommitMediaElementEditorForm(type, scope) {
+  $(&#x27;#&#x27; + scope + &#x27;-media-element&#x27;).show();
+  $(&#x27;#&#x27; + type + &#x27;_editor .hideMe&#x27;).hide();
+  if(type == &#x27;audio&#x27;) {
+    setToZeroAllZIndexesInAudioEditor();
+  }
 }
 
 

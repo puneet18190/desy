@@ -1,19 +1,9 @@
 <% if @ok %>
-  
   <% if @errors %>
-    $('.form_error').removeClass('form_error');
-    $('#dialog-document-<%= @document_id %> ._document_change_info_container ._error_messages').html('<%= j standard_form_error_messages(@errors) %>');
-    <% @error_fields.each do |err| %>
-      <% if err.to_s == 'title' %>
-        $('#dialog-document-<%= @document_id %> ._doc_title').addClass('form_error');
-      <% else %>
-        $('#dialog-document-<%= @document_id %> ._doc_description').addClass('form_error');
-      <% end %>
-    <% end %>
+    showFormErrors($('#dialog-document-<%= @document.id %>'), <%= @errors.to_json.html_safe %>);
   <% else %>
     closePopUp('dialog-document-<%= @document_id %>');
     removeCompletelyDocumentPopup(<%= @document_id %>);
     $('#document_<%= @document_id %>').replaceWith('<%= j render(:partial => "documents/view_single_compact", :locals => {:document => @document, :word => @word, :used_in_your_lessons => @document.used_in_your_lessons?}) %>');
   <% end %>
-  
 <% end %>

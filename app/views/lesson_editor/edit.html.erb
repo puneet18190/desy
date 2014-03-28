@@ -1,37 +1,57 @@
-<ul id="slides" class="new _update">
-  <li class="info slides">
-    <div class="box">
-      <span class="infoButtonWhite"></span>
-      <br />
-      <h2><%= t('forms.update_lesson.title') %></h2>
-      <h3><%= t('forms.update_lesson.description') %></h3>
-      <div class="_error_messages"><%= media_elements_error_messages(params[:errors]) if params[:errors] %></div>
-      <%= form_tag lesson_path, :remote => true, :method => :put do |f| %>
-        <%= text_field_tag 'title', @lesson.title, :class => 'pull-left basta_caos_porca_miseria' %>
-        <%= select_tag 'lesson_subject', options_from_collection_for_select(@subjects, 'id', 'description'), :include_blank => false, :class => 'pull-right basta_caos_porca_miseria' %>
-        <%= text_area_tag 'description', @lesson.description, :class => 'pull-left basta_caos_porca_miseria' %>
-        <div class="ui-widget pull-right _tags_container">
-          <% @my_tags.each do |t| %>
-            <span><%= t.tag.word.strip %><a class="remove"></a></span>
-          <% end %>
-          <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower basta_caos_porca_miseria' %>
-          <%= hidden_field_tag 'tags_value', @lesson.tags %>
-        </div>
-        <br style="clear:both"/>
-        <div class="fltrt" style="margin-top:30px">
-          <div class="fltlft"><%= link_to t('forms.update_lesson.cancel').downcase, lesson_editor_path(@lesson), :class => 'buttonForm pull-right' %></div>
-          <div class="fltrt">
-            <%= submit_tag t('forms.update_lesson.done').downcase, :class => 'lesson-create pull-right' %>
+<div style="width:100%; height: 40px;">
+</div>
+<ul id="slides">
+  <li class="slides" style="opacity:1">
+    <div id="edit-lesson" class="lessonForm">
+      <%= form_tag lesson_path, :remote => true, :class => 'form-selector-class', :method => :put, :autocomplete => 'off' do |f| %>
+        <div class="part1">
+          <div class="attachment">
+            <div class="icon"></div>
+          </div>
+          <div class="title_and_subtitle">
+            <h1>
+              <%= t('forms.update_lesson.title') %>
+            </h1>
+            <p>
+              <%= t('forms.update_lesson.description') %>
+            </p>
           </div>
         </div>
+        <div class="part2">
+          <div class="title_and_description">
+            <input class="title" type="text" value="<%= @lesson.title %>" name="title"/>
+            <textarea class="description" name="description"><%= @lesson.description %></textarea>
+          </div>
+          <div class="tags_loader">
+            <select id="lesson_subject" name="subject_id">
+              <% @subjects.each do |s| %>
+                <option value="<%= s.id %>"><%= s.description %></option>
+              <% end %>
+            </select>
+            <div class="_tags_container" data-max-width="397.5" data-lines="4">
+              <% Tagging.includes(:tag).where(:taggable_type => 'Lesson', :taggable_id => @lesson.id).order(:tag_id).each do |t| %>
+                <span><%= t.tag.word.strip %><a class="remove"></a></span>
+              <% end %>
+              <input class="tags" type="text" value="" maxlength="<%= SETTINGS['max_tag_length'] %>"/>
+              <input class="tags_value" type="hidden" value="<%= @lesson.tags %>" name="tags_value"/>
+            </div>
+          </div>
+        </div>
+        <div class="part3">
+          <a class="submit"><%= t('forms.update_lesson.done').downcase %></a>
+          <a class="close" href="/lessons/<%= @lesson.id %>/slides/edit"><%= t('forms.update_lesson.cancel').downcase %></a>
+        </div>
+        <div class="errors_layer description" data-focus-selector=".part2 .description" data-form-error-selector=".part2 .description" data-focus-action="focus"></div>
+        <div class="errors_layer tags" data-focus-selector=".part2 ._tags_container .tags" data-form-error-selector=".part2 ._tags_container" data-focus-action="focus"></div>
+        <div class="errors_layer title" data-focus-selector=".part2 .title" data-form-error-selector=".part2 .title" data-focus-action="focus"></div>
       <% end %>
-    </div>
-    <div class="info-slide-footer">
-      <div class="school-level pull-left">
-        <%= t('lessons.school_level') %>: <%= current_user.school_level.description %>
-      </div>
-      <div class="author pull-right">
-        <%= t('lessons.author') %>: <span class="name"><%= current_user.full_name %></span>
+      <div class="menu">
+        <div class="school-level">
+          <%= t('lessons.school_level') %>: <%= current_user.school_level.description %>
+        </div>
+        <div class="author">
+          <%= t('lessons.author') %>: <span class="name"><%= current_user.full_name %></span>
+        </div>
       </div>
     </div>
   </li>
@@ -44,6 +64,6 @@
         $(this).attr('selected', 'selected');
       }
     });
-    disableTagsInputTooHigh('#slides._update ._tags_container', '#slides._update #tags');
+    disableTagsInputTooHigh($('#edit-lesson .part2 ._tags_container'));
   });
 </script>

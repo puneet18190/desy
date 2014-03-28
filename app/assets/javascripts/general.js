@@ -143,32 +143,47 @@ Initializer for functionalities which are common to sections containing media el
 @for GeneralDocumentReady
 **/
 function commonMediaElementsDocumentReady() {
-  $body.on('keydown', '._change_info_container .description, ._change_info_container .title', function() {
+  $body.on('keydown', '.dialogMediaElement .wrapper .change-info .part2 .title, .dialogMediaElement .wrapper .change-info .part2 .description', function() {
     $(this).removeClass('form_error');
   });
-  $body.on('keydown', '._change_info_container ._tags_container input', function() {
-    $(this).parent().removeClass('form_error');
+  $body.on('keydown', '.dialogMediaElement .wrapper .change-info .part2 .tags_container .tags', function() {
+    $(this).parents('._tags_container').removeClass('form_error');
   });
-  $body.on('click', '._close_media_element_preview_popup', function() {
-    var param = $(this).data('param');
-    closePopUp('dialog-media-element-' + param);
+  $body.on('click', '.dialogMediaElement .menu .close', function() {
+    closePopUp($(this).parents('.dialogMediaElement').attr('id'));
   });
-  $body.on('click', '._change_info_container ._cancel, ._change_info_to_pick.change_info_light', function() {
-    $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').show();
-    $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').hide('fade', {}, 500, function() {
-      var icon = $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_to_pick');
-      icon.addClass('change_info');
-      icon.removeClass('change_info_light');
-      resetMediaElementChangeInfo($(this).data('param'));
-    });
+  $body.on('click', '.dialogMediaElement .menu .change-info', function() {
+    var container = $(this).parents('.dialogMediaElement');
+    var form = container.find('.wrapper .change-info');
+    if($(this).hasClass('encendido')) {
+      form.hide();
+      container.find('.preview').show();
+      resetMediaElementChangeInfo(form);
+      $(this).removeClass('encendido');
+    } else {
+      container.find('.preview').hide();
+      form.show();
+      $(this).addClass('encendido');
+      disableTagsInputTooHigh(form.find('.part2 ._tags_container'));
+    }
   });
-  $body.on('click', '._change_info_to_pick.change_info', function() {
-    var media_element_id = $(this).data('param');
-    $('#dialog-media-element-' + media_element_id + ' ._change_info_container').show('fade', {}, 500);
-    $(this).removeClass('change_info');
-    $(this).addClass('change_info_light');
-    $('#dialog-media-element-' + media_element_id + ' ._audio_preview_in_media_element_popup').hide();
-    disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' .my_new_tag');
+  $body.on('click', '.dialogMediaElement .wrapper .change-info .part3 .close', function() {
+    var container = $(this).parents('.dialogMediaElement');
+    var form = container.find('.wrapper .change-info');
+    form.hide();
+    container.find('.preview').show();
+    container.find('.menu .change-info').removeClass('encendido');
+    resetMediaElementChangeInfo(form);
+  });
+  $body.on('click', '.dialogMediaElement .wrapper .change-info .part3 .submit', function() {
+    var container = $(this).parents('.dialogMediaElement');
+    container.find('form').submit();
+  });
+  $body.on('click', '.dialogMediaElement .wrapper .change-info .errors_layer', function() {
+    var myself = $(this);
+    var container = myself.parents('.dialogMediaElement').find('.wrapper .change-info');
+    myself.hide();
+    container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
   });
   $body.on('mouseenter', '.boxViewCompactMediaElement', function() {
     var item = $(this);
@@ -201,7 +216,6 @@ function commonLessonsDocumentReady() {
       var my_id = $(this).parent().attr('id');
       var my_expanded = $('#' + my_id + ' ._lesson_expanded');
       if(my_expanded.is(':visible')) {
-        my_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
         my_expanded.hide('blind', {}, 500, function() {
           my_expanded.hide();
         });
@@ -217,7 +231,6 @@ function commonLessonsDocumentReady() {
       } else {
         var there_is_expanded = $('._lesson_expanded:visible');
         if(there_is_expanded.length > 0) {
-          there_is_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
           there_is_expanded.hide('blind', {}, 500, function() {
             there_is_expanded.hide();
           });
@@ -313,33 +326,33 @@ Initializes reports forms for both lessons and media elements.
 @for GeneralDocumentReady
 **/
 function reportsDocumentReady() {
-  $body.on('mouseenter', '._reportable_lesson_icon', function() {
-    $(this).find('.icon-content').removeClass('report').addClass('report_light');
+  $body.on('mouseenter', '._lesson_expanded .report', function() {
+    $(this).addClass('encendido');
   });
-  $body.on('mouseleave', '._reportable_lesson_icon', function() {
-    $(this).find('.icon-content').addClass('report').removeClass('report_light');
+  $body.on('mouseleave', '._lesson_expanded .report', function() {
+    $(this).removeClass('encendido');
   });
-  $body.on('click', '._reportable_lesson_icon', function() {
-    var obj = $(this).next();
-    if(!obj.is(':visible')) {
-      $(this).find('.icon-content').removeClass('report').addClass('report_light report_selected');
-      obj.show('fade', {}, 500);
+  $body.on('click', '._lesson_expanded .report', function() {
+    var button = $(this).find('.icon');
+    var form = $(this).next();
+    if(!button.hasClass('encendido')) {
+      button.addClass('encendido');
+      form.show();
     } else {
-      $(this).find('.icon-content').addClass('report').removeClass('report_light report_selected');
-      obj.hide();
+      button.removeClass('encendido');
+      form.hide();
     }
     return false;
   });
-  $body.on('click', '._report_media_element_click', function() {
-    var obj = $(this).next();
-    if(!obj.is(':visible')) {
-      $(this).removeClass('report');
-      $(this).addClass('report_light');
-      obj.show('fade', {}, 500);
+  $body.on('click', '.dialogMediaElement .menu .report', function() {
+    var button = $(this);
+    var form = button.next();
+    if(!button.hasClass('encendido')) {
+      button.addClass('encendido');
+      form.show();
     } else {
-      $(this).removeClass('report_light');
-      $(this).addClass('report');
-      obj.hide();
+      button.removeClass('encendido');
+      form.hide();
     }
     return false;
   });
@@ -349,6 +362,115 @@ function reportsDocumentReady() {
   });
   $body.on('click', '._report_form_content ._send', function(e) {
     $(this).closest('form').submit();
+  });
+}
+
+/**
+Functionalities necessary only for the section 'my documents'.
+@method sectionDocumentsDocumentReady
+@for GeneralDocumentReady
+**/
+function sectionDocumentsDocumentReady() {
+  $body.on('click', '#my_documents .buttons .preview', function() {
+    showDocumentInfoPopUp($(this).data('document-id'));
+  });
+  $body.on('click', '#my_documents .buttons .destroy', function() {
+    var current_url = $('#info_container').data('currenturl');
+    var document_id = $(this).data('document-id');
+    var captions = $captions;
+    var title = captions.data('destroy-document-title');
+    var confirm = captions.data('destroy-document-confirm');
+    var yes = captions.data('destroy-document-yes');
+    var no = captions.data('destroy-document-no');
+    if($(this).data('used-in-your-lessons')) {
+      confirm = captions.data('destroy-document-confirm-bis');
+    }
+    showConfirmPopUp(title, confirm, yes, no, function() {
+      $('#dialog-confirm').hide();
+      var redirect_url = addDeleteItemToCurrentUrl(current_url, 'document_' + document_id);
+      $.ajax({
+        type: 'delete',
+        dataType: 'json',
+        url: '/documents/' + document_id,
+        success: function(data) {
+          if(data.ok) {
+            $.ajax({
+              type: 'get',
+              url: redirect_url
+            });
+          } else {
+            showErrorPopUp(data.msg);
+          }
+        }
+      });
+      closePopUp('dialog-confirm');
+    }, function() {
+      closePopUp('dialog-confirm');
+    });
+  });
+  $body.on('change', '#order_documents', function() {
+    var order = $('#order_documents option:selected').val();
+    var word = $('#search_documents ._word_input').val();
+    var word_placeholder = $('#search_documents_placeholder').val();
+    $('#search_documents_hidden_order').val(order);
+    $.get('/documents?word=' + word + '&word_placeholder=' + word_placeholder + '&order=' + order);
+  });
+  $body.on('keydown', '.dialogDocument .wrapper .change-info .part2 .title, .dialogDocument .wrapper .change-info .part2 .description', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('click', '.dialogDocument .menu .close', function() {
+    closePopUp($(this).parents('.dialogDocument').attr('id'));
+  });
+  $body.on('click', '.dialogDocument .menu .change-info', function() {
+    var container = $(this).parents('.dialogDocument');
+    var form = container.find('.wrapper .change-info');
+    if($(this).hasClass('encendido')) {
+      form.hide();
+      container.find('.preview').show();
+      resetDocumentChangeInfo(form);
+      $(this).removeClass('encendido');
+    } else {
+      container.find('.preview').hide();
+      form.show();
+      $(this).addClass('encendido');
+      disableTagsInputTooHigh(form.find('.part2 ._tags_container'));
+    }
+  });
+  $body.on('click', '.dialogDocument .wrapper .change-info .part3 .close', function() {
+    var container = $(this).parents('.dialogDocument');
+    var form = container.find('.wrapper .change-info');
+    form.hide();
+    container.find('.preview').show();
+    container.find('.menu .change-info').removeClass('encendido');
+    resetDocumentChangeInfo(form);
+  });
+  $body.on('click', '.dialogDocument .wrapper .change-info .part3 .submit', function() {
+    var container = $(this).parents('.dialogDocument');
+    container.find('form').submit();
+  });
+  $body.on('click', '.dialogDocument .wrapper .change-info .errors_layer', function() {
+    var myself = $(this);
+    var container = myself.parents('.dialogDocument').find('.wrapper .change-info');
+    myself.hide();
+    container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
+  });
+  $('#order_documents option[selected]').first().attr('selected', 'selected');
+  $('#order_documents').selectbox();
+  $body.on('keydown', '#search_documents ._word_input', function(e) {
+    if(e.which == 13) {
+      e.preventDefault();
+    } else if(e.which != 39 && e.which != 37) {
+      var letters = $(this).data('letters');
+      letters += 1;
+      $(this).data('letters', letters);
+      $('#search_documents ._loader').show();
+      setTimeout(function() {
+        if($('#search_documents ._word_input').data('letters') == letters) {
+          $('#search_documents ._loader').hide();
+          $('#search_documents').submit();
+        }
+      }, 1500);
+    }
   });
 }
 
@@ -448,7 +570,7 @@ function sectionNotificationsDocumentReady() {
       }
     }
     if(my_report.length > 0 && $(e.target).parents('#' + my_report.attr('id')).length == 0) {
-      my_report.parent().find('.report_light, ._reportable_lesson_icon').click();
+      my_report.parent().find('.report').click();
     }
   });
   $('#which_item_to_search option[selected]').first().attr('selected', 'selected');
@@ -563,6 +685,30 @@ function secondsToDateString(seconds) {
     resp = resp + '0' + ss;
   }
   return resp;
+}
+
+/**
+Handles the errors inside standard forms.
+@method showFormErrors
+@for GeneralMiscellanea
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
+@param errors {Hash} a hash of the kind 'field': 'error'. It can't be undefined!
+**/
+function showFormErrors(container, errors) {
+  container.find('.form_error').removeClass('form_error');
+  container.find('.errors_layer').hide();
+  $.each(errors, function(key, value) {
+    if(key == 'full') {
+      container.find('form').hide();
+      container.find('.full_folder .msge').text(value);
+      container.find('.full_folder').show();
+    } else {
+      var layer = container.find('.errors_layer.' + key);
+      layer.text(value).show();
+      container.find(layer.data('form-error-selector')).addClass('form_error');
+    }
+  });
+  container.data('loader-can-move', false).data('loader-with-errors', true);
 }
 
 /**
