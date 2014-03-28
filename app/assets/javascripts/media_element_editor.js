@@ -251,7 +251,7 @@ function mediaElementEditorDocumentReady() {
   $body.on('click', '#new-media-element.formMediaElement .part3 .on-left .reuse-old-data', function() {
     var reuse = $(this);
     var container = reuse.parents('.formMediaElement');
-    var reuse_hidden = container.find('part3 .on-left .hidden-data');
+    var reuse_hidden = container.find('.part3 .on-left .hidden-data');
     if(!reuse.hasClass('disabled')) {
       reuse.addClass('disabled');
       reuse.find('#reuse-old-data').attr('checked', 'checked').attr('disabled', 'disabled');
@@ -261,6 +261,7 @@ function mediaElementEditorDocumentReady() {
       container.find('.part2 .description_placeholder').val('0');
       var tags_container = container.find('.part2 ._tags_container');
       container.find('.part2 ._tags_container span').remove();
+      container.find('.part2 ._tags_container ._placeholder').hide();
       reuse_hidden.find('span').each(function() {
         var copy = $(this)[0].outerHTML;
         tags_container.prepend(copy);
@@ -328,6 +329,11 @@ function mediaElementEditorDocumentReady() {
       $(this).val('');
       container.find('.part2 .description_placeholder').val('0');
     }
+  });
+  $body.on('focus', '#new-media-element.formMediaElement .part2 ._tags_container .tags', function() {
+    var container = $(this).parents('.formMediaElement');
+    container.find('.part3 .on-left .reuse-old-data').removeClass('disabled');
+    container.find('.part3 .on-left .reuse-old-data #reuse-old-data').removeAttr('disabled').removeAttr('checked');
   });
   $body.on('keydown', '.formMediaElement .part2 .title, .formMediaElement .part2 .description', function() {
     $(this).removeClass('form_error');
