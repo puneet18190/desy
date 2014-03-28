@@ -2122,25 +2122,47 @@
         
       }
       
-      .title {
+      .title_and_description {
         
-        float: left;
-        
-      }
-      
-      .description {
-        
-        float: left;
-        
-      }
-      
-      ._tags_container {
-        
-        float: right;
-        
-        ._placeholder {
+        .title {
           
-          text-align: left;
+          float: left;
+          
+        }
+        
+        .description {
+          
+          float: left;
+          
+        }
+        
+      }
+      
+      .tags_loader {
+        
+        ._tags_container {
+          
+          float: right;
+          
+          ._placeholder {
+            
+            text-align: left;
+            
+          }
+          
+          span {
+            
+            background-color: white;
+            color: #333333;
+            
+            &.new_tag {
+              
+              color: #333333;
+              background-color: #67B855;
+              
+            }
+            
+          }
           
         }
         
