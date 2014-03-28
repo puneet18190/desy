@@ -277,7 +277,7 @@ function mediaElementEditorDocumentReady() {
     var type = container.data('form-type');
     var action = container.data('form-action');
     if(type != 'image') {
-      $('#' + type + '_editor_form').attr('action', '/audios/cache/save');
+      $('#' + type + '_editor_form').attr('action', '/' + type + 's/cache/save');
       startCacheLoop();
     }
     if(action == 'new') {
