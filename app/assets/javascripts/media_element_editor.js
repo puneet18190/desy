@@ -295,6 +295,7 @@ function mediaElementEditorDocumentReady() {
       container.find('.part2 ._tags_container span').remove();
       container.find('.part2 ._tags_container ._placeholder').show();
       container.find('.part2 .tags_value').val('');
+      container.find('.part2 .tags').val('');
     } else {
       hideCommitMediaElementEditorForm(type, 'edit');
       container.find('.part2 .title').val(container.data('title'));
@@ -307,7 +308,7 @@ function mediaElementEditorDocumentReady() {
         container.find('.part2 ._tags_container').prepend(copy);
       });
       container.find('.part2 ._tags_container .tags_value').val(container.data('tags'));
-      container.find('.part2 .tags').show();
+      container.find('.part2 .tags').val('').show();
     }
     container.find('.form_error').removeClass('form_error');
     container.find('.errors_layer').hide();
@@ -399,7 +400,7 @@ function resetMediaElementChangeInfo(container) {
   container.find('.part2 ._tags_container .tags_value').val(container.data('tags'));
   container.find('.form_error').removeClass('form_error');
   container.find('.errors_layer').hide();
-  container.find('.part2 .tags').show();
+  container.find('.part2 .tags').val('').show();
 }
 
 /**

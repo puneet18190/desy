@@ -228,12 +228,10 @@ function tagsDocumentReady() {
       disableTagsInputTooHigh(container);
     }
   });
-  $body.on('focus', '._tags_container', function() {
-    $(this).find('._placeholder').hide();
-  });
   $body.on('click', '._tags_container', function() {
     $(this).find('.tags').focus();
     $(this).find('._placeholder').hide();
+    $(this).find('.tags').show();
   });
   $body.on('keydown', '._tags_container .tags', function(e) {
     var container = $(this).parents('._tags_container');
