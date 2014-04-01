@@ -28,6 +28,7 @@ gem 'schema_plus'
 gem 'subexec',                                                 github: 'mdesantis/subexec'
 gem 'tinymce-rails',            '~> 3.0'
 gem 'tinymce-rails-langs'
+gem 'threach'
 # TODO da mettere dopo
 # gem 'turbolinks'
 gem 'unicorn',                              platforms: :ruby

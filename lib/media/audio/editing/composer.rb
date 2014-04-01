@@ -79,7 +79,7 @@ module Media
           create_log_folder
           in_tmp_dir do
             concats = {}.tap do |concats|
-              Thread.join *@params[:components].each_with_index.map { |component, i|
+              Queue.join *@params[:components].each_with_index.map { |component, i|
                 proc{ concats.store i, compose_audio(*component.values_at(:audio, :from, :to), i) }
               }
             end
@@ -128,7 +128,7 @@ module Media
 
           if from == 0 && to == audio.min_duration
             {}.tap do |outputs|
-              Thread.join *inputs.map { |format, input| proc { audio_copy input, (outputs[format] = "#{output_without_extension(i)}.#{format}") } }
+              Queue.join *inputs.map { |format, input| proc { audio_copy input, (outputs[format] = "#{output_without_extension(i)}.#{format}") } }
             end
           else
             start, duration = from, to-from

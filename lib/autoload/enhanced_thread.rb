@@ -84,8 +84,6 @@ class EnhancedThread < Thread
       end
 
     super(&thread_block)
-
-    self.abort_on_exception = true
   end
 
 end

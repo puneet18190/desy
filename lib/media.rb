@@ -24,6 +24,7 @@ module Media
 end
 
 require 'media/thread'
+require 'media/queue'
 require 'media/error'
 require 'media/in_tmp_dir'
 require 'media/info'
