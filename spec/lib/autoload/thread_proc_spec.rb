@@ -46,6 +46,16 @@ describe ThreadProc do
         end
       end
 
+      context 'when the initializing block is a ThreadProc' do
+
+        let(:initializing_block) { ThreadProc.new {} }
+        subject { described_class.new &initializing_block }
+
+        it 'returns it' do
+          expect(subject).to be initializing_block
+        end
+      end
+
     end
 
     context 'when initialized without block' do
