@@ -1,5 +1,7 @@
 require 'facter' unless WINDOWS
 
+require 'thread_proc'
+
 module Media
   class Queue
     PROCESSORS_COUNT =
@@ -18,35 +20,13 @@ module Media
     # Maximum amount of execution threads
     MAX_THREADS = [PROCESSORS_COUNT-1, DATABASE_POOL-1].min
 
-    CLOSE_CONNECTION_PROC = proc {
-      # begin
-        ActiveRecord::Base.connection.close
-      # rescue ActiveRecord::ConnectionTimeoutError
-      # end
-    }
-
     def self.join(*procs, close_connection_before_execution: false)
       new(*procs, close_connection_before_execution: close_connection_before_execution).run
     end
 
 
     def initialize(*procs, close_connection_before_execution: false)
-      @procs = procs.map do |proc|
-        if close_connection_before_execution
-          Proc.new {
-            CLOSE_CONNECTION_PROC.call
-            proc.call
-          }
-        else
-          Proc.new {
-            begin
-              proc.call
-            ensure
-              CLOSE_CONNECTION_PROC.call
-            end
-          }
-        end
-      end
+      @procs = procs.map { |proc| ThreadProc.new(close_connection_before_execution: close_connection_before_execution, &proc) }
     end
 
     def run

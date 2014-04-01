@@ -57,6 +57,9 @@ end
 group :development, :test do
   gem 'colorize'
   gem 'rspec-rails'
+  gem 'ruby_parser'
+  gem 'file-tail'
+  gem 'sourcify'
 end
 
 group :doc do
