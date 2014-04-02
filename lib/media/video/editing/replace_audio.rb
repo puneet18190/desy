@@ -57,7 +57,7 @@ module Media
         # Execute the video creation processing
         def run
           create_log_folder
-          in_tmp_dir { Thread.join *FORMATS.map { |format| proc { replace_audio(format) } } }
+          in_tmp_dir { Queue.run *FORMATS.map { |format| proc { replace_audio(format) } } }
           outputs
         end
   

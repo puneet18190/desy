@@ -94,7 +94,7 @@ module Media
             transitions = tmp_path TRANSITIONS
             Cmd::GenerateTransitionFrames.new(start_frame, end_frame, transitions, INNER_FRAMES_AMOUNT).run! *logs('3_generate_transition_frames') # 3.
   
-            Thread.join *FORMATS.map{ |format| proc{ transition(format) } } # 4.
+            Queue.run *FORMATS.map{ |format| proc{ transition(format) } } # 4.
           end
   
           outputs

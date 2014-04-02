@@ -2,6 +2,7 @@ require 'media'
 require 'media/similar_durations'
 require 'securerandom'
 require 'find'
+require 'thread_proc'
 
 module Media
 
@@ -324,7 +325,7 @@ module Media
       FileUtils.mkdir_p File.dirname(conversion_temp_path)
 
       # FIXME Test environment doesn't use delayed_job, so parallel execution breaks tests
-      Rails.env.test? ? upload_copy_and_job(conversion_temp_path) : EnhancedThread.new{ upload_copy_and_job(conversion_temp_path) }
+      Rails.env.test? ? upload_copy_and_job(conversion_temp_path) : ThreadProc.new{ upload_copy_and_job(conversion_temp_path) }
     end
   end
 end

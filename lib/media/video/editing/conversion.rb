@@ -73,7 +73,7 @@ module Media
           begin
             prepare_for_conversion
 
-            Thread.join *FORMATS.map{ |format| proc{ convert_to(format) } }
+            Queue.run *FORMATS.map{ |format| proc{ convert_to(format) } }
   
             mp4_file_info  = Info.new output_path(:mp4)
             webm_file_info = Info.new output_path(:webm)

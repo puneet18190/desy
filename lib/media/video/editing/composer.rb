@@ -5,7 +5,7 @@ require 'media/in_tmp_dir'
 require 'media/logging'
 require 'media/error'
 require 'media/video/editing/parameters'
-require 'media/thread'
+require 'media/queue'
 require 'media/video/editing/crop'
 require 'media/video/editing/text_to_video'
 require 'media/video/editing/image_to_video'
@@ -102,7 +102,7 @@ module Media
           in_tmp_dir do
             concats = {}
 
-            Thread.join *@params[:components].each_with_index.map { |component, i|
+            Queue.run *@params[:components].each_with_index.map { |component, i|
               proc {
                 concats.store i,
                   case component[:type]
@@ -119,7 +119,7 @@ module Media
             }
 
             concats_sorted = concats.sort
-            Thread.join *concats_sorted[0, concats_sorted.size-1].map { |i, concat|
+            Queue.run *concats_sorted[0, concats_sorted.size-1].map { |i, concat|
               next_i = i+1
               next_concat = concats_sorted[next_i][1]
               proc {
@@ -190,7 +190,7 @@ module Media
 
           if from == 0 && to == video.min_duration
             {}.tap do |outputs|
-              Thread.join *inputs.map { |format, input| proc { video_copy input, (outputs[format] = "#{output_without_extension(i)}.#{format}") } }
+              Queue.run *inputs.map { |format, input| proc { video_copy input, (outputs[format] = "#{output_without_extension(i)}.#{format}") } }
             end
           else
             start, duration = from, to-from

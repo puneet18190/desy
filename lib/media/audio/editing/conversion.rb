@@ -72,7 +72,7 @@ module Media
           begin
             prepare_for_conversion
 
-            Thread.join *FORMATS.map{ |format| proc{ convert_to(format) } }
+            Queue.run *FORMATS.map{ |format| proc{ convert_to(format) } }
 
             m4a_file_info = Info.new output_path(:m4a)
             ogg_file_info = Info.new output_path(:ogg)

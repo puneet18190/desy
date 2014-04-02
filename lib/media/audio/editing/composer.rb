@@ -2,7 +2,7 @@ require 'media'
 require 'media/audio'
 require 'media/audio/editing'
 require 'media/in_tmp_dir'
-require 'media/thread'
+require 'media/queue'
 require 'media/audio/editing/crop'
 require 'media/audio/editing/concat'
 
@@ -79,13 +79,13 @@ module Media
           create_log_folder
           in_tmp_dir do
             concats = {}.tap do |concats|
-              Queue.join *@params[:components].each_with_index.map { |component, i|
+              Queue.run *@params[:components].each_with_index.map { |component, i|
                 proc{ concats.store i, compose_audio(*component.values_at(:audio, :from, :to), i) }
               }
             end
 
             concat = tmp_path 'concat'
-            outputs = Concat.new(concats.sort.map{ |_,c| c }, concat, log_folder('concat')).run
+            outputs = Concat.new(concats.sort.map{ |_, c| c }, concat, log_folder('concat')).run
 
             audio.media               = outputs.merge(filename: audio.title)
             audio.composing           = nil
@@ -128,7 +128,7 @@ module Media
 
           if from == 0 && to == audio.min_duration
             {}.tap do |outputs|
-              Queue.join *inputs.map { |format, input| proc { audio_copy input, (outputs[format] = "#{output_without_extension(i)}.#{format}") } }
+              Queue.run *inputs.map { |format, input| proc { audio_copy input, (outputs[format] = "#{output_without_extension(i)}.#{format}") } }
             end
           else
             start, duration = from, to-from

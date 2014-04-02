@@ -53,7 +53,7 @@ module Media
             processed_image_path = tmp_path( PROCESSED_IMAGE_PATH_FORMAT % File.extname(input_path) )
             image_process(processed_image_path)
   
-            Thread.join *FORMATS.map{ |format| proc{ convert_to(processed_image_path, format) } }
+            Queue.run *FORMATS.map{ |format| proc{ convert_to(processed_image_path, format) } }
 
             mp4_file_info  = Info.new mp4_output_path
             webm_file_info = Info.new webm_output_path

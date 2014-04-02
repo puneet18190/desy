@@ -57,7 +57,7 @@ module Media
 
         # Execute the crop processing returning the output paths
         def run
-          Queue.join *self.class::FORMATS.map{ |format| proc{ crop(format) } }
+          Queue.run *self.class::FORMATS.map{ |format| proc{ crop(format) } }
           outputs
         end
   
