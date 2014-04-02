@@ -3,7 +3,6 @@ require 'media/video'
 require 'media/video/editing'
 require 'media/video/editing/cmd/crop'
 require 'media/logging'
-require 'media/thread'
 
 module Media
   module Video
@@ -57,7 +56,7 @@ module Media
 
         # Execute the crop processing returning the output paths
         def run
-          Queue.run *self.class::FORMATS.map{ |format| proc{ crop(format) } }
+          Queue.run *self.class::FORMATS.map{ |format| proc{ crop(format) } }, close_connection_before_execution: true
           outputs
         end
   

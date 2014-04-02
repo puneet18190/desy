@@ -4,7 +4,6 @@ require 'media/video/editing'
 require 'media/logging'
 require 'media/in_tmp_dir'
 require 'media/info'
-require 'media/thread'
 require 'media/video/editing/cmd/audio_stream_to_file'
 require 'media/video/editing/cmd/m4a_to_wav'
 require 'media/audio/editing/cmd/concat'
@@ -134,7 +133,7 @@ module Media
             proc {
               Cmd::Concat.new(final_webm_no_audio, final_wav, final_webm_no_audio_info.duration, outputs[format], format).run! *logs("4_#{format}") # 3.
             }
-          }
+          }, close_connection_before_execution: true
   
           outputs
         end

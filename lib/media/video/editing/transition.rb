@@ -4,7 +4,6 @@ require 'media/video/editing'
 require 'media/logging'
 require 'media/in_tmp_dir'
 require 'media/info'
-require 'media/thread'
 require 'media/video/editing/cmd/video_stream_to_file'
 require 'media/video/editing/cmd/extract_frame'
 require 'media/video/editing/cmd/generate_transition_frames'
@@ -94,7 +93,7 @@ module Media
             transitions = tmp_path TRANSITIONS
             Cmd::GenerateTransitionFrames.new(start_frame, end_frame, transitions, INNER_FRAMES_AMOUNT).run! *logs('3_generate_transition_frames') # 3.
   
-            Queue.run *FORMATS.map{ |format| proc{ transition(format) } } # 4.
+            Queue.run *FORMATS.map{ |format| proc{ transition(format) } }, close_connection_before_execution: true # 4.
           end
   
           outputs

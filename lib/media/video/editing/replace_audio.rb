@@ -4,7 +4,6 @@ require 'media/video/editing'
 require 'media/logging'
 require 'media/in_tmp_dir'
 require 'media/info'
-require 'media/thread'
 require 'media/video/editing/cmd/video_stream_to_file'
 require 'media/video/editing/cmd/replace_audio'
 
@@ -57,7 +56,7 @@ module Media
         # Execute the video creation processing
         def run
           create_log_folder
-          in_tmp_dir { Queue.run *FORMATS.map { |format| proc { replace_audio(format) } } }
+          in_tmp_dir { Queue.run *FORMATS.map { |format| proc { replace_audio(format) } }, close_connection_before_execution: true }
           outputs
         end
   
