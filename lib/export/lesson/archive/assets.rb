@@ -16,8 +16,8 @@ module Export
 
         FOLDER = INPUT_ASSETS_FOLDER
 
-        def env
-          @sub_env ||= begin
+        def assets
+          @sub_assets ||= begin
             assets = super
 
             assets.context_class.class_eval do

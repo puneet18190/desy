@@ -11,7 +11,7 @@ module Export
         require 'export/lesson/ebook/view/helper'
 
         include Helper
-        self.prepare nil, Helper
+        #self.helpers = [Helper]
 
         FOLDER           = Lesson::FOLDER.join 'ebooks', 'views'
         LOOKUP_CONTEXT   = begin

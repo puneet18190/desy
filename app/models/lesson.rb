@@ -289,7 +289,7 @@ class Lesson < ActiveRecord::Base
 
   # Returns the math images related to the slides of the lesson. If +modality+ is +:full_path+ it returns the absolute path, otherwise it returns the file names (the default value is +nil+). The results are unique.
   def math_images_paths(modality = nil)
-    slides.map{ |r| r.math_images.to_a(modality) }.flatten.uniq_by{ |v| v.basename }
+    slides.map{ |r| r.math_images.to_a(modality) }.flatten.uniq{ |v| v.basename }
   end
   
   # === Description

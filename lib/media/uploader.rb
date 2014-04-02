@@ -313,6 +313,7 @@ module Media
     # Executes the copy of the uploaded file to the temporary folder and add related job to the jobs queue
     def upload_copy_and_job(conversion_temp_path)
       FileUtils.cp @original_file.path, conversion_temp_path
+      File.write Rails.root.join('tmp', 'asd.log'), p(@original_file.path, conversion_temp_path, output_path_without_extension, original_filename, model_id)
       Delayed::Job.enqueue self.class::CONVERSION_CLASS::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
     end
 
@@ -325,7 +326,7 @@ module Media
       FileUtils.mkdir_p File.dirname(conversion_temp_path)
 
       # FIXME Test environment doesn't use delayed_job, so parallel execution breaks tests
-      Rails.env.test? ? upload_copy_and_job(conversion_temp_path) : ThreadProc.new{ upload_copy_and_job(conversion_temp_path) }
+      Rails.env.test? ? upload_copy_and_job(conversion_temp_path) : Thread.new(&ThreadProc.new { upload_copy_and_job(conversion_temp_path) })
     end
   end
 end
