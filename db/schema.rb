@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130709121200) do
+ActiveRecord::Schema.define(version: 20140403131518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "uuid-ossp"
@@ -235,15 +235,6 @@ ActiveRecord::Schema.define(version: 20130709121200) do
 
 # Could not dump table "reports" because of following StandardError
 #   Unknown type 'teaching_object' for column 'reportable_type'
-
-  create_table "sessions", force: true do |t|
-    t.string   "session_id", null: false
-    t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["session_id"], :name => "index_sessions_on_session_id"
-    t.index ["updated_at"], :name => "index_sessions_on_updated_at"
-  end
 
   create_table "tags", force: true do |t|
     t.string   "word",       null: false

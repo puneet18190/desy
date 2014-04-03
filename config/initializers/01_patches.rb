@@ -95,9 +95,6 @@ end
 #   end
 # end
 
-# Fixes https://github.com/rails/activerecord-session_store/issues/6
-ActiveRecord::SessionStore::Session.attr_accessible :data, :session_id
-
 # PostgreSQL enums support (taken from https://coderwall.com/p/azi3ka)
 # Should be fixed in Rails >= 4.2 (https://github.com/rails/rails/pull/13244)
 module ActiveRecord
