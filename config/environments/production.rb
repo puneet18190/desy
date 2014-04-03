@@ -73,10 +73,9 @@ Desy::Application.configure do
                                   admin.css
                                   admin/admin.js
                                   
-                                  tinymce/plugins/tiny_mce_wiris/editor_plugin.js
-                                  tinymce/plugins/tiny_mce_wiris/core/core.js
-                                  tinymce/plugins/tiny_mce_wiris/core/editor.js
-                                  tinymce/plugins/tiny_mce_wiris/lang/en/strings.js
+                                  tinymce/plugins/tiny_mce_wiris/**/*.js
+
+                                  tinymce/plugins/tiny_mce_wiris/core/**/*.gif
                                 )
 
   # Ignore bad email addresses and do not raise email delivery errors.
