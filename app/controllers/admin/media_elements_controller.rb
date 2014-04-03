@@ -178,10 +178,7 @@ class Admin::MediaElementsController < AdminController
         @media_element.is_public = true
         @media_element.publication_date = Time.zone.now
       end
-      if !@media_element.save
-        @errors = convert_media_element_error_messages @media_element.errors
-        @error_fields = @media_element.errors.messages.keys
-      end
+      @error_fields = @media_element.errors.messages.keys if !@media_element.save
     end
   end
   
