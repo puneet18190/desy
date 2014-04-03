@@ -13,7 +13,7 @@ gem 'delayed_job_active_record'
 gem 'erubis'
 gem 'eventmachine',                         platforms: :ruby
 gem 'facter',                               platforms: :ruby
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder',                 '~> 1.2'
 gem 'jquery-rails',             '~> 2.1.4'
 gem 'kaminari'
 gem 'mini_magick',                                             github: 'mdesantis/minimagick', branch: 'batch_compatibility'
@@ -39,7 +39,7 @@ gem 'bootstrap-sass',          '~> 2.2.2.0'
 gem 'coffee-rails',            '~> 4.0.0'
 gem 'jquery-fileupload-rails'
 gem 'libv8',                   '~> 3.11.8',  platforms: :ruby
-gem 'sass-rails',              '~> 4.0.0'
+gem 'sass-rails',              '~> 4.0.2'
 # Sass 3.3 leads to this issue https://github.com/nex3/sass/issues/1162
 gem 'sass',                    '~> 3.2.0'
 gem 'therubyracer',                          platforms: :ruby

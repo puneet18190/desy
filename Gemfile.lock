@@ -343,7 +343,7 @@ DEPENDENCIES
   ruby_parser
   rubyzip
   sass (~> 3.2.0)
-  sass-rails (~> 4.0.0)
+  sass-rails (~> 4.0.2)
   schema_plus
   sdoc
   sourcify
