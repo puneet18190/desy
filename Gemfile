@@ -22,6 +22,7 @@ gem 'mini_magick',                                             github: 'mdesanti
 gem 'nokogiri',                             platforms: :ruby
 gem 'oj'
 gem 'pg'
+gem 'rack-maintenance'
 gem 'recursive-open-struct'
 gem 'rubyzip'
 gem 'schema_plus'

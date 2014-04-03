@@ -9,6 +9,9 @@ Bundler.require(*Rails.groups)
 module Desy
   class Application < Rails::Application
 
+    # Maintenance response
+    config.middleware.use 'Rack::Maintenance', file: Rails.root.join('public', '503.html').to_s, env: 'MAINTENANCE'
+
     # Per-application settings path
     config.settings_path = 'config/settings.yml'
 
