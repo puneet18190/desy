@@ -54,6 +54,7 @@
 #   APP_NAME=cool_app
 #   APP_PATH=/path/to/cool_app
 #   APPEND_TO_ENV_PATH=''
+#   ADDITIONAL_ENV_VARS='RBENV_VERSION=2.1.0'
 #   UNICORN=/home/unicorn/.rvm/bin/unicorn_rails_wrapper
 #   UNICORN_CONFIG=/home/unicorn/configs/cool_app
 #   RACK_ENV=development
@@ -99,39 +100,43 @@
 # Inside the configuration file you can set the following variables (defaults are applied when not 
 # specified):
 #
-#   APP_USER            The user which runs the unicorn server process
-#     defaults to       the part before the colon (:) of the configuration file name
+#   APP_USER             The user which runs the unicorn server process
+#     defaults to        the part before the colon (:) of the configuration file name
 #
-#   APP_GROUP           The group which runs the delayed_job server process
-#     defaults to       <APP_USER>
+#   APP_GROUP            The group which runs the delayed_job server process
+#     defaults to        <APP_USER>
 #  
-#   APP_NAME            The application name
-#     defaults to       the part after the colon (:) of the configuration file name
+#   APP_NAME             The application name
+#     defaults to        the part after the colon (:) of the configuration file name
 #  
-#   APP_PATH            The path to the application
-#     defaults to       /home/<APP_USER>/www/<APP_NAME>
+#   APP_PATH             The path to the application
+#     defaults to        /home/<APP_USER>/www/<APP_NAME>
 #  
-#   APPEND_TO_ENV_PATH  A list of paths which will be appended to the user path variable
-#                       at the unicorn start
-#     defaults to       ''
+#   APPEND_TO_ENV_PATH   A list of paths which will be appended to the user path variable
+#                        at the unicorn start
+#     defaults to        ''
+#
+#   ADDITIONAL_ENV_VARS  Additional enviroment variables in the format
+#                        "VAR1=value1 VAR2=value2"
+#     defaults to        ''
 #  
-#   BUNDLE_EXEC         Whether the command should be launched with bundle exec or not.
-#                       Enabled if its value is on, otherwise disabled.
-#     defaults_to       off
+#   BUNDLE_EXEC          Whether the command should be launched with bundle exec or not.
+#                        Enabled if its value is "on", otherwise disabled.
+#     defaults_to        "off"
 #  
-#   UNICORN             The path to the unicorn binary.
-#     defaults to       unicorn if BUNDLE_EXEC is on, otherwise <APP_PATH>/bin/unicorn (the default 
-#                       path of `bundler install --binstubs`)
+#   UNICORN              The path to the unicorn binary.
+#     defaults to        unicorn if BUNDLE_EXEC is on, otherwise <APP_PATH>/bin/unicorn (the default 
+#                        path of `bundler install --binstubs`)
 #  
-#   UNICORN_CONFIG      The path to the unicorn configuration file
-#     defaults to       <APP_PATH>/config/unicorn.rb
+#   UNICORN_CONFIG       The path to the unicorn configuration file
+#     defaults to        <APP_PATH>/config/unicorn.rb
 #  
-#   RACK_ENV            The value which unicorn will use as environment (unicorn --env)
-#                       - notice that the config file has the last word
-#     defaults to       production
+#   RACK_ENV             The value which unicorn will use as environment (unicorn --env)
+#                        - notice that the config file has the last word
+#     defaults to         production
 #  
-#   PIDFILE             The path to the unicorn PID file
-#     defaults to       <APP_PATH>/tmp/pids/unicorn.<RACK_ENV>.pid
+#   PIDFILE              The path to the unicorn PID file
+#     defaults to        <APP_PATH>/tmp/pids/unicorn.<RACK_ENV>.pid
 #
 # The colon (:) was chosen as user/app_name separator because it is an invalid character
 # for UNIX usernames.
@@ -167,8 +172,9 @@ do_start () {
 
   local start_stop_daemon_args process_args
 
-  set -- --start --quiet --chuid "$APP_USER":"$APP_GROUP" --pidfile "$PIDFILE" \
-       --chdir "$APP_PATH" --exec /usr/bin/env PATH="$APPEND_TO_ENV_PATH":"$PATH"
+  set -- --start --quiet --chuid "$APP_USER":"$APP_GROUP" --pidfile "$PIDFILE"   \
+      --chdir "$APP_PATH" --exec /usr/bin/env PATH="$APPEND_TO_ENV_PATH":"$PATH" \
+      $ADDITIONAL_ENV_VARS
   start_stop_daemon_args="$@"
 
   set -- --env "$RACK_ENV" --config-file "$UNICORN_CONFIG" --daemonize
@@ -298,6 +304,7 @@ unset_variables () {
   unset APP_NAME
   unset APP_PATH
   unset APPEND_TO_ENV_PATH
+  unset ADDITIONAL_ENV_VARS
   unset BUNDLE_EXEC
   unset UNICORN
   unset UNICORN_CONFIG
@@ -327,6 +334,8 @@ setup () {
   fi
 
   [ -z "$APPEND_TO_ENV_PATH" ] && APPEND_TO_ENV_PATH=''
+
+  [ -z "$ADDITIONAL_ENV_VARS" ] && ADDITIONAL_ENV_VARS=''
 
   [ -z "$BUNDLE_EXEC" ] && BUNDLE_EXEC='off'
 
