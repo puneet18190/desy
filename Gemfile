@@ -4,8 +4,6 @@ gem 'rails', '4.0.4'
 
 # Gems by group alphabetically sorted
 gem 'ancestry'
-# TODO Rails 4 di default mette nei cookie, che ora dovrebbero essere crittati quindi sicuri; pensare se ha senso tenere la sessione nel db, altrimenti toglierlo
-gem 'activerecord-session_store'
 gem 'bcrypt',                   '~> 3.1.2'
 gem 'carrierwave'
 gem 'daemons'
