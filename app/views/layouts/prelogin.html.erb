@@ -12,7 +12,9 @@
     <div class="footer">
       <div class="footer_logo_content ">
         <div class="fltlft" style="padding:10px" >
-        <!-- TODO rimosso provvisoriamente solo in desy.morganspa.com  <img src="<%= asset_path 'partner_logo.jpg' %>" alt=""> -->
+        <% if SETTINGS['show_partner_logo'] -%>
+          <img src="<%= asset_path 'partner_logo.jpg' %>" alt="Partner logo">
+        <% end -%>
         </div>
         <div class="fltrt" style="padding:30px">
           <%= SETTINGS['application_copyright'] %>
