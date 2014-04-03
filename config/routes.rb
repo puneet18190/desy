@@ -280,6 +280,6 @@ Desy::Application.routes.draw do
   get  'virtual_classroom/select_lessons_new_block'                      => 'virtual_classroom#select_lessons_new_block'
   
   # IMPORTANTE, QUESTA URL VA LASCIATA SEMPRE IN FONDO ALLE ROUTES!
-  match '*path',           :to => 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
+  match '*path', via: :all, to: 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
   
 end

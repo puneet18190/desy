@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.3'
+gem 'rails', '4.0.4'
 
 # Gems by group alphabetically sorted
 gem 'ancestry'
@@ -9,6 +9,7 @@ gem 'activerecord-session_store'
 gem 'bcrypt',                   '~> 3.1.2'
 gem 'carrierwave'
 gem 'daemons'
+# TODO Toglierlo quando si passa al check dei parametri nel controller
 gem 'protected_attributes' # Questa deve stare prima di delayed_job!!! altrimenti non funziona
 gem 'delayed_job_active_record'
 gem 'erubis'
@@ -21,7 +22,6 @@ gem 'mini_magick',                                             github: 'mdesanti
 gem 'nokogiri',                             platforms: :ruby
 gem 'oj'
 gem 'pg'
-# TODO Toglierlo quando si passa al check dei parametri nel controller
 gem 'recursive-open-struct'
 gem 'rubyzip'
 gem 'schema_plus'
