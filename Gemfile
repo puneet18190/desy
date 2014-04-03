@@ -16,7 +16,7 @@ gem 'facter',                               platforms: :ruby
 gem 'jbuilder',                 '~> 1.2'
 gem 'jquery-rails',             '~> 2.1.4'
 gem 'kaminari'
-gem 'mini_magick',                                             github: 'mdesantis/minimagick', branch: 'batch_compatibility'
+gem 'mini_magick'
 gem 'nokogiri',                             platforms: :ruby
 gem 'oj'
 gem 'pg'
