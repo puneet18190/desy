@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -122,6 +120,8 @@
                 <li><a href="../classes/ImageEditorImageScale.html">ImageEditorImageScale</a></li>
             
                 <li><a href="../classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
+            
+                <li><a href="../classes/JqueryBrowsersDetection.html">JqueryBrowsersDetection</a></li>
             
                 <li><a href="../classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
@@ -187,13 +187,13 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
-            
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
+            
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -243,13 +243,13 @@
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
             
-                <li><a href="../modules/documents.html">documents</a></li>
-            
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
                 <li><a href="../modules/general.html">general</a></li>
             
                 <li><a href="../modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="../modules/jquery-browsers.html">jquery-browsers</a></li>
             
                 <li><a href="../modules/jquery-patches.html">jquery-patches</a></li>
             
@@ -371,6 +371,13 @@
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_tagsDocumentReady">tagsDocumentReady</a>
+
+                                
+                                
+                            </li>
+                        
                     </ul>
                 </div>
             
@@ -397,6 +404,12 @@
                 <li class="arg">
                     
                         <code>input</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>item</code>
                     
                 </li>
             
@@ -429,7 +442,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l394"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:394</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l151"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:151</code></a>
         
         </p>
 
@@ -466,6 +479,22 @@
                     
                 </li>
             
+                <li class="param">
+                    
+                        <code class="param-name">item</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>lesson or media_element</p>
+
+                    </div>
+
+                    
+                </li>
+            
             </ul>
         </div>
     
@@ -485,7 +514,13 @@
             
                 <li class="arg">
                     
-                        <code>scope</code>
+                        <code>container</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>item</code>
                     
                 </li>
             
@@ -518,7 +553,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_tags.js.html#l424"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:424</code></a>
+        <a href="../files/app_assets_javascripts_tags.js.html#l185"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:185</code></a>
         
         </p>
 
@@ -541,14 +576,30 @@
             
                 <li class="param">
                     
-                        <code class="param-name">scope</code>
+                        <code class="param-name">container</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>JQuery object for the tags container</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">item</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>HTML scope for the tag container</p>
+                        <p>lesson or media_element</p>
 
                     </div>
 
@@ -557,6 +608,61 @@
             
             </ul>
         </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_tagsDocumentReady" class="method item">
+    <h3 class="name"><code>tagsDocumentReady</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_tags.js.html#l214"><code>app&#x2F;assets&#x2F;javascripts&#x2F;tags.js:214</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Global document ready for tags functionality.</p>
+
+    </div>
+
     
 
     

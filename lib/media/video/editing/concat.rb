@@ -4,7 +4,6 @@ require 'media/video/editing'
 require 'media/logging'
 require 'media/in_tmp_dir'
 require 'media/info'
-require 'media/thread'
 require 'media/video/editing/cmd/audio_stream_to_file'
 require 'media/video/editing/cmd/m4a_to_wav'
 require 'media/audio/editing/cmd/concat'
@@ -130,11 +129,11 @@ module Media
   
           final_webm_no_audio_info = Info.new final_webm_no_audio
 
-          Thread.join *FORMATS.map { |format|
+          Queue.run *FORMATS.map { |format|
             proc {
               Cmd::Concat.new(final_webm_no_audio, final_wav, final_webm_no_audio_info.duration, outputs[format], format).run! *logs("4_#{format}") # 3.
             }
-          }
+          }, close_connection_before_execution: true
   
           outputs
         end
@@ -160,7 +159,7 @@ module Media
         # Responsible of the 1., 2., 3., 4. steps of the Media::Video::Editing::Concat#final_wav logic (step 3. is delegated to Media::Video::Editing::Concat#increase_rpadding_depending_on_video_overflow )
         def wavs_with_paddings(mp4_inputs_infos, paddings)
           Hash[ {}.tap do |unordered_wavs_with_paddings|
-            Thread.join *mp4_inputs_infos.select{ |info| info.audio_streams.present? }.each_with_index.map { |video_info, i|
+            Queue.run *mp4_inputs_infos.select{ |info| info.audio_streams.present? }.each_with_index.map { |video_info, i|
               proc {
                 m4a = tmp_path(CONCAT_M4A_FORMAT % i)
           

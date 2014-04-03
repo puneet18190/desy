@@ -1,9 +1,7 @@
 <script>
   window.onload = function() {
-    <% if @errors %>
-      top.uploadDone('document', <%= @errors.to_json.html_safe %>, <%= @error_fields.to_json.html_safe %>);
-    <% else %>
-      top.uploadDone('document');
-    <% end %>
+    top.uploadDone('#load-document', <%= @errors ? @errors.to_json.html_safe : 'undefined' %>, function() {
+       top.window.location = '/documents';
+    });
   }
 </script>

@@ -12,7 +12,7 @@ if($('#tooltip_arancione').data('number') < <%= @new_notifications %>) {
   <% @notifications.each do |n| %>
     var notification = $('#notification_<%= n.id %>');
     if(notification.length > 0) {
-      $('._notification_time_<%= n.id %>').html('<%= j n.only_time %>');
+      $('._notification_time_<%= n.id %>').html('<%= j n.time %>');
     }
   <% end %>
 }

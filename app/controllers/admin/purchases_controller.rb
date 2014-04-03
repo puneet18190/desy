@@ -135,7 +135,12 @@ class Admin::PurchasesController < AdminController
         renewed.users.each do |u|
           u.purchase_id = @purchase.id
           u.save
-          Notification.send_to u.id, t('notifications.account.renewed', :expiration_date => TimeConvert.to_string(@purchase.expiration_date))
+          Notification.send_to(
+            u.id,
+            I18n.t('notifications.account.renewed.title'),
+            I18n.t('notifications.account.renewed.message', :expiration_date => TimeConvert.to_string(@purchase.expiration_date)),
+            ''
+          )
         end
         renewed.expiration_date = Time.zone.now
         renewed.save
@@ -229,7 +234,7 @@ class Admin::PurchasesController < AdminController
     @location = location_id.nil? ? location_code : location_id
     if @location
       @ok = true
-      @locations = @location.get_filled_select_for_personal_info
+      @locations = @location.select_with_selected(false)
     else
       @ok = false
     end

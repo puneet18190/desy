@@ -92,4 +92,29 @@ class UserTest < ActiveSupport::TestCase
     assert_obj_saved @user
   end
   
+  test 'email_and_password_confirmation' do
+    user = User.confirmed.new(:name => 'Javier Ernesto', :surname => 'Chevanton', :school_level_id => 1, :location_id => 1, :password => 'osososos', :subject_ids => [1], :purchase_id => 1) do |user|
+      user.email = 'ema1@em.em'
+      user.active = true
+      user.policy_1 = '1'
+      user.policy_2 = '1'
+    end
+    assert user.valid?
+    # email confirmation
+    user.email_confirmation = 'ema1@em2.em'
+    assert !user.save, "User erroneously saved - #{user.inspect}"
+    assert_equal 1, user.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{user.errors.inspect}"
+    assert user.errors.added? :email_confirmation, :confirmation, :attribute => 'Email'
+    user.email_confirmation = 'ema1@em.em'
+    assert user.valid?, "User not valid: #{user.errors.inspect}"
+    # password confirmation
+    user.password_confirmation = 'ososos0s'
+    assert !user.save, "User erroneously saved - #{user.inspect}"
+    assert_equal 1, user.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{user.errors.inspect}"
+    assert user.errors.added? :password_confirmation, :confirmation, :attribute => 'Password'
+    user.password_confirmation = 'osososos'
+    assert user.valid?, "User not valid: #{user.errors.inspect}"
+    assert_obj_saved user
+  end
+  
 end

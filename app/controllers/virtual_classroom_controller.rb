@@ -315,7 +315,12 @@ class VirtualClassroomController < ApplicationController
         string_emails = "#{string_emails} '#{em}',"
       end
       string_emails.chop!
-      Notification.send_to current_user.id, t('notifications.lessons.link_sent', :title => @lesson.title, :message => @message, :emails => string_emails)
+      Notification.send_to(
+        current_user.id,
+        I18n.t('notifications.lessons.link_sent.title'),
+        I18n.t('notifications.lessons.link_sent.message', :title => @lesson.title, :message => @message, :emails => string_emails),
+        ''
+      )
     end
   end
   

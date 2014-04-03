@@ -6,7 +6,6 @@ require 'media/in_tmp_dir'
 require 'media/info'
 require 'media/video/editing/cmd/image_to_video'
 require 'mini_magick'
-require 'media/thread'
 
 module Media
   module Video
@@ -53,7 +52,7 @@ module Media
             processed_image_path = tmp_path( PROCESSED_IMAGE_PATH_FORMAT % File.extname(input_path) )
             image_process(processed_image_path)
   
-            Thread.join *FORMATS.map{ |format| proc{ convert_to(processed_image_path, format) } }
+            Queue.run *FORMATS.map{ |format| proc{ convert_to(processed_image_path, format) } }, close_connection_before_execution: true
 
             mp4_file_info  = Info.new mp4_output_path
             webm_file_info = Info.new webm_output_path

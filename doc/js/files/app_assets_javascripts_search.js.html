@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -122,6 +120,8 @@
                 <li><a href="../classes/ImageEditorImageScale.html">ImageEditorImageScale</a></li>
             
                 <li><a href="../classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
+            
+                <li><a href="../classes/JqueryBrowsersDetection.html">JqueryBrowsersDetection</a></li>
             
                 <li><a href="../classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
@@ -187,13 +187,13 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
-            
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
+            
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -243,13 +243,13 @@
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
             
-                <li><a href="../modules/documents.html">documents</a></li>
-            
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
                 <li><a href="../modules/general.html">general</a></li>
             
                 <li><a href="../modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="../modules/jquery-browsers.html">jquery-browsers</a></li>
             
                 <li><a href="../modules/jquery-patches.html">jquery-patches</a></li>
             
@@ -331,7 +331,6 @@ Global initializer for the search engine.
 function searchDocumentReady() {
   searchDocumentReadyGeneral();
   searchDocumentReadyFilterByTag();
-  searchDocumentReadyPlaceholders();
 }
 
 /**
@@ -384,14 +383,10 @@ function searchDocumentReadyGeneral() {
       }
     });
   });
-  $body.on(&#x27;click&#x27;, &#x27;#search_general_submit&#x27;, function() {
-    if(!$(this).hasClass(&#x27;current&#x27;)) {
-      $(&#x27;#search_general&#x27;).submit();
-      $(this).addClass(&#x27;current&#x27;);
-    }
-  });
   $body.on(&#x27;click&#x27;, &#x27;._keep_searching&#x27;, function() {
+    $(this).data(&#x27;opened&#x27;, true);
     var form = $(this).parent();
+    $(&#x27;.advanced-search-content&#x27;).animate({height: &#x27;995px&#x27;}, 500);
     form.animate({
       height: &#x27;210&#x27;
     }, 500, function() {
@@ -422,10 +417,16 @@ function searchDocumentReadyPlaceholders() {
     }
   });
   $body.on(&#x27;focus&#x27;, &#x27;#general_tag_reader_for_search&#x27;, function() {
-    $(this).attr(&#x27;value&#x27;, &#x27;&#x27;);
+    $(this).val(&#x27;&#x27;);
     $(this).css(&#x27;color&#x27;, &#x27;#939393&#x27;);
-    $(&#x27;#general_tag_kind_for_search&#x27;).attr(&#x27;value&#x27;, &#x27;0&#x27;);
+    $(&#x27;#general_tag_kind_for_search&#x27;).val(&#x27;0&#x27;);
     $(&#x27;#search_general_submit&#x27;).removeClass(&#x27;current&#x27;);
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#search_general_submit&#x27;, function() {
+    if(!$(this).hasClass(&#x27;current&#x27;)) {
+      $(&#x27;#search_general&#x27;).submit();
+      $(this).addClass(&#x27;current&#x27;);
+    }
   });
 }
 

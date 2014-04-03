@@ -3,8 +3,8 @@
   slide_text = slide.text(math_images_path_relative_from_folder: math_images_archive_folder_name)
 -%>
 
-<h1 class="title"><%= slide.title.strip %></h1>
-<figure class="image">
+<h1 class="title"><%= slide.title.to_s.strip %></h1>
+<figure class="<%= image_figure_classes image, 'image' %>">
   <div style="<%= image_style image %>"></div>
   <figcaption><%= image.caption if image %></figcaption>
 </figure>

@@ -143,24 +143,63 @@ Initializer for functionalities which are common to sections containing media el
 @for GeneralDocumentReady
 **/
 function commonMediaElementsDocumentReady() {
-  $body.on('click', '._close_media_element_preview_popup', function() {
-    var param = $(this).data('param');
-    closePopUp('dialog-media-element-' + param);
+  $body.on('keydown', '.dialogMediaElement .wrapper .change-info .part2 .title, .dialogMediaElement .wrapper .change-info .part2 .description', function() {
+    $(this).removeClass('form_error');
   });
-  $body.on('click', '._change_info_container ._cancel, ._change_info_to_pick.change_info_light', function() {
-    $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').show();
-    $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').hide('fade', {}, 500, function() {
-      var icon = $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_to_pick');
-      icon.addClass('change_info');
-      icon.removeClass('change_info_light');
-      resetMediaElementChangeInfo($(this).data('param'));
-    });
+  $body.on('keydown', '.dialogMediaElement .wrapper .change-info .part2 .tags_container .tags', function() {
+    $(this).parents('._tags_container').removeClass('form_error');
   });
-  $body.on('click', '._change_info_to_pick.change_info', function() {
-    $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').show('fade', {}, 500);
-    $(this).removeClass('change_info');
-    $(this).addClass('change_info_light');
-    $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').hide();
+  $body.on('click', '.dialogMediaElement .menu .close', function() {
+    closePopUp($(this).parents('.dialogMediaElement').attr('id'));
+  });
+  $body.on('click', '.dialogMediaElement .menu .change-info', function() {
+    var container = $(this).parents('.dialogMediaElement');
+    var form = container.find('.wrapper .change-info');
+    if($(this).hasClass('encendido')) {
+      form.hide();
+      container.find('.preview').show();
+      resetMediaElementChangeInfo(form);
+      $(this).removeClass('encendido');
+    } else {
+      container.find('.preview').hide();
+      form.show();
+      $(this).addClass('encendido');
+      disableTagsInputTooHigh(form.find('.part2 ._tags_container'));
+    }
+  });
+  $body.on('click', '.dialogMediaElement .wrapper .change-info .part3 .close', function() {
+    var container = $(this).parents('.dialogMediaElement');
+    var form = container.find('.wrapper .change-info');
+    form.hide();
+    container.find('.preview').show();
+    container.find('.menu .change-info').removeClass('encendido');
+    resetMediaElementChangeInfo(form);
+  });
+  $body.on('click', '.dialogMediaElement .wrapper .change-info .part3 .submit', function() {
+    var container = $(this).parents('.dialogMediaElement');
+    container.find('form').submit();
+  });
+  $body.on('click', '.dialogMediaElement .wrapper .change-info .errors_layer', function() {
+    var myself = $(this);
+    var container = myself.parents('.dialogMediaElement').find('.wrapper .change-info');
+    myself.hide();
+    container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
+  });
+  $body.on('mouseenter', '.boxViewCompactMediaElement', function() {
+    var item = $(this);
+    item.data('loading-mini-thumb', true);
+    setTimeout(function() {
+      if(item.data('loading-mini-thumb')) {
+        showMiniThumbnailForMediaElementCompact(item);
+      }
+    }, 500);
+  });
+  $body.on('mouseleave', '.boxViewCompactMediaElement', function() {
+    var item = $(this);
+    item.data('loading-mini-thumb', false);
+    if(item.data('loaded-mini-thumb')) {
+      hideMiniThumbnailForMediaElementCompact(item);
+    }
   });
 }
 
@@ -177,19 +216,21 @@ function commonLessonsDocumentReady() {
       var my_id = $(this).parent().attr('id');
       var my_expanded = $('#' + my_id + ' ._lesson_expanded');
       if(my_expanded.is(':visible')) {
-        my_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
         my_expanded.hide('blind', {}, 500, function() {
           my_expanded.hide();
         });
         if(lessons_content.length > 0) {
           lessons_content.animate({height: '665px'}, 500);
         } else {
-          advanced_search_content.animate({height: '805px'}, 500);
+          if ($('form#search_lessons ._keep_searching').data('opened')) {
+            advanced_search_content.animate({height: '995px'}, 500);
+          } else {
+            advanced_search_content.animate({height: '805px'}, 500);
+          }
         }
       } else {
         var there_is_expanded = $('._lesson_expanded:visible');
         if(there_is_expanded.length > 0) {
-          there_is_expanded.find('.tooltipForm:visible').parent().find('._reportable_lesson_icon').click();
           there_is_expanded.hide('blind', {}, 500, function() {
             there_is_expanded.hide();
           });
@@ -200,7 +241,11 @@ function commonLessonsDocumentReady() {
         if(lessons_content.length > 0) {
           lessons_content.animate({height: '863px'}, 500);
         } else {
-          advanced_search_content.animate({height: '1003px'}, 500);
+          if ($('form#search_lessons ._keep_searching').data('opened')) {
+            advanced_search_content.animate({height: '1193px'}, 500);
+          } else {
+            advanced_search_content.animate({height: '1003px'}, 500);
+          }
         }
       }
     }
@@ -223,6 +268,12 @@ function globalDocumentReady() {
   });
   $body.on('mouseleave', '.empty-situation-container a', function() {
     $(this).find('.plus').removeClass('encendido');
+  });
+  $body.on('mouseenter', '.highlight-with-text a', function() {
+    $(this).find('.plus, .prompt').addClass('encendido');
+  });
+  $body.on('mouseleave', '.highlight-with-text a', function() {
+    $(this).find('.plus, .prompt').removeClass('encendido');
   });
   $('#user_school_level_id').selectbox();
   $body.on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
@@ -247,14 +298,24 @@ function locationsDocumentReady() {
   });
   $body.on('change', '._location_select_box', function() {
     if(!$(this).data('is-last')) {
+      var locations_url = '/locations/' + $(this).val() + '/find';
       if($(this).val() == '0') {
-        $(this).parents('._location_selector').nextAll().find('select').html('');
-      } else {
-        $.ajax({
-          url: '/locations/' + $(this).val() + '/find',
-          type: 'get'
-        });
+        var container = $(this).parents('.profile-element').prev();
+        if(container.length > 0) {
+          var sub_inputs = container.find('input');
+          if(sub_inputs.length > 0) {
+            locations_url = '/locations/' + sub_inputs.data('selected') + '/find?empty_children=true';
+          } else {
+            locations_url = '/locations/' + container.find('select').val() + '/find?empty_children=true';
+          }
+        } else {
+          locations_url = '/locations/0/find';
+        }
       }
+      $.ajax({
+        url: locations_url,
+        type: 'get'
+      });
     }
   });
 }
@@ -265,33 +326,33 @@ Initializes reports forms for both lessons and media elements.
 @for GeneralDocumentReady
 **/
 function reportsDocumentReady() {
-  $body.on('mouseenter', '._reportable_lesson_icon', function() {
-    $(this).find('.icon-content').removeClass('report').addClass('report_light');
+  $body.on('mouseenter', '._lesson_expanded .report', function() {
+    $(this).addClass('encendido');
   });
-  $body.on('mouseleave', '._reportable_lesson_icon', function() {
-    $(this).find('.icon-content').addClass('report').removeClass('report_light');
+  $body.on('mouseleave', '._lesson_expanded .report', function() {
+    $(this).removeClass('encendido');
   });
-  $body.on('click', '._reportable_lesson_icon', function() {
-    var obj = $(this).next();
-    if(!obj.is(':visible')) {
-      $(this).find('.icon-content').removeClass('report').addClass('report_light report_selected');
-      obj.show('fade', {}, 500);
+  $body.on('click', '._lesson_expanded .report', function() {
+    var button = $(this).find('.icon');
+    var form = $(this).next();
+    if(!button.hasClass('encendido')) {
+      button.addClass('encendido');
+      form.show();
     } else {
-      $(this).find('.icon-content').addClass('report').removeClass('report_light report_selected');
-      obj.hide();
+      button.removeClass('encendido');
+      form.hide();
     }
     return false;
   });
-  $body.on('click', '._report_media_element_click', function() {
-    var obj = $(this).next();
-    if(!obj.is(':visible')) {
-      $(this).removeClass('report');
-      $(this).addClass('report_light');
-      obj.show('fade', {}, 500);
+  $body.on('click', '.dialogMediaElement .menu .report', function() {
+    var button = $(this);
+    var form = button.next();
+    if(!button.hasClass('encendido')) {
+      button.addClass('encendido');
+      form.show();
     } else {
-      $(this).removeClass('report_light');
-      $(this).addClass('report');
-      obj.hide();
+      button.removeClass('encendido');
+      form.hide();
     }
     return false;
   });
@@ -310,8 +371,107 @@ Functionalities necessary only for the section 'my documents'.
 @for GeneralDocumentReady
 **/
 function sectionDocumentsDocumentReady() {
+  $body.on('click', '#my_documents .buttons .preview', function() {
+    showDocumentInfoPopUp($(this).data('document-id'));
+  });
+  $body.on('click', '#my_documents .buttons .destroy', function() {
+    var current_url = $('#info_container').data('currenturl');
+    var document_id = $(this).data('document-id');
+    var captions = $captions;
+    var title = captions.data('destroy-document-title');
+    var confirm = captions.data('destroy-document-confirm');
+    var yes = captions.data('destroy-document-yes');
+    var no = captions.data('destroy-document-no');
+    if($(this).data('used-in-your-lessons')) {
+      confirm = captions.data('destroy-document-confirm-bis');
+    }
+    showConfirmPopUp(title, confirm, yes, no, function() {
+      $('#dialog-confirm').hide();
+      var redirect_url = addDeleteItemToCurrentUrl(current_url, 'document_' + document_id);
+      $.ajax({
+        type: 'delete',
+        dataType: 'json',
+        url: '/documents/' + document_id,
+        success: function(data) {
+          if(data.ok) {
+            $.ajax({
+              type: 'get',
+              url: redirect_url
+            });
+          } else {
+            showErrorPopUp(data.msg);
+          }
+        }
+      });
+      closePopUp('dialog-confirm');
+    }, function() {
+      closePopUp('dialog-confirm');
+    });
+  });
+  $body.on('change', '#order_documents', function() {
+    var order = $('#order_documents option:selected').val();
+    var word = $('#search_documents ._word_input').val();
+    var word_placeholder = $('#search_documents_placeholder').val();
+    $('#search_documents_hidden_order').val(order);
+    $.get('/documents?word=' + word + '&word_placeholder=' + word_placeholder + '&order=' + order);
+  });
+  $body.on('keydown', '.dialogDocument .wrapper .change-info .part2 .title, .dialogDocument .wrapper .change-info .part2 .description', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('click', '.dialogDocument .menu .close', function() {
+    closePopUp($(this).parents('.dialogDocument').attr('id'));
+  });
+  $body.on('click', '.dialogDocument .menu .change-info', function() {
+    var container = $(this).parents('.dialogDocument');
+    var form = container.find('.wrapper .change-info');
+    if($(this).hasClass('encendido')) {
+      form.hide();
+      container.find('.preview').show();
+      resetDocumentChangeInfo(form);
+      $(this).removeClass('encendido');
+    } else {
+      container.find('.preview').hide();
+      form.show();
+      $(this).addClass('encendido');
+      disableTagsInputTooHigh(form.find('.part2 ._tags_container'));
+    }
+  });
+  $body.on('click', '.dialogDocument .wrapper .change-info .part3 .close', function() {
+    var container = $(this).parents('.dialogDocument');
+    var form = container.find('.wrapper .change-info');
+    form.hide();
+    container.find('.preview').show();
+    container.find('.menu .change-info').removeClass('encendido');
+    resetDocumentChangeInfo(form);
+  });
+  $body.on('click', '.dialogDocument .wrapper .change-info .part3 .submit', function() {
+    var container = $(this).parents('.dialogDocument');
+    container.find('form').submit();
+  });
+  $body.on('click', '.dialogDocument .wrapper .change-info .errors_layer', function() {
+    var myself = $(this);
+    var container = myself.parents('.dialogDocument').find('.wrapper .change-info');
+    myself.hide();
+    container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
+  });
   $('#order_documents option[selected]').first().attr('selected', 'selected');
   $('#order_documents').selectbox();
+  $body.on('keydown', '#search_documents ._word_input', function(e) {
+    if(e.which == 13) {
+      e.preventDefault();
+    } else if(e.which != 39 && e.which != 37) {
+      var letters = $(this).data('letters');
+      letters += 1;
+      $(this).data('letters', letters);
+      $('#search_documents ._loader').show();
+      setTimeout(function() {
+        if($('#search_documents ._word_input').data('letters') == letters) {
+          $('#search_documents ._loader').hide();
+          $('#search_documents').submit();
+        }
+      }, 1500);
+    }
+  });
 }
 
 /**
@@ -320,6 +480,7 @@ Functionalities necessary only for the section 'my lessons'.
 @for GeneralDocumentReady
 **/
 function sectionLessonsDocumentReady() {
+  initSearchTagsAutocomplete('#general_tag_reader_for_search', 'lesson');
   $('#filter_lessons option[selected]').first().attr('selected', 'selected');
   $body.on('change', '#filter_lessons', function() {
     var filter = $('#filter_lessons option:selected').val();
@@ -335,6 +496,7 @@ Functionalities necessary only for the section 'my media elements'.
 @for GeneralDocumentReady
 **/
 function sectionMediaElementsDocumentReady() {
+  initSearchTagsAutocomplete('#general_tag_reader_for_search', 'media_element');
   $('#filter_media_elements option[selected]').first().attr('selected', 'selected');
   $body.on('change', '#filter_media_elements', function() {
     var filter = $('#filter_media_elements option:selected').val();
@@ -408,7 +570,7 @@ function sectionNotificationsDocumentReady() {
       }
     }
     if(my_report.length > 0 && $(e.target).parents('#' + my_report.attr('id')).length == 0) {
-      my_report.parent().find('.report_light, ._reportable_lesson_icon').click();
+      my_report.parent().find('.report').click();
     }
   });
   $('#which_item_to_search option[selected]').first().attr('selected', 'selected');
@@ -432,11 +594,43 @@ function sectionSearchDocumentReady() {
   $('#filter_search_media_elements').selectbox();
   $('#filter_search_lessons_subject').selectbox();
   $('#filter_search_lessons_school_level').selectbox();
+  initSearchTagsAutocomplete('#lessons_tag_reader_for_search', 'lesson');
+  initSearchTagsAutocomplete('#media_elements_tag_reader_for_search', 'media_element');
 }
 
 
 
 
+
+/**
+Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink "BrowserSupportMain/browserSupportMain:method"}}{{/crossLink}}
+@method browserSupport
+@for GeneralMiscellanea
+**/
+function browserSupport() {
+}
+
+/**
+Hides the mini thumbnail of a compact media element.
+@method hideMiniThumbnailForMediaElementCompact
+@for GeneralMiscellanea
+@param item {Object} the compact media element
+**/
+function hideMiniThumbnailForMediaElementCompact(item) {
+  item.data('loaded-mini-thumb', false);
+  var mini = item.find('.mini_thumb');
+  mini.hide('fade', {}, 200, function() {
+    if(mini.hasClass('audio') || mini.hasClass('video')) {
+      type = 'video';
+      if(mini.hasClass('audio')) {
+        type = 'audio';
+      }
+      var media = mini.find(type);
+      media[0].pause();
+      setCurrentTimeToMedia(media, 0);
+    }
+  });
+}
 
 /**
 Initializes global variables used throughout the javascripts.
@@ -494,12 +688,71 @@ function secondsToDateString(seconds) {
 }
 
 /**
-Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink "BrowserSupportMain/browserSupportMain:method"}}{{/crossLink}}
-@method browserSupport
+Handles the errors inside standard forms.
+@method showFormErrors
 @for GeneralMiscellanea
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
+@param errors {Hash} a hash of the kind 'field': 'error'. It can't be undefined!
 **/
-function browserSupport() {
+function showFormErrors(container, errors) {
+  container.find('.form_error').removeClass('form_error');
+  container.find('.errors_layer').hide();
+  $.each(errors, function(key, value) {
+    if(key == 'full') {
+      container.find('form').hide();
+      container.find('.full_folder .msge').text(value);
+      container.find('.full_folder').show();
+    } else {
+      var layer = container.find('.errors_layer.' + key);
+      layer.text(value).show();
+      container.find(layer.data('form-error-selector')).addClass('form_error');
+    }
+  });
+  container.data('loader-can-move', false).data('loader-with-errors', true);
 }
+
+/**
+Shows the mini thumbnail of a compact media element.
+@method showMiniThumbnailForMediaElementCompact
+@for GeneralMiscellanea
+@param item {Object} the compact media element
+**/
+function showMiniThumbnailForMediaElementCompact(item) {
+  item.data('loaded-mini-thumb', true);
+  var position = 'below';
+  var prev = item.prev();
+  if(prev.length > 0) {
+    prev = prev.prev();
+    if(prev.length > 0 && prev.prev().length > 0) {
+      position = 'above';
+    }
+  }
+  var mini = item.find('.mini_thumb');
+  mini.removeClass('above below').addClass(position).show('fade', {}, 200, function() {
+    if(mini.hasClass('audio') || mini.hasClass('video')) {
+      type = 'video';
+      type_src_1 = 'mp4';
+      type_src_2 = 'webm';
+      if(mini.hasClass('audio')) {
+        type = 'audio';
+        type_src_1 = 'm4a';
+        type_src_2 = 'ogg';
+      }
+      media = mini.find(type);
+      if(!media.data('loaded')) {
+        media.find('source[type="' + type + '/' + type_src_1 + '"]').attr('src', media.data(type_src_1));
+        media.find('source[type="' + type + '/' + type_src_2 + '"]').attr('src', media.data(type_src_2));
+        media.load();
+        media.data('loaded', true);
+      }
+      media[0].play();
+    }
+  });
+}
+
+
+
+
 
 /**
 Removes a parameter from an url.

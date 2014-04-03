@@ -126,20 +126,17 @@ class ImageEditorController < ApplicationController
   #
   def save
     if @ok
+      params_with_standard_keys('new')
       @image.enter_edit_mode current_user.id
       @redirect = false
       new_image = Image.new
-      new_image.title = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
-      new_image.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
-      new_image.tags = params[:new_tags_value]
+      new_image.title = params[:title_placeholder] != '0' ? '' : params[:title]
+      new_image.description = params[:description_placeholder] != '0' ? '' : params[:description]
+      new_image.tags = params[:tags]
       new_image.user_id = current_user.id
       new_image.media = File.open @image.current_editing_image
       new_image.save_tags = true
-      if !new_image.save
-        @error_ids = 'new'
-        @errors = convert_item_error_messages(new_image.errors)
-        @error_fields = new_image.errors.messages.keys
-      end
+      @errors = convert_media_element_error_messages(new_image.errors) if !new_image.save
     else
       @redirect = true
     end
@@ -160,17 +157,16 @@ class ImageEditorController < ApplicationController
   #
   def overwrite
     if @ok
+      params_with_standard_keys('edit')
       @redirect = false
       @image.enter_edit_mode current_user.id
-      @image.title = params[:update_title]
-      @image.description = params[:update_description]
-      @image.tags = params[:update_tags_value]
+      @image.title = params[:title]
+      @image.description = params[:description]
+      @image.tags = params[:tags]
       @image.media = File.open @image.current_editing_image
       @image.save_tags = true
       if !@image.save
-        @error_ids = 'update'
-        @errors = convert_item_error_messages(@image.errors)
-        @error_fields = @image.errors.messages.keys
+        @errors = convert_media_element_error_messages(@image.errors)
       else
         MediaElementsSlide.where(:media_element_id => @image.id).each do |mes|
           mes.alignment = 0
@@ -184,6 +180,13 @@ class ImageEditorController < ApplicationController
   end
   
   private
+  
+  # Sets the variable params[] with the regular keys like :title, :description, :tags
+  def params_with_standard_keys(scope)
+    params[:title] = params[:"#{scope}_title"]
+    params[:description] = params[:"#{scope}_description"]
+    params[:tags] = params[:"#{scope}_tags"]
+  end
   
   # Extracts the params of the textareas in the image
   def extract_textareas_params(params)

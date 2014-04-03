@@ -5,7 +5,7 @@
     <form data-remote="true" method="post">
       <%= text_area_tag 'details', '', :id => 'lesson_notify_modification_details' %>
       <%= hidden_field_tag 'details_placeholder', '', :id => 'lesson_notify_modification_details_placeholder' %>
-      <br class="clearfloat">
+      <br class="clearfloat"/>
       <%= submit_tag t('lessons.notify_modifications.do'), :class => '_yes' %>
       <a class="_no"><%= t('lessons.notify_modifications.cancel') %></a>
     </form>

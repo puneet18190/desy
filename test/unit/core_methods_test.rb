@@ -169,12 +169,16 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert VirtualClassroomLesson.where(:lesson_id => 2).any?
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).any?
     assert_equal 3, MediaElement.where(:is_public => true).count
-    assert Notification.where(:user_id => 1, :message => I18n.t('notifications.lessons.unpublished', :lesson_title => 'string', :user_name => 'eef fuu')).empty?
+    assert Notification.where(:user_id => 1, :message => I18n.t('notifications.lessons.unpublished.message', :lesson_title => 'string', :user_name => 'eef fuu')).empty?
     assert x.unpublish
     assert !Lesson.find(x.id).is_public
     assert VirtualClassroomLesson.where(:lesson_id => 2).empty?
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).empty?
-    assert Notification.where(:user_id => 1, :message => I18n.t('notifications.lessons.unpublished', :lesson_title => 'string', :user_name => 'eef fuu')).any?, Notification.where(:user_id => 1).inspect
+    not_if_ication = Notification.where(:user_id => 1, :message => I18n.t('notifications.lessons.unpublished.message', :lesson_title => 'string', :user_name => 'eef fuu'))
+    assert not_if_ication.any?, Notification.where(:user_id => 1).inspect
+    assert_equal 1, not_if_ication.length
+    assert_equal I18n.t('notifications.lessons.unpublished.title'), not_if_ication.first.title
+    assert_equal '', not_if_ication.first.basement
     assert_equal 3, MediaElement.where(:is_public => true).count
     lesson = Lesson.find 1
     assert lesson.publish
@@ -210,10 +214,12 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 1, x.errors.messages[:base].length
     assert x.errors.added? :base, :problem_destroying
     x = Lesson.find 2
-    assert Notification.where(:message => I18n.t('notifications.lessons.destroyed', :lesson_title => 'string', :user_name => 'eef fuu')).empty?
+    assert Notification.where(:message => I18n.t('notifications.lessons.destroyed.message', :lesson_title => 'string', :user_name => 'eef fuu')).empty?
     assert x.destroy_with_notifications
-    x = Notification.where(:message => I18n.t('notifications.lessons.destroyed', :lesson_title => 'string', :user_name => 'eef fuu')).first
+    x = Notification.where(:message => I18n.t('notifications.lessons.destroyed.message', :lesson_title => 'string', :user_name => 'eef fuu')).first
     assert_equal 1, x.user_id
+    assert_equal I18n.t('notifications.lessons.destroyed.title'), x.title
+    assert_equal '', x.basement
     assert !Lesson.exists?(2)
   end
   
@@ -237,7 +243,9 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal (n_count + 1), Notification.count
     notif_new = Notification.where('id > ?', n_last)
     assert_equal 1, notif_new.length
-    assert_equal I18n.t('notifications.lessons.modified', :lesson_title => 'string', :link => '/lessons/2/view', :message => I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => 'Documento 2')), notif_new.first.message
+    assert_equal I18n.t('notifications.lessons.modified.title'), notif_new.first.title
+    assert_equal I18n.t('notifications.lessons.modified.message', :lesson_title => 'string', :message => I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => 'Documento 2')), notif_new.first.message
+    assert_equal I18n.t('notifications.lessons.modified.basement', :lesson_title => 'string', :link => '/lessons/2/view'), notif_new.first.basement
     assert_equal 1, notif_new.first.user_id
     n_last = Notification.order('id ASC').last.id
     d1 = Document.find_by_id 1
@@ -248,9 +256,15 @@ class CoreMethodsTest < ActiveSupport::TestCase
     notif_new = Notification.where('id > ?', n_last)
     assert_equal 2, notif_new.length
     assert_equal 1, notif_new.where(:user_id => 1).length
-    assert_equal I18n.t('notifications.lessons.modified', :lesson_title => 'string', :link => '/lessons/2/view', :message => I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => 'Documento 1')), notif_new.where(:user_id => 1).first.message
+    notif_newaa = notif_new.where(:user_id => 1).first
+    assert_equal I18n.t('notifications.lessons.modified.title'), notif_newaa.title
+    assert_equal I18n.t('notifications.lessons.modified.message', :lesson_title => 'string', :message => I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => 'Documento 1')), notif_newaa.message
+    assert_equal I18n.t('notifications.lessons.modified.basement', :lesson_title => 'string', :link => '/lessons/2/view'), notif_newaa.basement
     assert_equal 1, notif_new.where(:user_id => 2).length
-    assert_equal I18n.t('notifications.documents.destroyed', :lesson_title => 'string', :document_title => 'Documento 1', :link => '/lessons/2/view'), notif_new.where(:user_id => 2).first.message
+    notif_newaa2 = notif_new.where(:user_id => 2).first
+    assert_equal I18n.t('notifications.documents.destroyed.title'), notif_newaa2.title
+    assert_equal I18n.t('notifications.documents.destroyed.message', :document_title => 'Documento 1', :lesson_title => 'string'), notif_newaa2.message
+    assert_equal I18n.t('notifications.documents.destroyed.basement', :lesson_title => 'string', :link => '/lessons/2/view'), notif_newaa2.basement
     assert_nil Document.find_by_id 1
     assert_nil DocumentsSlide.find_by_id 1
   end

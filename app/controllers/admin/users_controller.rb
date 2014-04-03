@@ -32,7 +32,7 @@ class Admin::UsersController < AdminController
     @locations = [Location.roots.order(:name)]
     if params[:search]
       location = Location.get_from_chain_params params[:search]
-      @locations = location.get_filled_select if location
+      @locations = location.select_without_selected if location
     end
   end
   
@@ -170,6 +170,24 @@ class Admin::UsersController < AdminController
     @user.active = true
     @user.save
     redirect_to admin_user_path(@user)
+  end
+  
+  # === Description
+  #
+  # Sends again the email confirmation to an unconfirmed user.
+  #
+  # === Mode
+  #
+  # Js
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
+  def reconfirm
+    @user = User.find params[:id]
+    UserMailer.account_confirmation(@user).deliver
+    @message = t('admin.users.actions.reconfirm_sent', :email => @user.email)
   end
   
 end

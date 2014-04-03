@@ -616,7 +616,7 @@
                 <pre><span class="ruby-comment"># File lib/autoload/slide/math_images.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_a</span>(<span class="ruby-identifier">modality</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">modality</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">:with_folder</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:full_path</span>
     <span class="ruby-identifier">_folder</span> = <span class="ruby-identifier">folder</span>
     <span class="ruby-keyword">super</span>().<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">_folder</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">v</span>) }
   <span class="ruby-keyword">else</span>

@@ -36,8 +36,8 @@ html.documents-controller {
       .contentInterno {
         
         float: left;
-        width: 99%;
-        padding: 9px 0 9px 1%;
+        width: 100%;
+        padding: 9px 0 9px 0;
         height: 38px;
         
         div {
@@ -63,6 +63,7 @@ html.documents-controller {
           padding: 4px 0px 2px 0px;
           display: inline-block;
           margin-right: 1.8%;
+          margin-left: 18px;
           
           img {
             
@@ -85,7 +86,7 @@ html.documents-controller {
         p {
           
           padding-top: 0.6%;
-          text-align: center;
+          text-align: left;
           float: left;
           
         }

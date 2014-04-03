@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -122,6 +120,8 @@
                 <li><a href="../classes/ImageEditorImageScale.html">ImageEditorImageScale</a></li>
             
                 <li><a href="../classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
+            
+                <li><a href="../classes/JqueryBrowsersDetection.html">JqueryBrowsersDetection</a></li>
             
                 <li><a href="../classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
@@ -187,13 +187,13 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
-            
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
+            
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -243,13 +243,13 @@
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
             
-                <li><a href="../modules/documents.html">documents</a></li>
-            
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
                 <li><a href="../modules/general.html">general</a></li>
             
                 <li><a href="../modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="../modules/jquery-browsers.html">jquery-browsers</a></li>
             
                 <li><a href="../modules/jquery-patches.html">jquery-patches</a></li>
             
@@ -379,6 +379,13 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_reloadGalleryInLessonEditor">reloadGalleryInLessonEditor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_removeGalleryInLessonEditor">removeGalleryInLessonEditor</a>
 
                                 
@@ -485,7 +492,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l705"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:705</code></a>
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l853"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:853</code></a>
         
         </p>
 
@@ -574,7 +581,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l715"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:715</code></a>
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l863"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:863</code></a>
         
         </p>
 
@@ -663,7 +670,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l733"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:733</code></a>
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l881"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:881</code></a>
         
         </p>
 
@@ -694,6 +701,205 @@
 
                     <div class="param-description">
                         <p>the id of the slide</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_reloadGalleryInLessonEditor" class="method item">
+    <h3 class="name"><code>reloadGalleryInLessonEditor</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>selector</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>type</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>gallery</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>pages</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>count</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>item_id</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l893"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:893</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">selector</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>HTML selector for the specific uploader (audio, video, image or document)</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">type</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>&#39;image&#39;, &#39;audio&#39;, &#39;video&#39;, or &#39;document&#39;</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">gallery</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the HTML content to be replaced into the gallery, if the uploading was successful</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">pages</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>number of pages of the newly loaded gallery</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">count</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>number of elements inside the gallery</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">item_id</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>id of the newly loaded item (used only for documents)</p>
 
                     </div>
 
@@ -752,7 +958,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l745"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:745</code></a>
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l959"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:959</code></a>
         
         </p>
 
@@ -847,7 +1053,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l757"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:757</code></a>
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l971"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:971</code></a>
         
         </p>
 
@@ -942,7 +1148,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l788"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:788</code></a>
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l1002"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:1002</code></a>
         
         </p>
 
@@ -1013,7 +1219,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l825"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:825</code></a>
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l1039"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:1039</code></a>
         
         </p>
 
@@ -1118,7 +1324,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l851"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:851</code></a>
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l1065"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:1065</code></a>
         
         </p>
 
@@ -1207,7 +1413,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l900"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:900</code></a>
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l1114"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:1114</code></a>
         
         </p>
 
@@ -1286,7 +1492,7 @@
             
         
         
-        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l918"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:918</code></a>
+        <a href="../files/app_assets_javascripts_lesson_editor.js.html#l1132"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:1132</code></a>
         
         </p>
 

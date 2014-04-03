@@ -7,6 +7,12 @@
 #
 class ApplicationController < ActionController::Base
   
+  # Locattion types, extracted from settings.yml
+  LOCATION_TYPES = SETTINGS['location_types']
+  
+  # The kind of last location, extracted from settings.yml
+  LAST_LOCATION = LOCATION_TYPES.last.downcase
+  
   # List of actions that in no case require the autentication.
   OUT_OF_AUTHENTICATION_ACTIONS = [:page_not_found, :browser_not_supported]
   OUT_OF_AUTHENTICATION_ACTIONS << :set_locale if Rails.application.config.more_than_one_language
@@ -17,7 +23,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate, :initialize_location, :initialize_players_counter, :except => OUT_OF_AUTHENTICATION_ACTIONS
   
   helper_method :current_user, :personificated_user
-
+  
   # In *production* environment pages with 404 status are catched by the web server, so we don't make the effort to render a 404 page
   def page_not_found
     render layout: false, text: '<h1>Page not found</h1>', status: :not_found
@@ -26,7 +32,7 @@ class ApplicationController < ActionController::Base
   def browser_not_supported
     render layout: false, partial: 'shared/browser_not_supported'
   end
-
+  
   def unauthorized
     render layout: false, text: '401 Unauthorized', status: :unauthorized
   end
@@ -238,85 +244,87 @@ class ApplicationController < ActionController::Base
     @ok = !!(@ok && condition)
   end
   
-  # Used for errors in forms of elements general information: converts an item of type ActiveModel::Errors into a translated message for the user.
-  def convert_item_error_messages(errors_ext)
-    errors = errors_ext.messages
-    resp = []
-    media_errors = errors.delete(:media)
-    sti_type_errors = errors.delete(:sti_type)
-    subject_id_errors = errors.delete(:subject_id)
-    if errors.has_key?(:title) || errors.has_key?(:description)
-      resp << t('forms.error_captions.fill_all_the_fields_or_too_long')
-    end
-    flag = false
-    if errors.has_key? :tags
-      resp << t('forms.error_captions.tags_are_not_enough') if errors_ext.added? :tags, :are_not_enough
-      resp << t('forms.error_captions.tags_too_many') if errors_ext.added? :tags, :too_many
-    end
-    errors[:media] = media_errors if !media_errors.nil?
-    errors[:sti_type] = sti_type_errors if !sti_type_errors.nil?
-    errors[:subject_id] = subject_id_errors if !subject_id_errors.nil?
+  # Used for errors of a lesson.
+  def convert_lesson_error_messages(errors)
+    resp = {}
+    max_title = t('language_parameters.lesson.length_title')
+    max_description = t('language_parameters.lesson.length_description')
+    resp[:title] = t('forms.error_captions.title_too_long', :max => max_title).downcase if errors.added? :title, :too_long, {:count => max_title}
+    resp[:title] = t('forms.error_captions.title_blank').downcase if errors.added? :title, :blank
+    resp[:description] = t('forms.error_captions.description_too_long', :max => max_description).downcase if errors.added? :description, :too_long, {:count => max_description}
+    resp[:description] = t('forms.error_captions.description_blank').downcase if errors.added? :description, :blank
+    resp[:tags] = t('forms.error_captions.tags_are_not_enough').downcase if errors.added? :tags, :are_not_enough
+    resp[:tags] = t('forms.error_captions.tags_too_many').downcase if errors.added? :tags, :too_many
+    resp[:subject_id] = t('forms.error_captions.subject_missing_in_lesson').downcase if errors.added? :subject_id, :blank
     resp
   end
   
-  # Used for errors in forms of lessons general information: converts an item of type ActiveModel::Errors into a translated message for the user.
-  def convert_lesson_editor_messages(errors)
-    resp = convert_item_error_messages errors
-    resp << t('forms.error_captions.subject_missing_in_lesson') if errors.has_key? :subject_id
-    resp
-  end
-  
-  # Used for errors in forms of element uploader: converts an item of type ActiveModel::Errors into a translated message for the user.
-  def convert_media_element_uploader_messages(errors)
-    return [t('forms.error_captions.media_folder_size_exceeded')] if errors.added? :media, :folder_size_exceeded
-    resp = convert_item_error_messages errors
+  # Used for errors of a media element.
+  def convert_media_element_error_messages(errors)
+    return {:full => t('forms.error_captions.media_folder_size_exceeded')} if errors.added? :media, :folder_size_exceeded
+    resp = {}
+    max_title = t('language_parameters.media_element.length_title')
+    max_description = t('language_parameters.media_element.length_description')
+    resp[:title] = t('forms.error_captions.title_too_long', :max => max_title).downcase if errors.added? :title, :too_long, {:count => max_title}
+    resp[:title] = t('forms.error_captions.title_blank').downcase if errors.added? :title, :blank
+    resp[:description] = t('forms.error_captions.description_too_long', :max => max_description).downcase if errors.added? :description, :too_long, {:count => max_description}
+    resp[:description] = t('forms.error_captions.description_blank').downcase if errors.added? :description, :blank
+    resp[:tags] = t('forms.error_captions.tags_are_not_enough').downcase if errors.added? :tags, :are_not_enough
+    resp[:tags] = t('forms.error_captions.tags_too_many').downcase if errors.added? :tags, :too_many
     if errors.messages.has_key?(:media) && errors.messages[:media].any?
-      return ([t('forms.error_captions.media_blank')] + resp) if errors.added? :media, :blank
-      if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil?
-        return [t('forms.error_captions.media_unsupported_format')] + resp
-      end
-      return [t('forms.error_captions.media_generic_error')] + resp
+      resp[:media] = t('forms.error_captions.media_unsupported_format').downcase if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil?
+      resp[:media] = t('forms.error_captions.media_blank').downcase if errors.added? :media, :blank
+      resp[:media] = t('forms.error_captions.media_generic_error').downcase if !resp.has_key? :media
     else
-      if errors.messages.has_key? :sti_type
-        return [t('forms.error_captions.media_unsupported_format')] + resp
-      else
-        return resp
-      end
+      resp[:media] = t('forms.error_captions.media_unsupported_format').downcase if errors.messages.has_key? :sti_type
     end
-  end
-  
-  # Used for errors in forms of load documents.
-  def convert_document_uploader_messages(errors)
-    return [t('forms.error_captions.document_folder_size_exceeded')] if errors.added? :attachment, :folder_size_exceeded
-    resp = []
-    resp << t('forms.error_captions.fill_all_the_fields_or_too_long') if errors.messages.has_key?(:title) || errors.messages.has_key?(:description)
-    resp << t('forms.error_captions.document_blank') if errors.messages.has_key?(:attachment) && errors.messages[:attachment].any?
     resp
   end
   
-  # Used for errors in forms of user profile: converts an item of type ActiveModel::Errors into a translated message for the user.
+  # Used for errors of a document.
+  def convert_document_error_messages(errors)
+    return {:full => t('forms.error_captions.document_folder_size_exceeded')} if errors.added? :attachment, :folder_size_exceeded
+    resp = {}
+    max_title = t('language_parameters.document.length_title')
+    max_description = t('language_parameters.document.length_description')
+    resp[:title] = t('forms.error_captions.title_too_long', :max => max_title).downcase if errors.added? :title, :too_long, {:count => max_title}
+    resp[:title] = t('forms.error_captions.title_blank').downcase if errors.added? :title, :blank
+    resp[:description] = t('forms.error_captions.description_too_long', :max => max_description).downcase if errors.added? :description, :too_long, {:count => max_description}
+    resp[:description] = t('forms.error_captions.description_blank').downcase if errors.added? :description, :blank
+    resp[:media] = t('forms.error_captions.document_blank').downcase if errors.messages.has_key?(:attachment) && errors.messages[:attachment].any?
+    resp
+  end
+  
+  # Used for errors of a user.
   def convert_user_error_messages(errors)
     pas_min = SETTINGS['minimum_password_length']
     pas_max = SETTINGS['maximum_password_length']
     resp = {
-      :general => [],
+      :general  => [],
       :subjects => [],
-      :policies => []
+      :policies => [],
+      :purchase => []
     }
     resp[:general] << t('forms.error_captions.fill_all_the_fields_or_too_long') if (errors.messages.keys & [:name, :surname]).any?
-    resp[:general] << t('forms.error_captions.not_valid_email') if errors.messages.has_key? :email
     resp[:subjects] << t('forms.error_captions.select_at_least_a_subject') if errors.messages.has_key? :users_subjects
-    if errors.messages.has_key? :password
-      if errors.added?(:password, :too_short, {:count => pas_min}) || errors.added?(:password, :too_long, {:count => pas_max})
+    if errors.messages.has_key?(:password) || errors.messages.has_key?(:password_confirmation)
+      if errors.messages.has_key?(:password) && (errors.added?(:password, :too_short, {:count => pas_min}) || errors.added?(:password, :too_long, {:count => pas_max}))
         if pas_max.nil?
           resp[:general] << t('forms.error_captions.password_too_short', :min => pas_min)
         else
           resp[:general] << t('forms.error_captions.password_not_in_range', :min => pas_min, :max => pas_max)
         end
-      elsif errors.added? :password, :confirmation
+      elsif errors.messages.has_key?(:password_confirmation) && errors.added?(:password_confirmation, :confirmation, :attribute => 'Password')
         resp[:general] << t('forms.error_captions.password_doesnt_match_confirmation')
       else
         resp[:general] << t('forms.error_captions.invalid_password')
+      end
+    end
+    if errors.messages.has_key?(:email) || errors.messages.has_key?(:email_confirmation)
+      if errors.messages.has_key?(:email_confirmation) && errors.added?(:email_confirmation, :confirmation, :attribute => 'Email')
+        resp[:general] << t('forms.error_captions.email_doesnt_match_confirmation')
+      else
+        resp[:general] << t('forms.error_captions.not_valid_email')
       end
     end
     SETTINGS['user_registration_policies'].each_with_index do |policy, index|
@@ -324,8 +332,41 @@ class ApplicationController < ActionController::Base
         resp[:policies] << t('forms.error_captions.policy_not_accepted', :policy => t('registration.policies')[index]['title'])
       end
     end
-    resp[:purchase_id] = t('forms.error_captions.invalid_purchase_id') if errors.added?(:purchase_id, :doesnt_exist)
+    resp[:purchase] << t('forms.error_captions.invalid_purchase_id') if errors.messages.has_key? :purchase_id
     resp
+  end
+  
+  # Initializes the registration_form
+  def initialize_registration_form(subject_ids=[])
+    @subject_ids = subject_ids
+    @trial = params[:trial].present?
+    @purchase_id = params[:purchase_id]
+    initialize_general_profile(Location.new)
+    initialize_subjects_profile(false)
+  end
+  
+  # Initializes the local variables for general profile
+  def initialize_general_profile(user_location)
+    @location_types = LOCATION_TYPES
+    @school_levels = SchoolLevel.order(:description)
+    location = user_location
+    location = Location.get_from_chain_params(params[:location]) if params[:location].present?
+    if @user.purchase && @user.purchase.location
+      @forced_location = @user.purchase.location
+      if location && location.is_descendant_of?(@forced_location)
+        @locations = location.select_with_selected
+      else
+        @locations = @forced_location.select_with_selected
+      end
+    else
+      @locations = (location.nil? ? Location.new : location).select_with_selected
+    end
+  end
+  
+  # Initializes the local variables for updating subjects in the profile
+  def initialize_subjects_profile(with_users_subjects)
+    @subjects = Subject.extract_with_cathegories
+    @subject_ids = UsersSubject.where(:user_id => @user.id).pluck(:subject_id) if with_users_subjects
   end
   
   # Checks if there is a logged user

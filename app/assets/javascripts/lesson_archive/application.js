@@ -13,6 +13,7 @@
 //= require underscore
 //= require url_parser
 //= require jquery
+//= require ../jquery_browser
 //= require ../jquery_patches
 //= require jquery_ujs
 //= require jquery.mousewheel
@@ -40,8 +41,8 @@ $(document).ready(function() {
   lessonViewerDocumentReadyDocuments();
   playersDocumentReadyGeneral();
   var footer = $('#footer');
-  footer.css('top', ($window.height() - 40) + 'px').css('width', ($window.width() - 24) + 'px');
+  footer.css('top', ($window.height() - 44) + 'px').css('width', $window.width() + 'px');
   $window.resize(function() {
-    footer.css('top', ($window.height() - 40) + 'px').css('width', ($window.width() - 24) + 'px');
+    footer.css('top', ($window.height() - 44) + 'px').css('width', $window.width() + 'px');
   });
 });

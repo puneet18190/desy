@@ -30,11 +30,9 @@ class Admin::MessagesController < AdminController
     @locations = [Location.roots.order(:name)]
     if params[:search]
       location = Location.get_from_chain_params params[:search]
-      @locations = location.get_filled_select if location
+      @locations = location.select_without_selected if location
     end
-    if params[:users]
-      @users = User.find(params[:users].gsub(/[\[\]\"]/, '').split(','))
-    end
+    @users = User.find(params[:users].gsub(/[\[\]\"]/, '').split(',')) if params[:users]
   end
   
   # === Description
@@ -53,12 +51,12 @@ class Admin::MessagesController < AdminController
     if params[:search].present?
       if params[:send_message].present? && params[:message].present?
         if params[:all_users].present?
-          users = :all
+          users = User.pluck(:id)
         else
           users = AdminSearchForm.search_notifications_users(params[:search]).pluck('users.id')
         end
         if users.present?
-          send_notifications(users, params[:message].to_s)
+          send_notifications(users, params[:title], params[:message], params[:basement])
         end
         @reset_form = true
       else
@@ -87,8 +85,8 @@ class Admin::MessagesController < AdminController
   private
   
   # Uses Notification.send_to to send multiple messages organizing them in different threads
-  def send_notifications(users_ids, message)
-    Notification.send_to(users_ids, message)
+  def send_notifications(users_ids, title, message, basement)
+    Notification.send_to(users_ids, title, message, basement)
   end
   
 end

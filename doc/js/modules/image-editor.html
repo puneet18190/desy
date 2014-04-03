@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -122,6 +120,8 @@
                 <li><a href="../classes/ImageEditorImageScale.html">ImageEditorImageScale</a></li>
             
                 <li><a href="../classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
+            
+                <li><a href="../classes/JqueryBrowsersDetection.html">JqueryBrowsersDetection</a></li>
             
                 <li><a href="../classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
@@ -187,13 +187,13 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
-            
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
+            
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -243,13 +243,13 @@
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
             
-                <li><a href="../modules/documents.html">documents</a></li>
-            
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
                 <li><a href="../modules/general.html">general</a></li>
             
                 <li><a href="../modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="../modules/jquery-browsers.html">jquery-browsers</a></li>
             
                 <li><a href="../modules/jquery-patches.html">jquery-patches</a></li>
             
@@ -336,7 +336,7 @@ Clicking on the icon &#39;crop&#39;, the user enters in the <b>crop mode</b>: th
 <br/><br/>
 The image in editing is conserved in a temporary folder, together with the version of the image before the last step of editing. Each time a new operation is performed, the temporary image is saved in the place of its old version: this way it&#39;s always possible to undo the last operation (there is a specific route for this, initialized in the method <a href="../classes/ImageEditorDocumentReady.html#method_imageEditorDocumentReadyUndo" class="crosslink">imageEditorDocumentReadyUndo</a>).
 <br/><br/>
-As for the other Element Editors (<a href="../modules/audio-editor.html">audio-editor</a>, <a href="../modules/video-editor.html">video-editor</a>) the core of the process of committing changes is handled in the module <a href="../modules/media-element-editor.html">media-element-editor</a> (more specificly in the class <a href="../classes/MediaElementEditorForms.html" class="crosslink">MediaElementEditorForms</a>); the part of this functionality specific for the Image Editor is handled in <a href="../classes/ImageEditorDocumentReady.html#method_imageEditorDocumentReadyCommit" class="crosslink">imageEditorDocumentReadyCommit</a>.</p>
+As for the other Element Editors (<a href="../modules/audio-editor.html">audio-editor</a>, <a href="../modules/video-editor.html">video-editor</a>) the core of the process of committing changes is handled in the module <a href="../modules/media-element-editor.html">media-element-editor</a> (more specificly in the class <a href="../classes/MediaElementEditorForms.html" class="crosslink">MediaElementEditorForms</a>); the part of this functionality specific for the Image Editor is handled in <a href="../classes/MediaElementEditorDocumentReady.html#method_mediaElementEditorDocumentReady" class="crosslink">mediaElementEditorDocumentReady</a>.</p>
 
 </div>
 

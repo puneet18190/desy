@@ -167,7 +167,28 @@
           
           
             <div class="description">
-              
+              <h3 id="method-i-archive-label-Description">Description</h3>
+
+<p>Exports the lesson in format HTML</p>
+
+<h3 id="method-i-archive-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-archive-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
+
+<h3 id="method-i-archive-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonExportController.html#method-i-initialize_and_authenticate_for_lesson_export">#initialize_and_authenticate_for_lesson_export</a></p>
+</li><li>
+<p><a
+href="LessonExportController.html#method-i-redirect_or_setup">#redirect_or_setup</a></p>
+</li></ul>
             </div>
           
           
@@ -183,9 +204,13 @@
                 
               </p>
               <div id="method-i-archive_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lesson_export_controller.rb, line 20</span>
+                <pre><span class="ruby-comment"># File app/controllers/lesson_export_controller.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">archive</span>
-  <span class="ruby-ivar">@slides</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">preload</span>(<span class="ruby-value">:media_elements_slides</span>, {<span class="ruby-value">:media_elements_slides</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:media_element</span>}, <span class="ruby-value">:documents_slides</span>, {<span class="ruby-value">:documents_slides</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:document</span>}).<span class="ruby-identifier">order</span>(<span class="ruby-value">:position</span>)
+  <span class="ruby-ivar">@slides</span> = <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">preload</span>( <span class="ruby-value">:media_elements_slides</span>                    ,
+                                    { <span class="ruby-identifier">media_elements_slides</span><span class="ruby-operator">:</span> <span class="ruby-value">:media_element</span> } ,
+                                    <span class="ruby-value">:documents_slides</span>                         ,
+                                    { <span class="ruby-identifier">documents_slides</span><span class="ruby-operator">:</span> <span class="ruby-value">:document</span> }
+                                  ).<span class="ruby-identifier">order</span>(<span class="ruby-value">:position</span>)
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-constant">Export</span><span class="ruby-operator">::</span><span class="ruby-constant">Lesson</span><span class="ruby-operator">::</span><span class="ruby-constant">Archive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@lesson</span>, <span class="ruby-identifier">render_to_string</span>).<span class="ruby-identifier">url</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -203,7 +228,28 @@
           
           
             <div class="description">
-              
+              <h3 id="method-i-ebook-label-Description">Description</h3>
+
+<p>Exports the lesson in format EPUB</p>
+
+<h3 id="method-i-ebook-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-ebook-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
+
+<h3 id="method-i-ebook-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonExportController.html#method-i-initialize_and_authenticate_for_lesson_export">#initialize_and_authenticate_for_lesson_export</a></p>
+</li><li>
+<p><a
+href="LessonExportController.html#method-i-redirect_or_setup">#redirect_or_setup</a></p>
+</li></ul>
             </div>
           
           
@@ -219,7 +265,7 @@
                 
               </p>
               <div id="method-i-ebook_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lesson_export_controller.rb, line 25</span>
+                <pre><span class="ruby-comment"># File app/controllers/lesson_export_controller.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ebook</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-constant">Export</span><span class="ruby-operator">::</span><span class="ruby-constant">Lesson</span><span class="ruby-operator">::</span><span class="ruby-constant">Ebook</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@lesson</span>).<span class="ruby-identifier">url</span>
 <span class="ruby-keyword">end</span></pre>
@@ -238,7 +284,28 @@
           
           
             <div class="description">
-              
+              <h3 id="method-i-scorm-label-Description">Description</h3>
+
+<p>Exports the lesson in format SCORM</p>
+
+<h3 id="method-i-scorm-label-Mode">Mode</h3>
+
+<p>Html</p>
+
+<h3 id="method-i-scorm-label-Skipped+filters">Skipped filters</h3>
+<ul><li>
+<p><a
+href="ApplicationController.html#method-i-authenticate">ApplicationController#authenticate</a></p>
+</li></ul>
+
+<h3 id="method-i-scorm-label-Specific+filters">Specific filters</h3>
+<ul><li>
+<p><a
+href="LessonExportController.html#method-i-initialize_and_authenticate_for_lesson_export">#initialize_and_authenticate_for_lesson_export</a></p>
+</li><li>
+<p><a
+href="LessonExportController.html#method-i-redirect_or_setup">#redirect_or_setup</a></p>
+</li></ul>
             </div>
           
           
@@ -254,12 +321,22 @@
                 
               </p>
               <div id="method-i-scorm_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lesson_export_controller.rb, line 29</span>
+                <pre><span class="ruby-comment"># File app/controllers/lesson_export_controller.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">scorm</span>
-  <span class="ruby-comment">#rendered_slides = Hash[ slides.map do |record|</span>
-  <span class="ruby-comment">#  [ record.id, render_to_string template: &#39;lesson_export/scorm/slide.html&#39;, layout: &#39;lesson_scorm/slide&#39; ]</span>
-  <span class="ruby-comment">#end ]</span>
-  <span class="ruby-comment">#Export::Lesson::Scorm.new(@lesson, rendered_slides).url</span>
+  <span class="ruby-identifier">rendered_slides</span> = {}
+  <span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">slides</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">slide</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@slide_id</span> = <span class="ruby-identifier">slide</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">rendered_slides</span>[<span class="ruby-identifier">slide</span>.<span class="ruby-identifier">id</span>] = <span class="ruby-identifier">render_to_string</span>({
+      <span class="ruby-value">:template</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;lesson_viewer/slides/_#{slide.kind}&quot;</span>,
+      <span class="ruby-value">:layout</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;lesson_scorm&#39;</span>,
+      <span class="ruby-value">:locals</span>   =<span class="ruby-operator">&gt;</span> {
+        <span class="ruby-value">:slide</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">slide</span>,
+        <span class="ruby-value">:url_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">UrlTypes</span><span class="ruby-operator">::</span><span class="ruby-constant">SCORM_HTML</span>,
+        <span class="ruby-value">:loaded</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+      }
+    })
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-constant">Export</span><span class="ruby-operator">::</span><span class="ruby-constant">Lesson</span><span class="ruby-operator">::</span><span class="ruby-constant">Scorm</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@lesson</span>, <span class="ruby-identifier">rendered_slides</span>).<span class="ruby-identifier">url</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -278,7 +355,9 @@
           
           
             <div class="description">
-              
+              <p>Authenticates the user and checks the token if he is not authenticated.
+Similar to the filter in <a
+href="LessonViewerController.html">LessonViewerController</a></p>
             </div>
           
           
@@ -294,7 +373,7 @@
                 
               </p>
               <div id="method-i-initialize_and_authenticate_for_lesson_export_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lesson_export_controller.rb, line 38</span>
+                <pre><span class="ruby-comment"># File app/controllers/lesson_export_controller.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_and_authenticate_for_lesson_export</span>
   <span class="ruby-ivar">@lesson_id</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lesson_id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">find_by_id</span> <span class="ruby-ivar">@lesson_id</span>
@@ -326,7 +405,9 @@
           
           
             <div class="description">
-              
+              <p>Checks if the lesson is available, i.e. it doesn&#39;t contain audios or
+videos in conversion. Same filter in <a
+href="LessonEditorController.html">LessonEditorController</a></p>
             </div>
           
           
@@ -342,13 +423,16 @@
                 
               </p>
               <div id="method-i-redirect_or_setup_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/lesson_export_controller.rb, line 55</span>
+                <pre><span class="ruby-comment"># File app/controllers/lesson_export_controller.rb, line 122</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">redirect_or_setup</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@ok</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">dashboard_path</span>
     <span class="ruby-keyword">return</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-comment"># TODO controllare che non ci siano video o audio in conversione, e se sì renderizzare la pagina apposita</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@lesson</span>.<span class="ruby-identifier">available?</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;not_available&#39;</span>, <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;lesson_editor&#39;</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

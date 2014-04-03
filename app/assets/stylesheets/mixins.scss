@@ -59,23 +59,6 @@
   
 }
 
-@mixin stileElementiSceltaColori {
-  
-  padding: 5px;
-  outline: 1px solid #e6e6e6;
-  cursor: pointer;
-  float: left;
-  margin-left: 8px;
-  margin-top: 2px;
-  
-  &:hover, &.current {
-    
-    outline: 2px solid #fff;
-    
-  }
-  
-}
-
 @mixin slideshow($slidesAmount, $slideshowSel: ".slideshow", $slidesSel: ".slides", $slideSel: ".slide") {
   
   #{$slideshowSel} {
@@ -140,16 +123,6 @@
     cursor: pointer;
     
   }
-  
-}
-
-@mixin layoutIconElements {
-  
-  margin-right: 0px;
-  position: absolute;
-  bottom: 10px;
-  right: 3px;
-  font-size: 0.3em;
   
 }
 
@@ -342,7 +315,7 @@
   
   td.mceSelected, th.mceSelected {
     
-    background-color: #3399ff !important;
+    background-color: #3399FF !important;
     
   }
   
@@ -469,131 +442,6 @@
   
 }
 
-@mixin border-formatting {
-  
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  
-}
-
-@mixin iconEditorElement($font-size) {
-  
-  float: left;
-  width: $shared-editor-player-icon-size;
-  height: $shared-editor-player-icon-size;
-  background-image: $assets-icone-editor-elementi_svg;
-  background-repeat: no-repeat;
-  background-size: ($shared-editor-player-icon-size * 3) ($shared-editor-player-icon-size * 4);
-  padding: 0;
-  font-size: $font-size;
-  
-}
-
-@mixin iconeElements {
-  
-  background-size: 2.7em 8.1em;
-  width: 40%;
-  background-image: $assets-icon-elements_svg;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  float: left;
-  padding: 4px 0px 2px 50px;
-  display: inline-block;
-  margin-right: 1.8%;
-  
-}
-
-@mixin contentInterno {
-  
-  padding: 4%;
-  height: 110px;
-  
-}
-
-@mixin tagContainer {
-  
-  @include arial-with-line-height(13px, 20px);
-  display: block;
-  cursor: text;
-  resize: none;
-  border-radius: 10px;
-  padding: 0;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2) inset;
-  color: #fff;
-  outline: none;
-  overflow: auto;
-  position: relative;
-  
-  ._placeholder {
-    
-    position: absolute;
-    top: 5px;
-    left: 10px;
-    
-  }
-  
-  span {
-    
-    border-radius: 5px;
-    padding: 0 3px;
-    margin: 5px 0 0 5px;
-    background-color: #fff;
-    float: left;
-    color: #373737;
-    
-    a {
-      
-      display: block;
-      float: right;
-      width: 15px;
-      height: 15px;
-      background-repeat: no-repeat;
-      margin: 2px 2px 0px 5px;
-      color: #373737;
-      background-image: $assets-grigia_png;
-      
-      &:hover {
-        
-        background-image: $assets-bianca_png;
-        
-      }
-      
-    }
-    
-  }
-  
-  span.new_tag {
-    
-    a {
-      
-      background-image: $assets-grigia_png;
-      
-      &:hover {
-        
-        background-image: $assets-bianca_png;
-        
-      }
-      
-    }
-    
-  }
-  
-  #tags {
-    
-    overflow: visible;
-    clear: both;
-    border: none;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 0 10px;
-    box-shadow: none;
-    width: 295px;
-    height: auto;
-    
-  }
-  
-}
-
 @mixin call {
   
   z-index: 20;
@@ -653,7 +501,7 @@
     background-image: $assets-bg-title-editor_gif;
     background-repeat: repeat-x;
     background-position: top left;
-    background-color: #5f5f5f;
+    background-color: #5F5F5F;
     
   }
   
@@ -664,7 +512,7 @@
     
     &:hover {
       
-      color: #dedede;
+      color: #DEDEDE;
       
     }
     
@@ -793,7 +641,7 @@
     
     padding: 6px 12px 18px 12px;
     display: block;
-    background-color: #1c1c1c;
+    background-color: #1C1C1C;
     color: white;
     font-size: 12px;
     opacity: 0.85;

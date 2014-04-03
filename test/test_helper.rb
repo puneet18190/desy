@@ -28,6 +28,7 @@ class ActiveSupport::TestCase
     valid_long_email = "#{long_string(249)}@uo.it"
     valid_email = object.email
     valid_email_with_dots = 'fdsfdssf.ds@can.e.it'
+    valid_email_with_chars = "cas!\\#$%&'*+-/asfsa=?^_`{|}~afas@azzo.com"
     assert !object.class.pluck(:id).include?(valid_email_with_dots)
     assert !object.class.pluck(:id).include?(valid_long_email)
     assert_invalid object, :email, "#{long_string(250)}@uo.it", valid_long_email, :too_long, {:count => 255}
@@ -35,8 +36,14 @@ class ActiveSupport::TestCase
     assert_invalid object, :email, '@ldsfihdslgfidshfldsih.it', valid_email, :not_a_valid_email
     assert_invalid object, :email, '@.it', valid_email, :not_a_valid_email
     assert_invalid object, :email, 'ciao ciao@ciao.it', valid_email, :not_a_valid_email
+    assert_invalid object, :email, 'ciao;ciao@ciao.it', valid_email, :not_a_valid_email
+    assert_invalid object, :email, 'ciao..ciao@ciao.it', valid_email, :not_a_valid_email
     assert_invalid object, :email, 'fdsfds@sfds@cane.it', valid_email_with_dots, :not_a_valid_email
     assert_invalid object, :email, 'fdsfdssfds@cane.i', valid_email, :not_a_valid_email
+    assert_invalid object, :email, 'fdsfdssfds.@cane.ii', valid_email_with_chars, :not_a_valid_email
+    assert_invalid object, :email, '.fdsfdssfds@cane.iu', valid_email, :not_a_valid_email
+    assert_invalid object, :email, '.fdsfdssfds@cane.', valid_email, :not_a_valid_email
+    assert_invalid object, :email, '.fdsfdssfds@caneiu', valid_email, :not_a_valid_email
   end
   
   def assert_user_likes(likes, users)

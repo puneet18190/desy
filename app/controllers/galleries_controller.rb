@@ -356,7 +356,176 @@ class GalleriesController < ApplicationController
     get_documents(@page, @word)
   end
   
+  # === Description
+  #
+  # Action that calls the uploader from inside Lesson Editor, and creates the new audio.
+  #
+  # === Mode
+  #
+  # Html
+  #
+  def create_audio
+    record = initialize_media_element_creation
+    if record.valid?
+      if record.sti_type == 'Audio'
+        if record.save
+          get_audios(1)
+          Notification.send_to(
+            current_user.id,
+            I18n.t('notifications.audio.upload.started.title'),
+            I18n.t('notifications.audio.upload.started.message', :item => record.title),
+            ''
+          )
+        end
+      else
+        @errors = {:media => t('forms.error_captions.wrong_sti_type.audio').downcase}
+      end
+    else
+      if record.errors.added? :media, :too_large
+        return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
+      end
+      @errors = convert_media_element_error_messages record.errors
+      @errors[:media] = t('forms.error_captions.wrong_sti_type.audio').downcase if !@errors.has_key?(:media) && record.sti_type != 'Audio'
+    end
+    render :layout => false
+  end
+  
+  # === Description
+  #
+  # Action that calls the uploader from inside Lesson Editor, and creates the new image.
+  #
+  # === Mode
+  #
+  # Html
+  #
+  def create_image
+    record = initialize_media_element_creation
+    if record.valid?
+      if record.sti_type == 'Image'
+        record.save
+        get_images(1)
+      else
+        @errors = {:media => t('forms.error_captions.wrong_sti_type.image').downcase}
+      end
+    else
+      if record.errors.added? :media, :too_large
+        return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
+      end
+      @errors = convert_media_element_error_messages record.errors
+      @errors[:media] = t('forms.error_captions.wrong_sti_type.image').downcase if !@errors.has_key?(:media) && record.sti_type != 'Image'
+    end
+    render :layout => false
+  end
+  
+  # === Description
+  #
+  # Action that calls the uploader from inside Lesson Editor, and creates the new video.
+  #
+  # === Mode
+  #
+  # Html
+  #
+  def create_video
+    record = initialize_media_element_creation
+    if record.valid?
+      if record.sti_type == 'Video'
+        if record.save
+          get_videos(1)
+          Notification.send_to(
+            current_user.id,
+            I18n.t('notifications.video.upload.started.title'),
+            I18n.t('notifications.video.upload.started.message', :item => record.title),
+            ''
+          )
+        end
+      else
+        @errors = {:media => t('forms.error_captions.wrong_sti_type.video').downcase}
+      end
+    else
+      if record.errors.added? :media, :too_large
+        return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
+      end
+      @errors = convert_media_element_error_messages record.errors
+      @errors[:media] = t('forms.error_captions.wrong_sti_type.video').downcase if !@errors.has_key?(:media) && record.sti_type != 'Video'
+    end
+    render :layout => false
+  end
+  
+  # === Description
+  #
+  # This action checks for errors without setting the media on the new element
+  #
+  # === Mode
+  #
+  # Js
+  #
+  def create_fake_media_element
+    record = MediaElement.new
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.tags = params[:tags_value]
+    record.user_id = current_user.id
+    record.save_tags = true
+    record.valid?
+    @errors = convert_media_element_error_messages record.errors
+    @errors[:media] = t('forms.error_captions.media_file_too_large').downcase
+  end
+  
+  # === Description
+  #
+  # Action that calls the uploader from inside Lesson Editor, and creates the new document.
+  #
+  # === Mode
+  #
+  # Html
+  #
+  def create_document
+    record = Document.new :attachment => params[:media]
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.user_id = current_user.id
+    if !record.save
+      if record.errors.added? :attachment, :too_large
+        return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
+      end
+      @errors = convert_document_error_messages record.errors
+    else
+      get_documents(1)
+      @document_id = record.id
+    end
+    render :layout => false
+  end
+  
+  # === Description
+  #
+  # This action checks for errors without setting the attachment on the new document
+  #
+  # === Mode
+  #
+  # Js
+  #
+  def create_fake_document
+    record = Document.new
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.user_id = current_user.id
+    record.valid?
+    @errors = convert_document_error_messages record.errors
+    @errors[:media] = t('documents.upload_form.attachment_too_large').downcase
+  end
+  
   private
+  
+  # Common operations in media element initialization.
+  def initialize_media_element_creation
+    record = MediaElement.new :media => params[:media]
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.tags = params[:tags_value]
+    record.user_id = current_user.id
+    record.save_tags = true
+    record
+  end
   
   # Initializes the parameter +page+ used in all the actions getting new blocks in the gallery
   def initialize_page

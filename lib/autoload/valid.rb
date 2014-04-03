@@ -31,9 +31,49 @@ module Valid
     
   end
   
+  # White list of allowed characters in email
+  def self.char_for_email?(i)
+    [
+      33, 35, 36, 37, 38, 39, 42, 43, 45, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
+      61, 63, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82,
+      83, 84, 85, 86, 87, 88, 89, 90, 92, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103,
+      104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119,
+      120, 121, 122, 123, 124, 125, 126
+    ].include?(i)
+  end
+  
   # Method that validates the format of an e-mail address (used in User and MailingListAddress)
   def self.email?(email)
-    email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+    index = 0
+    at = false
+    after_point = false
+    count_after_point = 0
+    after_at = false
+    point_after_at = false
+    email.each_byte do |i|
+      if !Valid.char_for_email?(i)
+        return false if index == 0
+        if i == 64
+          return false if at || after_point
+          at = true
+          after_at = true
+          after_point = false
+        elsif i == 46
+          return false if after_at || after_point
+          point_after_at = at
+          after_point = true
+          count_after_point = 0
+        else
+          return false
+        end
+      else
+        after_at = false
+        after_point = false
+        count_after_point += 1
+      end
+      index += 1
+    end
+    return (point_after_at && count_after_point > 1)
   end
   
   # Method that uses Validness to validate and extract the object associated to a field

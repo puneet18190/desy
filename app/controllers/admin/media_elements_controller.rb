@@ -31,7 +31,7 @@ class Admin::MediaElementsController < AdminController
     @locations = [Location.roots.order(:name)]
     if params[:search]
       location = Location.get_from_chain_params params[:search]
-      @locations = location.get_filled_select if location
+      @locations = location.select_without_selected if location
     end
     @from_reporting = params[:from_reporting]
   end
@@ -178,10 +178,7 @@ class Admin::MediaElementsController < AdminController
         @media_element.is_public = true
         @media_element.publication_date = Time.zone.now
       end
-      if !@media_element.save
-        @errors = convert_item_error_messages @media_element.errors
-        @error_fields = @media_element.errors.messages.keys
-      end
+      @error_fields = @media_element.errors.messages.keys if !@media_element.save
     end
   end
   

@@ -195,7 +195,7 @@ href="Tag.html#method-c-get_tags_for_autocomplete">Tag.get_tags_for_autocomplete
               <div id="method-i-get_list_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/tags_controller.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_list</span>
-  <span class="ruby-ivar">@tags</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">get_tags_for_autocomplete</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:term</span>])
+  <span class="ruby-ivar">@tags</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">get_tags_for_autocomplete</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:term</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:item</span>])
   <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@tags</span>
 <span class="ruby-keyword">end</span></pre>
               </div>

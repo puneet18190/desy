@@ -339,7 +339,7 @@ href="Parameters.html#method-i-convert_to_primitive_parameters">Media::Audio::Ed
                 
               </p>
               <div id="method-i-compose_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 68</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 78</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compose</span>
   <span class="ruby-identifier">create_log_folder</span>
   <span class="ruby-identifier">in_tmp_dir</span> <span class="ruby-keyword">do</span>
@@ -359,7 +359,12 @@ href="Parameters.html#method-i-convert_to_primitive_parameters">Media::Audio::Ed
     <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">transaction</span> <span class="ruby-keyword">do</span>
       <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">save!</span>
       <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">enable_lessons_containing_me</span>
-      <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-node">&quot;notifications.audio.compose.#{notification_translation_key}.ok&quot;</span>, <span class="ruby-identifier">item</span><span class="ruby-operator">:</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">title</span>)
+      <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span>(
+        <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">user_id</span>,
+        <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-node">&quot;notifications.audio.compose.#{notification_translation_key}.ok.title&quot;</span>),
+        <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-node">&quot;notifications.audio.compose.#{notification_translation_key}.ok.message&quot;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">title</span>),
+        <span class="ruby-string">&#39;&#39;</span>
+      )
       <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">audio_editor_cache!</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
@@ -413,11 +418,21 @@ and the media record will be destroyed</p>
     <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">save!</span>
     <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">enable_lessons_containing_me</span>
-    <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.compose.update.failed&#39;</span>, <span class="ruby-identifier">item</span><span class="ruby-operator">:</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">title</span>, <span class="ruby-identifier">link</span><span class="ruby-operator">:</span> <span class="ruby-operator">::</span><span class="ruby-constant">Audio</span><span class="ruby-operator">::</span><span class="ruby-constant">CACHE_RESTORE_PATH</span>)
+    <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span>(
+      <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">user_id</span>,
+      <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.compose.update.failed.title&#39;</span>),
+      <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.compose.update.failed.message&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">title</span>, <span class="ruby-value">:link</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-operator">::</span><span class="ruby-constant">Audio</span><span class="ruby-operator">::</span><span class="ruby-constant">CACHE_RESTORE_PATH</span>),
+      <span class="ruby-string">&#39;&#39;</span>
+    )
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">destroyable_even_if_not_converted</span> = <span class="ruby-keyword">true</span>
     <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">destroy</span>
-    <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.compose.create.failed&#39;</span>, <span class="ruby-identifier">item</span><span class="ruby-operator">:</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">title</span>, <span class="ruby-identifier">link</span><span class="ruby-operator">:</span> <span class="ruby-operator">::</span><span class="ruby-constant">Audio</span><span class="ruby-operator">::</span><span class="ruby-constant">CACHE_RESTORE_PATH</span>)
+    <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span>(
+      <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">user_id</span>,
+      <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.compose.create.failed.title&#39;</span>),
+      <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.compose.create.failed.message&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">title</span>, <span class="ruby-value">:link</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-operator">::</span><span class="ruby-constant">Audio</span><span class="ruby-operator">::</span><span class="ruby-constant">CACHE_RESTORE_PATH</span>),
+      <span class="ruby-string">&#39;&#39;</span>
+    )
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
 <span class="ruby-keyword">end</span></pre>
@@ -454,7 +469,7 @@ and the media record will be destroyed</p>
                 
               </p>
               <div id="method-i-audio_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 140</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 155</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio</span>
   <span class="ruby-ivar">@audio</span> <span class="ruby-operator">||=</span> <span class="ruby-operator">::</span><span class="ruby-constant">Audio</span>.<span class="ruby-identifier">find</span> <span class="ruby-ivar">@params</span>[<span class="ruby-value">:initial_audio</span>][<span class="ruby-value">:id</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -489,7 +504,7 @@ and the media record will be destroyed</p>
                 
               </p>
               <div id="method-i-audio_copy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 125</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 140</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio_copy</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>)
   <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">output</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -524,7 +539,7 @@ and the media record will be destroyed</p>
                 
               </p>
               <div id="method-i-compose_audio_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 110</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 125</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compose_audio</span>(<span class="ruby-identifier">audio_id</span>, <span class="ruby-identifier">from</span>, <span class="ruby-identifier">to</span>, <span class="ruby-identifier">i</span>)
   <span class="ruby-identifier">audio</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Audio</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">audio_id</span>
   <span class="ruby-identifier">inputs</span> = <span class="ruby-constant">Hash</span>[ <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">f</span>, <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">media</span>.<span class="ruby-identifier">path</span>(<span class="ruby-identifier">f</span>)] } ]
@@ -569,7 +584,7 @@ and the media record will be destroyed</p>
                 
               </p>
               <div id="method-i-create_log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 105</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 120</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_log_folder</span>
   <span class="ruby-ivar">@log_folder</span> = <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-identifier">log_folder_name</span>).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -604,7 +619,7 @@ and the media record will be destroyed</p>
                 
               </p>
               <div id="method-i-log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 95</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder</span>(*<span class="ruby-identifier">folders</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@log_folder</span>, *<span class="ruby-identifier">folders</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -639,7 +654,7 @@ and the media record will be destroyed</p>
                 
               </p>
               <div id="method-i-log_folder_name_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 100</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 115</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder_name</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">log_folder</span>, <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-node">&quot;#{Time.now.utc.strftime(&quot;%Y-%m-%d_%H-%M-%S&quot;)}_#{::Thread.main.object_id}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -674,7 +689,7 @@ and the media record will be destroyed</p>
                 
               </p>
               <div id="method-i-notification_translation_key_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 130</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">notification_translation_key</span>
   <span class="ruby-ivar">@old_media</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;update&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;create&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -709,7 +724,7 @@ and the media record will be destroyed</p>
                 
               </p>
               <div id="method-i-output_without_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 135</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_without_extension</span>(<span class="ruby-identifier">i</span>)
   <span class="ruby-identifier">tmp_path</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>

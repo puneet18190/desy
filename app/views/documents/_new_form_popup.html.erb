@@ -2,48 +2,54 @@
   title_max = t('documents.title_placeholder', :num => t('language_parameters.document.length_title').to_s).downcase
   description_max = t('documents.description_placeholder', :num => t('language_parameters.document.length_description').to_s).downcase
 %>
-<div id="load-document" class="documentInfoPopUp" style="display:none" data-placeholder-description="<%= description_max %>" data-placeholder-title="<%= title_max %>" data-placeholder-attachment="<%= t('documents.upload_form.attachment_placeholder').downcase %>">
-  <div class="documentPopUpContainer uploadDocuments">
-    <div class="ChangeInfoContainerLoading">
-      <%= form_tag documents_path, :method => :post, :id => 'new_document', :class => 'formModifyInfo', :multipart => true, :autocomplete => 'off' do %>
-        <div class="cols fltlft" style="width:300px">
-          <div id="document_attachment_show" class="fk_carica_elemento_file fltrt" style="color:white"></div>
-          <label class="filebutton">
-            <span>
-              <input type="file" id="new_document_input" name="attachment"/>
-            </span>
-          </label>
-        </div>
-        <div class="cols fltrt" style="width:380px">
-          <h1>
-            <%= t('documents.upload_form.title') %>
-          </h1>
-          <p style="padding-bottom:30px; padding-top:0; color:white">
-            <%= t('documents.upload_form.description') %>
-          </p>
-        </div>
-        <br class="clearfloat"/>
-        <input class="docload_title" type="text" value="" name="title"/>
-        <input class="docload_title_placeholder" type="hidden" value="" name="title_placeholder"/>
-        <textarea class="docload_description" name="description"></textarea>
-        <input class="docload_description_placeholder" type="hidden" value="" name="description_placeholder"/>
-        <div class="fltrt lower" style="margin-top:5px">
-          <div class="fltlft" style="margin-top:5px">
-            <a class="_close buttonForm">
-              <%= t('documents.upload_form.cancel') %>
-            </a>
-          </div>
-          <div class="fltrt">
-            <%= submit_tag t('documents.upload_form.done').downcase, :id => 'new_document_submit', :style => 'padding:0px;' %>
-          </div>
-        </div>
-      <% end %>
+
+<div id="load-document" class="globalLoader document" style="display:none" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-media="<%= t('documents.upload_form.attachment_placeholder').downcase %>" data-loader-can-move="true" data-loader-with-errors="false" data-loader-position-stop="0" data-bar-width="760" data-bar-height="440" data-bar-padding="40" data-fake-url="/documents/create/fake">
+  <%= form_tag documents_path, :method => :post, :id => 'new_document', :class => 'form-selector-class', :multipart => true, :autocomplete => 'off' do %>
+    <div class="part1">
+      <div class="attachment">
+        <label>
+          <span>
+            <input type="file" class="file" name="media"/>
+          </span>
+        </label>
+        <input class="media" disabled="disabled" value=""/>
+      </div>
+      <div class="title_and_subtitle">
+        <h1>
+          <%= t('documents.upload_form.title') %>
+        </h1>
+        <p>
+          <%= t('documents.upload_form.description') %>
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="barraLoading">
-    <div class="loading-internal" data-can-move="true" style="display:none">
+    <div class="part2">
+      <div class="title_and_description">
+        <input class="title" type="text" value="" name="title"/>
+        <input class="title_placeholder" type="hidden" value="" name="title_placeholder"/>
+        <textarea class="description" name="description"></textarea>
+        <input class="description_placeholder" type="hidden" value="" name="description_placeholder"/>
+      </div>
     </div>
-    <div class="loading-errors" style="display:none">
+    <div class="part3">
+      <a class="submit"><%= t('documents.upload_form.done').downcase %></a>
+      <a class="close"><%= t('documents.upload_form.cancel').downcase %></a>
     </div>
+    <div class="loading-square loading-square-1"></div>
+    <div class="loading-square loading-square-2"></div>
+    <div class="loading-square loading-square-3"></div>
+    <div class="loading-square loading-square-4"></div>
+    <div class="loading-square loading-square-5"></div>
+    <div class="loading-square-bis loading-square-bis-1"></div>
+    <div class="loading-square-bis loading-square-bis-2"></div>
+    <div class="loading-square-bis loading-square-bis-3"></div>
+    <div class="loading-square-bis loading-square-bis-4"></div>
+    <div class="errors_layer description" data-focus-selector=".part2 .description" data-form-error-selector=".part2 .description" data-focus-action="focus"></div>
+    <div class="errors_layer media" data-form-error-selector=".part1 .attachment .media"></div>
+    <div class="errors_layer title" data-focus-selector=".part2 .title" data-form-error-selector=".part2 .title" data-focus-action="focus"></div>
+  <% end %>
+  <div class="full_folder">
+    <p class="msge"></p>
+    <a class="back_to_gallery"><%= t('forms.error_captions.document_folder_full_button_from_dashboard') %></a>
   </div>
 </div>

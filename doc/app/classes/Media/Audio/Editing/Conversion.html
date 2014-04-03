@@ -559,7 +559,7 @@ format)</p>
                 
               </p>
               <div id="method-i-convert_to_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 119</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 129</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">convert_to</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-identifier">prepare_for_conversion</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@prepare_for_conversion</span>
 
@@ -634,7 +634,12 @@ the user who uploaded the file.</p>
     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">input_path</span>, <span class="ruby-identifier">create_log_folder</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">input_path</span>
 
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">model</span>.<span class="ruby-identifier">present?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">model</span>.<span class="ruby-identifier">user_id</span>.<span class="ruby-identifier">present?</span>
-      <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">model</span>.<span class="ruby-identifier">user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.upload.failed&#39;</span>, <span class="ruby-identifier">item</span><span class="ruby-operator">:</span> <span class="ruby-identifier">model</span>.<span class="ruby-identifier">title</span>)
+      <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span>(
+        <span class="ruby-identifier">model</span>.<span class="ruby-identifier">user_id</span>,
+        <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.upload.failed.title&#39;</span>),
+        <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.upload.failed.message&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">model</span>.<span class="ruby-identifier">title</span>),
+        <span class="ruby-string">&#39;&#39;</span>
+      )
       <span class="ruby-identifier">model</span>.<span class="ruby-identifier">destroyable_even_if_not_converted</span> = <span class="ruby-keyword">true</span>
       <span class="ruby-identifier">model</span>.<span class="ruby-identifier">destroy</span>
     <span class="ruby-keyword">end</span>
@@ -652,7 +657,12 @@ the user who uploaded the file.</p>
 
   <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm</span> <span class="ruby-identifier">temp_path</span>
   
-  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span> <span class="ruby-identifier">model</span>.<span class="ruby-identifier">user_id</span>, <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.upload.ok&#39;</span>, <span class="ruby-identifier">item</span><span class="ruby-operator">:</span> <span class="ruby-identifier">model</span>.<span class="ruby-identifier">title</span>)
+  <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">send_to</span>(
+    <span class="ruby-identifier">model</span>.<span class="ruby-identifier">user_id</span>,
+    <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.upload.ok.title&#39;</span>),
+    <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;notifications.audio.upload.ok.message&#39;</span>, <span class="ruby-value">:item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">model</span>.<span class="ruby-identifier">title</span>),
+    <span class="ruby-string">&#39;&#39;</span>
+  )
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -707,7 +717,7 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-log_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 183</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 193</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder</span>(<span class="ruby-identifier">_</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">super</span> <span class="ruby-identifier">model_id</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -746,7 +756,7 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-model_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 188</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 198</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">model</span>
   <span class="ruby-ivar">@model</span> <span class="ruby-operator">||=</span> <span class="ruby-operator">::</span><span class="ruby-constant">Audio</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">model_id</span>
 <span class="ruby-keyword">end</span></pre>
@@ -781,7 +791,7 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-output_filename_without_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 163</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 173</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_filename_without_extension</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span> <span class="ruby-ivar">@output_path_without_extension</span>
 <span class="ruby-keyword">end</span></pre>
@@ -816,7 +826,7 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-output_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 168</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_folder</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span> <span class="ruby-ivar">@output_path_without_extension</span>
 <span class="ruby-keyword">end</span></pre>
@@ -851,7 +861,7 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-output_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 153</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 163</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output_path</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-node">&quot;#{@output_path_without_extension}.#{format}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -886,7 +896,7 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-prepare_for_conversion_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 135</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">prepare_for_conversion</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">uploaded_path</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">temp_path</span>)
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>( <span class="ruby-string">&quot;at least one between uploaded_path and temp_path must exist&quot;</span>, 
@@ -934,7 +944,7 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-temp_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 178</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 188</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">temp_folder</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span> <span class="ruby-identifier">temp_path</span>
 <span class="ruby-keyword">end</span></pre>
@@ -969,7 +979,7 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-temp_path_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 173</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 183</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">temp_path</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">temp_path</span>(<span class="ruby-identifier">model_id</span>, <span class="ruby-ivar">@original_filename</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1004,7 +1014,7 @@ just for ancestor method compatibility)</p>
                 
               </p>
               <div id="method-i-uploaded_path_extension_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 158</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/conversion.rb, line 168</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">uploaded_path_extension</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span> <span class="ruby-ivar">@uploaded_path</span>
 <span class="ruby-keyword">end</span></pre>

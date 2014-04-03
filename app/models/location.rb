@@ -48,6 +48,9 @@ class Location < ActiveRecord::Base
     Object.const_set type, Class.new(self)
   end
   
+  # List of submodels in string format
+  SUBMODEL_NAMES = SUBMODELS.map { |a_class| a_class.to_s }
+  
   # === Description
   #
   # Used in the frontend, to extract the label of the location's category (translated with I18n)
@@ -58,7 +61,7 @@ class Location < ActiveRecord::Base
   #
   def label
     index = 0
-    SETTINGS['location_types'].each_with_index do |t, i|
+    SUBMODEL_NAMES.each_with_index do |t, i|
       index = i if t == self.sti_type.to_s
     end
     Location.label_at index
@@ -89,7 +92,7 @@ class Location < ActiveRecord::Base
   # A boolean
   #
   def is_descendant_of?(ancestor)
-    max_depth = SETTINGS['location_types'].length
+    max_depth = SUBMODEL_NAMES.length
     if ancestor.ancestry.nil?
       self.ancestry == ancestor.id.to_s || (/#{ancestor.ancestry_with_me}/ =~ self.ancestry) == 0
     elsif self.depth == max_depth - 1 && ancestor.depth == max_depth - 2
@@ -103,12 +106,20 @@ class Location < ActiveRecord::Base
   #
   # Returns the label of the lowest category of location
   #
+  # === Args
+  #
+  # * *plural*: pluralizes the label (default = false)
+  #
   # === Returns
   #
   # A string translated with I18n
   #
-  def self.base_label
-    I18n.t('locations.labels').last
+  def self.base_label(plural=false)
+    if plural
+      I18n.t('locations.labels.plural').last
+    else
+      I18n.t('locations.labels.singular').last
+    end
   end
   
   # === Description
@@ -118,13 +129,18 @@ class Location < ActiveRecord::Base
   # === Args
   #
   # * *index*: the depth of the chosen category
+  # * *plural*: pluralizes the label (default = false)
   #
   # === Returns
   #
   # A string translated with I18n
   #
-  def self.label_at(index)
-    I18n.t('locations.labels')[index]
+  def self.label_at(index, plural=false)
+    if plural
+      I18n.t('locations.labels.plural')[index]
+    else
+      I18n.t('locations.labels.singular')[index]
+    end
   end
   
   # === Description
@@ -141,43 +157,63 @@ class Location < ActiveRecord::Base
   
   # === Description
   #
-  # Used in the front end, to fill the list of tags +select+ associated to this particular location
+  # Returns an array of arrays, starting from the first ancestors until the direct children of the location. If the location is a leaf, the response stops to the location itself.
   #
   # === Returns
   #
   # An array of strings
   #
-  def get_filled_select
+  def select_without_selected
     resp = []
     self.ancestors.each do |anc|
       resp << anc.siblings.order(:name)
     end
     resp << self.siblings.order(:name)
-    resp << self.children.order(:name) if self.class.to_s != SETTINGS['location_types'].last
+    resp << self.children.order(:name) if self.class.to_s != SUBMODEL_NAMES.last
     resp
   end
   
   # === Description
   #
-  # Used in the front end, to fill the list of tags +select+ associated to this particular location -- only for registration and personal info
+  # Returns an array of hashes (:selected, which may be either an id or zero if no location is selected, and :content, which contains the effective locations): it starts from the first ancestors until the leaves. After the first children of the current location, the response loads empty arrays until the leaves.
+  #
+  # === Args
+  #
+  # * *stop_before_leaves*: default = false, if true the response doesn't contain locations below the direct children of the current location
   #
   # === Returns
   #
   # An array of hashes
   #
-  def get_filled_select_for_personal_info
+  def select_with_selected(stop_before_leaves=false)
     resp = []
-    self.ancestors.each do |anc|
-      resp << {:selected => anc.id, :content => anc.siblings.order(:name)}
+    index = SUBMODEL_NAMES.index(self.class.to_s)
+    if index.nil?
+      resp << {:selected => 0, :content => Location.roots.order(:name)}
+      index = 1
+    else
+      self.ancestors.each do |anc|
+        resp << {:selected => anc.id, :content => anc.siblings.order(:name)}
+      end
+      resp << {:selected => self.id, :content => self.siblings.order(:name)}
+      index += 1
+      if self.class.to_s != SUBMODEL_NAMES.last
+        resp << {:selected => 0, :content => self.children.order(:name)}
+        index += 1
+      end
     end
-    resp << {:selected => self.id, :content => self.siblings.order(:name)}
-    resp << {:selected => 0, :content => self.children.order(:name)} if self.class.to_s != SETTINGS['location_types'].last
+    if !stop_before_leaves
+      while index < SUBMODEL_NAMES.length
+        resp << {:selected => 0, :content => []}
+        index += 1
+      end
+    end
     resp
   end
   
   # === Description
   #
-  # Given a hash of parameters with the names of the categories as keys, this method returns the Location corresponding to the last parameter (from parent to son) which is not null. Used in AdminSearchForm.
+  # Given a hash of parameters with the names of the categories as keys, this method returns the Location corresponding to the last parameter (from parent to son) which is not null. Used in AdminSearchForm and in UsersController.
   #
   # === Args
   #
@@ -189,17 +225,29 @@ class Location < ActiveRecord::Base
   #
   def self.get_from_chain_params(params)
     flag = true
-    index = SETTINGS['location_types'].length - 1
-    loc_param = params[SETTINGS['location_types'].last.downcase]
+    index = SUBMODEL_NAMES.length - 1
+    loc_param = params[SUBMODEL_NAMES.last.downcase]
     while flag && index >= 0
       if loc_param.present? && loc_param != '0'
         flag = false
       else
         index -= 1
-        loc_param = params[SETTINGS['location_types'][index].downcase]
+        loc_param = params[SUBMODEL_NAMES[index].downcase]
       end
     end
     Location.find_by_id loc_param
+  end
+  
+  # === Description
+  #
+  # Returns the gender (masculine, feminine) of the location.
+  #
+  # === Returns
+  #
+  # The string 'masculine' or 'feminine'
+  #
+  def gender
+    I18n.t('locations.labels.feminine')[SUBMODEL_NAMES.index(self.sti_type)] ? 'feminine' : 'masculine'
   end
   
 end

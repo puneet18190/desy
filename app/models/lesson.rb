@@ -109,10 +109,10 @@ class Lesson < ActiveRecord::Base
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags_through_taggings, :through => :taggings, :source => :tag
   has_many :slides, :dependent => :destroy
-  has_many :media_elements_slides, through: :slides
-  has_many :media_elements, through: :media_elements_slides, uniq: true
-  has_many :documents_slides, through: :slides
-  has_many :documents, through: :documents_slides, uniq: true
+  has_many :media_elements_slides, :through => :slides
+  has_many :media_elements, -> { uniq }, :through => :media_elements_slides
+  has_many :documents_slides, :through => :slides
+  has_many :documents, -> { uniq }, :through => :documents_slides
   has_many :virtual_classroom_lessons
   
   validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description
@@ -157,11 +157,14 @@ class Lesson < ActiveRecord::Base
   #
   def notify_changes(msg)
     Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).each do |bo|
-      if msg.blank?
-        Notification.send_to bo.user_id, I18n.t('notifications.lessons.modified', :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => I18n.t('lessons.notify_modifications.empty_message'))
-      else
-        Notification.send_to bo.user_id, I18n.t('notifications.lessons.modified', :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => msg[0, I18n.t('language_parameters.notification.message_length_for_public_lesson_modification')])
-      end
+      message_max = I18n.t('language_parameters.notification.message_length_for_public_lesson_modification')
+      message = msg.blank? ? I18n.t('lessons.notify_modifications.empty_message') : msg[0, message_max]
+      Notification.send_to(
+        bo.user_id,
+        I18n.t('notifications.lessons.modified.title'),
+        I18n.t('notifications.lessons.modified.message', :lesson_title => self.title, :message => message),
+        I18n.t('notifications.lessons.modified.basement', :lesson_title => self.title, :link => lesson_viewer_path(self.id))
+      )
     end
     self.notified = true
     self.save
@@ -286,7 +289,7 @@ class Lesson < ActiveRecord::Base
 
   # Returns the math images related to the slides of the lesson. If +modality+ is +:full_path+ it returns the absolute path, otherwise it returns the file names (the default value is +nil+). The results are unique.
   def math_images_paths(modality = nil)
-    slides.map{ |r| r.math_images.to_a(modality) }.flatten.uniq_by{ |v| v.basename }
+    slides.map{ |r| r.math_images.to_a(modality) }.flatten.uniq{ |v| v.basename }
   end
   
   # === Description
@@ -586,7 +589,9 @@ class Lesson < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
         begin
-          if !Notification.send_to b.user_id, I18n.t('notifications.lessons.unpublished', :user_name => self.user.full_name, :lesson_title => self.title)
+          n_title = I18n.t('notifications.lessons.unpublished.title')
+          n_message = I18n.t('notifications.lessons.unpublished.message', :user_name => self.user.full_name, :lesson_title => self.title)
+          if !Notification.send_to(b.user_id, n_title, n_message, '')
             errors.add(:base, :problem_unpublishing)
             raise ActiveRecord::Rollback
           end
@@ -623,7 +628,9 @@ class Lesson < ActiveRecord::Base
     resp = false
     ActiveRecord::Base.transaction do
       Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
-        if !Notification.send_to b.user_id, I18n.t('notifications.lessons.destroyed', :user_name => self.user.full_name, :lesson_title => self.title)
+        n_title = I18n.t('notifications.lessons.destroyed.title')
+        n_message = I18n.t('notifications.lessons.destroyed.message', :user_name => self.user.full_name, :lesson_title => self.title)
+        if !Notification.send_to(b.user_id, n_title, n_message, '')
           errors.add(:base, :problem_destroying)
           raise ActiveRecord::Rollback
         end

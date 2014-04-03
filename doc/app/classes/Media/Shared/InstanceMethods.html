@@ -133,7 +133,12 @@
             
               
               <li>
-                <a href="#method-i-set_creation_mode">set_creation_mode</a>
+                <a href="#method-i-set_creation_mode">set_creation_mode</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-size">size</a>
               </li>
             
           </ul>
@@ -207,7 +212,7 @@ conversion state</p>
                 
               </p>
               <div id="method-i-cannot_destroy_while_converting_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 55</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cannot_destroy_while_converting</span>
   <span class="ruby-identifier">destroyable_even_if_not_converted</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">converted?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -392,7 +397,7 @@ one time, otherwise <code>false</code></p>
                 
               </p>
               <div id="method-i-overwrite-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 60</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">overwrite!</span>
   <span class="ruby-comment"># tags is not an attribute, so it doesn&#39;t result in the changes; </span>
   <span class="ruby-comment"># using taggings_tags that is not yet changed</span>
@@ -481,6 +486,41 @@ one time, otherwise <code>false</code></p>
           </div>
         
         <div class="method">
+          <div class="title method-title" id="method-i-size">
+            
+              <b>size</b>(format)
+            
+            <a href="../../../classes/Media/Shared/InstanceMethods.html#method-i-size" name="method-i-size" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p><a href="../../Media.html">Media</a> file size</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-size_source')" id="l_method-i-size_source">show</a>
+                
+              </p>
+              <div id="method-i-size_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">size</span>(<span class="ruby-identifier">format</span>)
+  <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span> <span class="ruby-value">:size</span>, <span class="ruby-identifier">format</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
           <div class="title method-title" id="method-i-uploaded-3F">
             
               <b>uploaded?</b>()
@@ -544,7 +584,7 @@ otherwise <code>false</code></p>
                 
               </p>
               <div id="method-i-clean_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 91</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">clean</span>
   <span class="ruby-identifier">folder</span> = <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:folder</span>)
   <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-identifier">folder</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">folder</span>
@@ -581,7 +621,7 @@ otherwise <code>false</code></p>
                 
               </p>
               <div id="method-i-media_validation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 80</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media_validation</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">validation</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">media</span>
 <span class="ruby-keyword">end</span></pre>
@@ -616,7 +656,7 @@ otherwise <code>false</code></p>
                 
               </p>
               <div id="method-i-set_creation_mode_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 74</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">set_creation_mode</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">creation_mode</span> = <span class="ruby-identifier">media</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">UPLOADED</span> <span class="ruby-operator">:</span> <span class="ruby-constant">COMPOSED</span>
   <span class="ruby-keyword">true</span>
@@ -652,7 +692,7 @@ otherwise <code>false</code></p>
                 
               </p>
               <div id="method-i-upload_or_copy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 85</span>
+                <pre><span class="ruby-comment"># File lib/media/shared.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">upload_or_copy</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">upload_or_copy</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">media</span>
   <span class="ruby-keyword">true</span>

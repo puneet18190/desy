@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>We're sorry, but something went wrong (500)</title>
-  <style type="text/css">
-	  @import url(//fonts.googleapis.com/css?family=Nunito);
-    body { background-color: #373737; color: #fff; text-align:center;  font-family: 'Nunito', sans-serif; }
-    div.dialog {
-			
-      width: 40em;
-      padding: 0 4em;
-      margin: 20% auto 0 auto;
-     
-      text-align:left;
-			
-    }
-    div.dialog h1 { font-size: 260%; color: #25aae1;  padding:0; margin:0; line-height:1em}
-		div.dialog p {padding:0px; margin:0px}
-    img {border:none;}
-  </style>
-</head>
-
-<body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
-    <p style="padding-top:30px"><a href="/"><img src="/assets/logo_grigio.png"></a></p>
-  </div>
-</body>
+  <head>
+    <meta charset="utf-8"/>
+    <title>We're sorry, but something went wrong (500)</title>
+    <style>
+      @import url(//fonts.googleapis.com/css?family=Nunito);
+      body { background-color: #373737; color: #fff; text-align:center;  font-family: 'Nunito', sans-serif; }
+      div {
+        width: 30em;
+        padding: 0 4em;
+        margin: 20% auto 0 auto;
+        text-align:left;
+      }
+      h1 { font-size: 260%; color: #25aae1;  padding:0; margin:0 }
+      img { border:none }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>We're sorry, but something went wrong</h1>
+      <p>Our apologies for the inconvenience, we are currently investigating the issue.</p>
+      <!-- /assets/logo_grigio.png -->
+      <p><a href="/"><img alt="Desy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAAA4CAYAAAA8TFCpAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowQTgwMTE3NDA3MjA2ODExODcxRkU4OTY1MUI5RUIxNCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozNzBDMTExMDFBQTUxMUUyOTk5REEyQ0QyOEFGRUJCNSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozNzBDMTEwRjFBQTUxMUUyOTk5REEyQ0QyOEFGRUJCNSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MEE4MDExNzQwNzIwNjgxMTg3MUZFODk2NTFCOUVCMTQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MEE4MDExNzQwNzIwNjgxMTg3MUZFODk2NTFCOUVCMTQiLz4gPC9yZGY6RGVzY3Jp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" /></a></p>
+    </div>
+  </body>
 </html>

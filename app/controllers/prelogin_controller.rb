@@ -55,11 +55,13 @@ class PreloginController < ApplicationController
       render :nothing => true
       return
     end
+    @load_locations = params[:dont_load_locations].blank?
     @purchase = Purchase.find_by_token(params[:token])
     @purchase = nil if @purchase && @purchase.users.count >= @purchase.accounts_number
     if @purchase && @purchase.location
+      @location_types = LOCATION_TYPES
       @forced_location = @purchase.location
-      @locations = @forced_location.get_filled_select_for_personal_info
+      @locations = @forced_location.select_with_selected
     end
   end
   
@@ -80,12 +82,15 @@ class PreloginController < ApplicationController
   # * ApplicationController#authenticate
   #
   def registration
-    @trial            = params[:trial] == '1'
-    @user             = User.new(params[:user])
-    @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-    @locations        = [{:selected => 0, :content => Location.roots.order(:name)}]
-    @user_location    = {}
-    @subjects         = Subject.extract_with_cathegories
+    @saas = SETTINGS['saas_registration_mode']
+    @user = User.new
+    initialize_registration_form
+    @errors = {
+      :general  => [],
+      :subjects => [],
+      :policies => [],
+      :purchase => []
+    }
   end
   
   # === Description

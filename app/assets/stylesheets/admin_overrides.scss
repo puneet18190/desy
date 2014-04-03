@@ -17,7 +17,7 @@
     border-radius: 0;
     height: 160px;
     padding-top: 50px;
-    background-color: #2b2b2b;
+    background-color: #2B2B2B;
     background-image: linear-gradient(bottom, rgb(0,0,0) 26%, rgb(91,91,91) 100%);
     background-image: -o-linear-gradient(bottom, rgb(0,0,0) 26%, rgb(91,91,91) 100%);
     background-image: -moz-linear-gradient(bottom, rgb(0,0,0) 26%, rgb(91,91,91) 100%);
@@ -222,18 +222,18 @@
   blockquote {
     
     clear: both;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     padding: 10px;
     
     &.elements {
       
-      border-color: #4bab36;
+      border-color: #4BAB36;
       
     }
     
     &.lessons {
       
-      border-color: #f89406;
+      border-color: #F89406;
       
     }
     
@@ -250,14 +250,14 @@
   
   a blockquote,a blockquote:hover, .reports a, .reports a:hover {
     
-    color: #2b2b2b;
+    color: #2B2B2B;
     text-decoration: none;
     
   }
   
   .reports a blockquote:hover {
     
-    background-color: #f9f9f9;
+    background-color: #F9F9F9;
     
   }
   
@@ -265,13 +265,13 @@
     
     &.elements {
       
-      color: #4bab36;
+      color: #4BAB36;
       
     }
     
     &.lessons {
       
-      color: #f89406;
+      color: #F89406;
       
     }
     
@@ -422,8 +422,8 @@
   
   .dropdown-menu a:hover {
     
-    color: #ffffff;
-    background-color: #4f4f4f;
+    color: #FFFFFF;
+    background-color: #4F4F4F;
     text-decoration: none;
     
   }
@@ -442,12 +442,12 @@
     margin-right: 10px;
     background: $assets-admin-menu-icons_png 0 0;
     text-align: center;
-    color: #ffffff;
+    color: #FFFFFF;
     
     &:hover, &.active {
       
       background-position: 0 -85px;
-      color: #2b2b2b;
+      color: #2B2B2B;
       
     }
     
@@ -691,8 +691,8 @@
     
     li a {
       
-      color: #f89406;
-      cursor:pointer;
+      color: #F89406;
+      cursor: pointer;
       
     }
     

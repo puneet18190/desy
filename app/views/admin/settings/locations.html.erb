@@ -55,10 +55,10 @@
               <tbody>
                 <tr>
                   <td>
-                    <%= t('admin.settings.locations.fields.name') %><input class="create_admin_location_name" type="text" value="">
+                    <%= t('admin.settings.locations.fields.name') %><input class="create_admin_location_name" type="text" value=""/>
                   </td>
                   <td>
-                    <%= t('admin.settings.locations.fields.code') %><input class="create_admin_location_code" type="text" value="">
+                    <%= t('admin.settings.locations.fields.code') %><input class="create_admin_location_code" type="text" value=""/>
                   </td>
                   <td>
                     <a class="create_admin_location_form_done" data-location-type="<%= location.downcase %>" data-location-type-for-form="<%= location %>" data-location-parent="<%= (index != 0) ? @locations[index - 1][:selected] : '' %>"><%= t('admin.settings.locations.create') %></a>

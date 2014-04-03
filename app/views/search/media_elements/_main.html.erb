@@ -11,7 +11,7 @@
     <div class="boxCerca">
       <form id="search_media_elements" class="search-form" method="get" action="/search">
         
-        <a class="_keep_searching" style="display:<%= display[0] %>">
+        <a class="_keep_searching" style="display:<%= display[0] %>" data-opened="false">
           <div class="keep_searching_icon"></div>
           <div class="keep_searching_label">
             <%= t('search.again') %>
@@ -23,7 +23,7 @@
           <tr>
             <td style="width:20%">
               <label><%= t('search.media_elements.keyword.label') %></label><br/>
-              <input type="text" name="word" value="<%= t('search.media_elements.keyword.placeholder') %>" class="text lower" id="media_elements_tag_reader_for_search">
+              <input type="text" name="word" value="<%= t('search.media_elements.keyword.placeholder') %>" class="text lower" id="media_elements_tag_reader_for_search"/>
               <%= hidden_field_tag 'word_placeholder', '', :id => 'media_elements_tag_kind_for_search' %>
             </td>
             <td width="20%">
@@ -38,7 +38,10 @@
             <td colspan="2" width="40%">
             </td>
             <td width="20%">
-              <p style="font-size:80%; padding-left:10px; padding-top:10px;"><%= t('search.media_elements.suggestion.title') %><br><%= t('search.media_elements.suggestion.description') %></p>
+              <p style="font-size:80%; padding-left:10px; padding-top:10px;">
+                <%= t('search.media_elements.suggestion.title') %><br/>
+                <%= t('search.media_elements.suggestion.description') %>
+              </p>
             </td>
           </tr>
           <tr>
@@ -50,14 +53,14 @@
           <tr>
             <% my_order_id = "#{SearchOrders::TITLE}_media_elements_radio_input" %>
             <td width="5%">
-              <input type="radio" name="order" id="<%= my_order_id %>" value="<%= SearchOrders::TITLE %>" class="regular-radio _order_media_elements_radio_input" checked="checked">
+              <input type="radio" name="order" id="<%= my_order_id %>" value="<%= SearchOrders::TITLE %>" class="regular-radio _order_media_elements_radio_input" checked="checked"/>
               <label for="<%= my_order_id %>"></label>
               &nbsp;<%= MediaElement.search_order(SearchOrders::TITLE) %>
             </td>
             <% (SearchOrders::MEDIA_ELEMENTS_SET - [SearchOrders::TITLE]).each do |so| %>
               <% my_order_id = "#{so}_media_elements_radio_input" %>
               <td width="5%">
-                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_media_elements_radio_input">
+                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_media_elements_radio_input"/>
                 <label for="<%= my_order_id %>"></label>
                 &nbsp;<%= MediaElement.search_order(so) %>
               </td>
@@ -77,7 +80,7 @@
     </div>
   </div>
   
-  <br class="clearfloat">
+  <br class="clearfloat"/>
   
   <% if active %>
     <% if results[:amount] > 0 %>

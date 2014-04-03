@@ -12,7 +12,7 @@
     height: 25px;
     margin: 0px 16px 10px 0;
     padding: 10px 0 0 10px;
-    background-color: #e9ecee;
+    background-color: #E9ECEE;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -30,137 +30,58 @@
   
   header {
     
-    padding: 30px 0 0 30px;
+    padding: 10px 0 0 20px;
+    
+  }
+  
+  form {
+    
+    margin-top: 20px;
     
   }
   
   h2 {
     
     @include nunito(25px);
-    color:  #7d7d7d;
+    color:  #7D7D7D;
     text-transform: lowercase;
     text-shadow: #ccc 1px 1px 0px;
     
   }
   
-  .insert-content {
+  .profile-element-container {
     
     float: left;
-    border: 1px solid #efefef;
+    border: 1px solid #EFEFEF;
     color: #999;
-    padding: 2%;
-    margin: 20px 20px 20px 0;
-    width: 96%;
+    padding: 35px;
+    margin: 0 0 20px 0;
+    width: calc(100% - 72px);
     
-    .cathegorySubjectContainer {
-      
-      float: left;
-      width: 100%;
-      padding: 0;
-      border-bottom: 1px solid #efefef;
-      margin-bottom: 20px;
-      
-      &:nth-child(3n+1) {
-        
-        border-bottom: none;
-        
-      }
-      
-      .cathegorySubjectName {
-        
-        color: #7d7d7d;
-        font-size: 16px;
-        padding: 10px 0px;
-        
-      }
-      
-    }
-    
-    .inputElement {
+    .profile-element {
       
       @include nunito(100%);
       float: left;
-      width: 227px;
-      margin-right: 5%;
+      width: 236px;
+      margin-right: 80px;
       padding-bottom: 30px;
       
-      &:last-child {
+      input {
         
-        margin-right: 0;
+        @include nunito(13px);
+        background-color: #F5F5F5;
+        color: #7D7D7D;
+        margin-right: 0px;
+        width: 216px;
+        height: 29px;
+        box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
+        padding: 4px 10px 4px 10px;
+        border-radius: 4px;
         
-      }
-      
-      label {
-        
-        padding-left: 10px;
-        
-      }
-      
-      p {
-        
-        font-weight: bold;
-        font-size: 10px;
-        padding-left: 15px;
-        padding-bottom: 5px;
-        
-      }
-      
-    }
-    
-    .text, select, option {
-      
-      @include nunito(13px);
-      width: 216px;
-      height: 29px;
-      
-      &.school {
-        
-        width: 500px;
-        
-      }
-      
-    }
-    
-    textarea.text {
-      
-      background-color: #f5f5f5;
-      color: #7d7d7d;
-      font-size: 120%;
-      padding: 10px 10px 0px 10px;
-      border: none;
-      border-radius: 4px;
-      -webkit-border-radius: 4px;
-      box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
-      width: 534px;
-      height: 192px;
-      
-    }
-    
-    .sbHolder, .sbOptions, .sbSelector {
-      
-      @include nunito(13px);
-      color: #7d7d7d;
-      width: 226px;
-      
-    }
-    
-    .sbHolder {
-      
-      background-color: #f5f5f5;
-      
-    }
-    
-    .sbOptions {
-      
-      margin-top: 10px;
-      
-      a {
-        
-        color: #999;
-        
-        &.sbFocus {
+        &.true {
           
-          color: #fff;
+          border: 2px solid red;
+          padding: 2px 8px 2px 8px;
           
         }
         
@@ -168,77 +89,228 @@
       
     }
     
-    .sbSelector {
+    &#profile-general-edit {
       
-      height: 26px;
-      padding-top: 10px;
+      .profile-element {
+        
+        &.email {
+          
+          input {
+            
+            color: #ccc;
+            
+          }
+          
+        }
+        
+      }
       
     }
     
-  }
-  
-  input[type="text"], input[type="password"], select {
+    &#profile-locations-edit {
+      
+      padding-bottom: 5px;
+      
+      .profile-element {
+        
+        input {
+          
+          color: #7D7D7D;
+          
+          &.empty-locations {
+            
+            color: #ccc;
+            
+          }
+          
+        }
+        
+      }
+      
+    }
     
-    background-color: #f5f5f5;
-    color: #7d7d7d;
-    font-size: 120%;
-    margin-right: 0px;
+    &#profile-subjects-edit {
+      
+      .profile-subject-cathegory-container {
+        
+        float: left;
+        width: 100%;
+        padding: 0;
+        border-bottom: 1px solid #EFEFEF;
+        margin-bottom: 20px;
+        
+        &.no-border {
+          
+          border: 0;
+          margin-bottom: -10px; /* 30px of margin-bottom minus 20px of regular margin. this style is not temporary nor unstable, please don't delete it! */
+          
+        }
+        
+        .profile-subject-cathegory-label {
+          
+          color: #7D7D7D;
+          font-size: 16px;
+          padding: 10px 0px;
+          
+        }
+        
+        .profile-element {
+          
+          @include nunito(16px);
+          border-radius: 5px;
+          -webkit-border-radius: 5px;
+          padding: 8px;
+          width: 211px;
+          float: left;
+          margin-right: 5%;
+          margin-bottom: 30px;
+          display: block;
+          color: #7D7D7D;
+          position: relative;
+          
+          input {
+            
+            display: none;
+            
+          }
+          
+          input:checked + label, label {
+            
+            background-color: #F5F5F5;
+            box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
+            border-radius: 10px;
+            padding: 20px;
+            float: left;
+            width: auto;
+            cursor: pointer;
+            
+          }
+          
+          input:checked + label:after {
+            
+            color: $green;
+            cursor: pointer;
+            content: '\2714';
+            font-size: 28px;
+            top: 9px;
+            left: 18px;
+            position: absolute;
+            
+          }
+          
+          span {
+            
+            float: left;
+            padding: 10px;
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+    &#profile-school-level-edit {
+      
+      .profile-element {
+        
+        padding: 0;
+        
+      }
+      
+    }
+    
+    .profile-errors {
+      
+      min-height: 30px;
+      margin-left: 0;
+      list-style: none;
+      
+      li {
+        
+        padding: 8px  20px;
+        background-image: $assets-puntoesclamativo_png;
+        background-repeat: no-repeat;
+        background-position: 0 .5em;
+        
+      }
+      
+    }
+    
+    .sbHolder {
+      
+      @include nunito(13px);
+      color: #7D7D7D;
+      width: 236px;
+      background-color: #F5F5F5;
+      
+      .sbToggle {
+        
+        top: 8px;
+        right: 5px;
+        
+      }
+      
+      .sbOptions {
+        
+        @include nunito(13px);
+        color: #7D7D7D;
+        width: 235px;
+        
+        a {
+          
+          color: #999;
+          
+          &.sbFocus {
+            
+            color: #fff;
+            
+          }
+          
+        }
+        
+      }
+      
+      .sbSelector {
+        
+        @include nunito(13px);
+        color: #7D7D7D;
+        width: 236px;
+        height: 37px;
+        
+      }
+      
+    }
     
   }
   
   .form_submit {
     
-    padding-left: 30px;
+    padding-left: 20px;
     
-  }
-  
-  input[type="submit"] {
-    
-    background-color: #555;
-    color: #fff;
-    text-transform: uppercase;
-    padding: 10px 30px;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    cursor: pointer;
-    
-    &:hover {
+    input {
       
-      background-color: #999;
+      background-color: #555;
+      color: #fff;
+      text-transform: uppercase;
+      padding: 10px 30px;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      cursor: pointer;
       
-    }
-    
-    &.current, &:hover.current {
+      &:hover {
+        
+        background-color: #999;
+        
+      }
       
-      color: #ccc;
-      background-color: #999;
-      
-    }
-    
-  }
-  
-  input:disabled {
-    
-    color: #ccc;
-    
-  }
-  
-  table {
-    
-    border-collapse: collapse;
-    width: 50%;
-    float: left;
-    
-    td {
-     
-     padding: 10px 0 10px 0;
-     
-    }
-    
-    p {
-      
-      padding-left: 15px;
-      padding-bottom: 5px;
+      &.current, &:hover.current {
+        
+        color: #ccc;
+        background-color: #999;
+        
+      }
       
     }
     
@@ -248,7 +320,7 @@
 
 #mailing_lists {
   
-  border: 1px solid #e2e2e2;
+  border: 1px solid #E2E2E2;
   padding: 10px 20px 20px;
   margin-top: 20px;
   
@@ -289,7 +361,7 @@
       
       table tbody tr td {
         
-        border: 1px solid #efefef;
+        border: 1px solid #EFEFEF;
         text-align: center;
         font-weight: bold;
         
@@ -332,7 +404,7 @@
       margin-top: 10px;
       width: auto;
       color: white;
-      background-color: #7d7d7d;
+      background-color: #7D7D7D;
       
       .group-title {
         
@@ -381,7 +453,7 @@
     
     form.new_email {
       
-      background-color: #a4a4a4;
+      background-color: #A4A4A4;
       margin: 0;
       padding: 0;
       width: auto;
@@ -427,9 +499,9 @@
 
 .stats {
   
-  background-color: #f5f5f5;
+  background-color: #F5F5F5;
   padding: 20px 30px;
-  margin-top: 30px;
+  margin-top: 20px;
   
   ul {
     
@@ -444,7 +516,7 @@
       padding: 10px;
       margin-bottom: 20px;
       background-color: #fff;
-      border-bottom: 2px solid #e2e2e2;
+      border-bottom: 2px solid #E2E2E2;
       
       span {
         
@@ -530,7 +602,7 @@
           div {
             
             font-size: 15px;
-            color: #7d7d7d !important;
+            color: #7D7D7D !important;
             
           }
           
@@ -548,11 +620,32 @@
     
   }
   
+  #subjects-stats {
+    
+    border-collapse: collapse;
+    width: 50%;
+    float: left;
+    
+    td {
+     
+     padding: 10px 0 10px 0;
+     
+    }
+    
+    p {
+      
+      padding-left: 15px;
+      padding-bottom: 5px;
+      
+    }
+    
+  }
+  
 }
 
 .contentStats {
   
-  background-color: #f5f5f5;
+  background-color: #F5F5F5;
   padding: 20px 8px 8px 8px;
   float: right;
   width: 305px;
@@ -594,7 +687,7 @@
   table, th, td {
     
     @include nunito(95%);
-    border: 1px solid #e0e0e0;
+    border: 1px solid #E0E0E0;
     color: #7D7D7D;
     
     h3 {
@@ -602,77 +695,6 @@
       padding: 5px 20px;
       
     }
-    
-  }
-  
-}
-
-.checkbox-content {
-  
-  padding: 0px;
-  margin: 0px;
-  width: 98%;
-  
-  .title {
-    
-    @include border-formatting;
-    margin-bottom: 20px;
-    
-    h2 {
-      
-      @include nunito(160%);
-      padding: 5px 15px;
-      color: $black;
-      
-    }
-    
-  }
-  
-}
-
-.checkboxElement {
-  
-  @include border-formatting;
-  @include nunito(16px);
-  padding: 8px;
-  width: 211px;
-  float: left;
-  margin-right: 5%;
-  margin-bottom: 30px;
-  display: block;
-  color: #7D7D7D;
-  
-  .regular-checkbox:checked + label, label {
-    
-    background-color: #f5f5f5;
-    box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
-    border-radius: 10px;
-    padding: 20px;
-    float: left;
-    width: auto;
-    cursor: pointer;
-    
-  }
-  
-  &:last-child {
-    
-    margin-right: 0;
-    
-  }
-  
-  .regular-checkbox:checked + label::after {
-    
-    color: $green;
-    padding: 3px;
-    cursor: pointer;
-    
-  }
-  
-  span {
-    
-    width: auto;
-    float: left;
-    padding: 10px;
     
   }
   

@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -122,6 +120,8 @@
                 <li><a href="../classes/ImageEditorImageScale.html">ImageEditorImageScale</a></li>
             
                 <li><a href="../classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
+            
+                <li><a href="../classes/JqueryBrowsersDetection.html">JqueryBrowsersDetection</a></li>
             
                 <li><a href="../classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
@@ -187,13 +187,13 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
-            
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
+            
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -243,13 +243,13 @@
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
             
-                <li><a href="../modules/documents.html">documents</a></li>
-            
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
                 <li><a href="../modules/general.html">general</a></li>
             
                 <li><a href="../modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="../modules/jquery-browsers.html">jquery-browsers</a></li>
             
                 <li><a href="../modules/jquery-patches.html">jquery-patches</a></li>
             
@@ -347,7 +347,10 @@ function preloginDocumentReady() {
   $body.on(&#x27;click&#x27;, &#x27;#submit_login_form&#x27;, function() {
     $(&#x27;#new_users_session_form&#x27;).submit();
   });
-  $body.on(&#x27;click&#x27;, &#x27;.cathegorySubjectContainer .checkboxElement label&#x27;, function() {
+  $body.on(&#x27;click&#x27;, &#x27;#registration-subjects label&#x27;, function() {
+    $(&#x27;#registration-subjects label&#x27;).removeClass(&#x27;true&#x27;);
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.profile-subject-cathegory-container .profile-element label&#x27;, function() {
     if($(this).hasClass(&#x27;unchecked&#x27;)) {
       $(this).removeClass(&#x27;unchecked&#x27;);
     } else {
@@ -355,9 +358,15 @@ function preloginDocumentReady() {
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;.checkAllSubjects&#x27;, function() {
-    $(this).parent().find(&#x27;.checkboxElement label.unchecked&#x27;).click();
+    $(this).parent().find(&#x27;.profile-element label.unchecked&#x27;).click();
   });
-  $(&#x27;.policy-verticalScroll&#x27;).jScrollPane();
+  $body.on(&#x27;keydown&#x27;, &#x27;#registration-general input&#x27;, function() {
+    $(this).removeClass(&#x27;true&#x27;);
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#registration-policies label&#x27;, function() {
+    $(this).removeClass(&#x27;true&#x27;);
+  });
+  $(&#x27;.policy-verticalScroll&#x27;).jScrollPane({autoReinitialise: true});
   var parsedLocation = UrlParser.parse(window.location.href);
   if(_.contains(_.keys(parsedLocation.searchObj), &#x27;login&#x27;)) {
     $(&#x27;._show_login_form_container&#x27;).click();
@@ -370,34 +379,52 @@ Initializes handler of purchase code in prelogin registration.
 @for ProfilePrelogin
 **/
 function purchaseCodeRegistrationDocumentReady() {
+  $body.on(&#x27;keydown&#x27;, &#x27;#registration_purchase_id&#x27;, function() {
+    $(this).removeClass(&#x27;error&#x27;);
+  });
   $body.on(&#x27;blur&#x27;, &#x27;#registration_purchase_id&#x27;, function() {
     var token = $(this).val();
-    if(token != &#x27;&#x27;) {
-      $.ajax({
-        type: &#x27;get&#x27;,
-        url: &#x27;sign_up/purchase_code?token=&#x27; + token
-      });
-    }
+    $.ajax({
+      type: &#x27;get&#x27;,
+      url: &#x27;sign_up/purchase_code?token=&#x27; + token
+    });
   });
   $body.on(&#x27;click&#x27;, &#x27;#registration_trial&#x27;, function() {
     var me = $(this);
     if(!me.hasClass(&#x27;checked&#x27;)) {
       me.addClass(&#x27;checked&#x27;).val(&#x27;1&#x27;);
-      $(&#x27;#registration_purchase_id&#x27;).val(&#x27;&#x27;).removeClass(&#x27;error&#x27;).addClass(&#x27;disabled&#x27;).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
+      $(&#x27;#registration_purchase_id&#x27;).val(&#x27;&#x27;).removeClass(&#x27;error&#x27;).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
       $(&#x27;#registration_ok&#x27;).hide();
     } else {
       me.removeClass(&#x27;checked&#x27;).val(&#x27;0&#x27;);
-      $(&#x27;#registration_purchase_id&#x27;).removeAttr(&#x27;disabled&#x27;).removeClass(&#x27;disabled&#x27;);
+      $(&#x27;#registration_purchase_id&#x27;).removeAttr(&#x27;disabled&#x27;);
     }
   });
   $body.on(&#x27;click&#x27;, &#x27;#locations_disclaimer&#x27;, function() {
     var me = $(this);
     if(!me.hasClass(&#x27;checked&#x27;)) {
       me.addClass(&#x27;checked&#x27;);
-      $(&#x27;#location_container_in_personal_info&#x27;).hide();
+      var last_not_select = $(&#x27;#registration-locations .profile-element select&#x27;).first().parent();
+      var depth = 0;
+      while(last_not_select.length &gt; 0) {
+        last_not_select = last_not_select.prev();
+        depth += 1;
+      }
+      $.ajax({
+        type: &#x27;get&#x27;,
+        url: &#x27;locations/toggle?on=false&amp;depth=&#x27; + depth
+      });
     } else {
       me.removeClass(&#x27;checked&#x27;);
-      $(&#x27;#location_container_in_personal_info&#x27;).show();
+      var last_not_selected = $(&#x27;#registration-locations .profile-element.locked&#x27;).last();
+      var which_selected = 0;
+      if(last_not_selected.length &gt; 0) {
+        which_selected = last_not_selected.find(&#x27;input&#x27;).data(&#x27;selected&#x27;);
+      }
+      $.ajax({
+        type: &#x27;get&#x27;,
+        url: &#x27;locations/toggle?on=true&amp;location_id=&#x27; + which_selected
+      });
     }
   });
 }
@@ -413,12 +440,12 @@ Initializes the javascript effects of the registration / modify profile form.
 **/
 function profileDocumentReady() {
   $body.on(&#x27;keypress&#x27;, &#x27;#mailing_lists_accordion .group-title&#x27;, function(event) {
-    if (event.keyCode == 10 || event.keyCode == 13){
+    if (event.keyCode == 10 || event.keyCode == 13) {
       event.preventDefault();
     }
   });
   $body.on(&#x27;keypress&#x27;, &#x27;#mailing_lists_accordion .group-title&#x27;, function(event) {
-     if(event.which === 32){
+     if(event.which === 32) {
        event.stopPropagation();
      }
   });
@@ -437,6 +464,9 @@ function profileDocumentReady() {
       $(this).val(&#x27;&#x27;);
       $(this).data(&#x27;placeholder&#x27;, false);
     }
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;#profile-general-edit input&#x27;, function() {
+    $(this).removeClass(&#x27;true&#x27;);
   });
 }
 

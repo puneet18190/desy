@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -122,6 +120,8 @@
                 <li><a href="../classes/ImageEditorImageScale.html">ImageEditorImageScale</a></li>
             
                 <li><a href="../classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
+            
+                <li><a href="../classes/JqueryBrowsersDetection.html">JqueryBrowsersDetection</a></li>
             
                 <li><a href="../classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
@@ -187,13 +187,13 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
-            
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
+            
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -243,13 +243,13 @@
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
             
-                <li><a href="../modules/documents.html">documents</a></li>
-            
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
                 <li><a href="../modules/general.html">general</a></li>
             
                 <li><a href="../modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="../modules/jquery-browsers.html">jquery-browsers</a></li>
             
                 <li><a href="../modules/jquery-patches.html">jquery-patches</a></li>
             
@@ -323,7 +323,7 @@ On the top of the right column are positioned the time durations (updated with {
 &lt;br/&gt;&lt;br/&gt;
 On the bottom of the right column are positioned the controls for the &lt;b&gt;global preview&lt;/b&gt; (which plays all the components globally). Similarly to the module {{#crossLinkModule &quot;video-editor&quot;}}{{/crossLinkModule}}, before playing the global preview the system must enter in &lt;b&gt;preview mode&lt;/b&gt;: the difference is that in the Audio Editor this mode is switched automatically by the system, whereas in the Video Editor it&#x27;s the user who decides to enter and leave the preview mode. To enter in preview mode we use the method {{#crossLink &quot;AudioEditorPreview/enterAudioEditorPreviewMode:method&quot;}}{{/crossLink}}, which calls {{#crossLink &quot;AudioEditorPreview/switchAudioComponentsToPreviewMode:method&quot;}}{{/crossLink}} or each component. A component in preview mode can be &lt;b&gt;selected&lt;/b&gt; (using a differente method respect to the normal component selection: see {{#crossLink &quot;AudioEditorPreview/selectAudioEditorComponentInPreviewMode:method&quot;}}{{/crossLink}}). Each component in the global preview is played using the method {{#crossLink &quot;AudioEditorPreview/startAudioEditorPreview:method&quot;}}{{/crossLink}} (to which we pass the component to start with); the main part of the functionality of passing from a component to the next one during the global preview is handled in the module {{#crossLinkModule &quot;players&quot;}}{{/crossLinkModule}} (more specificly, in the method {{#crossLink &quot;PlayersAudioEditor/initializeActionOfMediaTimeUpdaterInAudioEditor:method&quot;}}{{/crossLink}}.
 &lt;br/&gt;&lt;br/&gt;
-As for the other Element Editors ({{#crossLinkModule &quot;image-editor&quot;}}{{/crossLinkModule}}, {{#crossLinkModule &quot;video-editor&quot;}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule &quot;media-element-editor&quot;}}{{/crossLinkModule}} (more specificly in the class {{#crossLink &quot;MediaElementEditorForms&quot;}}{{/crossLink}}); the part of this functionality specific for the Audio Editor is handled in {{#crossLink &quot;AudioEditorDocumentReady/audioEditorDocumentReadyCommit:method&quot;}}{{/crossLink}}.
+As for the other Element Editors ({{#crossLinkModule &quot;image-editor&quot;}}{{/crossLinkModule}}, {{#crossLinkModule &quot;video-editor&quot;}}{{/crossLinkModule}}) the core of the process of committing changes is handled in the module {{#crossLinkModule &quot;media-element-editor&quot;}}{{/crossLinkModule}} (more specificly in the class {{#crossLink &quot;MediaElementEditorForms&quot;}}{{/crossLink}}); the part of this functionality specific for the Audio Editor is handled in {{#crossLink &quot;MediaElementEditorDocumentReady/mediaElementEditorDocumentReady:method&quot;}}{{/crossLink}}.
 @module audio-editor
 **/
 
@@ -436,7 +436,7 @@ Function that creates a single input field to be inserted in the empty audio com
 @return {String} the resulting input written in HTML
 **/
 function fillAudioEditorSingleParameter(input, identifier, value) {
-  return &#x27;&lt;input id=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot; class=&quot;_audio_component_input_&#x27; + input + &#x27;&quot; type=&quot;hidden&quot; value=&quot;&#x27; + value + &#x27;&quot; name=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot;&gt;&#x27;;
+  return &#x27;&lt;input id=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot; class=&quot;_audio_component_input_&#x27; + input + &#x27;&quot; type=&quot;hidden&quot; value=&quot;&#x27; + value + &#x27;&quot; name=&quot;&#x27; + input + &#x27;_&#x27; + identifier + &#x27;&quot;/&gt;&#x27;;
 }
 
 /**
@@ -615,105 +615,9 @@ Initializes the whole Audio Editor, calling all the subinitializers
 @for AudioEditorDocumentReady
 **/
 function audioEditorDocumentReady() {
-  audioEditorDocumentReadyCommit();
   audioEditorDocumentReadyPreview();
   audioEditorDocumentReadyCutters();
   audioEditorDocumentReadyGeneral();
-}
-
-/**
-Initializer for the functionalities of committing changes (click on &#x27;commit&#x27;, on &#x27;cancel&#x27;, popup asking to overwrite, etc). For other functionalities common to all the Element Editors, see {{#crossLink &quot;MediaElementEditorForms&quot;}}{{/crossLink}}.
-@method audioEditorDocumentReadyCommit
-@for AudioEditorDocumentReady
-**/
-function audioEditorDocumentReadyCommit() {
-  $body.on(&#x27;click&#x27;, &#x27;._exit_audio_editor&#x27;, function() {
-    stopCacheLoop();
-    var captions = $captions;
-    showConfirmPopUp(captions.data(&#x27;exit-audio-editor-title&#x27;), captions.data(&#x27;exit-audio-editor-confirm&#x27;), captions.data(&#x27;exit-audio-editor-yes&#x27;), captions.data(&#x27;exit-audio-editor-no&#x27;), function() {
-      $(&#x27;dialog-confirm&#x27;).hide();
-      unbindLoader();
-      $.ajax({
-        type: &#x27;post&#x27;,
-        url: &#x27;/audios/cache/empty&#x27;,
-        success: function() {
-          window.location = &#x27;/media_elements&#x27;;
-        }
-      }).always(bindLoader);
-    }, function() {
-      if($(&#x27;#form_info_update_media_element_in_editor&#x27;).length == 0) {
-        if(!$(&#x27;#form_info_new_media_element_in_editor&#x27;).is(&#x27;:visible&#x27;)) {
-          startCacheLoop();
-        }
-      } else {
-        if(!$(&#x27;#form_info_new_media_element_in_editor&#x27;).is(&#x27;:visible&#x27;) &amp;&amp; !$(&#x27;#form_info_update_media_element_in_editor&#x27;).is(&#x27;:visible&#x27;)) {
-          startCacheLoop();
-        }
-      }
-      closePopUp(&#x27;dialog-confirm&#x27;);
-    });
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#commit_audio_editor&#x27;, function() {
-    stopCacheLoop();
-    submitMediaElementEditorCacheForm($(&#x27;#audio_editor_form&#x27;));
-    if($(this).hasClass(&#x27;_with_choice&#x27;)) {
-      var captions = $captions;
-      var title = captions.data(&#x27;save-media-element-editor-title&#x27;);
-      var confirm = captions.data(&#x27;save-media-element-editor-confirm&#x27;);
-      var yes = captions.data(&#x27;save-media-element-editor-yes&#x27;);
-      var no = captions.data(&#x27;save-media-element-editor-no&#x27;);
-      showConfirmPopUp(title, confirm, yes, no, function() {
-        closePopUp(&#x27;dialog-confirm&#x27;);
-        showCommitAudioEditorForm(&#x27;update&#x27;);
-      }, function() {
-        closePopUp(&#x27;dialog-confirm&#x27;);
-        $(&#x27;#audio_editor_title ._titled&#x27;).hide();
-        $(&#x27;#audio_editor_title ._untitled&#x27;).show();
-        showCommitAudioEditorForm(&#x27;new&#x27;);
-      });
-    } else {
-      showCommitAudioEditorForm(&#x27;new&#x27;);
-    }
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_new_media_element_in_editor ._cancel&#x27;, function() {
-    $(&#x27;#audio_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;/audios/cache/save&#x27;);
-    resetMediaElementEditorForms();
-    if($(&#x27;#audio_editor_title ._titled&#x27;).length &gt; 0) {
-      $(&#x27;#audio_editor_title ._titled&#x27;).show();
-      $(&#x27;#audio_editor_title ._untitled&#x27;).hide();
-    }
-    hideCommitAudioEditorForm(&#x27;new&#x27;);
-    startCacheLoop();
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_update_media_element_in_editor ._cancel&#x27;, function() {
-    $(&#x27;#audio_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;/audios/cache/save&#x27;);
-    resetMediaElementEditorForms();
-    hideCommitAudioEditorForm(&#x27;update&#x27;);
-    startCacheLoop();
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_new_media_element_in_editor ._commit&#x27;, function() {
-    $(&#x27;#audio_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;/audios/commit/new&#x27;);
-    $(&#x27;#audio_editor_form&#x27;).submit();
-  });
-  $body.on(&#x27;click&#x27;, &#x27;#audio_editor #form_info_update_media_element_in_editor ._commit&#x27;, function() {
-    if($(&#x27;#info_container&#x27;).data(&#x27;used-in-private-lessons&#x27;)) {
-      var captions = $captions;
-      var title = captions.data(&#x27;overwrite-media-element-editor-title&#x27;);
-      var confirm = captions.data(&#x27;overwrite-media-element-editor-confirm&#x27;);
-      var yes = captions.data(&#x27;overwrite-media-element-editor-yes&#x27;);
-      var no = captions.data(&#x27;overwrite-media-element-editor-no&#x27;);
-      showConfirmPopUp(title, confirm, yes, no, function() {
-        $(&#x27;dialog-confirm&#x27;).hide();
-        $(&#x27;#audio_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;/audios/commit/overwrite&#x27;);
-        $(&#x27;#audio_editor_form&#x27;).submit();
-      }, function() {
-        closePopUp(&#x27;dialog-confirm&#x27;);
-      });
-    } else {
-      $(&#x27;#audio_editor_form&#x27;).attr(&#x27;action&#x27;, &#x27;/audios/commit/overwrite&#x27;);
-      $(&#x27;#audio_editor_form&#x27;).submit();
-    }
-  });
 }
 
 /**
@@ -964,7 +868,7 @@ Disables the buttons &lt;i&gt;commit&lt;/i&gt; and &lt;i&gt;prewiev&lt;/i&gt;.
 **/
 function disableCommitAndPreviewInAudioEditor() {
   $(&#x27;#empty_audio_editor&#x27;).show();
-  $(&#x27;#commit_audio_editor&#x27;).hide();
+  $(&#x27;._commit_media_element_editor&#x27;).hide();
   $(&#x27;#start_audio_editor_preview&#x27;).addClass(&#x27;disabled&#x27;);
   $(&#x27;#rewind_audio_editor_preview&#x27;).addClass(&#x27;disabled&#x27;);
 }
@@ -976,21 +880,9 @@ Enables the buttons &lt;i&gt;commit&lt;/i&gt; and &lt;i&gt;preview&lt;/i&gt;.
 **/
 function enableCommitAndPreviewInAudioEditor() {
   $(&#x27;#empty_audio_editor&#x27;).hide();
-  $(&#x27;#commit_audio_editor&#x27;).show();
+  $(&#x27;._commit_media_element_editor&#x27;).show();
   $(&#x27;#start_audio_editor_preview&#x27;).removeClass(&#x27;disabled&#x27;);
   $(&#x27;#rewind_audio_editor_preview&#x27;).removeClass(&#x27;disabled&#x27;);
-}
-
-/**
-Hides the commit form for overwrite or for new element (depending on the parameter).
-@method hideCommitAudioEditorForm
-@for AudioEditorGraphics
-@param scope {String} it can be either &#x27;overwrite&#x27; or &#x27;new&#x27;
-**/
-function hideCommitAudioEditorForm(scope) {
-  $(&#x27;._audio_editor_bottom_bar&#x27;).show();
-  $(&#x27;#audio_editor #form_info_&#x27; + scope + &#x27;_media_element_in_editor&#x27;).hide();
-  setBackAllZIndexesInAudioEditor();
 }
 
 /**
@@ -1021,18 +913,6 @@ function setToZeroAllZIndexesInAudioEditor() {
   $(&#x27;._audio_editor_component ._media_player_slider&#x27;).css(&#x27;z-index&#x27;, 0);
 }
 
-/**
-Shows the commit form for overwrite or for new element (depending on the parameter).
-@method showCommitAudioEditorForm
-@for AudioEditorGraphics
-@param scope {String} it can be either &#x27;overwrite&#x27; or &#x27;new&#x27;
-**/
-function showCommitAudioEditorForm(scope) {
-  $(&#x27;._audio_editor_bottom_bar&#x27;).hide();
-  $(&#x27;#audio_editor #form_info_&#x27; + scope + &#x27;_media_element_in_editor&#x27;).show();
-  setToZeroAllZIndexesInAudioEditor();
-}
-
 
 
 
@@ -1061,7 +941,7 @@ Function that sets all the graphical details that characterize the preview mode.
 function enterAudioEditorPreviewMode() {
   $(&#x27;#info_container&#x27;).data(&#x27;in-preview&#x27;, true);
   $(&#x27;#audio_editor_box_ghost&#x27;).show();
-  $(&#x27;#commit_audio_editor&#x27;).hide();
+  $(&#x27;._commit_media_element_editor&#x27;).hide();
   $(&#x27;#add_new_audio_component_in_audio_editor&#x27;).addClass(&#x27;disabled&#x27;);
   $(&#x27;#start_audio_editor_preview&#x27;).addClass(&#x27;disabled&#x27;);
   $(&#x27;#rewind_audio_editor_preview&#x27;).addClass(&#x27;disabled&#x27;);
@@ -1146,7 +1026,7 @@ function leaveAudioEditorPreviewMode(forced_component) {
   $(&#x27;#visual_audio_editor_current_time&#x27;).css(&#x27;color&#x27;, &#x27;#787575&#x27;);
   $(&#x27;#visual_audio_editor_total_length&#x27;).css(&#x27;color&#x27;, &#x27;white&#x27;);
   $(&#x27;#visual_audio_editor_current_time&#x27;).hide();
-  $(&#x27;#commit_audio_editor&#x27;).show();
+  $(&#x27;._commit_media_element_editor&#x27;).show();
   $(&#x27;#add_new_audio_component_in_audio_editor&#x27;).removeClass(&#x27;disabled&#x27;);
   $(&#x27;#start_audio_editor_preview&#x27;).show();
   $(&#x27;#stop_audio_editor_preview&#x27;).hide();

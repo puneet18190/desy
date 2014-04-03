@@ -87,14 +87,12 @@ class LessonEditorController < ApplicationController
     title = params[:title_placeholder] != '0' ? '' : params[:title]
     description = params[:description_placeholder] != '0' ? '' : params[:description]
     tags = params[:tags_value]
-    new_lesson = current_user.create_lesson title, description, params[:subject], tags
+    new_lesson = current_user.create_lesson title, description, params[:subject_id], tags
     if new_lesson.instance_of?(Lesson)
       @lesson = new_lesson
     else
-      @errors = convert_lesson_editor_messages new_lesson
-      @error_fields = new_lesson.keys
+      @errors = convert_lesson_error_messages new_lesson
     end
-    p new_lesson
   end
   
   # === Description
@@ -117,14 +115,13 @@ class LessonEditorController < ApplicationController
     else
       @lesson.title = params[:title]
       @lesson.description =  params[:description]
-      @lesson.subject_id = params[:lesson_subject]
+      @lesson.subject_id = params[:subject_id]
       @lesson.tags = params[:tags_value]
       @lesson.save_tags = true
-      if !@lesson.save
-        @errors = convert_item_error_messages @lesson.errors
-        @error_fields = @lesson.errors.messages.keys
-      else
+      if @lesson.save
         @lesson.modify
+      else
+        @errors = convert_lesson_error_messages @lesson.errors
       end
     end
   end
@@ -285,7 +282,43 @@ class LessonEditorController < ApplicationController
   def load_slide
   end
   
+  # === Description
+  #
+  # Reloads videos and audios in the galleries if they are in conversion
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  def check_conversion
+    @mes = []
+    params.keys.each do |key|
+      if key[0, 2] == 'me'
+        id = key[2, key.length - 2]
+        media_element_id = correct_integer?(id) ? id.to_i : 0
+        media_element = MediaElement.find_by_id media_element_id
+        ok = (media_element && current_user.id == media_element.user_id && !media_element.is_public)
+        get_audios_and_videos_for_reload if !ok
+        @mes << {
+          :ok               => ok,
+          :media_element_id => media_element_id,
+          :media_element    => media_element
+        }
+      end
+    end
+  end
+  
   private
+  
+  # Loads audios and videos, as in GalleriesController
+  def get_audios_and_videos_for_reload
+    x = current_user.own_media_elements(1, GalleriesController::AUDIOS_FOR_PAGE, Filters::AUDIO, true)
+    @audios = x[:records]
+    @audios_tot_pages = x[:pages_amount]
+    x = current_user.own_media_elements(1, GalleriesController::VIDEOS_FOR_PAGE, Filters::VIDEO, true)
+    @videos = x[:records]
+    @videos_tot_pages = x[:pages_amount]
+  end
   
   # Checks if the lesson editor is not locked for the user
   def check_available_for_user

@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -122,6 +120,8 @@
                 <li><a href="../classes/ImageEditorImageScale.html">ImageEditorImageScale</a></li>
             
                 <li><a href="../classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
+            
+                <li><a href="../classes/JqueryBrowsersDetection.html">JqueryBrowsersDetection</a></li>
             
                 <li><a href="../classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
@@ -187,13 +187,13 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
-            
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
+            
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -243,13 +243,13 @@
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
             
-                <li><a href="../modules/documents.html">documents</a></li>
-            
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
                 <li><a href="../modules/general.html">general</a></li>
             
                 <li><a href="../modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="../modules/jquery-browsers.html">jquery-browsers</a></li>
             
                 <li><a href="../modules/jquery-patches.html">jquery-patches</a></li>
             
@@ -341,6 +341,28 @@ Adds the class &lt;i&gt;close on click out&lt;/i&gt; to the widget overlay: this
 function customOverlayClose() {
   $(&#x27;.ui-widget-overlay&#x27;).show().css(&#x27;height&#x27;, (2 * $window.height()) + &#x27;px&#x27;);
   $(&#x27;.ui-widget-overlay&#x27;).addClass(&#x27;_close_on_click_out&#x27;);
+}
+
+/**
+Close and successively remove HTML for all media element poopups. It calls {{#crossLink &quot;DialogsAccessories/removeCompletelyDocumentPopup:method&quot;}}{{/crossLink}}.
+@method removeCompletelyAllDocumentPopups
+@for DialogsAccessories
+**/
+function removeCompletelyAllDocumentPopups() {
+  $(&#x27;.boxViewSingleDocument .menuController .preview&#x27;).each(function() {
+    removeCompletelyDocumentPopup($(this).data(&#x27;document-id&#x27;));
+  });
+}
+
+/**
+Close and successively remove HTML for all media element poopups. It calls {{#crossLink &quot;DialogsAccessories/removeCompletelyMediaElementPopup:method&quot;}}{{/crossLink}}.
+@method removeCompletelyAllMediaElementPopups
+@for DialogsAccessories
+**/
+function removeCompletelyAllMediaElementPopups() {
+  $(&#x27;._media_element_item .menuController .preview&#x27;).each(function() {
+    removeCompletelyMediaElementPopup($(this).data(&#x27;clickparam&#x27;));
+  });
 }
 
 /**
@@ -660,12 +682,13 @@ function showLessonNotificationPopUp(lesson_id) {
 }
 
 /**
-Dialog containing the form to upload a new document. This function interacts with the module {{#crossLinkModule &quot;uploader&quot;}}{{/crossLinkModule}}.
-@method showLoadDocumentPopUp
+Dialog containing the form to upload a new document or media element. This function interacts with the module {{#crossLinkModule &quot;uploader&quot;}}{{/crossLinkModule}}.
+@method showLoadPopUp
+@param type {String} either &#x27;document&#x27; or &#x27;media-element&#x27;
 @for DialogsWithForm
 **/
-function showLoadDocumentPopUp() {
-  var obj = $(&#x27;#load-document&#x27;);
+function showLoadPopUp(type) {
+  var obj = $(&#x27;#load-&#x27; + type);
   if(obj.data(&#x27;dialog&#x27;)) {
     obj.dialog(&#x27;open&#x27;);
   } else {
@@ -675,19 +698,24 @@ function showLoadDocumentPopUp() {
       resizable: false,
       draggable: false,
       width: 760,
+      height: 440,
       show: &#x27;fade&#x27;,
       hide: {effect: &#x27;fade&#x27;},
       open: function(event, ui) {
         setTimeout(function() {
           obj.find(&#x27;input&#x27;).blur();
-          obj.find(&#x27;.docload_title&#x27;).val(obj.data(&#x27;placeholder-title&#x27;));
-          obj.find(&#x27;.docload_description&#x27;).val(obj.data(&#x27;placeholder-description&#x27;));
-          obj.find(&#x27;.docload_title_placeholder&#x27;).val(&#x27;&#x27;);
-          obj.find(&#x27;.docload_description_placeholder&#x27;).val(&#x27;&#x27;);
-          $(&#x27;#document_attachment_show&#x27;).text(obj.data(&#x27;placeholder-attachment&#x27;));
+          obj.find(&#x27;.title&#x27;).val(obj.data(&#x27;placeholder-title&#x27;));
+          obj.find(&#x27;.description&#x27;).val(obj.data(&#x27;placeholder-description&#x27;));
+          obj.find(&#x27;.title_placeholder&#x27;).val(&#x27;&#x27;);
+          obj.find(&#x27;.description_placeholder&#x27;).val(&#x27;&#x27;);
+          obj.find(&#x27;.tags_value&#x27;).val(&#x27;&#x27;);
+          obj.find(&#x27;._tags_container span&#x27;).remove();
+          obj.find(&#x27;._tags_container ._placeholder&#x27;).show();
+          obj.find(&#x27;._tags_container .tags&#x27;).val(&#x27;&#x27;).show();
+          obj.find(&#x27;.part1 .attachment .media&#x27;).val(obj.data(&#x27;placeholder-media&#x27;));
           obj.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
-          $(&#x27;#new_document_input&#x27;).val(&#x27;&#x27;);
-          obj.find(&#x27;.barraLoading .loading-errors&#x27;).html(&#x27;&#x27;);
+          obj.find(&#x27;.errors_layer&#x27;).hide();
+          obj.find(&#x27;.part1 .attachment .file&#x27;).val(&#x27;&#x27;);
         }, 100);
       }
     });
@@ -695,12 +723,13 @@ function showLoadDocumentPopUp() {
 }
 
 /**
-Dialog containing the form to upload a new media element. This function interacts with the module {{#crossLinkModule &quot;uploader&quot;}}{{/crossLinkModule}}.
-@method showLoadMediaElementPopUp
+Dialog containing the document general information. This dialog contains also the form to change title and description (see the method {{#crossLink &quot;MediaElementEditorForms/resetDocumentChangeInfo:method&quot;}}{{/crossLink}}).
+@method showDocumentInfoPopUp
 @for DialogsWithForm
+@param document_id {Number} id in the database of the document
 **/
-function showLoadMediaElementPopUp() {
-  var obj = $(&#x27;#load-media-element&#x27;);
+function showDocumentInfoPopUp(document_id) {
+  var obj = $(&#x27;#dialog-document-&#x27; + document_id);
   if(obj.data(&#x27;dialog&#x27;)) {
     obj.dialog(&#x27;open&#x27;);
   } else {
@@ -710,23 +739,23 @@ function showLoadMediaElementPopUp() {
       resizable: false,
       draggable: false,
       width: 760,
+      height: 440,
       show: &#x27;fade&#x27;,
       hide: {effect: &#x27;fade&#x27;},
-      open: function(event, ui) {
-        setTimeout(function() {
-          obj.find(&#x27;input&#x27;).blur();
-          obj.find(&#x27;.medload_title&#x27;).val(obj.data(&#x27;placeholder-title&#x27;));
-          obj.find(&#x27;.medload_description&#x27;).val(obj.data(&#x27;placeholder-description&#x27;));
-          obj.find(&#x27;.medload_title_placeholder&#x27;).val(&#x27;&#x27;);
-          obj.find(&#x27;.medload_description_placeholder&#x27;).val(&#x27;&#x27;);
-          obj.find(&#x27;.medload_tags_value&#x27;).val(&#x27;&#x27;);
-          obj.find(&#x27;._tags_container span&#x27;).remove();
-          obj.find(&#x27;._tags_container ._placeholder&#x27;).show();
-          $(&#x27;#media_element_media_show&#x27;).text(obj.data(&#x27;placeholder-media&#x27;));
-          obj.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
-          $(&#x27;#new_media_element_input&#x27;).val(&#x27;&#x27;);
-          obj.find(&#x27;.barraLoading .loading-errors&#x27;).html(&#x27;&#x27;);
-        }, 100);
+      open: function() {
+        customOverlayClose();
+        var word = $(&#x27;#search_documents ._word_input&#x27;).val()
+        $(&#x27;#dialog-document-&#x27; + document_id + &#x27; .hidden_word&#x27;).val(word);
+      },
+      beforeClose: function() {
+        removeCustomOverlayClose();
+      },
+      close: function() {
+        var container = $(&#x27;#dialog-document-&#x27; + document_id);
+        resetDocumentChangeInfo(container.find(&#x27;.wrapper .change-info&#x27;));
+        container.find(&#x27;.preview&#x27;).show();
+        container.find(&#x27;.wrapper .change-info&#x27;).hide();
+        container.find(&#x27;.menu .change-info&#x27;).removeClass(&#x27;encendido&#x27;);
       }
     });
   }
@@ -757,7 +786,8 @@ function showMediaElementInfoPopUp(media_element_id) {
         modal: true,
         resizable: false,
         draggable: false,
-        width: 874,
+        width: 760,
+        height: 440,
         show: &#x27;fade&#x27;,
         hide: {effect: &#x27;fade&#x27;},
         open: function() {
@@ -767,17 +797,17 @@ function showMediaElementInfoPopUp(media_element_id) {
           removeCustomOverlayClose();
         },
         close: function() {
-          resetMediaElementChangeInfo(media_element_id);
-          $(this).find(&#x27;._report_form_content&#x27;).hide();
-          $(this).find(&#x27;._report_media_element_click&#x27;).removeClass(&#x27;report_light&#x27;);
-          var player_container = $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._instance_of_player&#x27;);
-          if(player_container.length &gt; 0) {
-            stopMedia(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; &#x27; + player_container.data(&#x27;media-type&#x27;));
+          var container = $(&#x27;#dialog-media-element-&#x27; + media_element_id);
+          var player = container.find(&#x27;.preview .content ._instance_of_player&#x27;);
+          if(player.length &gt; 0) {
+            stopMedia(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; &#x27; + player.data(&#x27;media-type&#x27;));
           }
-          $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._audio_preview_in_media_element_popup&#x27;).show();
-          $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._change_info_container&#x27;).hide();
-          var change_info_button = $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._change_info_to_pick&#x27;);
-          change_info_button.addClass(&#x27;change_info&#x27;).removeClass(&#x27;change_info_light&#x27;);
+          resetMediaElementChangeInfo(container.find(&#x27;.wrapper .change-info&#x27;));
+          container.find(&#x27;.preview&#x27;).show();
+          container.find(&#x27;._report_form_content&#x27;).hide();
+          container.find(&#x27;.menu .report&#x27;).removeClass(&#x27;encendido&#x27;);
+          container.find(&#x27;.wrapper .change-info&#x27;).hide();
+          container.find(&#x27;.menu .change-info&#x27;).removeClass(&#x27;encendido&#x27;);
         }
       });
     }

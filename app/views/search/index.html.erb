@@ -54,7 +54,7 @@
     <%= render :partial => 'search/lessons/main', :locals => locals_lessons %>
     <%= render :partial => 'search/media_elements/main', :locals => locals_media_elements %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url.gsub('&amp;', '&') %>"></div>
-    <br class="clearfloat">
+    <br class="clearfloat"/>
     <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) %>
       <%= render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount} %>
     <% end %>

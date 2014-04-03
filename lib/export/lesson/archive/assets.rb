@@ -14,10 +14,10 @@ module Export
     class Archive
       class Assets < Assets
 
-        FOLDER = ASSETS_FOLDER
+        FOLDER = INPUT_ASSETS_FOLDER
 
-        def env
-          @sub_env ||= begin
+        def assets
+          @sub_assets ||= begin
             assets = super
 
             assets.context_class.class_eval do
@@ -38,7 +38,7 @@ module Export
             documents/ppt.svg
             documents/unknown.svg
             documents/zip.svg
-            bg_tile_editor.gif
+            bg_title_editor.gif
             documents_fondo.png
             favicon32x32.png
             icone-player.svg

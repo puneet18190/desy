@@ -131,6 +131,7 @@ function lessonEditorDocumentReady() {
   lessonEditorDocumentReadyReplaceMediaElement();
   lessonEditorDocumentReadyTextFields();
   lessonEditorDocumentReadyInitializeImageInscription();
+  lessonEditorDocumentReadyUploaderInGallery();
 }
 
 /**
@@ -493,11 +494,11 @@ function lessonEditorDocumentReadyResize() {
   $window.resize(function() {
     $('.lesson-editor-layout ul#slides').css('margin-top', ((($window.height() - 590) / 2) - 40) + 'px');
     $('.lesson-editor-layout ul#slides.new').css('margin-top', ((($window.height() - 590) / 2)) + 'px');
-    if(WW > 1000) {
+    if(parseInt($window.outerWidth()) > 1000) {
       $('ul#slides li:first').css('margin-left', (($window.width() - 900) / 2) + 'px');
       $('ul#slides.new li:first').css('margin-left', (($window.width() - 900) / 2) + 'px');
     }
-    $('#footer').css('top', ($window.height() - 40) + 'px').css('width', ($window.width() - 24) + 'px');
+    $('#footer').css('top', ($window.height() - 44) + 'px').css('width', $window.width() + 'px');
     var open_gallery = $('.lesson_editor_gallery_container:visible');
     if(open_gallery.length > 0) {
       centerThis(open_gallery);
@@ -613,29 +614,176 @@ function lessonEditorDocumentReadyTextFields() {
       $(this).data('placeholder', false);
     }
   });
-  $body.on('focus', '#slides._new #title', function() {
-    if($('#slides._new #title_placeholder').val() == '') {
+  $body.on('focus', '.lessonForm .part2 .title', function() {
+    var container = $(this).parents('.lessonForm');
+    var placeholder = container.find('.title_placeholder');
+    if(placeholder.val() == '') {
       $(this).val('');
-      $('#slides._new #title_placeholder').attr('value', '0');
+      placeholder.val('0');
     }
   });
-  $body.on('focus', '#slides._new #description', function() {
-    if($('#slides._new #description_placeholder').val() == '') {
+  $body.on('focus', '.lessonForm .part2 .description', function() {
+    var container = $(this).parents('.lessonForm');
+    var placeholder = container.find('.description_placeholder');
+    if(placeholder.val() == '') {
       $(this).val('');
-      $('#slides._new #description_placeholder').attr('value', '0');
+      placeholder.val('0');
     }
   });
-  $body.on('focus', '#slides._update #title', function() {
-    if($('#slides._update #title_placeholder').val() == '') {
-      $(this).val('');
-      $('#slides._update #title_placeholder').attr('value', '0');
+  $body.on('keydown', '.lessonForm .part2 .title, .lessonForm .part2 .description', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('keydown', '.lessonForm .part2 ._tags_container .tags', function() {
+    $(this).parents('._tags_container').removeClass('form_error');
+  });
+  $body.on('click', '.lessonForm .part3 .submit', function() {
+    var container = $(this).parents('.lessonForm');
+    container.find('form').submit();
+  });
+  $body.on('click', '.lessonForm .errors_layer', function() {
+    var myself = $(this);
+    var container = myself.parents('.lessonForm');
+    myself.hide();
+    container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
+  });
+  $body.on('change', '.lessonForm .part2 #lesson_subject', function() {
+    var myself = $(this);
+    if(myself.val() != '') {
+      myself.find('.delete_me').remove();
+      myself.selectbox('detach');
+      myself.selectbox();
     }
   });
-  $body.on('focus', '#slides._update #description', function() {
-    if($('#slides._update #description_placeholder').val() == '') {
-      $(this).val('');
-      $('#slides._update #description_placeholder').attr('value', '0');
+}
+
+/**
+Initializer for specific media elements or documents uploader inside the Lesson Editor.
+@method lessonEditorDocumentReadyUploaderInGallery
+@for LessonEditorDocumentReady
+**/
+function lessonEditorDocumentReadyUploaderInGallery() {
+  $body.on('change', '.loadInGallery .part1 .attachment input.file', function() {
+    var container = $(this).parents('.loadInGallery');
+    var file_name = $(this).val().replace("C:\\fakepath\\", '');
+    if(file_name.replace(/^[\s\t]+/, '') != '') {
+      if(file_name.length > 20) {
+        file_name = file_name.substring(0, 20) + '...';
+      }
+      container.find('.part1 .attachment .media').val(file_name).removeClass('form_error');
+    } else {
+      container.find('.part1 .attachment .media').val(container.data('placeholder-media')).removeClass('form_error');
     }
+  });
+  $body.on('click', '.gallery_upload_container a', function() {
+    var myself = $(this);
+    var my_father = myself.parent();
+    var popup = my_father.prev();
+    myself.hide();
+    my_father.next().hide();
+    popup.find('.part2 .title_and_description .title').val(popup.data('placeholder-title'));
+    popup.find('.part2 .title_and_description .description').val(popup.data('placeholder-description'));
+    popup.find('.part2 .title_and_description .title_placeholder').val('');
+    popup.find('.part2 .title_and_description .description_placeholder').val('');
+    popup.find('.part2 .tags_loader .tags_value').val('');
+    popup.find('.part2 .tags_loader ._tags_container span').remove();
+    popup.find('.part2 .tags_loader ._tags_container ._placeholder').show();
+    popup.find('._tags_container .tags').show();
+    popup.find('.part1 .attachment .media').val(popup.data('placeholder-media'));
+    popup.find('.part1 .attachment label input').val('');
+    popup.find('.form_error').removeClass('form_error');
+    popup.find('.errors_layer').hide();
+    popup.find('.full_folder').hide();
+    popup.show();
+  });
+  $body.on('click', 'a.document_quick_upload_hint', function() {
+    var my_father = $('#document_gallery');
+    var popup = my_father.prev();
+    my_father.hide();
+    popup.find('.part2 .title_and_description .title').val(popup.data('placeholder-title'));
+    popup.find('.part2 .title_and_description .description').val(popup.data('placeholder-description'));
+    popup.find('.part2 .title_and_description .title_placeholder').val('');
+    popup.find('.part2 .title_and_description .description_placeholder').val('');
+    popup.find('.part1 .attachment .media').val(popup.data('placeholder-media'));
+    popup.find('.part1 .attachment label input').val('');
+    popup.find('.form_error').removeClass('form_error');
+    popup.find('.errors_layer').hide();
+    popup.find('.full_folder').hide();
+    popup.show();
+  });
+  $body.on('click', '.loadInGallery.stegosauro .part3 .close', function() {
+    if(!$(this).hasClass('disabled')) {
+      var father = $(this).parents('.loadInGallery');
+      father.hide();
+      father.next().find('a').show();
+      father.next().next().show();
+    }
+  });
+  $body.on('click', '.loadInGallery.document .part3 .close', function() {
+    if(!$(this).hasClass('disabled')) {
+      var father = $(this).parents('.loadInGallery');
+      father.hide();
+      father.next().show();
+    }
+  });
+  $body.on('focus', '.loadInGallery .part2 .title_and_description .description', function() {
+    var placeholder = $(this).parent().find('.description_placeholder');
+    if(placeholder.val() == '') {
+      $(this).val('');
+      placeholder.val('0');
+    }
+  });
+  $body.on('focus', '.loadInGallery .part2 .title_and_description .title', function() {
+    var placeholder = $(this).parent().find('.title_placeholder');
+    if(placeholder.val() == '') {
+      $(this).val('');
+      placeholder.val('0');
+    }
+  });
+  $body.on('click', '.loadInGallery .part3 .submit', function(e) {
+    if(!$(this).hasClass('disabled')) {
+      var container = $(this).parents('.loadInGallery');
+      if(container.attr('id') == 'load-gallery-document') {
+        disableUploadForm(container, $captions.data('dont-leave-page-upload-document'));
+      } else {
+        disableUploadForm(container, $captions.data('dont-leave-page-upload-media-element'));
+      }
+      recursionUploadingBar(container, 0);
+      setTimeout(function() {
+        container.find('form').submit();
+      }, 1500);
+    } else {
+      e.preventDefault();
+    }
+  });
+  $body.on('submit', '.loadInGallery form', function() {
+    var container = $(this).parents('.loadInGallery');
+    document.getElementById($(this).attr('id')).target = 'upload_target';
+    document.getElementById('upload_target').onload = function() {
+      uploadFileTooLarge(container);
+    }
+  });
+  $body.on('keydown', '.loadInGallery .part2 .title, .loadInGallery .part2 .description', function() {
+    $(this).removeClass('form_error');
+  });
+  $body.on('keydown', '.loadInGallery .part2 .tags', function() {
+    $(this).parent().removeClass('form_error');
+  });
+  $body.on('click', '.loadInGallery .errors_layer', function() {
+    var myself = $(this);
+    var container = myself.parents('.loadInGallery');
+    if(!myself.hasClass('media')) {
+      myself.hide();
+      container.find(myself.data('focus-selector')).trigger(myself.data('focus-action'));
+    }
+  });
+  $body.on('click', '.loadInGallery .part1 .attachment label', function() {
+    $('.loadInGallery .errors_layer.media').hide();
+  });
+  $body.on('click', '.loadInGallery .full_folder .back_to_gallery', function() {
+    var father = $(this).parents('.loadInGallery');
+    father.find('.part3 .close').click();
+    father.find('form').show();
+    father.find('·full_folder').hide();
   });
 }
 
@@ -738,8 +886,74 @@ Loads the specific gallery for documents relative to a slide. The gallery is sup
 **/
 function loadDocumentGalleryForSlideInLessonEditor(slide_id) {
   loadDocumentGalleryContent(slide_id);
-  updateEffectsInsideDocumentGallery(slide_id);
+  updateEffectsInsideDocumentGallery();
   $('#lesson_editor_document_gallery_container').data('slide-id', slide_id);
+}
+
+/**
+Handles correct uploading process in the Lesson Editor (correct in the sense that the file is not too large and could correctly be received by the web server).
+@method reloadGalleryInLessonEditor
+@for LessonEditorGalleries
+@param selector {String} HTML selector for the specific uploader (audio, video, image or document)
+@param type {String} 'image', 'audio', 'video', or 'document'
+@param gallery {String} the HTML content to be replaced into the gallery, if the uploading was successful
+@param pages {Number} number of pages of the newly loaded gallery
+@param count {Number} number of elements inside the gallery
+@param item_id {Number} id of the newly loaded item (used only for documents)
+**/
+function reloadGalleryInLessonEditor(selector, type, gallery, pages, count, item_id) {
+  var container = $(selector);
+  if(type != 'audio' && type != 'document') {
+    var dialogs_selector = (type == 'image') ? '.imageInGalleryPopUp' : '.videoInGalleryPopUp'
+    $(dialogs_selector).each(function() {
+      if($(this).hasClass('ui-dialog-content')) {
+        $(this).dialog('destroy');
+      }
+    });
+  }
+  var gallery_scrollable = (type == 'document') ? $('.for-scroll-pain') : $('#' + type + '_gallery_content > div');
+  if(gallery_scrollable.data('jsp') != undefined) {
+    gallery_scrollable.data('jsp').destroy();
+  }
+  var container = $('#lesson_editor_' + type + '_gallery_container');
+  container.data('page', 1);
+  container.data('tot-pages', pages);
+  if(type == 'document') {
+    container.find('#document_gallery .documentsExternal').replaceWith(gallery);
+    $('#document_gallery_filter').val('');
+    if(count > 6) {
+      initializeDocumentGalleryInLessonEditor();
+    }
+    container.find('#document_gallery').data('empty', false)
+    $('#gallery_document_' + item_id + ' .add_remove').click();
+  } else {
+    container.find('#' + type + '_gallery').replaceWith(gallery);
+    $('._close_' + type + '_gallery').addClass('_close_' + type + '_gallery_in_lesson_editor');
+    $('._select_' + type + '_from_gallery').addClass('_add_' + type + '_to_slide');
+    if(type == 'audio') {
+      if(count > 6) {
+        initializeAudioGalleryInLessonEditor();
+      } else {
+        $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
+      }
+    }
+    if(type == 'image') {
+      if(count > 21) {
+        initializeImageGalleryInLessonEditor();
+      } else {
+        $('.image_gallery .scroll-pane').css('overflow', 'hidden');
+      }
+    }
+    if(type == 'video') {
+      if(count > 6) {
+        initializeVideoGalleryInLessonEditor();
+      } else {
+        $('.video_gallery .scroll-pane').css('overflow', 'hidden');
+      }
+    }
+  }
+  container.find('.part3 .close').click();
+  container.find('.loading-square').hide();
 }
 
 /**
@@ -926,9 +1140,7 @@ function updateEffectsInsideDocumentGallery() {
   inputs.each(function() {
     ids.push($(this).val());
   });
-  $('.documentsExternal .documentInGallery.disabled').each(function() {
-    $(this).removeClass('disabled');
-  });
+  $('.documentsExternal .documentInGallery.disabled').removeClass('disabled');
   for(var i = 0; i < ids.length; i++) {
     $('#gallery_document_' + ids[i] + ' .documentInGallery').addClass('disabled');
   }
@@ -1313,16 +1525,16 @@ Initialize slides position to center.
 @for LessonEditorSlidesNavigation
 **/
 function initLessonEditorPositions() {
-  WW = parseInt($window.outerWidth());
-  WH = parseInt($window.outerHeight());
-  $('#main').css('width', WW);
+  var outer_width = parseInt($window.outerWidth());
+  var outer_height = parseInt($window.outerHeight());
+  $('#main').css('width', outer_width);
   $('ul#slides').css('width', (($('ul#slides li').length + 2) * 1000));
-  $('ul#slides').css('top', ((WH / 2) - 295) + 'px');
-  $('ul#slides.new').css('top', ((WH / 2) - 335) + 'px');
-  $('#footer').css('top', (WH - 40) + 'px').css('width', (WW - 24) + 'px');
-  if(WW > 1000) {
-    $('ul#slides li:first').css('margin-left', ((WW - 900) / 2) + 'px');
-    $('ul#slides.new li:first').css('margin-left', ((WW - 900) / 2) + 'px');
+  $('ul#slides').css('top', ((outer_height / 2) - 295) + 'px');
+  $('ul#slides.new').css('top', ((outer_height / 2) - 335) + 'px');
+  $('#footer').css('top', (outer_height - 44) + 'px').css('width', outer_width + 'px');
+  if(outer_width > 1000) {
+    $('ul#slides li:first').css('margin-left', ((outer_width - 900) / 2) + 'px');
+    $('ul#slides.new li:first').css('margin-left', ((outer_width - 900) / 2) + 'px');
   }
 }
 

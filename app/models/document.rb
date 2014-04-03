@@ -66,14 +66,15 @@ class Document < ActiveRecord::Base
     '.pdf'     => :pdf,
     '.ps'      => :pdf,
   }
-
+  
+  # Colors of the icons by type
   COLORS_BY_TYPE = {
-    ppt:     '#EA943B',
-    doc:     '#5DA3DA',
-    zip:     '#57585B',
-    exc:     '#92BD4B',
-    pdf:     '#C61734',
-    unknown: '#A7A9AC'
+    :ppt     => '#F6921E',
+    :doc     => '#26A9E0',
+    :zip     => '#57585B',
+    :exc     => '#37B34A',
+    :pdf     => '#EC1C24',
+    :unknown => '#A7A9AC'
   }
   
   serialize :metadata, OpenStruct
@@ -166,12 +167,19 @@ class Document < ActiveRecord::Base
     resp = false
     ActiveRecord::Base.transaction do
       DocumentsSlide.joins(:slide, {:slide => :lesson}).select('lessons.user_id AS my_user_id, lessons.title AS lesson_title, lessons.id AS lesson_id').group('lessons.id').where('documents_slides.document_id = ?', self.id).each do |ds|
-        if ds.my_user_id.to_i != self.user_id && !Notification.send_to(ds.my_user_id.to_i, I18n.t('notifications.documents.destroyed', :lesson_title => ds.lesson_title, :document_title => self.title, :link => lesson_viewer_path(ds.lesson_id.to_i)))
+        n_title = I18n.t('notifications.documents.destroyed.title')
+        n_message = I18n.t('notifications.documents.destroyed.message', :document_title => self.title, :lesson_title => ds.lesson_title)
+        n_basement = I18n.t('notifications.documents.destroyed.basement', :lesson_title => ds.lesson_title, :link => lesson_viewer_path(ds.lesson_id.to_i))
+        if ds.my_user_id.to_i != self.user_id && !Notification.send_to(ds.my_user_id.to_i, n_title, n_message, n_basement)
           errors.add(:base, :problem_destroying)
           raise ActiveRecord::Rollback
         end
         Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => ds.lesson_id.to_i).each do |b|
-          if !Notification.send_to(b.user_id, I18n.t('notifications.lessons.modified', :lesson_title => ds.lesson_title, :link => lesson_viewer_path(ds.lesson_id.to_i), :message => I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => self.title)))
+          automatic_message = I18n.t('notifications.documents.standard_message_for_linked_lessons', :document_title => self.title)
+          n_title = I18n.t('notifications.lessons.modified.title')
+          n_message = I18n.t('notifications.lessons.modified.message', :lesson_title => ds.lesson_title, :message => automatic_message)
+          n_basement = I18n.t('notifications.lessons.modified.basement', :lesson_title => ds.lesson_title, :link => lesson_viewer_path(ds.lesson_id.to_i))
+          if !Notification.send_to(b.user_id, n_title, n_message, n_basement)
             errors.add(:base, :problem_destroying)
             raise ActiveRecord::Rollback
           end

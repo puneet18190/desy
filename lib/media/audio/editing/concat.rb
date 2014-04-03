@@ -3,7 +3,6 @@ require 'media/audio'
 require 'media/audio/editing'
 require 'media/logging'
 require 'media/in_tmp_dir'
-require 'media/thread'
 
 module Media
   module Audio
@@ -66,7 +65,7 @@ module Media
           # Edge case: if there is just one inputs hash we can just copy the inputs to their respective outputs
           return copy_first_inputs_to_outputs if m4a_inputs.size == 1
           
-          in_tmp_dir { Thread.join *FORMATS.map { |format| proc{ concat(format) } } }
+          in_tmp_dir { Queue.run *FORMATS.map { |format| proc{ concat(format) } }, close_connection_before_execution: true }
           outputs
         end
 

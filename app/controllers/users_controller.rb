@@ -24,12 +24,14 @@ class UsersController < ApplicationController
     :send_reset_password,
     :request_upgrade_trial,
     :send_upgrade_trial,
-    :find_locations
+    :find_locations,
+    :toggle_locations
   ]
   before_filter :initialize_layout, :only => [
     :edit,
     :update,
     :subjects,
+    :update_subjects,
     :statistics,
     :mailing_lists,
     :trial,
@@ -58,35 +60,56 @@ class UsersController < ApplicationController
   # * ApplicationController#authenticate
   #
   def create
-    email = params[:user].try(:delete, :email)
-    saas = SETTINGS['saas_registration_mode']
-    if saas
-      @trial            = params[:trial] == '1'
-      purchase = Purchase.find_by_token params[:purchase_id]
-    end
-    @user = User.active.not_confirmed.new(params[:user]) do |user|
-      user.email = email
-      key_last_location = SETTINGS['location_types'].last.downcase
-      if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
-        user.location_id = params[:location][key_last_location]
+    @saas = SETTINGS['saas_registration_mode']
+    subject_ids = []
+    if params[:subjects].present?
+      params[:subjects].each do |k, v|
+        subject_ids << k.split('_').last.to_i
       end
-      user.purchase_id = @trial ? nil : (purchase ? purchase.id : 0) if saas
     end
-    if @user.save
+    user_saved = false
+    ActiveRecord::Base.transaction do
+      @user = User.active.not_confirmed.new
+      @user.email = params[:email]
+      @user.email_confirmation = params[:email_confirmation]
+      @user.name = params[:name]
+      @user.surname = params[:surname]
+      @user.password = params[:password]
+      @user.password_confirmation = params[:password_confirmation]
+      @user.school_level_id = params[:school_level_id]
+      @user.subject_ids = subject_ids
+      if params[:policies].present?
+        params[:policies].keys.each do |policy|
+          @user.send(:"#{policy}=", '1')
+        end
+      end
+      if @saas && params[:trial].blank?
+        purchase = Purchase.find_by_token params[:purchase_id]
+        @user.purchase_id = purchase ? purchase.id : 0
+      end
+      if params.has_key?(:location) && params[:location][LAST_LOCATION].to_i != 0
+        @user.location_id = params[:location][LAST_LOCATION]
+      end
+      user_saved = @user.save
+      raise ActiveRecord::Rollback if !user_saved
+    end
+    if user_saved
       UserMailer.account_confirmation(@user).deliver
-      if saas
+      if @saas
+        desy = SETTINGS['application_name']
         if @user.trial?
-          Notification.send_to @user.id, t('notifications.account.trial',
-            :user_name => @user.name,
-            :desy      => SETTINGS['application_name'],
-            :validity  => SETTINGS['saas_trial_duration'],
-            :link      => upgrade_trial_link
+          Notification.send_to(
+            @user.id,
+            I18n.t('notifications.account.trial.title', :user_name => @user.name),
+            I18n.t('notifications.account.trial.message', :desy => desy, :validity => SETTINGS['saas_trial_duration']),
+            I18n.t('notifications.account.trial.basement', :desy => desy, :link => upgrade_trial_link)
           )
         else
-          Notification.send_to @user.id, t('notifications.account.welcome',
-            :user_name       => @user.name,
-            :desy            => SETTINGS['application_name'],
-            :expiration_date => TimeConvert.to_string(purchase.expiration_date)
+          Notification.send_to(
+            @user.id,
+            I18n.t('notifications.account.welcome.title', :user_name => @user.name),
+            I18n.t('notifications.account.welcome.message', :desy => desy, :expiration_date => TimeConvert.to_string(purchase.expiration_date)),
+            ''
           )
         end
         purchase = @user.purchase
@@ -94,11 +117,8 @@ class UsersController < ApplicationController
       end
       render 'users/fullpage_notifications/confirmation/email_sent'
     else
+      initialize_registration_form(subject_ids)
       @errors = convert_user_error_messages @user.errors
-      location = Location.get_from_chain_params params[:location]
-      @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
-      @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-      @subjects         = Subject.extract_with_cathegories
       render 'prelogin/registration', :layout => 'prelogin'
     end
   end
@@ -236,12 +256,17 @@ class UsersController < ApplicationController
       return
     end
     user.purchase_id = purchase.id
-    user.location_id = purchase.location_id if purchase.location && purchase.location.sti_type == SETTINGS['location_types'].last
+    user.location_id = purchase.location_id if purchase.location && purchase.location.sti_type.downcase == LAST_LOCATION
     if !user.save
       redirect_to user_request_upgrade_trial_path, { flash: { alert: t('flash.upgrade_trial.generic_error') } }
       return
     end
-    Notification.send_to user.id, t('notifications.account.upgraded', :expiration_date => TimeConvert.to_string(purchase.expiration_date))
+    Notification.send_to(
+      user.id,
+      I18n.t('notifications.account.upgraded.title'),
+      I18n.t('notifications.account.upgraded.message', :expiration_date => TimeConvert.to_string(purchase.expiration_date)),
+      ''
+    )
   end
   
   # === Description
@@ -258,35 +283,46 @@ class UsersController < ApplicationController
   #
   def edit
     @user = current_user
-    @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-    location = @user.location
-    if @user.purchase && @user.purchase.location
-      @forced_location = @user.purchase.location
-      if location && location.is_descendant_of?(@forced_location)
-        @locations = location.get_filled_select_for_personal_info
-      else
-        @locations = @forced_location.get_filled_select_for_personal_info
-      end
-    else
-      @locations = location.nil? ? [{:selected => 0, :content => Location.roots.order(:name)}] : location.get_filled_select_for_personal_info
-    end
+    initialize_general_profile(@user.location)
+    @errors = []
   end
   
   # === Description
   #
-  # Necessary to fill the locations list
+  # Updates your profile.
   #
   # === Mode
   #
   # Html
   #
-  # === Skipped filters
+  # === Specific filters
   #
-  # * ApplicationController#authenticate
+  # * ApplicationController#initialize_layout
   #
-  def find_locations
-    @parent = Location.find_by_id params[:id]
-    @locations = @parent.nil? ? [] : @parent.children.order(:name)
+  def update
+    @user = current_user
+    if params.has_key?(:location) && params[:location][LAST_LOCATION].to_i != 0
+      @user.location_id = params[:location][LAST_LOCATION]
+    end
+    @user.name = params[:name]
+    @user.surname = params[:surname]
+    @user.school_level_id = params[:school_level_id]
+    if params[:password] && params[:password].present?
+      @user.password = params[:password]
+      @user.password_confirmation = params[:password_confirmation]
+    end
+    if @user.save
+      redirect_to my_profile_path, { flash: { notice: t('users.info.ok_popup') } }
+    else
+      @errors = convert_user_error_messages @user.errors
+      if @errors[:subjects].any? || @errors[:policies].any? || @errors[:purchase].any? || @user.errors.messages.has_key?(:email)
+        redirect_to my_profile_path, { flash: { alert: t('users.info.wrong_popup') } }
+      else
+        initialize_general_profile(@user.location)
+        @errors = @errors[:general]
+        render :edit
+      end
+    end
   end
   
   # === Description
@@ -303,7 +339,61 @@ class UsersController < ApplicationController
   #
   def subjects
     @user = current_user
-    @subjects = Subject.extract_with_cathegories
+    initialize_subjects_profile(true)
+    @errors = []
+  end
+  
+  # === Description
+  #
+  # Updates your subjects.
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  #
+  def update_subjects
+    @user = current_user
+    subject_ids = []
+    if params[:subjects].present?
+      params[:subjects].each do |k, v|
+        subject_ids << k.split('_').last.to_i
+      end
+    end
+    if @user.update_attributes(subject_ids: subject_ids)
+      redirect_to my_subjects_path, { flash: { notice: t('users.subjects.ok_popup') } }
+    else
+      @errors = convert_user_error_messages @user.errors
+      if @errors[:general].any? || @errors[:policies].any? || @errors[:purchase].any?
+        redirect_to my_subjects_path, { flash: { alert: t('users.subjects.wrong_popup') } }
+      else
+        initialize_subjects_profile(true)
+        @errors = @errors[:subjects]
+        render :subjects
+      end
+    end
+  end
+  
+  # === Description
+  #
+  # Section of your profile about trial version handling
+  #
+  # === Mode
+  #
+  # Html
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#initialize_layout
+  #
+  def trial
+    if !current_user.trial?
+      redirect_to my_profile_path
+      return
+    end
   end
   
   # === Description
@@ -331,83 +421,71 @@ class UsersController < ApplicationController
       return
     end
     user.purchase_id = purchase.id
-    user.location_id = purchase.location_id if purchase.location && purchase.location.sti_type == SETTINGS['location_types'].last
+    user.location_id = purchase.location_id if purchase.location && purchase.location.sti_type.downcase == LAST_LOCATION
     if !user.save
       @error = t('users.trial.errors.problem_saving')
       render 'trial'
       return
     end
-    Notification.send_to user.id, t('notifications.account.upgraded', :expiration_date => TimeConvert.to_string(purchase.expiration_date))
+    Notification.send_to(
+      user.id,
+      I18n.t('notifications.account.upgraded.title'),
+      I18n.t('notifications.account.upgraded.message', :expiration_date => TimeConvert.to_string(purchase.expiration_date)),
+      ''
+    )
     redirect_to dashboard_path, { flash: { notice: t('users.trial.successful_upgrade') } }
   end
   
   # === Description
   #
-  # Section of your profile about trial version handling
+  # Necessary to fill the locations list
   #
   # === Mode
   #
   # Html
   #
-  # === Specific filters
+  # === Skipped filters
   #
-  # * ApplicationController#initialize_layout
+  # * ApplicationController#authenticate
   #
-  def trial
-    if !current_user.trial?
-      redirect_to my_profile_path
-      return
+  def find_locations
+    if params[:id] == '0'
+      @parent = Location.new
+      @first_depth = 1
+    else
+      @parent = Location.find_by_id params[:id]
+      @first_depth = params[:empty_children].present? ? (@parent.depth + 2) : (@parent.depth + 1)
     end
+    @locations = @parent.select_with_selected
+    @location_types = LOCATION_TYPES
   end
   
   # === Description
   #
-  # Updates your profile (it can be called either from UsersController#edit or from UsersController#subjects)
+  # Toggles locations between active and disabled, in the registration form: used in case the user doesn't find his location in the database.
   #
   # === Mode
   #
   # Html
   #
-  # === Specific filters
+  # === Skipped filters
   #
-  # * ApplicationController#initialize_layout
+  # * ApplicationController#authenticate
   #
-  def update
-    @user = current_user
-    in_subjects = !!params[:in_subjects]
-    if in_subjects
-      params[:user] ||= HashWithIndifferentAccess.new
-      params[:user][:subject_ids] ||= []
-    else
-      key_last_location = SETTINGS['location_types'].last.downcase
-      if params.has_key?(:location) && params[:location].has_key?(key_last_location) && params[:location][key_last_location].to_i != 0
-        params[:user][:location_id] = params[:location][key_last_location]
-      end
-      password = params[:user].try(:[], :password)
-      if !password || password.empty?
-        params[:user].delete(:password)
-        params[:user].delete(:password_confirmation)
-      end
-    end
-    if @user.update_attributes(params[:user])
-      ok_message = t('users.info.ok_popup')
-      my_redirect = my_profile_path
-      if in_subjects
-        ok_message = t('users.subjects.ok_popup')
-        my_redirect = my_subjects_path
-      end
-      redirect_to my_redirect, { flash: { notice: ok_message } }
-    else
-      @errors = convert_user_error_messages @user.errors
-      if in_subjects
-        @subjects = Subject.extract_with_cathegories
-        render :subjects
+  def toggle_locations
+    @location_types = LOCATION_TYPES
+    @on = params[:on] == 'true'
+    if @on
+      location = Location.find_by_id(correct_integer?(params[:location_id]) ? params[:location_id].to_i : 0)
+      if location.nil?
+        @locations = Location.roots.order(:name)
+        @depth = 0
       else
-        @locations = Location.get_from_chain_params(params[:location]).get_filled_select_for_personal_info
-        @forced_location = @user.purchase.location if @user.purchase && @user.purchase.location
-        @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-        render :edit
+        @locations = location.children.order(:name)
+        @depth = location.depth + 1
       end
+    else
+      @depth = correct_integer?(params[:depth]) ? (params[:depth].to_i - 1) : 0
     end
   end
   
@@ -460,6 +538,7 @@ class UsersController < ApplicationController
   
   private
   
+  # Function to be overwritten if the upgrade trial path changes
   def upgrade_trial_link
     my_trial_path
   end

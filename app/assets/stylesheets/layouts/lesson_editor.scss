@@ -108,7 +108,7 @@ html.lesson-editor-layout {
       
       .jspTrack {
         
-        background-color: #3f3f3f;
+        background-color: #3F3F3F;
         z-index: 99999;
         
       }
@@ -189,44 +189,6 @@ html.lesson-editor-layout {
           }
           
         }
-        
-      }
-      
-    }
-    
-  }
-  
-  .contentLessonNotAvailable {
-    
-    width: 600px;
-    height: 550px;
-    margin: 0 auto;
-    text-align: center;
-    display: table;
-    
-    .contentTitle {
-      
-      display: table-cell;
-      vertical-align: middle;
-      
-      h1 {
-        
-        text-align: left;
-        color: $orange;
-        font-size: 30px;
-        font-weight: normal;
-        margin: 0px;
-        
-      }
-      
-      h2 {
-        
-        text-align: left;
-        color: #fff;
-        font-size: 18px;
-        font-weight: normal;
-        margin: 0px;
-        line-height: 25px;
         
       }
       
@@ -426,363 +388,6 @@ html.lesson-editor-layout {
           
         }
         
-        a.delete, a.delete.disabled:hover {
-          
-          background-position: top left;
-          
-        }
-        
-        a.add, a.add.disabled:hover {
-          
-          background-position: left -56px;
-          
-        }
-        
-        a.info, a.info.disabled:hover {
-          
-          background-position: left -112px;
-          
-        }
-        
-        a.save,a.save.disabled:hover {
-          
-          background-position: left -168px;
-          
-        }
-        
-        a.delete:hover,a.delete.active {
-          
-          background-position: -57px 0;
-          
-        }
-        
-        a.add:hover, a.add.active {
-          
-          background-position: -57px -56px;
-          
-        }
-        
-        a.info:hover,a.info.active {
-          
-          background-position: -57px -112px;
-          
-        }
-        
-        a.save:hover,a.save.active {
-          
-          background-position: -57px -168px;
-          
-        }
-        
-      }
-      
-    }
-    
-  }
-  
-  .infoButtonWhite {
-    
-    @include svg-circle-icon-handler-without-hover($assets-set-icone-editor_svg, 59px, 4, 12, 1, 0, 2);
-    margin: 5px 15px 0 0;
-    
-  }
-  
-  ul#slides.new {
-    
-    margin-top: 30px;
-    
-    li {
-      
-      width: 900px;
-      margin: 0;
-      padding: 0;
-      background-color: $orange;
-      color: #fff;
-      
-      .box {
-        
-        height: 460px;
-        width: 700px;
-        margin: 70px 100px 30px;
-        
-      }
-      
-      h2 {
-        
-        color: #fff;
-        font-size: 30px;
-        height: 20px;
-        line-height: 10px;
-        margin: 0;
-        padding: 0;
-        
-      }
-      
-      h3 {
-        
-        font-size: 15px;
-        
-      }
-      
-      p, h3 {
-        
-        width: 700px;
-        color: #fff;
-        display: block;
-        padding: 5px 0;
-        
-      }
-      
-      p {
-        font-size: 10px;
-      }
-      
-    }
-    
-    .info {
-      
-      opacity: 1;
-      
-      .form_error, textarea.form_error, input.form_error {
-        
-        border: 3px solid rgba(250, 0, 0, 0.5);
-        
-      }
-      
-      input, textarea, select {
-        
-        @include arial-with-line-height(13px, 20px);
-        color: #fff;
-        height: 30px;
-        margin-top: 30px;
-        background-color: transparent;
-        outline: none;
-        background-color: #E48D1F;
-        
-      }
-      
-      input[type="text"], textarea, select {
-        
-        border-radius: 10px;
-        border: 3px solid $orange;
-        padding: 5px 10px;
-        box-shadow: 0px 2px 2px rgba(50, 50, 50, 0.1) inset;
-        
-      }
-      
-      input::-webkit-input-placeholder {
-        
-        color: white;
-        
-      }
-      
-      input:-moz-placeholder {
-        
-        color: white;
-        
-      }
-      
-      textarea::-webkit-input-placeholder {
-        
-        color: white;
-        
-      }
-      
-      textarea:-moz-placeholder {
-        
-        color: white;
-        
-      }
-      
-      input {
-        
-        width: 430px;
-        
-      }
-      
-      .lesson-create, .buttonForm {
-        
-        @include nunito(18px);
-        background-color: #fff;
-        color: #333;
-        text-align: center;
-        cursor: pointer;
-        padding: 5px 30px;
-        margin-top: 0px;
-        
-        &:hover {
-          
-          background-color: #f5a933;
-          
-        }
-        
-      }
-      
-      .lesson-create {
-        
-        width: 130px;
-        height: 34px;
-        
-      }
-      
-      input[type="submit"].lesson-create {
-        
-        border: none;
-        
-      }
-      
-      select {
-        
-        width: 200px;
-        
-      }
-      
-      .ui-widget {
-        
-        position: relative;
-        
-      }
-      
-      textarea {
-        
-        width: 300px;
-        height: 130px;
-        resize: none;
-        line-height: 20px;
-        
-      }
-      
-      ._error_messages {
-        
-        height: 10px;
-        padding-top: 10px;
-        margin-left: 75px;
-        width: 700px;
-        display: block;
-        
-      }
-      
-      .form_error, input.form_error, .sbHolder.form_error {
-        
-        border-radius: 10px;
-        border: 3px solid rgba(250, 0, 0, 0.5);
-        
-      }
-      
-      .sbHolder.form_error {
-        
-        margin-top: 30px;
-        
-      }
-      
-      .sbHolder {
-        
-        width: 200px;
-        height: 30px;
-        margin-top: 33px;
-        float: right;
-        background-color: #E48D1F;
-        border-radius: 10px;
-        border: none;
-        font-size: 11px;
-        padding: 5px;
-        
-      }
-      
-      .sbSelector {
-        
-        height: 30px;
-        padding: 5px 0;
-        line-height: 30px;
-        width: 190px;
-        font-size: 13px;
-        
-      }
-      
-      .sbSelector:link, .sbSelector:visited, .sbSelector:hover {
-        
-        color: #fff;
-        text-shadow: none;
-        font-size: 13px;
-        width: 210px;
-        border: none;
-        border-radius: 10px;
-        
-      }
-      
-      .sbToggle {
-         
-         @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 2, 1);
-         margin-top: 2px;
-         margin-right: 3px;
-         
-         &.sbToggleOpen {
-           
-           @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 2, 0);
-           
-         }
-         
-       }
-       
-      .sbOptions {
-        
-        width: 210px;
-        overflow-x: hidden;
-        left: 0px;
-        border: none;
-        
-      }
-      
-      .sbOptions li {
-        
-        padding: 7px;
-        margin: 0;
-        height: 30px;
-        width: 194px;
-        background-color: #fff;
-        
-      }
-      
-      .sbOptions a {
-        
-        @include arial(13px);
-        text-shadow: none;
-        padding: 8px;
-        color: #999;
-        margin-bottom: 0;
-        
-      }
-      
-      .sbOptions a:link, .sbOptions a:visited {
-        
-        color: #999;
-        text-decoration: none;
-        
-      }
-      
-      .sbOptions a:hover, .sbOptions a:focus, .sbOptions a.sbFocus {
-        
-        color: #fff;
-        background-color: $orange;
-        
-      }
-      
-      .info-slide-footer {
-        
-        clear: both;
-        background-color: #fff;
-        color: #777;
-        height: 16px;
-        width: 870px;
-        padding: 7px 15px;
-        font-size: 13px;
-        
-        .author .name {
-          
-          color: $orange;
-          
-        }
-        
       }
       
     }
@@ -791,32 +396,55 @@ html.lesson-editor-layout {
   
   #footer {
     
-    padding: 6px 12px 18px 12px;
     display: block;
     background-color: #1C1C1C;
     color: white;
     font-size: 12px;
     opacity: 0.85;
     position: fixed;
-    height: 30px;
+    height: 34px;
     width: 100%;
     margin-top: 10px;
-    height: 10px;
     clear: both;
     
-    img {
+    #lesson-title {
       
-      float: left;
-      width: auto;
-      margin-right: 5px;
-      margin-top: 4px;
+      img {
+        
+        float: left;
+        width: auto;
+        margin: 10px;
+        
+      }
+      
+      p {
+        
+        margin-top: 10px;
+        float: left;
+        
+      }
       
     }
     
-    p {
+    #error-footer-disclaimer {
       
-      margin-top: 2px;
-      float: left;
+      padding: 10px;
+      height: 14px;
+      display: none;
+      text-align: center;
+      font-weight: bold;
+      
+      &.true {
+        
+        background-color: green;
+        
+      }
+      
+      &.false {
+        
+        background-color: #B40404;
+        
+      }
       
     }
     

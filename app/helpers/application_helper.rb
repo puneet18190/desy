@@ -10,34 +10,22 @@ module ApplicationHelper
     Document::COLORS_BY_TYPE[document.type]
   end
   
-  # Select for a list of subjects.
-  def select_your_subjects(subjects)
-    "<option value=\"\">#{t('forms.placeholders.subject_id')}</option>#{options_from_collection_for_select(subjects, 'id', 'description')}".html_safe
-  end
-  
-  # Standard form error message, it attaches the image to the message and includes it in an error frame. Used after ApplicationController#convert_item_error_messages and similar methods.
-  def standard_form_error_messages(errors, color = 'white')
-    msg = "<img src='/assets/puntoesclamativo.png' style='margin: 0 5px -3px 0' /><span class=\"lower\" style=\"color:#{h color}\">"
-    msg << errors.map{ |e| h e }.join('; ')
-    return "#{msg}</span>".html_safe
-  end
-  
-  # Extracts the time from seconds
+  # Extracts the time from seconds.
   def seconds_to_time(seconds)
     Time.at(seconds).utc.strftime(seconds >= 3600 ? '%T' : '%M:%S')
   end
   
-  # Gets the html class to scope css (controller)
+  # Gets the html class to scope css (controller).
   def controller_html_class
     "#{h controller_path}-controller"
   end
   
-  # Gets the html class to scope css (action)
+  # Gets the html class to scope css (action).
   def action_html_class
     "#{h action_name}-action"
   end
   
-  # Manipulates the url, adding or removing parameters
+  # Manipulates the url, adding or removing parameters.
   def manipulate_url(options = {})
     params_to_remove = options[:remove_query_param]
     page             = options[:page]
@@ -45,7 +33,6 @@ module ApplicationHelper
     me_d_exp         = options[:me_d_exp]
     escape           = options[:escape]
     path             = options[:path] || request.path
-
     query_params = request.query_parameters.deep_dup
     if params_to_remove && query_params.present?
       params_to_remove.each do |param|
@@ -55,23 +42,14 @@ module ApplicationHelper
     query_params[:page] = page if page
     query_params[:lessons_expanded] = l_d_exp if l_d_exp
     query_params[:media_elements_expanded] = me_d_exp if me_d_exp
-
     query_string = get_recursive_array_from_params(query_params).join('&')
-
     return path if query_string.blank?
-
     url = "#{path}?#{query_string}"
     url = URI.escape(url)
     escape ? CGI.escape(url) : url
   end
   
-  # Removes the title of a notification. Used in NotificationsController.
-  def remove_title_from_notification(notification)
-     x = notification =~ /<\/div>/
-     x.nil? ? notification : notification[x + 6, notification.length]
-  end
-  
-  # Method to help debugging views
+  # Method to help debugging views.
   if Rails.env.production?
     def jsd(object)
     end
@@ -81,22 +59,24 @@ module ApplicationHelper
     end
   end
   
-  # Renders a two digits number even in the case the number is only one-digit
+  # Renders a two digits number even in the case the number is only one-digit.
   def two_digits_number(x)
     x < 10 ? "0#{x}" : x.to_s
   end
   
+  # It stands for "interpolation escape"
+  def ie(x)
+    strip_tags(x).html_safe
+  end
+  
   private
   
-  # Submethod of #manipulate_url, that takes into consideration nested url parameters
+  # Submethod of #manipulate_url, that takes into consideration nested url parameters.
   def get_recursive_array_from_params(params)
     return params if !params.kind_of?(Hash)
-
     resp = []
-
     params.each do |k, v|
       rec_ar = get_recursive_array_from_params(v)
-
       if rec_ar.kind_of?(Array)
         rec_ar.each do |r|
           if (r =~ /\]/).nil?
@@ -110,16 +90,13 @@ module ApplicationHelper
         resp << "#{k}=#{rec_ar}"
       end
     end
-
     resp
   end
   
-  # method to create the title of the html tab
+  # Method to create the title of the html tab.
   def title_tag(slides = nil)
     controller, desy = controller_path, SETTINGS['application_name']
-
     return t('captions.titles.admin', :desy => desy) if controller.start_with? 'admin/'
-
     case controller
     when 'documents'
       t('captions.titles.documents', :desy => desy)
@@ -143,15 +120,14 @@ module ApplicationHelper
     end
   end
   
-  # +path+ must be an absolute path
+  # The parameter +path+ must be an absolute path.
   def full_url(path)
     uri = URI.parse path
-
     uri.scheme, uri.host, uri.port = request.scheme, request.host, (request.port == 80 ? nil : request.port)
-
     uri.to_s
   end
   
+  # Url by url type.
   def url_by_url_type(url, url_type)
     UrlTypes.url_by_url_type url ,url_type
   end

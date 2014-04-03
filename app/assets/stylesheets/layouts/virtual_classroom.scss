@@ -125,8 +125,12 @@ html.virtual_classroom-controller {
     
     a.buttonForm {
       
+      @include nunito(18px);
+      padding: 5px 30px;
+      color: #000;
+      background-color: white;
       margin-right: 5px;
-      background-color: #42b9e9;
+      background-color: #42B9E9;
       color: #fff;
       float: left;
       
@@ -293,7 +297,7 @@ html.virtual_classroom-controller {
   .playList {
     
     padding: 10px;
-    background-color: #2b2929;
+    background-color: #2B2929;
     width: 316px;
     
     .scroll-pane {
@@ -336,7 +340,7 @@ html.virtual_classroom-controller {
     .emptyPlayListButton {
       
       font-size: 80%;
-      color: #615e5e;
+      color: #615E5E;
       padding: 8px 34px 0px 0px;
       
       &:hover {
@@ -459,7 +463,7 @@ html.virtual_classroom-controller {
       &:hover {
         
         cursor: pointer;
-        color: #59c9f6;
+        color: #59C9F6;
         
       }
       
@@ -552,7 +556,7 @@ html.virtual_classroom-controller {
       
       .jspTrack {
         
-        background-color: #2b2828;
+        background-color: #2B2828;
         
       }
       

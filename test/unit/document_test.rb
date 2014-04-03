@@ -61,15 +61,15 @@ class DocumentTest < ActiveSupport::TestCase
     assert_obj_saved d2
     resp = User.find(2).own_documents(1, 20)[:records]
     assert_equal 1, resp.length
-    assert_equal '2', resp.first.instances
+    assert_equal 2, resp.first.instances.to_i
     d2.destroy
     assert DocumentsSlide.where(:id => d2.id).empty?
     resp = User.find(2).own_documents(1, 20)[:records]
     assert_equal 1, resp.length
-    assert_equal '1', resp.first.instances
+    assert_equal 1, resp.first.instances.to_i
     resp = User.find(1).own_documents(1, 20)[:records]
     assert_equal 1, resp.length
-    assert_equal '0', resp.first.instances
+    assert_equal 0, resp.first.instances.to_i
     # I test the mode not in gallery
     assert_raise(NoMethodError) {User.find(1).own_documents(1, 20, SearchOrders::CREATED_AT, nil, true).first.instances}
   end

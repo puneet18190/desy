@@ -1,6 +1,6 @@
 var container = $('#lesson_editor_audio_gallery_container');
 var current_slide = $('li._lesson_editor_current_slide');
-container.html("<%= j(render :partial => 'galleries/audio', :locals => {:audios => @audios}) %>");
+container.html("<%= j(render :partial => 'galleries/wrappers/media_element', :locals => {:kind => 'audio', :items => @audios}) %>");
 container.show();
 $('li._lesson_editor_current_slide .slide-content').children().hide();
 centerThis('#lesson_editor_audio_gallery_container');
@@ -15,3 +15,4 @@ $('._select_audio_from_gallery').addClass('_add_audio_to_slide');
 <% else %>
   $('.audio_gallery .scroll-pane').css('overflow', 'hidden');
 <% end %>
+initTagsAutocomplete($('#load-gallery-audio .part2 ._tags_container .tags'), 'media_element');

@@ -28,7 +28,7 @@ html.lesson-viewer-layout {
       
       margin: 2px 60px 2px 0;
       float: left;
-      cursor:pointer;
+      cursor: pointer;
       width: 247px;
       
     }
@@ -84,7 +84,7 @@ html.lesson-viewer-layout {
     
     a._open_playlist, a._close_playlist {
       
-      color: #9f9f9f;
+      color: #9F9F9F;
       font-size: 12px;
       font-weight: bold;
       
@@ -98,7 +98,7 @@ html.lesson-viewer-layout {
     
     ._lesson_title_in_playlist {
       
-      color: #9f9f9f;
+      color: #9F9F9F;
       font-size: 12px;
       font-weight: bold;
       float: right;
@@ -128,7 +128,7 @@ html.lesson-viewer-layout {
     
     a {
       
-      color: #c1c0bc;
+      color: #C1C0BC;
       font-size: 0.750em;
       text-transform: uppercase;
       margin: 5px 0px;
@@ -215,7 +215,8 @@ html.lesson-viewer-layout {
     
     a.export_button {
       
-      width: 180px;
+      width: 140px;
+      margin-left: 20px;
       height: 24px;
       text-align: center;
       padding-top: 6px;
@@ -224,7 +225,7 @@ html.lesson-viewer-layout {
       cursor: pointer;
       display: block;
       
-      &.archive {
+      &.archive, &.ebook {
         
         margin-bottom: 6px;
         

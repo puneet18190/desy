@@ -11,7 +11,7 @@
     <div class="boxCerca">
       <form id="search_lessons" class="search-form" method="get" action="/search">
         
-        <a class="_keep_searching" style="display:<%= display[0] %>">
+        <a class="_keep_searching" style="display:<%= display[0] %>" data-opened="false">
           <div class="keep_searching_icon"></div>
           <div class="keep_searching_label">
             <%= t('search.again') %>
@@ -23,7 +23,7 @@
           <tr>
             <td width="15%">
               <label><%= t('search.lessons.keyword.label') %></label><br />
-              <input type="text" name="word" value="<%= t('search.lessons.keyword.placeholder') %>" class="text lower" id="lessons_tag_reader_for_search">
+              <input type="text" name="word" value="<%= t('search.lessons.keyword.placeholder') %>" class="text lower" id="lessons_tag_reader_for_search"/>
               <%= hidden_field_tag 'word_placeholder', '', :id => 'lessons_tag_kind_for_search' %>
             </td>
             <td width="15%">
@@ -55,7 +55,10 @@
             </td>
             <td width="20%"></td>
             <td width="20%">
-              <p style="font-size:80%; padding-left:10px; padding-top:10px;"><%= t('search.lessons.suggestion.title') %><br><%= t('search.lessons.suggestion.description') %></p>
+              <p style="font-size:80%; padding-left:10px; padding-top:10px;">
+                <%= t('search.lessons.suggestion.title') %><br/>
+                <%= t('search.lessons.suggestion.description') %>
+              </p>
             </td>
           </tr>
           <tr>
@@ -66,13 +69,13 @@
           <tr>
             <% my_order_id = "#{SearchOrders::TITLE}_lessons_radio_input" %>
             <td width="5%">
-              <input type="radio" name="order" id="<%= my_order_id %>" value="<%= SearchOrders::TITLE %>" class="regular-radio _order_lessons_radio_input" checked="checked">
+              <input type="radio" name="order" id="<%= my_order_id %>" value="<%= SearchOrders::TITLE %>" class="regular-radio _order_lessons_radio_input" checked="checked"/>
               <label for="<%= my_order_id %>"> </label>&nbsp;<%= Lesson.search_order(SearchOrders::TITLE) %>
             </td>
             <% (SearchOrders::LESSONS_SET - [SearchOrders::TITLE]).each do |so| %>
               <% my_order_id = "#{so}_lessons_radio_input" %>
               <td width="5%">
-                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_lessons_radio_input">
+                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_lessons_radio_input"/>
                 <label for="<%= my_order_id %>"> </label>&nbsp;<%= Lesson.search_order(so) %>
               </td>
             <% end %>
@@ -91,7 +94,7 @@
     </div>
   </div>
   
-  <br class="clearfloat">
+  <br class="clearfloat"/>
   
   <% if active %>
     <% if results[:amount] > 0 %>

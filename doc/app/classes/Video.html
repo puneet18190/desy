@@ -170,8 +170,8 @@ href="Media/Shared.html">Media::Shared</a>.</p>
       
         <li>
           
-            <a href="UrlByUrlType.html">
-              UrlByUrlType
+            <a href="UrlTypes.html">
+              UrlTypes
             </a>
           
         </li>
@@ -528,7 +528,7 @@ kind &#39;video1&#39;, see <a href="Slide.html">Slide</a>)</p>
 <h3 id="method-i-placeholder_url-label-Usage">Usage</h3>
 
 <pre>&lt;% if video.converted? %&gt;
-  &lt;%= render :partial =&gt; &#39;shared/players/video&#39;, :locals =&gt; {:video =&gt; video} %&gt;
+  &lt;%= render :partial =&gt; &quot;shared/players/custom/video&quot;, :locals =&gt; {:video =&gt; video} %&gt;
 &lt;% else %&gt;
   &lt;%= image_tag video.placeholder_url(:lesson_viewer_small) %&gt;
 &lt;% end %&gt;</pre>

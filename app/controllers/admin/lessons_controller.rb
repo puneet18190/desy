@@ -35,7 +35,7 @@ class Admin::LessonsController < AdminController
     @locations = [Location.roots.order(:name)]
     if params[:search]
       location = Location.get_from_chain_params params[:search]
-      @locations = location.get_filled_select if location
+      @locations = location.select_without_selected if location
     end
     @from_reporting = params[:from_reporting]
   end
@@ -56,6 +56,35 @@ class Admin::LessonsController < AdminController
     @lesson = Lesson.find(params[:id])
     @lesson.destroy
     redirect_to params[:back_url]
+  end
+  
+  # === Description
+  #
+  # If the lesson is public, it unpublishes it; if it's private, it publishes it
+  #
+  # === Mode
+  #
+  # Ajax
+  #
+  # === Specific filters
+  #
+  # * ApplicationController#admin_authenticate
+  #
+  def toggle_publish
+    @lesson = Lesson.find(params[:id])
+    if @lesson.is_public
+      if @lesson.unpublish
+        @message = t('admin.lessons.toggle_publish.undone')
+      else
+        @message = t('admin.lessons.toggle_publish.not_undone')
+      end
+    else
+      if @lesson.publish
+        @message = t('admin.lessons.toggle_publish.done')
+      else
+        @message = t('admin.lessons.toggle_publish.not_done')
+      end
+    end
   end
   
 end

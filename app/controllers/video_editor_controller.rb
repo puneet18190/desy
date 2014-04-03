@@ -132,6 +132,7 @@ class VideoEditorController < ApplicationController
   # * VideoEditorController#check_available_for_user
   #
   def save
+    params_with_standard_keys('new')
     parameters = Video.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false
     if parameters.nil?
@@ -141,22 +142,24 @@ class VideoEditorController < ApplicationController
       return
     end
     record = Video.new do |r|
-      r.title       = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
-      r.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
-      r.tags        = params[:new_tags_value]
+      r.title       = params[:title_placeholder] != '0' ? '' : params[:title]
+      r.description = params[:description_placeholder] != '0' ? '' : params[:description]
+      r.tags        = params[:tags]
       r.user_id     = current_user.id
       r.composing   = true
       r.save_tags = true
     end
     if record.save
       parameters[:initial_video] = {:id => record.id}
-      Notification.send_to current_user.id, t('notifications.video.compose.create.started', item: record.title)
+      Notification.send_to(
+        current_user.id,
+        I18n.t('notifications.video.compose.create.started.title'),
+        I18n.t('notifications.video.compose.create.started.message', :item => record.title),
+        ''
+      )
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
     else
-      @error_ids = 'new'
-      @errors = [t('forms.error_captions.media_folder_size_exceeded')] if record.errors.added? :media, :folder_size_exceeded
-      @errors ||= convert_item_error_messages(record.errors)
-      @error_fields = record.errors.messages.keys
+      @errors = convert_media_element_error_messages(record.errors)
     end
     render 'media_elements/info_form_in_editor/save'
   end
@@ -174,6 +177,7 @@ class VideoEditorController < ApplicationController
   # * VideoEditorController#check_available_for_user
   #
   def overwrite
+    params_with_standard_keys('edit')
     parameters = Video.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false
     if parameters.nil?
@@ -183,30 +187,39 @@ class VideoEditorController < ApplicationController
       return
     end
     record = Video.find_by_id parameters[:initial_video]
-    record.title = params[:update_title]
-    record.description = params[:update_description]
-    record.tags = params[:update_tags_value]
+    record.title = params[:title]
+    record.description = params[:description]
+    record.tags = params[:tags]
     record.save_tags = true
     if record.valid?
       parameters[:initial_video] = {
         :id => parameters[:initial_video],
-        :title => params[:update_title],
-        :description => params[:update_description],
-        :tags => params[:update_tags_value]
+        :title => params[:title],
+        :description => params[:description],
+        :tags => params[:tags]
       }
       record.overwrite!
-      Notification.send_to current_user.id, t('notifications.video.compose.update.started', item: record.title)
+      Notification.send_to(
+        current_user.id,
+        I18n.t('notifications.video.compose.update.started.title'),
+        I18n.t('notifications.video.compose.update.started.message', :item => record.title),
+        ''
+      )
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
     else
-      @error_ids = 'update'
-      @errors = [t('forms.error_captions.media_folder_size_exceeded')] if record.errors.added? :media, :folder_size_exceeded
-      @errors ||= convert_item_error_messages(record.errors)
-      @error_fields = record.errors.messages.keys
+      @errors = convert_media_element_error_messages(record.errors)
     end
     render 'media_elements/info_form_in_editor/save'
   end
   
   private
+  
+  # Sets the variable params[] with the regular keys like :title, :description, :tags
+  def params_with_standard_keys(scope)
+    params[:title] = params[:"#{scope}_title"]
+    params[:description] = params[:"#{scope}_description"]
+    params[:tags] = params[:"#{scope}_tags"]
+  end
   
   # Checks if the video is being used in private lessons
   def used_in_private_lessons

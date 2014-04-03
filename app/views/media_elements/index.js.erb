@@ -1,3 +1,4 @@
+removeCompletelyAllMediaElementPopups();
 <% if @delete_item.blank? %>
   var my_callback = function() {
     $('#my_media_elements').replaceWith("<%= j(render(:partial => 'media_elements/my_media_elements', :locals => {:media_elements => @media_elements, :filter => @filter, :display => @display})) %>");

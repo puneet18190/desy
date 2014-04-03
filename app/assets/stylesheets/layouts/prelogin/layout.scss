@@ -6,10 +6,10 @@ html.prelogin-layout {
   body {
     
     @include arial(80%);
-    background-color: #9bc3eb;
+    background-color: #9BC3EB;
     background-image: $assets-bg-register_jpg;
     background-repeat: repeat-x ;
-    background-position:0px 0px;
+    background-position: 0px 0px;
     margin: 0;
     color: #fff;
     text-align: center;
@@ -20,8 +20,8 @@ html.prelogin-layout {
   
   hr {
     
-    color: #248fba;
-    background-color: #248fba;
+    color: #248FBA;
+    background-color: #248FBA;
     height: 1px;
     width: 100%;
     border: 0;
@@ -36,10 +36,9 @@ html.prelogin-layout {
     
   }
   
- 
   .footer {
     
-    border-top: 1px solid #f7f9fa;
+    border-top: 1px solid #F7F9FA;
     padding-top: 15px;
     
     .footer_logo_content {
@@ -89,52 +88,6 @@ html.prelogin-layout {
       
     }
     
-    .policy-verticalScroll {
-      
-      overflow-x: hidden;
-      overflow-y: auto;
-      height: 140px;
-      
-      p {
-        
-        padding-right: 10px;
-        
-      }
-      
-      .jspDrag {
-        
-        background: #83A5C8;
-        
-      }
-      
-    }
-    
-    .validationOk {
-      
-      padding: 0;
-      margin: 0;
-      font-size: 35px;
-      color: green;
-      
-    }
-    
-    .logoDesyPrelogin {
-      
-      position: relative;
-      width: 190px;
-      
-      p {
-        
-        @include nunito(9px);
-        position: absolute;
-        top: 40px;
-        left: 2px;
-        color: #DAD7D7;
-        
-      }
-      
-    }
-    
     .containerText {
       
       p {
@@ -163,328 +116,39 @@ html.prelogin-layout {
       
     }
     
-    .formCodAcquisto {
-      
-      color: #434244;
-      
-      input[type="text"] {
-        
-        background-color: #83a5c8;
-        color: white;
-        border-top: none;
-        
-        &.error {
-          
-          background-color: #d20b0b;
-          
-        }
-        
-        &.disabled {
-          
-          background-color: #accff2;
-          
-        }
-      }
-      
-      .regular-checkbox + label, label {
-        
-        cursor: pointer;
-        background-color: #83a5c8;
-        color: white;
-        border-top: none;
-      }
-      
-      .regular-checkbox:checked + label:after {
-        
-        color: white;
-        
-      }
-      
-    }
-    
-    .insert-content {
-      
-      padding: 0px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      
-      .cathegorySubjectContainer {
-        
-        float: left;
-        width: 100%;
-        padding: 15px 0;
-        border-bottom: 1px solid #83a5c8;
-        margin-bottom: 20px;
-        
-        .cathegorySubjectName {
-          
-          color: #434244;
-          font-size: 14px;
-          padding: 10px 0px;
-          
-        }
-        
-        a.checkAllSubjects {
-          
-          background-color: #bad7f3;
-          color: #434244;
-          padding: 5px 40px;
-          font-size: 11px;
-          
-          &:hover {
-            
-            color: #7096bd;
-            
-          }
-          
-        }
-        
-      }
-      
-      .inputElement {
-        
-        float: left;
-        
-        label {
-          
-          margin-left: 10px;
-          
-        }
-        
-        p {
-          
-          color: #2f2e2e;
-          
-        }
-        
-        .sbHolderDeselect {
-          
-          width: 237px;
-          height: 25px;
-          margin: 5px 16px 10px 0;
-          padding: 10px 0 0 10px;
-          background-color: #e9ecee;
-          border-radius: 5px;
-          -moz-border-radius: 5px;
-          -webkit-border-radius: 5px;
-          color: #939393;
-          box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2) inset;
-          
-        }
-        
-      }
-      
-    }
-    
-    .contentForm {
-      
-      padding: 30px 0px 40px 0px;
-      width: auto;
-      
-      .checkbox-content {
-        
-        width: 270px;
-        
-        .checkboxElement {
-          
-          margin-bottom: 0px;
-          padding-left: 0px;
-          
-          table {
-            
-            width: auto;
-            float: none;
-            
-            td:last-child {
-              
-              padding-left: 10px;
-              
-            }
-            
-          }
-          
-          .regular-checkbox + label, label {
-            
-            box-shadow: 0 1px 1px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
-            padding: 3px 9px;
-            border-radius: 3px;
-            height: 15px;
-            width: 4px;
-            
-          }
-          
-          .regular-checkbox + label:active, .regular-checkbox:checked + label:active {
-            
-            box-shadow: 0 1px 1px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
-            
-          }
-          
-          .regular-checkbox:checked + label {
-            
-            background-color: #e9ecee;
-            box-shadow: 0 1px 1px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
-            
-          }
-          
-          .regular-checkbox:checked + label:after {
-            
-            font-size: 16px;
-            position: absolute;
-            top: -3px;
-            left: 2px;
-            color: #939393;
-            
-          }
-          
-        }
-        
-      }
-      
-    }
-    
-    .checkboxElement {
-      
-      color: #fff;
-      width: 200px;
-      font-size: 13px;
-      
-      span {
-        
-        padding: 7px 0px 0px 10px;
-        float: left;
-        
-      }
-      
-      .big-checkbox:checked + label, label {
-        
-        background-color: #fff;
-        box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
-        border-radius: 5px;
-        padding: 15px;
-        border-top: 0px solid #d2d2d2;
-        float: left;
-        
-        &:last-child {
-          
-          margin-right: 0;
-          
-        }
-        
-      }
-      
-      .big-checkbox:checked + label:after {
-        
-        color: #939393;
-        left: 4px;
-        top: -2px;
-        font-size: 22px;
-        
-      }
-      
-    }
-    
-    input[type="text"], input[type="password"], input[type="email"] {
-      
-      font-size: 120%;
-      margin-top: 5px;
-      width: 227px;
-      margin-bottom: 10px;
-      margin-right: 12px;
-      
-      &.school {
-        
-        width: 485px;
-        
-      }
-      
-    }
-    
-    .sbHolder {
-      
-      width: 247px;
-      height: 29px;
-      margin-right: 13px;
-      margin-top: 5px;
-      margin-bottom: 10px;
-      
-      .sbSelector {
-        
-        width: 247px;
-        
-        &:link {
-          
-          color: #939393;
-          
-        }
-        
-      }
-      
-      .sbToggle {
-        
-        @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 1, 1);
-        
-        &.sbToggleOpen {
-          
-          @include svg-circle-icon-handler-without-hover($assets-select-icons_png, 20px, 5, 2, 1, 1, 0);
-          
-        }
-        
-      }
-      
-      .sbOptions {
-        
-        width: 207px;
-        
-        li a {
-          
-          color: #adadad;
-          
-        }
-        
-        .sbFocus, li a:hover {
-          
-          background-color: #248fba;
-          color: #fff;
-          
-        }
-        
-        .sbFocus li a {
-          
-          color: #fff;
-          
-        }
-        
-      }
-      
-    }
-    
   }
   
   &.prelogin-controller.registration-action, &.users-controller.create-action {
     
-    label[for=locations_disclaimer] {
-      
-      cursor: pointer;
-      
-    }
-    
     .container {
       
+      padding: 0;
       background-color: transparent;
       position: relative;
-      padding: 0px;
       width: 972px;
       
-      hr {
+      h1 {
         
-        height: 0px;
+        @include nunito(36px);
+        
+      }
+      
+      h2 {
+        
+        @include nunito(16px);
+        
+        &.subtitle {
+          
+          margin-top: 15px;
+          
+        }
         
       }
       
       .footer {
         
         padding: 10px 30px 10px 40px;
-        border-top: 7px solid #fdb525;
+        border-top: 7px solid #FDB525;
         float: left;
         background-color: #fff;
         color: #CECDCD;
@@ -505,37 +169,6 @@ html.prelogin-layout {
       
     }
     
-    &.users-controller.create-action {
-      
-      .field_with_errors {
-        
-        input, select, .sbSelector, textarea, .regular-checkbox + label  {
-          
-          border: 2px solid #D20B0B;
-          
-        }
-        
-      }
-      
-    }
-    
-    input[type="submit"] {
-      
-      @include nunito(20px);
-      background-color: #9bc3eb;
-      text-transform: none;
-      margin: 0 0 20px 0;
-      padding: 0px;
-      cursor: pointer;
-      
-      &:hover {
-        
-        text-decoration: underline;
-        
-      }
-      
-    }
-    
   }
   
   &.prelogin-controller.what_is-action {
@@ -545,7 +178,7 @@ html.prelogin-layout {
       background-color: #fff;
       background-image: none;
       margin: 0;
-      color: #6d6d6e;
+      color: #6D6D6E;
       text-align: center;
       width: 100%;
       height: 100%;
@@ -562,7 +195,7 @@ html.prelogin-layout {
         
         display: inline-block;
         padding: 40px;
-        color: #6d6d6e;
+        color: #6D6D6E;
         
         h1, h3 {
           
@@ -572,7 +205,7 @@ html.prelogin-layout {
         
         h1 {
           
-          color: #3c9927;
+          color: #3C9927;
           font-size: 22px;
           
         }
@@ -580,7 +213,7 @@ html.prelogin-layout {
         h3 {
           
           padding-bottom: 25px;
-          color: #fdb525;
+          color: #FDB525;
           
         }
         
@@ -610,9 +243,9 @@ html.prelogin-layout {
       .footer {
         
         padding: 10px 30px 10px 40px;
-        border-top: 7px solid #fdb525;
+        border-top: 7px solid #FDB525;
         background-color: #fff;
-        color: #cecdcd;
+        color: #CECDCD;
         font-size: 75%;
         text-transform: lowercase;
         position: relative;

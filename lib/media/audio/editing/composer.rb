@@ -2,7 +2,7 @@ require 'media'
 require 'media/audio'
 require 'media/audio/editing'
 require 'media/in_tmp_dir'
-require 'media/thread'
+require 'media/queue'
 require 'media/audio/editing/crop'
 require 'media/audio/editing/concat'
 
@@ -55,11 +55,21 @@ module Media
             end
             audio.save!
             audio.enable_lessons_containing_me
-            Notification.send_to audio.user_id, I18n.t('notifications.audio.compose.update.failed', item: audio.title, link: ::Audio::CACHE_RESTORE_PATH)
+            Notification.send_to(
+              audio.user_id,
+              I18n.t('notifications.audio.compose.update.failed.title'),
+              I18n.t('notifications.audio.compose.update.failed.message', :item => audio.title, :link => ::Audio::CACHE_RESTORE_PATH),
+              ''
+            )
           else
             audio.destroyable_even_if_not_converted = true
             audio.destroy
-            Notification.send_to audio.user_id, I18n.t('notifications.audio.compose.create.failed', item: audio.title, link: ::Audio::CACHE_RESTORE_PATH)
+            Notification.send_to(
+              audio.user_id,
+              I18n.t('notifications.audio.compose.create.failed.title'),
+              I18n.t('notifications.audio.compose.create.failed.message', :item => audio.title, :link => ::Audio::CACHE_RESTORE_PATH),
+              ''
+            )
           end
           raise e
         end
@@ -69,13 +79,13 @@ module Media
           create_log_folder
           in_tmp_dir do
             concats = {}.tap do |concats|
-              Thread.join *@params[:components].each_with_index.map { |component, i|
+              Queue.run *@params[:components].each_with_index.map { |component, i|
                 proc{ concats.store i, compose_audio(*component.values_at(:audio, :from, :to), i) }
               }
             end
 
             concat = tmp_path 'concat'
-            outputs = Concat.new(concats.sort.map{ |_,c| c }, concat, log_folder('concat')).run
+            outputs = Concat.new(concats.sort.map{ |_, c| c }, concat, log_folder('concat')).run
 
             audio.media               = outputs.merge(filename: audio.title)
             audio.composing           = nil
@@ -84,7 +94,12 @@ module Media
             ActiveRecord::Base.transaction do
               audio.save!
               audio.enable_lessons_containing_me
-              Notification.send_to audio.user_id, I18n.t("notifications.audio.compose.#{notification_translation_key}.ok", item: audio.title)
+              Notification.send_to(
+                audio.user_id,
+                I18n.t("notifications.audio.compose.#{notification_translation_key}.ok.title"),
+                I18n.t("notifications.audio.compose.#{notification_translation_key}.ok.message", :item => audio.title),
+                ''
+              )
               audio.user.audio_editor_cache!
             end
           end
@@ -113,7 +128,7 @@ module Media
 
           if from == 0 && to == audio.min_duration
             {}.tap do |outputs|
-              Thread.join *inputs.map { |format, input| proc { audio_copy input, (outputs[format] = "#{output_without_extension(i)}.#{format}") } }
+              Queue.run *inputs.map { |format, input| proc { audio_copy input, (outputs[format] = "#{output_without_extension(i)}.#{format}") } }
             end
           else
             start, duration = from, to-from

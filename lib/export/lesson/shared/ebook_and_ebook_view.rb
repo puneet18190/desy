@@ -35,7 +35,7 @@ module Export
         end
 
         def math_image_path_relative_from_contents_folder(math_image_filename)
-          File.join self.class::MATH_IMAGES_ARCHIVE_FOLDER_NAME, math_image_filename
+          File.join self.class::FILE_MATH_IMAGES_FOLDER_NAME, math_image_filename
         end
 
       end 

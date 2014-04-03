@@ -8,14 +8,9 @@
   my_title = html_escape document.title
   my_title.gsub! /(#{Regexp.quote word})/i, '<b><u>\1</u></b>' if word.present?
   my_title = my_title.html_safe
-  popup_readonly_description = document.description
-  popup_readonly_description = t('documents.description_readonly_placeholder') if popup_readonly_description.blank?
-  popup_description = document.description
-  popup_description = t('documents.description_placeholder', :num => t('language_parameters.document.length_description')) if popup_description.blank?
 %>
 
 <div id="document_<%= document.id %>" class="boxViewSingleDocument" <%= forced_margin %>>
-  
   <div class="contentInterno">
     <div class="documentsIcon">
       <%= image_tag document.icon_url, :class=> 'fltlft', :title => document.icon_title %>
@@ -27,61 +22,5 @@
       <a title="<%= t('titles.buttons.documents.destroy') %>" data-used-in-your-lessons="<%= used_in_your_lessons %>" data-document-id="<%= document.id %>" class="destroy"></a>
     </div>
   </div>
-  
-  <div class="documentInfoPopUp" id="dialog-document-<%= document.id %>" style="display:none;" data-title="<%= document.title %>" data-description="<%= popup_description %>" data-description-placeholder="<%= (document.description.blank? ? '1' : '') %>">
-    
-    <div class="_document_pop_up_container documentPopUpContainer" style="display:inline-block">
-      
-      <div class="_document_change_info_container documentPopUpChangeInfoContainer" style="display:none">
-         
-        <h1><%= t('documents.change_info.title') %></h1>
-        <%= form_tag document_path(document.id), :class => 'formDocuments', :remote => true do %>
-          <%= hidden_field_tag 'word', '', :class => '_hidden_word' %>
-          <input class="_doc_title" type="text" value="<%= document.title %>" name="title">
-          <p>
-            <textarea class="_doc_description" name="description" data-document-id="<%= document.id %>"><%= popup_description %></textarea>
-          </p>
-          <%= hidden_field_tag 'description_placeholder', (document.description.blank? ? '1' : ''), :class => '_doc_description_placeholder' %>
-          <div class="fltrt" style="width:528px">
-            <div class="_error_messages"></div>
-            <div class="fltrt">
-              <%= submit_tag t('documents.change_info.done'), :class => 'lower' %>
-            </div>
-            <div class="fltrt" style="margin-top:5px; margin-right: 8px;">
-              <a class="lower _cancel buttonForm" data-document-id="<%= document.id %>">
-                <%= t('documents.change_info.cancel') %>
-              </a>
-            </div>
-          </div>
-        <% end %>
-       
-      </div>
-      
-      <div class="cols fltlft text-centered">
-        <%= image_tag document.icon_url %>
-        <p style="margin-top:50px">
-          <a class="upper buttonDownload" href="<%= document.url %>"><%= t('documents.download') %></a>
-        </p>
-        <p class="upper">
-          <%= document.size_and_extension %>
-        </p>
-      </div>
-      <div class="cols fltlft" style="width:280px">
-        <h2><%= document.title %></h2>
-        <p><%= popup_readonly_description %></p>
-      </div>
-      
-    </div>
-    
-    <div class="menuPopUp">
-      <div class="menuIconButton at_left">
-        <a class="<%= Buttons::CHANGE_INFO %> _document_change_info_to_pick" data-document-id="<%= document.id %>" title="<%= t('titles.buttons.documents.change_info') %>"></a>
-      </div>
-      <div class="menuIconButton at_right">
-        <a class="close _close_document_preview_popup" data-document-id="<%= document.id %>" title="<%= t('titles.close') %>"></a>
-      </div>
-    </div>
-    
-  </div>
-  
+  <%= render :partial => 'documents/popup', :locals => {:document => document} %>
 </div>

@@ -547,10 +547,10 @@ Stops a generic media, logging errors in the console.
 function stopMedia(media) {
   try {
     if($(media).length != 0) {
-      var has_source = true;
+      var has_source = false;
       $(media).find('source').each(function() {
-        if($(this).attr('src') == '') {
-          has_source = false;
+        if($(this).attr('src') != '') {
+          has_source = true;
         }
       });
       if(has_source) {

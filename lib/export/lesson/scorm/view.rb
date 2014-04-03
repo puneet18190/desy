@@ -1,7 +1,6 @@
 require 'export'
 require 'export/lesson'
 require 'export/lesson/scorm'
-
 require 'action_view/lookup_context'
 
 module Export
@@ -12,7 +11,7 @@ module Export
         require 'export/lesson/scorm/view/helper'
 
         include Helper
-        self.prepare nil, Helper
+        #self.prepare nil, Helper
 
         FOLDER           = Lesson::FOLDER.join 'scorms', 'views'
         LOOKUP_CONTEXT   = begin

@@ -4,7 +4,7 @@
   <%= render :partial => 'common_form', :locals => {:f => f} %>
   <hr/>
   <% if @renewed %>
-    <input id="purchase_location_id" type="hidden" value="<%= @renewed.location_id %>" name="purchase[location_id]">
+    <input id="purchase_location_id" type="hidden" value="<%= @renewed.location_id %>" name="purchase[location_id]"/>
     <%= hidden_field_tag 'renewed_id', '' %>
     <a id="renewed" data-renewed-id="<%= @renewed.id %>" data-accounts-number="<%= @renewed.accounts_number %>">
       <%= t('admin.purchases.new.renew') %>

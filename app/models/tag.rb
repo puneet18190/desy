@@ -49,13 +49,15 @@ class Tag < ActiveRecord::Base
   #
   # === Args
   #
+  # * *user*: the user who is autocompleting tags
   # * *a_word*: word to be autocompleted
+  # * *item*: either 'lesson' or 'media_element'
   #
   # === Return
   #
   # An array of tags
   #
-  def self.get_tags_for_autocomplete(a_word)
+  def self.get_tags_for_autocomplete(user, a_word, item)
     return [] if a_word.blank?
     a_word = a_word.to_s.strip.mb_chars.downcase.to_s
     resp = []
@@ -65,7 +67,21 @@ class Tag < ActiveRecord::Base
       resp << {:id => curr_tag.id, :value => a_word}
       limit -= 1
     end
-    resp += Tag.select('id, word AS value, (SELECT COUNT(*) FROM taggings WHERE (taggings.tag_id = tags.id)) AS tags_count').where('word ILIKE ? AND word != ?', "#{a_word}%", a_word).limit(limit).order('tags_count DESC, value ASC')
+    to_be_adapted = []
+    if item == 'media_element'
+      to_be_adapted = user.search_media_elements(a_word, 1, limit, nil, nil, true)
+    else
+      to_be_adapted = user.search_lessons(a_word, 1, limit, nil, nil, nil, true, nil)
+    end
+    if curr_tag
+      to_be_adapted.each do |tba|
+        resp << {:id => tba.id, :value => tba.word} if tba.word != a_word
+      end
+    else
+      to_be_adapted.each do |tba|
+        resp << {:id => tba.id, :value => tba.word}
+      end
+    end
     resp
   end
   

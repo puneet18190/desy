@@ -66,8 +66,8 @@ CREATE TABLE bookmarks (
     user_id integer NOT NULL,
     bookmarkable_id integer NOT NULL,
     bookmarkable_type teaching_object NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -105,8 +105,8 @@ CREATE TABLE delayed_jobs (
     failed_at timestamp without time zone,
     locked_by character varying(255),
     queue character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -140,8 +140,8 @@ CREATE TABLE documents (
     description text,
     attachment character varying(255) NOT NULL,
     metadata text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -172,8 +172,8 @@ CREATE TABLE documents_slides (
     id integer NOT NULL,
     document_id integer NOT NULL,
     slide_id integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -214,8 +214,8 @@ CREATE TABLE lessons (
     token character varying(255) NOT NULL,
     metadata text,
     notified boolean DEFAULT true NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -246,8 +246,8 @@ CREATE TABLE likes (
     id integer NOT NULL,
     lesson_id integer NOT NULL,
     user_id integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -280,8 +280,8 @@ CREATE TABLE locations (
     sti_type character varying(255),
     ancestry character varying(255),
     code character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -313,8 +313,8 @@ CREATE TABLE mailing_list_addresses (
     group_id integer,
     heading character varying(255),
     email character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -345,8 +345,8 @@ CREATE TABLE mailing_list_groups (
     id integer NOT NULL,
     user_id integer,
     name character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -384,8 +384,8 @@ CREATE TABLE media_elements (
     converted boolean DEFAULT false NOT NULL,
     is_public boolean DEFAULT false NOT NULL,
     publication_date timestamp without time zone,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -420,8 +420,8 @@ CREATE TABLE media_elements_slides (
     caption text,
     inscribed boolean DEFAULT false NOT NULL,
     alignment integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -452,9 +452,11 @@ CREATE TABLE notifications (
     id integer NOT NULL,
     user_id integer NOT NULL,
     message text NOT NULL,
+    title character varying(255) NOT NULL,
+    basement text,
     seen boolean DEFAULT false,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -501,8 +503,8 @@ CREATE TABLE purchases (
     start_date timestamp without time zone NOT NULL,
     expiration_date timestamp without time zone NOT NULL,
     token character varying(255) NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -535,8 +537,8 @@ CREATE TABLE reports (
     reportable_type teaching_object NOT NULL,
     user_id integer NOT NULL,
     comment text NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -575,8 +577,8 @@ CREATE TABLE schema_migrations (
 CREATE TABLE school_levels (
     id integer NOT NULL,
     description character varying(255) NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -607,8 +609,8 @@ CREATE TABLE sessions (
     id integer NOT NULL,
     session_id character varying(255) NOT NULL,
     data text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -643,8 +645,8 @@ CREATE TABLE slides (
     "position" integer NOT NULL,
     kind slide_type NOT NULL,
     metadata text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -674,8 +676,8 @@ ALTER SEQUENCE slides_id_seq OWNED BY slides.id;
 CREATE TABLE subjects (
     id integer NOT NULL,
     description character varying(255) NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -707,8 +709,8 @@ CREATE TABLE taggings (
     tag_id integer NOT NULL,
     taggable_id integer NOT NULL,
     taggable_type teaching_object NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -738,8 +740,8 @@ ALTER SEQUENCE taggings_id_seq OWNED BY taggings.id;
 CREATE TABLE tags (
     id integer NOT NULL,
     word character varying(255) NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -780,8 +782,8 @@ CREATE TABLE users (
     metadata text,
     password_token character varying(255),
     purchase_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -812,8 +814,8 @@ CREATE TABLE users_subjects (
     id integer NOT NULL,
     user_id integer NOT NULL,
     subject_id integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -845,8 +847,8 @@ CREATE TABLE virtual_classroom_lessons (
     lesson_id integer NOT NULL,
     user_id integer NOT NULL,
     "position" integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 

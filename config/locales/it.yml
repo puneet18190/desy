@@ -196,13 +196,13 @@ it:
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - models/lesson.rb
           # 3 - models/lesson.rb
-          problem_adding_to_virtual_classroom: "La lezione non è stata aggiunta al tuo Elenco" # FIXME "La lezione non è stata aggiunta alla tua Virtual Classroom"
+          problem_adding_to_virtual_classroom: "La lezione non è stata aggiunta alla tua Playlist" # FIXME "La lezione non è stata aggiunta alla tua Virtual Classroom"
           # The selected lesson is already in your Virtual Classroom, hence you can't add it again
           # 1 - models/lesson.rb
-          lesson_already_in_virtual_classroom: "Questa lezione è già presente nel tuo Elenco" # FIXME "Questa lezione è già presente nella tua Virtual Classroom"
+          lesson_already_in_virtual_classroom: "Questa lezione è già presente nella tua Playlist" # FIXME "Questa lezione è già presente nella tua Virtual Classroom"
           # For some reason, the selected lesson cannot be added to your Virtual Classroom
           # 1 - models/lesson.rb
-          lesson_not_available_for_virtual_classroom: "La lezione non è stata aggiunta al tuo Elenco" # FIXME "La lezione non è stata aggiunta alla tua Virtual Classroom"
+          lesson_not_available_for_virtual_classroom: "La lezione non è stata aggiunta alla tua Playlist" # FIXME "La lezione non è stata aggiunta alla tua Virtual Classroom"
           # There was an error while trying to remove the lesson from your Virtual Classroom
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - controllers/virtual_classroom_controller.rb
@@ -210,7 +210,7 @@ it:
           # 4 - models/lesson.rb
           # 5 - models/lesson.rb
           # 6 - models/lesson.rb
-          problem_removing_from_virtual_classroom: "La lezione non è stata rimossa dal tuo Elenco" # FIXME "La lezione non è stata rimossa dalla tua Virtual Classroom"
+          problem_removing_from_virtual_classroom: "La lezione non è stata rimossa dalla tua Playlist" # FIXME "La lezione non è stata rimossa dalla tua Virtual Classroom"
         like:
           # There was an error while you were trying to remove 'I like it' from a lesson
           # 1 - controllers/lessons_controller.rb
@@ -523,7 +523,7 @@ it:
     purchase_full:
       # Subject
       # 1 - mailers/user_mailer.rb
-      subject: "%{desy} - Purchase has reached the limit of users"
+      subject: "%{desy} - Raggiunto il limite massimo di utenti per l'acquisto"
       # Message
       # 1 - mailers/user_mailer.rb
       message: "<h2>Il seguente acquisto ha raggiunto il suo limite di %{accounts_number} utenti: se vuoi continuare ad usarlo, devi modificarlo, o alternativamente generare e distribuire un nuovo codice d'acquisto</h2><br/><ul><li>Denominazione sociale: <i>%{name}</i></li><li>Responsabile: <i>%{responsible}</i></li><li>Indirizzo: <i>%{address}</i></li><li>Numero telefonico: <i>%{phone_number}</i></li><li>Fax: <i>%{fax}</i></li><li>Email: <i>%{email}</i></li><li>Codice fiscale: <i>%{ssn_code}</i></li><li>Partita IVA: <i>%{vat_code}</i></li><li>Numero di utenze: <i>%{accounts_number}</i></li><li>Restrizione per gli utenti: <i>%{location}</i></li><li>Valido da: <i>%{start_date}</i></li><li>Valido fino a: <i>%{expiration_date}</i></li></ul><br/><br/><h2>Codice d'acquisto: %{token}</h2>"
@@ -575,7 +575,7 @@ it:
     # Form to create a new lesson
     new_lesson:
       # 1 - views/lesson_editor/new.html.erb
-      title: "Stai creando una nuova lezione"
+      title: "Nuova lezione"
       # 1 - views/lesson_editor/new.html.erb
       description: "Inserire tutte le informazioni richieste nel modulo"
       # 1 - views/lesson_editor/new.html.erb
@@ -585,7 +585,7 @@ it:
     # Form to modify a lesson
     update_lesson:
       # 1 - views/lesson_editor/edit.html.erb
-      title: "Stai facendo modifiche importanti?"
+      title: "Modifiche importanti?"
       # 1 - views/lesson_editor/edit.html.erb
       description: "Aggiorna le informazioni sulla lezione in virtù del nuovo contenuto"
       # 1 - views/lesson_editor/edit.html.erb
@@ -602,6 +602,16 @@ it:
       cancel: "Annulla"
       # 1 - views/media_elements/_new_form_popup.html.erb
       done: "Carica"
+    # Form for modifying a document
+    change_info_document:
+      # 1 - views/documents/_popup.html.erb
+      title: "Informazioni sul documento"
+      # 1 - views/documents/_popup.html.erb
+      description: "Compila il modulo per modificare i dati"
+      # 1 - views/documents/_popup.html.erb
+      cancel: "Annulla"
+      # 1 - views/documents/_popup.html.erb
+      done: "Aggiorna"
     # Form for modifying a media element
     change_info_media_element:
       # 1 - views/media_elements/_popup.html.erb
@@ -615,9 +625,9 @@ it:
     # Form for creating a new media element with one of the three editors (image / audio / video)
     new_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      title: "Stai creando un nuovo elemento"
+      title: "Nuovo elemento"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      description: "Inserire tutti i dettagli nel modulo"
+      description: "Inserire tutti i dettagli nel modulo<br/>titolo, descrizione e tags"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       cancel: "Annulla"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
@@ -627,15 +637,59 @@ it:
     # Form for editing general information of an element after having overwritten its content with one of the three editors (image / audio / video)
     overwrite_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      title: "Hai fatto modifiche importanti?"
+      title: "Modifiche importanti?"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      description: "Aggiorna le informazioni sull'elemento in virtù del nuovo contenuto"
+      description: "Aggiorna le informazioni sull'elemento<br/>in virtù del nuovo contenuto"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       cancel: "Annulla"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       done: "Salva"
+    # Uploader of files directly inside the Lesson Editor
+    gallery_upload:
+      audio:
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        title: "Caricamento di audio"
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        description: "Dopo che il caricamento sarà finito,<br/> prima di poter usare l'audio dovrai aspettare alcuni minuti"
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        cancel: "Annulla"
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        done: "Upload"
+      image:
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        title: "Caricamento di immagini"
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        description: "Sarai in grado di usare la nuova immagine<br/> non appena il caricamento sarà completo"
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        cancel: "Annulla"
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        done: "Upload"
+      video:
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        title: "Caricamento di video"
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        description: "Dopo che il caricamento sarà finito,<br/> prima di poter usare il video dovrai aspettare alcuni minuti"
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        cancel: "Annulla"
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        done: "Upload"
+      document:
+        # 1 - views/galleries/wrappers/_document.html.erb
+        title: "Caricamento di documenti"
+        # 1 - views/galleries/wrappers/_media_element.html.erb
+        description: "Sarai in grado di usare il nuovo documento<br/> non appena il caricamento sarà completo"
+        # 1 - views/galleries/wrappers/_document.html.erb
+        cancel: "Annulla"
+        # 1 - views/galleries/wrappers/_document.html.erb
+        done: "Upload"
     # Error messages shown in case the user doesn't fill the form correctly
     error_captions:
+      # The user is trying to leave or reload the page while loading a media element or a document
+      dont_leave_page:
+        # 1 - views/shared/_popups.html.erb
+        document: "Stai caricando un documento, se lasci la pagina interromperai il processo"
+        # 1 - views/shared/_popups.html.erb
+        media_element: "Stai caricando un elemento didattico, se lasci la pagina interromperai il processo"
       # The documents folder is full
       # 1 - controllers/application_controller.rb
       document_folder_size_exceeded: "Il caricamento di documenti è temporaneamente disabilitato: riprova più tardi"
@@ -644,22 +698,43 @@ it:
       document_blank: "Scegliere un allegato"
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/application_controller.rb
       fill_all_the_fields_or_too_long: "Compila tutti i campi senza superare la lunghezza massima"
       # The user didn't write the minimum amount of tags
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       tags_are_not_enough: "Numero dei tags (etichette) non sufficiente"
       # The user inserted too many tags
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       tags_too_many: "Hai inserito troppe tags"
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
       media_blank: "Nessun file caricato"
+      # The user didn't insert a title
+      # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
+      description_blank: "La descrizione è vuota"
+      # The user didn't insert a title
+      # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
+      title_blank: "Il titolo è vuoto"
       # The media elements folder exceeded the maximum size available
       # 1 - controllers/application_controller.rb
-      # 2 - controllers/video_editor_controller.rb
-      # 3 - controllers/video_editor_controller.rb
       media_folder_size_exceeded: "Il caricamento dei media è temporaneamente disabliltato, roprovare più tardi"
+      # If the media folder is full, and the user tried to upload from the lesson editor: this is the caption of the button to come back to the gallery, since uploading is temporarily not available
+      # 1 - views/galleries/wrappers/_media_element.html.erb
+      media_folder_full_button: "Torna alla galleria"
+      # If the document folder is full, and the user tried to upload from the lesson editor: this is the caption of the button to come back to the gallery, since uploading is temporarily not available
+      # 1 - views/galleries/wrappers/_document.html.erb
+      document_folder_full_button: "Torna alla galleria"
+      # Same of media_folder_full_button, but in the dashboard
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      media_folder_full_button_from_dashboard: "Ritorna"
+      # Same of document_folder_full_button, but in the dashboard
+      # 1 - views/documents/_new_form_popup.html.erb
+      document_folder_full_button_from_dashboard: "Ritorna"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
@@ -669,6 +744,7 @@ it:
       media_generic_error: "File non valido o danneggiato"
       # The user tried to load a file exceeding the maximum size
       # 1 - controllers/media_elements_controller.rb
+      # 2 - controllers/galleries_controller.rb
       media_file_too_large: "File troppo grande"
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
@@ -676,6 +752,9 @@ it:
       # The user's email is not valid or already present in the database
       # 1 - controllers/application_controller.rb
       not_valid_email: "L'email inserita non è valida o già presente nel nostro archivio"
+      # The email doesn't match confirmation
+      # 1 - controllers/application_controller.rb
+      email_doesnt_match_confirmation: "La conferma della email non corrisponde alla email inserita"
       # The user hasn't selected any subject
       # 1 - controllers/application_controller.rb
       select_at_least_a_subject: "Selezionarne almeno una"
@@ -697,6 +776,27 @@ it:
       # The user inserted an invalid purchase token
       # 1 - controllers/application_controller.rb
       invalid_purchase_id: "Codice di acquisto non valido"
+      # The description is too long (the variable %{max} is replaced by the maximum amount of characters available for description)
+      # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
+      description_too_long: "La descrizione è troppo lunga (massimo %{max} caratteri)"
+      # The title is too long (the variable %{max} is replaced by the maximum amount of characters available for title)
+      # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
+      # 3 - controllers/application_controller.rb
+      title_too_long: "Il titolo è troppo lungo (massimo %{max} caratteri)"
+      # These captions are used in the media element uploader inside Lesson Editor, if the user tries to load a file in a wrong format
+      wrong_sti_type:
+        # 1 - controllers/galleries_controller.rb
+        # 2 - controllers/galleries_controller.rb
+        audio: "Il file non è un audio"
+        # 1 - controllers/galleries_controller.rb
+        # 2 - controllers/galleries_controller.rb
+        image: "Il file non è un'immagine"
+        # 1 - controllers/galleries_controller.rb
+        # 2 - controllers/galleries_controller.rb
+        video: "Il file non è un video"
     # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
       # Description (the variable %{num} represents the maximum number of characters)
@@ -704,24 +804,27 @@ it:
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
+      # 5 - views/galleries/wrappers/_media_element.html.erb
       description: "Descrizione (max %{num} caratteri)"
       # File to load (used only for media elements
       # 1 - views/media_elements/_new_form_popup.html.erb
       media: "Seleziona un file da caricare"
       # Subject (used only for lessons)
-      # 1 - helpers/application_helper.rb
+      # 1 - views/lesson_editor/new.html.erb
       subject_id: "Seleziona una materia"
       # Tags (the variable %{num} represents the maximum number of characters for each tags, the variable %{items} represents the minimum amount of tags)
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
+      # 5 - views/galleries/wrappers/_media_element.html.erb
       tags: "Inserisci un numero minimo di %{items} tags (etichette) (max %{num} caratteri ciascuna)"
       # Title (the variable %{num} represents the maximum number of characters)
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
+      # 5 - views/galleries/wrappers/_media_element.html.erb
       title: "Titolo (max %{num} caratteri)"
   
   
@@ -782,7 +885,7 @@ it:
         media_element: "Aggiungi ai tuoi elementi"
       # To add a lesson to your Virtual Classroom
       # 1 - views/shared/buttons/_add_virtual_classroom.html.erb
-      add_virtual_classroom: "Aggiungi la lezione al tuo Elenco" # FIXME "Aggiungi la lezione alla Virtual Classroom"
+      add_virtual_classroom: "Aggiungi la lezione alla tua Playlist" # FIXME "Aggiungi la lezione alla Virtual Classroom"
       # To copy a lesson
       # 1 - views/shared/buttons/_copy.html.erb
       copy: "Crea una tua copia della lezione"
@@ -794,6 +897,7 @@ it:
       dislike: "Clicca per cancellare il tuo 'Mi piace'"
       # To edit a lesson or a media element (the little pencil)
       # 1 - views/shared/buttons/_edit.html.erb
+      # 2 - views/media_elements/_popup.html.erb
       edit: "Modifica questo oggetto"
       # Title of the icon which appears instead of 'unpublish' in the case the lesson has been modified and the followers don't know about it
       # 1 - views/shared/_popups.html.erb
@@ -812,7 +916,7 @@ it:
       remove: "Rimuovi questo oggetto"
       # To remove a lesson from your Virtual Classroom
       # 1 - views/shared/buttons/_remove_virtual_classroom.html.erb
-      remove_virtual_classroom: "Rimuovi dal tuo Elenco" # FIXME "Rimuovi dalla tua Virtual Classroom"
+      remove_virtual_classroom: "Rimuovi dalla tua Playlist" # FIXME "Rimuovi dalla tua Virtual Classroom"
       # To turn a shared lesson back into private
       # 1 - views/shared/buttons/_unpublish.html.erb
       # 2 - views/shared/_popups.html.erb
@@ -835,7 +939,7 @@ it:
         # 1 - views/lesson_viewer/_documents.html.erb
         attached_view: "Scarica documenti allegati"
         # Modify title and description of the document
-        # 1 - views/documents/_view_single_compact.html.erb
+        # 1 - views/documents/_popup.html.erb
         change_info: "Modifica titolo e descrizione del documento"
         # Destroy a document
         # 1 - views/documents/_view_single_compact.html.erb
@@ -848,7 +952,7 @@ it:
         remove: "Rimuovi"
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
-    # 2 - views/documents/_view_single_compact.html.erb
+    # 2 - views/documents/_popup.html.erb
     close: "Chiudi"
     # Titles for compressed dashboard
     dashboard:
@@ -1043,7 +1147,7 @@ it:
       # 1 - views/notifications/_main.html.erb
       label: "Profilo"
     # Icon to report an offensive lesson or media element
-    # 1 - views/reports/_media_element.html.erb
+    # 1 - views/media_elements/_popup.html.erb
     report: "Segnala contenuti non appropriati"
     # Icon with a lens in the main sections
     # 1 - views/shared/_search.html.erb
@@ -1334,7 +1438,7 @@ it:
       # 1 - views/users/send_upgrade_trial.html.erb
       title: "Congratulazioni!"
       # 1 - views/users/send_upgrade_trial.html.erb
-      description: "L'upgrade del tuo account di tipo 'trial' è stato effettuato con successo!<br> Per cominciare a usare il tuo account, torna alla home page ed effettua l'accesso"
+      description: "L'upgrade del tuo account di tipo 'trial' è stato effettuato con successo!<br/> Per cominciare a usare il tuo account, torna alla home page ed effettua l'accesso"
   
   
   
@@ -1537,13 +1641,13 @@ it:
       select: "Seleziona una traccia audio"
     # Captions for empty galleries, one for each kind
     empty:
-      # 1 - views/galleries/contents/audio.html.erb
+      # 1 - views/galleries/contents/_audio.html.erb
       audio: "La tua galleria degli audio è vuota!"
-      # 1 - views/galleries/_document.html.erb
+      # 1 - views/galleries/contents/_document.html.erb
       document: "Non hai nessun documento!"
-      # 1 - views/galleries/contents/image.html.erb
+      # 1 - views/galleries/contents/_image.html.erb
       image: "La tua galleria delle immagini è vuota!"
-      # 1 - views/galleries/contents/video.html.erb
+      # 1 - views/galleries/contents/_video.html.erb
       video: "La tua galleria dei video è vuota!"
     documents:
       # The user cancels his modifications
@@ -1559,11 +1663,11 @@ it:
       # 1 - views/galleries/_document.html.erb
       filter_by: "Filtra"
       # Caption used when the user attaches the maximum allowed number of documents into a slide
-      # 1 - views/galleries/_document.html.erb
+      # 1 - views/galleries/contents/_document.html.erb
       locked: "Puoi allegare al massimo tre documenti"
-      # Placeholder for a document that has to be loaded
+      # Placeholder for a document that has to be loaded (the variable %{link} is replaced by the link to upload a new element)
       # 1 - views/galleries/_document.html.erb
-      placeholder: "Aggiungi un documento dalla lista qui sotto"
+      placeholder: "Aggiungi un documento dalla lista qui sotto, oppure %{link}"
     images:
       # Caption for the size (in pixels) of the image inside the gallery
       # 1 - views/galleries/popups/_image.html.erb
@@ -1571,6 +1675,16 @@ it:
       # Title of a generic image gallery
       # 1 - views/galleries/_image.html.erb
       select: "Seleziona un'immagine"
+    # Caption for quick load inside lesson editor
+    quick_load:
+      # 1 - views/galleries/wrappers/_media_element.html.erb
+      audio: "Carica un nuovo audio"
+      # 1 - views/galleries/wrappers/_media_element.html.erb
+      image: "Carica una nuova immagine"
+      # 1 - views/galleries/wrappers/_media_element.html.erb
+      video: "Carica un nuovo video"
+      # 1 - views/galleries/_document.html.erb
+      document: "Carica un nuovo documento"
     videos:
       # Title of a generic video gallery
       # 1 - views/galleries/_video.html.erb
@@ -1645,13 +1759,31 @@ it:
     # 2 - views/lesson_editor/thumbnails/_video2.html.erb
     # 3 - views/lesson_editor/thumbnails/_video1.html.erb
     choose_video: "Clicca qui per aggiungere un video"
+    # Messages confirming the conversion of videos and audios inside Lesson Editor - the variable %{item} is replaced by the title of the video or audio
+    conversion:
+      error:
+        # 1 - views/shared/_popups.html.erb
+        audio: "C'è stato un errore durante la conversione dell'audio %{item}! Prova a caricarlo di nuovo"
+        # 1 - views/shared/_popups.html.erb
+        video: "C'è stato un errore durante la conversione del video %{item}! Prova a caricarlo di nuovo"
+        # 1 - views/shared/_popups.html.erb
+        audio_general: "C'è stato un errore durante la conversione del tuo audio! Prova a caricarlo di nuovo"
+        # 1 - views/shared/_popups.html.erb
+        video_general: "C'è stato un errore durante la conversione del tuo video! Prova a caricarlo di nuovo"
+      correct:
+        # 1 - views/shared/_popups.html.erb
+        audio: "Il tuo audio %{item} è stato convertito correttamente! Per usarlo apri la galleria audio"
+        # 1 - views/shared/_popups.html.erb
+        video: "Il tuo video %{item} è stato convertito correttamente! Per usarlo apri la galleria video"
     # The Lesson Editor is not available if the user started an audio (or video) editing process which overwrites an audio (or a video) used inside a lesson. The Editor is not avilable only to edit that particular lesson, in this case the application shows a page with title and description
     not_available:
       # The variable %{lesson} is replaced by the name of the lesson
       # 1 - views/lesson_editor/not_available.html.erb
       title: "Editor delle lezioni non disponibile per la tua lezione %{lesson}"
       # 1 - views/lesson_editor/not_available.html.erb
-      description: "Si sta sovrascrivendo il contenuto di un video o di un file audio contenuti in questa lezione: aspettare qualche minuto fino a quando il processo sarà concluso e sarete in grado di modificare di nuovo questa lezione"
+      description: "Si sta sovrascrivendo il contenuto di un video o di un file audio contenuti in questa lezione: aspettate qualche minuto fino a quando il processo non sarà concluso e sarete in grado di modificare di nuovo questa lezione"
+      # 1 - views/lesson_editor/not_available.html.erb
+      back: "Torna indietro"
     # These are the placeholders for all the text fields inside the editor
     placeholders:
       # Placeholder for the caption of an image
@@ -1704,9 +1836,9 @@ it:
     # Caption containing the author's name (the variable %{author} is replaced by the name of the author)
     # 1 - views/lessons/_view_single_expanded.html.erb
     created_by: "Creata da %{author}"
-    # Caption which indicates the date in which a lesson is created
+    # Caption which indicates the date in which a lesson is created (the variable %{time} is replaced by the creation time)
     # 1 - views/lessons/_view_single_compact.html.erb
-    created_on: "Creata il"
+    created_on: "Creata il %{time}"
     # Caption of the link to open the lesson editor (on the left of the bar above the lesson's list)
     # 1 - views/lessons/index.html.erb
     create_new: "Crea una nuova lezione"
@@ -1753,6 +1885,9 @@ it:
     # Caption to indicate how many users like the lesson (the variable %{likes} is replaced by the number of users who like the selected lesson)
     # 1 - views/lessons/_view_single_compact.html.erb
     users_like_this: "A %{likes} utenti piace questa lezione"
+    # Caption to indicate how many users follow the lesson (the variable %{followers} is replaced by the number of users who follow the selected lesson)
+    # 1 - views/lessons/_view_single_compact.html.erb
+    users_follow_this: "%{followers} utenti seguono questa lezione"
   
   
   # SECTION 2.8: Captions used in the Lesson Viewer
@@ -1771,11 +1906,22 @@ it:
         archive: "Html"
         # 1 - views/lesson_viewer/_export.html.erb
         ebook: "Epub"
+        # 1 - views/lesson_viewer/_export.html.erb
+        scorm: "Scorm"
       # 1 - views/lesson_viewer/_export.html.erb
-      caption: "Vuoi scaricare una versione offline?"
+      caption: "Scegli un formato"
       # Footer of an exported lesson (the variable %{copyright} is replaced by the full name of the application including copyright).
       # 1 - views/layouts/lesson_archive.html.erb
+      # 2 - views/layouts/lesson_scorm.html.erb
       made_in_desy: "Questa lezione è un prodotto di %{copyright}"
+      not_available:
+        # The variable %{lesson} is replaced by the name of the lesson
+        # 1 - views/lesson_export/not_available.html.erb
+        title: "Esportazione non disponibile per la tua lezione %{lesson}"
+        # 1 - views/lesson_export/not_available.html.erb
+        description: "Si sta sovrascrivendo il contenuto di un video o di un file audio contenuti in questa lezione: aspettate qualche minuto fino a quando il processo non sarà concluso e sarete nuovamente in grado di esportare questa lezione"
+        # 1 - views/lesson_export/not_available.html.erb
+        back: "Torna indietro"
   
   
   # SECTION 2.9: Caption used in the section 'my elements'
@@ -1833,100 +1979,198 @@ it:
     empty: "Non hai notifiche"
     documents:
       # Notification sent by a user who destroyed a document attached to a lesson coped by somebody else, to inform all its followers (the variable %{lesson_title} is replaced by the title of the lesson, %{document_title} by the title of the document, and %{link} by the link to the lesson viewer for that lesson)
-      # 1 - models/document.rb
-      destroyed: "<div class=\"title\">Warning!</div><div class=\"content\">Il documento <span class=\"variable\">%{document_title}</span> è stato rimosso dal suo proprietario: questo cambiamento ha interessato la tua lezione <span class=\"variable\">%{lesson_title}</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
+      destroyed:
+        # 1 - models/document.rb
+        title: "Warning!"
+        # 1 - models/document.rb
+        message: "Il documento <span class=\"variable\">%{document_title}</span> è stato rimosso dal suo proprietario: questo cambiamento ha interessato la tua lezione <span class=\"variable\">%{lesson_title}</span>"
+        # 1 - models/document.rb
+        basement: "<span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a>"
       # Message attached to the notification of modifications automatically sent to users who have a link to a lesson containig a document which has been deleted (%{document_title} is  replaced by the title of the document)
       # 1 - models/document.rb
       standard_message_for_linked_lessons: "Ho rimosso il documento allegato «%{document_title}»"
     lessons:
       # Message sent to a user who has the lesson link, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
-      # 1 - models/lesson.rb
-      destroyed: "<div class=\"title\">Attenzione!</div><div class=\"content\">L'utente <span class=\"variable\">%{user_name}</span>, autore di <span class=\"variable\">%{lesson_title}</span>, ha cancellato la sua lezione: quindi, hai perso il collegamento a quella lezione.</div>"
+      destroyed:
+        # 1 - models/lesson.rb
+        title: "Attenzione!"
+        # 1 - models/lesson.rb
+        message: "L'utente <span class=\"variable\">%{user_name}</span>, autore di <span class=\"variable\">%{lesson_title}</span>, ha cancellato la sua lezione: quindi, hai perso il collegamento a quella lezione."
       # Notification received by an user who sent to his friends an email with the public link of a lesson: it's used as a memo of the list of emails to which the message was successfully sent (the variable %{title} is replaced by the title of the lesson, %{message} by the message inserted by the sender, %{emails} by the list of emails separated by comma)
-      # 1 - controllers/virtual_classroom_controller.rb
-      link_sent: "<div class=\"title\">Collegamento inviato!</div><div class=\"content\">Hai inviato il link della lezione <span class=\"variable\">%{title}</span> ai seguenti indirizzi email: <br/><br/><span class=\"message\">%{emails}</span><br/><br/>Il messaggio che hai allegato è<br/><br/><span class=\"message\">\"%{message}\"</div>"
+      link_sent:
+        # 1 - controllers/virtual_classroom_controller.rb
+        title: "Collegamento inviato!"
+        # 1 - controllers/virtual_classroom_controller.rb
+        message: "Hai inviato il link della lezione <span class=\"variable\">%{title}</span> ai seguenti indirizzi email: <br/><br/><span class=\"message\">%{emails}</span><br/><br/>Il messaggio che hai allegato è<br/><br/><span class=\"message\">\"%{message}\"</span>"
       # Notification sent by a user who modified a shared lesson, to inform all its followers about the nature of modifications made (the variable %{lesson_title} is replaced by the title of the lesson, %{message} by the message containing a better description of the modifications, and %{link} by the link to the lesson viewer for that lesson)
-      # 1 - models/lesson.rb
-      # 2 - models/lesson.rb
-      # 3 - models/document.rb
-      modified: "<div class=\"title\">Ci sono novità per te!</div><div class=\"content\">La lezione <span class=\"variable\">%{lesson_title}</span> ha subito alcune modifiche da parte dell'autore: i cambiamenti sono<br/><br/><span class=\"message\">\"%{message}\"</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
+      modified:
+        # 1 - models/lesson.rb
+        # 2 - models/document.rb
+        title: "Ci sono novità per te!"
+        # 1 - models/lesson.rb
+        # 2 - models/document.rb
+        message: "La lezione <span class=\"variable\">%{lesson_title}</span> ha subito alcune modifiche da parte dell'autore: i cambiamenti sono<br/><br/><span class=\"message\">\"%{message}\"</span>"
+        # 1 - models/lesson.rb
+        # 2 - models/document.rb
+        basement: "<span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a>"
       # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted) (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
-      # 1 - models/lesson.rb
-      unpublished: "<div class=\"title\">Attenzione!</div><div class=\"content\">L'utente <span class=\"variable\">%{user_name}</span>, autore di <span class=\"variable\">%{lesson_title}</span>, ha modificato a 'privato' lo stato della sua lezione: per cui hai perso il collegamento con la lezione.</div>"
+      unpublished:
+        # 1 - models/lesson.rb
+        title: "Attenzione!"
+        # 1 - models/lesson.rb
+        message: "L'utente <span class=\"variable\">%{user_name}</span>, autore di <span class=\"variable\">%{lesson_title}</span>, ha modificato a 'privato' lo stato della sua lezione: per cui hai perso il collegamento con la lezione."
     audio:
       compose:
         update:
           # The process of audio editing started. The variable %{item} is replaced by the name of the audio whose content is going to be modified
-          # 1 - controllers/audio_editor_controller.rb
-          started: "<div class=\"title\">Modifica della traccia audio</div><div class=\"content\">L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è iniziata! L'Editor audio è temporaneamente non disponibile insieme alle lezioni dove utilizzi questa traccia audio.</div>"
+          started:
+            # 1 - controllers/audio_editor_controller.rb
+            title: "Modifica della traccia audio"
+            # 1 - controllers/audio_editor_controller.rb
+            message: "L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è iniziata! L'Editor audio è temporaneamente non disponibile insieme alle lezioni dove utilizzi questa traccia audio."
           # The process of audio editing ended successfully. The variable %{item} is replaced by the name of the audio whose content has been modified
-          # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "<div class=\"title\">Complimenti!</div><div class=\"content\">L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è terminata con successo! L'Editor audio è di nuovo disponibile insieme a tutte le lezioni dove la traccia audio viene utilizzata (a meno che non contengano altri elementi in fase di modifica).</div>"
+          ok:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "Complimenti!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è terminata con successo! L'Editor audio è di nuovo disponibile insieme a tutte le lezioni dove la traccia audio viene utilizzata (a meno che non contengano altri elementi in fase di modifica)."
           # The process of audio editing ended with an error. The variable %{item} is replaced by the name of the audio whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
-          # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "<div class=\"title\">Errore!</div><div class=\"content\">L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è fallita! L'Editor audio è di nuovo disponibile insieme alle lezioni dove utilizzi questa traccia audio (a meno che non contengano altri elementi in fase di modifica). Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto.</a></div>"
+          failed:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "Errore!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è fallita! L'Editor audio è di nuovo disponibile insieme alle lezioni dove utilizzi questa traccia audio (a meno che non contengano altri elementi in fase di modifica). Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto.</a>"
         create:
           # The process of audio composition started. The variable %{item} is replaced by the name of the audio which is going to be composed
-          # 1 - controllers/audio_editor_controller.rb
-          started: "<div class=\"title\">Composizione audio</div><div class=\"content\">L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è iniziata! L'Editor audio è temporaneamente non disponibile</div>"
+          started:
+            # 1 - controllers/audio_editor_controller.rb
+            title: "Composizione audio"
+            # 1 - controllers/audio_editor_controller.rb
+            message: "L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è iniziata! L'Editor audio è temporaneamente non disponibile"
           # The process of audio composition ended successfully. The variable %{item} is replaced by the name of the new audio
-          # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "<div class=\"title\">Complimenti!</div><div class=\"content\">L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è terminata con successo! L'Editor audio è di nuovo disponibile.</div>"
+          ok:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "Complimenti!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è terminata con successo! L'Editor audio è di nuovo disponibile."
           # The process of audio composition ended with an error. The variable %{item} is replaced by the name of the audio in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
-          # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "<div class=\"title\">Errore!</div><div class=\"content\">L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è fallita! L'Editor audio è di nuovo disponibile. Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto</a></div>"
+          failed:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "Errore!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "L'elaborazione della traccia audio <span class=\"variable\">%{item}</span> è fallita! L'Editor audio è di nuovo disponibile. Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto</a>"
       upload:
         # The process of audio uploading started. The variable %{item} is replaced by the name of the audio which is going to be uploaded
-        # 1 - controllers/media_elements_controller.rb
-        started: "<div class=\"title\">Caricamento traccia audio</div><div class=\"content\">Il caricamento della traccia audio <span class=\"variable\">%{item}</span> è iniziato! Attendere fino al termine del caricamento prima di utilizzare la nuova traccia audio.</div>"
+        started:
+          # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/galleries_controller.rb
+          title: "Caricamento traccia audio"
+          # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/galleries_controller.rb
+          message: "Il caricamento della traccia audio <span class=\"variable\">%{item}</span> è iniziato! Attendere fino al termine del caricamento prima di utilizzare la nuova traccia audio."
         # The process of audio uploading ended successfully. The variable %{item} is replaced by the name of the new audio
-        # 1 - ../lib/media/audio/editing/conversion.rb
-        ok: "<div class=\"title\">Complimenti!</div><div class=\"content\">Il caricamento della traccia audio <span class=\"variable\">%{item}</span> è terminato con successo! Adesso puoi utilizzarla nelle tue lezioni.</div>"
+        ok:
+          # 1 - ../lib/media/audio/editing/conversion.rb
+          title: "Complimenti!"
+          # 1 - ../lib/media/audio/editing/conversion.rb
+          message: "Il caricamento della traccia audio <span class=\"variable\">%{item}</span> è terminato con successo! Adesso puoi utilizzarla nelle tue lezioni."
         # The process of audio uploading ended with an error. The variable %{item} is replaced by the name of the audio which the user tried to upload
-        # 1 - ../lib/media/audio/editing/conversion.rb
-        failed: "<div class=\"title\">Errore!</div><div class=\"content\">Il caricamento della traccia audio <span class=\"variable\">%{item}</span> è fallita! Si prega di riprovare.</div>"
+        failed:
+          # 1 - ../lib/media/audio/editing/conversion.rb
+          title: "Errore!"
+          # 1 - ../lib/media/audio/editing/conversion.rb
+          message: "Il caricamento della traccia audio <span class=\"variable\">%{item}</span> è fallita! Si prega di riprovare."
     video:
       compose:
         update:
           # The process of video editing started. The variable %{item} is replaced by the name of the video whose content is going to be modified
-          # 1 - controllers/audio_editor_controller.rb
-          started: "<div class=\"title\">Elaborazione video</div><div class=\"content\">L'elaborazione del video <span class=\"variable\">%{item}</span>  è iniziata! L'editor video è temporaneamente non disponibile, insieme alle lezioni dove utilizzi questo video.</div>"
+          started:
+            # 1 - controllers/audio_editor_controller.rb
+            title: "Elaborazione video"
+            # 1 - controllers/audio_editor_controller.rb
+            message: "L'elaborazione del video <span class=\"variable\">%{item}</span>  è iniziata! L'editor video è temporaneamente non disponibile, insieme alle lezioni dove utilizzi questo video."
           # The process of video editing ended successfully. The variable %{item} is replaced by the name of the video whose content has been modified
-          # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "<div class=\"title\">Complimenti!</div><div class=\"content\">L'elaborazione del video <span class=\"variable\">%{item}</span> è terminata con successo! L'Editor video è di nuovo disponibile, insieme alle lezioni dove utilizzi questo video (a meno che non contengano altri elementi in fase di elaborazione).</div>"
+          ok:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "Complimenti!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "L'elaborazione del video <span class=\"variable\">%{item}</span> è terminata con successo! L'Editor video è di nuovo disponibile, insieme alle lezioni dove utilizzi questo video (a meno che non contengano altri elementi in fase di elaborazione)."
           # The process of video editing ended with an error. The variable %{item} is replaced by the name of the video whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
-          # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "<div class=\"title\">Errore!</div><div class=\"content\">L'elaborazione del video <span class=\"variable\">%{item}</span> è fallita! L'Editor video è di nuovo disponibile, insieme alle lezioni dove utilizzi questo video (a meno che non contengano altri elementi in fase di elaborazione). Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto</a></div>"
+          failed:
+            # 1 - ../lib/media/audio/editing/composer.rb
+            title: "Errore!"
+            # 1 - ../lib/media/audio/editing/composer.rb
+            message: "L'elaborazione del video <span class=\"variable\">%{item}</span> è fallita! L'Editor video è di nuovo disponibile, insieme alle lezioni dove utilizzi questo video (a meno che non contengano altri elementi in fase di elaborazione). Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto</a>"
         create:
           # The process of video composition started. The variable %{item} is replaced by the name of the video which is going to be composed
-          # 1 - controllers/video_editor_controller.rb
-          started: "<div class=\"title\">Creazione video</div><div class=\"content\">La creazione del video <span class=\"variable\">%{item}</span> è iniziata! L'Editor video è temporaneamente non disponibile.</div>"
+          started:
+            # 1 - controllers/video_editor_controller.rb
+            title: "Creazione video"
+            # 1 - controllers/video_editor_controller.rb
+            message: "La creazione del video <span class=\"variable\">%{item}</span> è iniziata! L'Editor video è temporaneamente non disponibile."
           # The process of video composition ended successfully. The variable %{item} is replaced by the name of the new video
-          # 1 - ../lib/media/video/editing/composer.rb
-          ok: "<div class=\"title\">Complimenti!</div><div class=\"content\">La creazione del video <span class=\"variable\">%{item}</span> è terminato con successo! L'Editor video è di nuovo disponibile.</div>"
+          ok:
+            # 1 - ../lib/media/video/editing/composer.rb
+            title: "Complimenti!"
+            # 1 - ../lib/media/video/editing/composer.rb
+            message: "La creazione del video <span class=\"variable\">%{item}</span> è terminato con successo! L'Editor video è di nuovo disponibile."
           # The process of video composition ended with an error. The variable %{item} is replaced by the name of the video in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
-          # 1 - ../lib/media/video/editing/composer.rb
-          failed: "<div class=\"title\">Errore!</div><div class=\"content\">La creazione del video <span class=\"variable\">%{item}</span> è fallito! L'Editor video è di nuovo disponibile. Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto</a></div>"
+          failed:
+            # 1 - ../lib/media/video/editing/composer.rb
+            title: "Errore!"
+            # 1 - ../lib/media/video/editing/composer.rb
+            message: "La creazione del video <span class=\"variable\">%{item}</span> è fallito! L'Editor video è di nuovo disponibile. Il progetto a cui stavi lavorando non è stato perso:<br/><br/><a href=\"%{link}\" class=\"link\">vai al progetto</a>"
       upload:
         # The process of video uploading started. The variable %{item} is replaced by the name of the video which is going to be uploaded
-        # 1 - controllers/media_elements_controller.rb
-        started: "<div class=\"title\">Caricamento video!</div><div class=\"content\">Il caricamento del video <span class=\"variable\">%{item}</span> è iniziato! Attendere fino al termine del caricamento prima di utilizzare il nuovo video.</div>"
+        started:
+          # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/galleries_controller.rb
+          title: "Caricamento video!"
+          # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/galleries_controller.rb
+          message: "Il caricamento del video <span class=\"variable\">%{item}</span> è iniziato! Attendere fino al termine del caricamento prima di utilizzare il nuovo video."
         # The process of video uploading ended successfully. The variable %{item} is replaced by the name of the new video
-        # 1 - ../lib/media/video/editing/conversion.rb
-        ok: "<div class=\"title\">Complimenti!</div><div class=\"content\">Il caricamento del video <span class=\"variable\">%{item}</span> è terminato con successo! Adesso puoi utilizzarlo nelle tue lezioni.</div>"
+        ok:
+          # 1 - ../lib/media/video/editing/conversion.rb
+          title: "Complimenti!"
+          # 1 - ../lib/media/video/editing/conversion.rb
+          message: "Il caricamento del video <span class=\"variable\">%{item}</span> è terminato con successo! Adesso puoi utilizzarlo nelle tue lezioni."
         # The process of video uploading ended with an error. The variable %{item} is replaced by the name of the video which the user tried to upload
-        # 1 - ../lib/media/video/editing/conversion.rb
-        failed: "<div class=\"title\">Errore!</div><div class=\"content\">Il caricamento del video <span class=\"variable\">%{item}</span> è fallito! Si prega di riprovare.</div>"
+        failed:
+          # 1 - ../lib/media/video/editing/conversion.rb
+          title: "Errore!"
+          # 1 - ../lib/media/video/editing/conversion.rb
+          message: "Il caricamento del video <span class=\"variable\">%{item}</span> è fallito! Si prega di riprovare."
     # Notifications related to the user's account cycle: account created, trial upgraded, account renewed, etc
     account:
-      # The user has created a new account with a regular purchase code. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, and %{expiration_date} by the date of expiration of the user's account
-      welcome: "<div class=\"title\">Benvenuto %{user_name}!</div><div class=\"content\">Hai attivato un account in <span class=\"variable\">%{desy}</span>: il tuo account sarà valido fino al <span class=\"variable\">%{expiration_date}</span>.</div>"
       # The user has renewed his regular account. The variable %{expiration_date} is replaced by the date of expiration of the user's account
-      renewed: "<div class=\"title\">Congratulazioni!</div><div class=\"content\">Il tuo account è stato rinnovato fino al <span class=\"variable\">%{expiration_date}</span>.</div>"
+      renewed:
+        # 1 - controllers/admin/purchases_controller.rb
+        title: "Congratulazioni!"
+        # 1 - controllers/admin/purchases_controller.rb
+        message: "Il tuo account è stato rinnovato fino al <span class=\"variable\">%{expiration_date}</span>."
       # The user has created a trial account. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, %{validity} by the validity (in days) of the user's trial account, %{link} by the link to the upgrade form
-      trial: "<div class=\"title\">Benvenuto %{user_name}!</div><div class=\"content\">Hai attivato un account di tipo 'trial' in %{desy}: il tuo account sarà valido per <span class=\"variable\">%{validity} giorni</span>.<br/><br/>Un <span class=\"variable\">account di tipo 'trial'</span> abilita tutte le funzionalità, tranne<br/><ul><li>condivisione di prodotti con la nostra community</li><li>scaricamento offline delle tue lezioni</li></ul></div><div class=\"basement\"><span>Acquista %{desy}</span><a href=\"%{link}\" class=\"trial\"></a></div>"
+      trial:
+        # 1 - controllers/users_controller.rb
+        title: "Benvenuto %{user_name}!"
+        # 1 - controllers/users_controller.rb
+        message: "Hai attivato un account di tipo 'trial' in %{desy}: il tuo account sarà valido per <span class=\"variable\">%{validity} giorni</span>.<br/><br/>Un <span class=\"variable\">account di tipo 'trial'</span> abilita tutte le funzionalità, tranne<br/><ul><li>condivisione di prodotti con la nostra community</li><li>scaricamento offline delle tue lezioni</li></ul>"
+        # 1 - controllers/users_controller.rb
+        basement: "<span>Acquista %{desy}</span><a href=\"%{link}\" class=\"trial\"></a>"
       # The user has upgraded his trial account to a regular one. The variable %{validity} is replaced by the validity (in days) of the user's trial account
-      upgraded: "<div class=\"title\">Congratulazioni!</div><div class=\"content\">Il tuo account di tipo 'trial' è stato convertito in un account standard, che sarà valido fino al <span class=\"variable\">%{expiration_date}</span>.</div>"
+      upgraded:
+        # 1 - controllers/users_controller.rb
+        # 2 - controllers/users_controller.rb
+        title: "Congratulazioni!"
+        # 1 - controllers/users_controller.rb
+        # 2 - controllers/users_controller.rb
+        message: "Il tuo account di tipo 'trial' è stato convertito in un account standard, che sarà valido fino al <span class=\"variable\">%{expiration_date}</span>."
+      # The user has created a new account with a regular purchase code. The variable %{user_name} is replaced by the name of the user, %{desy} by the application name, and %{expiration_date} by the date of expiration of the user's account
+      welcome:
+        # 1 - controllers/users_controller.rb
+        title: "Benvenuto %{user_name}!"
+        # 1 - controllers/users_controller.rb
+        message: "Hai attivato un account in <span class=\"variable\">%{desy}</span>: il tuo account sarà valido fino al <span class=\"variable\">%{expiration_date}</span>."
   
   
   # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)
@@ -1973,7 +2217,7 @@ it:
       # 1- views/prelogin/what_is.html.erb
       subtitle: "Scopri i vantaggi di %{desy}"
       # 1- views/prelogin/what_is.html.erb
-      description: "%{desy} è un sistema di didattica digitale che consente ai docenti di creare lezioni multimediali in piena autonomia e con grande facilità.<br><br>Non solo: la piattaforma su cui poggia consente la condivisione degli elementi didattici e la socializzazione dei contenuti, da cui discendono vantaggi e funzionalità aggiuntive, tra cui:<ul><li>la possibilità di costruire lezioni e percorsi didattici interdisciplinari;</li><li>la continuità del processo di affinamento e arricchimento dei contenuti;</li><li>la crescita del sistema grazie ad un meccanismo di autoalimentazione a zero costi;</li><li>il rafforzamento e la valorizzazione del ruolo dei docenti nella elaborazione degli strumenti didattici.</li></ul>Oltre che nella scuola e nelle università, %{desy} può essere utilizzato nella formazione professionale e aziendale, attraverso portali formativi autonomi installati all’interno delle  intranet delle imprese, che consentono di raccogliere in modo sicuro e riservato i saperi aziendali, e al tempo stesso di condividerli con i docenti chiamati a curare l’aggiornamento e l’innovazione."
+      description: "%{desy} è un sistema di didattica digitale che consente ai docenti di creare lezioni multimediali in piena autonomia e con grande facilità.<br/><br/>Non solo: la piattaforma su cui poggia consente la condivisione degli elementi didattici e la socializzazione dei contenuti, da cui discendono vantaggi e funzionalità aggiuntive, tra cui:<ul><li>la possibilità di costruire lezioni e percorsi didattici interdisciplinari;</li><li>la continuità del processo di affinamento e arricchimento dei contenuti;</li><li>la crescita del sistema grazie ad un meccanismo di autoalimentazione a zero costi;</li><li>il rafforzamento e la valorizzazione del ruolo dei docenti nella elaborazione degli strumenti didattici.</li></ul>Oltre che nella scuola e nelle università, %{desy} può essere utilizzato nella formazione professionale e aziendale, attraverso portali formativi autonomi installati all’interno delle  intranet delle imprese, che consentono di raccogliere in modo sicuro e riservato i saperi aziendali, e al tempo stesso di condividerli con i docenti chiamati a curare l’aggiornamento e l’innovazione."
       right_column:
         # 1 - views/prelogin/what_is.html.erb
         caption1: "Partecipa alla comunità di %{desy} condividendo le tue lezioni contenenti video didattici, audio e immagini!"
@@ -1996,7 +2240,7 @@ it:
     # 1 - views/prelogin/_registration_form.html.erb
     done: "Registrazione"
     # Button to select all the subjects of a cathegory
-    # 1 - views/users/_personal_subjects.html.erb
+    # 1 - views/prelogin/_registration_form.html.erb
     select_all_subjects: "Selezionale tutte"
     # Messages shown to the trial users if they try to do forbidden actions
     trial_limitations_messages:
@@ -2033,13 +2277,20 @@ it:
     # 1 - views/prelogin/_registration_form.html.erb
     trial: "Non ho un codice di acquisto, ma voglio attivare una trial di %{days} giorni"
     # Disclaimer to state that the location is not compulsory (the variable %{location} is replaced by the lowest leaf in the location tree)
-    # 1 - views/users/_personal_info.html.erb
+    # 1 - views/prelogin/_registration_form.html.erb
     locations_disclaimer: "Non trovo la mia %{location} nel database"
-    subjects:
-      # Caption for subjects selection
+    # Titles of the subsections of registration form
+    title_sections:
       # 1 - views/prelogin/_registration_form.html.erb
-      # 2 - controllers/application_controller.rb
-      title: "Scegli le materie di tuo interesse"
+      general: "Inserisci i tuoi dati personali"
+      # 1 - views/prelogin/_registration_form.html.erb
+      location: "Dove vivi e lavori?"
+      # 1 - views/prelogin/_registration_form.html.erb
+      school_level: "Seleziona il tuo livello di insegnamento"
+      # 1 - views/prelogin/_registration_form.html.erb
+      subjects: "Scegli le materie di tuo interesse"
+      # 1 - views/prelogin/_registration_form.html.erb
+      policies: "Non dimenticare di accettare le condizioni d'uso"
     # List of customizable policies: for each there must be a title and a content (keyword 'description')
     # Example of usage:
     #  - title: "title of first policy"
@@ -2063,19 +2314,16 @@ it:
   
   reports:
     # Link to open the report form
-    # 1 - views/reports/_lesson.html.erb
-    title: "Contenuto non appropriato"
+    # 1 - views/lessons/_view_single_compact.html.erb
+    title: "Contenuto non appropriato?"
     # Title of the report form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     description: "Pensi che questo contenuto sia offensivo?"
     # Description of the report form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     placeholder: "Scrivi il motivo della segnalazione. Grazie per la tua collaborazione!"
     # Button to send the form
-    # 1 - views/reports/_lesson.html.erb
-    # 2 - views/reports/_media_element.html.erb
+    # 1 - views/reports/_form.html.erb
     commit: "Invia"
   
   
@@ -2224,26 +2472,35 @@ it:
       # Popup shown when the users correctly updates his profile
       # 1 - controllers/users_controller.rb
       ok_popup: "Profilo aggiornato con successo"
+      # Popup shown when an external error prevents the profile to be updated
+      # 1 - controllers/users_controller.rb
+      wrong_popup: "Errore: profilo non aggiornato"
       # Captions for each profile attribute that can be modified by the user
       attributes:
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/users/edit.html.erb
+        # 2 - views/prelogin/_registration_form.html.erb
         name: "Nome"
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/users/edit.html.erb
+        # 2 - views/prelogin/_registration_form.html.erb
         surname: "Cognome"
         # Only this particular attribute can't be modified, being the identifier of the user
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/users/edit.html.erb
+        # 2 - views/prelogin/_registration_form.html.erb
         email: "Email"
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/prelogin/_registration_form.html.erb
+        email_confirmation: "Conferma email"
+        # 1 - views/prelogin/_registration_form.html.erb
         password: "Password"
         # This is in the case the user is writing his password for the first time
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/users/edit.html.erb
         new_password: "Nuova password"
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/prelogin/_registration_form.html.erb
         password_confirmation: "Conferma password"
         # This is in the case the user is writing his password for the first time
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/users/edit.html.erb
         new_password_confirmation: "Conferma nuova password"
-        # 1 - views/users/_personal_info.html.erb
+        # 1 - views/users/edit.html.erb
+        # 2 - views/prelogin/_registration_form.html.erb
         school_level_id: "Livello scolastico"
     # Section 2: mailing lists
     mailing_list:
@@ -2382,8 +2639,12 @@ it:
       # Popup shown when the users correctly saves his subjects
       # 1 - controllers/users_controller.rb
       ok_popup: "Materie aggiornate con successo"
+      # Popup shown when an external error prevents the subjects to be updated
+      # 1 - controllers/users_controller.rb
+      wrong_popup: "Errore: le materie non sono state aggiornate"
       # If the subject has no cathegory, this will be the label
-      # 1 - views/users/_personal_subjects.html.erb
+      # 1 - views/users/subjects.html.erb
+      # 2 - views/prelogin/_registration_form.html.erb
       no_cathegory: "Altro"
     # Captions used for trial accounts
     trial:
@@ -2539,7 +2800,7 @@ it:
     playlist:
       # Placeholder and instructions when the playlist is empty
       # 1 - views/virtual_classroom/_empty_playlist.html.erb
-      instructions: "Dopo aver aggiunto le lezioni nella Playlist, trascinale in questa area" # FIXME "Dopo aver aggiunto le lezioni nella Virtual Classroom, trascinarle in questa area per creare una playlist"
+      instructions: "Dopo aver aggiunto le lezioni nell'elenco, trascinale in questa area per creare una playlist" # FIXME "Dopo aver aggiunto le lezioni nella Virtual Classroom, trascinarle in questa area per creare una playlist"
       # Label for the playlist column on the right
       # 1 - views/virtual_classroom/_playlist.html.erb
       label: "Playlist"
@@ -2568,23 +2829,15 @@ it:
   # SECTION 2.18: labels in the section 'documents'
   
   documents:
-    # Form to change info
-    change_info:
-      # 1 - views/documents/_view_single_compact.html.erb
-      cancel: "Annulla"
-      # 1 - views/documents/_view_single_compact.html.erb
-      done: "Salva"
-      # 1 - views/documents/_view_single_compact.html.erb
-      title: "Modifica dati"
+    # General caption for a document
+    # 1 - views/documents/_popup.html.erb
+    caption: "Documento"
     # Placeholder in the form to change description and title (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_new_form_popup.html.erb
-    # 2 - views/documents/_view_single_compact.html.erb
+    # 2 - views/galleries/wrappers/_document.html.erb
     description_placeholder: "Inserisci una descrizione (max %{num} caratteri)"
-    # Placeholder in the popup not editable
-    # 1 - views/documents/_view_single_compact.html.erb
-    description_readonly_placeholder: "[Nessuna descrizione inserita]"
     # Button to download a document
-    # 1 - views/documents/_view_single_compact.html.erb
+    # 1 - views/documents/_popup.html.erb
     # 2 - views/lesson_viewer/_documents.html.erb
     download: "Scarica"
     # When there are no documents in your section
@@ -2593,11 +2846,18 @@ it:
     # When the document search produced no results
     # 1 - views/documents/_empty_word.html.erb
     empty_word: "Non sono stati trovati documenti contenenti <%{word}>"
+    # Format of the document (the variable %{type} is replaced by the format)
+    # 1 - views/documents/_popup.html.erb
+    format: "Formato: %{type}"
+    # Size of the document (the variable %{number} is replaced by the humanized size)
+    # 1 - views/documents/_popup.html.erb
+    human_size: "Dimensione: %{number}"
     # Placeholder to search a document
     # 1 - views/documents/_search.html.erb
     search: "Filtra per parola:"
     # Placeholder in the form to upload a document (the variable %{num} is replaced by the maximum number of characters allowed)
     # 1 - views/documents/_new_form_popup.html.erb
+    # 2 - views/galleries/wrappers/_document.html.erb
     title_placeholder: "Inserisci un titolo (max %{num} caratteri)"
     # Button to upload a new document
     # 1 - views/documents/index.html.erb
@@ -2606,9 +2866,11 @@ it:
     upload_form:
       # Caption when a file has not been loaded yet
       # 1 - views/documents/_new_form_popup.html.erb
+      # 2 - views/galleries/wrappers/_document.html.erb
       attachment_placeholder: "Seleziona un file"
       # Error when the file uploaded is too large
       # 1 - controllers/documents_controller.rb
+      # 2 - controllers/galleries_controller.rb
       attachment_too_large: "L'allegato è troppo grande"
       # Caption to cancel the uploading
       # 1 - views/documents/_new_form_popup.html.erb
@@ -2759,6 +3021,7 @@ it:
       # Maximum number of characters allowed in the description of a lesson
       # 1 - models/lesson.rb
       # 2 - views/lesson_editor/new.html.erb
+      # 3 - controllers/application_controller.rb
       length_description: 280
       # Maximum number of characters allowed in the title of a lesson
       # 1 - models/lesson.rb
@@ -2766,17 +3029,21 @@ it:
       # 3 - models/slide.rb
       # 4 - models/slide.rb
       # 5 - views/lesson_editor/new.html.erb
+      # 6 - controllers/application_controller.rb
       length_title: 35
     document:
       # Maximum number of characters allowed in the description of a document
       # 1 - models/document.rb
-      # 2 - views/documents/_view_single_compact.html.erb
-      # 3 - views/documents/_new_form_popup.html.erb
+      # 2 - views/documents/_new_form_popup.html.erb
+      # 3 - views/galleries/wrappers/_document.html.erb
+      # 4 - controllers/application_controller.rb
       length_description: 280
       # Maximum number of characters allowed in the title of a document
       # 1 - models/document.rb
       # 2 - models/document.rb
       # 3 - views/documents/_new_form_popup.html.erb
+      # 4 - views/galleries/wrappers/_document.html.erb
+      # 5 - controllers/application_controller.rb
       length_title: 35
     media_element:
       # Maximum number of characters allowed in the description of an element
@@ -2784,6 +3051,8 @@ it:
       # 2 - views/media_elements/_new_form_popup.html.erb
       # 3 - views/media_elements/info_form_in_editor/_new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
+      # 5 - controllers/application_controller.rb
+      # 6 - views/galleries/wrappers/_media_element.html.erb
       length_description: 280
       # Maximum number of characters allowed in the title of an element
       # 1 - models/media_element.rb
@@ -2791,6 +3060,8 @@ it:
       # 3 - views/media_elements/_new_form_popup.html.erb
       # 4 - views/media_elements/info_form_in_editor/_new.html.erb
       # 5 - views/admin/media_elements/new.html.erb
+      # 6 - controllers/application_controller.rb
+      # 7 - views/galleries/wrappers/_media_element.html.erb
       length_title: 35
     video_editor:
       # Maximum number of characters allowed in the text component of Video Editor
@@ -2815,22 +3086,47 @@ it:
   
   locations:
     # This array of labels corresponds to the ordered ist configured in SETTINGS['location_types']: the strings in that list are used to NAME THE MODELS, and for this reason they should use english characters, whereas this array specifies the local translation for each model.
-    # 1 - app/models/location.rb
-    # 2 - app/models/location.rb
-    labels: [
-        "Provincia",
-        "Città",
-        "Contea",
-        "Scuola"
-      ]
+    labels:
+      # 1 - app/models/location.rb
+      # 2 - app/models/location.rb
+      singular: [
+          "Provincia",
+          "Città",
+          "Contea",
+          "Scuola"
+        ]
+      # 1 - app/models/location.rb
+      # 2 - app/models/location.rb
+      plural: [
+          "Province",
+          "Città",
+          "Contee",
+          "Scuole"
+        ]
+      # 1 - app/models/location.rb
+      feminine: [
+          true,
+          true,
+          true,
+          true
+        ]
+    # Caption used when the user doesn't find any sublocation corresponding to the one he selected (the variable %{location} is replaced by the plural of the caption.
+    # 1 - views/users/_locations_list.html.erb
+    empty: "Non ci sono %{location}"
     # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'. Important: it must be DESCENDANT, from the higher level to the lower location
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
     parents_label: "Provincia / Città / Contea"
     # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
-    # 1 - views/admin/users/_locations_list.html.erb
-    # 2 - views/users/_locations_list.html.erb
-    placeholder: "Seleziona una %{location}"
+    placeholder:
+      # 1 - views/admin/users/_locations_list.html.erb
+      # 2 - views/users/_locations_list.html.erb
+      # 3 - views/admin/purchases/_locations.html.erb
+      feminine: "Seleziona una %{location}"
+      # 1 - views/admin/users/_locations_list.html.erb
+      # 2 - views/users/_locations_list.html.erb
+      # 3 - views/admin/purchases/_locations.html.erb
+      masculine: "Seleziona un %{location}"
   
   
   # SECTION 3.4: Media formats
@@ -2927,7 +3223,7 @@ it:
       settings:
         # Link to the section 'Settings'
         # 1 - views/admin/_header.html.erb
-        link: "Impostazioni"
+        link: "Impost."
       dashboard:
         # Link to the main page of 'Administration'
         # 1 - views/admin/_header.html.erb
@@ -3075,6 +3371,26 @@ it:
         # Button to start the search
         # 1 - views/admin/lessons/index.html.erb
         submit: "Cerca"
+      # Labels for the action of toggle publish / unpublish
+      toggle_publish:
+        # Message shown if the lesson has been correctly published
+        # 1 - controllers/admin/lessons_controller.rb
+        done: "Lezione pubblicata"
+        # Message shown if there was an error while trying to publish the lesson
+        # 1 - controllers/admin/lessons_controller.rb
+        not_done: "Errore, la lezione non è stata pubblicata"
+        # Message shown if the lesson has been correctly unpublished
+        # 1 - controllers/admin/lessons_controller.rb
+        undone: "Lezione settata come privata"
+        # Message shown if there was an error while trying to unpublish the lesson
+        # 1 - controllers/admin/lessons_controller.rb
+        not_undone: "Errore, la lezione non è stata settata privata"
+        # Label of the confirmation popup
+        # 1 - views/admin/lessons/_list.html.erb
+        confirm: "Sei sicuro di cambiare lo stato di questa lezione?"
+        # Title of the button
+        # 1 - views/admin/lessons/_list.html.erb
+        title: "Pubblica / spubblica"
     # Section of media elements
     media_elements:
       # Title of the section
@@ -3554,6 +3870,15 @@ it:
         # 1 - views/admin/users/_list.html.erb
         # 2 - views/admin/users/show.html.erb
         personificate: "Furto d'identità"
+        # Send again the confirmation email to that unconfirmed user
+        # 1 - views/admin/users/_list.html.erb
+        reconfirm: "Invia nuovamente la mail di conferma"
+        # Confirmation popup asking the administrator if he is sure about sending again the confirmation email to the selected user
+        # 1 - views/admin/users/_list.html.erb
+        reconfirm_confirm: "Sei sicuro di voler inviare nuovamente la mail di conferma a questo utente?"
+        # Succesfully sent again the confirmation email (the variable %{email} is replaced by the user's email)
+        # 1 - controllers/admin/users_controller.rb
+        reconfirm_sent: "Hai inviato la mail di conferma a %{email}"
         # The super admin gets back to his original identity
         # 1 - views/shared/_header.html.erb
         unpersonificate: "Ritorna alla tua identità"
@@ -3592,7 +3917,7 @@ it:
         # 2 - views/admin/users/_list.html.erb
         school_level: "Livello scolastico"
         # 1 - views/admin/users/_list.html.erb
-        surname: "Surname"
+        surname: "Cognome"
         # 1 - views/admin/users/show.html.erb
         updated_at: "Ultima modifica"
         # 1 - views/admin/users/show.html.erb
@@ -3685,12 +4010,20 @@ it:
         # Button to submit and send the notification
         # 1 - views/admin/messages/new_notification.html.erb
         send: "Invia"
-        # Title of the text area where the user types the content of the notification
-        # 1 - views/admin/messages/new_notification.html.erb
-        message: "Messaggio"
-        # Placeholder of the text area where the user types the content of the notification
-        # 1 - views/admin/messages/new_notification.html.erb
-        message_placeholder: "Inserisci un messaggio"
+        # Three fields for the form, with correspodant placeholders: title, message, basement
+        form:
+          # 1 - views/admin/messages/new_notification.html.erb
+          basement: "Footer"
+          # 1 - views/admin/messages/new_notification.html.erb
+          basement_placeholder: "Inserisci un footer (puoi usare le tags HTML)"
+          # 1 - views/admin/messages/new_notification.html.erb
+          message: "Messaggio"
+          # 1 - views/admin/messages/new_notification.html.erb
+          message_placeholder: "Inserisci un messaggio (puoi usare le tags HTML)"
+          # 1 - views/admin/messages/new_notification.html.erb
+          title: "Titolo"
+          # 1 - views/admin/messages/new_notification.html.erb
+          title_placeholder: "Inserisci un titolo"
       # Section where the administrator checks out the reports about unproper content sent by the users
       reports:
         # Title of the section

@@ -105,39 +105,19 @@ namespace :db do
   
   desc "Rebuild notifications without re-initializing the database"
   task :notifications => :environment do
-    an_user_id = User.admin.id
     Notification.delete_all
-    Notification.send_to an_user_id, I18n.t('notifications.lessons.destroyed', :user_name => 'Luciano Moggi', :lesson_title => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.lessons.link_sent', :title => 'Gelato al cioccolato', :message => 'Guardate che bella lezione!', :emails => 'moggi@figc.it, carraro@figc.it')
-    Notification.send_to an_user_id, I18n.t('notifications.lessons.modified', :lesson_title => 'Gelato al cioccolato', :message => 'Ho aggiornato le ultime slides', :link => 'www.google.com')
-    Notification.send_to an_user_id, I18n.t('notifications.lessons.unpublished', :user_name => 'Luciano Moggi', :lesson_title => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.update.started', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.update.ok', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.update.failed', :item => 'Gelato al cioccolato', :link => 'www.google.com')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.create.started', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.create.ok', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.create.failed', :item => 'Gelato al cioccolato', :link => 'www.google.com')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.upload.started', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.upload.ok', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.upload.failed', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.compose.update.started', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.compose.update.ok', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.compose.update.failed', :item => 'Gelato al cioccolato', :link => 'www.google.com')
-    Notification.send_to an_user_id, I18n.t('notifications.video.compose.create.started', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.compose.create.ok', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.compose.create.failed', :item => 'Gelato al cioccolato', :link => 'www.google.com')
-    Notification.send_to an_user_id, I18n.t('notifications.video.upload.started', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.upload.ok', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.upload.failed', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.documents.destroyed', :document_title => 'La seconda guerra mondiale', :lesson_title => 'Gelato al cioccolato', :link => 'www.google.com')
-    Notification.send_to an_user_id, I18n.t('notifications.account.welcome', :user_name => 'Luciano Moggi', :desy => 'DESY', :expiration_date => '1 gennaio 2014')
-    Notification.send_to an_user_id, I18n.t('notifications.account.renewed', :expiration_date => '1 gennaio 2014')
-    Notification.send_to an_user_id, I18n.t('notifications.account.trial', :user_name => 'Luciano Moggi', :desy => 'DESY', :validity => '30', :link => 'www.google.com')
-    Notification.send_to an_user_id, I18n.t('notifications.account.upgraded', :expiration_date => '1 gennaio 2014')
+    an_user_id = User.admin.id
+    # 1 - English
+    NotificationsTest.try_all(:en, an_user_id)
+    # 2 - Italian
+    NotificationsTest.try_all(:it, an_user_id)
+    # 3 - Chinese
+    NotificationsTest.try_all(:cn, an_user_id)
+    # 4 - Try time differences
     time_now = Time.zone.now
-    coefficients = [0, 64, 360, 3600, 8640, 86400, 262980, 2629800, 10155760, 31957700, 315577000]
+    coefficients = [360, 3600, 8640, 86400, 262980, 2629800, 10155760, 31957700, 315577000]
     summing = false
-    Notification.limit(11).each_with_index do |n, i|
+    Notification.order('created_at ASC').limit(9).each_with_index do |n, i|
       Notification.where(:id => n.id).update_all(:created_at => time_now - coefficients[i])
     end
   end

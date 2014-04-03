@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -122,6 +120,8 @@
                 <li><a href="../classes/ImageEditorImageScale.html">ImageEditorImageScale</a></li>
             
                 <li><a href="../classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
+            
+                <li><a href="../classes/JqueryBrowsersDetection.html">JqueryBrowsersDetection</a></li>
             
                 <li><a href="../classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
@@ -187,13 +187,13 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
-            
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
+            
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -243,13 +243,13 @@
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
             
-                <li><a href="../modules/documents.html">documents</a></li>
-            
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
                 <li><a href="../modules/general.html">general</a></li>
             
                 <li><a href="../modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="../modules/jquery-browsers.html">jquery-browsers</a></li>
             
                 <li><a href="../modules/jquery-patches.html">jquery-patches</a></li>
             
@@ -459,24 +459,63 @@ Initializer for functionalities which are common to sections containing media el
 @for GeneralDocumentReady
 **/
 function commonMediaElementsDocumentReady() {
-  $body.on(&#x27;click&#x27;, &#x27;._close_media_element_preview_popup&#x27;, function() {
-    var param = $(this).data(&#x27;param&#x27;);
-    closePopUp(&#x27;dialog-media-element-&#x27; + param);
+  $body.on(&#x27;keydown&#x27;, &#x27;.dialogMediaElement .wrapper .change-info .part2 .title, .dialogMediaElement .wrapper .change-info .part2 .description&#x27;, function() {
+    $(this).removeClass(&#x27;form_error&#x27;);
   });
-  $body.on(&#x27;click&#x27;, &#x27;._change_info_container ._cancel, ._change_info_to_pick.change_info_light&#x27;, function() {
-    $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).show();
-    $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_container&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
-      var icon = $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_to_pick&#x27;);
-      icon.addClass(&#x27;change_info&#x27;);
-      icon.removeClass(&#x27;change_info_light&#x27;);
-      resetMediaElementChangeInfo($(this).data(&#x27;param&#x27;));
-    });
+  $body.on(&#x27;keydown&#x27;, &#x27;.dialogMediaElement .wrapper .change-info .part2 .tags_container .tags&#x27;, function() {
+    $(this).parents(&#x27;._tags_container&#x27;).removeClass(&#x27;form_error&#x27;);
   });
-  $body.on(&#x27;click&#x27;, &#x27;._change_info_to_pick.change_info&#x27;, function() {
-    $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._change_info_container&#x27;).show(&#x27;fade&#x27;, {}, 500);
-    $(this).removeClass(&#x27;change_info&#x27;);
-    $(this).addClass(&#x27;change_info_light&#x27;);
-    $(&#x27;#dialog-media-element-&#x27; + $(this).data(&#x27;param&#x27;) + &#x27; ._audio_preview_in_media_element_popup&#x27;).hide();
+  $body.on(&#x27;click&#x27;, &#x27;.dialogMediaElement .menu .close&#x27;, function() {
+    closePopUp($(this).parents(&#x27;.dialogMediaElement&#x27;).attr(&#x27;id&#x27;));
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogMediaElement .menu .change-info&#x27;, function() {
+    var container = $(this).parents(&#x27;.dialogMediaElement&#x27;);
+    var form = container.find(&#x27;.wrapper .change-info&#x27;);
+    if($(this).hasClass(&#x27;encendido&#x27;)) {
+      form.hide();
+      container.find(&#x27;.preview&#x27;).show();
+      resetMediaElementChangeInfo(form);
+      $(this).removeClass(&#x27;encendido&#x27;);
+    } else {
+      container.find(&#x27;.preview&#x27;).hide();
+      form.show();
+      $(this).addClass(&#x27;encendido&#x27;);
+      disableTagsInputTooHigh(form.find(&#x27;.part2 ._tags_container&#x27;));
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogMediaElement .wrapper .change-info .part3 .close&#x27;, function() {
+    var container = $(this).parents(&#x27;.dialogMediaElement&#x27;);
+    var form = container.find(&#x27;.wrapper .change-info&#x27;);
+    form.hide();
+    container.find(&#x27;.preview&#x27;).show();
+    container.find(&#x27;.menu .change-info&#x27;).removeClass(&#x27;encendido&#x27;);
+    resetMediaElementChangeInfo(form);
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogMediaElement .wrapper .change-info .part3 .submit&#x27;, function() {
+    var container = $(this).parents(&#x27;.dialogMediaElement&#x27;);
+    container.find(&#x27;form&#x27;).submit();
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogMediaElement .wrapper .change-info .errors_layer&#x27;, function() {
+    var myself = $(this);
+    var container = myself.parents(&#x27;.dialogMediaElement&#x27;).find(&#x27;.wrapper .change-info&#x27;);
+    myself.hide();
+    container.find(myself.data(&#x27;focus-selector&#x27;)).trigger(myself.data(&#x27;focus-action&#x27;));
+  });
+  $body.on(&#x27;mouseenter&#x27;, &#x27;.boxViewCompactMediaElement&#x27;, function() {
+    var item = $(this);
+    item.data(&#x27;loading-mini-thumb&#x27;, true);
+    setTimeout(function() {
+      if(item.data(&#x27;loading-mini-thumb&#x27;)) {
+        showMiniThumbnailForMediaElementCompact(item);
+      }
+    }, 500);
+  });
+  $body.on(&#x27;mouseleave&#x27;, &#x27;.boxViewCompactMediaElement&#x27;, function() {
+    var item = $(this);
+    item.data(&#x27;loading-mini-thumb&#x27;, false);
+    if(item.data(&#x27;loaded-mini-thumb&#x27;)) {
+      hideMiniThumbnailForMediaElementCompact(item);
+    }
   });
 }
 
@@ -493,19 +532,21 @@ function commonLessonsDocumentReady() {
       var my_id = $(this).parent().attr(&#x27;id&#x27;);
       var my_expanded = $(&#x27;#&#x27; + my_id + &#x27; ._lesson_expanded&#x27;);
       if(my_expanded.is(&#x27;:visible&#x27;)) {
-        my_expanded.find(&#x27;.tooltipForm:visible&#x27;).parent().find(&#x27;._reportable_lesson_icon&#x27;).click();
         my_expanded.hide(&#x27;blind&#x27;, {}, 500, function() {
           my_expanded.hide();
         });
         if(lessons_content.length &gt; 0) {
           lessons_content.animate({height: &#x27;665px&#x27;}, 500);
         } else {
-          advanced_search_content.animate({height: &#x27;805px&#x27;}, 500);
+          if ($(&#x27;form#search_lessons ._keep_searching&#x27;).data(&#x27;opened&#x27;)) {
+            advanced_search_content.animate({height: &#x27;995px&#x27;}, 500);
+          } else {
+            advanced_search_content.animate({height: &#x27;805px&#x27;}, 500);
+          }
         }
       } else {
         var there_is_expanded = $(&#x27;._lesson_expanded:visible&#x27;);
         if(there_is_expanded.length &gt; 0) {
-          there_is_expanded.find(&#x27;.tooltipForm:visible&#x27;).parent().find(&#x27;._reportable_lesson_icon&#x27;).click();
           there_is_expanded.hide(&#x27;blind&#x27;, {}, 500, function() {
             there_is_expanded.hide();
           });
@@ -516,7 +557,11 @@ function commonLessonsDocumentReady() {
         if(lessons_content.length &gt; 0) {
           lessons_content.animate({height: &#x27;863px&#x27;}, 500);
         } else {
-          advanced_search_content.animate({height: &#x27;1003px&#x27;}, 500);
+          if ($(&#x27;form#search_lessons ._keep_searching&#x27;).data(&#x27;opened&#x27;)) {
+            advanced_search_content.animate({height: &#x27;1193px&#x27;}, 500);
+          } else {
+            advanced_search_content.animate({height: &#x27;1003px&#x27;}, 500);
+          }
         }
       }
     }
@@ -539,6 +584,12 @@ function globalDocumentReady() {
   });
   $body.on(&#x27;mouseleave&#x27;, &#x27;.empty-situation-container a&#x27;, function() {
     $(this).find(&#x27;.plus&#x27;).removeClass(&#x27;encendido&#x27;);
+  });
+  $body.on(&#x27;mouseenter&#x27;, &#x27;.highlight-with-text a&#x27;, function() {
+    $(this).find(&#x27;.plus, .prompt&#x27;).addClass(&#x27;encendido&#x27;);
+  });
+  $body.on(&#x27;mouseleave&#x27;, &#x27;.highlight-with-text a&#x27;, function() {
+    $(this).find(&#x27;.plus, .prompt&#x27;).removeClass(&#x27;encendido&#x27;);
   });
   $(&#x27;#user_school_level_id&#x27;).selectbox();
   $body.on(&#x27;keyup blur&#x27;, &#x27;input[maxlength], textarea[maxlength]&#x27;, function () {
@@ -563,14 +614,24 @@ function locationsDocumentReady() {
   });
   $body.on(&#x27;change&#x27;, &#x27;._location_select_box&#x27;, function() {
     if(!$(this).data(&#x27;is-last&#x27;)) {
+      var locations_url = &#x27;/locations/&#x27; + $(this).val() + &#x27;/find&#x27;;
       if($(this).val() == &#x27;0&#x27;) {
-        $(this).parents(&#x27;._location_selector&#x27;).nextAll().find(&#x27;select&#x27;).html(&#x27;&#x27;);
-      } else {
-        $.ajax({
-          url: &#x27;/locations/&#x27; + $(this).val() + &#x27;/find&#x27;,
-          type: &#x27;get&#x27;
-        });
+        var container = $(this).parents(&#x27;.profile-element&#x27;).prev();
+        if(container.length &gt; 0) {
+          var sub_inputs = container.find(&#x27;input&#x27;);
+          if(sub_inputs.length &gt; 0) {
+            locations_url = &#x27;/locations/&#x27; + sub_inputs.data(&#x27;selected&#x27;) + &#x27;/find?empty_children=true&#x27;;
+          } else {
+            locations_url = &#x27;/locations/&#x27; + container.find(&#x27;select&#x27;).val() + &#x27;/find?empty_children=true&#x27;;
+          }
+        } else {
+          locations_url = &#x27;/locations/0/find&#x27;;
+        }
       }
+      $.ajax({
+        url: locations_url,
+        type: &#x27;get&#x27;
+      });
     }
   });
 }
@@ -581,33 +642,33 @@ Initializes reports forms for both lessons and media elements.
 @for GeneralDocumentReady
 **/
 function reportsDocumentReady() {
-  $body.on(&#x27;mouseenter&#x27;, &#x27;._reportable_lesson_icon&#x27;, function() {
-    $(this).find(&#x27;.icon-content&#x27;).removeClass(&#x27;report&#x27;).addClass(&#x27;report_light&#x27;);
+  $body.on(&#x27;mouseenter&#x27;, &#x27;._lesson_expanded .report&#x27;, function() {
+    $(this).addClass(&#x27;encendido&#x27;);
   });
-  $body.on(&#x27;mouseleave&#x27;, &#x27;._reportable_lesson_icon&#x27;, function() {
-    $(this).find(&#x27;.icon-content&#x27;).addClass(&#x27;report&#x27;).removeClass(&#x27;report_light&#x27;);
+  $body.on(&#x27;mouseleave&#x27;, &#x27;._lesson_expanded .report&#x27;, function() {
+    $(this).removeClass(&#x27;encendido&#x27;);
   });
-  $body.on(&#x27;click&#x27;, &#x27;._reportable_lesson_icon&#x27;, function() {
-    var obj = $(this).next();
-    if(!obj.is(&#x27;:visible&#x27;)) {
-      $(this).find(&#x27;.icon-content&#x27;).removeClass(&#x27;report&#x27;).addClass(&#x27;report_light report_selected&#x27;);
-      obj.show(&#x27;fade&#x27;, {}, 500);
+  $body.on(&#x27;click&#x27;, &#x27;._lesson_expanded .report&#x27;, function() {
+    var button = $(this).find(&#x27;.icon&#x27;);
+    var form = $(this).next();
+    if(!button.hasClass(&#x27;encendido&#x27;)) {
+      button.addClass(&#x27;encendido&#x27;);
+      form.show();
     } else {
-      $(this).find(&#x27;.icon-content&#x27;).addClass(&#x27;report&#x27;).removeClass(&#x27;report_light report_selected&#x27;);
-      obj.hide();
+      button.removeClass(&#x27;encendido&#x27;);
+      form.hide();
     }
     return false;
   });
-  $body.on(&#x27;click&#x27;, &#x27;._report_media_element_click&#x27;, function() {
-    var obj = $(this).next();
-    if(!obj.is(&#x27;:visible&#x27;)) {
-      $(this).removeClass(&#x27;report&#x27;);
-      $(this).addClass(&#x27;report_light&#x27;);
-      obj.show(&#x27;fade&#x27;, {}, 500);
+  $body.on(&#x27;click&#x27;, &#x27;.dialogMediaElement .menu .report&#x27;, function() {
+    var button = $(this);
+    var form = button.next();
+    if(!button.hasClass(&#x27;encendido&#x27;)) {
+      button.addClass(&#x27;encendido&#x27;);
+      form.show();
     } else {
-      $(this).removeClass(&#x27;report_light&#x27;);
-      $(this).addClass(&#x27;report&#x27;);
-      obj.hide();
+      button.removeClass(&#x27;encendido&#x27;);
+      form.hide();
     }
     return false;
   });
@@ -626,8 +687,107 @@ Functionalities necessary only for the section &#x27;my documents&#x27;.
 @for GeneralDocumentReady
 **/
 function sectionDocumentsDocumentReady() {
+  $body.on(&#x27;click&#x27;, &#x27;#my_documents .buttons .preview&#x27;, function() {
+    showDocumentInfoPopUp($(this).data(&#x27;document-id&#x27;));
+  });
+  $body.on(&#x27;click&#x27;, &#x27;#my_documents .buttons .destroy&#x27;, function() {
+    var current_url = $(&#x27;#info_container&#x27;).data(&#x27;currenturl&#x27;);
+    var document_id = $(this).data(&#x27;document-id&#x27;);
+    var captions = $captions;
+    var title = captions.data(&#x27;destroy-document-title&#x27;);
+    var confirm = captions.data(&#x27;destroy-document-confirm&#x27;);
+    var yes = captions.data(&#x27;destroy-document-yes&#x27;);
+    var no = captions.data(&#x27;destroy-document-no&#x27;);
+    if($(this).data(&#x27;used-in-your-lessons&#x27;)) {
+      confirm = captions.data(&#x27;destroy-document-confirm-bis&#x27;);
+    }
+    showConfirmPopUp(title, confirm, yes, no, function() {
+      $(&#x27;#dialog-confirm&#x27;).hide();
+      var redirect_url = addDeleteItemToCurrentUrl(current_url, &#x27;document_&#x27; + document_id);
+      $.ajax({
+        type: &#x27;delete&#x27;,
+        dataType: &#x27;json&#x27;,
+        url: &#x27;/documents/&#x27; + document_id,
+        success: function(data) {
+          if(data.ok) {
+            $.ajax({
+              type: &#x27;get&#x27;,
+              url: redirect_url
+            });
+          } else {
+            showErrorPopUp(data.msg);
+          }
+        }
+      });
+      closePopUp(&#x27;dialog-confirm&#x27;);
+    }, function() {
+      closePopUp(&#x27;dialog-confirm&#x27;);
+    });
+  });
+  $body.on(&#x27;change&#x27;, &#x27;#order_documents&#x27;, function() {
+    var order = $(&#x27;#order_documents option:selected&#x27;).val();
+    var word = $(&#x27;#search_documents ._word_input&#x27;).val();
+    var word_placeholder = $(&#x27;#search_documents_placeholder&#x27;).val();
+    $(&#x27;#search_documents_hidden_order&#x27;).val(order);
+    $.get(&#x27;/documents?word=&#x27; + word + &#x27;&amp;word_placeholder=&#x27; + word_placeholder + &#x27;&amp;order=&#x27; + order);
+  });
+  $body.on(&#x27;keydown&#x27;, &#x27;.dialogDocument .wrapper .change-info .part2 .title, .dialogDocument .wrapper .change-info .part2 .description&#x27;, function() {
+    $(this).removeClass(&#x27;form_error&#x27;);
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogDocument .menu .close&#x27;, function() {
+    closePopUp($(this).parents(&#x27;.dialogDocument&#x27;).attr(&#x27;id&#x27;));
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogDocument .menu .change-info&#x27;, function() {
+    var container = $(this).parents(&#x27;.dialogDocument&#x27;);
+    var form = container.find(&#x27;.wrapper .change-info&#x27;);
+    if($(this).hasClass(&#x27;encendido&#x27;)) {
+      form.hide();
+      container.find(&#x27;.preview&#x27;).show();
+      resetDocumentChangeInfo(form);
+      $(this).removeClass(&#x27;encendido&#x27;);
+    } else {
+      container.find(&#x27;.preview&#x27;).hide();
+      form.show();
+      $(this).addClass(&#x27;encendido&#x27;);
+      disableTagsInputTooHigh(form.find(&#x27;.part2 ._tags_container&#x27;));
+    }
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogDocument .wrapper .change-info .part3 .close&#x27;, function() {
+    var container = $(this).parents(&#x27;.dialogDocument&#x27;);
+    var form = container.find(&#x27;.wrapper .change-info&#x27;);
+    form.hide();
+    container.find(&#x27;.preview&#x27;).show();
+    container.find(&#x27;.menu .change-info&#x27;).removeClass(&#x27;encendido&#x27;);
+    resetDocumentChangeInfo(form);
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogDocument .wrapper .change-info .part3 .submit&#x27;, function() {
+    var container = $(this).parents(&#x27;.dialogDocument&#x27;);
+    container.find(&#x27;form&#x27;).submit();
+  });
+  $body.on(&#x27;click&#x27;, &#x27;.dialogDocument .wrapper .change-info .errors_layer&#x27;, function() {
+    var myself = $(this);
+    var container = myself.parents(&#x27;.dialogDocument&#x27;).find(&#x27;.wrapper .change-info&#x27;);
+    myself.hide();
+    container.find(myself.data(&#x27;focus-selector&#x27;)).trigger(myself.data(&#x27;focus-action&#x27;));
+  });
   $(&#x27;#order_documents option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $(&#x27;#order_documents&#x27;).selectbox();
+  $body.on(&#x27;keydown&#x27;, &#x27;#search_documents ._word_input&#x27;, function(e) {
+    if(e.which == 13) {
+      e.preventDefault();
+    } else if(e.which != 39 &amp;&amp; e.which != 37) {
+      var letters = $(this).data(&#x27;letters&#x27;);
+      letters += 1;
+      $(this).data(&#x27;letters&#x27;, letters);
+      $(&#x27;#search_documents ._loader&#x27;).show();
+      setTimeout(function() {
+        if($(&#x27;#search_documents ._word_input&#x27;).data(&#x27;letters&#x27;) == letters) {
+          $(&#x27;#search_documents ._loader&#x27;).hide();
+          $(&#x27;#search_documents&#x27;).submit();
+        }
+      }, 1500);
+    }
+  });
 }
 
 /**
@@ -636,6 +796,7 @@ Functionalities necessary only for the section &#x27;my lessons&#x27;.
 @for GeneralDocumentReady
 **/
 function sectionLessonsDocumentReady() {
+  initSearchTagsAutocomplete(&#x27;#general_tag_reader_for_search&#x27;, &#x27;lesson&#x27;);
   $(&#x27;#filter_lessons option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $body.on(&#x27;change&#x27;, &#x27;#filter_lessons&#x27;, function() {
     var filter = $(&#x27;#filter_lessons option:selected&#x27;).val();
@@ -651,6 +812,7 @@ Functionalities necessary only for the section &#x27;my media elements&#x27;.
 @for GeneralDocumentReady
 **/
 function sectionMediaElementsDocumentReady() {
+  initSearchTagsAutocomplete(&#x27;#general_tag_reader_for_search&#x27;, &#x27;media_element&#x27;);
   $(&#x27;#filter_media_elements option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
   $body.on(&#x27;change&#x27;, &#x27;#filter_media_elements&#x27;, function() {
     var filter = $(&#x27;#filter_media_elements option:selected&#x27;).val();
@@ -724,7 +886,7 @@ function sectionNotificationsDocumentReady() {
       }
     }
     if(my_report.length &gt; 0 &amp;&amp; $(e.target).parents(&#x27;#&#x27; + my_report.attr(&#x27;id&#x27;)).length == 0) {
-      my_report.parent().find(&#x27;.report_light, ._reportable_lesson_icon&#x27;).click();
+      my_report.parent().find(&#x27;.report&#x27;).click();
     }
   });
   $(&#x27;#which_item_to_search option[selected]&#x27;).first().attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
@@ -748,11 +910,43 @@ function sectionSearchDocumentReady() {
   $(&#x27;#filter_search_media_elements&#x27;).selectbox();
   $(&#x27;#filter_search_lessons_subject&#x27;).selectbox();
   $(&#x27;#filter_search_lessons_school_level&#x27;).selectbox();
+  initSearchTagsAutocomplete(&#x27;#lessons_tag_reader_for_search&#x27;, &#x27;lesson&#x27;);
+  initSearchTagsAutocomplete(&#x27;#media_elements_tag_reader_for_search&#x27;, &#x27;media_element&#x27;);
 }
 
 
 
 
+
+/**
+Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink &quot;BrowserSupportMain/browserSupportMain:method&quot;}}{{/crossLink}}
+@method browserSupport
+@for GeneralMiscellanea
+**/
+function browserSupport() {
+}
+
+/**
+Hides the mini thumbnail of a compact media element.
+@method hideMiniThumbnailForMediaElementCompact
+@for GeneralMiscellanea
+@param item {Object} the compact media element
+**/
+function hideMiniThumbnailForMediaElementCompact(item) {
+  item.data(&#x27;loaded-mini-thumb&#x27;, false);
+  var mini = item.find(&#x27;.mini_thumb&#x27;);
+  mini.hide(&#x27;fade&#x27;, {}, 200, function() {
+    if(mini.hasClass(&#x27;audio&#x27;) || mini.hasClass(&#x27;video&#x27;)) {
+      type = &#x27;video&#x27;;
+      if(mini.hasClass(&#x27;audio&#x27;)) {
+        type = &#x27;audio&#x27;;
+      }
+      var media = mini.find(type);
+      media[0].pause();
+      setCurrentTimeToMedia(media, 0);
+    }
+  });
+}
 
 /**
 Initializes global variables used throughout the javascripts.
@@ -810,12 +1004,71 @@ function secondsToDateString(seconds) {
 }
 
 /**
-Browser support checking, supported browsers version. It is empty. The not supported browsers version is implemented in {{#crossLink &quot;BrowserSupportMain/browserSupportMain:method&quot;}}{{/crossLink}}
-@method browserSupport
+Handles the errors inside standard forms.
+@method showFormErrors
 @for GeneralMiscellanea
+@param container {Object} JQuery object for the specific uploader (audio, video, image or document)
+@param errors {Hash} a hash of the kind &#x27;field&#x27;: &#x27;error&#x27;. It can&#x27;t be undefined!
 **/
-function browserSupport() {
+function showFormErrors(container, errors) {
+  container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+  container.find(&#x27;.errors_layer&#x27;).hide();
+  $.each(errors, function(key, value) {
+    if(key == &#x27;full&#x27;) {
+      container.find(&#x27;form&#x27;).hide();
+      container.find(&#x27;.full_folder .msge&#x27;).text(value);
+      container.find(&#x27;.full_folder&#x27;).show();
+    } else {
+      var layer = container.find(&#x27;.errors_layer.&#x27; + key);
+      layer.text(value).show();
+      container.find(layer.data(&#x27;form-error-selector&#x27;)).addClass(&#x27;form_error&#x27;);
+    }
+  });
+  container.data(&#x27;loader-can-move&#x27;, false).data(&#x27;loader-with-errors&#x27;, true);
 }
+
+/**
+Shows the mini thumbnail of a compact media element.
+@method showMiniThumbnailForMediaElementCompact
+@for GeneralMiscellanea
+@param item {Object} the compact media element
+**/
+function showMiniThumbnailForMediaElementCompact(item) {
+  item.data(&#x27;loaded-mini-thumb&#x27;, true);
+  var position = &#x27;below&#x27;;
+  var prev = item.prev();
+  if(prev.length &gt; 0) {
+    prev = prev.prev();
+    if(prev.length &gt; 0 &amp;&amp; prev.prev().length &gt; 0) {
+      position = &#x27;above&#x27;;
+    }
+  }
+  var mini = item.find(&#x27;.mini_thumb&#x27;);
+  mini.removeClass(&#x27;above below&#x27;).addClass(position).show(&#x27;fade&#x27;, {}, 200, function() {
+    if(mini.hasClass(&#x27;audio&#x27;) || mini.hasClass(&#x27;video&#x27;)) {
+      type = &#x27;video&#x27;;
+      type_src_1 = &#x27;mp4&#x27;;
+      type_src_2 = &#x27;webm&#x27;;
+      if(mini.hasClass(&#x27;audio&#x27;)) {
+        type = &#x27;audio&#x27;;
+        type_src_1 = &#x27;m4a&#x27;;
+        type_src_2 = &#x27;ogg&#x27;;
+      }
+      media = mini.find(type);
+      if(!media.data(&#x27;loaded&#x27;)) {
+        media.find(&#x27;source[type=&quot;&#x27; + type + &#x27;/&#x27; + type_src_1 + &#x27;&quot;]&#x27;).attr(&#x27;src&#x27;, media.data(type_src_1));
+        media.find(&#x27;source[type=&quot;&#x27; + type + &#x27;/&#x27; + type_src_2 + &#x27;&quot;]&#x27;).attr(&#x27;src&#x27;, media.data(type_src_2));
+        media.load();
+        media.data(&#x27;loaded&#x27;, true);
+      }
+      media[0].play();
+    }
+  });
+}
+
+
+
+
 
 /**
 Removes a parameter from an url.

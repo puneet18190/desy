@@ -23,12 +23,17 @@ module Export
           DC_DATE_FORMAT                  = '%Y-%m-%dT%H:%M:%SZ'
           UNKNOWN_MIME_TYPE               = 'application/octet-stream'
           MEDIA_ELEMENT_MIME_TYPES        = Media::MIME_TYPES
-          MATH_IMAGES_ARCHIVE_FOLDER_NAME = Shared::MATH_IMAGES_ARCHIVE_FOLDER_NAME
+          FILE_MATH_IMAGES_FOLDER_NAME = Shared::FILE_MATH_IMAGES_FOLDER_NAME
 
           include ApplicationHelper
 
           require 'export/lesson/shared/ebook_and_ebook_view'
           include Shared::EbookAndEbookView
+
+          def image_figure_classes(image, *classes)
+            classes << 'no-image' unless image
+            classes.join ' '
+          end
 
           def image_style(image)
             render partial: 'OEBPS/slides/image_media_elements_slide_style.xhtml', locals: { image_media_elements_slide: image }
@@ -106,7 +111,7 @@ module Export
           end
 
           def math_images_archive_folder_name
-            self.class::MATH_IMAGES_ARCHIVE_FOLDER_NAME
+            self.class::FILE_MATH_IMAGES_FOLDER_NAME
           end
 
           def math_image_item_href(math_image)

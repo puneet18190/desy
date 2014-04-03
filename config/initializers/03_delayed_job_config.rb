@@ -4,6 +4,7 @@ require 'notifications_job'
 require 'eventmachine' unless WINDOWS
 
 # Detect whether we are in a Delayed::Job process
+# TODO use Rake.application.current_task
 DELAYED_JOB = begin
   basename        = File.basename $0
   arguments       = $*

@@ -99,8 +99,6 @@
             
                 <li><a href="../classes/DialogsWithForm.html">DialogsWithForm</a></li>
             
-                <li><a href="../classes/DocumentsDocumentReady.html">DocumentsDocumentReady</a></li>
-            
                 <li><a href="../classes/GalleriesAccessories.html">GalleriesAccessories</a></li>
             
                 <li><a href="../classes/GalleriesDocumentReady.html">GalleriesDocumentReady</a></li>
@@ -122,6 +120,8 @@
                 <li><a href="../classes/ImageEditorImageScale.html">ImageEditorImageScale</a></li>
             
                 <li><a href="../classes/ImageEditorTexts.html">ImageEditorTexts</a></li>
+            
+                <li><a href="../classes/JqueryBrowsersDetection.html">JqueryBrowsersDetection</a></li>
             
                 <li><a href="../classes/JqueryPatchesBrowsers.html">JqueryPatchesBrowsers</a></li>
             
@@ -187,13 +187,13 @@
             
                 <li><a href="../classes/TagsAccessories.html">TagsAccessories</a></li>
             
-                <li><a href="../classes/TagsDocumentReady.html">TagsDocumentReady</a></li>
-            
                 <li><a href="../classes/TagsInitializers.html">TagsInitializers</a></li>
             
-                <li><a href="../classes/UploadCallbacks.html">UploadCallbacks</a></li>
-            
                 <li><a href="../classes/UploaderDocumentReady.html">UploaderDocumentReady</a></li>
+            
+                <li><a href="../classes/UploaderGlobal.html">UploaderGlobal</a></li>
+            
+                <li><a href="../classes/UploaderLoadingBar.html">UploaderLoadingBar</a></li>
             
                 <li><a href="../classes/VideoEditorAddComponents.html">VideoEditorAddComponents</a></li>
             
@@ -243,13 +243,13 @@
             
                 <li><a href="../modules/dialogs.html">dialogs</a></li>
             
-                <li><a href="../modules/documents.html">documents</a></li>
-            
                 <li><a href="../modules/galleries.html">galleries</a></li>
             
                 <li><a href="../modules/general.html">general</a></li>
             
                 <li><a href="../modules/image-editor.html">image-editor</a></li>
+            
+                <li><a href="../modules/jquery-browsers.html">jquery-browsers</a></li>
             
                 <li><a href="../modules/jquery-patches.html">jquery-patches</a></li>
             
@@ -384,7 +384,7 @@ The audio track is handled while playing a video component inside the video cutt
 <br/><br/>
 Unlike the <a href="../modules/audio-editor.html">audio-editor</a>, in Video Editor the <b>preview mode</b> is not left automatically when the user stops the global preview: The system has different behaviors for each item in the editor while being in preview mode. While the global preview is playing it sets to true the HTML data <b>preview mode in-use</b>.
 <br/><br/>
-While in preview mode, the <b>preview</b> button in the right column is substituted by a button <b>play / pause</b>; the <i>arrow</i> on the bottom used to commit changes (see <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyCommit" class="crosslink">videoEditorDocumentReadyCommit</a>) is replaced by <b>a button &#39;X&#39;</b> that is used to leave the preview mode. Furthermore, in preview mode many graphical details are slightly changed respect to the normal mode (for instance it&#39;s not possible to open the cutters, remove components, etc).
+While in preview mode, the <b>preview</b> button in the right column is substituted by a button <b>play / pause</b>; the <i>arrow</i> on the bottom used to commit changes (see <a href="../classes/MediaElementEditorDocumentReady.html#method_mediaElementEditorDocumentReady" class="crosslink">mediaElementEditorDocumentReady</a>) is replaced by <b>a button &#39;X&#39;</b> that is used to leave the preview mode. Furthermore, in preview mode many graphical details are slightly changed respect to the normal mode (for instance it&#39;s not possible to open the cutters, remove components, etc).
 <br/><br/>
 The general methods relative to the preview mode are contained in <a href="../classes/VideoEditorPreview.html" class="crosslink">VideoEditorPreview</a>; the method to enter in preview mode is <a href="../classes/VideoEditorPreview.html#method_openPreviewModeInVideoEditor" class="crosslink">openPreviewModeInVideoEditor</a>; the initializer, which contains also the functionality of <b>leaving</b> the preview mode, is <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyPreview" class="crosslink">videoEditorDocumentReadyPreview</a>.
 <br/><br/>
@@ -405,7 +405,7 @@ To include the <b>background audio track</b> in the global preview, the system u
 <br/><br/>
 Finally, let&#39;s have a look at the functionalities of the JScrollPain: the method <a href="../classes/VideoEditorScrollPain.html#method_followPreviewComponentsWithHorizontalScrollInVideoEditor" class="crosslink">followPreviewComponentsWithHorizontalScrollInVideoEditor</a> is called at any time the selected component changes inside the preview mode (that is, either while reproducing the global preview, or if the user changes component using the arrows); this method re-implements many functionalities that were badly implemented or absent in the original plugin, such as for instance the uniform speed to scroll different amounts of components. The method uses the class <a href="../classes/MediaElementEditorHorizontalTimelines.html" class="crosslink">MediaElementEditorHorizontalTimelines</a>
 <br/><br/>
-As for the other Element Editors (<a href="../modules/image-editor.html">image-editor</a>, <a href="../modules/audio-editor.html">audio-editor</a>) the core of the process of committing changes is handled in the module <a href="../modules/media-element-editor.html">media-element-editor</a> (more specificly in the class <a href="../classes/MediaElementEditorForms.html" class="crosslink">MediaElementEditorForms</a>); the part of this functionality specific for the Video Editor is handled in <a href="../classes/VideoEditorDocumentReady.html#method_videoEditorDocumentReadyCommit" class="crosslink">videoEditorDocumentReadyCommit</a>.</p>
+As for the other Element Editors (<a href="../modules/image-editor.html">image-editor</a>, <a href="../modules/audio-editor.html">audio-editor</a>) the core of the process of committing changes is handled in the module <a href="../modules/media-element-editor.html">media-element-editor</a> (more specificly in the class <a href="../classes/MediaElementEditorForms.html" class="crosslink">MediaElementEditorForms</a>); the part of this functionality specific for the Video Editor is handled in <a href="../classes/MediaElementEditorDocumentReady.html#method_mediaElementEditorDocumentReady" class="crosslink">mediaElementEditorDocumentReady</a>.</p>
 
 </div>
 

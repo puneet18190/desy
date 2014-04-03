@@ -5,6 +5,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require ../jquery_browser
 //= require jquery_ujs
 //= require jquery-ui-1.9.0.custom
 //= require jquery.peity

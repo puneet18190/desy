@@ -21,6 +21,7 @@ function dashboardDocumentReady() {
   $window.resize(function() {
     dashboardResizeController();
   });
+  initSearchTagsAutocomplete('#general_tag_reader_for_search', 'lesson');
   $body.on('mouseenter', '.lesson_dashboard_hover_sensitive', function() {
     var item = $(this).find('.literature_container');
     item.data('delaying', true);
