@@ -33,6 +33,8 @@
             
             <li><a href="../files/app/models/image_rb.html">app/models/image.rb</a></li>
             
+            <li><a href="../files/app/models/media_element_rb.html">app/models/media_element.rb</a></li>
+            
         </ul>
     </div>
     <div id="bodyContent">
@@ -40,7 +42,7 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="class-Image-label-Description">Description</h2>
 
 <p>This class inherits from <a href="MediaElement.html">MediaElement</a>, and
 contains the specific methods needed for media elements of type
@@ -323,7 +325,7 @@ contains the specific methods needed for media elements of type
           <tr valign='top'>
             <td class="attr-name">EXTENSIONS_GLOB</td>
             <td>=</td>
-            <td class="attr-value">&quot;*.{#{EXTENSION_WHITE_LIST.join(&#x27;,&#x27;)}}&quot;</td>
+            <td class="attr-value">&quot;*.{#{EXTENSION_WHITE_LIST.join(&#39;,&#39;)}}&quot;</td>
           </tr>
           
             <tr valign='top'>
@@ -352,8 +354,8 @@ Slide::IMAGE1             =&gt; [420, 420] ,
 Slide::IMAGE2             =&gt; [420, 550] ,
 Slide::IMAGE3             =&gt; [860, 550] ,
 Slide::IMAGE4             =&gt; [420, 265] ,
-&#x27;video_component&#x27;         =&gt; [156, 88 ] ,
-&#x27;video_component_preview&#x27; =&gt; [640, 360] }</td>
+&#39;video_component&#39;         =&gt; [156, 88 ] ,
+&#39;video_component_preview&#39; =&gt; [640, 360] }</td>
           </tr>
           
             <tr valign='top'>
@@ -462,6 +464,8 @@ text</p>
           
           
           
+
+          
           
           
             
@@ -515,7 +519,7 @@ in percentage so it can be used regardless of the container size.</p>
 
 <p>Calcolo background-position immagine orizzontale e spalmata</p>
 
-<pre>o    offset dell&#39;immagine
+<pre><code>o    offset dell&#39;immagine
 hc   altezza del contenitore
 hi   altezza dell&#39;immagine
 s    centro di posizione
@@ -544,11 +548,11 @@ il centro di posizione va da 0 a hc
 dunque x : o = hc : (hi - hc)
 x = o * hc / (hi - hc)
 adesso mi serve il rapporto di x / hc moltiplicato per 100 per ottenere la percentuale
-x / hc * 100 = o * hc * 100 / ((hi - hc) * hc) = o * 100 / (hi - hc)</pre>
+x / hc * 100 = o * hc * 100 / ((hi - hc) * hc) = o * 100 / (hi - hc)</code></pre>
 
 <p>Calcolo background-position immagine verticale e iscritta</p>
 
-<pre>o    offset dell&#39;immagine
+<pre><code>o    offset dell&#39;immagine
 wc   larghezza del contenitore
 wi   larghezza dell&#39;immagine iscritta
 s    centro di posizione
@@ -574,7 +578,7 @@ il centro di posizione va da 0 a wc
 dunque x : o = wc : (wc - wi)
 x = o * wc / (wc - wi)
 adesso mi serve il rapporto di x / wc moltiplicato per 100 per ottenere la percentuale
-x / wc * 100 = o * wc * 100 / ((wc - wi) * wc) = o * 100 / (wc - wi)</pre>
+x / wc * 100 = o * wc * 100 / ((wc - wi) * wc) = o * 100 / (wc - wi)</code></pre>
 
 <h3 id="method-i-background_position-label-Returns">Returns</h3>
 
@@ -582,6 +586,8 @@ x / wc * 100 = o * wc * 100 / ((wc - wi) * wc) = o * 100 / (wc - wi)</pre>
             </div>
           
           
+          
+
           
           
           
@@ -605,7 +611,7 @@ x / wc * 100 = o * wc * 100 / ((wc - wi) * wc) = o * 100 / (wc - wi)</pre>
   <span class="ruby-identifier">container_size</span> = <span class="ruby-constant">CONTAINER_SIZE_BY_KIND</span>[<span class="ruby-identifier">kind</span>][<span class="ruby-identifier">i</span>]
   <span class="ruby-identifier">difference</span>     = <span class="ruby-identifier">resize</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">container_size</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">resize</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">container_size</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">container_size</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">resize</span>
 
-  <span class="ruby-identifier">v</span>      = (<span class="ruby-identifier">offset</span> * <span class="ruby-number">100.0</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">difference</span>).<span class="ruby-identifier">round</span> <span class="ruby-number">5</span>
+  <span class="ruby-identifier">v</span>      = (<span class="ruby-identifier">offset</span> <span class="ruby-operator">*</span> <span class="ruby-number">100.0</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">difference</span>).<span class="ruby-identifier">round</span> <span class="ruby-number">5</span>
   <span class="ruby-identifier">w_h</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-node">&quot;#{v}%&quot;</span>
 
   <span class="ruby-identifier">w_h</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; &#39;</span>)
@@ -651,6 +657,8 @@ crop</p>
           
           
           
+
+          
           
           
             
@@ -694,6 +702,8 @@ crop</p>
           
           
           
+
+          
           
           
             
@@ -736,6 +746,8 @@ during editing.</p>
             </div>
           
           
+          
+
           
           
           
@@ -784,6 +796,8 @@ href="ImageEditorController.html">ImageEditorController</a>.</p>
           
           
           
+
+          
           
           
             
@@ -823,6 +837,8 @@ href="ImageEditorController.html">ImageEditorController</a>.</p>
             </div>
           
           
+          
+
           
           
           
@@ -864,6 +880,8 @@ href="ImageEditorController.html">ImageEditorController</a>.</p>
             </div>
           
           
+          
+
           
           
           
@@ -909,10 +927,12 @@ the access to specific methods if the image is not in editing.</p>
 
 <h3 id="method-i-in_edit_mode-3F-label-Usage">Usage</h3>
 
-<pre>return &#39;&#39; if !self.in_edit_mode?</pre>
+<pre><code>return &#39;&#39; if !self.in_edit_mode?</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -948,6 +968,8 @@ the access to specific methods if the image is not in editing.</p>
             </div>
           
           
+          
+
           
           
           
@@ -996,6 +1018,8 @@ href="ImageEditorController.html#method-i-edit">ImageEditorController#edit</a>.<
             </div>
           
           
+          
+
           
           
           
@@ -1046,6 +1070,8 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
           
           
           
+
+          
           
           
             
@@ -1082,6 +1108,8 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
           
           
           
+
+          
           
           
             
@@ -1095,7 +1123,7 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
               <div id="method-i-resize_height_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/image.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">resize_height</span>(<span class="ruby-identifier">kind</span>)
-  ( <span class="ruby-identifier">height</span>.<span class="ruby-identifier">to_f</span> * <span class="ruby-constant">CONTAINER_WIDTHS_BY_KIND</span>[<span class="ruby-identifier">kind</span>] <span class="ruby-operator">/</span> <span class="ruby-identifier">width</span> ).<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>
+  ( <span class="ruby-identifier">height</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">*</span> <span class="ruby-constant">CONTAINER_WIDTHS_BY_KIND</span>[<span class="ruby-identifier">kind</span>] <span class="ruby-operator">/</span> <span class="ruby-identifier">width</span> ).<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -1117,6 +1145,8 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
           
           
           
+
+          
           
           
             
@@ -1130,7 +1160,7 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
               <div id="method-i-resize_width_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/image.rb, line 140</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">resize_width</span>(<span class="ruby-identifier">kind</span>)
-  ( <span class="ruby-identifier">width</span>.<span class="ruby-identifier">to_f</span>  * <span class="ruby-constant">CONTAINER_HEIGHTS_BY_KIND</span>[<span class="ruby-identifier">kind</span>] <span class="ruby-operator">/</span> <span class="ruby-identifier">height</span> ).<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>
+  ( <span class="ruby-identifier">width</span>.<span class="ruby-identifier">to_f</span>  <span class="ruby-operator">*</span> <span class="ruby-constant">CONTAINER_HEIGHTS_BY_KIND</span>[<span class="ruby-identifier">kind</span>] <span class="ruby-operator">/</span> <span class="ruby-identifier">height</span> ).<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -1157,6 +1187,8 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
             </div>
           
           
+          
+
           
           
           
@@ -1202,6 +1234,8 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
           
           
           
+
+          
           
           
             
@@ -1242,10 +1276,12 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
 
 <h3 id="method-i-thumb_url-label-Usage">Usage</h3>
 
-<pre>&lt;%= image_tag image.thumb_url %&gt;</pre>
+<pre><code>&lt;%= image_tag image.thumb_url %&gt;</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -1289,6 +1325,8 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
             </div>
           
           
+          
+
           
           
           
@@ -1337,10 +1375,12 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
 
 <h3 id="method-i-url-label-Usage">Usage</h3>
 
-<pre>&lt;%= image_tag image.url %&gt;</pre>
+<pre><code>&lt;%= image_tag image.url %&gt;</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -1385,6 +1425,8 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
           
           
           
+
+          
           
           
             
@@ -1422,6 +1464,8 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
           
           
           
+
+          
           
           
             
@@ -1456,6 +1500,8 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
             </div>
           
           
+          
+
           
           
           
@@ -1494,6 +1540,8 @@ contained in <code>media</code></p>
           
           
           
+
+          
           
           
             
@@ -1529,6 +1577,8 @@ contained in <code>media</code></p>
             </div>
           
           
+          
+
           
           
           

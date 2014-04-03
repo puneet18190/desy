@@ -259,6 +259,8 @@ new video based on them</p>
           
           
           
+
+          
           
           
             
@@ -289,33 +291,35 @@ new video based on them</p>
           
           
             <div class="description">
-              <pre class="ruby"><span class="ruby-comment"># video components (the components which will be manipulated in order to produce the new video)</span>
-:<span class="ruby-identifier">components</span> =<span class="ruby-operator">&gt;</span> [
+              <pre><code># video components (the components which will be manipulated in order to produce the new video)
+:components =&gt; [
   {
-    :<span class="ruby-identifier">type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Video</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Parameters</span><span class="ruby-operator">::</span><span class="ruby-constant">VIDEO_COMPONENT</span>, <span class="ruby-comment"># component type (one between Media::Video::Editing::Parameters::COMPONENTS)</span>
-    :<span class="ruby-identifier">video</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">321</span> <span class="ruby-comment"># video id</span>
-    :<span class="ruby-identifier">from</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span>, <span class="ruby-comment"># start of the video in seconds (the new video will contain the video component starting from this second)</span>
-    :<span class="ruby-identifier">to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">24</span>, <span class="ruby-comment"># end of the video in seconds (the new video will contain the video component ending to this second)</span>
+    :type =&gt; Media::Video::Editing::Parameters::VIDEO_COMPONENT, # component type (one between Media::Video::Editing::Parameters::COMPONENTS)
+    :video =&gt; 321 # video id
+    :from =&gt; 12, # start of the video in seconds (the new video will contain the video component starting from this second)
+    :to =&gt; 24, # end of the video in seconds (the new video will contain the video component ending to this second)
   },
   {
-    :<span class="ruby-identifier">type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Video</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Parameters</span><span class="ruby-operator">::</span><span class="ruby-constant">TEXT_COMPONENT</span>, <span class="ruby-comment"># as above</span>
-    :<span class="ruby-identifier">content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Some text&#39;</span>, <span class="ruby-comment"># Contents of the text which will be converted to video</span>
-    :<span class="ruby-identifier">duration</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">14</span>, <span class="ruby-comment"># Duration of the displaying</span>
-    :<span class="ruby-identifier">background_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;red&#39;</span>, <span class="ruby-comment"># Background color</span>
-    :<span class="ruby-identifier">text_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;white&#39;</span> <span class="ruby-comment"># Text color</span>
+    :type =&gt; Media::Video::Editing::Parameters::TEXT_COMPONENT, # as above
+    :content =&gt; &#39;Some text&#39;, # Contents of the text which will be converted to video
+    :duration =&gt; 14, # Duration of the displaying
+    :background_color =&gt; &#39;red&#39;, # Background color
+    :text_color =&gt; &#39;white&#39; # Text color
   },
   {
-    :<span class="ruby-identifier">type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Video</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Parameters</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE_COMPONENT</span>, <span class="ruby-comment"># as above</span>
-    :<span class="ruby-identifier">image</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">456</span>, <span class="ruby-comment"># image id which will be converted to video</span>
-    :<span class="ruby-identifier">duration</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> <span class="ruby-comment"># Duration of the displaying</span>
+    :type =&gt; Media::Video::Editing::Parameters::IMAGE_COMPONENT, # as above
+    :image =&gt; 456, # image id which will be converted to video
+    :duration =&gt; 2 # Duration of the displaying
   }
 ]
-</pre>
+</code></pre>
 
 <p>}</p>
             </div>
           
           
+          
+
           
           
           
@@ -354,6 +358,8 @@ new video based on them</p>
           
           
           
+
+          
           
           
             
@@ -371,16 +377,16 @@ new video based on them</p>
   <span class="ruby-identifier">in_tmp_dir</span> <span class="ruby-keyword">do</span>
     <span class="ruby-identifier">concats</span> = {}
 
-    <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-ivar">@params</span>[<span class="ruby-value">:components</span>].<span class="ruby-identifier">each_with_index</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">component</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">Queue</span>.<span class="ruby-identifier">run</span> <span class="ruby-operator">*</span><span class="ruby-ivar">@params</span>[<span class="ruby-value">:components</span>].<span class="ruby-identifier">each_with_index</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">component</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">proc</span> {
         <span class="ruby-identifier">concats</span>.<span class="ruby-identifier">store</span> <span class="ruby-identifier">i</span>,
           <span class="ruby-keyword">case</span> <span class="ruby-identifier">component</span>[<span class="ruby-value">:type</span>]
           <span class="ruby-keyword">when</span> <span class="ruby-constant">Parameters</span><span class="ruby-operator">::</span><span class="ruby-constant">VIDEO_COMPONENT</span>
-            <span class="ruby-identifier">compose_video</span> *<span class="ruby-identifier">component</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">:video</span>, <span class="ruby-value">:from</span>, <span class="ruby-value">:to</span>), <span class="ruby-identifier">i</span>
+            <span class="ruby-identifier">compose_video</span> <span class="ruby-operator">*</span><span class="ruby-identifier">component</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">:video</span>, <span class="ruby-value">:from</span>, <span class="ruby-value">:to</span>), <span class="ruby-identifier">i</span>
           <span class="ruby-keyword">when</span> <span class="ruby-constant">Parameters</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE_COMPONENT</span>
-            <span class="ruby-identifier">compose_image</span> *<span class="ruby-identifier">component</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">:image</span>, <span class="ruby-value">:duration</span>), <span class="ruby-identifier">i</span>
+            <span class="ruby-identifier">compose_image</span> <span class="ruby-operator">*</span><span class="ruby-identifier">component</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">:image</span>, <span class="ruby-value">:duration</span>), <span class="ruby-identifier">i</span>
           <span class="ruby-keyword">when</span> <span class="ruby-constant">Parameters</span><span class="ruby-operator">::</span><span class="ruby-constant">TEXT_COMPONENT</span>
-            <span class="ruby-identifier">compose_text</span> *<span class="ruby-identifier">component</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">:content</span>, <span class="ruby-value">:duration</span>, <span class="ruby-value">:text_color</span>, <span class="ruby-value">:background_color</span>), <span class="ruby-identifier">i</span>
+            <span class="ruby-identifier">compose_text</span> <span class="ruby-operator">*</span><span class="ruby-identifier">component</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">:content</span>, <span class="ruby-value">:duration</span>, <span class="ruby-value">:text_color</span>, <span class="ruby-value">:background_color</span>), <span class="ruby-identifier">i</span>
           <span class="ruby-keyword">else</span>
             <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;wrong component type&quot;</span>, <span class="ruby-identifier">type</span><span class="ruby-operator">:</span> <span class="ruby-identifier">component</span>[<span class="ruby-value">:type</span>])
           <span class="ruby-keyword">end</span>
@@ -388,7 +394,7 @@ new video based on them</p>
     }
 
     <span class="ruby-identifier">concats_sorted</span> = <span class="ruby-identifier">concats</span>.<span class="ruby-identifier">sort</span>
-    <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-identifier">concats_sorted</span>[<span class="ruby-number">0</span>, <span class="ruby-identifier">concats_sorted</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">-</span><span class="ruby-number">1</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span>, <span class="ruby-identifier">concat</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">Queue</span>.<span class="ruby-identifier">run</span> <span class="ruby-operator">*</span><span class="ruby-identifier">concats_sorted</span>[<span class="ruby-number">0</span>, <span class="ruby-identifier">concats_sorted</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">-</span><span class="ruby-number">1</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span>, <span class="ruby-identifier">concat</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">next_i</span> = <span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-number">1</span>
       <span class="ruby-identifier">next_concat</span> = <span class="ruby-identifier">concats_sorted</span>[<span class="ruby-identifier">next_i</span>][<span class="ruby-number">1</span>]
       <span class="ruby-identifier">proc</span> {
@@ -443,6 +449,8 @@ and the media record will be destroyed</p>
             </div>
           
           
+          
+
           
           
           
@@ -513,6 +521,8 @@ and the media record will be destroyed</p>
           
           
           
+
+          
           
           
             
@@ -551,6 +561,8 @@ and the media record will be destroyed</p>
           
           
           
+
+          
           
           
             
@@ -586,6 +598,8 @@ and the media record will be destroyed</p>
             </div>
           
           
+          
+
           
           
           
@@ -624,6 +638,8 @@ and the media record will be destroyed</p>
           
           
           
+
+          
           
           
             
@@ -642,7 +658,7 @@ and the media record will be destroyed</p>
 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">from</span> <span class="ruby-operator">==</span> <span class="ruby-number">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">to</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">video</span>.<span class="ruby-identifier">min_duration</span>
     {}.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">outputs</span><span class="ruby-operator">|</span>
-      <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">format</span>, <span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span> { <span class="ruby-identifier">video_copy</span> <span class="ruby-identifier">input</span>, (<span class="ruby-identifier">outputs</span>[<span class="ruby-identifier">format</span>] = <span class="ruby-node">&quot;#{output_without_extension(i)}.#{format}&quot;</span>) } }
+      <span class="ruby-constant">Queue</span>.<span class="ruby-identifier">run</span> <span class="ruby-operator">*</span><span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">format</span>, <span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span> { <span class="ruby-identifier">video_copy</span> <span class="ruby-identifier">input</span>, (<span class="ruby-identifier">outputs</span>[<span class="ruby-identifier">format</span>] = <span class="ruby-node">&quot;#{output_without_extension(i)}.#{format}&quot;</span>) } }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">start</span>, <span class="ruby-identifier">duration</span> = <span class="ruby-identifier">from</span>, <span class="ruby-identifier">to</span><span class="ruby-operator">-</span><span class="ruby-identifier">from</span>
@@ -668,6 +684,8 @@ and the media record will be destroyed</p>
             </div>
           
           
+          
+
           
           
           
@@ -704,6 +722,8 @@ and the media record will be destroyed</p>
           
           
           
+
+          
           
           
             
@@ -716,8 +736,8 @@ and the media record will be destroyed</p>
               </p>
               <div id="method-i-log_folder_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/video/editing/composer.rb, line 159</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder</span>(*<span class="ruby-identifier">folders</span>)
-  <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@log_folder</span>, *<span class="ruby-identifier">folders</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">folders</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@log_folder</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">folders</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -738,6 +758,8 @@ and the media record will be destroyed</p>
             </div>
           
           
+          
+
           
           
           
@@ -774,6 +796,8 @@ and the media record will be destroyed</p>
           
           
           
+
+          
           
           
             
@@ -808,6 +832,8 @@ and the media record will be destroyed</p>
             </div>
           
           
+          
+
           
           
           
@@ -844,6 +870,8 @@ and the media record will be destroyed</p>
           
           
           
+
+          
           
           
             
@@ -878,6 +906,8 @@ and the media record will be destroyed</p>
             </div>
           
           
+          
+
           
           
           

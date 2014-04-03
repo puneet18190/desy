@@ -104,7 +104,7 @@
           <tr valign='top'>
             <td class="attr-name">PEPPER_PATH</td>
             <td>=</td>
-            <td class="attr-value">Rails.root.join(&#x27;config/pepper&#x27;)</td>
+            <td class="attr-value">Rails.root.join(&#39;config/pepper&#39;)</td>
           </tr>
           
             <tr valign='top'>
@@ -119,8 +119,8 @@
             <td class="attr-value">(PEPPER_PATH.exist? and PEPPER_PATH.read.chomp) or (
 warn &quot;The file #{PEPPER_PATH} does not exists or is empty.&quot;
 warn &quot;Generating a new pepper and writing to #{PEPPER_PATH}; this will invalidate the previous user passwords.&quot;
-require &#x27;securerandom&#x27;
-SecureRandom.hex(64).tap{ |token| PEPPER_PATH.open(&#x27;w&#x27;){ |io| io.write token } }
+require &#39;securerandom&#39;
+SecureRandom.hex(64).tap{ |token| PEPPER_PATH.open(&#39;w&#39;){ |io| io.write token } }
 )</td>
           </tr>
           
@@ -171,6 +171,8 @@ as <code>after_save</code></p>
             </div>
           
           
+          
+
           
           
           

@@ -40,11 +40,11 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="class-Document-label-Description">Description</h2>
 
 <p>ActiveRecord class that corresponds to the table <code>documents</code>.</p>
 
-<h2 id="label-Fields">Fields</h2>
+<h2 id="class-Document-label-Fields">Fields</h2>
 <ul><li>
 <p><strong>user_id</strong>: id of the creator of the document</p>
 </li><li>
@@ -60,7 +60,7 @@
 </li></ul>
 </li></ul>
 
-<h2 id="label-Associations">Associations</h2>
+<h2 id="class-Document-label-Associations">Associations</h2>
 <ul><li>
 <p><strong>user</strong>: reference to the <a href="User.html">User</a> who
 created the document (<strong>belongs_to</strong>)</p>
@@ -70,7 +70,7 @@ href="Document.html">Document</a> contained in a slide (see <a
 href="DocumentsSlide.html">DocumentsSlide</a>) (<strong>has_many</strong>)</p>
 </li></ul>
 
-<h2 id="label-Validations">Validations</h2>
+<h2 id="class-Document-label-Validations">Validations</h2>
 <ul><li>
 <p><strong>presence</strong> with numericality and existence of associated
 record for <code>user_id</code></p>
@@ -86,7 +86,7 @@ value is greater than 255 it&#39;s set to 255)</p>
 <strong>available</strong> for the <code>user_id</code></p>
 </li></ul>
 
-<h2 id="label-Callbacks">Callbacks</h2>
+<h2 id="class-Document-label-Callbacks">Callbacks</h2>
 <ol><li>
 <p><strong>before_validation</strong> saves the <code>title</code> from the
 attachment if it&#39;s not present</p>
@@ -94,7 +94,7 @@ attachment if it&#39;s not present</p>
 <p><strong>before_save</strong> sets the <code>size</code> in metadata</p>
 </li></ol>
 
-<h2 id="label-Database+callbacks">Database callbacks</h2>
+<h2 id="class-Document-label-Database+callbacks">Database callbacks</h2>
 <ol><li>
 <p><strong>cascade</strong> <strong>destruction</strong> for the associated
 table <a href="DocumentsSlide.html">DocumentsSlide</a></p>
@@ -320,7 +320,7 @@ table <a href="DocumentsSlide.html">DocumentsSlide</a></p>
           <tr valign='top'>
             <td class="attr-name">MAX_TITLE_LENGTH</td>
             <td>=</td>
-            <td class="attr-value">(I18n.t(&#x27;language_parameters.document.length_title&#x27;) &gt; 255 ? 255 : I18n.t(&#x27;language_parameters.document.length_title&#x27;))</td>
+            <td class="attr-value">(I18n.t(&#39;language_parameters.document.length_title&#39;) &gt; 255 ? 255 : I18n.t(&#39;language_parameters.document.length_title&#39;))</td>
           </tr>
           
             <tr valign='top'>
@@ -332,7 +332,7 @@ table <a href="DocumentsSlide.html">DocumentsSlide</a></p>
           <tr valign='top'>
             <td class="attr-name">MAX_ATTACHMENT_SIZE</td>
             <td>=</td>
-            <td class="attr-value">SETTINGS[&#x27;max_document_size&#x27;].megabytes</td>
+            <td class="attr-value">SETTINGS[&#39;max_document_size&#39;].megabytes</td>
           </tr>
           
             <tr valign='top'>
@@ -345,23 +345,23 @@ table <a href="DocumentsSlide.html">DocumentsSlide</a></p>
             <td class="attr-name">TYPES_BY_EXTENSION</td>
             <td>=</td>
             <td class="attr-value">{
-&#x27;.ppt&#x27;     =&gt; :ppt,
-&#x27;.pptx&#x27;    =&gt; :ppt,
-&#x27;.keynote&#x27; =&gt; :ppt,
-&#x27;.odp&#x27;     =&gt; :ppt,
-&#x27;.doc&#x27;     =&gt; :doc,
-&#x27;.docx&#x27;    =&gt; :doc,
-&#x27;.pages&#x27;   =&gt; :doc,
-&#x27;.odt&#x27;     =&gt; :doc,
-&#x27;.txt&#x27;     =&gt; :doc,
-&#x27;.zip&#x27;     =&gt; :zip,
-&#x27;.gz&#x27;      =&gt; :zip,
-&#x27;.xls&#x27;     =&gt; :exc,
-&#x27;.xlsx&#x27;    =&gt; :exc,
-&#x27;.numbers&#x27; =&gt; :exc,
-&#x27;.ods&#x27;     =&gt; :exc,
-&#x27;.pdf&#x27;     =&gt; :pdf,
-&#x27;.ps&#x27;      =&gt; :pdf,
+&#39;.ppt&#39;     =&gt; :ppt,
+&#39;.pptx&#39;    =&gt; :ppt,
+&#39;.keynote&#39; =&gt; :ppt,
+&#39;.odp&#39;     =&gt; :ppt,
+&#39;.doc&#39;     =&gt; :doc,
+&#39;.docx&#39;    =&gt; :doc,
+&#39;.pages&#39;   =&gt; :doc,
+&#39;.odt&#39;     =&gt; :doc,
+&#39;.txt&#39;     =&gt; :doc,
+&#39;.zip&#39;     =&gt; :zip,
+&#39;.gz&#39;      =&gt; :zip,
+&#39;.xls&#39;     =&gt; :exc,
+&#39;.xlsx&#39;    =&gt; :exc,
+&#39;.numbers&#39; =&gt; :exc,
+&#39;.ods&#39;     =&gt; :exc,
+&#39;.pdf&#39;     =&gt; :pdf,
+&#39;.ps&#39;      =&gt; :pdf,
 }</td>
           </tr>
           
@@ -375,12 +375,12 @@ table <a href="DocumentsSlide.html">DocumentsSlide</a></p>
             <td class="attr-name">COLORS_BY_TYPE</td>
             <td>=</td>
             <td class="attr-value">{
-:ppt     =&gt; &#x27;#F6921E&#x27;,
-:doc     =&gt; &#x27;#26A9E0&#x27;,
-:zip     =&gt; &#x27;#57585B&#x27;,
-:exc     =&gt; &#x27;#37B34A&#x27;,
-:pdf     =&gt; &#x27;#EC1C24&#x27;,
-:unknown =&gt; &#x27;#A7A9AC&#x27;
+:ppt     =&gt; &#39;#F6921E&#39;,
+:doc     =&gt; &#39;#26A9E0&#39;,
+:zip     =&gt; &#39;#57585B&#39;,
+:exc     =&gt; &#39;#37B34A&#39;,
+:pdf     =&gt; &#39;#EC1C24&#39;,
+:unknown =&gt; &#39;#A7A9AC&#39;
 }</td>
           </tr>
           
@@ -422,6 +422,8 @@ href="Lesson.html">Lesson</a> containing it.</p>
             </div>
           
           
+          
+
           
           
           
@@ -492,6 +494,8 @@ href="Lesson.html">Lesson</a> containing it.</p>
           
           
           
+
+          
           
           
             
@@ -526,6 +530,8 @@ href="Lesson.html">Lesson</a> containing it.</p>
             </div>
           
           
+          
+
           
           
           
@@ -562,6 +568,8 @@ href="Lesson.html">Lesson</a> containing it.</p>
           
           
           
+
+          
           
           
             
@@ -596,6 +604,8 @@ href="Lesson.html">Lesson</a> containing it.</p>
             </div>
           
           
+          
+
           
           
           
@@ -632,6 +642,8 @@ href="Lesson.html">Lesson</a> containing it.</p>
           
           
           
+
+          
           
           
             
@@ -666,6 +678,8 @@ href="Lesson.html">Lesson</a> containing it.</p>
             </div>
           
           
+          
+
           
           
           
@@ -702,6 +716,8 @@ href="Lesson.html">Lesson</a> containing it.</p>
           
           
           
+
+          
           
           
             
@@ -736,6 +752,8 @@ href="Lesson.html">Lesson</a> containing it.</p>
             </div>
           
           
+          
+
           
           
           
@@ -772,6 +790,8 @@ href="Lesson.html">Lesson</a> containing it.</p>
           
           
           
+
+          
           
           
             
@@ -806,6 +826,8 @@ href="Lesson.html">Lesson</a> containing it.</p>
             </div>
           
           
+          
+
           
           
           
@@ -842,6 +864,8 @@ href="Lesson.html">Lesson</a> containing it.</p>
             </div>
           
           
+          
+
           
           
           
@@ -881,6 +905,8 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
           
           
           
+
+          
           
           
             
@@ -917,6 +943,8 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
           
           
           
+
+          
           
           
             
@@ -951,6 +979,8 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
             </div>
           
           
+          
+
           
           
           
@@ -988,6 +1018,8 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
           
           
           
+
+          
           
           
             
@@ -1024,6 +1056,8 @@ maximum size available</p>
           
           
           
+
+          
           
           
             
@@ -1059,6 +1093,8 @@ configured in megabytes in settings.yml</p>
             </div>
           
           
+          
+
           
           
           

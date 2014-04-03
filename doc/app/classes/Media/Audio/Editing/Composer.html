@@ -237,6 +237,8 @@ based on them</p>
           
           
           
+
+          
           
           
             
@@ -273,23 +275,25 @@ created using <a
 href="Parameters.html#method-i-convert_to_primitive_parameters">Media::Audio::Editing::Parameters#convert_to_primitive_parameters</a>
 . Example of the <code>params</code> hash:</p>
 
-<pre class="ruby">{
-  :<span class="ruby-identifier">initial_audio</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span> <span class="ruby-comment"># initial audio id,</span>
-  :<span class="ruby-identifier">components</span> =<span class="ruby-operator">&gt;</span> [
+<pre><code>{
+  :initial_audio =&gt; 12 # initial audio id,
+  :components =&gt; [
     {
-      :<span class="ruby-identifier">audio</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">123</span>, <span class="ruby-comment"># audio id</span>
-      :<span class="ruby-identifier">from</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span>, <span class="ruby-comment"># start of the audio in seconds (the new audio will contain the audio component starting from this second)</span>
-      :<span class="ruby-identifier">to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">24</span> <span class="ruby-comment"># end of the audio in seconds (the new audio will contain the audio component ending to this second)</span>
+      :audio =&gt; 123, # audio id
+      :from =&gt; 12, # start of the audio in seconds (the new audio will contain the audio component starting from this second)
+      :to =&gt; 24 # end of the audio in seconds (the new audio will contain the audio component ending to this second)
     },
     {
-      <span class="ruby-comment"># etc...</span>
+      # etc...
     }
   ]
 }
-</pre>
+</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -328,6 +332,8 @@ href="Parameters.html#method-i-convert_to_primitive_parameters">Media::Audio::Ed
           
           
           
+
+          
           
           
             
@@ -344,13 +350,13 @@ href="Parameters.html#method-i-convert_to_primitive_parameters">Media::Audio::Ed
   <span class="ruby-identifier">create_log_folder</span>
   <span class="ruby-identifier">in_tmp_dir</span> <span class="ruby-keyword">do</span>
     <span class="ruby-identifier">concats</span> = {}.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">concats</span><span class="ruby-operator">|</span>
-      <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-ivar">@params</span>[<span class="ruby-value">:components</span>].<span class="ruby-identifier">each_with_index</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">component</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">proc</span>{ <span class="ruby-identifier">concats</span>.<span class="ruby-identifier">store</span> <span class="ruby-identifier">i</span>, <span class="ruby-identifier">compose_audio</span>(*<span class="ruby-identifier">component</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">:audio</span>, <span class="ruby-value">:from</span>, <span class="ruby-value">:to</span>), <span class="ruby-identifier">i</span>) }
+      <span class="ruby-constant">Queue</span>.<span class="ruby-identifier">run</span> <span class="ruby-operator">*</span><span class="ruby-ivar">@params</span>[<span class="ruby-value">:components</span>].<span class="ruby-identifier">each_with_index</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">component</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">proc</span>{ <span class="ruby-identifier">concats</span>.<span class="ruby-identifier">store</span> <span class="ruby-identifier">i</span>, <span class="ruby-identifier">compose_audio</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">component</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">:audio</span>, <span class="ruby-value">:from</span>, <span class="ruby-value">:to</span>), <span class="ruby-identifier">i</span>) }
       }
     <span class="ruby-keyword">end</span>
 
     <span class="ruby-identifier">concat</span> = <span class="ruby-identifier">tmp_path</span> <span class="ruby-string">&#39;concat&#39;</span>
-    <span class="ruby-identifier">outputs</span> = <span class="ruby-constant">Concat</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">concats</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>,<span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> }, <span class="ruby-identifier">concat</span>, <span class="ruby-identifier">log_folder</span>(<span class="ruby-string">&#39;concat&#39;</span>)).<span class="ruby-identifier">run</span>
+    <span class="ruby-identifier">outputs</span> = <span class="ruby-constant">Concat</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">concats</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> }, <span class="ruby-identifier">concat</span>, <span class="ruby-identifier">log_folder</span>(<span class="ruby-string">&#39;concat&#39;</span>)).<span class="ruby-identifier">run</span>
 
     <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">media</span>               = <span class="ruby-identifier">outputs</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">filename</span><span class="ruby-operator">:</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">title</span>)
     <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">composing</span>           = <span class="ruby-keyword">nil</span>
@@ -390,6 +396,8 @@ and the media record will be destroyed</p>
             </div>
           
           
+          
+
           
           
           
@@ -458,6 +466,8 @@ and the media record will be destroyed</p>
           
           
           
+
+          
           
           
             
@@ -492,6 +502,8 @@ and the media record will be destroyed</p>
             </div>
           
           
+          
+
           
           
           
@@ -528,6 +540,8 @@ and the media record will be destroyed</p>
           
           
           
+
+          
           
           
             
@@ -546,7 +560,7 @@ and the media record will be destroyed</p>
 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">from</span> <span class="ruby-operator">==</span> <span class="ruby-number">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">to</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">audio</span>.<span class="ruby-identifier">min_duration</span>
     {}.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">outputs</span><span class="ruby-operator">|</span>
-      <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">format</span>, <span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span> { <span class="ruby-identifier">audio_copy</span> <span class="ruby-identifier">input</span>, (<span class="ruby-identifier">outputs</span>[<span class="ruby-identifier">format</span>] = <span class="ruby-node">&quot;#{output_without_extension(i)}.#{format}&quot;</span>) } }
+      <span class="ruby-constant">Queue</span>.<span class="ruby-identifier">run</span> <span class="ruby-operator">*</span><span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">format</span>, <span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span> { <span class="ruby-identifier">audio_copy</span> <span class="ruby-identifier">input</span>, (<span class="ruby-identifier">outputs</span>[<span class="ruby-identifier">format</span>] = <span class="ruby-node">&quot;#{output_without_extension(i)}.#{format}&quot;</span>) } }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">start</span>, <span class="ruby-identifier">duration</span> = <span class="ruby-identifier">from</span>, <span class="ruby-identifier">to</span><span class="ruby-operator">-</span><span class="ruby-identifier">from</span>
@@ -572,6 +586,8 @@ and the media record will be destroyed</p>
             </div>
           
           
+          
+
           
           
           
@@ -608,6 +624,8 @@ and the media record will be destroyed</p>
           
           
           
+
+          
           
           
             
@@ -620,8 +638,8 @@ and the media record will be destroyed</p>
               </p>
               <div id="method-i-log_folder_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/media/audio/editing/composer.rb, line 110</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder</span>(*<span class="ruby-identifier">folders</span>)
-  <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@log_folder</span>, *<span class="ruby-identifier">folders</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">log_folder</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">folders</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@log_folder</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">folders</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -642,6 +660,8 @@ and the media record will be destroyed</p>
             </div>
           
           
+          
+
           
           
           
@@ -678,6 +698,8 @@ and the media record will be destroyed</p>
           
           
           
+
+          
           
           
             
@@ -712,6 +734,8 @@ and the media record will be destroyed</p>
             </div>
           
           
+          
+
           
           
           

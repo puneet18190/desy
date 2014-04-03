@@ -40,12 +40,12 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="class-Admin::MediaElementsController-label-Description">Description</h2>
 
 <p>Controller of elements in the administration section. See <a
 href="../AdminController.html">AdminController</a>.</p>
 
-<h2 id="label-Models+used">Models used</h2>
+<h2 id="class-Admin::MediaElementsController-label-Models+used">Models used</h2>
 <ul><li>
 <p><a href="../MediaElement.html">MediaElement</a></p>
 </li><li>
@@ -225,6 +225,8 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
           
           
           
+
+          
           
           
             
@@ -305,6 +307,8 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
           
           
           
+
+          
           
           
             
@@ -316,7 +320,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 
               </p>
               <div id="method-i-destroy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 200</span>
+                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 197</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">destroy</span>
   <span class="ruby-ivar">@element</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@element</span>.<span class="ruby-identifier">destroyable_even_if_public</span> = <span class="ruby-keyword">true</span>
@@ -356,6 +360,8 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
           
           
           
+
+          
           
           
             
@@ -388,10 +394,9 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
             <div class="description">
               <h3 id="method-i-index-label-Description">Description</h3>
 
-<p>Main page of elements in the admin. If <a href="http://:search">params</a>
-is present, it is used <a
-href="../AdminSearchForm.html">AdminSearchForm</a> to perform the requested
-search.</p>
+<p>Main page of elements in the admin. If <a href=":search">params</a> is
+present, it is used <a href="../AdminSearchForm.html">AdminSearchForm</a>
+to perform the requested search.</p>
 
 <h3 id="method-i-index-label-Mode">Mode</h3>
 
@@ -405,6 +410,8 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
             </div>
           
           
+          
+
           
           
           
@@ -461,6 +468,8 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
           
           
           
+
+          
           
           
             
@@ -472,7 +481,7 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
                 
               </p>
               <div id="method-i-load_media_element_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 219</span>
+                <pre><span class="ruby-comment"># File app/controllers/admin/media_elements_controller.rb, line 216</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">load_media_element</span>
   <span class="ruby-ivar">@element</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -507,6 +516,8 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
             </div>
           
           
+          
+
           
           
           
@@ -555,6 +566,8 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
             </div>
           
           
+          
+
           
           
           
@@ -608,6 +621,8 @@ href="../ApplicationController.html#method-i-admin_authenticate">ApplicationCont
           
           
           
+
+          
           
           
             
@@ -659,6 +674,8 @@ href="../ApplicationController.html#method-i-initialize_media_element_with_owner
           
           
           
+
+          
           
           
             
@@ -681,10 +698,7 @@ href="../ApplicationController.html#method-i-initialize_media_element_with_owner
       <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">is_public</span> = <span class="ruby-keyword">true</span>
       <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">publication_date</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span>
     <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_media_element_error_messages</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">errors</span>
-      <span class="ruby-ivar">@error_fields</span> = <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span>
-    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@error_fields</span> = <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">save</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>

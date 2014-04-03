@@ -33,6 +33,8 @@
             
             <li><a href="../files/app/models/slide_rb.html">app/models/slide.rb</a></li>
             
+            <li><a href="../files/lib/autoload/slide/math_images_rb.html">lib/autoload/slide/math_images.rb</a></li>
+            
         </ul>
     </div>
     <div id="bodyContent">
@@ -40,11 +42,11 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="class-Slide-label-Description">Description</h2>
 
 <p>ActiveRecord class that corresponds to the table <code>slides</code>.</p>
 
-<h2 id="label-Fields">Fields</h2>
+<h2 id="class-Slide-label-Fields">Fields</h2>
 <ul><li>
 <p><strong>lesson_id</strong>: reference to the <a
 href="Lesson.html">Lesson</a> the slide belongs to</p>
@@ -62,7 +64,7 @@ in postgrsql, in total there are 10 types)</p>
 <p><strong>metadata</strong>: contains only math images.</p>
 </li></ul>
 
-<h2 id="label-Associations">Associations</h2>
+<h2 id="class-Slide-label-Associations">Associations</h2>
 <ul><li>
 <p><strong>lesson</strong>: reference to the <a href="Lesson.html">Lesson</a>
 where the slide is contained (<strong>belongs_to</strong>)</p>
@@ -82,7 +84,7 @@ href="Document.html">Document</a> contained in this slide (see <a
 href="DocumentsSlide.html">DocumentsSlide</a>) (<strong>has_many</strong>)</p>
 </li></ul>
 
-<h2 id="label-Validations">Validations</h2>
+<h2 id="class-Slide-label-Validations">Validations</h2>
 <ul><li>
 <p><strong>presence</strong> with numericality greater than zero and presence
 of associated record, for the field <code>lesson_id</code></p>
@@ -125,7 +127,7 @@ href="Lesson.html#method-i-reached_the_maximum_of_slides-3F">Lesson#reached_the_
 <p><strong>correctness</strong> of math images links</p>
 </li></ul>
 
-<h2 id="label-Callbacks">Callbacks</h2>
+<h2 id="class-Slide-label-Callbacks">Callbacks</h2>
 <ol><li>
 <p><strong>before_destroy</strong> stop the destruction if the slide is of
 kind &#39;cover&#39;</p>
@@ -133,7 +135,7 @@ kind &#39;cover&#39;</p>
 <p>many callbacks related to math_formulas.</p>
 </li></ol>
 
-<h2 id="label-Database+callbacks">Database callbacks</h2>
+<h2 id="class-Slide-label-Database+callbacks">Database callbacks</h2>
 <ol><li>
 <p><strong>cascade</strong> <strong>destruction</strong> for the associated
 table <a href="MediaElementsSlide.html">MediaElementsSlide</a></p>
@@ -444,7 +446,7 @@ table <a href="DocumentsSlide.html">DocumentsSlide</a></p>
           <tr valign='top'>
             <td class="attr-name">AUDIO</td>
             <td>=</td>
-            <td class="attr-value">&#x27;audio&#x27;</td>
+            <td class="attr-value">&#39;audio&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -463,7 +465,7 @@ table <a href="DocumentsSlide.html">DocumentsSlide</a></p>
           <tr valign='top'>
             <td class="attr-name">COVER</td>
             <td>=</td>
-            <td class="attr-value">&#x27;cover&#x27;</td>
+            <td class="attr-value">&#39;cover&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -483,7 +485,7 @@ author, <a href="Subject.html">Subject</a></p>
           <tr valign='top'>
             <td class="attr-name">IMAGE1</td>
             <td>=</td>
-            <td class="attr-value">&#x27;image1&#x27;</td>
+            <td class="attr-value">&#39;image1&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -502,7 +504,7 @@ author, <a href="Subject.html">Subject</a></p>
           <tr valign='top'>
             <td class="attr-name">IMAGE2</td>
             <td>=</td>
-            <td class="attr-value">&#x27;image2&#x27;</td>
+            <td class="attr-value">&#39;image2&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -517,7 +519,7 @@ author, <a href="Subject.html">Subject</a></p>
           <tr valign='top'>
             <td class="attr-name">IMAGE3</td>
             <td>=</td>
-            <td class="attr-value">&#x27;image3&#x27;</td>
+            <td class="attr-value">&#39;image3&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -532,7 +534,7 @@ author, <a href="Subject.html">Subject</a></p>
           <tr valign='top'>
             <td class="attr-name">IMAGE4</td>
             <td>=</td>
-            <td class="attr-value">&#x27;image4&#x27;</td>
+            <td class="attr-value">&#39;image4&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -547,7 +549,7 @@ author, <a href="Subject.html">Subject</a></p>
           <tr valign='top'>
             <td class="attr-name">TEXT</td>
             <td>=</td>
-            <td class="attr-value">&#x27;text&#x27;</td>
+            <td class="attr-value">&#39;text&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -564,7 +566,7 @@ author, <a href="Subject.html">Subject</a></p>
           <tr valign='top'>
             <td class="attr-name">TITLE</td>
             <td>=</td>
-            <td class="attr-value">&#x27;title&#x27;</td>
+            <td class="attr-value">&#39;title&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -579,7 +581,7 @@ author, <a href="Subject.html">Subject</a></p>
           <tr valign='top'>
             <td class="attr-name">VIDEO1</td>
             <td>=</td>
-            <td class="attr-value">&#x27;video1&#x27;</td>
+            <td class="attr-value">&#39;video1&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -598,7 +600,7 @@ author, <a href="Subject.html">Subject</a></p>
           <tr valign='top'>
             <td class="attr-name">VIDEO2</td>
             <td>=</td>
-            <td class="attr-value">&#x27;video2&#x27;</td>
+            <td class="attr-value">&#39;video2&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -637,7 +639,7 @@ author, <a href="Subject.html">Subject</a></p>
           <tr valign='top'>
             <td class="attr-name">MAX_COVER_TITLE_LENGTH</td>
             <td>=</td>
-            <td class="attr-value">(I18n.t(&#x27;language_parameters.lesson.length_title&#x27;) &gt; 255 ? 255 : I18n.t(&#x27;language_parameters.lesson.length_title&#x27;))</td>
+            <td class="attr-value">(I18n.t(&#39;language_parameters.lesson.length_title&#39;) &gt; 255 ? 255 : I18n.t(&#39;language_parameters.lesson.length_title&#39;))</td>
           </tr>
           
             <tr valign='top'>
@@ -682,6 +684,8 @@ sti_types, or nil</p>
             </div>
           
           
+          
+
           
           
           
@@ -734,6 +738,8 @@ sti_types, or nil</p>
           
           
           
+
+          
           
           
             
@@ -775,6 +781,8 @@ validations of this model).</p>
             </div>
           
           
+          
+
           
           
           
@@ -820,6 +828,8 @@ validations of this model).</p>
             </div>
           
           
+          
+
           
           
           
@@ -873,6 +883,8 @@ href="LessonEditorController.html#method-i-change_slide_position">LessonEditorCo
           
           
           
+
+          
           
           
             
@@ -919,42 +931,6 @@ href="LessonEditorController.html#method-i-change_slide_position">LessonEditorCo
           </div>
         
         <div class="method">
-          <div class="title method-title" id="method-i-copy_math_images">
-            
-              <b>copy_math_images</b>()
-            
-            <a href="../classes/Slide.html#method-i-copy_math_images" name="method-i-copy_math_images" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Copies the math images</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-copy_math_images_source')" id="l_method-i-copy_math_images_source">show</a>
-                
-              </p>
-              <div id="method-i-copy_math_images_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 594</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">copy_math_images</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@math_images_copy_id</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">math_images</span> = <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@math_images_copy_id</span>).<span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">copy_to</span>(<span class="ruby-identifier">id</span>)
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
           <div class="title method-title" id="method-i-cover-3F">
             
               <b>cover?</b>()
@@ -974,6 +950,8 @@ href="LessonEditorController.html#method-i-change_slide_position">LessonEditorCo
             </div>
           
           
+          
+
           
           
           
@@ -1018,6 +996,8 @@ href="LessonEditorController.html#method-i-delete_slide">LessonEditorController#
             </div>
           
           
+          
+
           
           
           
@@ -1078,6 +1058,8 @@ href="LessonEditorController.html#method-i-delete_slide">LessonEditorController#
           
           
           
+
+          
           
           
             
@@ -1099,80 +1081,6 @@ href="LessonEditorController.html#method-i-delete_slide">LessonEditorController#
           </div>
         
         <div class="method">
-          <div class="title method-title" id="method-i-init_math_images_copy">
-            
-              <b>init_math_images_copy</b>()
-            
-            <a href="../classes/Slide.html#method-i-init_math_images_copy" name="method-i-init_math_images_copy" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Initializes math images copy</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-init_math_images_copy_source')" id="l_method-i-init_math_images_copy_source">show</a>
-                
-              </p>
-              <div id="method-i-init_math_images_copy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 587</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_math_images_copy</span>
-  <span class="ruby-ivar">@math_images_copy_id</span> = <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">model_id</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">model_id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">model_id</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">id</span>
-  <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">model_id</span> = <span class="ruby-keyword">nil</span>
-  <span class="ruby-keyword">true</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-init_validation">
-            
-              <b>init_validation</b>()
-            
-            <a href="../classes/Slide.html#method-i-init_validation" name="method-i-init_validation" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Initializes validation objects (see <a
-href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-init_validation_source')" id="l_method-i-init_validation_source">show</a>
-                
-              </p>
-              <div id="method-i-init_validation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 501</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
-  <span class="ruby-ivar">@slide</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
-  <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:lesson_id</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
           <div class="title method-title" id="method-i-math_images">
             
               <b>math_images</b>()
@@ -1186,6 +1094,8 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
             </div>
           
           
+          
+
           
           
           
@@ -1224,6 +1134,8 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
           
           
           
+
+          
           
           
             
@@ -1261,6 +1173,8 @@ unique.</p>
             </div>
           
           
+          
+
           
           
           
@@ -1305,6 +1219,8 @@ than one media element)</p>
             </div>
           
           
+          
+
           
           
           
@@ -1369,6 +1285,8 @@ than one media element)</p>
           
           
           
+
+          
           
           
             
@@ -1390,114 +1308,6 @@ than one media element)</p>
           </div>
         
         <div class="method">
-          <div class="title method-title" id="method-i-remove_math_images_folder">
-            
-              <b>remove_math_images_folder</b>()
-            
-            <a href="../classes/Slide.html#method-i-remove_math_images_folder" name="method-i-remove_math_images_folder" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Removes the folder where math images are conserved</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-remove_math_images_folder_source')" id="l_method-i-remove_math_images_folder_source">show</a>
-                
-              </p>
-              <div id="method-i-remove_math_images_folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 534</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">remove_math_images_folder</span>
-  <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">remove_folder</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-save_math_images">
-            
-              <b>save_math_images</b>()
-            
-            <a href="../classes/Slide.html#method-i-save_math_images" name="method-i-save_math_images" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Saves math images</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-save_math_images_source')" id="l_method-i-save_math_images_source">show</a>
-                
-              </p>
-              <div id="method-i-save_math_images_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 539</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">save_math_images</span>
-  <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">save</span>
-  <span class="ruby-keyword">true</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-stop_if_cover">
-            
-              <b>stop_if_cover</b>()
-            
-            <a href="../classes/Slide.html#method-i-stop_if_cover" name="method-i-stop_if_cover" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              <p>Stops the deletion if the slide is of kind &#39;cover&#39;</p>
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-stop_if_cover_source')" id="l_method-i-stop_if_cover_source">show</a>
-                
-              </p>
-              <div id="method-i-stop_if_cover_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/slide.rb, line 527</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">stop_if_cover</span>
-  <span class="ruby-ivar">@slide</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">COVER</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
           <div class="title method-title" id="method-i-text">
             
               <b>text</b>(options = {})
@@ -1511,6 +1321,8 @@ than one media element)</p>
             </div>
           
           
+          
+
           
           
           
@@ -1562,6 +1374,8 @@ than one media element)</p>
           
           
           
+
+          
           
           
             
@@ -1597,6 +1411,8 @@ than one media element)</p>
             </div>
           
           
+          
+
           
           
           
@@ -1674,9 +1490,7 @@ of <a href="MediaElementsSlide.html">MediaElementsSlide</a></p>
 <p><strong>documents</strong>: an array of integers. Each item of this
 argument represents a document</p>
 </li><li>
-<p><strong><a
-href="Slide.html#method-i-math_images">#math_images</a></strong>: math
-images.</p>
+<p><strong>math_images</strong>: math images.</p>
 </li></ul>
 
 <h3 id="method-i-update_with_media_elements-label-Returns">Returns</h3>
@@ -1692,10 +1506,12 @@ href="LessonEditorController.html#method-i-save_slide_and_exit">LessonEditorCont
 <a
 href="LessonEditorController.html#method-i-save_slide_and_edit">LessonEditorController#save_slide_and_edit</a></p>
 
-<pre>slide.update_with_media_elements((params[:title].blank? ? nil : params[:title]), (params[:text].blank? ? nil : params[:text]), media_elements_params)</pre>
+<pre><code>slide.update_with_media_elements((params[:title].blank? ? nil : params[:title]), (params[:text].blank? ? nil : params[:text]), media_elements_params)</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -1772,6 +1588,238 @@ href="LessonEditorController.html#method-i-save_slide_and_edit">LessonEditorCont
             </div>
             
           </div>
+              
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-copy_math_images">
+            
+              <b>copy_math_images</b>()
+            
+            <a href="../classes/Slide.html#method-i-copy_math_images" name="method-i-copy_math_images" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Copies the math images</p>
+            </div>
+          
+          
+          
+
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-copy_math_images_source')" id="l_method-i-copy_math_images_source">show</a>
+                
+              </p>
+              <div id="method-i-copy_math_images_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 594</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">copy_math_images</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@math_images_copy_id</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">math_images</span> = <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@math_images_copy_id</span>).<span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">copy_to</span>(<span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-init_math_images_copy">
+            
+              <b>init_math_images_copy</b>()
+            
+            <a href="../classes/Slide.html#method-i-init_math_images_copy" name="method-i-init_math_images_copy" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Initializes math images copy</p>
+            </div>
+          
+          
+          
+
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-init_math_images_copy_source')" id="l_method-i-init_math_images_copy_source">show</a>
+                
+              </p>
+              <div id="method-i-init_math_images_copy_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 587</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_math_images_copy</span>
+  <span class="ruby-ivar">@math_images_copy_id</span> = <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">model_id</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">model_id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">model_id</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">id</span>
+  <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">model_id</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-init_validation">
+            
+              <b>init_validation</b>()
+            
+            <a href="../classes/Slide.html#method-i-init_validation" name="method-i-init_validation" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Initializes validation objects (see <a
+href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
+            </div>
+          
+          
+          
+
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-init_validation_source')" id="l_method-i-init_validation_source">show</a>
+                
+              </p>
+              <div id="method-i-init_validation_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 501</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
+  <span class="ruby-ivar">@slide</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
+  <span class="ruby-ivar">@lesson</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:lesson_id</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-remove_math_images_folder">
+            
+              <b>remove_math_images_folder</b>()
+            
+            <a href="../classes/Slide.html#method-i-remove_math_images_folder" name="method-i-remove_math_images_folder" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Removes the folder where math images are conserved</p>
+            </div>
+          
+          
+          
+
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-remove_math_images_folder_source')" id="l_method-i-remove_math_images_folder_source">show</a>
+                
+              </p>
+              <div id="method-i-remove_math_images_folder_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 534</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">remove_math_images_folder</span>
+  <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">remove_folder</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-save_math_images">
+            
+              <b>save_math_images</b>()
+            
+            <a href="../classes/Slide.html#method-i-save_math_images" name="method-i-save_math_images" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Saves math images</p>
+            </div>
+          
+          
+          
+
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-save_math_images_source')" id="l_method-i-save_math_images_source">show</a>
+                
+              </p>
+              <div id="method-i-save_math_images_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 539</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">save_math_images</span>
+  <span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-stop_if_cover">
+            
+              <b>stop_if_cover</b>()
+            
+            <a href="../classes/Slide.html#method-i-stop_if_cover" name="method-i-stop_if_cover" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Stops the deletion if the slide is of kind &#39;cover&#39;</p>
+            </div>
+          
+          
+          
+
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-stop_if_cover_source')" id="l_method-i-stop_if_cover_source">show</a>
+                
+              </p>
+              <div id="method-i-stop_if_cover_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/slide.rb, line 527</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">stop_if_cover</span>
+  <span class="ruby-ivar">@slide</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@slide</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">COVER</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
         
         <div class="method">
           <div class="title method-title" id="method-i-validate_associations">
@@ -1787,6 +1835,8 @@ href="LessonEditorController.html#method-i-save_slide_and_edit">LessonEditorCont
             </div>
           
           
+          
+
           
           
           
@@ -1823,6 +1873,8 @@ href="LessonEditorController.html#method-i-save_slide_and_edit">LessonEditorCont
             </div>
           
           
+          
+
           
           
           
@@ -1862,6 +1914,8 @@ the title can&#39;t be different by the title of the lesson</p>
           
           
           
+
+          
           
           
             
@@ -1900,6 +1954,8 @@ the title can&#39;t be different by the title of the lesson</p>
             </div>
           
           
+          
+
           
           
           
@@ -1952,6 +2008,8 @@ attribute</p>
             </div>
           
           
+          
+
           
           
           
@@ -2011,6 +2069,8 @@ attribute</p>
           
           
           
+
+          
           
           
             
@@ -2047,6 +2107,8 @@ must be <code>nil</code></p>
           
           
           
+
+          
           
           
             
@@ -2082,6 +2144,8 @@ must be <code>nil</code></p>
             </div>
           
           
+          
+
           
           
           

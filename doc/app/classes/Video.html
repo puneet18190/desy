@@ -40,7 +40,7 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="class-Video-label-Description">Description</h2>
 
 <p>This class inherits from <a href="MediaElement.html">MediaElement</a>, and
 contains the specific methods needed for media elements of type
@@ -219,7 +219,7 @@ href="Media/Shared.html">Media::Shared</a>.</p>
           <tr valign='top'>
             <td class="attr-name">CACHE_RESTORE_PATH</td>
             <td>=</td>
-            <td class="attr-value">&#x27;/videos/cache/restore&#x27;</td>
+            <td class="attr-value">&#39;/videos/cache/restore&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -273,10 +273,12 @@ video, in 960 x 540 pixels).</p>
 
 <h3 id="method-i-cover_url-label-Usage">Usage</h3>
 
-<pre>&lt;%= image_tag video.cover_url %&gt;</pre>
+<pre><code>&lt;%= image_tag video.cover_url %&gt;</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -327,10 +329,12 @@ used without risks.</p>
 
 <h3 id="method-i-min_duration-label-Usage">Usage</h3>
 
-<pre>&lt;div class=&quot;videoPlayer _instance_of_player&quot; data-media-type=&quot;video&quot; data-initialized=&quot;false&quot; data-duration=&quot;&lt;%= video.min_duration %&gt;&quot;&gt;</pre>
+<pre><code>&lt;div class=&quot;videoPlayer _instance_of_player&quot; data-media-type=&quot;video&quot; data-initialized=&quot;false&quot; data-duration=&quot;&lt;%= video.min_duration %&gt;&quot;&gt;</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -345,7 +349,7 @@ used without risks.</p>
               <div id="method-i-min_duration_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/video.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">min_duration</span>
-  [<span class="ruby-identifier">mp4_duration</span>, <span class="ruby-identifier">webm_duration</span>].<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_i</span>).<span class="ruby-identifier">min</span>
+  [<span class="ruby-identifier">mp4_duration</span>, <span class="ruby-identifier">webm_duration</span>].<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:to_i</span>).<span class="ruby-identifier">min</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -372,6 +376,8 @@ used without risks.</p>
             </div>
           
           
+          
+
           
           
           
@@ -409,13 +415,13 @@ used without risks.</p>
 
 <h3 id="method-i-mp4_duration-3D-label-Args">Args</h3>
 <ul><li>
-<p><strong><a
-href="Video.html#method-i-mp4_duration">#mp4_duration</a></strong>: the
-duration to be set</p>
+<p><strong>mp4_duration</strong>: the duration to be set</p>
 </li></ul>
             </div>
           
           
+          
+
           
           
           
@@ -457,12 +463,14 @@ duration to be set</p>
 
 <h3 id="method-i-mp4_url-label-Usage">Usage</h3>
 
-<pre>&lt;video&gt;
+<pre><code>&lt;video&gt;
   &lt;source src=&quot;&lt;%= video.mp4_url %&gt;&quot; type=&quot;video/mp4&quot;&gt;
-&lt;/video&gt;</pre>
+&lt;/video&gt;</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -527,14 +535,16 @@ kind &#39;video1&#39;, see <a href="Slide.html">Slide</a>)</p>
 
 <h3 id="method-i-placeholder_url-label-Usage">Usage</h3>
 
-<pre>&lt;% if video.converted? %&gt;
+<pre><code>&lt;% if video.converted? %&gt;
   &lt;%= render :partial =&gt; &quot;shared/players/custom/video&quot;, :locals =&gt; {:video =&gt; video} %&gt;
 &lt;% else %&gt;
   &lt;%= image_tag video.placeholder_url(:lesson_viewer_small) %&gt;
-&lt;% end %&gt;</pre>
+&lt;% end %&gt;</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -577,10 +587,12 @@ middle frame of the video resized to 200 x 200 pixels).</p>
 
 <h3 id="method-i-thumb_url-label-Usage">Usage</h3>
 
-<pre>&lt;%= image_tag video.thumb_url %&gt;</pre>
+<pre><code>&lt;%= image_tag video.thumb_url %&gt;</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -623,6 +635,8 @@ middle frame of the video resized to 200 x 200 pixels).</p>
           
           
           
+
+          
           
           
             
@@ -659,13 +673,13 @@ middle frame of the video resized to 200 x 200 pixels).</p>
 
 <h3 id="method-i-webm_duration-3D-label-Args">Args</h3>
 <ul><li>
-<p><strong><a
-href="Video.html#method-i-webm_duration">#webm_duration</a></strong>: the
-duration to be set</p>
+<p><strong>webm_duration</strong>: the duration to be set</p>
 </li></ul>
             </div>
           
           
+          
+
           
           
           
@@ -707,12 +721,14 @@ duration to be set</p>
 
 <h3 id="method-i-webm_url-label-Usage">Usage</h3>
 
-<pre>&lt;video&gt;
+<pre><code>&lt;video&gt;
   &lt;source src=&quot;&lt;%= video.webm_url %&gt;&quot; type=&quot;video/webm&quot;&gt;
-&lt;/video&gt;</pre>
+&lt;/video&gt;</code></pre>
             </div>
           
           
+          
+
           
           
           

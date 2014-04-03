@@ -196,7 +196,7 @@
           <tr valign='top'>
             <td class="attr-name">OUTPUT_M4A_FORMAT</td>
             <td>=</td>
-            <td class="attr-value">&#x27;%s.m4a&#x27;</td>
+            <td class="attr-value">&#39;%s.m4a&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -208,7 +208,7 @@
           <tr valign='top'>
             <td class="attr-name">OUTPUT_OGG_FORMAT</td>
             <td>=</td>
-            <td class="attr-value">&#x27;%s.ogg&#x27;</td>
+            <td class="attr-value">&#39;%s.ogg&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -255,12 +255,14 @@ files per format</p>
 
 <h3 id="method-c-new-label-Examples">Examples</h3>
 
-<pre class="ruby"><span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Audio</span><span class="ruby-operator">::</span><span class="ruby-constant">Editing</span><span class="ruby-operator">::</span><span class="ruby-constant">Concat</span>.<span class="ruby-identifier">new</span>([ { <span class="ruby-identifier">ogg</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;input.ogg&#39;</span>, <span class="ruby-identifier">m4a</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;input.m4a&#39;</span>}, { <span class="ruby-identifier">ogg</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;input2.ogg&#39;</span>, <span class="ruby-identifier">m4a</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;input2.m4a&#39;</span>} ], <span class="ruby-string">&#39;/output/without/extension&#39;</span>).<span class="ruby-identifier">run</span> 
-<span class="ruby-comment">#=&gt; { m4a:&#39;/output/without/extension.m4a&#39;, ogg:&#39;/output/without/extension.ogg&#39; }</span>
-</pre>
+<pre><code>Media::Audio::Editing::Concat.new([ { ogg: &#39;input.ogg&#39;, m4a: &#39;input.m4a&#39;}, { ogg: &#39;input2.ogg&#39;, m4a: &#39;input2.m4a&#39;} ], &#39;/output/without/extension&#39;).run 
+#=&gt; { m4a:&#39;/output/without/extension.m4a&#39;, ogg:&#39;/output/without/extension.ogg&#39; }
+</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -273,7 +275,7 @@ files per format</p>
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 37</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">output_without_extension</span>, <span class="ruby-identifier">log_folder</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>) <span class="ruby-operator">&amp;&amp;</span>
          <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">present?</span>     <span class="ruby-operator">&amp;&amp;</span>
@@ -321,6 +323,8 @@ files per format</p>
           
           
           
+
+          
           
           
             
@@ -332,13 +336,13 @@ files per format</p>
                 
               </p>
               <div id="method-i-run_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 64</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>
   <span class="ruby-comment"># In order to check how many video pairs we have we can check m4a_inputs, because we already checked that m4a_inputs.size == ogg_inputs.size inside the initialization</span>
   <span class="ruby-comment"># Edge case: if there is just one inputs hash we can just copy the inputs to their respective outputs</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">copy_first_inputs_to_outputs</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">m4a_inputs</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-number">1</span>
   
-  <span class="ruby-identifier">in_tmp_dir</span> { <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span>{ <span class="ruby-identifier">concat</span>(<span class="ruby-identifier">format</span>) } } }
+  <span class="ruby-identifier">in_tmp_dir</span> { <span class="ruby-constant">Queue</span>.<span class="ruby-identifier">run</span> <span class="ruby-operator">*</span><span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span>{ <span class="ruby-identifier">concat</span>(<span class="ruby-identifier">format</span>) } }, <span class="ruby-identifier">close_connection_before_execution</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span> }
   <span class="ruby-identifier">outputs</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -363,6 +367,8 @@ files per format</p>
           
           
           
+
+          
           
           
             
@@ -374,10 +380,10 @@ files per format</p>
                 
               </p>
               <div id="method-i-concat_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 75</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">concat</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-identifier">create_log_folder</span>
-  <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">Concat</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">inputs</span>[<span class="ruby-identifier">format</span>], <span class="ruby-identifier">outputs</span>[<span class="ruby-identifier">format</span>], <span class="ruby-identifier">format</span>).<span class="ruby-identifier">run!</span> *<span class="ruby-identifier">logs</span>
+  <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">Concat</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">inputs</span>[<span class="ruby-identifier">format</span>], <span class="ruby-identifier">outputs</span>[<span class="ruby-identifier">format</span>], <span class="ruby-identifier">format</span>).<span class="ruby-identifier">run!</span> <span class="ruby-operator">*</span><span class="ruby-identifier">logs</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -400,6 +406,8 @@ inputs to their respective outputs</p>
           
           
           
+
+          
           
           
             
@@ -411,7 +419,7 @@ inputs to their respective outputs</p>
                 
               </p>
               <div id="method-i-copy_first_inputs_to_outputs_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 111</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">copy_first_inputs_to_outputs</span>
   <span class="ruby-constant">Hash</span>[
     <span class="ruby-ivar">@inputs</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span>, <span class="ruby-identifier">input</span><span class="ruby-operator">|</span>
@@ -441,6 +449,8 @@ inputs to their respective outputs</p>
           
           
           
+
+          
           
           
             
@@ -452,7 +462,7 @@ inputs to their respective outputs</p>
                 
               </p>
               <div id="method-i-inputs_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 96</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">inputs</span>
   <span class="ruby-ivar">@_inputs</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Hash</span>[ <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">f</span>, <span class="ruby-ivar">@inputs</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">input</span>[<span class="ruby-identifier">f</span>] } ] } ]
 <span class="ruby-keyword">end</span></pre>
@@ -476,6 +486,8 @@ inputs to their respective outputs</p>
           
           
           
+
+          
           
           
             
@@ -487,7 +499,7 @@ inputs to their respective outputs</p>
                 
               </p>
               <div id="method-i-m4a_inputs_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 101</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">m4a_inputs</span>
   <span class="ruby-ivar">@inputs</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">input</span>[<span class="ruby-value">:m4a</span>] }
 <span class="ruby-keyword">end</span></pre>
@@ -511,6 +523,8 @@ inputs to their respective outputs</p>
           
           
           
+
+          
           
           
             
@@ -522,7 +536,7 @@ inputs to their respective outputs</p>
                 
               </p>
               <div id="method-i-m4a_output_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 81</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">m4a_output</span>
   <span class="ruby-constant">OUTPUT_M4A_FORMAT</span> <span class="ruby-operator">%</span> <span class="ruby-ivar">@output_without_extension</span>
 <span class="ruby-keyword">end</span></pre>
@@ -546,6 +560,8 @@ inputs to their respective outputs</p>
           
           
           
+
+          
           
           
             
@@ -557,7 +573,7 @@ inputs to their respective outputs</p>
                 
               </p>
               <div id="method-i-ogg_inputs_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 106</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ogg_inputs</span>
   <span class="ruby-ivar">@inputs</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">input</span>[<span class="ruby-value">:ogg</span>] }
 <span class="ruby-keyword">end</span></pre>
@@ -581,6 +597,8 @@ inputs to their respective outputs</p>
           
           
           
+
+          
           
           
             
@@ -592,7 +610,7 @@ inputs to their respective outputs</p>
                 
               </p>
               <div id="method-i-ogg_output_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 86</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ogg_output</span>
   <span class="ruby-constant">OUTPUT_OGG_FORMAT</span> <span class="ruby-operator">%</span> <span class="ruby-ivar">@output_without_extension</span>
 <span class="ruby-keyword">end</span></pre>
@@ -616,6 +634,8 @@ inputs to their respective outputs</p>
           
           
           
+
+          
           
           
             
@@ -627,7 +647,7 @@ inputs to their respective outputs</p>
                 
               </p>
               <div id="method-i-outputs_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 91</span>
+                <pre><span class="ruby-comment"># File lib/media/audio/editing/concat.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">outputs</span>
   { <span class="ruby-identifier">m4a</span><span class="ruby-operator">:</span> <span class="ruby-identifier">m4a_output</span>, <span class="ruby-identifier">ogg</span><span class="ruby-operator">:</span> <span class="ruby-identifier">ogg_output</span> }
 <span class="ruby-keyword">end</span></pre>

@@ -205,6 +205,8 @@ href="../../../Info.html">Media::Info</a> of the input file</p>
           
           
           
+
+          
           
           
             
@@ -250,6 +252,8 @@ href="../../../Info.html">Media::Info</a> of the input file</p>
           
           
           
+
+          
           
           
             
@@ -284,6 +288,8 @@ href="../../../Info.html">Media::Info</a> of the input file</p>
             </div>
           
           
+          
+
           
           
           
@@ -329,26 +335,28 @@ EVALUATION&#39; and &#39;VIDEO FILTERS&#39;.</p>
 
 <p>We apply two filters:</p>
 
-<pre class="ruby"><span class="ruby-identifier">scale</span><span class="ruby-operator">:</span>
-  <span class="ruby-identifier">output</span> <span class="ruby-identifier">width</span><span class="ruby-operator">:</span>
-    <span class="ruby-identifier">lt</span>(<span class="ruby-identifier">iw</span><span class="ruby-operator">/</span><span class="ruby-identifier">ih</span>\,<span class="ruby-comment">#{OAR})    #=&gt; if input_width/input_height is less than the output aspect ratio</span>
-    *<span class="ruby-comment">#{OW}               #=&gt; then resize width to OUTPUT_WIDTH</span>
-    <span class="ruby-operator">+</span><span class="ruby-identifier">gte</span>(<span class="ruby-identifier">iw</span><span class="ruby-operator">/</span><span class="ruby-identifier">ih</span>\\,<span class="ruby-comment">#{OAR}) #=&gt; else if input_width/input_height is greater than or equal to the output aspect ratio</span>
-    *<span class="ruby-value">-1</span>                  <span class="ruby-comment">#=&gt; then resize width to a value which maintains the aspect ratio of the input video</span>
-  <span class="ruby-identifier">output</span> <span class="ruby-identifier">height</span><span class="ruby-operator">:</span>
-    <span class="ruby-identifier">lt</span>(<span class="ruby-identifier">iw</span><span class="ruby-operator">/</span><span class="ruby-identifier">ih</span>\,<span class="ruby-comment">#{OAR})    #=&gt; if input_width/input_height is less than the output aspect ratio</span>
-    *<span class="ruby-value">-1</span>                  <span class="ruby-comment">#=&gt; then resize height to a value which maintains the aspect ratio of the input video</span>
-    <span class="ruby-operator">+</span><span class="ruby-identifier">gte</span>(<span class="ruby-identifier">iw</span><span class="ruby-operator">/</span><span class="ruby-identifier">ih</span>\\,<span class="ruby-comment">#{OAR}) #=&gt; else if input_width/input_height is greater than or equal to the output aspect ratio</span>
-    *<span class="ruby-comment">#{OH}               #=&gt; then resize height to OUTPUT_HEIGHT</span>
-<span class="ruby-identifier">crop</span><span class="ruby-operator">:</span>
-  <span class="ruby-identifier">output</span> <span class="ruby-identifier">width</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">output</span> <span class="ruby-identifier">height</span><span class="ruby-operator">:</span>
-    <span class="ruby-comment">#{OW}:#{OH}         #=&gt; set respectively equal to OUTPUT_WIDTH and OUTPUT_HEIGHT</span>
-  <span class="ruby-identifier">crop</span> <span class="ruby-identifier">x</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">crop</span> <span class="ruby-identifier">y</span><span class="ruby-operator">:</span>
-    (<span class="ruby-identifier">iw</span><span class="ruby-operator">-</span><span class="ruby-constant">OW</span>)<span class="ruby-operator">/</span><span class="ruby-value">2</span><span class="ruby-operator">:</span>(<span class="ruby-identifier">ih</span><span class="ruby-operator">-</span><span class="ruby-constant">OH</span>)<span class="ruby-operator">/</span><span class="ruby-value">2</span> <span class="ruby-comment">#=&gt; sets the position of the top-left corner of the output in order to center the video</span>
-</pre>
+<pre><code>scale:
+  output width:
+    lt(iw/ih\,#{OAR})    #=&gt; if input_width/input_height is less than the output aspect ratio
+    *#{OW}               #=&gt; then resize width to OUTPUT_WIDTH
+    +gte(iw/ih\\,#{OAR}) #=&gt; else if input_width/input_height is greater than or equal to the output aspect ratio
+    *-1                  #=&gt; then resize width to a value which maintains the aspect ratio of the input video
+  output height:
+    lt(iw/ih\,#{OAR})    #=&gt; if input_width/input_height is less than the output aspect ratio
+    *-1                  #=&gt; then resize height to a value which maintains the aspect ratio of the input video
+    +gte(iw/ih\\,#{OAR}) #=&gt; else if input_width/input_height is greater than or equal to the output aspect ratio
+    *#{OH}               #=&gt; then resize height to OUTPUT_HEIGHT
+crop:
+  output width and output height:
+    #{OW}:#{OH}         #=&gt; set respectively equal to OUTPUT_WIDTH and OUTPUT_HEIGHT
+  crop x and crop y:
+    (iw-OW)/2:(ih-OH)/2 #=&gt; sets the position of the top-left corner of the output in order to center the video
+</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -385,6 +393,8 @@ EVALUATION&#39; and &#39;VIDEO FILTERS&#39;.</p>
           
           
           
+
+          
           
           
             
@@ -419,6 +429,8 @@ EVALUATION&#39; and &#39;VIDEO FILTERS&#39;.</p>
             </div>
           
           
+          
+
           
           
           

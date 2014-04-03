@@ -164,23 +164,25 @@ to the key :image</p>
 
 <h3 id="method-i-convert_parameters-label-Usage">Usage</h3>
 
-<pre class="ruby">{
-  :<span class="ruby-identifier">initial_audio</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OBJECT</span> <span class="ruby-constant">OF</span> <span class="ruby-constant">TYPE</span> <span class="ruby-constant">AUDIO</span> <span class="ruby-keyword">or</span> <span class="ruby-constant">NIL</span>,
-  :<span class="ruby-identifier">components</span> =<span class="ruby-operator">&gt;</span> [
+<pre><code>{
+  :initial_audio =&gt; OBJECT OF TYPE AUDIO or NIL,
+  :components =&gt; [
     {
-      :<span class="ruby-identifier">audio</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OBJECT</span> <span class="ruby-constant">OF</span> <span class="ruby-constant">TYPE</span> <span class="ruby-constant">AUDio</span>,
-      :<span class="ruby-identifier">from</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span>,
-      :<span class="ruby-identifier">to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">24</span>
+      :audio =&gt; OBJECT OF TYPE AUDio,
+      :from =&gt; 12,
+      :to =&gt; 24
     },
     {
-      <span class="ruby-identifier">etc</span><span class="ruby-operator">...</span>
+      etc...
     }
   ]
 }
-</pre>
+</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -254,6 +256,8 @@ to be passed to the editor</p>
           
           
           
+
+          
           
           
             
@@ -297,6 +301,8 @@ that <code>from</code> and <code>to</code> are correct</p>
             </div>
           
           
+          
+
           
           
           
@@ -342,6 +348,8 @@ href="Parameters.html#method-i-extract_component">#extract_component</a></p>
           
           
           
+
+          
           
           
             
@@ -377,6 +385,8 @@ input either the basic hash or the full one, and calculates the total time</p>
             </div>
           
           
+          
+
           
           
           

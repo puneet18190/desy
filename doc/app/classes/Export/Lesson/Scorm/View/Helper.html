@@ -175,6 +175,8 @@
           
           
           
+
+          
           
           
             
@@ -210,6 +212,8 @@
           
           
           
+
+          
           
           
             
@@ -224,7 +228,7 @@
                 <pre><span class="ruby-comment"># File lib/export/lesson/scorm/view/helper.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ims_duration</span>(<span class="ruby-identifier">media_element</span>, <span class="ruby-identifier">extension</span>)
   <span class="ruby-identifier">duration</span> = <span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{extension}_duration&quot;</span>).<span class="ruby-identifier">round</span>(<span class="ruby-number">1</span>)
-  <span class="ruby-identifier">float_seconds</span> = ((<span class="ruby-identifier">duration</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">duration</span>.<span class="ruby-identifier">to_i</span>) * <span class="ruby-number">10</span>).<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">float_seconds</span> = ((<span class="ruby-identifier">duration</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">duration</span>.<span class="ruby-identifier">to_i</span>) <span class="ruby-operator">*</span> <span class="ruby-number">10</span>).<span class="ruby-identifier">to_i</span>
   <span class="ruby-identifier">duration</span> = <span class="ruby-identifier">duration</span>.<span class="ruby-identifier">to_i</span>
   <span class="ruby-identifier">seconds</span> = <span class="ruby-identifier">duration</span> <span class="ruby-operator">%</span> <span class="ruby-number">60</span>
   <span class="ruby-identifier">duration</span> = <span class="ruby-identifier">duration</span> <span class="ruby-operator">/</span> <span class="ruby-number">60</span>
@@ -257,6 +261,8 @@
             </div>
           
           
+          
+
           
           
           
@@ -293,6 +299,8 @@
           
           
           
+
+          
           
           
             
@@ -328,6 +336,8 @@
             </div>
           
           
+          
+
           
           
           

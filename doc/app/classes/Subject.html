@@ -40,16 +40,16 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="class-Subject-label-Description">Description</h2>
 
 <p>ActiveRecord class that corresponds to the table <code>subjects</code>.</p>
 
-<h2 id="label-Fields">Fields</h2>
+<h2 id="class-Subject-label-Fields">Fields</h2>
 <ul><li>
 <p><strong>description</strong>: a word identifying the subject</p>
 </li></ul>
 
-<h2 id="label-Associations">Associations</h2>
+<h2 id="class-Subject-label-Associations">Associations</h2>
 <ul><li>
 <p><strong>users_subjects</strong>: list of instances of this subject
 associated to a <a href="User.html">User</a> through records of <a
@@ -59,7 +59,7 @@ href="UsersSubject.html">UsersSubject</a> (<strong>has_many</strong>)</p>
 <a href="Lesson.html">Lesson</a>) (<strong>has_many</strong>)</p>
 </li></ul>
 
-<h2 id="label-Validations">Validations</h2>
+<h2 id="class-Subject-label-Validations">Validations</h2>
 <ul><li>
 <p><strong>presence</strong> of <code>description</code></p>
 </li><li>
@@ -67,11 +67,11 @@ href="UsersSubject.html">UsersSubject</a> (<strong>has_many</strong>)</p>
 255)</p>
 </li></ul>
 
-<h2 id="label-Callbacks">Callbacks</h2>
+<h2 id="class-Subject-label-Callbacks">Callbacks</h2>
 
 <p>None</p>
 
-<h2 id="label-Database+callbacks">Database callbacks</h2>
+<h2 id="class-Subject-label-Database+callbacks">Database callbacks</h2>
 
 <p>None</p>
 
@@ -185,6 +185,8 @@ and in <a href="Statistics.html">Statistics</a></p>
           
           
           
+
+          
           
           
             
@@ -231,6 +233,8 @@ and in <a href="Statistics.html">Statistics</a></p>
           
           
           
+
+          
           
           
             
@@ -276,8 +280,7 @@ and in <a href="Statistics.html">Statistics</a></p>
               <h3 id="method-i-is_deletable-3F-label-Description">Description</h3>
 
 <p>A subject is deletable if it has no associated lessons or users. Used in
-the administrator (<a
-href="Admin/SettingsController.html#method-i-subjects">Admin::SettingsController#subjects</a>)</p>
+the administrator (Admin::SettingsController#subjects)</p>
 
 <h3 id="method-i-is_deletable-3F-label-Returns">Returns</h3>
 
@@ -285,6 +288,8 @@ href="Admin/SettingsController.html#method-i-subjects">Admin::SettingsController
             </div>
           
           
+          
+
           
           
           
@@ -322,6 +327,8 @@ href="Admin/SettingsController.html#method-i-subjects">Admin::SettingsController
             </div>
           
           
+          
+
           
           
           

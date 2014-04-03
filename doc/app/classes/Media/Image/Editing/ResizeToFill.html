@@ -123,6 +123,8 @@
           
           
           
+
+          
           
           
             
@@ -160,6 +162,8 @@
           
           
           
+
+          
           
           
             
@@ -180,12 +184,12 @@
       <span class="ruby-identifier">scale_x</span> = <span class="ruby-ivar">@width</span><span class="ruby-operator">/</span><span class="ruby-identifier">cols</span>.<span class="ruby-identifier">to_f</span>
       <span class="ruby-identifier">scale_y</span> = <span class="ruby-ivar">@height</span><span class="ruby-operator">/</span><span class="ruby-identifier">rows</span>.<span class="ruby-identifier">to_f</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">scale_x</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">scale_y</span>
-        <span class="ruby-identifier">cols</span> = (<span class="ruby-identifier">scale_x</span> * (<span class="ruby-identifier">cols</span> <span class="ruby-operator">+</span> <span class="ruby-number">0.5</span>)).<span class="ruby-identifier">round</span>
-        <span class="ruby-identifier">rows</span> = (<span class="ruby-identifier">scale_x</span> * (<span class="ruby-identifier">rows</span> <span class="ruby-operator">+</span> <span class="ruby-number">0.5</span>)).<span class="ruby-identifier">round</span>
+        <span class="ruby-identifier">cols</span> = (<span class="ruby-identifier">scale_x</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">cols</span> <span class="ruby-operator">+</span> <span class="ruby-number">0.5</span>)).<span class="ruby-identifier">round</span>
+        <span class="ruby-identifier">rows</span> = (<span class="ruby-identifier">scale_x</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">rows</span> <span class="ruby-operator">+</span> <span class="ruby-number">0.5</span>)).<span class="ruby-identifier">round</span>
         <span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">resize</span> <span class="ruby-node">&quot;#{cols}&quot;</span>
       <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">cols</span> = (<span class="ruby-identifier">scale_y</span> * (<span class="ruby-identifier">cols</span> <span class="ruby-operator">+</span> <span class="ruby-number">0.5</span>)).<span class="ruby-identifier">round</span>
-        <span class="ruby-identifier">rows</span> = (<span class="ruby-identifier">scale_y</span> * (<span class="ruby-identifier">rows</span> <span class="ruby-operator">+</span> <span class="ruby-number">0.5</span>)).<span class="ruby-identifier">round</span>
+        <span class="ruby-identifier">cols</span> = (<span class="ruby-identifier">scale_y</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">cols</span> <span class="ruby-operator">+</span> <span class="ruby-number">0.5</span>)).<span class="ruby-identifier">round</span>
+        <span class="ruby-identifier">rows</span> = (<span class="ruby-identifier">scale_y</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">rows</span> <span class="ruby-operator">+</span> <span class="ruby-number">0.5</span>)).<span class="ruby-identifier">round</span>
         <span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">resize</span> <span class="ruby-node">&quot;x#{rows}&quot;</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>

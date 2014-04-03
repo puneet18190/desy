@@ -104,6 +104,8 @@
           
           
           
+
+          
           
           
             
@@ -116,7 +118,7 @@
               </p>
               <div id="method-i-env_relative_path_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/env_relative_path.rb, line 20</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">env_relative_path</span>(*<span class="ruby-identifier">paths</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">env_relative_path</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">paths</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">production?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">paths</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">paths</span> <span class="ruby-operator">+</span> [<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>])
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -139,6 +141,8 @@
           
           
           
+
+          
           
           
             
@@ -151,7 +155,7 @@
               </p>
               <div id="method-i-env_relative_pathname_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/env_relative_path.rb, line 25</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">env_relative_pathname</span>(*<span class="ruby-identifier">paths</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">env_relative_pathname</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">paths</span>)
   <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">production?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">paths</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">paths</span> <span class="ruby-operator">+</span> [<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>])
 <span class="ruby-keyword">end</span></pre>
               </div>

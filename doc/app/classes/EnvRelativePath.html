@@ -45,14 +45,14 @@ this rule:</p>
 <p>The method <code>env_relative_pathname</code> returns a Pathname instance
 instead of a String.</p>
 
-<h3 id="label-Examples">Examples</h3>
+<h3 id="module-EnvRelativePath-label-Examples">Examples</h3>
 
-<pre class="ruby"><span class="ruby-comment"># Rails.env == &quot;production&quot;</span>
-<span class="ruby-identifier">env_relative_path</span>(<span class="ruby-string">&#39;asd&#39;</span>) <span class="ruby-comment">#=&gt; &#39;asd&#39;</span>
+<pre><code># Rails.env == &quot;production&quot;
+env_relative_path(&#39;asd&#39;) #=&gt; &#39;asd&#39;
 
-<span class="ruby-comment"># Rails.env == &quot;development&quot;</span>
-<span class="ruby-identifier">env_relative_path</span>(<span class="ruby-string">&#39;asd&#39;</span>) <span class="ruby-comment">#=&gt; &#39;development/asd&#39;</span>
-</pre>
+# Rails.env == &quot;development&quot;
+env_relative_path(&#39;asd&#39;) #=&gt; &#39;development/asd&#39;
+</code></pre>
 
     </div>
   
@@ -133,6 +133,8 @@ instead of a String.</p>
             </div>
           
           
+          
+
           
           
           

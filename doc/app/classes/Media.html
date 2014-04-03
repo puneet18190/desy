@@ -91,11 +91,11 @@
             
             <li><a href="../files/lib/media/logging_rb.html">lib/media/logging.rb</a></li>
             
+            <li><a href="../files/lib/media/queue_rb.html">lib/media/queue.rb</a></li>
+            
             <li><a href="../files/lib/media/shared_rb.html">lib/media/shared.rb</a></li>
             
             <li><a href="../files/lib/media/similar_durations_rb.html">lib/media/similar_durations.rb</a></li>
-            
-            <li><a href="../files/lib/media/thread_rb.html">lib/media/thread.rb</a></li>
             
             <li><a href="../files/lib/media/uploader_rb.html">lib/media/uploader.rb</a></li>
             
@@ -170,12 +170,12 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="module-Media-label-Description">Description</h2>
 
 <p>Main module of the media elements management, processing and editing
 implementation.</p>
 
-<h2 id="label-Configuration">Configuration</h2>
+<h2 id="module-Media-label-Configuration">Configuration</h2>
 
 <p>For details about the configuration, see Media::CONFIG .</p>
 
@@ -249,7 +249,7 @@ implementation.</p>
       
         <li>
           <span class="type">CLASS</span>
-          <a href="Media/Thread.html">Media::Thread</a>
+          <a href="Media/Queue.html">Media::Queue</a>
         </li>
       
         <li>
@@ -281,13 +281,13 @@ implementation.</p>
           <tr valign='top'>
             <td class="attr-name">MIME_TYPES</td>
             <td>=</td>
-            <td class="attr-value">{ &#x27;.jpg&#x27;  =&gt; &#x27;image/jpeg&#x27;  ,
-&#x27;.jpeg&#x27; =&gt; &#x27;image/jpeg&#x27;  ,
-&#x27;.png&#x27;  =&gt; &#x27;image/png&#x27;   ,
-&#x27;.mp4&#x27;  =&gt; &#x27;video/mp4&#x27;   ,
-&#x27;.webm&#x27; =&gt; &#x27;video/webm&#x27;  ,
-&#x27;.m4a&#x27;  =&gt; &#x27;audio/x-m4a&#x27; ,
-&#x27;.ogg&#x27;  =&gt; &#x27;audio/ogg&#x27;   }</td>
+            <td class="attr-value">{ &#39;.jpg&#39;  =&gt; &#39;image/jpeg&#39;  ,
+&#39;.jpeg&#39; =&gt; &#39;image/jpeg&#39;  ,
+&#39;.png&#39;  =&gt; &#39;image/png&#39;   ,
+&#39;.mp4&#39;  =&gt; &#39;video/mp4&#39;   ,
+&#39;.webm&#39; =&gt; &#39;video/webm&#39;  ,
+&#39;.m4a&#39;  =&gt; &#39;audio/x-m4a&#39; ,
+&#39;.ogg&#39;  =&gt; &#39;audio/ogg&#39;   }</td>
           </tr>
           
             <tr valign='top'>
@@ -304,29 +304,29 @@ avtools: {
 avprobe: {
 cmd: {
 sh_vars: {},
-bin: &#x27;avprobe&#x27;,
+bin: &#39;avprobe&#39;,
 subexec_timeout: 10
 }
 },
 avconv: {
 cmd: {
 sh_vars: {},
-bin: &#x27;avconv&#x27;,
+bin: &#39;avconv&#39;,
 timeout: 86400
 },
 video: {
 formats: {
 mp4: {
 codecs: %w( libx264 aac ),
-threads: &#x27;auto&#x27;,
+threads: &#39;auto&#39;,
 qa: 4,
-default_bitrates: { video: nil , audio: &#x27;200k&#x27; }
+default_bitrates: { video: nil , audio: &#39;200k&#39; }
 },
 webm: { 
 codecs: %w( libvpx libvorbis ),
 threads: 4,
 qa: 5,
-default_bitrates: { video: &#x27;2M&#x27;, audio: &#x27;200k&#x27; }
+default_bitrates: { video: &#39;2M&#39;, audio: &#39;200k&#39; }
 }
 },
 output: {
@@ -337,16 +337,16 @@ height: 540
 audio: {
 formats: {
 m4a: {
-codecs: [nil, &#x27;aac&#x27;],
-threads: &#x27;auto&#x27;,
+codecs: [nil, &#39;aac&#39;],
+threads: &#39;auto&#39;,
 qa: 4,
-default_bitrates: { video: nil, audio: &#x27;200k&#x27; }
+default_bitrates: { video: nil, audio: &#39;200k&#39; }
 },
 ogg: { 
-codecs: [nil, &#x27;libvorbis&#x27;],
+codecs: [nil, &#39;libvorbis&#39;],
 threads: 4,
 qa: 5,
-default_bitrates: { video: nil, audio: &#x27;200k&#x27; }
+default_bitrates: { video: nil, audio: &#39;200k&#39; }
 }
 }
 }
@@ -354,20 +354,20 @@ default_bitrates: { video: nil, audio: &#x27;200k&#x27; }
 },
 sox: {
 cmd: {
-bin: &#x27;sox&#x27;,
+bin: &#39;sox&#39;,
 global_options: %w( -V6 --buffer 131072 --multi-threaded )
 }
 },
 imagemagick: {
 convert: {
 cmd: {
-bin: &#x27;convert&#x27;
+bin: &#39;convert&#39;
 }
 }
 },
 video: {
-cover_format: &#x27;cover_%s.jpg&#x27;,
-thumb_format: &#x27;thumb_%s.jpg&#x27;,
+cover_format: &#39;cover_%s.jpg&#39;,
+thumb_format: &#39;thumb_%s.jpg&#39;,
 thumb_sizes:  [200, 200]
 },
 duration_threshold: 1

@@ -115,12 +115,12 @@
           <tr valign='top'>
             <td class="attr-name">FOLDER</td>
             <td>=</td>
-            <td class="attr-value">Lesson::FOLDER.join &#x27;scorms&#x27;, &#x27;views&#x27;</td>
+            <td class="attr-value">Lesson::FOLDER.join &#39;scorms&#39;, &#39;views&#39;</td>
           </tr>
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"></td>
+              <td colspan="2" class="attr-desc"><p>self.prepare nil, <a href="View/Helper.html">Helper</a></p></td>
             </tr>
           
         
@@ -129,7 +129,7 @@
             <td>=</td>
             <td class="attr-value">begin
 lookup_context = ActionView::LookupContext.new FOLDER
-lookup_context.view_paths.push *Rails.application.config.paths[&#x27;app/views&#x27;].to_a
+lookup_context.view_paths.push *Rails.application.config.paths[&#39;app/views&#39;].to_a
 lookup_context
 end</td>
           </tr>
@@ -201,6 +201,8 @@ end</td>
             </div>
           
           
+          
+
           
           
           

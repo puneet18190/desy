@@ -40,11 +40,11 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="class-Lesson-label-Description">Description</h2>
 
 <p>ActiveRecord class that corresponds to the table <code>lessons</code>.</p>
 
-<h2 id="label-Fields">Fields</h2>
+<h2 id="class-Lesson-label-Fields">Fields</h2>
 <ul><li>
 <p><strong>uuid</strong>: UUIDv4, used for ebooks univoque identifying</p>
 </li><li>
@@ -87,7 +87,7 @@ been modified and its modification not notified to users who have a link of
 the lesson</p>
 </li></ul>
 
-<h2 id="label-Associations">Associations</h2>
+<h2 id="class-Lesson-label-Associations">Associations</h2>
 <ul><li>
 <p><strong>user</strong>: reference to the <a href="User.html">User</a> who
 created the lesson (<strong>belongs_to</strong>)</p>
@@ -138,7 +138,7 @@ href="VirtualClassroomLesson.html">VirtualClassroomLesson</a>)
 (<strong>has_many</strong>)</p>
 </li></ul>
 
-<h2 id="label-Validations">Validations</h2>
+<h2 id="class-Lesson-label-Validations">Validations</h2>
 <ul><li>
 <p><strong>format</strong> for <code>uuid</code>. IMPORTANT: actually this is
 not validated, there is an inner validation in the database, for technical
@@ -187,7 +187,7 @@ href="Lesson.html#attribute-i-save_tags">#save_tags</a> is set as
 <code>true</code></strong></p>
 </li></ul>
 
-<h2 id="label-Callbacks">Callbacks</h2>
+<h2 id="class-Lesson-label-Callbacks">Callbacks</h2>
 <ol><li>
 <p><strong>before_destroy</strong> destroys associated bookmarks (see <a
 href="Bookmark.html">Bookmark</a>)</p>
@@ -221,7 +221,7 @@ validation in the private attribute <code>inner_tags</code></p>
 href="Slide.html">Slide</a> (this was added late to handle math images).</p>
 </li></ol>
 
-<h2 id="label-Database+callbacks">Database callbacks</h2>
+<h2 id="class-Lesson-label-Database+callbacks">Database callbacks</h2>
 <ol><li>
 <p><strong>cascade</strong> <strong>destruction</strong> for the associated
 table <a href="Like.html">Like</a></p>
@@ -238,7 +238,7 @@ table <a href="VirtualClassroomLesson.html">VirtualClassroomLesson</a></p>
 the lessons copied by the current lesson</p>
 </li></ol>
 
-<h2 id="label-Scopes">Scopes</h2>
+<h2 id="class-Lesson-label-Scopes">Scopes</h2>
 <ul><li>
 <p><strong>of</strong>: lessons owned by a user (see <a
 href="User.html#method-i-own_lessons">User#own_lessons</a>). Example (1:
@@ -607,7 +607,7 @@ FALSE)</p>
           <tr valign='top'>
             <td class="attr-name">MAX_TITLE_LENGTH</td>
             <td>=</td>
-            <td class="attr-value">(I18n.t(&#x27;language_parameters.lesson.length_title&#x27;) &gt; 255 ? 255 : I18n.t(&#x27;language_parameters.lesson.length_title&#x27;))</td>
+            <td class="attr-value">(I18n.t(&#39;language_parameters.lesson.length_title&#39;) &gt; 255 ? 255 : I18n.t(&#39;language_parameters.lesson.length_title&#39;))</td>
           </tr>
           
             <tr valign='top'>
@@ -696,6 +696,8 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>).</
           
           
           
+
+          
           
           
             
@@ -751,6 +753,8 @@ inserted</p>
             </div>
           
           
+          
+
           
           
           
@@ -818,6 +822,8 @@ is adding the lesson to his Virtual Classroom</p>
           
           
           
+
+          
           
           
             
@@ -884,6 +890,8 @@ be set</p>
           
           
           
+
+          
           
           
             
@@ -937,6 +945,8 @@ returns only the value for the specific type; otherwise it returns
             </div>
           
           
+          
+
           
           
           
@@ -994,6 +1004,8 @@ been optimized)</p>
           
           
           
+
+          
           
           
             
@@ -1039,6 +1051,8 @@ href="Buttons.html">Buttons</a>)</p>
             </div>
           
           
+          
+
           
           
           
@@ -1118,6 +1132,8 @@ is copying the lesson</p>
             </div>
           
           
+          
+
           
           
           
@@ -1240,6 +1256,8 @@ the lesson is new_record</p>
           
           
           
+
+          
           
           
             
@@ -1284,6 +1302,8 @@ href="LessonsController.html#method-i-destroy">LessonsController#destroy</a>.</p
             </div>
           
           
+          
+
           
           
           
@@ -1352,6 +1372,8 @@ href="LessonsController.html#method-i-dont_notify_modification">LessonsControlle
           
           
           
+
+          
           
           
             
@@ -1405,6 +1427,8 @@ the record has been optimized)</p>
           
           
           
+
+          
           
           
             
@@ -1441,6 +1465,8 @@ the record has been optimized)</p>
             </div>
           
           
+          
+
           
           
           
@@ -1493,6 +1519,8 @@ optimized)</p>
           
           
           
+
+          
           
           
             
@@ -1533,6 +1561,8 @@ path, otherwise it returns the file names (the default value is
           
           
           
+
+          
           
           
             
@@ -1546,7 +1576,7 @@ path, otherwise it returns the file names (the default value is
               <div id="method-i-math_images_paths_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/lesson.rb, line 291</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">math_images_paths</span>(<span class="ruby-identifier">modality</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">slides</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">to_a</span>(<span class="ruby-identifier">modality</span>) }.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">uniq_by</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">basename</span> }
+  <span class="ruby-identifier">slides</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">math_images</span>.<span class="ruby-identifier">to_a</span>(<span class="ruby-identifier">modality</span>) }.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">uniq</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">basename</span> }
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -1576,6 +1606,8 @@ and <a href="MediaElementsSlide.html">MediaElementsSlide</a>).</p>
             </div>
           
           
+          
+
           
           
           
@@ -1628,6 +1660,8 @@ href="LessonsController.html#method-i-notify_modification">LessonsController#not
             </div>
           
           
+          
+
           
           
           
@@ -1684,6 +1718,8 @@ href="LessonsController.html#method-i-publish">LessonsController#publish</a>.</p
             </div>
           
           
+          
+
           
           
           
@@ -1768,6 +1804,8 @@ href="Slide.html">Slide</a>.</p>
           
           
           
+
+          
           
           
             
@@ -1818,6 +1856,8 @@ href="VirtualClassroomController.html#method-i-remove_lesson_from_inside">Virtua
             </div>
           
           
+          
+
           
           
           
@@ -1896,6 +1936,8 @@ and <a href="Lesson.html#method-i-liked-3F">#liked?</a></p>
           
           
           
+
+          
           
           
             
@@ -1970,6 +2012,8 @@ href="LessonsMediaElementsShared.html">LessonsMediaElementsShared</a>)</p>
           
           
           
+
+          
           
           
             
@@ -2011,6 +2055,8 @@ href="LessonsMediaElementsShared.html">LessonsMediaElementsShared</a>)</p>
             </div>
           
           
+          
+
           
           
           
@@ -2060,6 +2106,8 @@ new_record) ready to be saved together with their taggings in the
           
           
           
+
+          
           
           
             
@@ -2078,7 +2126,7 @@ new_record) ready to be saved together with their taggings in the
     <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>
       <span class="ruby-identifier">tags</span>
     <span class="ruby-keyword">when</span> <span class="ruby-constant">Array</span>
-      <span class="ruby-identifier">tags</span>.<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_s</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;,&#39;</span>)
+      <span class="ruby-identifier">tags</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:to_s</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;,&#39;</span>)
     <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@tags</span>
 <span class="ruby-keyword">end</span></pre>
@@ -2112,6 +2160,8 @@ href="LessonsController.html#method-i-unpublish">LessonsController#unpublish</a>
             </div>
           
           
+          
+
           
           
           
@@ -2193,6 +2243,8 @@ href="MediaElement.html#method-i-visive_tags">MediaElement#visive_tags</a>)</p>
           
           
           
+
+          
           
           
             
@@ -2229,6 +2281,8 @@ href="MediaElement.html#method-i-visive_tags">MediaElement#visive_tags</a>)</p>
             </div>
           
           
+          
+
           
           
           
@@ -2276,6 +2330,8 @@ href="MediaElement.html#method-i-visive_tags">MediaElement#visive_tags</a>)</p>
           
           
           
+
+          
           
           
             
@@ -2314,6 +2370,8 @@ for safety)</p>
           
           
           
+
+          
           
           
             
@@ -2351,6 +2409,8 @@ It&#39;s initialized also the private attribute <code>inner_tags</code></p>
             </div>
           
           
+          
+
           
           
           
@@ -2410,6 +2470,8 @@ It&#39;s initialized also the private attribute <code>inner_tags</code></p>
           
           
           
+
+          
           
           
             
@@ -2447,6 +2509,8 @@ liked by the user or not</p>
           
           
           
+
+          
           
           
             
@@ -2481,6 +2545,8 @@ liked by the user or not</p>
             </div>
           
           
+          
+
           
           
           
@@ -2518,6 +2584,8 @@ created</p>
             </div>
           
           
+          
+
           
           
           
@@ -2572,6 +2640,8 @@ created</p>
           
           
           
+
+          
           
           
             
@@ -2611,6 +2681,8 @@ created</p>
           
           
           
+
+          
           
           
             
@@ -2647,6 +2719,8 @@ changed</p>
             </div>
           
           
+          
+
           
           
           
@@ -2688,6 +2762,8 @@ changed</p>
           
           
           
+
+          
           
           
             
@@ -2723,6 +2799,8 @@ unless the attribute <code>save_tags</code> is false</p>
             </div>
           
           
+          
+
           
           
           
@@ -2760,6 +2838,8 @@ in the Virtual Classroom or not</p>
             </div>
           
           
+          
+
           
           
           

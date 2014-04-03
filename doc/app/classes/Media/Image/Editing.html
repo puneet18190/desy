@@ -37,6 +37,12 @@
             
             <li><a href="../../../files/lib/media/image/editing/resize_to_fill_rb.html">lib/media/image/editing/resize_to_fill.rb</a></li>
             
+            <li><a href="../../../files/lib/media/video/editing/conversion_rb.html">lib/media/video/editing/conversion.rb</a></li>
+            
+            <li><a href="../../../files/lib/media/video/editing/text_to_video_rb.html">lib/media/video/editing/text_to_video.rb</a></li>
+            
+            <li><a href="../../../files/lib/media/video/uploader_rb.html">lib/media/video/uploader.rb</a></li>
+            
         </ul>
     </div>
     <div id="bodyContent">
@@ -187,6 +193,8 @@ size of the image</p>
           
           
           
+
+          
           
           
             
@@ -202,7 +210,7 @@ size of the image</p>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">ratio_value</span>(<span class="ruby-identifier">w</span>, <span class="ruby-identifier">h</span>, <span class="ruby-identifier">value</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">h</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">RATIO_Y</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">w</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">RATIO_Y</span>
 
-  <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_f</span> *
+  <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">*</span>
     <span class="ruby-keyword">if</span> ( <span class="ruby-identifier">w</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">h</span>.<span class="ruby-identifier">to_f</span> ) <span class="ruby-operator">&gt;</span> ( <span class="ruby-constant">RATIO_X</span> <span class="ruby-operator">/</span> <span class="ruby-constant">RATIO_Y</span> )
       <span class="ruby-identifier">w</span> <span class="ruby-operator">/</span> <span class="ruby-constant">RATIO_X</span>
     <span class="ruby-keyword">else</span>

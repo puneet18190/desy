@@ -40,11 +40,11 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="class-DashboardController-label-Description">Description</h2>
 
 <p>Controller for the dashboard</p>
 
-<h2 id="label-Models+used">Models used</h2>
+<h2 id="class-DashboardController-label-Models+used">Models used</h2>
 <ul><li>
 <p><a href="Lesson.html">Lesson</a></p>
 </li><li>
@@ -257,6 +257,8 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
           
           
           
+
+          
           
           
             
@@ -302,6 +304,8 @@ loaded.</p>
           
           
           
+
+          
           
           
             
@@ -316,8 +320,8 @@ loaded.</p>
                 <pre><span class="ruby-comment"># File app/controllers/dashboard_controller.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">lessons</span>
   <span class="ruby-ivar">@for_row</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;for_row&#39;</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;for_row&#39;</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
-  <span class="ruby-ivar">@rows</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;expanded&#39;</span>].<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">LESSON_PAGES</span> * <span class="ruby-constant">LESSON_ROWS_PER_PAGE</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
-  <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">suggested_lessons</span>(<span class="ruby-ivar">@for_row</span> * <span class="ruby-ivar">@rows</span>)
+  <span class="ruby-ivar">@rows</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;expanded&#39;</span>].<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">LESSON_PAGES</span> <span class="ruby-operator">*</span> <span class="ruby-constant">LESSON_ROWS_PER_PAGE</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
+  <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">suggested_lessons</span>(<span class="ruby-ivar">@for_row</span> <span class="ruby-operator">*</span> <span class="ruby-ivar">@rows</span>)
   <span class="ruby-ivar">@covers</span> = <span class="ruby-ivar">@lessons</span>[<span class="ruby-value">:covers</span>]
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-ivar">@lessons</span>[<span class="ruby-value">:records</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -349,6 +353,8 @@ be loaded.</p>
           
           
           
+
+          
           
           
             
@@ -363,8 +369,8 @@ be loaded.</p>
                 <pre><span class="ruby-comment"># File app/controllers/dashboard_controller.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">media_elements</span>
   <span class="ruby-ivar">@for_row</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;for_row&#39;</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;for_row&#39;</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
-  <span class="ruby-ivar">@rows</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;expanded&#39;</span>].<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">MEDIA_ELEMENT_PAGES</span> * <span class="ruby-constant">MEDIA_ELEMENT_ROWS_PER_PAGE</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
-  <span class="ruby-ivar">@media_elements</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">suggested_media_elements</span>(<span class="ruby-ivar">@for_row</span> * <span class="ruby-ivar">@rows</span>)
+  <span class="ruby-ivar">@rows</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;expanded&#39;</span>].<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">MEDIA_ELEMENT_PAGES</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MEDIA_ELEMENT_ROWS_PER_PAGE</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
+  <span class="ruby-ivar">@media_elements</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">suggested_media_elements</span>(<span class="ruby-ivar">@for_row</span> <span class="ruby-operator">*</span> <span class="ruby-ivar">@rows</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -389,6 +395,8 @@ extracted</p>
           
           
           
+
+          
           
           
             
@@ -402,7 +410,7 @@ extracted</p>
               <div id="method-i-get_lessons_for_dashboard_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/dashboard_controller.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_lessons_for_dashboard</span>
-  <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">suggested_lessons</span>(<span class="ruby-ivar">@lessons_for_row</span> * <span class="ruby-ivar">@lesson_rows</span>)
+  <span class="ruby-ivar">@lessons</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">suggested_lessons</span>(<span class="ruby-ivar">@lessons_for_row</span> <span class="ruby-operator">*</span> <span class="ruby-ivar">@lesson_rows</span>)
   <span class="ruby-ivar">@covers</span> = <span class="ruby-ivar">@lessons</span>[<span class="ruby-value">:covers</span>]
   <span class="ruby-ivar">@lessons</span> = <span class="ruby-ivar">@lessons</span>[<span class="ruby-value">:records</span>]
   <span class="ruby-ivar">@lessons_expandible</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">suggested_lessons</span>(<span class="ruby-ivar">@lessons_for_row</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>)[<span class="ruby-value">:records</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> (<span class="ruby-ivar">@lessons_for_row</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>)
@@ -434,6 +442,8 @@ elements to be extracted</p>
           
           
           
+
+          
           
           
             
@@ -447,7 +457,7 @@ elements to be extracted</p>
               <div id="method-i-get_media_elements_for_dashboard_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/dashboard_controller.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_media_elements_for_dashboard</span>
-  <span class="ruby-ivar">@media_elements</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">suggested_media_elements</span>(<span class="ruby-ivar">@media_elements_for_row</span> * <span class="ruby-ivar">@media_element_rows</span>)
+  <span class="ruby-ivar">@media_elements</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">suggested_media_elements</span>(<span class="ruby-ivar">@media_elements_for_row</span> <span class="ruby-operator">*</span> <span class="ruby-ivar">@media_element_rows</span>)
   <span class="ruby-ivar">@media_elements_expandible</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">suggested_media_elements</span>(<span class="ruby-ivar">@media_elements_for_row</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> (<span class="ruby-ivar">@media_elements_for_row</span> <span class="ruby-operator">+</span> <span class="ruby-number">1</span>)
   <span class="ruby-ivar">@media_elements_emptied</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">dashboard_emptied?</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@media_elements_expandible</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@media_elements_expanded</span>
@@ -476,6 +486,8 @@ elements to be extracted</p>
           
           
           
+
+          
           
           
             
@@ -490,7 +502,7 @@ elements to be extracted</p>
                 <pre><span class="ruby-comment"># File app/controllers/dashboard_controller.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">handle_expanded_lessons_in_dashboard</span>
   <span class="ruby-ivar">@lessons_current_page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;lessons_expanded&#39;</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;lessons_expanded&#39;</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
-  <span class="ruby-ivar">@lesson_pages_amount</span> = <span class="ruby-constant">Rational</span>(<span class="ruby-ivar">@lessons</span>.<span class="ruby-identifier">length</span>, (<span class="ruby-ivar">@lessons_for_row</span> * <span class="ruby-number">2</span>)).<span class="ruby-identifier">ceil</span>
+  <span class="ruby-ivar">@lesson_pages_amount</span> = <span class="ruby-constant">Rational</span>(<span class="ruby-ivar">@lessons</span>.<span class="ruby-identifier">length</span>, (<span class="ruby-ivar">@lessons_for_row</span> <span class="ruby-operator">*</span> <span class="ruby-number">2</span>)).<span class="ruby-identifier">ceil</span>
   <span class="ruby-ivar">@lessons_current_page</span> = <span class="ruby-ivar">@lesson_pages_amount</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lessons_current_page</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lesson_pages_amount</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@lesson_pages_amount</span> <span class="ruby-operator">!=</span> <span class="ruby-number">0</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -513,6 +525,8 @@ elements to be extracted</p>
           
           
           
+
+          
           
           
             
@@ -527,7 +541,7 @@ elements to be extracted</p>
                 <pre><span class="ruby-comment"># File app/controllers/dashboard_controller.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">handle_expanded_media_elements_in_dashboard</span>
   <span class="ruby-ivar">@media_elements_current_page</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;media_elements_expanded&#39;</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;media_elements_expanded&#39;</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
-  <span class="ruby-ivar">@media_element_pages_amount</span> = <span class="ruby-constant">Rational</span>(<span class="ruby-ivar">@media_elements</span>.<span class="ruby-identifier">length</span>, (<span class="ruby-ivar">@media_elements_for_row</span> * <span class="ruby-number">2</span>)).<span class="ruby-identifier">ceil</span>
+  <span class="ruby-ivar">@media_element_pages_amount</span> = <span class="ruby-constant">Rational</span>(<span class="ruby-ivar">@media_elements</span>.<span class="ruby-identifier">length</span>, (<span class="ruby-ivar">@media_elements_for_row</span> <span class="ruby-operator">*</span> <span class="ruby-number">2</span>)).<span class="ruby-identifier">ceil</span>
   <span class="ruby-ivar">@media_elements_current_page</span> = <span class="ruby-ivar">@media_element_pages_amount</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_elements_current_page</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@media_element_pages_amount</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@media_element_pages_amount</span> <span class="ruby-operator">!=</span> <span class="ruby-number">0</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -550,6 +564,8 @@ elements to be extracted</p>
           
           
           
+
+          
           
           
             
@@ -565,10 +581,10 @@ elements to be extracted</p>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize_pagination</span>
   <span class="ruby-ivar">@lessons_for_row</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;lessons_for_row&#39;</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;lessons_for_row&#39;</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@lessons_expanded</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;lessons_expanded&#39;</span>].<span class="ruby-identifier">present?</span>
-  <span class="ruby-ivar">@lesson_rows</span> = <span class="ruby-ivar">@lessons_expanded</span> <span class="ruby-operator">?</span> <span class="ruby-constant">LESSON_PAGES</span> * <span class="ruby-constant">LESSON_ROWS_PER_PAGE</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
+  <span class="ruby-ivar">@lesson_rows</span> = <span class="ruby-ivar">@lessons_expanded</span> <span class="ruby-operator">?</span> <span class="ruby-constant">LESSON_PAGES</span> <span class="ruby-operator">*</span> <span class="ruby-constant">LESSON_ROWS_PER_PAGE</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
   <span class="ruby-ivar">@media_elements_for_row</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;media_elements_for_row&#39;</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;media_elements_for_row&#39;</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">0</span>
   <span class="ruby-ivar">@media_elements_expanded</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;media_elements_expanded&#39;</span>].<span class="ruby-identifier">present?</span>
-  <span class="ruby-ivar">@media_element_rows</span> = <span class="ruby-ivar">@media_elements_expanded</span> <span class="ruby-operator">?</span> <span class="ruby-constant">MEDIA_ELEMENT_PAGES</span> * <span class="ruby-constant">MEDIA_ELEMENT_ROWS_PER_PAGE</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
+  <span class="ruby-ivar">@media_element_rows</span> = <span class="ruby-ivar">@media_elements_expanded</span> <span class="ruby-operator">?</span> <span class="ruby-constant">MEDIA_ELEMENT_PAGES</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MEDIA_ELEMENT_ROWS_PER_PAGE</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
   <span class="ruby-ivar">@lessons_for_row</span> = <span class="ruby-number">0</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lessons_for_row</span> <span class="ruby-operator">&gt;</span> <span class="ruby-number">50</span>
   <span class="ruby-ivar">@media_elements_for_row</span> = <span class="ruby-number">0</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_elements_for_row</span> <span class="ruby-operator">&gt;</span> <span class="ruby-number">50</span>
 <span class="ruby-keyword">end</span></pre>

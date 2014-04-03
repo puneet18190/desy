@@ -61,19 +61,12 @@
             
               
               <li>
-                <a href="#method-i-asset_path">asset_path</a>
+                <a href="#method-i-asset_path">asset_path</a>,
               </li>
-            
-          </ul>
-        </dd>
-      
-        <dt>E</dt>
-        <dd>
-          <ul>
             
               
               <li>
-                <a href="#method-i-env">env</a>
+                <a href="#method-i-assets">assets</a>
               </li>
             
           </ul>
@@ -147,6 +140,8 @@
           
           
           
+
+          
           
           
             
@@ -168,11 +163,11 @@
           </div>
         
         <div class="method">
-          <div class="title method-title" id="method-i-env">
+          <div class="title method-title" id="method-i-assets">
             
-              <b>env</b>()
+              <b>assets</b>()
             
-            <a href="../../../../classes/Export/Lesson/Archive/Assets.html#method-i-env" name="method-i-env" class="permalink">Link</a>
+            <a href="../../../../classes/Export/Lesson/Archive/Assets.html#method-i-assets" name="method-i-assets" class="permalink">Link</a>
           </div>
           
           
@@ -182,6 +177,8 @@
           
           
           
+
+          
           
           
             
@@ -189,13 +186,13 @@
               
               <p class="source-link">
                 Source: 
-                <a href="javascript:toggleSource('method-i-env_source')" id="l_method-i-env_source">show</a>
+                <a href="javascript:toggleSource('method-i-assets_source')" id="l_method-i-assets_source">show</a>
                 
               </p>
-              <div id="method-i-env_source" class="dyn-source">
+              <div id="method-i-assets_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File lib/export/lesson/archive/assets.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">env</span>
-  <span class="ruby-ivar">@sub_env</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">begin</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assets</span>
+  <span class="ruby-ivar">@sub_assets</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">assets</span> = <span class="ruby-keyword">super</span>
 
     <span class="ruby-identifier">assets</span>.<span class="ruby-identifier">context_class</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword">do</span>
@@ -226,6 +223,8 @@
             </div>
           
           
+          
+
           
           
           

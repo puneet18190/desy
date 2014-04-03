@@ -38,6 +38,13 @@
     <div id="bodyContent">
         <div id="content">
   
+    <div class="description">
+      
+<p>This class implements assets logic for exporting logics. It uses Sprockets
+adapting some configuration from sprockets-rails.</p>
+
+    </div>
+  
 
 
   
@@ -61,19 +68,12 @@
             
               
               <li>
-                <a href="#method-i-asset_path_upfolders">asset_path_upfolders</a>
+                <a href="#method-i-asset_path_upfolders">asset_path_upfolders</a>,
               </li>
-            
-          </ul>
-        </dd>
-      
-        <dt>B</dt>
-        <dd>
-          <ul>
             
               
               <li>
-                <a href="#method-i-bootstrap">bootstrap</a>
+                <a href="#method-i-assets">assets</a>
               </li>
             
           </ul>
@@ -106,30 +106,18 @@
           </ul>
         </dd>
       
-        <dt>E</dt>
-        <dd>
-          <ul>
-            
-              
-              <li>
-                <a href="#method-i-env">env</a>
-              </li>
-            
-          </ul>
-        </dd>
-      
         <dt>F</dt>
         <dd>
           <ul>
             
               
               <li>
-                <a href="#method-i-folder">folder</a>,
+                <a href="#method-c-folder">folder</a>,
               </li>
             
               
               <li>
-                <a href="#method-c-folder">folder</a>
+                <a href="#method-i-folder">folder</a>
               </li>
             
           </ul>
@@ -198,13 +186,7 @@
       
         <li>
           
-            Sprockets::Helpers::IsolatedHelper
-          
-        </li>
-      
-        <li>
-          
-            Sprockets::Helpers::RailsHelper
+            ::Sprockets::Rails::Helper
           
         </li>
       
@@ -244,6 +226,8 @@
           
           
           
+
+          
           
           
             
@@ -255,7 +239,7 @@
                 
               </p>
               <div id="method-c-compile_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 24</span>
+                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">compile</span>
   <span class="ruby-identifier">new</span>.<span class="ruby-identifier">compile</span>
 <span class="ruby-keyword">end</span></pre>
@@ -279,6 +263,8 @@
           
           
           
+
+          
           
           
             
@@ -290,7 +276,7 @@
                 
               </p>
               <div id="method-c-compiled-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 20</span>
+                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">compiled?</span>
   <span class="ruby-identifier">new</span>.<span class="ruby-identifier">compiled?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -314,6 +300,8 @@
           
           
           
+
+          
           
           
             
@@ -325,7 +313,7 @@
                 
               </p>
               <div id="method-c-folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 12</span>
+                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">folder</span>
   <span class="ruby-keyword">self</span><span class="ruby-operator">::</span><span class="ruby-constant">FOLDER</span>
 <span class="ruby-keyword">end</span></pre>
@@ -349,6 +337,8 @@
           
           
           
+
+          
           
           
             
@@ -360,7 +350,7 @@
                 
               </p>
               <div id="method-c-remove_folder-21_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 16</span>
+                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">remove_folder!</span>
   <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-identifier">folder</span>
 <span class="ruby-keyword">end</span></pre>
@@ -386,6 +376,8 @@
           
           
           
+
+          
           
           
             
@@ -397,13 +389,13 @@
                 
               </p>
               <div id="method-i-compile_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 36</span>
+                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compile</span>
   <span class="ruby-identifier">folder</span>.<span class="ruby-identifier">rmtree</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">folder</span>.<span class="ruby-identifier">exist?</span>
   <span class="ruby-identifier">folder</span>.<span class="ruby-identifier">mkpath</span>
 
-  <span class="ruby-identifier">env</span>.<span class="ruby-identifier">each_logical_path</span>(<span class="ruby-identifier">paths</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">logical_path</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">asset</span> = <span class="ruby-identifier">env</span>.<span class="ruby-identifier">find_asset</span>(<span class="ruby-identifier">logical_path</span>)
+  <span class="ruby-identifier">assets</span>.<span class="ruby-identifier">each_logical_path</span>(<span class="ruby-identifier">paths</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">logical_path</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">asset</span> = <span class="ruby-identifier">assets</span>.<span class="ruby-identifier">find_asset</span>(<span class="ruby-identifier">logical_path</span>)
       <span class="ruby-identifier">write_asset</span>(<span class="ruby-identifier">asset</span>)
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
@@ -428,6 +420,8 @@
           
           
           
+
+          
           
           
             
@@ -439,7 +433,7 @@
                 
               </p>
               <div id="method-i-compiled-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 32</span>
+                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compiled?</span>
   <span class="ruby-identifier">folder</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">folder</span>.<span class="ruby-identifier">entries</span>.<span class="ruby-identifier">present?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -463,6 +457,8 @@
           
           
           
+
+          
           
           
             
@@ -474,7 +470,7 @@
                 
               </p>
               <div id="method-i-folder_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 28</span>
+                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">folder</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">folder</span>
 <span class="ruby-keyword">end</span></pre>
@@ -500,6 +496,8 @@
           
           
           
+
+          
           
           
             
@@ -511,10 +509,10 @@
                 
               </p>
               <div id="method-i-asset_path_upfolders_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 78</span>
+                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">asset_path_upfolders</span>
   <span class="ruby-ivar">@asset_path_upfolders</span> <span class="ruby-operator">||=</span> {}
-  <span class="ruby-ivar">@asset_path_upfolders</span>[<span class="ruby-ivar">@pathname</span>] <span class="ruby-operator">||=</span> ([<span class="ruby-string">&#39;..&#39;</span>] * <span class="ruby-identifier">pathname_nestings</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;/&#39;</span>)
+  <span class="ruby-ivar">@asset_path_upfolders</span>[<span class="ruby-ivar">@pathname</span>] <span class="ruby-operator">||=</span> ([<span class="ruby-string">&#39;..&#39;</span>] <span class="ruby-operator">*</span> <span class="ruby-identifier">pathname_nestings</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;/&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -522,19 +520,22 @@
           </div>
         
         <div class="method">
-          <div class="title method-title" id="method-i-bootstrap">
+          <div class="title method-title" id="method-i-assets">
             
-              <b>bootstrap</b>(assets)
+              <b>assets</b>()
             
-            <a href="../../classes/Export/Assets.html#method-i-bootstrap" name="method-i-bootstrap" class="permalink">Link</a>
+            <a href="../../classes/Export/Assets.html#method-i-assets" name="method-i-assets" class="permalink">Link</a>
           </div>
           
           
             <div class="description">
-              
+              <p>Adapted from sprockets-rails-2.0.1/lib/sprockets/railtie.rb, the relevant
+parts</p>
             </div>
           
           
+          
+
           
           
           
@@ -543,73 +544,22 @@
               
               <p class="source-link">
                 Source: 
-                <a href="javascript:toggleSource('method-i-bootstrap_source')" id="l_method-i-bootstrap_source">show</a>
+                <a href="javascript:toggleSource('method-i-assets_source')" id="l_method-i-assets_source">show</a>
                 
               </p>
-              <div id="method-i-bootstrap_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 100</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">bootstrap</span>(<span class="ruby-identifier">assets</span>)
-  <span class="ruby-identifier">config</span> = <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">config</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">compress</span>
-    <span class="ruby-comment"># temporarily hardcode default JS compressor to uglify. Soon, it will work</span>
-    <span class="ruby-comment"># the same as SCSS, where a default plugin sets the default.</span>
-    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">js_compressor</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
-      <span class="ruby-identifier">assets</span>.<span class="ruby-identifier">js_compressor</span> = <span class="ruby-constant">Sprockets</span><span class="ruby-operator">::</span><span class="ruby-constant">LazyCompressor</span>.<span class="ruby-identifier">new</span> { <span class="ruby-constant">Sprockets</span><span class="ruby-operator">::</span><span class="ruby-constant">Compressors</span>.<span class="ruby-identifier">registered_js_compressor</span>(<span class="ruby-identifier">config</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">js_compressor</span> <span class="ruby-operator">||</span> <span class="ruby-value">:uglifier</span>) }
-    <span class="ruby-keyword">end</span>
+              <div id="method-i-assets_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">assets</span>
+  <span class="ruby-ivar">@assets</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Sprockets</span><span class="ruby-operator">::</span><span class="ruby-constant">Environment</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">env</span><span class="ruby-operator">|</span>
+    <span class="ruby-operator">::</span><span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">paths</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">env</span>.<span class="ruby-identifier">append_path</span> <span class="ruby-identifier">v</span> }
 
-    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">css_compressor</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
-      <span class="ruby-identifier">assets</span>.<span class="ruby-identifier">css_compressor</span> = <span class="ruby-constant">Sprockets</span><span class="ruby-operator">::</span><span class="ruby-constant">LazyCompressor</span>.<span class="ruby-identifier">new</span> { <span class="ruby-constant">Sprockets</span><span class="ruby-operator">::</span><span class="ruby-constant">Compressors</span>.<span class="ruby-identifier">registered_css_compressor</span>(<span class="ruby-identifier">config</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">css_compressor</span>) }
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-              </div>
-            </div>
-            
-          </div>
-        
-        <div class="method">
-          <div class="title method-title" id="method-i-env">
-            
-              <b>env</b>()
-            
-            <a href="../../classes/Export/Assets.html#method-i-env" name="method-i-env" class="permalink">Link</a>
-          </div>
-          
-          
-            <div class="description">
-              
-            </div>
-          
-          
-          
-          
-          
-            
-            <div class="sourcecode">
-              
-              <p class="source-link">
-                Source: 
-                <a href="javascript:toggleSource('method-i-env_source')" id="l_method-i-env_source">show</a>
-                
-              </p>
-              <div id="method-i-env_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 57</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">env</span>
-  <span class="ruby-ivar">@env</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">begin</span>
-    <span class="ruby-identifier">assets</span> = <span class="ruby-constant">Sprockets</span><span class="ruby-operator">::</span><span class="ruby-constant">Environment</span>.<span class="ruby-identifier">new</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">to_s</span>
-
-    <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">paths</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">assets</span>.<span class="ruby-identifier">append_path</span> <span class="ruby-identifier">v</span> }
-
-    <span class="ruby-identifier">assets</span>.<span class="ruby-identifier">context_class</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword">do</span>
-      <span class="ruby-identifier">include</span> <span class="ruby-constant">Sprockets</span><span class="ruby-operator">::</span><span class="ruby-constant">Helpers</span><span class="ruby-operator">::</span><span class="ruby-constant">IsolatedHelper</span>
-      <span class="ruby-identifier">include</span> <span class="ruby-constant">Sprockets</span><span class="ruby-operator">::</span><span class="ruby-constant">Helpers</span><span class="ruby-operator">::</span><span class="ruby-constant">RailsHelper</span>
-    <span class="ruby-keyword">end</span>
-
-    <span class="ruby-identifier">assets</span>.<span class="ruby-identifier">context_class</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">env</span>.<span class="ruby-identifier">context_class</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">include</span> <span class="ruby-operator">::</span><span class="ruby-constant">Sprockets</span><span class="ruby-operator">::</span><span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Helper</span>
+      
       <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">pathname_nestings</span>
         <span class="ruby-identifier">nesting</span> = <span class="ruby-number">0</span>
         <span class="ruby-ivar">@pathname</span>.<span class="ruby-identifier">ascend</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
-          <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">in?</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">paths</span>
+          <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">in?</span> <span class="ruby-operator">::</span><span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">paths</span>
           <span class="ruby-identifier">nesting</span> <span class="ruby-operator">+=</span> <span class="ruby-number">1</span>
         <span class="ruby-keyword">end</span>
         <span class="ruby-identifier">nesting</span>
@@ -617,19 +567,18 @@
 
       <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">asset_path_upfolders</span>
         <span class="ruby-ivar">@asset_path_upfolders</span> <span class="ruby-operator">||=</span> {}
-        <span class="ruby-ivar">@asset_path_upfolders</span>[<span class="ruby-ivar">@pathname</span>] <span class="ruby-operator">||=</span> ([<span class="ruby-string">&#39;..&#39;</span>] * <span class="ruby-identifier">pathname_nestings</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;/&#39;</span>)
+        <span class="ruby-ivar">@asset_path_upfolders</span>[<span class="ruby-ivar">@pathname</span>] <span class="ruby-operator">||=</span> ([<span class="ruby-string">&#39;..&#39;</span>] <span class="ruby-operator">*</span> <span class="ruby-identifier">pathname_nestings</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;/&#39;</span>)
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
 
-    <span class="ruby-identifier">assets</span>.<span class="ruby-identifier">context_class</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">env</span>.<span class="ruby-identifier">context_class</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword">do</span>
       <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">sass_config</span>
-        <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">context_class</span>.<span class="ruby-identifier">sass_config</span>
+        <span class="ruby-operator">::</span><span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">context_class</span>.<span class="ruby-identifier">sass_config</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
 
-    <span class="ruby-identifier">bootstrap</span>(<span class="ruby-identifier">assets</span>)
-
-    <span class="ruby-identifier">assets</span>
+    <span class="ruby-identifier">env</span>.<span class="ruby-identifier">js_compressor</span>  = <span class="ruby-operator">::</span><span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">js_compressor</span>
+    <span class="ruby-identifier">env</span>.<span class="ruby-identifier">css_compressor</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">css_compressor</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -652,6 +601,8 @@
           
           
           
+
+          
           
           
             
@@ -663,11 +614,11 @@
                 
               </p>
               <div id="method-i-pathname_nestings_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 69</span>
+                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">pathname_nestings</span>
   <span class="ruby-identifier">nesting</span> = <span class="ruby-number">0</span>
   <span class="ruby-ivar">@pathname</span>.<span class="ruby-identifier">ascend</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">in?</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">paths</span>
+    <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">in?</span> <span class="ruby-operator">::</span><span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">paths</span>
     <span class="ruby-identifier">nesting</span> <span class="ruby-operator">+=</span> <span class="ruby-number">1</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">nesting</span>
@@ -692,6 +643,8 @@
           
           
           
+
+          
           
           
             
@@ -703,7 +656,7 @@
                 
               </p>
               <div id="method-i-paths_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 96</span>
+                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">paths</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-string">&#39;Must be implemented by a subclass&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -727,6 +680,8 @@
           
           
           
+
+          
           
           
             
@@ -738,9 +693,9 @@
                 
               </p>
               <div id="method-i-sass_config_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 85</span>
+                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">sass_config</span>
-  <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">context_class</span>.<span class="ruby-identifier">sass_config</span>
+  <span class="ruby-operator">::</span><span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">assets</span>.<span class="ruby-identifier">context_class</span>.<span class="ruby-identifier">sass_config</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -762,6 +717,8 @@
           
           
           
+
+          
           
           
             
@@ -773,7 +730,7 @@
                 
               </p>
               <div id="method-i-write_asset_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 49</span>
+                <pre><span class="ruby-comment"># File lib/export/assets.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">write_asset</span>(<span class="ruby-identifier">asset</span>)
   <span class="ruby-identifier">asset</span>.<span class="ruby-identifier">logical_path</span>.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">filename</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">folder</span>, <span class="ruby-identifier">path</span>

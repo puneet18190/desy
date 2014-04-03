@@ -40,7 +40,7 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="class-MediaElementsController-label-Description">Description</h2>
 
 <p>Controller for all the actions related to elements and their buttons. All
 over this controller we use the constant keywords defined in <a
@@ -58,7 +58,7 @@ happens only in the dashboard, see <a
 href="DashboardController.html">DashboardController</a>)</p>
 </li></ol>
 
-<h2 id="label-Models+used">Models used</h2>
+<h2 id="class-MediaElementsController-label-Models+used">Models used</h2>
 <ul><li>
 <p><a href="MediaElement.html">MediaElement</a></p>
 </li><li>
@@ -309,6 +309,8 @@ href="ApplicationController.html#method-i-initialize_media_element_destination">
           
           
           
+
+          
           
           
             
@@ -384,6 +386,8 @@ href="ApplicationController.html#method-i-initialize_players_counter">Applicatio
           
           
           
+
+          
           
           
             
@@ -423,6 +427,8 @@ href="ApplicationController.html#method-i-initialize_players_counter">Applicatio
             </div>
           
           
+          
+
           
           
           
@@ -478,6 +484,8 @@ href="ApplicationController.html#method-i-initialize_players_counter">Applicatio
             </div>
           
           
+          
+
           
           
           
@@ -541,6 +549,8 @@ href="ApplicationController.html#method-i-initialize_players_counter">Applicatio
             </div>
           
           
+          
+
           
           
           
@@ -607,6 +617,8 @@ href="ApplicationController.html#method-i-initialize_media_element_destination">
           
           
           
+
+          
           
           
             
@@ -662,6 +674,8 @@ href="ApplicationController.html#method-i-initialize_media_element_destination">
           
           
           
+
+          
           
           
             
@@ -714,6 +728,8 @@ href="MediaElementsController.html#method-i-initialize_paginator">#initialize_pa
           
           
           
+
+          
           
           
             
@@ -759,6 +775,8 @@ href="MediaElementsController.html#method-i-initialize_paginator">#initialize_pa
             </div>
           
           
+          
+
           
           
           
@@ -820,6 +838,8 @@ href="ImageEditorController.html#method-i-edit">ImageEditorController#edit</a>)<
           
           
           
+
+          
           
           
             
@@ -876,6 +896,8 @@ href="ApplicationController.html#method-i-initialize_media_element_destination">
             </div>
           
           
+          
+
           
           
           
@@ -945,6 +967,8 @@ href="ApplicationController.html#method-i-initialize_media_element_with_owner_an
             </div>
           
           
+          
+
           
           
           
@@ -1016,6 +1040,8 @@ href="ApplicationController.html#method-i-initialize_players_counter">Applicatio
           
           
           
+
+          
           
           
             
@@ -1052,6 +1078,8 @@ href="User.html#method-i-own_media_elements">User#own_media_elements</a></p>
             </div>
           
           
+          
+
           
           
           
@@ -1090,6 +1118,8 @@ href="User.html#method-i-own_media_elements">User#own_media_elements</a></p>
           
           
           
+
+          
           
           
             
@@ -1108,7 +1138,7 @@ href="User.html#method-i-own_media_elements">User#own_media_elements</a></p>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@display</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">DISPLAY_MODES</span>[<span class="ruby-value">:expanded</span>]
     <span class="ruby-ivar">@for_row</span> = <span class="ruby-identifier">correct_integer?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:for_row</span>]) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:for_row</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-number">1</span>
     <span class="ruby-ivar">@for_row</span> = <span class="ruby-number">1</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@for_row</span> <span class="ruby-operator">&gt;</span> <span class="ruby-number">50</span>
-    <span class="ruby-ivar">@for_page</span> = <span class="ruby-ivar">@for_row</span> * <span class="ruby-number">2</span>
+    <span class="ruby-ivar">@for_page</span> = <span class="ruby-ivar">@for_row</span> <span class="ruby-operator">*</span> <span class="ruby-number">2</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@for_page</span> = <span class="ruby-constant">FOR_PAGE</span>
   <span class="ruby-keyword">end</span>

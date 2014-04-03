@@ -191,11 +191,13 @@ paddings</p>
 
 <h3 id="method-c-new-label-Examples">Examples</h3>
 
-<pre>Media::Audio::Editing::Cmd.new([ [&#39;concat 0.wav&#39;, [1.234, 5.678] ], [&#39;concat 1.wav&#39;, [8.765, 4.321] ] ], &#39;output.wav&#39;)
-Media::Audio::Editing::Cmd.new([ [&#39;concat 0.m4a&#39;, [1.234, 5.678] ], [&#39;concat 1.m4a&#39;, [8.765, 4.321] ] ], &#39;output.m4a&#39;, :m4a)</pre>
+<pre><code>Media::Audio::Editing::Cmd.new([ [&#39;concat 0.wav&#39;, [1.234, 5.678] ], [&#39;concat 1.wav&#39;, [8.765, 4.321] ] ], &#39;output.wav&#39;)
+Media::Audio::Editing::Cmd.new([ [&#39;concat 0.m4a&#39;, [1.234, 5.678] ], [&#39;concat 1.m4a&#39;, [8.765, 4.321] ] ], &#39;output.m4a&#39;, :m4a)</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -233,6 +235,8 @@ Media::Audio::Editing::Cmd.new([ [&#39;concat 0.m4a&#39;, [1.234, 5.678] ], [&#3
             </div>
           
           
+          
+
           
           
           
@@ -284,6 +288,8 @@ sox pipe and passing it at sox, so it can add the pads</p>
           
           
           
+
+          
           
           
             
@@ -328,6 +334,8 @@ sox pipe and passing it at sox, so it can add the pads</p>
           
           
           
+
+          
           
           
             
@@ -364,6 +372,8 @@ sox pipe and passing it at sox, so it can add the pads</p>
           
           
           
+
+          
           
           
             
@@ -399,6 +409,8 @@ sox pipe and passing it at sox, so it can add the pads</p>
             </div>
           
           
+          
+
           
           
           
@@ -442,6 +454,8 @@ not</p>
           
           
           
+
+          
           
           
             
@@ -456,7 +470,7 @@ not</p>
                 <pre><span class="ruby-comment"># File lib/media/audio/editing/cmd/concat.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">unsupported_format?</span>
   <span class="ruby-keyword">case</span> <span class="ruby-ivar">@format</span>
-  <span class="ruby-keyword">when</span> *<span class="ruby-constant">UNSUPPORTED_FORMATS</span> <span class="ruby-keyword">then</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-operator">*</span><span class="ruby-constant">UNSUPPORTED_FORMATS</span> <span class="ruby-keyword">then</span> <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">else</span>                           <span class="ruby-keyword">false</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>

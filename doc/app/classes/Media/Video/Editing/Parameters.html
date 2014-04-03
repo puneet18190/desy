@@ -141,7 +141,7 @@ href="../../../VideoEditorController.html">VideoEditorController</a>)</p>
           <tr valign='top'>
             <td class="attr-name">VIDEO_COMPONENT</td>
             <td>=</td>
-            <td class="attr-value">&#x27;video&#x27;</td>
+            <td class="attr-value">&#39;video&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -153,7 +153,7 @@ href="../../../VideoEditorController.html">VideoEditorController</a>)</p>
           <tr valign='top'>
             <td class="attr-name">TEXT_COMPONENT</td>
             <td>=</td>
-            <td class="attr-value">&#x27;text&#x27;</td>
+            <td class="attr-value">&#39;text&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -165,7 +165,7 @@ href="../../../VideoEditorController.html">VideoEditorController</a>)</p>
           <tr valign='top'>
             <td class="attr-name">IMAGE_COMPONENT</td>
             <td>=</td>
-            <td class="attr-value">&#x27;image&#x27;</td>
+            <td class="attr-value">&#39;image&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -228,34 +228,36 @@ to the key :image</p>
 
 <h3 id="method-i-convert_parameters-label-Usage">Usage</h3>
 
-<pre class="ruby">{
-  :<span class="ruby-identifier">initial_video</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OBJECT</span> <span class="ruby-constant">OF</span> <span class="ruby-constant">TYPE</span> <span class="ruby-constant">VIDEO</span> <span class="ruby-keyword">or</span> <span class="ruby-constant">NIL</span>,
-  :<span class="ruby-identifier">audio_track</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OBJECT</span> <span class="ruby-constant">OF</span> <span class="ruby-constant">TYPE</span> <span class="ruby-constant">AUDIO</span> <span class="ruby-keyword">or</span> <span class="ruby-constant">NIL</span>,
-  :<span class="ruby-identifier">components</span> =<span class="ruby-operator">&gt;</span> [
+<pre><code>{
+  :initial_video =&gt; OBJECT OF TYPE VIDEO or NIL,
+  :audio_track =&gt; OBJECT OF TYPE AUDIO or NIL,
+  :components =&gt; [
     {
-      :<span class="ruby-identifier">type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Video</span><span class="ruby-operator">::</span><span class="ruby-constant">VIDEO_COMPONENT</span>,
-      :<span class="ruby-identifier">video</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OBJECT</span> <span class="ruby-constant">OF</span> <span class="ruby-constant">TYPE</span> <span class="ruby-constant">VIDEO</span>,
-      :<span class="ruby-identifier">from</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span>,
-      :<span class="ruby-identifier">to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">24</span>
+      :type =&gt; Video::VIDEO_COMPONENT,
+      :video =&gt; OBJECT OF TYPE VIDEO,
+      :from =&gt; 12,
+      :to =&gt; 24
     },
     {
-      :<span class="ruby-identifier">type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Video</span><span class="ruby-operator">::</span><span class="ruby-constant">TEXT_COMPONENT</span>,
-      :<span class="ruby-identifier">content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Titolo titolo titolo&#39;</span>,
-      :<span class="ruby-identifier">duration</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">14</span>,
-      :<span class="ruby-identifier">background_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;red&#39;</span>,
-      :<span class="ruby-identifier">text_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;white&#39;</span>
+      :type =&gt; Video::TEXT_COMPONENT,
+      :content =&gt; &#39;Titolo titolo titolo&#39;,
+      :duration =&gt; 14,
+      :background_color =&gt; &#39;red&#39;,
+      :text_color =&gt; &#39;white&#39;
     },
     {
-      :<span class="ruby-identifier">type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Video</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE_COMPONENT</span>,
-      :<span class="ruby-identifier">image</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OBJECT</span> <span class="ruby-constant">OF</span> <span class="ruby-constant">TYPE</span> <span class="ruby-constant">IMAGE</span>,
-      :<span class="ruby-identifier">duration</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
+      :type =&gt; Video::IMAGE_COMPONENT,
+      :image =&gt; OBJECT OF TYPE IMAGE,
+      :duration =&gt; 2
     }
   ]
 }
-</pre>
+</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -352,6 +354,8 @@ to be passed to the editor</p>
           
           
           
+
+          
           
           
             
@@ -403,6 +407,8 @@ that <code>duration</code> is correct</p>
           
           
           
+
+          
           
           
             
@@ -445,6 +451,8 @@ that <code>duration</code> is correct</p>
             </div>
           
           
+          
+
           
           
           
@@ -491,6 +499,8 @@ that <code>from</code> and <code>to</code> are correct</p>
             </div>
           
           
+          
+
           
           
           
@@ -541,6 +551,8 @@ href="Parameters.html#method-i-extract_text_component">#extract_text_component</
           
           
           
+
+          
           
           
             
@@ -576,6 +588,8 @@ input either the basic hash or the full one, and calculates the total time</p>
             </div>
           
           
+          
+
           
           
           

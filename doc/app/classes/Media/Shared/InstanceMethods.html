@@ -201,6 +201,8 @@ conversion state</p>
           
           
           
+
+          
           
           
             
@@ -236,6 +238,8 @@ otherwise <code>false</code></p>
             </div>
           
           
+          
+
           
           
           
@@ -276,6 +280,8 @@ href="../Audio/Uploader.html">Media::Audio::Uploader</a>), otherwise
           
           
           
+
+          
           
           
             
@@ -315,6 +321,8 @@ value to the relative class uploader</p>
           
           
           
+
+          
           
           
             
@@ -351,6 +359,8 @@ one time, otherwise <code>false</code></p>
           
           
           
+
+          
           
           
             
@@ -386,6 +396,8 @@ one time, otherwise <code>false</code></p>
           
           
           
+
+          
           
           
             
@@ -401,7 +413,7 @@ one time, otherwise <code>false</code></p>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">overwrite!</span>
   <span class="ruby-comment"># tags is not an attribute, so it doesn&#39;t result in the changes; </span>
   <span class="ruby-comment"># using taggings_tags that is not yet changed</span>
-  <span class="ruby-identifier">old_fields</span> = <span class="ruby-constant">Hash</span>[ <span class="ruby-keyword">self</span>.<span class="ruby-identifier">changes</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">col</span>, (<span class="ruby-identifier">old</span>)<span class="ruby-operator">|</span> [<span class="ruby-identifier">col</span>, <span class="ruby-identifier">old</span>] } <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-string">&#39;tags&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">taggings_tags</span>.<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:word</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;, &#39;</span>)] ]
+  <span class="ruby-identifier">old_fields</span> = <span class="ruby-constant">Hash</span>[ <span class="ruby-keyword">self</span>.<span class="ruby-identifier">changes</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">col</span>, (<span class="ruby-identifier">old</span>)<span class="ruby-operator">|</span> [<span class="ruby-identifier">col</span>, <span class="ruby-identifier">old</span>] } <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-string">&#39;tags&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">taggings_tags</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:word</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;, &#39;</span>)] ]
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">old_fields</span> = <span class="ruby-identifier">old_fields</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">converted</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">transaction</span> <span class="ruby-keyword">do</span>
@@ -428,6 +440,8 @@ one time, otherwise <code>false</code></p>
             </div>
           
           
+          
+
           
           
           
@@ -465,6 +479,8 @@ one time, otherwise <code>false</code></p>
           
           
           
+
+          
           
           
             
@@ -499,6 +515,8 @@ one time, otherwise <code>false</code></p>
             </div>
           
           
+          
+
           
           
           
@@ -535,6 +553,8 @@ otherwise <code>false</code></p>
             </div>
           
           
+          
+
           
           
           
@@ -573,6 +593,8 @@ otherwise <code>false</code></p>
           
           
           
+
+          
           
           
             
@@ -610,6 +632,8 @@ otherwise <code>false</code></p>
           
           
           
+
+          
           
           
             
@@ -644,6 +668,8 @@ otherwise <code>false</code></p>
             </div>
           
           
+          
+
           
           
           
@@ -680,6 +706,8 @@ otherwise <code>false</code></p>
             </div>
           
           
+          
+
           
           
           

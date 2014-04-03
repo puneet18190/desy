@@ -40,12 +40,12 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="class-Users::SessionsController-label-Description">Description</h2>
 
 <p>Controller that handles sessions and login (see <a
 href="../UsersController.html">UsersController</a>).</p>
 
-<h3 id="label-Models+used">Models used</h3>
+<h3 id="class-Users::SessionsController-label-Models+used">Models used</h3>
 <ul><li>
 <p><a href="../User.html">User</a></p>
 </li></ul>
@@ -167,6 +167,8 @@ href="../ApplicationController.html#method-i-authenticate">ApplicationController
           
           
           
+
+          
           
           
             
@@ -204,7 +206,7 @@ href="../ApplicationController.html#method-i-authenticate">ApplicationController
             <span class="ruby-identifier">user</span> = <span class="ruby-keyword">nil</span>
           <span class="ruby-keyword">end</span>
         <span class="ruby-keyword">else</span>
-          <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> (<span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_trial_duration&#39;</span>] * <span class="ruby-number">60</span> * <span class="ruby-number">60</span> * <span class="ruby-number">24</span>)
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> (<span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_trial_duration&#39;</span>] <span class="ruby-operator">*</span> <span class="ruby-number">60</span> <span class="ruby-operator">*</span> <span class="ruby-number">60</span> <span class="ruby-operator">*</span> <span class="ruby-number">24</span>)
             <span class="ruby-identifier">error</span> = <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;other_popup_messages.login.expired_trial&#39;</span>)
             <span class="ruby-identifier">user</span> = <span class="ruby-keyword">nil</span>
           <span class="ruby-keyword">end</span>
@@ -221,7 +223,7 @@ href="../ApplicationController.html#method-i-authenticate">ApplicationController
         <span class="ruby-identifier">failed_authentication_redirect_args</span> <span class="ruby-identifier">path_params</span>, <span class="ruby-identifier">error</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">redirect_to</span> *<span class="ruby-identifier">redirect_args</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-operator">*</span><span class="ruby-identifier">redirect_args</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -254,6 +256,8 @@ href="../ApplicationController.html#method-i-authenticate">ApplicationController
             </div>
           
           
+          
+
           
           
           
@@ -294,6 +298,8 @@ authentication</p>
           
           
           
+
+          
           
           
             
@@ -333,6 +339,8 @@ and thus ignored)</p>
           
           
           
+
+          
           
           
             
@@ -350,8 +358,8 @@ and thus ignored)</p>
   <span class="ruby-identifier">components</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">split</span> <span class="ruby-identifier">url</span>
   <span class="ruby-identifier">invalid_components_indexes</span> = [<span class="ruby-number">0</span>, <span class="ruby-number">1</span>, <span class="ruby-number">2</span>, <span class="ruby-number">3</span>, <span class="ruby-number">4</span>, <span class="ruby-number">6</span>]
   <span class="ruby-identifier">valid_components_indexes</span> = [<span class="ruby-number">5</span>, <span class="ruby-number">7</span>]
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">components</span>.<span class="ruby-identifier">values_at</span>(*<span class="ruby-identifier">invalid_components_indexes</span>).<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">present?</span>
-  <span class="ruby-identifier">path</span>, <span class="ruby-identifier">query</span> = <span class="ruby-identifier">components</span>.<span class="ruby-identifier">values_at</span>(*<span class="ruby-identifier">valid_components_indexes</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">components</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">invalid_components_indexes</span>).<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">present?</span>
+  <span class="ruby-identifier">path</span>, <span class="ruby-identifier">query</span> = <span class="ruby-identifier">components</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">valid_components_indexes</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">blank?</span>
   <span class="ruby-identifier">path</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;?#{query}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">query</span>
   [<span class="ruby-identifier">path</span>]

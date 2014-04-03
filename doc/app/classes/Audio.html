@@ -33,6 +33,8 @@
             
             <li><a href="../files/app/models/audio_rb.html">app/models/audio.rb</a></li>
             
+            <li><a href="../files/app/models/media_element_rb.html">app/models/media_element.rb</a></li>
+            
         </ul>
     </div>
     <div id="bodyContent">
@@ -40,7 +42,7 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="class-Audio-label-Description">Description</h2>
 
 <p>This class inherits from <a href="MediaElement.html">MediaElement</a>, and
 contains the specific methods needed for media elements of type
@@ -207,7 +209,7 @@ href="Media/Shared.html">Media::Shared</a>.</p>
           <tr valign='top'>
             <td class="attr-name">CACHE_RESTORE_PATH</td>
             <td>=</td>
-            <td class="attr-value">&#x27;/audios/cache/restore&#x27;</td>
+            <td class="attr-value">&#39;/audios/cache/restore&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -219,7 +221,7 @@ href="Media/Shared.html">Media::Shared</a>.</p>
           <tr valign='top'>
             <td class="attr-name">THUMB_URL</td>
             <td>=</td>
-            <td class="attr-value">&#x27;/assets/simbolo-audio.svg&#x27;</td>
+            <td class="attr-value">&#39;/assets/simbolo-audio.svg&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -272,6 +274,8 @@ href="Media/Shared.html">Media::Shared</a>.</p>
           
           
           
+
+          
           
           
             
@@ -308,13 +312,13 @@ href="Media/Shared.html">Media::Shared</a>.</p>
 
 <h3 id="method-i-m4a_duration-3D-label-Args">Args</h3>
 <ul><li>
-<p><strong><a
-href="Audio.html#method-i-m4a_duration">#m4a_duration</a></strong>: the
-duration to be set</p>
+<p><strong>m4a_duration</strong>: the duration to be set</p>
 </li></ul>
             </div>
           
           
+          
+
           
           
           
@@ -356,12 +360,14 @@ duration to be set</p>
 
 <h3 id="method-i-m4a_url-label-Usage">Usage</h3>
 
-<pre>&lt;audio&gt;
+<pre><code>&lt;audio&gt;
   &lt;source src=&quot;&lt;%= audio.m4a_url %&gt;&quot; type=&quot;audio/mp4&quot;&gt;
-&lt;/audio&gt;</pre>
+&lt;/audio&gt;</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -412,10 +418,12 @@ used without risks.</p>
 
 <h3 id="method-i-min_duration-label-Usage">Usage</h3>
 
-<pre>&lt;div class=&quot;audioPlayer _instance_of_player&quot; data-media-type=&quot;audio&quot; data-initialized=&quot;false&quot; data-duration=&quot;&lt;%= audio.min_duration %&gt;&quot;&gt;</pre>
+<pre><code>&lt;div class=&quot;audioPlayer _instance_of_player&quot; data-media-type=&quot;audio&quot; data-initialized=&quot;false&quot; data-duration=&quot;&lt;%= audio.min_duration %&gt;&quot;&gt;</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -430,7 +438,7 @@ used without risks.</p>
               <div id="method-i-min_duration_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/audio.rb, line 181</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">min_duration</span>
-  [<span class="ruby-identifier">m4a_duration</span>, <span class="ruby-identifier">ogg_duration</span>].<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_i</span>).<span class="ruby-identifier">min</span>
+  [<span class="ruby-identifier">m4a_duration</span>, <span class="ruby-identifier">ogg_duration</span>].<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:to_i</span>).<span class="ruby-identifier">min</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -457,6 +465,8 @@ used without risks.</p>
             </div>
           
           
+          
+
           
           
           
@@ -494,13 +504,13 @@ used without risks.</p>
 
 <h3 id="method-i-ogg_duration-3D-label-Args">Args</h3>
 <ul><li>
-<p><strong><a
-href="Audio.html#method-i-ogg_duration">#ogg_duration</a></strong>: the
-duration to be set</p>
+<p><strong>ogg_duration</strong>: the duration to be set</p>
 </li></ul>
             </div>
           
           
+          
+
           
           
           
@@ -542,12 +552,14 @@ duration to be set</p>
 
 <h3 id="method-i-ogg_url-label-Usage">Usage</h3>
 
-<pre>&lt;audio&gt;
+<pre><code>&lt;audio&gt;
   &lt;source src=&quot;&lt;%= audio.ogg_url %&gt;&quot; type=&quot;audio/ogg&quot;&gt;
-&lt;/audio&gt;</pre>
+&lt;/audio&gt;</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -606,14 +618,16 @@ converted (an animated gif).</p>
 
 <h3 id="method-i-placeholder_url-label-Usage">Usage</h3>
 
-<pre>&lt;% if audio.converted? %&gt;
+<pre><code>&lt;% if audio.converted? %&gt;
   &lt;%= render :partial =&gt; &#39;shared/players/custom/audio&#39;, :locals =&gt; {:audio =&gt; audio} %&gt;
 &lt;% else %&gt;
   &lt;%= image_tag audio.placeholder_url(:lesson_viewer) %&gt;
-&lt;% end %&gt;</pre>
+&lt;% end %&gt;</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -661,10 +675,12 @@ href="Audio.html#method-i-placeholder_url">#placeholder_url</a> with
 
 <h3 id="method-i-thumb_url-label-Usage">Usage</h3>
 
-<pre>&lt;%= image_tag audio.thumb_url %&gt;</pre>
+<pre><code>&lt;%= image_tag audio.thumb_url %&gt;</code></pre>
             </div>
           
           
+          
+
           
           
           

@@ -179,7 +179,7 @@
           <tr valign='top'>
             <td class="attr-name">START_FRAME</td>
             <td>=</td>
-            <td class="attr-value">&#x27;start_frame.jpg&#x27;</td>
+            <td class="attr-value">&#39;start_frame.jpg&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -191,7 +191,7 @@
           <tr valign='top'>
             <td class="attr-name">VIDEO_NO_AUDIO</td>
             <td>=</td>
-            <td class="attr-value">&#x27;video_no_audio.mp4&#x27;</td>
+            <td class="attr-value">&#39;video_no_audio.mp4&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -229,7 +229,7 @@ seconds)</p></td>
           <tr valign='top'>
             <td class="attr-name">END_FRAME</td>
             <td>=</td>
-            <td class="attr-value">&#x27;end_frame.jpg&#x27;</td>
+            <td class="attr-value">&#39;end_frame.jpg&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -241,7 +241,7 @@ seconds)</p></td>
           <tr valign='top'>
             <td class="attr-name">TRANSITIONS</td>
             <td>=</td>
-            <td class="attr-value">&#x27;transition.jpg&#x27;</td>
+            <td class="attr-value">&#39;transition.jpg&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -328,10 +328,12 @@ extension</p>
 
 <h3 id="method-c-new-label-Examples">Examples</h3>
 
-<pre>Media::Video::Editing::Transition.new({ mp4: &#39;/path/to/start/media.mp4&#39;, webm: &#39;/path/to/start/media.webm&#39; }, { mp4: &#39;/path/to/end/media.mp4&#39;, webm: &#39;/path/to/end/media.webm&#39; }, &#39;/path/to/new/video/files&#39;)</pre>
+<pre><code>Media::Video::Editing::Transition.new({ mp4: &#39;/path/to/start/media.mp4&#39;, webm: &#39;/path/to/start/media.webm&#39; }, { mp4: &#39;/path/to/end/media.mp4&#39;, webm: &#39;/path/to/end/media.webm&#39; }, &#39;/path/to/new/video/files&#39;)</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -344,7 +346,7 @@ extension</p>
                 
               </p>
               <div id="method-c-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 54</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>(<span class="ruby-identifier">start_inputs</span>, <span class="ruby-identifier">end_inputs</span>, <span class="ruby-identifier">output_without_extension</span>, <span class="ruby-identifier">log_folder</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">start_inputs</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)                       <span class="ruby-keyword">and</span> 
          <span class="ruby-identifier">start_inputs</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span> <span class="ruby-operator">==</span> <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">sort</span>         <span class="ruby-keyword">and</span>
@@ -399,6 +401,8 @@ extension</p>
           
           
           
+
+          
           
           
             
@@ -410,7 +414,7 @@ extension</p>
                 
               </p>
               <div id="method-i-run_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 84</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 83</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">run</span>
   <span class="ruby-identifier">create_log_folder</span>
   
@@ -422,9 +426,9 @@ extension</p>
     <span class="ruby-identifier">extract_end_transition_frame</span>(<span class="ruby-identifier">end_frame</span>) <span class="ruby-comment"># 2.</span>
   
     <span class="ruby-identifier">transitions</span> = <span class="ruby-identifier">tmp_path</span> <span class="ruby-constant">TRANSITIONS</span>
-    <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">GenerateTransitionFrames</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_frame</span>, <span class="ruby-identifier">end_frame</span>, <span class="ruby-identifier">transitions</span>, <span class="ruby-constant">INNER_FRAMES_AMOUNT</span>).<span class="ruby-identifier">run!</span> *<span class="ruby-identifier">logs</span>(<span class="ruby-string">&#39;3_generate_transition_frames&#39;</span>) <span class="ruby-comment"># 3.</span>
+    <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">GenerateTransitionFrames</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_frame</span>, <span class="ruby-identifier">end_frame</span>, <span class="ruby-identifier">transitions</span>, <span class="ruby-constant">INNER_FRAMES_AMOUNT</span>).<span class="ruby-identifier">run!</span> <span class="ruby-operator">*</span><span class="ruby-identifier">logs</span>(<span class="ruby-string">&#39;3_generate_transition_frames&#39;</span>) <span class="ruby-comment"># 3.</span>
   
-    <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span>{ <span class="ruby-identifier">transition</span>(<span class="ruby-identifier">format</span>) } } <span class="ruby-comment"># 4.</span>
+    <span class="ruby-constant">Queue</span>.<span class="ruby-identifier">run</span> <span class="ruby-operator">*</span><span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span>{ <span class="ruby-identifier">transition</span>(<span class="ruby-identifier">format</span>) } }, <span class="ruby-identifier">close_connection_before_execution</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span> <span class="ruby-comment"># 4.</span>
   <span class="ruby-keyword">end</span>
   
   <span class="ruby-identifier">outputs</span>
@@ -451,6 +455,8 @@ extension</p>
           
           
           
+
+          
           
           
             
@@ -462,7 +468,7 @@ extension</p>
                 
               </p>
               <div id="method-i-end_frame_extraction_start_seek_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 135</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 134</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">end_frame_extraction_start_seek</span>(<span class="ruby-identifier">duration</span>)
   <span class="ruby-identifier">duration</span><span class="ruby-operator">-</span><span class="ruby-constant">LAST_FRAME_SKIP</span>
 <span class="ruby-keyword">end</span></pre>
@@ -487,6 +493,8 @@ if the frame couldn&#39;t be extracted</p>
           
           
           
+
+          
           
           
             
@@ -498,9 +506,9 @@ if the frame couldn&#39;t be extracted</p>
                 
               </p>
               <div id="method-i-extract_end_transition_frame_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 125</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_end_transition_frame</span>(<span class="ruby-identifier">output_path</span>)
-  <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">ExtractFrame</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@end_inputs</span>[<span class="ruby-value">:mp4</span>], <span class="ruby-identifier">output_path</span>, <span class="ruby-number">0</span>).<span class="ruby-identifier">run!</span> *<span class="ruby-identifier">logs</span>(<span class="ruby-string">&#39;2_extract_end_transition_frame&#39;</span>) <span class="ruby-comment"># 2.</span>
+  <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">ExtractFrame</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@end_inputs</span>[<span class="ruby-value">:mp4</span>], <span class="ruby-identifier">output_path</span>, <span class="ruby-number">0</span>).<span class="ruby-identifier">run!</span> <span class="ruby-operator">*</span><span class="ruby-identifier">logs</span>(<span class="ruby-string">&#39;2_extract_end_transition_frame&#39;</span>) <span class="ruby-comment"># 2.</span>
   
   <span class="ruby-comment"># Raise an exception if couldn&#39;t extract the frame</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span> <span class="ruby-identifier">output_path</span>
@@ -528,6 +536,8 @@ if the frame couldn&#39;t be extracted</p>
           
           
           
+
+          
           
           
             
@@ -539,11 +549,11 @@ if the frame couldn&#39;t be extracted</p>
                 
               </p>
               <div id="method-i-extract_start_transition_frame_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 111</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract_start_transition_frame</span>(<span class="ruby-identifier">output_path</span>)
   <span class="ruby-identifier">video_duration</span> = <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@start_inputs</span>[<span class="ruby-value">:mp4</span>]).<span class="ruby-identifier">duration</span>
   <span class="ruby-identifier">end_frame_extraction_start_seek</span>(<span class="ruby-identifier">video_duration</span>).<span class="ruby-identifier">step</span>(<span class="ruby-number">0</span>, <span class="ruby-constant">LAST_FRAME_STEP</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">seek</span><span class="ruby-operator">|</span>
-    <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">ExtractFrame</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@start_inputs</span>[<span class="ruby-value">:mp4</span>], <span class="ruby-identifier">output_path</span>, <span class="ruby-identifier">seek</span>).<span class="ruby-identifier">run!</span> *<span class="ruby-identifier">logs</span>(<span class="ruby-string">&#39;1_extract_start_transition_frame&#39;</span>)
+    <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">ExtractFrame</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@start_inputs</span>[<span class="ruby-value">:mp4</span>], <span class="ruby-identifier">output_path</span>, <span class="ruby-identifier">seek</span>).<span class="ruby-identifier">run!</span> <span class="ruby-operator">*</span><span class="ruby-identifier">logs</span>(<span class="ruby-string">&#39;1_extract_start_transition_frame&#39;</span>)
     <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span> <span class="ruby-identifier">output_path</span>
   <span class="ruby-keyword">end</span>
 
@@ -572,6 +582,8 @@ if the frame couldn&#39;t be extracted</p>
           
           
           
+
+          
           
           
             
@@ -583,7 +595,7 @@ if the frame couldn&#39;t be extracted</p>
                 
               </p>
               <div id="method-i-output_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 140</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 139</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">output</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-node">&quot;#{@output_without_extension}.#{format}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -607,6 +619,8 @@ if the frame couldn&#39;t be extracted</p>
           
           
           
+
+          
           
           
             
@@ -618,7 +632,7 @@ if the frame couldn&#39;t be extracted</p>
                 
               </p>
               <div id="method-i-outputs_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 145</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 144</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">outputs</span>
   <span class="ruby-constant">Hash</span>[ <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">format</span>, <span class="ruby-identifier">output</span>(<span class="ruby-identifier">format</span>)] } ]
 <span class="ruby-keyword">end</span></pre>
@@ -642,6 +656,8 @@ if the frame couldn&#39;t be extracted</p>
           
           
           
+
+          
           
           
             
@@ -653,10 +669,10 @@ if the frame couldn&#39;t be extracted</p>
                 
               </p>
               <div id="method-i-transition_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 105</span>
+                <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">transition</span>(<span class="ruby-identifier">format</span>)
   <span class="ruby-identifier">create_log_folder</span>
-  <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">Transition</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">tmp_path</span>(<span class="ruby-constant">TRANSITIONS_FORMAT</span>), <span class="ruby-identifier">output</span>(<span class="ruby-identifier">format</span>), <span class="ruby-constant">FRAME_RATE</span>, <span class="ruby-identifier">format</span>).<span class="ruby-identifier">run!</span> *<span class="ruby-identifier">logs</span>(<span class="ruby-node">&quot;4_#{format}&quot;</span>)
+  <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">Transition</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">tmp_path</span>(<span class="ruby-constant">TRANSITIONS_FORMAT</span>), <span class="ruby-identifier">output</span>(<span class="ruby-identifier">format</span>), <span class="ruby-constant">FRAME_RATE</span>, <span class="ruby-identifier">format</span>).<span class="ruby-identifier">run!</span> <span class="ruby-operator">*</span><span class="ruby-identifier">logs</span>(<span class="ruby-node">&quot;4_#{format}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

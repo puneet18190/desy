@@ -220,7 +220,7 @@
           <tr valign='top'>
             <td class="attr-name">STREAMS_REGEX_FORMAT</td>
             <td>=</td>
-            <td class="attr-value">&#x27;^    Stream #0\.\d+.*?: %s.*?: (.*)$&#x27;</td>
+            <td class="attr-value">&#39;^    Stream #0\.\d+.*?: %s.*?: (.*)$&#39;</td>
           </tr>
           
             <tr valign='top'>
@@ -338,6 +338,8 @@ consider the supplied media valid</p>
           
           
           
+
+          
           
           
             
@@ -387,6 +389,8 @@ valid, <code>nil</code> otherwise</p>
           
           
           
+
+          
           
           
             
@@ -425,6 +429,8 @@ valid, <code>nil</code> otherwise</p>
           
           
           
+
+          
           
           
             
@@ -447,8 +453,8 @@ valid, <code>nil</code> otherwise</p>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;not parsable duration&#39;</span>, <span class="ruby-identifier">cmd</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@cmd</span>, <span class="ruby-identifier">output</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@output</span>)
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">hours_to_seconds</span>   = <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">to_i</span>   * <span class="ruby-number">3600</span>
-  <span class="ruby-identifier">minutes_to_seconds</span> = <span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">to_i</span> * <span class="ruby-number">60</span>
+  <span class="ruby-identifier">hours_to_seconds</span>   = <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">to_i</span>   <span class="ruby-operator">*</span> <span class="ruby-number">3600</span>
+  <span class="ruby-identifier">minutes_to_seconds</span> = <span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> <span class="ruby-number">60</span>
 
   <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">hours_to_seconds</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">minutes_to_seconds</span>
 <span class="ruby-keyword">end</span></pre>
@@ -482,12 +488,14 @@ not compared</p>
 
 <h3 id="method-i-similar_to-3F-label-Examples">Examples</h3>
 
-<pre class="ruby"><span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;video1.webm&#39;</span>).<span class="ruby-identifier">similar_to?</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;video1.webm&#39;</span>).<span class="ruby-identifier">to_hash</span> <span class="ruby-comment">#=&gt; true</span>
-<span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;video1.webm&#39;</span>).<span class="ruby-identifier">similar_to?</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;video1.mp4&#39;</span>).<span class="ruby-identifier">to_hash</span>  <span class="ruby-comment">#=&gt; false</span>
-</pre>
+<pre><code>Media::Info.new(&#39;video1.webm&#39;).similar_to? Media::Info.new(&#39;video1.webm&#39;).to_hash #=&gt; true
+Media::Info.new(&#39;video1.webm&#39;).similar_to? Media::Info.new(&#39;video1.mp4&#39;).to_hash  #=&gt; false
+</code></pre>
             </div>
           
           
+          
+
           
           
           
@@ -547,6 +555,8 @@ not compared</p>
             </div>
           
           
+          
+
           
           
           
@@ -613,6 +623,8 @@ not compared</p>
           
           
           
+
+          
           
           
             
@@ -650,6 +662,8 @@ not compared</p>
           
           
           
+
+          
           
           
             
@@ -685,6 +699,8 @@ valid, <code>nil</code> otherwise</p>
             </div>
           
           
+          
+
           
           
           
@@ -725,6 +741,8 @@ audio streams parsing in order to return the infos</p>
             </div>
           
           
+          
+
           
           
           
@@ -767,6 +785,8 @@ video streams parsing in order to return the infos</p>
             </div>
           
           
+          
+
           
           
           

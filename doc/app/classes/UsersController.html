@@ -40,11 +40,11 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="class-UsersController-label-Description">Description</h2>
 
 <p>Controller for actions related to user&#39;s profile and statistics</p>
 
-<h2 id="label-Models+used">Models used</h2>
+<h2 id="class-UsersController-label-Models+used">Models used</h2>
 <ul><li>
 <p><a href="User.html">User</a></p>
 </li><li>
@@ -57,7 +57,7 @@
 <p><a href="SchoolLevel.html">SchoolLevel</a></p>
 </li></ul>
 
-<h2 id="label-Subcontrollers">Subcontrollers</h2>
+<h2 id="class-UsersController-label-Subcontrollers">Subcontrollers</h2>
 <ul><li>
 <p><a href="Users/SessionsController.html">Users::SessionsController</a></p>
 </li></ul>
@@ -284,6 +284,8 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
           
           
           
+
+          
           
           
             
@@ -334,6 +336,8 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
             </div>
           
           
+          
+
           
           
           
@@ -442,6 +446,8 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
           
           
           
+
+          
           
           
             
@@ -490,6 +496,8 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
             </div>
           
           
+          
+
           
           
           
@@ -545,6 +553,8 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
             </div>
           
           
+          
+
           
           
           
@@ -618,6 +628,8 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
           
           
           
+
+          
           
           
             
@@ -663,6 +675,8 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
             </div>
           
           
+          
+
           
           
           
@@ -710,6 +724,8 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
             </div>
           
           
+          
+
           
           
           
@@ -762,6 +778,8 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
           
           
           
+
+          
           
           
             
@@ -775,7 +793,7 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
               <div id="method-i-reset_password_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 198</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">reset_password</span>
-  <span class="ruby-identifier">new_password</span>, <span class="ruby-identifier">user</span> = *<span class="ruby-constant">User</span>.<span class="ruby-identifier">reset_password!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>])
+  <span class="ruby-identifier">new_password</span>, <span class="ruby-identifier">user</span> = <span class="ruby-operator">*</span><span class="ruby-constant">User</span>.<span class="ruby-identifier">reset_password!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>])
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_password</span>
     <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">new_password_confirmed</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">new_password</span>).<span class="ruby-identifier">deliver</span>
     <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;users/fullpage_notifications/reset_password/received&#39;</span>
@@ -814,6 +832,8 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
             </div>
           
           
+          
+
           
           
           
@@ -870,6 +890,8 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
             </div>
           
           
+          
+
           
           
           
@@ -947,6 +969,8 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
           
           
           
+
+          
           
           
             
@@ -1010,6 +1034,8 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
           
           
           
+
+          
           
           
             
@@ -1059,6 +1085,8 @@ href="ApplicationController.html#method-i-authenticate">ApplicationController#au
             </div>
           
           
+          
+
           
           
           
@@ -1120,6 +1148,8 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
           
           
           
+
+          
           
           
             
@@ -1169,6 +1199,8 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
             </div>
           
           
+          
+
           
           
           
@@ -1239,6 +1271,8 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
           
           
           
+
+          
           
           
             
@@ -1293,6 +1327,8 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
             </div>
           
           
+          
+
           
           
           

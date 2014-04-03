@@ -40,7 +40,7 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h2 id="class-ApplicationController-label-Description">Description</h2>
 
 <p>It contains the general filters and methods used all over the
 application&#39;s controllers. The following filters are forced all over
@@ -374,7 +374,7 @@ href="ApplicationController.html#method-i-initialize_players_counter">#initializ
           <tr valign='top'>
             <td class="attr-name">LOCATION_TYPES</td>
             <td>=</td>
-            <td class="attr-value">SETTINGS[&#x27;location_types&#x27;]</td>
+            <td class="attr-value">SETTINGS[&#39;location_types&#39;]</td>
           </tr>
           
             <tr valign='top'>
@@ -433,6 +433,8 @@ href="ApplicationController.html#method-i-initialize_players_counter">#initializ
           
           
           
+
+          
           
           
             
@@ -470,6 +472,8 @@ page</p>
           
           
           
+
+          
           
           
             
@@ -505,6 +509,8 @@ page</p>
           
           
           
+
+          
           
           
             
@@ -519,7 +525,7 @@ page</p>
                 <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">set_locale</span>
   <span class="ruby-identifier">available_languages</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;languages&#39;</span>]
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">i</span> = <span class="ruby-identifier">available_languages</span>.<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_s</span>).<span class="ruby-identifier">index</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:locale</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">i</span> = <span class="ruby-identifier">available_languages</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:to_s</span>).<span class="ruby-identifier">index</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:locale</span>])
     <span class="ruby-identifier">session</span>[<span class="ruby-value">:locale</span>] = <span class="ruby-identifier">available_languages</span>[<span class="ruby-identifier">i</span>]
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
@@ -543,6 +549,8 @@ page</p>
             </div>
           
           
+          
+
           
           
           
@@ -582,6 +590,8 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
           
           
           
+
+          
           
           
             
@@ -616,6 +626,8 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
             </div>
           
           
+          
+
           
           
           
@@ -654,6 +666,8 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
           
           
           
+
+          
           
           
             
@@ -688,6 +702,8 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
             </div>
           
           
+          
+
           
           
           
@@ -733,6 +749,8 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
           
           
           
+
+          
           
           
             
@@ -777,6 +795,8 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
             </div>
           
           
+          
+
           
           
           
@@ -830,6 +850,8 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
           
           
           
+
+          
           
           
             
@@ -851,23 +873,23 @@ href="User.html#method-i-admin-3F">User#admin?</a>)</p>
     <span class="ruby-value">:policies</span> =<span class="ruby-operator">&gt;</span> [],
     <span class="ruby-value">:purchase</span> =<span class="ruby-operator">&gt;</span> []
   }
-  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:general</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.fill_all_the_fields_or_too_long&#39;</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span> &amp; [<span class="ruby-value">:name</span>, <span class="ruby-value">:surname</span>]).<span class="ruby-identifier">any?</span>
+  <span class="ruby-identifier">resp</span>[<span class="ruby-value">:general</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.fill_all_the_fields_or_too_long&#39;</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">keys</span> <span class="ruby-operator">&amp;</span> [<span class="ruby-value">:name</span>, <span class="ruby-value">:surname</span>]).<span class="ruby-identifier">any?</span>
   <span class="ruby-identifier">resp</span>[<span class="ruby-value">:subjects</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.select_at_least_a_subject&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:users_subjects</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:password</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span>(<span class="ruby-value">:password</span>, <span class="ruby-value">:too_short</span>, {<span class="ruby-value">:count</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pas_min</span>}) <span class="ruby-operator">||</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span>(<span class="ruby-value">:password</span>, <span class="ruby-value">:too_long</span>, {<span class="ruby-value">:count</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pas_max</span>})
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:password</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:password_confirmation</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:password</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span>(<span class="ruby-value">:password</span>, <span class="ruby-value">:too_short</span>, {<span class="ruby-value">:count</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pas_min</span>}) <span class="ruby-operator">||</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span>(<span class="ruby-value">:password</span>, <span class="ruby-value">:too_long</span>, {<span class="ruby-value">:count</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pas_max</span>}))
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">pas_max</span>.<span class="ruby-identifier">nil?</span>
         <span class="ruby-identifier">resp</span>[<span class="ruby-value">:general</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.password_too_short&#39;</span>, <span class="ruby-value">:min</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pas_min</span>)
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">resp</span>[<span class="ruby-value">:general</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.password_not_in_range&#39;</span>, <span class="ruby-value">:min</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pas_min</span>, <span class="ruby-value">:max</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pas_max</span>)
       <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:password</span>, <span class="ruby-value">:confirmation</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:password_confirmation</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span>(<span class="ruby-value">:password_confirmation</span>, <span class="ruby-value">:confirmation</span>, <span class="ruby-value">:attribute</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Password&#39;</span>)
       <span class="ruby-identifier">resp</span>[<span class="ruby-value">:general</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.password_doesnt_match_confirmation&#39;</span>)
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">resp</span>[<span class="ruby-value">:general</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.invalid_password&#39;</span>)
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:email</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span> <span class="ruby-value">:email</span>, <span class="ruby-value">:confirmation</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:email</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:email_confirmation</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:email_confirmation</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">added?</span>(<span class="ruby-value">:email_confirmation</span>, <span class="ruby-value">:confirmation</span>, <span class="ruby-value">:attribute</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Email&#39;</span>)
       <span class="ruby-identifier">resp</span>[<span class="ruby-value">:general</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.email_doesnt_match_confirmation&#39;</span>)
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">resp</span>[<span class="ruby-value">:general</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;forms.error_captions.not_valid_email&#39;</span>)
@@ -904,6 +926,8 @@ integer</p>
           
           
           
+
+          
           
           
             
@@ -939,6 +963,8 @@ integer</p>
           
           
           
+
+          
           
           
             
@@ -969,12 +995,12 @@ integer</p>
           
           
             <div class="description">
-              <p>Returns the logged user without checking for @<a
-href="ApplicationController.html#method-i-current_user">#current_user</a>
-truthy</p>
+              <p>Returns the logged user without checking for @current_user truthy</p>
             </div>
           
           
+          
+
           
           
           
@@ -1012,6 +1038,8 @@ href="ApplicationController.html#method-i-current_user">#current_user</a></p>
           
           
           
+
+          
           
           
             
@@ -1047,6 +1075,8 @@ href="ApplicationController.html#method-i-set_locale">#set_locale</a>)</p>
             </div>
           
           
+          
+
           
           
           
@@ -1084,6 +1114,8 @@ corresponding document exists, and it belongs to the current user</p>
           
           
           
+
+          
           
           
             
@@ -1120,6 +1152,8 @@ corresponding document exists, and it belongs to the current user</p>
             </div>
           
           
+          
+
           
           
           
@@ -1173,6 +1207,8 @@ effect of removing a lesson or an element from the page</p>
           
           
           
+
+          
           
           
             
@@ -1215,6 +1251,8 @@ corresponding lesson exists</p>
           
           
           
+
+          
           
           
             
@@ -1254,6 +1292,8 @@ href="ButtonDestinations.html">ButtonDestinations</a>)</p>
           
           
           
+
+          
           
           
             
@@ -1291,6 +1331,8 @@ and additionally checks if the logged user owns the lesson</p>
             </div>
           
           
+          
+
           
           
           
@@ -1331,6 +1373,8 @@ public</p>
           
           
           
+
+          
           
           
             
@@ -1368,6 +1412,8 @@ controller who called the action</p>
           
           
           
+
+          
           
           
             
@@ -1403,6 +1449,8 @@ corresponding element exists</p>
             </div>
           
           
+          
+
           
           
           
@@ -1443,6 +1491,8 @@ href="ButtonDestinations.html">ButtonDestinations</a>)</p>
           
           
           
+
+          
           
           
             
@@ -1481,6 +1531,8 @@ and returns true if additionally the logged user owns the element</p>
           
           
           
+
+          
           
           
             
@@ -1518,6 +1570,8 @@ and returns true if additionally the element is private</p>
             </div>
           
           
+          
+
           
           
           
@@ -1558,6 +1612,8 @@ element is public</p>
           
           
           
+
+          
           
           
             
@@ -1597,6 +1653,8 @@ in the same page</p>
           
           
           
+
+          
           
           
             
@@ -1634,6 +1692,8 @@ in the same page</p>
           
           
           
+
+          
           
           
             
@@ -1669,6 +1729,8 @@ in the same page</p>
             </div>
           
           
+          
+
           
           
           
@@ -1709,6 +1771,8 @@ in the same page</p>
           
           
           
+
+          
           
           
             
@@ -1745,6 +1809,8 @@ in the same page</p>
           
           
           
+
+          
           
           
             
@@ -1780,6 +1846,8 @@ in the same page</p>
           
           
           
+
+          
           
           
             
@@ -1811,14 +1879,14 @@ in the same page</p>
           
           
             <div class="description">
-              <p>Sets directly @<a
-href="ApplicationController.html#method-i-current_user">#current_user</a>
-in order to avoid <a
+              <p>Sets directly @current_user in order to avoid <a
 href="ApplicationController.html#method-i-current_user">current_user</a> to
-check <a href="http://:user_id">session</a></p>
+check <a href=":user_id">session</a></p>
             </div>
           
           
+          
+
           
           
           
@@ -1856,6 +1924,8 @@ actions</p>
             </div>
           
           
+          
+
           
           
           
@@ -1897,6 +1967,8 @@ actions</p>
           
           
           
+
+          
           
           
             
@@ -1937,6 +2009,8 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>)</p
           
           
           
+
+          
           
           
             
@@ -1972,6 +2046,8 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>)</p
           
           
           
+
+          
           
           
             
@@ -1997,7 +2073,7 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>)</p
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-keyword">nil</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">else</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">logged_user</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> (<span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_trial_duration&#39;</span>] * <span class="ruby-number">60</span> * <span class="ruby-number">60</span> * <span class="ruby-number">24</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">logged_user</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> (<span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;saas_trial_duration&#39;</span>] <span class="ruby-operator">*</span> <span class="ruby-number">60</span> <span class="ruby-operator">*</span> <span class="ruby-number">60</span> <span class="ruby-operator">*</span> <span class="ruby-number">24</span>)
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-keyword">nil</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
@@ -2026,6 +2102,8 @@ initialized</p>
             </div>
           
           
+          
+
           
           
           

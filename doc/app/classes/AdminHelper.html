@@ -105,6 +105,8 @@
           
           
           
+
+          
           
           
             
@@ -126,9 +128,9 @@
       <span class="ruby-identifier">to</span> = <span class="ruby-identifier">items</span>.<span class="ruby-identifier">length</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]
-      <span class="ruby-identifier">from</span> = (<span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;admin_general_pagination&#39;</span>] * (<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">-</span> <span class="ruby-number">1</span>)) <span class="ruby-operator">+</span> <span class="ruby-number">1</span>
+      <span class="ruby-identifier">from</span> = (<span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;admin_general_pagination&#39;</span>] <span class="ruby-operator">*</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">-</span> <span class="ruby-number">1</span>)) <span class="ruby-operator">+</span> <span class="ruby-number">1</span>
       <span class="ruby-keyword">if</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">items</span>.<span class="ruby-identifier">num_pages</span>.<span class="ruby-identifier">to_i</span>)
-        <span class="ruby-identifier">to</span> = <span class="ruby-identifier">to</span> * <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span>
+        <span class="ruby-identifier">to</span> = <span class="ruby-identifier">to</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span>
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">to</span> = <span class="ruby-identifier">items</span>.<span class="ruby-identifier">total_count</span>
       <span class="ruby-keyword">end</span>
