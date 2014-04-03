@@ -3,15 +3,12 @@ require 'media'
 require 'notifications_job'
 require 'eventmachine' unless WINDOWS
 
-# Detect whether we are in a Delayed::Job process
-# TODO use Rake.application.current_task
 DELAYED_JOB = begin
-  basename        = File.basename $0
-  arguments       = $*
-  rake_args_regex = /\Ajobs:/
+  basename                = File.basename $0
+  delayed_jobs_task_regex = /\Ajobs:/
 
   ( basename == 'delayed_job' ) ||
-  ( basename == 'rake' && arguments.find{ |v| v =~ rake_args_regex } )
+  ( defined?(Rake) && Rake.try(:application).try(:top_level_tasks) && Rake.application.top_level_tasks.any?{ |v| v =~ delayed_jobs_task_regex } )
 end
 
 if DELAYED_JOB
