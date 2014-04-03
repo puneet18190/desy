@@ -31,23 +31,23 @@ gem 'threach'
 # TODO da mettere dopo
 # gem 'turbolinks'
 gem 'unicorn',                              platforms: :ruby
-gem 'whenever',                                                                                                                 require: false
+gem 'whenever',                                                                             require: false
 gem 'win32-dir',                            platforms: :mingw
 
 # TODO ordinare
 gem 'bootstrap-sass',          '~> 2.2.2.0'
 gem 'coffee-rails',            '~> 4.0.0'
 gem 'jquery-fileupload-rails'
-gem 'libv8',                   '~> 3.11.8',  platforms: :ruby
+gem 'libv8',                   '~> 3.11.8', platforms: :ruby
 gem 'sass-rails',              '~> 4.0.2'
 # Sass 3.3 leads to this issue https://github.com/nex3/sass/issues/1162
 gem 'sass',                    '~> 3.2.0'
-gem 'therubyracer',                          platforms: :ruby
+gem 'therubyracer',                         platforms: :ruby
 gem 'uglifier',                '>= 1.3.0'
 
 group :development do
   gem 'irb-benchmark'
-  gem 'mailcatcher',   platforms: :ruby
+  gem 'mailcatcher',                        platforms: :ruby
   # Basta assets che monopolizzano il log dell'application server!
   gem 'quiet_assets'
   gem 'rails-erd'
@@ -62,11 +62,11 @@ group :development, :test do
 end
 
 group :doc do
-  gem 'sdoc', require: false
+  gem 'sdoc',                                                                                require: false
 end
 
 group :irbtools do
-  gem 'irbtools', platforms: :ruby
+  gem 'irbtools',                           platforms: :ruby
 end
 
 group :production do
