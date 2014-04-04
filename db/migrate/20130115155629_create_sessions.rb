@@ -1,3 +1,4 @@
+# TODO rimuovere dopo che è stata applicata in tutti i produzione
 class CreateSessions < ActiveRecord::Migration
   def change
     create_table :sessions do |t|

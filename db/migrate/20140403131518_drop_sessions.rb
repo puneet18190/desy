@@ -1,3 +1,4 @@
+# TODO rimuovere dopo che è stata applicata in tutti i produzione
 class DropSessions < ActiveRecord::Migration
   def change
     remove_index :sessions, column: :session_id
