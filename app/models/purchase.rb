@@ -52,12 +52,11 @@
 #
 class Purchase < ActiveRecord::Base
   
-  # List of attributes which are accessible for massive assignment
-  ATTR_ACCESSIBLE = [:name,             :responsible,  :phone_number, :fax,
-                     :email,            :ssn_code,     :vat_code,     :address,
-                     :postal_code,      :city,         :country,      :accounts_number,
-                     :includes_invoice, :release_date, :start_date,   :expiration_date, :location_id]
-  attr_accessible *ATTR_ACCESSIBLE
+  # List of attributes which are accessible for mass assignment
+  ATTR_ACCESSIBLE = [ :accounts_number, :address, :city, :country, :email, 
+                      :expiration_date, :fax, :includes_invoice, :location_id, 
+                      :name, :phone_number, :postal_code, :release_date, 
+                      :responsible, :ssn_code, :start_date, :vat_code ]
   
   has_many :users
   belongs_to :location

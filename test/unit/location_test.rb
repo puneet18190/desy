@@ -3,19 +3,9 @@ require 'test_helper'
 class LocationTest < ActiveSupport::TestCase
   
   def setup
-    begin
-      @location = Location.new :name => 'Prova', :code => 'asdvga'
-      @location.sti_type = 'City'
-      @location.ancestry = nil
-    rescue ActiveModel::MassAssignmentSecurity::Error
-      @location = nil
-    end
-  end
-  
-  test 'attr_accessible' do
-    assert !@location.nil?
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Location.new(:ancestry => '1')}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Location.new(:sti_type => 'Cane')}
+    @location = Location.new :name => 'Prova', :code => 'asdvga'
+    @location.sti_type = 'City'
+    @location.ancestry = nil
   end
   
   test 'types' do

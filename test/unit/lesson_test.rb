@@ -6,14 +6,10 @@ class LessonTest < ActiveSupport::TestCase
   def setup
     @max_title = I18n.t('language_parameters.lesson.length_title')
     @max_description = I18n.t('language_parameters.lesson.length_description')
-    begin
-      @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
-      @lesson.copied_not_modified = false
-      @lesson.user_id = 1
-      @lesson.tags = 'ciao, come, stai, tu?'
-    rescue ActiveModel::MassAssignmentSecurity::Error
-      @lesson = nil
-    end
+    @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
+    @lesson.copied_not_modified = false
+    @lesson.user_id = 1
+    @lesson.tags = 'ciao, come, stai, tu?'
   end
   
   test 'valid_fixtures' do
@@ -102,14 +98,6 @@ class LessonTest < ActiveSupport::TestCase
     @lesson.is_public = nil
     @lesson.notified = nil
     assert_error_size 14, @lesson
-  end
-  
-  test 'attr_accessible' do
-    assert !@lesson.nil?
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Lesson.new(:is_public => true)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Lesson.new(:copied_not_modified => true)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Lesson.new(:parent_id => 2)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Lesson.new(:user_id => 1)}
   end
   
   test 'types' do

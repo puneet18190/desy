@@ -3,23 +3,15 @@ require 'test_helper'
 class PurchaseTest < ActiveSupport::TestCase
   
   def setup
-    begin
-      @purchase = Purchase.new :name => 'Scuola Media Pinco Pallino', :responsible => 'Pino Cammino', :phone_number => '0044/0678079087', :fax => '89-24-24',
-                               :email => 'pino.cammino@pincopallino.it', :ssn_code => 'CMMPNI76B12H501N', :vat_code => '1231443534234235', :address => 'via del Corso 134',
-                               :postal_code => '00100', :city => 'Roma', :country => 'Italia', :location_id => 1, :accounts_number => 100, :includes_invoice => true,
-                               :release_date => '2012-01-01 10:00:00', :start_date => '2012-01-01 11:00:00', :expiration_date => '2013-01-01 10:59:59'
-    rescue ActiveModel::MassAssignmentSecurity::Error
-      @purchase = nil
-    end
+    @purchase = Purchase.new :name => 'Scuola Media Pinco Pallino', :responsible => 'Pino Cammino', :phone_number => '0044/0678079087', :fax => '89-24-24',
+                             :email => 'pino.cammino@pincopallino.it', :ssn_code => 'CMMPNI76B12H501N', :vat_code => '1231443534234235', :address => 'via del Corso 134',
+                             :postal_code => '00100', :city => 'Roma', :country => 'Italia', :location_id => 1, :accounts_number => 100, :includes_invoice => true,
+                             :release_date => '2012-01-01 10:00:00', :start_date => '2012-01-01 11:00:00', :expiration_date => '2013-01-01 10:59:59'
   end
   
   test 'empty_and_defaults' do
     @purchase = Purchase.new
     assert_error_size 13, @purchase
-  end
-  
-  test 'attr_accessible' do
-    assert !@purchase.nil?
   end
   
   test 'types' do

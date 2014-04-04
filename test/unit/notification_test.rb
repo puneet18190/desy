@@ -17,14 +17,6 @@ class NotificationTest < ActiveSupport::TestCase
     assert_error_size 6, @notification
   end
   
-  test 'attr_accessible' do
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Notification.new(:seen => true)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Notification.new(:user_id => 1)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Notification.new(:title => 'Ciao!!')}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Notification.new(:message => 'Ciao!!')}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Notification.new(:basement => 'Ciao!!')}
-  end
-  
   test 'types' do
     assert_invalid @notification, :user_id, 'erw', 1, :not_a_number
     assert_invalid @notification, :user_id, 11.1, 1, :not_an_integer

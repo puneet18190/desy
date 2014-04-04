@@ -7,8 +7,6 @@ gem 'ancestry'
 gem 'bcrypt',                   '~> 3.1.2'
 gem 'carrierwave'
 gem 'daemons'
-# TODO Toglierlo quando si passa al check dei parametri nel controller
-gem 'protected_attributes' # Questa deve stare prima di delayed_job!!! altrimenti non funziona
 gem 'delayed_job_active_record'
 gem 'erubis'
 gem 'eventmachine',                         platforms: :ruby

@@ -25,9 +25,7 @@
 # None
 #
 class UsersSubject < ActiveRecord::Base
-  
-  attr_accessible :user, :subject, :user_id, :subject_id
-  
+    
   belongs_to :user
   belongs_to :subject
   

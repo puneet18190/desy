@@ -16,13 +16,9 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
   
   def setup
     get_new_slide 'video1'
-    begin
-      @media_elements_slide = MediaElementsSlide.new :position => 1
-      @media_elements_slide.slide_id = @new_slide.id
-      @media_elements_slide.media_element_id = 2
-    rescue ActiveModel::MassAssignmentSecurity::Error
-      @media_elements_slide = nil
-    end
+    @media_elements_slide = MediaElementsSlide.new :position => 1
+    @media_elements_slide.slide_id = @new_slide.id
+    @media_elements_slide.media_element_id = 2
   end
   
   test 'empty_and_defaults' do
@@ -30,15 +26,6 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     @media_elements_slide = MediaElementsSlide.new
     @media_elements_slide.inscribed = nil
     assert_error_size 8, @media_elements_slide
-  end
-  
-  test 'attr_accessible' do
-    assert !@media_elements_slide.nil?
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:slide_id => 1)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:media_element_id => 1)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:alignment => 1)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:caption => 1)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:inscribed => 1)}
   end
   
   test 'types' do

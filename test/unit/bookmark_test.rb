@@ -21,12 +21,6 @@ class BookmarkTest < ActiveSupport::TestCase
     assert_error_size 6, @bookmark
   end
   
-  test 'attr_accessible' do
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Bookmark.new(:user_id => 1)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Bookmark.new(:bookmarkable_id => 2)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Bookmark.new(:bookmarkable_type => 'MediaElement')}
-  end
-  
   test 'types' do
     assert_invalid @bookmark, :user_id, 'rt', 1, :not_a_number
     assert_invalid @bookmark, :user_id, 9.9, 1, :not_an_integer

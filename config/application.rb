@@ -50,15 +50,6 @@ module Desy
     # like if you have constraints or database-specific column types
     config.active_record.schema_format = :sql
 
-    # Enforce whitelist mode for mass assignment.
-    # This will create an empty whitelist of attributes available for mass-assignment for all models
-    # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
-    # parameters by using an attr_accessible or attr_protected declaration.
-    config.active_record.whitelist_attributes = true
-
-    # Raise exception on mass assignment protection for Active Record models
-    config.active_record.mass_assignment_sanitizer = :strict
-
     # Options used by url_for when used in email contexts
     config.action_mailer.default_url_options = SETTINGS['application']['default_url_options']
 

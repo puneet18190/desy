@@ -3,26 +3,17 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   
   def setup
-    begin
-      @user = User.confirmed.new(:name => 'Javier Ernesto', :surname => 'Chevanton', :school_level_id => 1, :location_id => 1, :password => 'osososos', :password_confirmation => 'osososos', :subject_ids => [1], :purchase_id => 1) do |user|
-        user.email = 'em1@em.em'
-        user.active = true
-      end
-      @user.policy_1 = '1'
-      @user.policy_2 = '1'
-    rescue ActiveModel::MassAssignmentSecurity::Error => err
-      @user = nil
+    @user = User.confirmed.new(:name => 'Javier Ernesto', :surname => 'Chevanton', :school_level_id => 1, :location_id => 1, :password => 'osososos', :password_confirmation => 'osososos', :subject_ids => [1], :purchase_id => 1) do |user|
+      user.email = 'em1@em.em'
+      user.active = true
     end
+    @user.policy_1 = '1'
+    @user.policy_2 = '1'
   end
   
   test 'empty_and_defaults' do
     @user = User.new
     assert_error_size 12, @user
-  end
-  
-  test 'attr_accessible' do
-    assert !@user.nil?
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {User.new(:email => 'err@sdd.oo')}
   end
   
   test 'types' do

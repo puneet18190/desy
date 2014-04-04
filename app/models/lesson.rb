@@ -84,9 +84,7 @@ class Lesson < ActiveRecord::Base
   
   # Maximum length of the title
   MAX_TITLE_LENGTH = (I18n.t('language_parameters.lesson.length_title') > 255 ? 255 : I18n.t('language_parameters.lesson.length_title'))
-  
-  attr_accessible :subject_id, :school_level_id, :title, :description
-  
+    
   # True if in the front end the element contains the icon to send a report
   attr_reader :is_reportable
   # Set to true if it's necessary to validate the number of tags (typically this happens in the public front end)

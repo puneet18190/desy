@@ -107,9 +107,7 @@ class MediaElement < ActiveRecord::Base
   MAX_TITLE_LENGTH = (I18n.t('language_parameters.media_element.length_title') > 255 ? 255 : I18n.t('language_parameters.media_element.length_title'))
   
   serialize :metadata, OpenStruct
-  
-  attr_accessible :title, :description, :media, :publication_date, :tags
-  
+    
   # True if in the front end the element contains the icon to send a report
   attr_reader :is_reportable
   # True if in the front end the element contains the icon to change general information

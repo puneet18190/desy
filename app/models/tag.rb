@@ -29,9 +29,7 @@ class Tag < ActiveRecord::Base
   
   MIN_LENGTH = SETTINGS['min_tag_length']
   MAX_LENGTH = (SETTINGS['max_tag_length'] > 255 ? 255 : SETTINGS['max_tag_length'])
-  
-  attr_accessible :word
-  
+    
   has_many :taggings
   
   validates_presence_of :word

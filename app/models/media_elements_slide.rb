@@ -40,9 +40,7 @@
 # None
 #
 class MediaElementsSlide < ActiveRecord::Base
-  
-  attr_accessible :position
-  
+    
   belongs_to :media_element
   belongs_to :slide
   has_one :lesson, through: :slide

@@ -3,26 +3,16 @@ require 'test_helper'
 class SlideTest < ActiveSupport::TestCase
   
   def setup
-    begin
-      @slide = Slide.new :position => 2, :title => 'Titolo', :text => 'Testo testo testo'
-      @slide.lesson_id = 1
-      @slide.kind = 'video1'
-    rescue ActiveModel::MassAssignmentSecurity::Error
-      @slide = nil
-    end
+    @slide = Slide.new :position => 2, :title => 'Titolo', :text => 'Testo testo testo'
+    @slide.lesson_id = 1
+    @slide.kind = 'video1'
   end
   
   test 'empty_and_defaults' do
     @slide = Slide.new
     assert_error_size 6, @slide
   end
-  
-  test 'attr_accessible' do
-    assert !@slide.nil?
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Slide.new(:kind => 'image2')}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Slide.new(:lesson_id => 2)}
-  end
-  
+    
   test 'types' do
     assert_invalid @slide, :position, 'ret', 2, :not_a_number
     assert_invalid @slide, :position, -9, 2, :greater_than, {:count => 0}

@@ -36,9 +36,7 @@ require 'lessons_media_elements_shared'
 # None
 #
 class VirtualClassroomLesson < ActiveRecord::Base
-  
-  attr_accessible :position
-  
+    
   belongs_to :user
   belongs_to :lesson
   

@@ -78,9 +78,7 @@ class Document < ActiveRecord::Base
   }
   
   serialize :metadata, OpenStruct
-  
-  attr_accessible :title, :description, :attachment
-  
+    
   mount_uploader :attachment, DocumentUploader
   
   belongs_to :user

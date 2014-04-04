@@ -15,13 +15,6 @@ class ReportTest < ActiveSupport::TestCase
     assert_error_size 7, @report
   end
   
-  test 'attr_accessible' do
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Report.new(:user_id => 1)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Report.new(:reportable_id => 2)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Report.new(:reportable_type => 'MediaElement')}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Report.new(:comment => 'Fa schifo!')}
-  end
-  
   test 'types' do
     assert_invalid @report, :user_id, 'ehi', 1, :not_a_number
     assert_invalid @report, :reportable_id, 5.66, 1, :not_an_integer

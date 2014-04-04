@@ -25,9 +25,7 @@
 # None
 #
 class Subject < ActiveRecord::Base
-  
-  attr_accessible :description
-  
+    
   has_many :lessons
   has_many :users_subjects
   

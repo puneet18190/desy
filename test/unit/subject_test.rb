@@ -3,20 +3,12 @@ require 'test_helper'
 class SubjectTest < ActiveSupport::TestCase
   
   def setup
-    begin
-      @subject = Subject.new :description => 'Scuola Primaria'
-    rescue ActiveModel::MassAssignmentSecurity::Error
-      @subject = nil
-    end
+    @subject = Subject.new :description => 'Scuola Primaria'
   end
   
   test 'empty_and_defaults' do
     @subject = Subject.new
     assert_error_size 1, @subject
-  end
-  
-  test 'attr_accessible' do
-    assert !@subject.nil?
   end
   
   test 'types' do

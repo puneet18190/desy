@@ -33,9 +33,7 @@
 class Location < ActiveRecord::Base
   
   self.inheritance_column = :sti_type
-  
-  attr_accessible :name, :parent, :code
-  
+    
   validates_presence_of :name, :sti_type
   validates_length_of :name, :code, :maximum => 255
   validates_uniqueness_of :code, :scope => :sti_type, :unless => proc { |record| record.code.blank? }

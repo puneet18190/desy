@@ -6,13 +6,9 @@ class MediaElementTest < ActiveSupport::TestCase
   def setup
     @max_title = I18n.t('language_parameters.media_element.length_title')
     @max_description = I18n.t('language_parameters.media_element.length_description')
-    begin
-      media = {:mp4 => Rails.root.join('test/samples/one.mp4').to_s, :webm => Rails.root.join('test/samples/one.webm').to_s, :filename => 'video_test'}
-      @media_element = Video.new :description => 'Scuola Primaria', :title => 'Scuola', :media => media, :tags => 'ciao, come, stai, tu?'
-      @media_element.user_id = 1
-    rescue ActiveModel::MassAssignmentSecurity::Error
-      @media_element = nil
-    end
+    media = {:mp4 => Rails.root.join('test/samples/one.mp4').to_s, :webm => Rails.root.join('test/samples/one.webm').to_s, :filename => 'video_test'}
+    @media_element = Video.new :description => 'Scuola Primaria', :title => 'Scuola', :media => media, :tags => 'ciao, come, stai, tu?'
+    @media_element.user_id = 1
   end
   
   test 'valid_fixtures' do
@@ -76,13 +72,6 @@ class MediaElementTest < ActiveSupport::TestCase
     assert_equal false, @media_element.is_public
     @media_element.is_public = nil
     assert_error_size 8, @media_element
-  end
-  
-  test 'attr_accessible' do
-    assert !@media_element.nil?
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElement.new(:is_public => true)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElement.new(:sti_type => 'beh')}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElement.new(:user_id => 1)}
   end
   
   test 'types' do

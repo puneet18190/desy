@@ -22,12 +22,6 @@ class TaggingTest < ActiveSupport::TestCase
     assert_error_size 6, @tagging
   end
   
-  test 'attr_accessible' do
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Tagging.new(:tag_id => 1)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Tagging.new(:taggable_id => 2)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Tagging.new(:taggable_type => 'MediaElement')}
-  end
-  
   test 'types' do
     assert_invalid @tagging, :tag_id, 'rt', @tag.id, :not_a_number
     assert_invalid @tagging, :tag_id, 9.9, @tag.id, :not_an_integer

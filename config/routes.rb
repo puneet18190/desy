@@ -35,13 +35,9 @@ Desy::Application.routes.draw do
     post   'personifications/:id' => 'personifications#create',  :as => :personifications
     
     # ADMIN PURCHASES
-    get  'purchases'                => 'purchases#index',    :as => :purchases
-    post 'purchases'                => 'purchases#create'
-    put  'purchases/:id'            => 'purchases#update',   :as => :purchase
-    get  'purchases/:id/edit'       => 'purchases#edit'
-    get  'purchases/:id/links/form' => 'purchases#link_form'
-    post 'purchases/:id/links/send' => 'purchases#send_link'
-    get  'purchases/new'            => 'purchases#new'
+    resources :purchases, only: %i(index new create edit update)
+    get       'purchases/:id/links/form' => 'purchases#link_form'
+    post      'purchases/:id/links/send' => 'purchases#send_link'
     
     # ADMIN REPORTS
     delete 'reports/:id/accept'  => 'reports#accept'

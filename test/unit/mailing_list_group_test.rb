@@ -13,10 +13,6 @@ class MailingListGroupTest < ActiveSupport::TestCase
     assert_error_size 4, @mailing_list_group
   end
   
-  test 'attr_accessible' do
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MailingListGroup.new(:user_id => 1)}
-  end
-  
   test 'types' do
     assert_invalid @mailing_list_group, :user_id, '3r4', 2, :not_a_number
     assert_invalid @mailing_list_group, :user_id, -4, 2, :greater_than, {:count => 0}

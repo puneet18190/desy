@@ -14,10 +14,6 @@ class MailingListAddressTest < ActiveSupport::TestCase
     assert_error_size 5, @mailing_list_address
   end
   
-  test 'attr_accessible' do
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Like.new(:group_id => 1)}
-  end
-  
   test 'types' do
     assert_invalid_email @mailing_list_address
     assert_invalid @mailing_list_address, :group_id, '3r4', 2, :not_a_number

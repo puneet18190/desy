@@ -29,9 +29,7 @@
 # 1. *cascade* *destruction* for the associated table MailingListAddress
 #
 class MailingListGroup < ActiveRecord::Base
-  
-  attr_accessible :name
-  
+    
   belongs_to :user
   has_many :addresses, :class_name => MailingListAddress, :foreign_key => 'group_id', :dependent => :destroy
   

@@ -74,9 +74,7 @@ class User < ActiveRecord::Base
   serialize :metadata, OpenStruct
   
   # List of attributes to be made accessible (the list includes private attributes that don't correspond to fields, for instance +password_confirmation+)
-  ATTR_ACCESSIBLE = [:password, :password_confirmation, :name, :surname, :school_level_id, :location_id, :subject_ids, :purchase_id] + REGISTRATION_POLICIES
-  attr_accessible *ATTR_ACCESSIBLE
-  
+  ATTR_ACCESSIBLE = [:password, :password_confirmation, :name, :surname, :school_level_id, :location_id, :subject_ids, :purchase_id] + REGISTRATION_POLICIES  
   # Hash of constraints for the length of the password
   PASSWORD_LENGTH_CONSTRAINTS = {}.tap do |hash|
     [:minimum, :maximum].each do |key|

@@ -41,20 +41,12 @@ class TagTest < ActiveSupport::TestCase
   def setup
     @min_word = SETTINGS['min_tag_length']
     @max_word = SETTINGS['max_tag_length']
-    begin
-      @tag = Tag.new :word => 'passerotto'
-    rescue ActiveModel::MassAssignmentSecurity::Error
-      @tag = nil
-    end
+    @tag = Tag.new :word => 'passerotto'
   end
   
   test 'empty_and_defaults' do
     @tag = Tag.new
     assert_error_size 2, @tag
-  end
-  
-  test 'attr_accessible' do
-    assert !@tag.nil?
   end
   
   test 'types' do

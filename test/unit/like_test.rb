@@ -13,11 +13,6 @@ class LikeTest < ActiveSupport::TestCase
     assert_error_size 6, @like
   end
   
-  test 'attr_accessible' do
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Like.new(:user_id => 1)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Like.new(:lesson_id => 1)}
-  end
-  
   test 'types' do
     assert_invalid @like, :user_id, '3r4', 2, :not_a_number
     assert_invalid @like, :user_id, -4, 2, :greater_than, {:count => 0}

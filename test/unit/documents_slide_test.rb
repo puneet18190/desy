@@ -4,24 +4,14 @@ require 'test_helper'
 class DocumentsSlideTest < ActiveSupport::TestCase
   
   def setup
-    begin
-      @documents_slide = DocumentsSlide.new
-      @documents_slide.document_id = 1
-      @documents_slide.slide_id = 4
-    rescue ActiveModel::MassAssignmentSecurity::Error
-      @documents_slide = nil
-    end
+    @documents_slide = DocumentsSlide.new
+    @documents_slide.document_id = 1
+    @documents_slide.slide_id = 4
   end
   
   test 'empty_and_defaults' do
     @documents_slide = DocumentsSlide.new
     assert_error_size 6, @documents_slide
-  end
-  
-  test 'attr_accessible' do
-    assert !@documents_slide.nil?
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {DocumentsSlide.new(:document_id => 1)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {DocumentsSlide.new(:slide_id => 1)}
   end
   
   test 'types' do

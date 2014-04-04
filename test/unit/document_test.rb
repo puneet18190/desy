@@ -6,22 +6,13 @@ class DocumentTest < ActiveSupport::TestCase
   def setup
     @max_title = I18n.t('language_parameters.document.length_title')
     @max_description = I18n.t('language_parameters.document.length_description')
-    begin
-      @document = Document.new :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato', :attachment => File.open(Rails.root.join('test/samples/one.ppt'))
-      @document.user_id = 1
-    rescue ActiveModel::MassAssignmentSecurity::Error
-      @document = nil
-    end
+    @document = Document.new :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato', :attachment => File.open(Rails.root.join('test/samples/one.ppt'))
+    @document.user_id = 1
   end
   
   test 'empty_and_defaults' do
     @document = Document.new
     assert_error_size 6, @document
-  end
-  
-  test 'attr_accessible' do
-    assert !@document.nil?
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Document.new(:user_id => 1)}
   end
   
   test 'types' do

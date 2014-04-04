@@ -46,9 +46,7 @@
 #
 class Slide < ActiveRecord::Base
   include ActionView::Helpers
-  
-  attr_accessible :position, :title, :text
-  
+    
   belongs_to :lesson
   has_many :media_elements_slides
   has_many :media_elements, through: :media_elements_slides

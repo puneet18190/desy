@@ -67,8 +67,7 @@ class Admin::PurchasesController < AdminController
   #
   def update
     @purchase = Purchase.find_by_id params[:id]
-    @purchase.attributes = params[:purchase]
-    if @purchase.save
+    if @purchase.update purchase_attributes
       @ok = true
     else
       @ok = false
@@ -126,8 +125,7 @@ class Admin::PurchasesController < AdminController
   # * Admin::PurchaseController#check_saas
   #
   def create
-    @purchase = Purchase.new params[:purchase]
-    @purchase.includes_invoice = (params[:purchase][:includes_invoice] == '1')
+    @purchase = Purchase.new purchase_attributes
     if @purchase.save
       @ok = true
       renewed = Purchase.find_by_id params[:renewed_id]
@@ -241,6 +239,13 @@ class Admin::PurchasesController < AdminController
   end
   
   private
+
+  def purchase_attributes
+    case action_name
+    when 'create' then params.require(:purchase).permit *Purchase::ATTR_ACCESSIBLE
+    when 'update' then params.require(:purchase).permit *Purchase::ATTR_ACCESSIBLE+[:includes_invoice]
+    end
+  end
   
   # Filter that checks if this section is enabled
   def check_saas

@@ -29,9 +29,7 @@
 # None
 #
 class MailingListAddress < ActiveRecord::Base
-  
-  attr_accessible :email, :heading
-  
+    
   belongs_to :group, class_name: MailingListGroup
   
   validates_presence_of :email, :heading, :group_id

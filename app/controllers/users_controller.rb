@@ -363,7 +363,7 @@ class UsersController < ApplicationController
         subject_ids << k.split('_').last.to_i
       end
     end
-    if @user.update_attributes(subject_ids: subject_ids)
+    if @user.update(subject_ids: subject_ids)
       redirect_to my_subjects_path, { flash: { notice: t('users.subjects.ok_popup') } }
     else
       @errors = convert_user_error_messages @user.errors

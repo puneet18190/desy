@@ -8,24 +8,14 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     @lesson.user_id = 2
     @lesson.tags = 'topolino, pippo, pluto, paperino'
     @lesson.save
-    begin
-      @virtual_classroom_lesson = VirtualClassroomLesson.new :position => nil
-      @virtual_classroom_lesson.user_id = 2
-      @virtual_classroom_lesson.lesson_id = @lesson.id
-    rescue ActiveModel::MassAssignmentSecurity::Error
-      @virtual_classroom_lesson = nil
-    end
+    @virtual_classroom_lesson = VirtualClassroomLesson.new :position => nil
+    @virtual_classroom_lesson.user_id = 2
+    @virtual_classroom_lesson.lesson_id = @lesson.id
   end
   
   test 'empty_and_defaults' do
     @virtual_classroom_lesson = VirtualClassroomLesson.new
     assert_error_size 6, @virtual_classroom_lesson
-  end
-  
-  test 'attr_accessible' do
-    assert !@virtual_classroom_lesson.nil?
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {VirtualClassroomLesson.new(:user_id => 1)}
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {VirtualClassroomLesson.new(:lesson_id => 1)}
   end
   
   test 'types' do
