@@ -81,7 +81,7 @@ module Media
   
               it 'creates a audio with the expected duration' do
                 duration = info[:duration]
-                duration.should be_within(0.5).of(10)
+                expect(duration).to be_within(0.5).of(10)
               end
             end
           end

@@ -14,19 +14,19 @@ module Media
       subject { described_class.new(MESS::VALID_VIDEO) }
 
       it "parses video duration" do
-        subject.duration.should == 38.17
+        expect(subject.duration).to eq 38.17
       end
       it "parses video streams" do
-        subject.video_streams.should == [{ codec: 'flv', width: 426, height: 240, bitrate: 200 }]
+        expect(subject.video_streams).to eq [{ codec: 'flv', width: 426, height: 240, bitrate: 200 }]
       end
       it "parses audio streams" do
-        subject.audio_streams.should == [{ codec: 'adpcm_swf', bitrate: 176 }]
+        expect(subject.audio_streams).to eq [{ codec: 'adpcm_swf', bitrate: 176 }]
       end
 
       describe '#similar_to?' do
         it 'works' do
           other_infos = described_class.new(MESS::SAMPLES_FOLDER.join('.flv').to_s)
-          subject.similar_to?(other_infos.to_hash).should be_true
+          expect(subject.similar_to?(other_infos.to_hash)).to be_true
         end
       end
     end

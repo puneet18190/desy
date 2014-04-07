@@ -80,17 +80,17 @@ module Media
                 let!(:format) { format }
 
                 it 'creates the correct audio' do
-                  info(format).similar_to?(expected_infos(format), true).should be_true
+                  expect(info(format).similar_to?(expected_infos(format), true)).to be_true
                 end
               end
             end
 
             it 'sends a notification to the user' do
-              initial_audio.user.notifications.count.should == user_notifications_count+1
+              expect(initial_audio.user.notifications.count).to eq user_notifications_count+1
             end
 
             it 'deletes the audio editor cache' do
-              initial_audio.user.audio_editor_cache.should be_nil
+              expect(initial_audio.user.audio_editor_cache).to be_nil
             end
 
           end
@@ -126,25 +126,25 @@ module Media
                 let(:format) { format }
 
                 it 'creates the correct audio' do
-                  info(format).similar_to?(expected_infos(format), true).should be_true
+                  expect(info(format).similar_to?(expected_infos(format), true)).to be_true
                 end
               end
             end
 
             it 'deletes the audio old_fields metadata' do
-              initial_audio.metadata.old_fields.should be_nil
+              expect(initial_audio.metadata.old_fields).to be_nil
             end
 
             it 'sends a notification to the user' do
-              initial_audio.user.notifications.count.should == user_notifications_count+1
+              expect(initial_audio.user.notifications.count).to eq user_notifications_count+1
             end
 
             it 'deletes the audio editor cache' do
-              initial_audio.user.audio_editor_cache.should be_nil
+              expect(initial_audio.user.audio_editor_cache).to be_nil
             end
 
             it 'deletes the old files' do
-              old_files.each{ |f| File.exists?(f).should be_false }
+              old_files.each { |f| expect(File.exists?(f)).to be_false }
             end
 
           end

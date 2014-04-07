@@ -20,39 +20,39 @@ shared_examples 'after saving a video with a valid not converted media' do
   let(:metadata)               { Hash[ MESS::VIDEO_FORMATS.map{ |f| [:"#{f}_duration", info[f].duration] } ].merge(creation_mode: :uploaded) }
 
   it 'resets model rename_media attribute' do
-    video.rename_media.should_not be_true
+    expect(video.rename_media).to_not be_true
   end
 
   it 'resets model skip_conversion attribute' do
-    video.skip_conversion.should_not be_true
+    expect(video.skip_conversion).to_not be_true
   end
 
   it 'sets the expected metadata' do
-    video.metadata.marshal_dump.should == metadata
+    expect(video.metadata.marshal_dump).to eq metadata
   end
 
   it 'sets the expected [:media] value' do
-    video[:media].should match MESS::FILENAME_RE.call(name)
+    expect(video[:media]).to match MESS::FILENAME_RE.call(name)
   end
 
   it 'has the expected to_s' do
-    video.media.to_s.should match MESS::FILENAME_RE.call(url_without_extension)
+    expect(video.media.to_s).to match MESS::FILENAME_RE.call(url_without_extension)
   end
 
   it 'has the expected urls' do
     urls.each do |format, filename_re_arguments|
-      video.media.url(format).should match MESS::FILENAME_RE.call(*filename_re_arguments)
+      expect(video.media.url(format)).to match MESS::FILENAME_RE.call(*filename_re_arguments)
     end
   end
 
   it 'has the expected paths' do
     paths.each do |format, filename_re_arguments|
-      video.media.path(format).should match MESS::FILENAME_RE.call(*filename_re_arguments)
+      expect(video.media.path(format)).to match MESS::FILENAME_RE.call(*filename_re_arguments)
     end
   end
 
   it 'is marked as uploaded' do
-    video.uploaded?.should be_true
+    expect(video.uploaded?).to be_true
   end
 
   it 'creates valid videos' do
@@ -60,10 +60,10 @@ shared_examples 'after saving a video with a valid not converted media' do
   end
 
   it 'creates the video cover' do
-    File.exists?(video.media.path(:cover)).should be_true
+    expect(File.exists?(video.media.path(:cover))).to be_true
   end
 
   it 'creates the video thumb' do
-    File.exists?(video.media.path(:thumb)).should be_true
+    expect(File.exists?(video.media.path(:thumb))).to be_true
   end
 end

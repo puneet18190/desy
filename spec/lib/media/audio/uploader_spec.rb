@@ -91,7 +91,7 @@ module Media
             before(:all) { audio }
 
             it "uses metadata durations provided by the hash" do
-              Media::Info.should_not_receive(:new)
+              expect(Media::Info).to_not receive(:new)
               audio.save!
             end
 
@@ -121,27 +121,27 @@ module Media
         shared_examples 'when media is a not converted audio' do
           context 'when is a valid audio' do
             let(:path) { valid_audio_path }
-            it { should be_true }
+            it { expect(subject).to be_true }
           end
 
           context 'when filename is blank' do
             let(:path) { media_folder.join '.m4a' }
-            it { should be_false }
+            it { expect(subject).to be_false }
           end
 
           context 'when the extension is not valid' do
             let(:path) { media_folder.join 'valid audio.php' }
-            it { should be_false }
+            it { expect(subject).to be_false }
           end
 
           context 'when is an invalid audio' do
             let(:path) { media_folder.join 'invalid audio.m4a' }
-            it { should be_false }
+            it { expect(subject).to be_false }
           end
 
           context 'when the audio is too short' do
             let(:path) { media_folder.join 'short audio.m4a' }
-            it { should be_false }
+            it { expect(subject).to be_false }
           end
 
           context 'when the media elements folder size exceeds the maximum value allowed' do
@@ -151,7 +151,7 @@ module Media
               prev_maximum_media_elements_folder_size
               silence_warnings { Media::Uploader.const_set :MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE, Media::Uploader.media_elements_folder_size-1 }
             end
-            it { should be_false }
+            it { expect(subject).to be_false }
             after { silence_warnings { Media::Uploader.const_set :MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE, prev_maximum_media_elements_folder_size } }
           end
         end
@@ -170,12 +170,12 @@ module Media
 
         context 'when media type is blank' do
           let(:media) { nil }
-          it { should be_false }
+          it { expect(subject).to be_false }
         end
 
         context 'when media type is invalid' do
           let(:media) { %w(invalid media type) }
-          it { should be_false }
+          it { expect(subject).to be_false }
         end
 
         context 'when media type is a String' do
@@ -189,17 +189,17 @@ module Media
                   v.reload
                 end
               end
-              it { should be_true }
+              it { expect(subject).to be_true }
             end
 
             context 'when is blank' do
               let(:media) { '' }
-              it { should be_false }
+              it { expect(subject).to be_false }
             end
 
             context 'when the processed filename is blank' do
               let(:media) { '%' }
-              it { should be_false }
+              it { expect(subject).to be_false }
             end
           end
 
@@ -213,12 +213,12 @@ module Media
 
             context 'when is blank' do
               let(:media) { '' }
-              it { should be_false }
+              it { expect(subject).to be_false }
             end
 
             context 'when the name is valid' do
               let(:media) { 'asd' }
-              it { should be_true }
+              it { expect(subject).to be_true }
             end
           end
         end
@@ -227,42 +227,42 @@ module Media
 
           context 'when media is valid' do
             let(:media) { media_hash }
-            it { should be_true }
+            it { expect(subject).to be_true }
           end
 
           context 'when filename is blank' do
             let(:media) { media_hash.merge(filename: nil) }
-            it { should be_false }
+            it { expect(subject).to be_false }
           end
 
           context 'when m4a file extension is invalid' do
             let(:media) { media_hash.merge(m4a: media_hash[:ogg]) }
-            it { should be_false }
+            it { expect(subject).to be_false }
           end
 
           context 'when ogg file extension is invalid' do
             let(:media) { media_hash.merge(ogg: media_hash[:m4a]) }
-            it { should be_false }
+            it { expect(subject).to be_false }
           end
 
           context 'when m4a file is not a valid audio' do
             let(:media) { media_hash.merge(m4a: media_folder.join('invalid audio.m4a').to_s) }
-            it { should be_false }
+            it { expect(subject).to be_false }
           end
 
           context 'when ogg file is not a valid audio' do
             let(:media) { media_hash.merge(ogg: media_folder.join('invalid audio.ogg').to_s) }
-            it { should be_false }
+            it { expect(subject).to be_false }
           end
 
           context 'when audios are too short' do
             let(:media) { media_hash.merge(m4a: media_folder.join('short audio.m4a').to_s, ogg: media_folder.join('short audio.ogg').to_s) }
-            it { should be_false }
+            it { expect(subject).to be_false }
           end
 
           context 'when audios have different durations' do
             let(:media) { media_hash.merge(m4a: media_folder.join('concat 1.m4a').to_s, ogg: media_folder.join('concat 2.ogg').to_s) }
-            it { should be_false }
+            it { expect(subject).to be_false }
           end
 
         end

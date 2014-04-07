@@ -86,27 +86,27 @@ module Media
 
                 it 'creates a audio with the expected duration' do
                   temp_duration, output_duration = Info.new(temp).duration, Info.new(output).duration
-                  temp_duration.should be_within(described_class::DURATION_THRESHOLD).of(output_duration)
+                  expect(temp_duration).to be_within(described_class::DURATION_THRESHOLD).of(output_duration)
                 end
 
                 it 'has the expected stdout_log path' do
-                  conversion.send(:stdout_log, format).should == stdout_log
+                  expect(conversion.send(:stdout_log, format)).to eq stdout_log
                 end
 
                 it 'has the expected stderr_log path' do
-                  conversion.send(:stderr_log, format).should == stderr_log
+                  expect(conversion.send(:stderr_log, format)).to eq stderr_log
                 end
 
                 it "creates the stdout log" do
-                  File.exists?(stdout_log).should be_true
+                  expect(File.exists?(stdout_log)).to be_true
                 end
 
                 it "creates the stderr log" do
-                  File.exists?(stderr_log).should be_true
+                  expect(File.exists?(stderr_log)).to be_true
                 end
 
                 it "does not delete the temporary audio" do
-                  File.exists?(temp).should be_true
+                  expect(File.exists?(temp)).to be_true
                 end
               
               end
@@ -163,7 +163,7 @@ module Media
             end
   
             it 'sets the model converted attribute' do
-              model.should be_converted
+              expect(model).to be_converted
             end
   
             supported_formats.each do |format|
@@ -181,18 +181,18 @@ module Media
                 end
   
                 it 'sets the model duration attribute' do
-                  model.send(:"#{format}_duration").should be_within(0.2).of info(format).duration
+                  expect(model.send(:"#{format}_duration")).to be_within(0.2).of info(format).duration
                 end
   
               end
             end
   
             it 'sets the model media attribute' do
-              model[:media].should == 'in-put'
+              expect(model[:media]).to eq 'in-put'
             end
   
             it 'deletes the temporary file' do
-              File.exists?(temp).should_not be_true
+              expect(File.exist?(temp)).to be_false
             end
   
           end

@@ -13,7 +13,7 @@ module Media
           context 'with 2 videos' do
             let(:inputs) { [ 'concat 0.webm', 'concat 1.webm' ] }
             describe '#to_s' do
-              it('works') { subject.to_s.should == "#{pre_command} -o out\\ put.webm --verbose --no-audio concat\\ 0.webm + --no-audio concat\\ 1.webm" }
+              it('works') { expect(subject.to_s).to eq("#{pre_command} -o out\\ put.webm --verbose --no-audio concat\\ 0.webm + --no-audio concat\\ 1.webm") }
             end
           end
   

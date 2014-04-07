@@ -87,7 +87,7 @@ module Media
             before(:all) { subject }
   
             it 'has the expected log folder' do
-              concat.send(:stdout_log).should start_with Rails.root.join('log/media/audio/editing/concat/test/').to_s
+              expect(concat.send(:stdout_log)).to start_with Rails.root.join('log/media/audio/editing/concat/test/').to_s
             end
   
             MESS::AUDIO_FORMATS.each do |format|
@@ -97,7 +97,7 @@ module Media
                 let(:format) { format }
               
                 it 'copies the inputs to the outputs' do
-                  FileUtils.cmp(input_audios.first[format], subject[format]).should be_true
+                  expect(FileUtils.cmp(input_audios.first[format], subject[format])).to be_true
                 end
   
               end
@@ -152,52 +152,52 @@ module Media
                 before(:all) { subject }
 
                 it 'has the expected log folder' do
-                  concat.send(:stdout_log).should start_with Rails.root.join('log/media/audio/editing/concat/test/').to_s
+                  expect(concat.send(:stdout_log)).to start_with Rails.root.join('log/media/audio/editing/concat/test/').to_s
                 end
 
                 it 'creates a audio with the expected duration' do
                   duration = info[:duration]
                   expected = output_infos[format][:duration]
-                  duration.should be_within(0.2).of(expected)
+                  expect(duration).to be_within(0.2).of(expected)
                 end
 
                 it 'creates a audio with the expected amount of audio streams' do
                   audio_streams = info[:streams][:audio]
                   expected      = output_infos[format][:streams][:audio]
-                  audio_streams.should have(expected.size).items
+                  expect(audio_streams).to have(expected.size).items
                 end
                 it 'creates a audio with the expected audio stream codec and sizes' do
                   codec_and_sizes = info[:streams][:audio].first.select{ |k| [:codec].include? k }
                   expected        = output_infos[format][:streams][:audio].first.select{ |k| [:codec].include? k }
-                  codec_and_sizes.should == expected
+                  expect(codec_and_sizes).to eq expected
                 end
                 it 'creates a audio with the expected audio stream bitrate' do
                   bitrate  = info[:streams][:audio].first[:bitrate]
                   expected = output_infos[format][:streams][:audio].first[:bitrate]
                   if expected
-                    bitrate.should be_within(1).of(expected)
+                    expect(bitrate).to be_within(1).of(expected)
                   else
-                    bitrate.should be_nil
+                    expect(bitrate).to be_nil
                   end
                 end
 
                 it 'creates a audio with the expected amount of audio streams' do
                   audio_streams = info[:streams][:audio]
                   expected      = output_infos[format][:streams][:audio]
-                  audio_streams.should have(expected.size).items
+                  expect(audio_streams).to have(expected.size).items
                 end
                 it 'creates a audio with the expected audio stream codec' do
                   codec    = info[:streams][:audio].first.try(:select) { |k| [:codec].include? k }
                   expected = output_infos[format][:streams][:audio].first.try(:select) { |k| [:codec].include? k }
-                  codec.should == expected
+                  expect(codec).to eq expected
                 end
                 it 'creates a audio with the expected audio stream bitrate' do
                   bitrate  = info[:streams][:audio].first.try(:[], :bitrate)
                   expected = output_infos[format][:streams][:audio].first.try(:[], :bitrate)
                   if expected
-                    bitrate.should be_within(1).of(expected)
+                    expect(bitrate).to be_within(1).of(expected)
                   else
-                    bitrate.should be_nil
+                    expect(bitrate).to be_nil
                   end
                 end
 

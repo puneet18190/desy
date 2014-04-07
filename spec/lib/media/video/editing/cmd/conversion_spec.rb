@@ -15,7 +15,7 @@ module Media
             subject { described_class }
   
             describe '#subexec_options' do
-              it('works') { subject.subexec_options.should == subexec_options }
+              it('works') { expect(subject.subexec_options).to eq(subexec_options) }
             end
   
             describe 'new' do
@@ -59,7 +59,7 @@ module Media
                       let(:input_file_info) { double(video_streams: [ { bitrate: 100 }, { bitrate: 'ignored' } ], audio_streams: []) }
                       subject { described_class.new('inp ut', 'out put', format, input_file_info) }
                       describe '#to_s' do
-                        it('works') { subject.to_s.should == cmd_format % '' }
+                        it('works') { expect(subject.to_s).to eq(cmd_format % '') }
                       end
                     end
   
@@ -67,7 +67,7 @@ module Media
                       let(:input_file_info) { double(video_streams: [ { bitrate: nil }, { bitrate: 'ignored' } ], audio_streams: []) }
                       subject { described_class.new('inp ut', 'out put', format, input_file_info ) }
                       describe '#to_s' do
-                        it('works') { subject.to_s.should == cmd_format % '' }
+                        it('works') { expect(subject.to_s).to eq(cmd_format % '') }
                       end
                     end
                   end
@@ -80,7 +80,7 @@ module Media
                         let(:input_file_info) { double(video_streams: [ { bitrate: 100 }, { bitrate: 'ignored' } ], audio_streams: [ { bitrate: 50 }, { bitrate: 'ignored' } ]) }
                         subject { described_class.new('inp ut', 'out put', format, input_file_info) }
                         describe '#to_s' do
-                          it('works') { subject.to_s.should == cmd_format % ' -map 0:a:0' }
+                          it('works') { expect(subject.to_s).to eq(cmd_format % ' -map 0:a:0') }
                         end
                       end
   
@@ -88,7 +88,7 @@ module Media
                         let(:input_file_info) { double(video_streams: [ { bitrate: nil }, { bitrate: 'ignored' } ], audio_streams: [ { bitrate: 50 }, { bitrate: 'ignored' } ]) }
                         subject { described_class.new('inp ut', 'out put', format, input_file_info ) }
                         describe '#to_s' do
-                          it('works') { subject.to_s.should == cmd_format % ' -map 0:a:0' }
+                          it('works') { expect(subject.to_s).to eq(cmd_format % ' -map 0:a:0') }
                         end
                       end
                     end

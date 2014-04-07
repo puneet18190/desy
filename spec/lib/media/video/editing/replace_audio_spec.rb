@@ -119,7 +119,7 @@ module Media
               before(:all) { subject }
   
               it 'has the expected log folder' do
-                replace_audio.send(:log_folder).should start_with Rails.root.join('log/media/video/editing/replace_audio/test/').to_s
+                expect(replace_audio.send(:log_folder)).to start_with Rails.root.join('log/media/video/editing/replace_audio/test/').to_s
               end
   
               MESS::VIDEO_FORMATS.each do |format|
@@ -132,7 +132,7 @@ module Media
                   let(:output_info) { Info.new(subject[format]).to_hash }
   
                   it 'creates a video with the expected duration' do
-                    output_info[:duration].should be_within(0.1).of input_info[:duration]
+                    expect(output_info[:duration]).to be_within(0.1).of input_info[:duration]
                   end
                 end
   

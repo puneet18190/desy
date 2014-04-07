@@ -16,34 +16,34 @@ shared_examples 'after saving an audio with a valid not converted media' do
   let(:metadata)               { Hash[ MESS::AUDIO_FORMATS.map{ |f| [:"#{f}_duration", info[f].duration] } ].merge(creation_mode: :uploaded) }
 
   it 'resets model rename_media attribute' do
-    audio.rename_media.should_not be_true
+    expect(audio.rename_media).to_not be_true
   end
 
   it 'resets model skip_conversion attribute' do
-    audio.skip_conversion.should_not be_true
+    expect(audio.skip_conversion).to_not be_true
   end
 
   it 'sets the expected metadata' do
-    audio.metadata.marshal_dump.should == metadata
+    expect(audio.metadata.marshal_dump).to eq metadata
   end
 
   it 'sets the expected [:media] value' do
-    audio[:media].should match MESS::FILENAME_RE.call(name)
+    expect(audio[:media]).to match MESS::FILENAME_RE.call(name)
   end
 
   it 'has the expected to_s' do
-    audio.media.to_s.should match MESS::FILENAME_RE.call(url_without_extension)
+    expect(audio.media.to_s).to match MESS::FILENAME_RE.call(url_without_extension)
   end
 
   it 'has the expected urls' do
     urls.each do |format, filename_re_arguments|
-      audio.media.url(format).should match MESS::FILENAME_RE.call(*filename_re_arguments)
+      expect(audio.media.url(format)).to match MESS::FILENAME_RE.call(*filename_re_arguments)
     end
   end
 
   it 'has the expected paths' do
     paths.each do |format, filename_re_arguments|
-      audio.media.path(format).should match MESS::FILENAME_RE.call(*filename_re_arguments)
+      expect(audio.media.path(format)).to match MESS::FILENAME_RE.call(*filename_re_arguments)
     end
   end
 

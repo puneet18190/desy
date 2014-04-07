@@ -43,12 +43,12 @@ describe Audio, slow: true do
 
     let(:output_folder) { "#{Rails.root}/public/media_elements/audios/test/#{subject.id}" }
 
-    it 'should be destroyed' do
-      described_class.find_by_id(subject.id).should be_nil
+    it 'gets destroyed' do
+      expect(described_class.find_by_id(subject.id)).to be_nil
     end
 
     it 'destroys the audio folder' do
-      File.exists?(output_folder).should_not be_true
+      expect(File.exist?(output_folder)).to be_false
     end
   end
 

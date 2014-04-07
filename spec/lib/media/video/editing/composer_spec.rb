@@ -117,17 +117,17 @@ module Media
                   let!(:format) { format }
 
                   it 'creates the correct video' do
-                    info(format).similar_to?(expected_infos(:without_audio_track, format), true).should be_true
+                    expect(info(format).similar_to?(expected_infos(:without_audio_track, format), true)).to be_true
                   end
                 end
               end
 
               it 'sends a notification to the user' do
-                initial_video.user.notifications.count.should == user_notifications_count+1
+                expect(initial_video.user.notifications.count).to eq user_notifications_count+1
               end
 
               it 'deletes the video editor cache' do
-                initial_video.user.video_editor_cache.should be_nil
+                expect(initial_video.user.video_editor_cache).to be_nil
               end
             end
             
@@ -153,17 +153,17 @@ module Media
                   let(:format) { format }
 
                   it 'creates the correct video' do
-                    info(format).similar_to?(expected_infos(:with_audio_track, format), true).should be_true
+                    expect(info(format).similar_to?(expected_infos(:with_audio_track, format), true)).to be_true
                   end
                 end
               end
 
               it 'sends a notification to the user' do
-                initial_video.user.notifications.count.should == user_notifications_count+1
+                expect(initial_video.user.notifications.count).to eq user_notifications_count+1
               end
 
               it 'deletes the video editor cache' do
-                initial_video.user.video_editor_cache.should be_nil
+                expect(initial_video.user.video_editor_cache).to be_nil
               end
             end
 
@@ -189,17 +189,17 @@ module Media
                   let(:format) { format }
 
                   it 'creates the correct video' do
-                    info(format).similar_to?(expected_infos(:with_audio_track, format), true).should be_true
+                    expect(info(format).similar_to?(expected_infos(:with_audio_track, format), true)).to be_true
                   end
                 end
               end
 
               it 'sends a notification to the user' do
-                initial_video.user.notifications.count.should == user_notifications_count+1
+                expect(initial_video.user.notifications.count).to eq user_notifications_count+1
               end
 
               it 'deletes the video editor cache' do
-                initial_video.user.video_editor_cache.should be_nil
+                expect(initial_video.user.video_editor_cache).to be_nil
               end
             end
 
@@ -242,25 +242,25 @@ module Media
                   let(:format) { format }
 
                   it 'creates the correct video' do
-                    info(format).similar_to?(expected_infos(:without_audio_track, format), true).should be_true
+                    expect(info(format).similar_to?(expected_infos(:without_audio_track, format), true)).to be_true
                   end
                 end
               end
 
               it 'deletes the video old_fields metadata' do
-                initial_video.metadata.old_fields.should be_nil
+                expect(initial_video.metadata.old_fields).to be_nil
               end
 
               it 'sends a notification to the user' do
-                initial_video.user.notifications.count.should == user_notifications_count+1
+                expect(initial_video.user.notifications.count).to eq user_notifications_count+1
               end
 
               it 'deletes the video editor cache' do
-                initial_video.user.video_editor_cache.should be_nil
+                expect(initial_video.user.video_editor_cache).to be_nil
               end
 
               it 'deletes the old files' do
-                old_files.each{ |f| File.exists?(f).should be_false }
+                old_files.each { |f| expect(File.exists?(f)).to be_false }
               end
             end
 
@@ -287,25 +287,25 @@ module Media
                   let(:format) { format }
 
                   it 'creates the correct video' do
-                    info(format).similar_to?(expected_infos(:with_audio_track, format), true).should be_true
+                    expect(info(format).similar_to?(expected_infos(:with_audio_track, format), true)).to be_true
                   end
                 end
               end
 
               it 'deletes the video old_fields metadata' do
-                initial_video.metadata.old_fields.should be_nil
+                expect(initial_video.metadata.old_fields).to be_nil
               end
 
               it 'sends a notification to the user' do
-                initial_video.user.notifications.count.should == user_notifications_count+1
+                expect(initial_video.user.notifications.count).to eq user_notifications_count+1
               end
 
               it 'deletes the video editor cache' do
-                initial_video.user.video_editor_cache.should be_nil
+                expect(initial_video.user.video_editor_cache).to be_nil
               end
 
               it 'deletes the old files' do
-                old_files.each{ |f| File.exists?(f).should be_false }
+                old_files.each { |f| expect(File.exists?(f)).to be_false }
               end
             end
           end

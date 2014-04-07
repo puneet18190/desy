@@ -113,7 +113,7 @@ module Media
             before(:all) { subject }
   
             it 'has the expected log folder' do
-              transition.send(:log_folder).should start_with Rails.root.join('log/media/video/editing/transition/test/').to_s
+              expect(transition.send(:log_folder)).to start_with Rails.root.join('log/media/video/editing/transition/test/').to_s
             end
   
             MESS::VIDEO_FORMATS.each do |format|
@@ -125,7 +125,7 @@ module Media
   
                 it 'creates a video with the expected duration' do
                   expected_duration = Rational(described_class::INNER_FRAMES_AMOUNT+2, described_class::FRAME_RATE)
-                  output_info[:duration].should == expected_duration
+                  expect(output_info[:duration]).to eq expected_duration
                 end
               end
   

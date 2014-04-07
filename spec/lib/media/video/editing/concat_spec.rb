@@ -83,7 +83,7 @@ module Media
             before(:all) { subject }
   
             it 'has the expected log folder' do
-              concat.send(:stdout_log).should start_with Rails.root.join('log/media/video/editing/concat/test/').to_s
+              expect(concat.send(:stdout_log)).to start_with Rails.root.join('log/media/video/editing/concat/test/').to_s
             end
   
             MESS::VIDEO_FORMATS.each do |format|
@@ -93,7 +93,7 @@ module Media
                 let(:format) { format }
               
                 it 'copies the inputs to the outputs' do
-                  FileUtils.cmp(input_videos.first[format], subject[format]).should be_true
+                  expect(FileUtils.cmp(input_videos.first[format], subject[format])).to be_true
                 end
   
               end
@@ -150,52 +150,52 @@ module Media
                   before(:all) { subject }
   
                   it 'has the expected log folder' do
-                    concat.send(:stdout_log).should start_with Rails.root.join('log/media/video/editing/concat/test/').to_s
+                    expect(concat.send(:stdout_log)).to start_with Rails.root.join('log/media/video/editing/concat/test/').to_s
                   end
   
                   it 'creates a video with the expected duration' do
                     duration = info[:duration]
                     expected = output_infos[format][:duration]
-                    duration.should be_within(0.2).of(expected)
+                    expect(duration).to be_within(0.2).of(expected)
                   end
   
                   it 'creates a video with the expected amount of video streams' do
                     video_streams = info[:streams][:video]
                     expected      = output_infos[format][:streams][:video]
-                    video_streams.should have(expected.size).items
+                    expect(video_streams).to have(expected.size).items
                   end
                   it 'creates a video with the expected video stream codec and sizes' do
                     codec_and_sizes = info[:streams][:video].first.select{ |k| [:codec, :width, :height].include? k }
                     expected        = output_infos[format][:streams][:video].first.select{ |k| [:codec, :width, :height].include? k }
-                    codec_and_sizes.should == expected
+                    expect(codec_and_sizes).to eq expected
                   end
                   it 'creates a video with the expected video stream bitrate' do
                     bitrate  = info[:streams][:video].first[:bitrate]
                     expected = output_infos[format][:streams][:video].first[:bitrate]
                     if expected
-                      bitrate.should be_within(2).of(expected)
+                      expect(bitrate).to be_within(2).of(expected)
                     else
-                      bitrate.should be_nil
+                      expect(bitrate).to be_nil
                     end
                   end
   
                   it 'creates a video with the expected amount of audio streams' do
                     audio_streams = info[:streams][:audio]
                     expected      = output_infos[format][:streams][:audio]
-                    audio_streams.should have(expected.size).items
+                    expect(audio_streams).to have(expected.size).items
                   end
                   it 'creates a video with the expected audio stream codec' do
                     codec    = info[:streams][:audio].first.try(:select) { |k| [:codec].include? k }
                     expected = output_infos[format][:streams][:audio].first.try(:select) { |k| [:codec].include? k }
-                    codec.should == expected
+                    expect(codec).to eq expected
                   end
                   it 'creates a video with the expected audio stream bitrate' do
                     bitrate  = info[:streams][:audio].first.try(:[], :bitrate)
                     expected = output_infos[format][:streams][:audio].first.try(:[], :bitrate)
                     if expected
-                      bitrate.should be_within(1).of(expected)
+                      expect(bitrate).to be_within(1).of(expected)
                     else
-                      bitrate.should be_nil
+                      expect(bitrate).to be_nil
                     end
                   end
 
@@ -227,82 +227,82 @@ module Media
   
           context 'with empty infos' do
             let(:infos) { [] }
-            it { should == [] }
+            it { expect(subject).to eq [] }
           end
   
           context 'with one info' do
             context 'with empty audio streams' do
               let(:infos) { [ info.new([],1) ] }
-              it { should == [] }
+              it { expect(subject).to eq [] }
             end
             context 'with present audio streams' do
               let(:infos) { [ info.new([true],1) ] }
-              it { should == [ [0,0] ] }
+              it { expect(subject).to eq [ [0,0] ] }
             end
           end
   
           context 'with two infos' do
             context 'with the first audio stream empty, the second empty' do
               let(:infos) { [ info.new([],1), info.new([],3) ] }
-              it { should == [] }
+              it { expect(subject).to eq [] }
             end
             context 'with the first audio stream present, the second empty' do
               let(:infos) { [ info.new([true],1), info.new([],3) ] }
-              it { should == [ [0,3] ] }
+              it { expect(subject).to eq [ [0,3] ] }
             end
             context 'with the first audio stream empty, the second present' do
               let(:infos) { [ info.new([],1), info.new([true],3) ] }
-              it { should == [ [1,0] ] }
+              it { expect(subject).to eq [ [1,0] ] }
             end
             context 'with the first audio stream present, the second present' do
               let(:infos) { [ info.new([true],1), info.new([true],3) ] }
-              it { should == [ [0,0], [0,0] ] }
+              it { expect(subject).to eq [ [0,0], [0,0] ] }
             end
           end
   
           context 'with three infos' do
             context 'with the first audio stream empty, the second empty, the third empty' do
               let(:infos) { [ info.new([],1), info.new([],3), info.new([],5) ] }
-              it { should == [] }
+              it { expect(subject).to eq [] }
             end
             context 'with the first audio stream present, the second empty, the third empty' do
               let(:infos) { [ info.new([true],1), info.new([],3), info.new([],5) ] }
-              it { should == [ [0,8] ] }
+              it { expect(subject).to eq [ [0,8] ] }
             end
             context 'with the first audio stream empty, the second present, the third empty' do
               let(:infos) { [ info.new([],1), info.new([true],3), info.new([],5) ] }
-              it { should == [ [1,5] ] }
+              it { expect(subject).to eq [ [1,5] ] }
             end
             context 'with the first audio stream empty, the second empty, the third present' do
               let(:infos) { [ info.new([],1), info.new([],3), info.new([true],5) ] }
-              it { should == [ [4,0] ] }
+              it { expect(subject).to eq [ [4,0] ] }
             end
             context 'with the first audio stream present, the second present, the third empty' do
               let(:infos) { [ info.new([true],1), info.new([true],3), info.new([],5) ] }
-              it { should == [ [0,0], [0,5] ] }
+              it { expect(subject).to eq [ [0,0], [0,5] ] }
             end
             context 'with the first audio stream present, the second empty, the third present' do
               let(:infos) { [ info.new([true],1), info.new([],3), info.new([true],5) ] }
-              it { should == [ [0,3], [0,0] ] }
+              it { expect(subject).to eq [ [0,3], [0,0] ] }
             end
             context 'with the first audio stream empty, the second present, the third present' do
               let(:infos) { [ info.new([],1), info.new([true],3), info.new([true],5) ] }
-              it { should == [ [1,0], [0,0] ] }
+              it { expect(subject).to eq [ [1,0], [0,0] ] }
             end
             context 'with the first audio stream present, the second present, the third present' do
               let(:infos) { [ info.new([true],1), info.new([true],3), info.new([true],5) ] }
-              it { should == [ [0,0], [0,0], [0,0] ] }
+              it { expect(subject).to eq [ [0,0], [0,0], [0,0] ] }
             end
           end
   
           context 'with four infos' do
             context 'with the first audio stream empty, the second present, the third present, the fourth empty' do
               let(:infos) { [ info.new([],1), info.new([true],3), info.new([true],5), info.new([],7) ] }
-              it { should == [ [1,0], [0,7] ] }
+              it { expect(subject).to eq [ [1,0], [0,7] ] }
             end
             context 'with the first audio stream present, the second empty, the third empty, the fourth present' do
               let(:infos) { [ info.new([true],1), info.new([],3), info.new([],5), info.new([true],7) ] }
-              it { should == [ [0,8], [0,0] ] }
+              it { expect(subject).to eq [ [0,8], [0,0] ] }
             end
           end
   
@@ -332,7 +332,7 @@ module Media
             end
 
             it 'respects the concatenations order' do
-              subject.keys.map{ |p| File.basename(p) }.should == ["concat0.wav", "concat1.wav"]
+              expect(subject.keys.map{ |p| File.basename(p) }).to eq ["concat0.wav", "concat1.wav"]
             end
 
           end

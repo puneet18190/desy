@@ -18,7 +18,7 @@ module Media
               let!(:command) { commands[format] }
   
               describe '#to_s' do
-                it('works') { subject.to_s.should == command }
+                it('works') { expect(subject.to_s).to eq(command) }
               end
             end
           end

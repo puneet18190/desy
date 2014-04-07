@@ -20,7 +20,7 @@ module Media
               subject { described_class.new('video input', 'audio input', 45.67, 'out put', format) }
   
               describe '#to_s' do
-                it('works') { subject.to_s.should == command[format] }
+                it('works') { expect(subject.to_s).to eq(command[format]) }
               end
             end
   

@@ -62,7 +62,7 @@ module Media
               end
   
               it 'has the expected log folder' do
-                image_to_video.send(:stdout_log).should start_with Rails.root.join('log/media/video/editing/image_to_video/test/').to_s
+                expect(image_to_video.send(:stdout_log)).to start_with Rails.root.join('log/media/video/editing/image_to_video/test/').to_s
               end
   
               supported_video_formats.each do |format|
@@ -78,21 +78,22 @@ module Media
                 context "with #{format} format", format: format do
                   
                   it 'creates a valid video' do
-                    info(format).should_not be_nil
+                    expect(info(format)).to_not be_nil
                   end
                   it 'sets the correct duration' do
-                    info(format).duration.should == duration
+                    expect(info(format).duration).to eq duration
                   end
                   it 'sets the correct sizes' do
-                    info(format).video_streams[0].select{ |k| [:width, :height].include?(k) }.should == { width: 960, height: 540 }
+                    expect(info(format).video_streams[0].select{ |k| [:width, :height].include?(k) }).to eq(width: 960, height: 540)
                   end
                   it "creates the log folders" do
-                    @after_log_folder_children.should have(@before_log_folder_children.size+2).items
+                    expect(@after_log_folder_children).to have(@before_log_folder_children.size+2).items
                   end
                   it "creates the logs" do
-                    @created_log_folders.map do |log_folder|
-                      Dir.glob(File.join(log_folder, '*')).map{ |log| File.basename(log) }
-                    end.flatten.should include("#{format}.stderr.log")
+                    log_files_basenames = @created_log_folders.map do |log_folder|
+                      Dir.glob(File.join(log_folder, '*')).map { |log| File.basename(log) }
+                    end.flatten
+                    expect(log_files_basenames).to include("#{format}.stderr.log")
                   end
                 
                 end
