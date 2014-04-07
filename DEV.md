@@ -6,24 +6,10 @@
 
 ### rspec
 
-1. convertire should in expect
-1. aggiornare alal 3.0.0.beta2
 1. convertire i test in rspec e rimuovere la piattaforma di test di Rails
+1. Attivare e far funzionare turbolinks
 
 ## Lista di cose da fare lasciata in eredità da Adriano
-
-
-
-######################################################## UPGRADE A RAILS 4 ########################################################
-
-1- Rails 4.0 has removed attr_accessible and attr_protected feature in favor of Strong Parameters. You can use the Protected Attributes gem to a smoothly upgrade path. If you are not using Protected Attributes, you can remove any options related to this gem such as whitelist_attributes or mass_assignment_sanitizer options.
-2- In Rails 4.0, precompiling assets no longer automatically copies non-JS/CSS assets from vendor/assets and lib/assets. Rails application and engine developers should put these assets in app/assets or configure config.assets.precompile.
-3- In Rails 4.0, SCRIPT_NAME is properly nested when engines are mounted on an app that's served from a URL prefix. You no longer have to set default_url_options[:script_name] to work around overwritten URL prefixes.
-4- Rails 4.0 deprecated ActionController::AbstractRequest in favor of ActionDispatch::Request. Rails 4.0 deprecated ActionController::Request in favor of ActionDispatch::Request. Rails 4.0 deprecated ActionController::AbstractResponse in favor of ActionDispatch::Response. Rails 4.0 deprecated ActionController::Response in favor of ActionDispatch::Response. Rails 4.0 deprecated ActionController::Routing in favor of ActionDispatch::Routing.
-5- assets:precompile:primary has been removed. Use assets:precompile instead.
-6- Inizio dei tests mostra "Run options: --seed 59315"
-
-###################################################################################################################################
 
 
 
