@@ -28,8 +28,6 @@
 /config/database.yml
 /config/unicorn.rb
 /config/settings.yml
-# TODO rimuovere quando non sarà più presente da nessuna parte
-/config/secret_token
 /config/secret_key_base
 /config/pepper
 

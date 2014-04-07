@@ -12,16 +12,7 @@
 
 # Reading the secret key from a non-versioned file
 
-# TODO Rimuovere il check del vecchio file quando si sarà sicuri che non ce ne staranno più
-
-old_secret_key_base_path = Rails.root.join('config/secret_token')
 secret_key_base_path = Rails.root.join('config/secret_key_base')
-
-if File.exist?(old_secret_key_base_path) && !File.exist?(secret_key_base_path)
-  require 'fileutils'
-  FileUtils.mv old_secret_key_base_path, secret_key_base_path
-end
-
 secret_key_base = (secret_key_base_path.exist? and secret_key_base_path.read.chomp) or (
   warn "The file #{secret_key_base_path} does not exists or is empty."
   warn "Generating a new secret token and writing to #{secret_key_base_path}; this will invalidate the previous Rails sessions."
