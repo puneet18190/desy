@@ -93,7 +93,7 @@ module Media
                 let(:format) { format }
               
                 it 'copies the inputs to the outputs' do
-                  expect(FileUtils.cmp(input_videos.first[format], subject[format])).to be_true
+                  expect(FileUtils.cmp(input_videos.first[format], subject[format])).to be true
                 end
   
               end

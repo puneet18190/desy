@@ -98,15 +98,15 @@ module Media
                 end
 
                 it "creates the stdout log" do
-                  expect(File.exists?(stdout_log)).to be_true
+                  expect(File.exists?(stdout_log)).to be true
                 end
 
                 it "creates the stderr log" do
-                  expect(File.exists?(stderr_log)).to be_true
+                  expect(File.exists?(stderr_log)).to be true
                 end
 
                 it "does not delete the temporary audio" do
-                  expect(File.exists?(temp)).to be_true
+                  expect(File.exists?(temp)).to be true
                 end
               
               end
@@ -192,7 +192,7 @@ module Media
             end
   
             it 'deletes the temporary file' do
-              expect(File.exist?(temp)).to be_false
+              expect(File.exist?(temp)).to be false
             end
   
           end

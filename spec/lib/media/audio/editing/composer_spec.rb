@@ -80,7 +80,7 @@ module Media
                 let!(:format) { format }
 
                 it 'creates the correct audio' do
-                  expect(info(format).similar_to?(expected_infos(format), true)).to be_true
+                  expect(info(format).similar_to?(expected_infos(format), true)).to be true
                 end
               end
             end
@@ -126,7 +126,7 @@ module Media
                 let(:format) { format }
 
                 it 'creates the correct audio' do
-                  expect(info(format).similar_to?(expected_infos(format), true)).to be_true
+                  expect(info(format).similar_to?(expected_infos(format), true)).to be true
                 end
               end
             end
@@ -144,7 +144,7 @@ module Media
             end
 
             it 'deletes the old files' do
-              old_files.each { |f| expect(File.exists?(f)).to be_false }
+              old_files.each { |f| expect(File.exists?(f)).to be false }
             end
 
           end

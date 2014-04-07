@@ -61,7 +61,7 @@ describe Video, slow: true do
     end
 
     it 'destroys the video folder' do
-      expect(File.exist?(output_folder)).to be_false
+      expect(File.exist?(output_folder)).to be false
     end
   end
 

@@ -11,8 +11,8 @@ module Media
               @output ||= Rails.root.join('tmp', 'test.jpg').to_s
             end
 
-            let(:text) do
-              Tempfile.open(Rails.application.config.tempfiles_prefix.call) do |f|
+            def text
+              @text ||= Tempfile.open(Rails.application.config.tempfiles_prefix.call) do |f|
                 f.write("Test\ntest")
                 f
               end

@@ -120,27 +120,27 @@ module Media
         shared_examples 'when media is a not converted video' do
           context 'when is a valid video' do
             let(:path) { valid_video_path }
-            it { expect(subject).to be_true }
+            it { expect(subject).to be true }
           end
 
           context 'when filename is blank' do
             let(:path) { media_folder.join '.flv' }
-            it { expect(subject).to be_false }
+            it { expect(subject).to be false }
           end
 
           context 'when the extension is not valid' do
             let(:path) { media_folder.join 'valid video.php' }
-            it { expect(subject).to be_false }
+            it { expect(subject).to be false }
           end
 
           context 'when is an invalid video' do
             let(:path) { media_folder.join 'invalid video.flv' }
-            it { expect(subject).to be_false }
+            it { expect(subject).to be false }
           end
 
           context 'when the video is too short' do
             let(:path) { media_folder.join 'short video.mp4' }
-            it { expect(subject).to be_false }
+            it { expect(subject).to be false }
           end
 
           context 'when the media elements folder size exceeds the maximum value allowed' do
@@ -150,7 +150,7 @@ module Media
               prev_maximum_media_elements_folder_size
               silence_warnings { Media::Uploader.const_set :MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE, Media::Uploader.media_elements_folder_size-1 }
             end
-            it { expect(subject).to be_false }
+            it { expect(subject).to be false }
             after { silence_warnings { Media::Uploader.const_set :MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE, prev_maximum_media_elements_folder_size } }
           end
         end
@@ -169,12 +169,12 @@ module Media
 
         context 'when media type is blank' do
           let(:media) { nil }
-          it { expect(subject).to be_false }
+          it { expect(subject).to be false }
         end
 
         context 'when media type is invalid' do
           let(:media) { %w(invalid media type) }
-          it { expect(subject).to be_false }
+          it { expect(subject).to be false }
         end
 
         context 'when media type is a String' do
@@ -186,19 +186,19 @@ module Media
                   v.user = User.admin
                   v.save!
                   v.reload
-                end
+                end.valid?
               end
-              it { expect(subject).to be_true }
+              it { expect(subject).to be true }
             end
 
             context 'when is blank' do
               let(:media) { '' }
-              it { expect(subject).to be_false }
+              it { expect(subject).to be false }
             end
 
             context 'when the processed filename is blank' do
               let(:media) { '%' }
-              it { expect(subject).to be_false }
+              it { expect(subject).to be false }
             end
           end
 
@@ -212,12 +212,12 @@ module Media
 
             context 'when is blank' do
               let(:media) { '' }
-              it { expect(subject).to be_false }
+              it { expect(subject).to be false }
             end
 
             context 'when the name is valid' do
               let(:media) { 'asd' }
-              it { expect(subject).to be_true }
+              it { expect(subject).to be true }
             end
           end
         end
@@ -226,42 +226,42 @@ module Media
 
           context 'when media is valid' do
             let(:media) { media_hash }
-            it { expect(subject).to be_true }
+            it { expect(subject).to be true }
           end
 
           context 'when filename is blank' do
             let(:media) { media_hash.merge(filename: nil) }
-            it { expect(subject).to be_false }
+            it { expect(subject).to be false }
           end
 
           context 'when mp4 file extension is invalid' do
             let(:media) { media_hash.merge(mp4: media_hash[:webm]) }
-            it { expect(subject).to be_false }
+            it { expect(subject).to be false }
           end
 
           context 'when webm file extension is invalid' do
             let(:media) { media_hash.merge(webm: media_hash[:mp4]) }
-            it { expect(subject).to be_false }
+            it { expect(subject).to be false }
           end
 
           context 'when mp4 file is not a valid video' do
             let(:media) { media_hash.merge(mp4: media_folder.join('invalid video.mp4').to_s) }
-            it { expect(subject).to be_false }
+            it { expect(subject).to be false }
           end
 
           context 'when webm file is not a valid video' do
             let(:media) { media_hash.merge(webm: media_folder.join('invalid video.webm').to_s) }
-            it { expect(subject).to be_false }
+            it { expect(subject).to be false }
           end
 
           context 'when videos are too short' do
             let(:media) { media_hash.merge(mp4: media_folder.join('short video.mp4').to_s, webm: media_folder.join('short video.webm').to_s) }
-            it { expect(subject).to be_false }
+            it { expect(subject).to be false }
           end
 
           context 'when videos have different durations' do
             let(:media) { media_hash.merge(mp4: media_folder.join('concat 1.mp4').to_s, webm: media_folder.join('concat 2.webm').to_s) }
-            it { expect(subject).to be_false }
+            it { expect(subject).to be false }
           end
 
         end

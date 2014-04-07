@@ -26,7 +26,7 @@ module Media
       describe '#similar_to?' do
         it 'works' do
           other_infos = described_class.new(MESS::SAMPLES_FOLDER.join('.flv').to_s)
-          expect(subject.similar_to?(other_infos.to_hash)).to be_true
+          expect(subject.similar_to?(other_infos.to_hash)).to be true
         end
       end
     end

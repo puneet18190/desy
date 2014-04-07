@@ -53,7 +53,7 @@ end
 
 group :development, :test do
   gem 'colorize'
-  gem 'rspec-rails'
+  gem 'rspec-rails',          '~> 3.0.0.beta2'
   gem 'ruby_parser'
   gem 'file-tail'
   gem 'sourcify'

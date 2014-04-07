@@ -20,11 +20,11 @@ shared_examples 'after saving a video with a valid not converted media' do
   let(:metadata)               { Hash[ MESS::VIDEO_FORMATS.map{ |f| [:"#{f}_duration", info[f].duration] } ].merge(creation_mode: :uploaded) }
 
   it 'resets model rename_media attribute' do
-    expect(video.rename_media).to_not be_true
+    expect(video.rename_media).to_not be true
   end
 
   it 'resets model skip_conversion attribute' do
-    expect(video.skip_conversion).to_not be_true
+    expect(video.skip_conversion).to_not be true
   end
 
   it 'sets the expected metadata' do
@@ -52,7 +52,7 @@ shared_examples 'after saving a video with a valid not converted media' do
   end
 
   it 'is marked as uploaded' do
-    expect(video.uploaded?).to be_true
+    expect(video.uploaded?).to be true
   end
 
   it 'creates valid videos' do
@@ -60,10 +60,10 @@ shared_examples 'after saving a video with a valid not converted media' do
   end
 
   it 'creates the video cover' do
-    expect(File.exists?(video.media.path(:cover))).to be_true
+    expect(File.exist?(video.media.path(:cover))).to be true
   end
 
   it 'creates the video thumb' do
-    expect(File.exists?(video.media.path(:thumb))).to be_true
+    expect(File.exist?(video.media.path(:thumb))).to be true
   end
 end

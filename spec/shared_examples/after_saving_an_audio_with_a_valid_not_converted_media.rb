@@ -16,11 +16,11 @@ shared_examples 'after saving an audio with a valid not converted media' do
   let(:metadata)               { Hash[ MESS::AUDIO_FORMATS.map{ |f| [:"#{f}_duration", info[f].duration] } ].merge(creation_mode: :uploaded) }
 
   it 'resets model rename_media attribute' do
-    expect(audio.rename_media).to_not be_true
+    expect(audio.rename_media).to_not be true
   end
 
   it 'resets model skip_conversion attribute' do
-    expect(audio.skip_conversion).to_not be_true
+    expect(audio.skip_conversion).to_not be true
   end
 
   it 'sets the expected metadata' do
