@@ -14,7 +14,9 @@ module Media
           describe 'class methods' do
             subject { described_class }
   
-            its(:subexec_options) { should == subexec_options }
+            describe '#subexec_options' do
+              it('works') { subject.subexec_options.should == subexec_options }
+            end
   
             describe 'new' do
               context 'with unsupported formats' do
@@ -56,13 +58,17 @@ module Media
                     context 'has a bitrate' do
                       let(:input_file_info) { double(video_streams: [ { bitrate: 100 }, { bitrate: 'ignored' } ], audio_streams: []) }
                       subject { described_class.new('inp ut', 'out put', format, input_file_info) }
-                      its(:to_s) { should == cmd_format % '' }
+                      describe '#to_s' do
+                        it('works') { subject.to_s.should == cmd_format % '' }
+                      end
                     end
   
                     context 'has not a bitrate' do
                       let(:input_file_info) { double(video_streams: [ { bitrate: nil }, { bitrate: 'ignored' } ], audio_streams: []) }
                       subject { described_class.new('inp ut', 'out put', format, input_file_info ) }
-                      its(:to_s) { should == cmd_format % '' }
+                      describe '#to_s' do
+                        it('works') { subject.to_s.should == cmd_format % '' }
+                      end
                     end
                   end
                 end
@@ -73,13 +79,17 @@ module Media
                       context 'has a bitrate' do
                         let(:input_file_info) { double(video_streams: [ { bitrate: 100 }, { bitrate: 'ignored' } ], audio_streams: [ { bitrate: 50 }, { bitrate: 'ignored' } ]) }
                         subject { described_class.new('inp ut', 'out put', format, input_file_info) }
-                        its(:to_s) { should == cmd_format % ' -map 0:a:0' }
+                        describe '#to_s' do
+                          it('works') { subject.to_s.should == cmd_format % ' -map 0:a:0' }
+                        end
                       end
   
                       context 'has not a bitrate' do
                         let(:input_file_info) { double(video_streams: [ { bitrate: nil }, { bitrate: 'ignored' } ], audio_streams: [ { bitrate: 50 }, { bitrate: 'ignored' } ]) }
                         subject { described_class.new('inp ut', 'out put', format, input_file_info ) }
-                        its(:to_s) { should == cmd_format % ' -map 0:a:0' }
+                        describe '#to_s' do
+                          it('works') { subject.to_s.should == cmd_format % ' -map 0:a:0' }
+                        end
                       end
                     end
                   end

@@ -9,7 +9,9 @@ module Media
           
           subject { described_class.new('inp ut', 'out put') }
           
-          its(:to_s) { should == %Q[#{pre_command} -i inp\\ ut -map 0:v:0 -c copy out\\ put] }
+          describe '#to_s' do
+            it('works') { subject.to_s.should == %Q[#{pre_command} -i inp\\ ut -map 0:v:0 -c copy out\\ put] }
+          end
         end
       end
     end

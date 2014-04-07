@@ -12,7 +12,9 @@ module Media
           
           let(:command) { "#{pre_command} start\\ frame end\\ frame -morph 23 frames\\ format" }
   
-          its(:to_s) { should == command }
+          describe '#to_s' do
+            it('works') { subject.to_s.should == command }
+          end
   
         end
       end

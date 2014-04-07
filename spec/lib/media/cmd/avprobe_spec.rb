@@ -8,13 +8,17 @@ module Media
         let(:subexec_options) { MESS::AVPROBE_SUBEXEC_OPTIONS }
         subject { described_class }
 
-        its(:subexec_options) { should == subexec_options }
+        describe '#subexec_options' do
+          it('works') { subject.subexec_options.should == subexec_options }
+        end
       end
 
       let(:input) { 'in put.flv' }
       subject { described_class.new(input) }
 
-      its(:to_s) { should == "#{MESS::AVPROBE_PRE_COMMAND} in\\ put.flv" }
+      describe '#to_s' do
+        it('works') { subject.to_s.should == "#{MESS::AVPROBE_PRE_COMMAND} in\\ put.flv" }
+      end
 
       describe 'run' do
         it 'returns a Subexec instance' do

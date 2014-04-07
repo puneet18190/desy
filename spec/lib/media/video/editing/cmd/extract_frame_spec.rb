@@ -17,7 +17,9 @@ module Media
               let!(:format)  { format }
               let!(:command) { commands[format] }
   
-              its(:to_s) { should == command }
+              describe '#to_s' do
+                it('works') { subject.to_s.should == command }
+              end
             end
           end
   

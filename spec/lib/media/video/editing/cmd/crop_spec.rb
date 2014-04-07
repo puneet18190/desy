@@ -19,7 +19,9 @@ module Media
             
               subject { described_class.new('in put', 'out put', 10, 20, format) }
   
-              its(:to_s) { should == command[format] }
+              describe '#to_s' do
+                it('works') { subject.to_s.should == command[format] }
+              end
             end
   
           end

@@ -19,7 +19,9 @@ module Media
             
               subject { described_class.new('transition format', 'output', 25, format) }
   
-              its(:to_s) { should == command[format] }
+              describe '#to_s' do
+                it('works') { subject.to_s.should == command[format] }
+              end
             end
   
           end
