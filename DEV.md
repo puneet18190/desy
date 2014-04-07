@@ -6,7 +6,6 @@
 
 ### rspec
 
-1. rimuovere its
 1. convertire should in expect
 1. aggiornare alal 3.0.0.beta2
 1. convertire i test in rspec e rimuovere la piattaforma di test di Rails
