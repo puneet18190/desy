@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.4'
 
-# Gems by group alphabetically sorted
 gem 'ancestry'
 gem 'bcrypt',                   '~> 3.1.2'
 gem 'carrierwave'
@@ -32,7 +31,7 @@ gem 'unicorn',                              platforms: :ruby
 gem 'whenever',                                                                             require: false
 gem 'win32-dir',                            platforms: :mingw
 
-# TODO ordinare
+# CSS, JS and assets stuff
 gem 'bootstrap-sass',          '~> 2.2.2.0'
 gem 'coffee-rails',            '~> 4.0.0'
 gem 'jquery-fileupload-rails'
