@@ -7,6 +7,7 @@
 1. test: convertire i test in rspec e rimuovere la piattaforma di test di Rails
 1. Attivare e far funzionare turbolinks
 1. Mettere tutto in autoload
+1. rspec: definire `set` e `set!` per avere syntactic sugar per i metodi cacheabili. Al pari di `let`, `set` cachea dopo la prima chiamata, mentre `set!` forza l'esecuzione.
 
 ## Lista di cose da fare lasciata in eredità da Adriano
 
