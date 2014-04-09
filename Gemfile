@@ -43,7 +43,8 @@ gem 'uglifier',                '>= 1.3.0'
 
 group :development do
   gem 'irb-benchmark'
-  gem 'mailcatcher',                        platforms: :ruby
+  # mailcatcher is not suggested to be in the Gemfile http://mailcatcher.me/#bundler
+  # gem 'mailcatcher',        '>= 0.5.12',    platforms: :ruby
   # Basta assets che monopolizzano il log dell'application server!
   gem 'quiet_assets'
   gem 'rails-erd'
