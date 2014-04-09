@@ -12,12 +12,20 @@ module Media
         @media_without_extension ||= media_folder.join('con verted').to_s
       end
 
+      def valid_media_filename
+        @valid_media_filename ||= Pathname 'valid audio.m4a'
+      end
+
+      def tmp_valid_media_filename
+        @tmp_valid_media_filename ||= Pathname "tmp.#{valid_media_filename}"
+      end
+
       def valid_media_path
-        @valid_media_path ||= media_folder.join('valid audio.m4a').to_s
+        @valid_media_path ||= media_folder.join(valid_media_filename).to_s
       end
 
       def tmp_valid_media_path
-        @tmp_valid_media_path ||= media_folder.join('tmp.valid audio.m4a').to_s
+        @tmp_valid_media_path ||= media_folder.join(tmp_valid_media_filename).to_s
       end
 
       def media_file
@@ -29,7 +37,8 @@ module Media
       end
       
       def media_hash
-        @media_hash ||= { filename: 'tmp.valid audio', m4a: "#{media_without_extension}.m4a", ogg: "#{media_without_extension}.ogg" }
+        @media_hash ||= { filename: tmp_valid_media_filename.basename(tmp_valid_media_filename.extname).to_s,
+                          m4a: "#{media_without_extension}.m4a", ogg: "#{media_without_extension}.ogg" }
       end
 
       def media_hash_full
