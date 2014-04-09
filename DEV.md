@@ -4,10 +4,9 @@
 
 ## TODO
 
-### rspec
-
-1. convertire i test in rspec e rimuovere la piattaforma di test di Rails
+1. test: convertire i test in rspec e rimuovere la piattaforma di test di Rails
 1. Attivare e far funzionare turbolinks
+1. Mettere tutto in autoload
 
 ## Lista di cose da fare lasciata in eredità da Adriano
 
