@@ -293,7 +293,6 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails (~> 2.1.4)
   kaminari
-  libv8
   mini_magick
   nokogiri
   oj

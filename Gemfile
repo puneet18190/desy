@@ -34,7 +34,6 @@ gem 'win32-dir',                            platforms: :mingw
 gem 'bootstrap-sass',          '~> 2.2.2.0'
 gem 'coffee-rails',            '~> 4.0.0'
 gem 'jquery-fileupload-rails'
-gem 'libv8',                                platforms: :ruby
 gem 'sass-rails',              '~> 4.0.2'
 # Sass 3.3 leads to this issue https://github.com/nex3/sass/issues/1162
 gem 'sass',                    '~> 3.2.0'
