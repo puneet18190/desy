@@ -49,7 +49,7 @@ module Media
         
         context 'with a File', slow: true do
           def video
-            @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_file) { |v| v.user = User.admin }
+            @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_file, user: User.admin)
           end
           
           before(:all) do
@@ -62,7 +62,7 @@ module Media
 
         context 'with a ActionDispatch::Http::UploadedFile', slow: true do
           def video
-            @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_uploaded) { |v| v.user = User.admin }
+            @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_uploaded, user: User.admin)
           end
 
           before(:all) do
@@ -76,7 +76,7 @@ module Media
         context 'with a Hash' do
           context 'without durations and version paths' do
             def video
-              @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash) { |v| v.user = User.admin }
+              @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash, user: User.admin)
             end
 
             before(:all) { video.save! }
@@ -86,7 +86,7 @@ module Media
 
           context 'with durations and version paths' do
             def video
-              @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin }
+              @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full, user: User.admin)
             end
 
             before(:all) { video }
@@ -98,7 +98,7 @@ module Media
 
             context 'after saving' do
               def video
-                @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin }
+                @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full, user: User.admin)
               end
 
               before(:all) { video.save! }
@@ -182,8 +182,7 @@ module Media
           context 'when the model is not marked for renaming' do
             context 'when media is valid and not changed' do
               subject do 
-                ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash) do |v| 
-                  v.user = User.admin
+                ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash, user: User.admin) do |v| 
                   v.save!
                   v.reload
                 end.valid?
@@ -204,8 +203,7 @@ module Media
 
           context 'when the model is marked for media renaming' do
             subject do 
-              ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media) do |v| 
-                v.user = User.admin
+              ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media, user: User.admin) do |v| 
                 v.rename_media = true
               end.valid?
             end

@@ -12,20 +12,20 @@ module Media
         @media_without_extension ||= media_folder.join('con verted').to_s
       end
 
-      def valid_audio_path
-        @valid_audio_path ||= media_folder.join('valid audio.m4a').to_s
+      def valid_media_path
+        @valid_media_path ||= media_folder.join('valid audio.m4a').to_s
       end
 
-      def tmp_valid_audio_path
-        @tmp_valid_audio_path ||= media_folder.join('tmp.valid audio.m4a').to_s
+      def tmp_valid_media_path
+        @tmp_valid_media_path ||= media_folder.join('tmp.valid audio.m4a').to_s
       end
 
       def media_file
-        @media_file ||= File.open(tmp_valid_audio_path)
+        @media_file ||= File.open(tmp_valid_media_path)
       end
 
       def media_uploaded
-        @media_uploaded ||= ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_audio_path), tempfile: File.open(tmp_valid_audio_path))
+        @media_uploaded ||= ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_media_path), tempfile: File.open(tmp_valid_media_path))
       end
       
       def media_hash
@@ -39,28 +39,34 @@ module Media
       
       describe 'saving the associated model' do
         before(:all) do
-          FileUtils.cp valid_audio_path, tmp_valid_audio_path
+          FileUtils.cp valid_media_path, tmp_valid_media_path
           ['public/media_elements/audios/test', 'tmp/media/audio/editing/conversions/test'].each do |folder|
             FileUtils.rm_rf Rails.root.join(folder)
           end
         end
         
         context 'with a File', slow: true do
+          def media
+            media_file
+          end
           def audio
-            @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_file) { |v| v.user = User.admin }
+            @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media, user: User.admin)
           end
           
           before(:all) do
             audio.save!
-            audio.reload    
+            audio.reload
           end
 
           include_examples 'after saving an audio with a valid not converted media'
         end
 
         context 'with a ActionDispatch::Http::UploadedFile', slow: true do
+          def media
+            media_uploaded
+          end
           def audio
-            @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_uploaded) { |v| v.user = User.admin }
+            @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_uploaded, user: User.admin)
           end
 
           before(:all) do
@@ -73,8 +79,11 @@ module Media
 
         context 'with a Hash' do
           context 'without durations and version paths' do
+            def media
+              media_hash
+            end
             def audio
-              @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash) { |v| v.user = User.admin }
+              @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash, user: User.admin)
             end
 
             before(:all) { audio.save! }
@@ -83,9 +92,11 @@ module Media
           end
 
           context 'with durations and version paths' do
-
+            def media
+              media_hash_full
+            end
             def audio
-              @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin }
+              @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full, user: User.admin)
             end
 
             before(:all) { audio }
@@ -96,31 +107,29 @@ module Media
             end
 
             context 'after saving' do
-
               def audio
-                @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full) { |v| v.user = User.admin }
+                @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full, user: User.admin)
               end
 
               before(:all) { audio.save! }
 
               include_examples 'after saving an audio with a valid not converted media'
-
             end
           end
         end
         
         after(:all) do
-          FileUtils.rm tmp_valid_audio_path if File.exists? tmp_valid_audio_path
+          FileUtils.rm tmp_valid_media_path if File.exists? tmp_valid_media_path
         end
       end
 
       describe 'validations' do
 
-        subject { ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media){ |v| v.user = User.admin }.valid? }
+        subject { ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media, user: User.admin).valid? }
 
         shared_examples 'when media is a not converted audio' do
           context 'when is a valid audio' do
-            let(:path) { valid_audio_path }
+            let(:path) { valid_media_path }
             it { expect(subject).to be true }
           end
 
@@ -145,7 +154,7 @@ module Media
           end
 
           context 'when the media elements folder size exceeds the maximum value allowed' do
-            let(:path)                                    { valid_audio_path }
+            let(:path)                                    { valid_media_path }
             let(:prev_maximum_media_elements_folder_size) { Media::Uploader::MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE }
             before do
               prev_maximum_media_elements_folder_size
@@ -183,8 +192,7 @@ module Media
           context 'when the model is not marked for renaming' do
             context 'when media is valid and not changed' do
               subject do 
-                ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash) do |v| 
-                  v.user = User.admin
+                ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash, user: User.admin) do |v|
                   v.save!
                   v.reload
                 end.valid?
@@ -205,8 +213,7 @@ module Media
 
           context 'when the model is marked for media renaming' do
             subject do 
-              ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media) do |v| 
-                v.user = User.admin
+              ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media, user: User.admin) do |v| 
                 v.rename_media = true
               end.valid?
             end
