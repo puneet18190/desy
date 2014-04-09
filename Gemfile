@@ -10,7 +10,6 @@ gem 'delayed_job_active_record'
 gem 'erubis'
 gem 'eventmachine',                         platforms: :ruby
 gem 'facter',                               platforms: :ruby
-gem 'jbuilder',                 '~> 1.2'
 gem 'jquery-rails',             '~> 2.1.4'
 gem 'kaminari'
 gem 'mini_magick'
