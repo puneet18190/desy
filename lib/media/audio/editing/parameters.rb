@@ -64,7 +64,7 @@ module Media
           return nil if !hash[:initial_audio_id].nil? && !hash[:initial_audio_id].kind_of?(Integer)
           
           # initialize empty hash
-          resp_hash = {}
+          resp_hash = HashWithIndifferentAccess.new
           
           # if initial audio is present, I validate that it exists and is accessible from the user
           if hash[:initial_audio_id].nil?
@@ -100,11 +100,9 @@ module Media
           return nil if audio.nil?
           return nil if !component[:from].kind_of?(Integer) || !component[:to].kind_of?(Integer)
           return nil if component[:from] < 0 || component[:to] > audio.min_duration || component[:from] >= component[:to]
-          {
-            :audio => audio,
-            :from => component[:from],
-            :to => component[:to]
-          }
+          HashWithIndifferentAccess.new audio: audio,
+                                        from:  component[:from],
+                                        to:    component[:to]
         end
         
         # Used in Media::Audio::Editing::Parameters#extract_component

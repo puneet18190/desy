@@ -109,7 +109,7 @@ module Media
           return nil if !hash[:audio_id].nil? && !hash[:audio_id].kind_of?(Integer)
           
           # initialize empty hash
-          resp_hash = {}
+          resp_hash = HashWithIndifferentAccess.new
           
           # if initial video is present, I validate that it exists and is accessible from the user
           if hash[:initial_video_id].nil?
