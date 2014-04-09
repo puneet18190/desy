@@ -24,6 +24,9 @@ module Media
     # Maximum allowed size for media elements folder; if exceeded, upload gets disabled
     MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE    = SETTINGS['maximum_media_elements_folder_size'].gigabytes.to_i
 
+    PROCESSED_FILENAME_MAX_EXTENSION_SIZE              = 4
+    PROCESSED_FILENAME_MAX_EXTENSION_SIZE_DOT_INCLUDED = PROCESSED_FILENAME_MAX_EXTENSION_SIZE + 1
+
     # Remove media folder (descendants)
     def self.remove_folder!
       FileUtils.rm_rf self::FOLDER
@@ -95,21 +98,27 @@ module Media
       (@filename_without_extension || original_filename_without_extension).to_s
     end
 
-    # Returns a new filename adding a token (provided by the model instance), adding the extension if present
-    def process(filename, extension = nil)
-      filename = "#{filename.parameterize}_#{model.filename_token}"
+    # Returns a new filename adding a token (provided by the model instance), adding the extension if provided
+    def processed_filename(filename, extension = nil)
+      suffix                  = "_#{model.filename_token}"
+      filename_without_suffix = filename.truncate max_processed_filename_size(suffix), omission: ''
+      filename                = "#{filename.parameterize}#{suffix}"
       filename << ".#{extension}" if extension
       filename
     end
 
+    def max_processed_filename_size(suffix)
+      model.class.send("max_#{column}_column_size") - suffix.size - PROCESSED_FILENAME_MAX_EXTENSION_SIZE_DOT_INCLUDED
+    end
+
     # Original filename after being processed by Media::Uploader.process
     def processed_original_filename
-      process(original_filename_without_extension, original_filename_extension)
+      processed_filename original_filename_without_extension, original_filename_extension
     end
 
     # Original filename after being processed by Media::Uploader.process without the extension
     def processed_original_filename_without_extension
-      process(original_filename_without_extension)
+      processed_filename original_filename_without_extension
     end
 
     # Original filename without the extension
@@ -184,7 +193,7 @@ module Media
     # If the attribute is changed and can be renamed returns the processed filename, otherwise returns Media::Uploader#public_relative_path
     def to_s
       if column_changed? and rename?
-        process(@value.to_s)
+        processed_filename @value.to_s
       else
         public_relative_path
       end
