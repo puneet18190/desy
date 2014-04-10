@@ -24,7 +24,6 @@ puts h.convert(input_string)
 1-  controlla gender comune in purchase (cerca una comune per)!!! +++ risolvi bug gender per fill_locations.js!!!!!!!
 2-  amicocloud aggiorna caption approfondimento popup documento e label grigia sempre nella stess popup
 3-  decidi se cambiare la funzionalità di controllo swipe!!! forse sarebbe meglio controllare se è touch, invece del controllo se ipad, iphone, etc
-4- UPDATE "media_elements" SET "media" = '/media_elements/audios/development/100/it_mario_suoneriabomba _jv9fd3noypowymfgix7ntg_ uixbboird6sp3o0h2yntta_ zpxrdhbskoerpzfgxstxnq _h8shug1bhmncg7vix0mm6a_rmbh_ijl-f4ir4cotwwcjg_ystues1fdwsck0tlc2g-ga_ pjuajhkrejmxgthwnergqa_pxbbiqctwgnrdleuolvrlq_ OHC6ESWG1LRIkk5KFgVHNA ===> troncare il nome del media nel composer, facendo attenzione che sia unico: (1) tronca il nome a 255 - #caratteri codice, (2) tronca a primo underscore, (3) attacca il nuovo codice
 5-  risolvere la doppia chiamata di Chrome al document ready! e controllare che sia OK anche in IE
 6-  Spaziare i video nella galleria perché non c'è spazio, il cursore quando arriva in fondo tocca il minutaggio e a volte vi si sovrappone
 7-  eventualmente fai una rescue dei numerosi errori che mi manda quando non riesce ad inviare una email, e se rescuo riprova ad inviare la mail altre volte!
