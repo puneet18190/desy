@@ -67,14 +67,14 @@ module Media
       end
 
       let(:media_type) { 'video' }
-      let(:urls)  { { mp4:   [ url_without_extension, ".mp4"  ], 
-                      webm:  [ url_without_extension, ".webm" ],
-                      cover: [ "#{public_relative_folder}/cover_#{name}", ".jpg" ], 
-                      thumb: [ "#{public_relative_folder}/thumb_#{name}", ".jpg" ] } }
-      let(:paths) { { mp4:   [ path_without_extension, ".mp4"  ], 
-                      webm:  [ path_without_extension, ".webm" ],
-                      cover: [ "#{folder}/cover_#{name}", ".jpg" ], 
-                      thumb: [ "#{folder}/thumb_#{name}", ".jpg" ] } }
+      let(:urls)       { { mp4:   [ url_without_extension, ".mp4"  ], 
+                           webm:  [ url_without_extension, ".webm" ],
+                           cover: [ "#{public_relative_folder}/cover_#{name}", ".jpg" ], 
+                           thumb: [ "#{public_relative_folder}/thumb_#{name}", ".jpg" ] } }
+      let(:paths)      { { mp4:   [ path_without_extension, ".mp4"  ], 
+                           webm:  [ path_without_extension, ".webm" ],
+                           cover: [ "#{folder}/cover_#{name}", ".jpg" ], 
+                           thumb: [ "#{folder}/thumb_#{name}", ".jpg" ] } }
 
       describe 'saving the associated model' do
         before(:all) do
