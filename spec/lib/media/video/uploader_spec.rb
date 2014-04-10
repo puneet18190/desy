@@ -12,24 +12,34 @@ module Media
         @media_without_extension ||= media_folder.join('con verted').to_s
       end
 
-      def valid_video_path
-        @valid_video_path ||= media_folder.join('valid video.flv').to_s
+      def valid_media_filename
+        @valid_media_filename ||= Pathname 'valid video.flv'
       end
 
-      def tmp_valid_video_path
-        @tmp_valid_video_path ||= media_folder.join('tmp.valid video.flv').to_s
+      def tmp_valid_media_filename
+        @tmp_valid_media_filename ||= Pathname "tmp.#{valid_media_filename}"
+      end
+
+      def valid_media_path
+        @valid_media_path ||= media_folder.join(valid_media_filename).to_s
+      end
+
+      def tmp_valid_media_path
+        @tmp_valid_media_path ||= media_folder.join(tmp_valid_media_filename).to_s
       end
 
       def media_file
-        @media_file ||= File.open(tmp_valid_video_path)
+        @media_file ||= File.open(tmp_valid_media_path)
       end
 
       def media_uploaded
-        @media_uploaded ||= ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_video_path), tempfile: File.open(tmp_valid_video_path))
+        @media_uploaded ||= ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_media_path), tempfile: File.open(tmp_valid_media_path))
       end
-
+      
       def media_hash
-        @media_hash ||= { filename: 'tmp.valid video', mp4: "#{media_without_extension}.mp4", webm: "#{media_without_extension}.webm" }
+        @media_hash ||= { filename: tmp_valid_media_filename.basename(tmp_valid_media_filename.extname).to_s,
+                          mp4: "#{media_without_extension}.mp4", 
+                          webm: "#{media_without_extension}.webm" }
       end
 
       def media_hash_full
@@ -38,78 +48,191 @@ module Media
                                                cover:         media_folder.join('con verted cover.jpg').to_s ,
                                                thumb:         media_folder.join('con verted thumb.jpg').to_s )
       end
-      
+
+      # 1 is the underscore character size, since the filename suffix is "_#{filename_token}"
+      def minimum_media_filename_size
+        1 + record.filename_token.size + described_class.superclass::PROCESSED_FILENAME_MAX_EXTENSION_SIZE_DOT_INCLUDED
+      end
+
+      def short_media_filename_size
+        nil
+      end
+
+      def set_model_max_media_column_size
+        @previous_max_media_column_size_value = ::Video.max_media_column_size
+        ::Video.max_media_column_size = minimum_media_filename_size + short_media_filename_size
+      end
+
+      def reset_model_max_media_column_size
+        ::Video.max_media_column_size = @previous_max_media_column_size_value
+      end
+
+      let(:media_type) { 'video' }
+      let(:urls)  { { mp4:   [ url_without_extension, ".mp4"  ], 
+                      webm:  [ url_without_extension, ".webm" ],
+                      cover: [ "#{public_relative_folder}/cover_#{name}", ".jpg" ], 
+                      thumb: [ "#{public_relative_folder}/thumb_#{name}", ".jpg" ] } }
+      let(:paths) { { mp4:   [ path_without_extension, ".mp4"  ], 
+                      webm:  [ path_without_extension, ".webm" ],
+                      cover: [ "#{folder}/cover_#{name}", ".jpg" ], 
+                      thumb: [ "#{folder}/thumb_#{name}", ".jpg" ] } }
+
       describe 'saving the associated model' do
         before(:all) do
-          FileUtils.cp valid_video_path, tmp_valid_video_path
+          FileUtils.cp valid_media_path, tmp_valid_media_path
           ['public/media_elements/videos/test', 'tmp/media/video/editing/conversions/test'].each do |folder|
             FileUtils.rm_rf Rails.root.join(folder)
           end
         end
         
         context 'with a File', slow: true do
-          def video
-            @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_file, user: User.admin)
+          def record
+            @record ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_file, user: User.admin)
           end
           
-          before(:all) do
-            video.save!
-            video.reload
+          context 'after saving' do
+            before(:all) do
+              record.save!
+              record.reload
+            end
+
+            include_examples 'after saving an audio or a video with a valid not converted media'
+            include_examples 'after saving a video with a valid not converted media'
           end
 
-          include_examples 'after saving a video with a valid not converted media'
+          context 'when the filename exceeds the maximum filename size limit' do
+            def short_media_filename_size
+              5
+            end
+
+            context 'after saving' do
+              before(:all) do
+                set_model_max_media_column_size
+                record.save!
+                record.reload
+              end
+
+              include_examples 'after saving an audio or a video with a valid not converted media'
+              include_examples 'after saving a video with a valid not converted media'
+
+              after(:all) { reset_model_max_media_column_size }
+            end
+          end
         end
 
         context 'with a ActionDispatch::Http::UploadedFile', slow: true do
-          def video
-            @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_uploaded, user: User.admin)
+          def record
+            @record ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_uploaded, user: User.admin)
           end
 
-          before(:all) do
-            video.save!
-            video.reload
+          context 'after saving' do
+            before(:all) do
+              record.save!
+              record.reload
+            end
+
+            include_examples 'after saving an audio or a video with a valid not converted media'
+            include_examples 'after saving a video with a valid not converted media'
           end
 
-          include_examples 'after saving a video with a valid not converted media'
+          context 'when the filename exceeds the maximum filename size limit' do
+            def short_media_filename_size
+              5
+            end
+
+            context 'after saving' do
+              before(:all) do
+                set_model_max_media_column_size
+                record.save!
+                record.reload
+              end
+
+              include_examples 'after saving an audio or a video with a valid not converted media'
+              include_examples 'after saving a video with a valid not converted media'
+
+              after(:all) { reset_model_max_media_column_size }
+            end
+          end
         end
 
         context 'with a Hash' do
           context 'without durations and version paths' do
-            def video
-              @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash, user: User.admin)
-            end
-
-            before(:all) { video.save! }
-
-            include_examples 'after saving a video with a valid not converted media'
-          end
-
-          context 'with durations and version paths' do
-            def video
-              @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full, user: User.admin)
-            end
-
-            before(:all) { video }
-
-            it "uses metadata durations provided by the hash" do
-              expect(Media::Info).to_not receive(:new)
-              video.save!
+            def record
+              @record ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash, user: User.admin)
             end
 
             context 'after saving' do
-              def video
-                @video ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full, user: User.admin)
+              before(:all) { record.save! }
+
+              include_examples 'after saving an audio or a video with a valid not converted media'
+              include_examples 'after saving a video with a valid not converted media'
+            end
+
+            context 'when the filename exceeds the maximum filename size limit' do
+              def short_media_filename_size
+                5
               end
 
-              before(:all) { video.save! }
+              context 'after saving' do
+                before(:all) do
+                  set_model_max_media_column_size
+                  record.save!
+                end
 
+                include_examples 'after saving an audio or a video with a valid not converted media'
+                include_examples 'after saving a video with a valid not converted media'
+
+                after(:all) { reset_model_max_media_column_size }
+              end
+            end
+          end
+
+          context 'with durations and version paths' do
+            def record
+              @record ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full, user: User.admin)
+            end
+
+            before(:all) { record }
+
+            it "uses metadata durations provided by the hash" do
+              expect(Media::Info).to_not receive(:new)
+              record.save!
+            end
+
+            context 'after saving' do
+              def record
+                @record ||= ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full, user: User.admin)
+              end
+
+              before(:all) { record.save! }
+
+              include_examples 'after saving an audio or a video with a valid not converted media'
               include_examples 'after saving a video with a valid not converted media'
+            end
+
+            context 'when the filename exceeds the maximum filename size limit' do
+              def short_media_filename_size
+                5
+              end
+
+              context 'after saving' do
+                before(:all) do
+                  @record = nil
+                  set_model_max_media_column_size
+                  record.save!
+                end
+
+                include_examples 'after saving an audio or a video with a valid not converted media'
+                include_examples 'after saving a video with a valid not converted media'
+
+                after(:all) { reset_model_max_media_column_size }
+              end
             end
           end
         end
         
         after(:all) do
-          FileUtils.rm tmp_valid_video_path if File.exists? tmp_valid_video_path
+          FileUtils.rm tmp_valid_media_path if File.exists? tmp_valid_media_path
         end
       end
 
@@ -119,7 +242,7 @@ module Media
 
         shared_examples 'when media is a not converted video' do
           context 'when is a valid video' do
-            let(:path) { valid_video_path }
+            let(:path) { valid_media_path }
             it { expect(subject).to be true }
           end
 
@@ -144,7 +267,7 @@ module Media
           end
 
           context 'when the media elements folder size exceeds the maximum value allowed' do
-            let(:path)                                    { valid_video_path }
+            let(:path)                                    { valid_media_path }
             let(:prev_maximum_media_elements_folder_size) { Media::Uploader::MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE }
             before do
               prev_maximum_media_elements_folder_size

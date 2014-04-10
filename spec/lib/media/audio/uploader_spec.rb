@@ -38,13 +38,38 @@ module Media
       
       def media_hash
         @media_hash ||= { filename: tmp_valid_media_filename.basename(tmp_valid_media_filename.extname).to_s,
-                          m4a: "#{media_without_extension}.m4a", ogg: "#{media_without_extension}.ogg" }
+                          m4a: "#{media_without_extension}.m4a", 
+                          ogg: "#{media_without_extension}.ogg" }
       end
 
       def media_hash_full
         @media_hash_full ||= media_hash.merge( m4a_duration: Info.new(media_hash[:m4a]).duration ,
                                                ogg_duration: Info.new(media_hash[:ogg]).duration )
       end
+
+      # 1 is the underscore character size, since the filename suffix is "_#{filename_token}"
+      def minimum_media_filename_size
+        1 + record.filename_token.size + described_class.superclass::PROCESSED_FILENAME_MAX_EXTENSION_SIZE_DOT_INCLUDED
+      end
+
+      def short_media_filename_size
+        nil
+      end
+
+      def set_model_max_media_column_size
+        @previous_max_media_column_size_value = ::Audio.max_media_column_size
+        ::Audio.max_media_column_size = minimum_media_filename_size + short_media_filename_size
+      end
+
+      def reset_model_max_media_column_size
+        ::Audio.max_media_column_size = @previous_max_media_column_size_value
+      end
+
+      let(:media_type) { 'audio' }
+      let(:urls)       { { m4a: [ url_without_extension,  ".m4a" ],
+                           ogg: [ url_without_extension,  ".ogg" ] } }
+      let(:paths)      { { m4a: [ path_without_extension, ".m4a" ], 
+                           ogg: [ path_without_extension, ".ogg" ] } }
       
       describe 'saving the associated model' do
         before(:all) do
@@ -55,74 +80,139 @@ module Media
         end
         
         context 'with a File', slow: true do
-          def media
-            media_file
-          end
-          def audio
-            @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media, user: User.admin)
+          def record
+            @record ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_file, user: User.admin)
           end
           
-          before(:all) do
-            audio.save!
-            audio.reload
+          context 'after saving' do
+            before(:all) do
+              record.save!
+              record.reload
+            end
+
+            include_examples 'after saving an audio or a video with a valid not converted media'
           end
 
-          include_examples 'after saving an audio with a valid not converted media'
+          context 'when the filename exceeds the maximum filename size limit' do
+            def short_media_filename_size
+              5
+            end
+
+            context 'after saving' do
+              before(:all) do
+                set_model_max_media_column_size
+                record.save!
+                record.reload
+              end
+
+              include_examples 'after saving an audio or a video with a valid not converted media'
+
+              after(:all) { reset_model_max_media_column_size }
+            end
+          end
         end
 
         context 'with a ActionDispatch::Http::UploadedFile', slow: true do
-          def media
-            media_uploaded
-          end
-          def audio
-            @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_uploaded, user: User.admin)
+          def record
+            @record ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_uploaded, user: User.admin)
           end
 
-          before(:all) do
-            audio.save!
-            audio.reload
+          context 'after saving' do
+            before(:all) do
+              record.save!
+              record.reload
+            end
+
+            include_examples 'after saving an audio or a video with a valid not converted media'
           end
 
-          include_examples 'after saving an audio with a valid not converted media'
+          context 'when the filename exceeds the maximum filename size limit' do
+            def short_media_filename_size
+              5
+            end
+
+            context 'after saving' do
+              before(:all) do
+                set_model_max_media_column_size
+                record.save!
+                record.reload
+              end
+
+              include_examples 'after saving an audio or a video with a valid not converted media'
+
+              after(:all) { reset_model_max_media_column_size }
+            end
+          end
         end
 
         context 'with a Hash' do
           context 'without durations and version paths' do
-            def media
-              media_hash
-            end
-            def audio
-              @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash, user: User.admin)
-            end
-
-            before(:all) { audio.save! }
-
-            include_examples 'after saving an audio with a valid not converted media'
-          end
-
-          context 'with durations and version paths' do
-            def media
-              media_hash_full
-            end
-            def audio
-              @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full, user: User.admin)
-            end
-
-            before(:all) { audio }
-
-            it "uses metadata durations provided by the hash" do
-              expect(Media::Info).to_not receive(:new)
-              audio.save!
+            def record
+              @record ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash, user: User.admin)
             end
 
             context 'after saving' do
-              def audio
-                @audio ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full, user: User.admin)
+              before(:all) { record.save! }
+
+              include_examples 'after saving an audio or a video with a valid not converted media'
+            end
+
+            context 'when the filename exceeds the maximum filename size limit' do
+              def short_media_filename_size
+                5
               end
 
-              before(:all) { audio.save! }
+              context 'after saving' do
+                before(:all) do
+                  set_model_max_media_column_size
+                  record.save!
+                end
 
-              include_examples 'after saving an audio with a valid not converted media'
+                include_examples 'after saving an audio or a video with a valid not converted media'
+
+                after(:all) { reset_model_max_media_column_size }
+              end
+            end
+          end
+
+          context 'with durations and version paths' do
+            def record
+              @record ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full, user: User.admin)
+            end
+
+            before(:all) { record }
+
+            it "uses metadata durations provided by the hash" do
+              expect(Media::Info).to_not receive(:new)
+              record.save!
+            end
+
+            context 'after saving' do
+              def record
+                @record ||= ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash_full, user: User.admin)
+              end
+
+              before(:all) { record.save! }
+
+              include_examples 'after saving an audio or a video with a valid not converted media'
+            end
+
+            context 'when the filename exceeds the maximum filename size limit' do
+              def short_media_filename_size
+                5
+              end
+
+              context 'after saving' do
+                before(:all) do
+                  @record = nil
+                  set_model_max_media_column_size
+                  record.save!
+                end
+
+                include_examples 'after saving an audio or a video with a valid not converted media'
+
+                after(:all) { reset_model_max_media_column_size }
+              end
             end
           end
         end
@@ -197,7 +287,6 @@ module Media
         end
 
         context 'when media type is a String' do
-
           context 'when the model is not marked for renaming' do
             context 'when media is valid and not changed' do
               subject do 

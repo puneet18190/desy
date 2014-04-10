@@ -263,9 +263,10 @@ class MediaElement < ActiveRecord::Base
 
     def max_media_column_size
       return @max_media_column_size if instance_variable_defined? :@max_media_column_size
-      
+
       @max_media_column_size = columns_hash['media'].limit
     end
+    attr_writer :max_media_column_size
     
   end
 

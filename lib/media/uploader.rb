@@ -18,13 +18,14 @@ module Media
     attr_reader :value
 
     # Media folder (relative to the app public/ folder, for using in URLs)
-    PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER = 'media_elements'
+    PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER              = 'media_elements'
     # Absolute path to the media folders (for using in paths)
-    MEDIA_ELEMENTS_FOLDER                 = Rails.public_pathname.join PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER
+    MEDIA_ELEMENTS_FOLDER                              = Rails.public_pathname.join PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER
     # Maximum allowed size for media elements folder; if exceeded, upload gets disabled
-    MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE    = SETTINGS['maximum_media_elements_folder_size'].gigabytes.to_i
-
+    MAXIMUM_MEDIA_ELEMENTS_FOLDER_SIZE                 = SETTINGS['maximum_media_elements_folder_size'].gigabytes.to_i
+    # Maximum size of a processed media filename extension. For our files is the "webm" extension size, that is 4.
     PROCESSED_FILENAME_MAX_EXTENSION_SIZE              = 4
+    # Above plus "dot" (<tt>.</tt>) size
     PROCESSED_FILENAME_MAX_EXTENSION_SIZE_DOT_INCLUDED = PROCESSED_FILENAME_MAX_EXTENSION_SIZE + 1
 
     # Remove media folder (descendants)
@@ -77,7 +78,7 @@ module Media
       when Hash
         @converted_files                     = @value.select{ |k| formats.include? k }
         @original_filename_without_extension = @value[:filename]
-        formats.each{ |f| instance_variable_set :"@#{duration_keys[f]}", @value[ duration_keys[f] ] }
+        formats.each { |f| instance_variable_set :"@#{duration_keys[f]}", @value[ duration_keys[f] ] }
         version_formats.each{ |v, _| instance_variable_set :"@#{version_input_path_keys[v]}", @value[ version_input_path_keys[v] ] }
       else
         @filename_without_extension ||= ''
@@ -100,11 +101,10 @@ module Media
 
     # Returns a new filename adding a token (provided by the model instance), adding the extension if provided
     def processed_filename(filename, extension = nil)
-      suffix                  = "_#{model.filename_token}"
-      filename_without_suffix = filename.truncate max_processed_filename_size(suffix), omission: ''
-      filename                = "#{filename.parameterize}#{suffix}"
-      filename << ".#{extension}" if extension
-      filename
+      suffix                      = "_#{model.filename_token}"
+      max_processed_filename_size = max_processed_filename_size(suffix)
+      filename_without_suffix     = filename.slice 0, max_processed_filename_size
+      "#{filename_without_suffix.parameterize}#{suffix}".tap { |s| s << ".#{extension}" if extension }
     end
 
     def max_processed_filename_size(suffix)
