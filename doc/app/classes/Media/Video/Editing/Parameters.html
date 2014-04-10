@@ -210,49 +210,23 @@ href="../../../VideoEditorController.html">VideoEditorController</a>)</p>
               <h3 id="method-i-convert_parameters-label-Description">Description</h3>
 
 <p>Validates and converts the parameters. See the code for further details
-about the validations achieved. The product is in the following format:</p>
-<ul><li>
-<p>two initial parameters, &#39;initial_video&#39; and &#39;audio_track&#39;</p>
-</li><li>
-<p>then an ordered array of components:</p>
-<ul><li>
-<p>each component is a hash, with a key called :type</p>
-</li><li>
-<p>if the type is &#39;video&#39;, there is an object of kind VIDEO associated
-to the key :video</p>
-</li><li>
-<p>if the type is &#39;image&#39;, there is an object of kind IMAGE associated
-to the key :image</p>
-</li></ul>
-</li></ul>
+about the validations achieved. The product is in the following format: *
+two initial parameters, &#39;initial_video&#39; and &#39;audio_track&#39; *
+then an ordered array of components:  * each component is a hash, with a
+key called :type  * if the type is &#39;video&#39;, there is an object of
+kind VIDEO associated to the key :video  * if the type is &#39;image&#39;,
+there is an object of kind IMAGE associated to the key :image</p>
 
 <h3 id="method-i-convert_parameters-label-Usage">Usage</h3>
 
-<pre><code>{
-  :initial_video =&gt; OBJECT OF TYPE VIDEO or NIL,
-  :audio_track =&gt; OBJECT OF TYPE AUDIO or NIL,
-  :components =&gt; [
-    {
-      :type =&gt; Video::VIDEO_COMPONENT,
-      :video =&gt; OBJECT OF TYPE VIDEO,
-      :from =&gt; 12,
-      :to =&gt; 24
-    },
-    {
-      :type =&gt; Video::TEXT_COMPONENT,
-      :content =&gt; &#39;Titolo titolo titolo&#39;,
-      :duration =&gt; 14,
-      :background_color =&gt; &#39;red&#39;,
-      :text_color =&gt; &#39;white&#39;
-    },
-    {
-      :type =&gt; Video::IMAGE_COMPONENT,
-      :image =&gt; OBJECT OF TYPE IMAGE,
-      :duration =&gt; 2
-    }
-  ]
-}
-</code></pre>
+<p>{  :initial_video =&gt; OBJECT OF TYPE VIDEO or NIL,  :audio_track =&gt;
+OBJECT OF TYPE AUDIO or NIL,  :components =&gt; [ { :type =&gt;
+Video::VIDEO_COMPONENT, :video =&gt; OBJECT OF TYPE VIDEO, :from =&gt; 12,
+:to =&gt; 24 }, { :type =&gt; Video::TEXT_COMPONENT, :content =&gt;
+&#39;Titolo titolo titolo&#39;, :duration =&gt; 14, :background_color =&gt;
+&#39;red&#39;, :text_color =&gt; &#39;white&#39; }, { :type =&gt;
+Video::IMAGE_COMPONENT, :image =&gt; OBJECT OF TYPE IMAGE, :duration =&gt;
+2 } ]  }</p>
             </div>
           
           
@@ -279,7 +253,7 @@ to the key :image</p>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">hash</span>[<span class="ruby-value">:audio_id</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">hash</span>[<span class="ruby-value">:audio_id</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Integer</span>)
   
   <span class="ruby-comment"># initialize empty hash</span>
-  <span class="ruby-identifier">resp_hash</span> = {}
+  <span class="ruby-identifier">resp_hash</span> = <span class="ruby-constant">HashWithIndifferentAccess</span>.<span class="ruby-identifier">new</span>
   
   <span class="ruby-comment"># if initial video is present, I validate that it exists and is accessible from the user</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value">:initial_video_id</span>].<span class="ruby-identifier">nil?</span>

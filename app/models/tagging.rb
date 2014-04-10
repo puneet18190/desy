@@ -1,30 +1,30 @@
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +taggings+. A tagging is an instance of a tag on a Lesson or a MediaElement.
 #
-# == Fields
+# ### Fields
 #
 # * *taggable_id*: id of the item (lesson or media element) to which the tag is associated
 # * *taggable_type*: contains the string description of the classes Lesson or MediaElement (the type is an enum defined in postgrsql)
 # * *tag_id*: id of the Tag associated to the item
 #
-# == Associations
+# ### Associations
 #
 # * *tag*: associated Tag (*belongs_to*)
 # * *taggable*: Lesson or MediaElement tagged (polymorphic association) (*belongs_to*)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* with numericality and existence of associated record for +tag_id+ and +taggable_id+
 # * *inclusion* of +taggable_type+ between 'Lesson' and 'MediaElement'
 # * *uniqueness* of the triple [+tag_id+, +taggable_type+, +taggable_id+] <b>only if +taggable_type+ is correct</b>
 # * *modifications* *not* *available* for the three fields, if the record is not new
 #
-# === Callbacks
+# ### Callbacks
 #
 # 1. *after_destroy*: destroys the associated Tag, if this tagging was the last attached to it: <b>this happens only if the attribute not_orphans is set as true</b>
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # None.
 #
@@ -45,15 +45,15 @@ class Tagging < ActiveRecord::Base
   before_validation :init_validation
   after_destroy :destroy_orphan_tags
   
-  # === Description
+  # ### Description
   #
   # Used as support for Lesson#visive_tags and MediaElement#visive_tags
   #
-  # === Args
+  # ### Args
   #
   # * *tags*: the string containing tags in the shape ',tag1,tag2,tag3,tag4,'
   #
-  # === Returns
+  # ### Returns
   #
   # A string of tags separated by comma and space
   #

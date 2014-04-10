@@ -1,11 +1,11 @@
 require 'filename_token'
 require 'lessons_media_elements_shared'
 
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +media_elements+; this model has single table inheritance on the field +sti_type+ (see the models Image, Audio and Video). Audios and videos have shared behaviors, defined in Media::Shared.
 #
-# == Fields
+# ### Fields
 #
 # * *user_id*: reference to the User who created the element
 # * *sti_type*: single table iheritance representing the media type
@@ -28,7 +28,7 @@ require 'lessons_media_elements_shared'
 # * *is_public*: if +true+, the element is contained in the public database of the application
 # * *publication_date*: if +is_public+ is +true+, this is the date in which the element has been published (once it's published it can't be turned back into private)
 #
-# == Associations
+# ### Associations
 #
 # * *bookmarks*: links created by other users to this element (see Bookmark) (*has_many*)
 # * *media_elements_slides*: all the instances of this element (see MediaElementsSlide) (*has_many*)
@@ -37,7 +37,7 @@ require 'lessons_media_elements_shared'
 # * *taggings_tags*: link to the objects of type Tag, through the association +taggings+ (*has_many*)
 # * *user*: the User who created the element (*belongs_to*)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* with numericality > 0 and presence of associated object for +user_id+
 # * *presence* of +title+ and +description+
@@ -55,7 +55,7 @@ require 'lessons_media_elements_shared'
 # * *specific* *media* *validation* depending on the type of attached media (see Media::Video::Uploader::Validation, Media::Audio::Uploader::Validation, ImageUploader, this last being carried out automatically by CarrierWave)
 # * <b>the maximum size of the media elements folder size</b> (configured in config/settings.yml, in gigabytes)
 #
-# == Callbacks
+# ### Callbacks
 #
 # * *general* *callbacks*:
 #   * *on* *the* *method* *new*, it's called MediaElement.new_with_sti_type_inferring, which infers the type of +media+ and defines the correct class among Image, Audio, Video
@@ -73,11 +73,11 @@ require 'lessons_media_elements_shared'
 #   * *before_destroy* stops the destruction if +converted+ == +false+ (<b>this callback doesn't execute if the attribute destroyable_even_if_not_converted in Media::Shared is set to +true+</b>: this is necessary if something goes wrong with the creation of a new media element, in this case the not converted element must be deleted)
 #   * *after_destroy* cleans the folder containing the attached files (mp4, m4a, webm, ogg)
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # * *cascade* *destruction* for the associated table MediaElementsSlide
 #
-# == Other details
+# ### Other details
 #
 # It's defined a scope *of* that filters automaticly all the elements of a user (see User#own_media_elements):
 #   SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id
@@ -155,17 +155,17 @@ class MediaElement < ActiveRecord::Base
   
   class << self
     
-    # === Description
+    # ### Description
     #
     # Alias for the method +new+, that additionally infers the media type and selects the submodel among Audio, Image and Video
     #
-    # === Args
+    # ### Args
     #
     # * *attributes*: attributes that eventually can be initialized in the new media element
     # * *options*: additional options
     # * *block*: block to be executed
     #
-    # === Usage
+    # ### Usage
     #
     # See for instance MediaElementsController#create
     #   media = params[:media]
@@ -193,21 +193,21 @@ class MediaElement < ActiveRecord::Base
     end
     alias_method_chain :new, :sti_type_inferring
     
-    # === Description
+    # ### Description
     #
     # Method used for validation for the usage of an element inside the video or audio editor: it's checked, essentially, that an element exists, and that the user who is using the editor is allowed to use it (see Media::Video::Editing::Parameters and Media::Audio::Editing::Parameters)
     #
-    # === Args
+    # ### Args
     #
     # * *media_element_id*: the id of the element
     # * *an_user_id*: the id of the User who is using the editor
     # * *my_sti_type*: the sti_type of the requested element
     #
-    # === Returns
+    # ### Returns
     #
     # If the element can be used, it returns an object of type Video, Audio or Image, depending on the element, otherwise it returns +nil+
     #
-    # === Usage
+    # ### Usage
     #
     # See for instance Media::Video::Editing::Parameters.convert_parameters and Media::Video::Editing::Parameters.get_media_element_from_hash
     #   hash[key].kind_of?(Integer) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
@@ -220,15 +220,15 @@ class MediaElement < ActiveRecord::Base
       media_element
     end
     
-    # === Description
+    # ### Description
     #
     # Checks whether the dashboard of a particular user is empty because he picked all the suggested elements and not because the database is empty (see DashboardController#index).
     #
-    # === Args
+    # ### Args
     #
     # * *user_id*: the id of a User
     #
-    # === Returns
+    # ### Returns
     #
     # A boolean
     #
@@ -236,15 +236,15 @@ class MediaElement < ActiveRecord::Base
       Bookmark.joins("INNER JOIN media_elements ON media_elements.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'MediaElement'").where('media_elements.is_public = ? AND media_elements.user_id != ? AND bookmarks.user_id = ?', true, an_user_id, an_user_id).any?
     end
     
-    # === Description
+    # ### Description
     #
     # It extracts the type of an element according to the same white list used in MediaElement#new_with_sti_type_inferring. It's used in User#save_in_admin_quick_uploading_cache (accessor method to save a list of files massively uploaded and ready to be saved as media elements)
     #
-    # === Args
+    # ### Args
     #
     # * *path*: the path to be checked
     #
-    # === Returns
+    # ### Returns
     #
     # The inferred sti_type
     #
@@ -270,11 +270,11 @@ class MediaElement < ActiveRecord::Base
     
   end
 
-  # === Description
+  # ### Description
   #
   # Checks if the it is the +lesson+ argument cover
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean-compliant value
   #
@@ -286,11 +286,11 @@ class MediaElement < ActiveRecord::Base
     self.class::EBOOK_FORMATS
   end
 
-  # === Description
+  # ### Description
   #
   # Extracts the translation of the +sti_type+ from the translation file
   #
-  # === Returns
+  # ### Returns
   #
   # A string
   #
@@ -298,7 +298,7 @@ class MediaElement < ActiveRecord::Base
     I18n.t("sti_types.#{self.sti_type.downcase}")
   end
   
-  # === Description
+  # ### Description
   #
   # Sets +metadata+.+available_video+ or +metadata+.+available_audio+ to +false+ (depending on sti_type). Used after the editing started for this element, see Media::Shared.
   #
@@ -306,7 +306,7 @@ class MediaElement < ActiveRecord::Base
     manage_lessons_containing_me(false)
   end
   
-  # === Description
+  # ### Description
   #
   # Sets +metadata+.+available_video+ or +metadata+.+available_audio+ to +true+ (depending on sti_type). Used when the editing for this element is over (either correclty or with errors): see Media::Video::Editing::Composer and Media::Audio::Editing::Composer.
   #
@@ -314,11 +314,11 @@ class MediaElement < ActiveRecord::Base
     manage_lessons_containing_me(true)
   end
   
-  # === Description
+  # ### Description
   #
   # Returns +true+ if the element is of type Image
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -326,11 +326,11 @@ class MediaElement < ActiveRecord::Base
     self.sti_type == IMAGE_TYPE
   end
   
-  # === Description
+  # ### Description
   #
   # Returns +true+ if the element is of type Audio
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -338,11 +338,11 @@ class MediaElement < ActiveRecord::Base
     self.sti_type == AUDIO_TYPE
   end
   
-  # === Description
+  # ### Description
   #
   # Returns +true+ if the element is of type Video
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -350,7 +350,7 @@ class MediaElement < ActiveRecord::Base
     self.sti_type == VIDEO_TYPE
   end
   
-  # === Description
+  # ### Description
   #
   # It uses Tagging.visive_tags (see also Lesson#visive_tags)
   #
@@ -358,11 +358,11 @@ class MediaElement < ActiveRecord::Base
     Tagging.visive_tags(self.tags)
   end
   
-  # === Description
+  # ### Description
   #
   # Used as (unproper) substitute for the attr_reader relative to the attribute +tags+: it extracts the tags directly from the database
   #
-  # === Returns
+  # ### Returns
   #
   # An array of Tag objects.
   #
@@ -370,11 +370,11 @@ class MediaElement < ActiveRecord::Base
     self.new_record? ? '' : Tag.get_friendly_tags(self)
   end
   
-  # === Description
+  # ### Description
   #
   # Used as (unproper) substitute for the attribute writer relative to the attribute +tags+: the attribute +tags+ is filled with a string of words separated by comma. During the validation, +tags+ is converted in another attribute called +inner_tags+: this attribute is an array of objects of type Tag (if the tag doesn't exist yet, the object is new_record) ready to be saved together with their taggings in the +after_save+ validation.
   #
-  # === Args
+  # ### Args
   #
   # Either an array of strings, or a string of words separated by comma
   #
@@ -389,15 +389,15 @@ class MediaElement < ActiveRecord::Base
     @tags
   end
   
-  # === Description
+  # ### Description
   #
   # Substitute for the attr_reader relative to the attribute +status+.
   #
-  # === Args
+  # ### Args
   #
   # * *with_captions*: if +true+ returns the translated caption of the status (this means that it's used in the front-end), otherwise it returns the status keyword (for default).
   #
-  # === Returns
+  # ### Returns
   #
   # A string, or a keyword representing the status (see Statuses)
   #
@@ -405,11 +405,11 @@ class MediaElement < ActiveRecord::Base
     @status.nil? ? nil : (with_captions ? MediaElement.status(@status) : @status)
   end
   
-  # === Description
+  # ### Description
   #
   # This function fills the attributes is_reportable, status and info_changeable (the last two being private). If the model has the four of these attributes different by +nil+, it means that the element has a status and the application knows which functionalities are available for the user who requested it. If the status is +nil+, it means that the user can't see this element.
   #
-  # === Args
+  # ### Args
   #
   # * *an_user_id*: the id of the user who is asking permission to see the element.
   # * *selects*: optionally, a hash of symbols of methods that optimize the extraction of records in other tables, necessary to set the status. These symbols are passed to MediaElement#bookmarked?
@@ -436,11 +436,11 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the list of buttons available for the user who wants to see this element. If the element status hasn't been set yet for that user, or the element is not visible for him, it returns an empty array.
   #
-  # === Returns
+  # ### Returns
   #
   # An array of keywords representing buttons (see Buttons)
   #
@@ -457,16 +457,16 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Checks if the element has a Bookmark for a particular user
   #
-  # === Args
+  # ### Args
   #
   # * *an_user_id*: the id of the User
   # * *select*: a symbol representing a method that optimizes the extraction of bookmarks (if it's passed it means that the record has been optimized)
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -476,11 +476,11 @@ class MediaElement < ActiveRecord::Base
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => self.id).any?
   end
   
-  # === Description
+  # ### Description
   #
   # Substitute for the normal method +destroy+, which additionally adds error messages (necessary for the user experience, used in MediaElementsController#destroy)
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #

@@ -1,10 +1,10 @@
 require 'media/video/editing/composer/job'
 
-# == Description
+# ### Description
 #
 # Controller for all the actions in the video editor
 #
-# == Models used
+# ### Models used
 #
 # * Video
 # * Notification
@@ -16,15 +16,15 @@ class VideoEditorController < ApplicationController
   before_filter :extract_cache, :only => [:edit, :new, :restore_cache]
   layout 'media_element_editor'
   
-  # === Description
+  # ### Description
   #
   # Opens the video editor with only one component, corresponding to a given video
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * VideoEditorController#check_available_for_user
   # * VideoEditorController#initialize_video_with_owner_or_public
@@ -43,15 +43,15 @@ class VideoEditorController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Opens the video editor empty
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * VideoEditorController#check_available_for_user
   # * VideoEditorController#extract_cache
@@ -64,15 +64,15 @@ class VideoEditorController < ApplicationController
     render :edit
   end
   
-  # === Description
+  # ### Description
   #
   # Opens the video editor restoring the cache (if there is no cache, the Editor is empty but there is no redirection to VideoEditorController#new)
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * VideoEditorController#check_available_for_user
   # * VideoEditorController#extract_cache
@@ -85,15 +85,15 @@ class VideoEditorController < ApplicationController
     render :edit
   end
   
-  # === Description
+  # ### Description
   #
   # Empties the cache
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * VideoEditorController#check_available_for_user
   #
@@ -102,15 +102,15 @@ class VideoEditorController < ApplicationController
     render :nothing => true
   end
   
-  # === Description
+  # ### Description
   #
   # Saves the cache
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * VideoEditorController#check_available_for_user
   #
@@ -119,15 +119,15 @@ class VideoEditorController < ApplicationController
     render :nothing => true
   end
   
-  # === Description
+  # ### Description
   #
   # Saves the work as a new video
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * VideoEditorController#check_available_for_user
   #
@@ -164,15 +164,15 @@ class VideoEditorController < ApplicationController
     render 'media_elements/info_form_in_editor/save'
   end
   
-  # === Description
+  # ### Description
   #
   # Saves the work overwriting an existing video
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * VideoEditorController#check_available_for_user
   #

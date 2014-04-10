@@ -40,38 +40,37 @@
   
     <div class="description">
       
-<h2 id="class-Subject-label-Description">Description</h2>
+<h3 id="class-Subject-label-Description">Description</h3>
 
 <p>ActiveRecord class that corresponds to the table <code>subjects</code>.</p>
 
-<h2 id="class-Subject-label-Fields">Fields</h2>
+<h3 id="class-Subject-label-Fields">Fields</h3>
 <ul><li>
-<p><strong>description</strong>: a word identifying the subject</p>
+<p><em>description</em>: a word identifying the subject</p>
 </li></ul>
 
-<h2 id="class-Subject-label-Associations">Associations</h2>
+<h3 id="class-Subject-label-Associations">Associations</h3>
 <ul><li>
-<p><strong>users_subjects</strong>: list of instances of this subject
-associated to a <a href="User.html">User</a> through records of <a
-href="UsersSubject.html">UsersSubject</a> (<strong>has_many</strong>)</p>
+<p><em>users_subjects</em>: list of instances of this subject associated to a
+<a href="User.html">User</a> through records of <a
+href="UsersSubject.html">UsersSubject</a> (<em>has_many</em>)</p>
 </li><li>
-<p><strong>lessons</strong>: list of lessons associated to this subjects (see
-<a href="Lesson.html">Lesson</a>) (<strong>has_many</strong>)</p>
+<p><em>lessons</em>: list of lessons associated to this subjects (see <a
+href="Lesson.html">Lesson</a>) (<em>has_many</em>)</p>
 </li></ul>
 
-<h2 id="class-Subject-label-Validations">Validations</h2>
+<h3 id="class-Subject-label-Validations">Validations</h3>
 <ul><li>
-<p><strong>presence</strong> of <code>description</code></p>
+<p><em>presence</em> of <code>description</code></p>
 </li><li>
-<p><strong>length</strong> of <code>description</code> (maximum allowed is
-255)</p>
+<p><em>length</em> of <code>description</code> (maximum allowed is 255)</p>
 </li></ul>
 
-<h2 id="class-Subject-label-Callbacks">Callbacks</h2>
+<h3 id="class-Subject-label-Callbacks">Callbacks</h3>
 
 <p>None</p>
 
-<h2 id="class-Subject-label-Database+callbacks">Database callbacks</h2>
+<h3 id="class-Subject-label-Database+callbacks">Database callbacks</h3>
 
 <p>None</p>
 
@@ -198,7 +197,7 @@ and in <a href="Statistics.html">Statistics</a></p>
                 
               </p>
               <div id="method-c-chart_colors_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/subject.rb, line 49</span>
+                <pre><span class="ruby-comment"># File app/models/subject.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">chart_colors</span>
   <span class="ruby-identifier">colors</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;graph_colors&#39;</span>].<span class="ruby-identifier">clone</span>
   <span class="ruby-identifier">tot</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">pluck</span>(<span class="ruby-value">:subject_id</span>).<span class="ruby-identifier">uniq</span>).<span class="ruby-identifier">count</span>
@@ -246,7 +245,7 @@ and in <a href="Statistics.html">Statistics</a></p>
                 
               </p>
               <div id="method-c-extract_with_cathegories_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/subject.rb, line 66</span>
+                <pre><span class="ruby-comment"># File app/models/subject.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">extract_with_cathegories</span>
   <span class="ruby-identifier">cathegories</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;subject_cathegories&#39;</span>]
   <span class="ruby-keyword">return</span> [{<span class="ruby-value">:label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">:items</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:description</span>)}] <span class="ruby-keyword">if</span> <span class="ruby-identifier">cathegories</span>.<span class="ruby-identifier">blank?</span>
@@ -302,7 +301,7 @@ the administrator (Admin::SettingsController#subjects)</p>
                 
               </p>
               <div id="method-i-is_deletable-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/subject.rb, line 88</span>
+                <pre><span class="ruby-comment"># File app/models/subject.rb, line 86</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">is_deletable?</span>
   <span class="ruby-constant">UsersSubject</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:subject_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:subject_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">empty?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -341,7 +340,7 @@ the administrator (Admin::SettingsController#subjects)</p>
                 
               </p>
               <div id="method-i-to_s_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/subject.rb, line 41</span>
+                <pre><span class="ruby-comment"># File app/models/subject.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_s</span>
   <span class="ruby-identifier">description</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>

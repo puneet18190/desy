@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Contains the actions used to handle notifications.
 #
-# == Models used
+# ### Models used
 #
 # * Notification
 #
@@ -14,15 +14,15 @@ class NotificationsController < ApplicationController
   before_filter :initialize_notification_with_owner, :only => [:seen, :destroy]
   before_filter :initialize_notification_offset, :only => [:destroy, :get_new_block]
   
-  # === Description
+  # ### Description
   #
   # Sets that the notification has been seen by the user (see Notification#has_been_seen)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * NotificationsController#initialize_notification_with_owner
   #
@@ -33,15 +33,15 @@ class NotificationsController < ApplicationController
     @new_notifications = current_user.number_notifications_not_seen
   end
   
-  # === Description
+  # ### Description
   #
   # Deletes a notification
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * NotificationsController#initialize_notification_with_owner
   # * NotificationsController#initialize_notification_offset
@@ -62,15 +62,15 @@ class NotificationsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Pagination with infinite scroll
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * NotificationsController#initialize_notification_offset
   #
@@ -79,11 +79,11 @@ class NotificationsController < ApplicationController
     @offset_notifications += @notifications.length
   end
   
-  # === Description
+  # ### Description
   #
   # Reloads the notifications
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #

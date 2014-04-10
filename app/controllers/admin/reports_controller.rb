@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Controller for the actions related to reports in the administration (see AdminController). Actions in this controller may be called by Admin::DashboardController and Admin::MessagesController
 #
-# == Models used
+# ### Models used
 #
 # * Report
 #
@@ -10,15 +10,15 @@ class Admin::ReportsController < AdminController
   
   layout 'admin'
   
-  # === Description
+  # ### Description
   #
   # A report is accepted and thus the associated lesson or element is deleted, together with the report
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -30,15 +30,15 @@ class Admin::ReportsController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # A report is declined and thus the associated lesson or element is *not* deleted; the report itself is deleted, instead
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #

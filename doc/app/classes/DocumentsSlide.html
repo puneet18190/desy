@@ -40,50 +40,49 @@
   
     <div class="description">
       
-<h2 id="class-DocumentsSlide-label-Description">Description</h2>
+<h3 id="class-DocumentsSlide-label-Description">Description</h3>
 
 <p>ActiveRecord class that corresponds to the table
 <code>documents_slides</code>.</p>
 
-<h2 id="class-DocumentsSlide-label-Fields">Fields</h2>
+<h3 id="class-DocumentsSlide-label-Fields">Fields</h3>
 <ul><li>
-<p><strong>document_id</strong>: id of the document</p>
+<p><em>document_id</em>: id of the document</p>
 </li><li>
-<p><strong>slide_id</strong>: id of the slide</p>
+<p><em>slide_id</em>: id of the slide</p>
 </li></ul>
 
-<h2 id="class-DocumentsSlide-label-Associations">Associations</h2>
+<h3 id="class-DocumentsSlide-label-Associations">Associations</h3>
 <ul><li>
-<p><strong>document</strong>: reference to the <a
-href="Document.html">Document</a> (<strong>belongs_to</strong>)</p>
+<p><em>document</em>: reference to the <a href="Document.html">Document</a>
+(<em>belongs_to</em>)</p>
 </li><li>
-<p><strong>slide</strong>: reference to the <a href="Slide.html">Slide</a>
-(<strong>belongs_to</strong>)</p>
+<p><em>slide</em>: reference to the <a href="Slide.html">Slide</a>
+(<em>belongs_to</em>)</p>
 </li></ul>
 
-<h2 id="class-DocumentsSlide-label-Validations">Validations</h2>
+<h3 id="class-DocumentsSlide-label-Validations">Validations</h3>
 <ul><li>
-<p><strong>presence</strong> with numericality and existence of associated
-record for <code>document_id</code> and <code>slide_id</code></p>
+<p><em>presence</em> with numericality and existence of associated record for
+<code>document_id</code> and <code>slide_id</code></p>
 </li><li>
-<p><strong>modifications</strong> <strong>not</strong>
-<strong>available</strong> for the <code>document_id</code> and
+<p><em>modifications</em> <em>not</em> <em>available</em> for the
+<code>document_id</code> and <code>slide_id</code></p>
+</li><li>
+<p><em>uniqueness</em> of the couple <code>document_id</code> and
 <code>slide_id</code></p>
 </li><li>
-<p><strong>uniqueness</strong> of the couple <code>document_id</code> and
-<code>slide_id</code></p>
+<p><em>the</em> <em>slide</em> must allow <code>title</code></p>
 </li><li>
-<p><strong>the</strong> <strong>slide</strong> must allow <code>title</code></p>
-</li><li>
-<p><strong>maximum</strong> number of documents in the same slide, as
-configured in settings.yml</p>
+<p><em>maximum</em> number of documents in the same slide, as configured in
+settings.yml</p>
 </li></ul>
 
-<h2 id="class-DocumentsSlide-label-Callbacks">Callbacks</h2>
+<h3 id="class-DocumentsSlide-label-Callbacks">Callbacks</h3>
 
 <p>None</p>
 
-<h2 id="class-DocumentsSlide-label-Database+callbacks">Database callbacks</h2>
+<h3 id="class-DocumentsSlide-label-Database+callbacks">Database callbacks</h3>
 
 <p>None</p>
 

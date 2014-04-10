@@ -6,15 +6,15 @@ class DocumentsController < ApplicationController
   before_filter :initialize_document, :only => [:destroy, :update]
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   
-  # === Description
+  # ### Description
   #
   # Main page of the section 'documents'. When it's called via ajax it's because of the application of filters, paginations, or after an operation that changed the number of items in the page.
   #
-  # === Mode
+  # ### Mode
   #
   # Html + Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_layout
   # * DocumentsController#initialize_paginator
@@ -28,15 +28,15 @@ class DocumentsController < ApplicationController
     render_js_or_html_index
   end
   
-  # === Description
+  # ### Description
   #
   # Deletes definitively a document.
   #
-  # === Mode
+  # ### Mode
   #
   # Json
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_document
   #
@@ -52,15 +52,15 @@ class DocumentsController < ApplicationController
     render :json => {:ok => @ok, :msg => @error}
   end
   
-  # === Description
+  # ### Description
   #
   # Updates the general information of the document (title and description)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_document
   #
@@ -75,11 +75,11 @@ class DocumentsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # This action checks for errors without setting the attachment on the new document
   #
-  # === Mode
+  # ### Mode
   #
   # Js
   #
@@ -93,11 +93,11 @@ class DocumentsController < ApplicationController
     @errors[:media] = t('documents.upload_form.attachment_too_large').downcase
   end
   
-  # === Description
+  # ### Description
   #
   # Action that calls the uploader and creates the new document
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #

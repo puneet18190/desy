@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Actions used in the image editor
 #
-# == Models used
+# ### Models used
 #
 # * Image
 #
@@ -12,15 +12,15 @@ class ImageEditorController < ApplicationController
   before_filter :initialize_image_with_owner_and_private, :only => :overwrite
   layout 'media_element_editor'
   
-  # === Description
+  # ### Description
   #
   # Opens the image editor with a selected image
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ImageEditorController#initialize_image_with_owner_or_public
   #
@@ -35,15 +35,15 @@ class ImageEditorController < ApplicationController
     @is_public = params[:from_gallery].present? ? true : @image.is_public
   end
   
-  # === Description
+  # ### Description
   #
   # Adds texts to the image
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ImageEditorController#initialize_image_with_owner_or_public
   #
@@ -60,15 +60,15 @@ class ImageEditorController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Undoes the last modification to the image
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ImageEditorController#initialize_image_with_owner_or_public
   #
@@ -86,15 +86,15 @@ class ImageEditorController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Crops the image
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ImageEditorController#initialize_image_with_owner_or_public
   #
@@ -112,15 +112,15 @@ class ImageEditorController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Saves the image as a new element
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ImageEditorController#initialize_image_with_owner_or_public
   #
@@ -143,15 +143,15 @@ class ImageEditorController < ApplicationController
     render 'media_elements/info_form_in_editor/save'
   end
   
-  # === Description
+  # ### Description
   #
   # Saves the image overwriting an existing element
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ImageEditorController#initialize_image_with_owner_and_private
   #

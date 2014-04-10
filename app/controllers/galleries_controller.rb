@@ -1,4 +1,4 @@
-# == Description
+# ### Description
 #
 # List of actions to handle all the instances of galleries in the application. Since the gallery pagination is made with infinite scroll, for each gallery there is an action that extracts it first, and another one that gets a new block of elements. List of galleries for each section
 # * lesson editor (see LessonEditorController):
@@ -28,7 +28,7 @@
 #     * GalleriesController#audio_for_video_editor
 #     * GalleriesController#audio_for_video_editor_new_block
 #
-# == Models used
+# ### Models used
 #
 # * User
 # * Image
@@ -61,11 +61,11 @@ class GalleriesController < ApplicationController
     :document_for_lesson_editor_new_block
   ]
   
-  # === Description
+  # ### Description
   #
   # Gets the first block of images for the lesson editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -73,15 +73,15 @@ class GalleriesController < ApplicationController
     get_images(1)
   end
   
-  # === Description
+  # ### Description
   #
   # Gets following blocks of images for the lesson editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * GalleriesController#initialize_page
   #
@@ -93,11 +93,11 @@ class GalleriesController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Gets the first block of audios for the lesson editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -105,15 +105,15 @@ class GalleriesController < ApplicationController
     get_audios(1)
   end
   
-  # === Description
+  # ### Description
   #
   # Gets following blocks of audios for the lesson editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * GalleriesController#initialize_page
   #
@@ -125,11 +125,11 @@ class GalleriesController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Gets the first block of videos for the lesson editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -137,15 +137,15 @@ class GalleriesController < ApplicationController
     get_videos(1)
   end
   
-  # === Description
+  # ### Description
   #
   # Gets following blocks of videos for the lesson editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * GalleriesController#initialize_page
   #
@@ -157,11 +157,11 @@ class GalleriesController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Gets the first block of videos and images for the video editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -172,15 +172,15 @@ class GalleriesController < ApplicationController
     @video_tot_pages = @tot_pages
   end
   
-  # === Description
+  # ### Description
   #
   # Gets following blocks of images for the video editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * GalleriesController#initialize_page
   #
@@ -192,15 +192,15 @@ class GalleriesController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Gets following blocks of videos for the video editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * GalleriesController#initialize_page
   #
@@ -212,11 +212,11 @@ class GalleriesController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Gets the first block of audios for the video editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -224,15 +224,15 @@ class GalleriesController < ApplicationController
     get_audios(1)
   end
   
-  # === Description
+  # ### Description
   #
   # Gets following blocks of audios for the video editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * GalleriesController#initialize_page
   #
@@ -244,11 +244,11 @@ class GalleriesController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Gets the first block of audios for the audio editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -256,15 +256,15 @@ class GalleriesController < ApplicationController
     get_audios(1)
   end
   
-  # === Description
+  # ### Description
   #
   # Gets following blocks of audios for the audio editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * GalleriesController#initialize_page
   #
@@ -276,11 +276,11 @@ class GalleriesController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Gets the first block of images for the image editor: this is the only gallery with its own html page, since it is used only to get a new image to open the image editor.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
@@ -290,15 +290,15 @@ class GalleriesController < ApplicationController
     render :layout => 'media_element_editor'
   end
   
-  # === Description
+  # ### Description
   #
   # Gets following blocks of images for the image editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * GalleriesController#initialize_page
   #
@@ -310,11 +310,11 @@ class GalleriesController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Gets the first block of documents for the lesson editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -322,15 +322,15 @@ class GalleriesController < ApplicationController
     get_documents(1)
   end
   
-  # === Description
+  # ### Description
   #
   # Gets following blocks of documents for the lesson editor
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * GalleriesController#initialize_page
   #
@@ -343,11 +343,11 @@ class GalleriesController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Gets documents filtered by word
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -356,11 +356,11 @@ class GalleriesController < ApplicationController
     get_documents(@page, @word)
   end
   
-  # === Description
+  # ### Description
   #
   # Action that calls the uploader from inside Lesson Editor, and creates the new audio.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
@@ -390,11 +390,11 @@ class GalleriesController < ApplicationController
     render :layout => false
   end
   
-  # === Description
+  # ### Description
   #
   # Action that calls the uploader from inside Lesson Editor, and creates the new image.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
@@ -417,11 +417,11 @@ class GalleriesController < ApplicationController
     render :layout => false
   end
   
-  # === Description
+  # ### Description
   #
   # Action that calls the uploader from inside Lesson Editor, and creates the new video.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
@@ -451,11 +451,11 @@ class GalleriesController < ApplicationController
     render :layout => false
   end
   
-  # === Description
+  # ### Description
   #
   # This action checks for errors without setting the media on the new element
   #
-  # === Mode
+  # ### Mode
   #
   # Js
   #
@@ -471,11 +471,11 @@ class GalleriesController < ApplicationController
     @errors[:media] = t('forms.error_captions.media_file_too_large').downcase
   end
   
-  # === Description
+  # ### Description
   #
   # Action that calls the uploader from inside Lesson Editor, and creates the new document.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
@@ -496,11 +496,11 @@ class GalleriesController < ApplicationController
     render :layout => false
   end
   
-  # === Description
+  # ### Description
   #
   # This action checks for errors without setting the attachment on the new document
   #
-  # === Mode
+  # ### Mode
   #
   # Js
   #

@@ -1,18 +1,18 @@
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +mailing_list_addresses+.
 #
-# == Fields
+# ### Fields
 # 
 # * *group_id*: the reference to MailingListGroup
 # * *heading*: the name that the user associates to the e-mail address
 # * *email*: eht email address
 #
-# == Associations
+# ### Associations
 #
 # * *group*: reference to the MailingListGroup to which the address belongs (*belongs_to*)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* for +email+ and +heading+
 # * *presence* with numericality and existence of associated record for +group_id+
@@ -20,11 +20,11 @@
 # * *correctness* of +email+ as an e-mail address
 # * *modifications* *not* *available* for +group_id+, if the record is not new
 #
-# == Callbacks
+# ### Callbacks
 #
 # None
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # None
 #

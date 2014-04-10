@@ -1,18 +1,18 @@
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +notifications+: this table contains messages sent by the application to the users.
 #
-# == Fields
+# ### Fields
 #
 # * *user_id*: reference to the User who received the notification
 # * *message*: message
 # * *seen*: boolean, +true+ if the User has already seen the notification
 #
-# == Associations
+# ### Associations
 #
 # * *user*: reference to the User who received the notification (*belongs_to*)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* with numericality and existence of associated record for +user_id+
 # * *presence* for +message+
@@ -21,11 +21,11 @@
 # * *if* *new* *record*, +seen+ must be false
 # * *modifications* *not* *available* for the five fields
 #
-# == Callbacks
+# ### Callbacks
 #
 # None
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # None
 #
@@ -44,11 +44,11 @@ class Notification < ActiveRecord::Base
   # Block of notifications sent for each job
   SENDING_SLICES_AMOUNT = 1_000
   
-  # === Description
+  # ### Description
   #
   # Sends a notification to one or more users
   #
-  # === Args
+  # ### Args
   #
   # * *user_id_or_user_ids*: if it's an Integer, it sends the notification to a single user, otherwise splits the block of notifications and uses thread to send them
   # * *title*: the content of the notification
@@ -71,7 +71,7 @@ class Notification < ActiveRecord::Base
     nil
   end
   
-  # === Description
+  # ### Description
   #
   # Sets +seen+ as +true+. Used in NotificationsController#seen
   #
@@ -81,7 +81,7 @@ class Notification < ActiveRecord::Base
     self.save
   end
   
-  # === Description
+  # ### Description
   #
   # Renders the time difference
   #

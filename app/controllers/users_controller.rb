@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Controller for actions related to user's profile and statistics
 #
-# == Models used
+# ### Models used
 #
 # * User
 # * UserMailer
@@ -10,7 +10,7 @@
 # * Subject
 # * SchoolLevel
 #
-# == Subcontrollers
+# ### Subcontrollers
 #
 # * Users::SessionsController
 #
@@ -47,15 +47,15 @@ class UsersController < ApplicationController
     :create
   ]
   
-  # === Description
+  # ### Description
   #
   # Creates a profile which is not confirmed yet
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
@@ -123,15 +123,15 @@ class UsersController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Confirms a profile using the link with token received by e-mail by the user
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
@@ -143,30 +143,30 @@ class UsersController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Opens the page where the user writes an email to reset the password
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
   def request_reset_password
   end
   
-  # === Description
+  # ### Description
   #
   # Sends to the user an email containing the reset password token
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
@@ -183,15 +183,15 @@ class UsersController < ApplicationController
     render 'users/fullpage_notifications/reset_password/email_sent'
   end
   
-  # === Description
+  # ### Description
   #
   # Checks the token and resets the password; sends to the user an email containing the new password
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
@@ -205,15 +205,15 @@ class UsersController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Opens the page where the user writes an email and a purchase code to upgrade his trial account
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
@@ -224,15 +224,15 @@ class UsersController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Sends to the user an email containing the upgrade trial token
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
@@ -269,15 +269,15 @@ class UsersController < ApplicationController
     )
   end
   
-  # === Description
+  # ### Description
   #
   # Form to edit the general information about your profile
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_layout
   #
@@ -287,15 +287,15 @@ class UsersController < ApplicationController
     @errors = []
   end
   
-  # === Description
+  # ### Description
   #
   # Updates your profile.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_layout
   #
@@ -325,15 +325,15 @@ class UsersController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Form to edit your list of subjects
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_layout
   #
@@ -343,15 +343,15 @@ class UsersController < ApplicationController
     @errors = []
   end
   
-  # === Description
+  # ### Description
   #
   # Updates your subjects.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_layout
   #
@@ -377,15 +377,15 @@ class UsersController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Section of your profile about trial version handling
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_layout
   #
@@ -396,15 +396,15 @@ class UsersController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Sends to the user an email containing the upgrade trial token
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_layout
   #
@@ -436,15 +436,15 @@ class UsersController < ApplicationController
     redirect_to dashboard_path, { flash: { notice: t('users.trial.successful_upgrade') } }
   end
   
-  # === Description
+  # ### Description
   #
   # Necessary to fill the locations list
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
@@ -460,15 +460,15 @@ class UsersController < ApplicationController
     @location_types = LOCATION_TYPES
   end
   
-  # === Description
+  # ### Description
   #
   # Toggles locations between active and disabled, in the registration form: used in case the user doesn't find his location in the database.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
@@ -489,30 +489,30 @@ class UsersController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Manage your mailing lists and addresses (see MailingListsController)
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_layout
   #
   def mailing_lists
   end
   
-  # === Description
+  # ### Description
   #
   # Static page with general and personal statistics
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_layout
   #

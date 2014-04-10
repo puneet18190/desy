@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Controller for users in the administration section (see AdminController).
 #
-# == Models used
+# ### Models used
 #
 # * AdminSearchForm
 # * Location
@@ -14,15 +14,15 @@ class Admin::UsersController < AdminController
   
   layout 'admin'
   
-  # === Description
+  # ### Description
   #
   # Main page with the list of users. If params[:search] is present, it is used AdminSearchForm to perform the requested search.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -36,15 +36,15 @@ class Admin::UsersController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # 'Show' action for a single user. It contains personal statistics.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -65,15 +65,15 @@ class Admin::UsersController < AdminController
     @my_likes_count      = Statistics.my_likes_count
   end
   
-  # === Description
+  # ### Description
   #
   # Action to destroy a user and remove its contact from the database (see User#destroy_with_dependencies)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -82,15 +82,15 @@ class Admin::UsersController < AdminController
     @user.destroy_with_dependencies
   end
   
-  # === Description
+  # ### Description
   #
   # Used for autocomplete in the search forms all over the administration section
   #
-  # === Mode
+  # ### Mode
   #
   # Json
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -99,15 +99,15 @@ class Admin::UsersController < AdminController
     render :json => @users
   end
   
-  # === Description
+  # ### Description
   #
   # Used for location filling all over the administration section (to be distinguished by UsersController#find_locations, which is used in the rest of the application)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -116,15 +116,15 @@ class Admin::UsersController < AdminController
     @locations = parent.nil? ? [] : parent.children.order(:name)
   end
   
-  # === Description
+  # ### Description
   #
   # To switch the status of a user form 'banned' to 'active' and viceversa: used only in the main list of users (Admin::UsersController#index)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -134,15 +134,15 @@ class Admin::UsersController < AdminController
     @user.save
   end
   
-  # === Description
+  # ### Description
   #
   # Sets the field +active+ of User to +false+ (used only in Admin::UsersController#show)
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -153,15 +153,15 @@ class Admin::UsersController < AdminController
     redirect_to admin_user_path(@user)
   end
   
-  # === Description
+  # ### Description
   #
   # Sets the field +active+ of User to +true+ (used only in Admin::UsersController#show)
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -172,15 +172,15 @@ class Admin::UsersController < AdminController
     redirect_to admin_user_path(@user)
   end
   
-  # === Description
+  # ### Description
   #
   # Sends again the email confirmation to an unconfirmed user.
   #
-  # === Mode
+  # ### Mode
   #
   # Js
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #

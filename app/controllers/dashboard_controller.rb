@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Controller for the dashboard
 #
-# == Models used
+# ### Models used
 #
 # * Lesson
 # * MediaElement
@@ -20,11 +20,11 @@ class DashboardController < ApplicationController
   # Rows of media elements in each page
   MEDIA_ELEMENT_ROWS_PER_PAGE = 2
   
-  # === Description
+  # ### Description
   #
   # Expands or compresses lessons. This url is supposed to be called in 'expand' mode only if there are actually further lessons to be loaded.
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -36,11 +36,11 @@ class DashboardController < ApplicationController
     @lessons = @lessons[:records]
   end
   
-  # === Description
+  # ### Description
   #
   # Expands or compresses media elements. This url is supposed to be called in 'expand' mode only if there are actually further media elements to be loaded.
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -50,15 +50,15 @@ class DashboardController < ApplicationController
     @media_elements = current_user.suggested_media_elements(@for_row * @rows)
   end
   
-  # === Description
+  # ### Description
   #
   # Extracts suggested lessons and elements (see User#suggested_lessons, User#suggested_media_elements). When it's called via ajax it's because of the application of filters, paginations, or after an operation that changed the number of items in the page.
   #
-  # === Mode
+  # ### Mode
   #
   # Html + Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * DashboardController#initialize_pagination
   # * ApplicationController#initialize_layout

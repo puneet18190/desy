@@ -1,29 +1,29 @@
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +likes+. A record of this table represents the 'I like you' that a user assigns to a lesson
 #
-# == Fields
+# ### Fields
 #
 # * *user_id*: id of the User creator of the like
 # * *lesson_id*: id of liked Lesson
 #
-# == Associations
+# ### Associations
 #
 # * *user*: reference to the User who created the like (*belongs_to*).
 # * *lesson*: liked Lesson (*belongs_to*).
 #
-# == Validations
+# ### Validations
 #
 # * *presence* with numericality and existence of associated record for +user_id+ and +lesson_id+
 # * *uniqueness* of the couple [+lesson_id+, +user_id+]
 # * *modifications* *not* *available* for both fields, if the record is not new
 # * *availability* of the Lesson for that particular User (the user can't be the creator of the lesson)
 #
-# == Callbacks
+# ### Callbacks
 #
 # None
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # None
 #

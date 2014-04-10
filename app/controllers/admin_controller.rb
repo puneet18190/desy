@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Scope controller for the administration section.
 #
-# == Subcontrollers
+# ### Subcontrollers
 #
 # * Admin::DashboardController
 # * Admin::LessonsController

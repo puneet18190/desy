@@ -12,17 +12,17 @@ module Media
       # Ratio Y
       RATIO_Y = 500.0
 
-      # === Description
+      # ### Description
       #
       # Returns the original value of a coordinate, given the actual value and the size of the image
       #
-      # === Arguments
+      # ### Arguments
       #
       # * *w*: width of the image
       # * *h*: height of the image
       # * *value*: value to be scaled
       #
-      # === Returns
+      # ### Returns
       #
       # A float.
       #

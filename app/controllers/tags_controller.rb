@@ -1,19 +1,19 @@
-# == Description
+# ### Description
 #
 # Contains the actions used in autocomplete
 #
-# == Models used
+# ### Models used
 #
 # * Tag
 # * Tagging
 #
 class TagsController < ApplicationController
   
-  # === Description
+  # ### Description
   #
   # Gets the list of the most popular tags that match the inserted keyword (paramster +term+). See Tag.get_tags_for_autocomplete
   #
-  # === Mode
+  # ### Mode
   #
   # Json
   #
@@ -22,11 +22,11 @@ class TagsController < ApplicationController
     render :json => @tags
   end
   
-  # === Description
+  # ### Description
   #
   # Checks if a specific tag is present in the database (if yes, the tag box gets colored)
   #
-  # === Mode
+  # ### Mode
   #
   # Json
   #

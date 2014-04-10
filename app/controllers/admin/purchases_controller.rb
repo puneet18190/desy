@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Controller of purchases in the administration section. See AdminController.
 #
-# == Models used
+# ### Models used
 #
 # * AdminSearchForm
 # * Purchase
@@ -13,15 +13,15 @@ class Admin::PurchasesController < AdminController
   before_filter :check_saas
   layout 'admin'
   
-  # === Description
+  # ### Description
   #
   # Main page of the section 'purchases' in admin. If params[:search] is present, it is used AdminSearchForm to perform the requested search.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   # * Admin::PurchaseController#check_saas
@@ -35,15 +35,15 @@ class Admin::PurchasesController < AdminController
     @purchases = purchases.page(params[:page])
   end
   
-  # === Description
+  # ### Description
   #
   # Form to edit a purchase
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   # * Admin::PurchaseController#check_saas
@@ -52,15 +52,15 @@ class Admin::PurchasesController < AdminController
     @purchase = Purchase.find_by_id params[:id]
   end
   
-  # === Description
+  # ### Description
   #
   # Action to update a purchase
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   # * Admin::PurchaseController#check_saas
@@ -76,15 +76,15 @@ class Admin::PurchasesController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Form to create a new purchase
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   # * Admin::PurchaseController#check_saas
@@ -111,15 +111,15 @@ class Admin::PurchasesController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Action to create a new purchase
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   # * Admin::PurchaseController#check_saas
@@ -150,15 +150,15 @@ class Admin::PurchasesController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Action to send to a list of emails the instructions to use the purchase code
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   # * Admin::PurchaseController#check_saas
@@ -174,15 +174,15 @@ class Admin::PurchasesController < AdminController
     redirect_to '/admin/purchases'
   end
   
-  # === Description
+  # ### Description
   #
   # Form to send to a list of emails the instructions to use the purchase code
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   # * Admin::PurchaseController#check_saas
@@ -195,15 +195,15 @@ class Admin::PurchasesController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # It fills the locations in the restriction form; specific for purchases
   #
-  # === Mode
+  # ### Mode
   #
   # Js
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   # * Admin::PurchaseController#check_saas
@@ -213,15 +213,15 @@ class Admin::PurchasesController < AdminController
     @locations = parent.nil? ? [] : parent.children.order(:name)
   end
   
-  # === Description
+  # ### Description
   #
   # It fills the locations in the restriction form, receiving as input an id or a code
   #
-  # === Mode
+  # ### Mode
   #
   # Js
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   # * Admin::PurchaseController#check_saas

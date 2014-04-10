@@ -40,14 +40,14 @@ module Media
   
         # Create a new Media::Video::Editing::Transition instance
         #
-        # === Arguments
+        # ### Arguments
         #
         # * *start_inputs*: hash with the start video input paths per video format
         # * *end_inputs*: hash with the end video input paths per video format
         # * *output_without_extension*: output path without the extension
         # * *log_folder* _optional_: log folder path
         #
-        # === Examples
+        # ### Examples
         #
         #  Media::Video::Editing::Transition.new({ mp4: '/path/to/start/media.mp4', webm: '/path/to/start/media.webm' }, { mp4: '/path/to/end/media.mp4', webm: '/path/to/end/media.webm' }, '/path/to/new/video/files')
         def initialize(start_inputs, end_inputs, output_without_extension, log_folder = nil)
@@ -74,7 +74,7 @@ module Media
   
         # Execute the transition creation processing
         #
-        # === Logic
+        # ### Logic
         #
         # 1. Extract the last frame of the start input
         # 2. Extract the last frame of the end input

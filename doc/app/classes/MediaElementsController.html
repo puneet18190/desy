@@ -40,25 +40,20 @@
   
     <div class="description">
       
-<h2 id="class-MediaElementsController-label-Description">Description</h2>
+<h3 id="class-MediaElementsController-label-Description">Description</h3>
 
 <p>Controller for all the actions related to elements and their buttons. All
 over this controller we use the constant keywords defined in <a
-href="ButtonDestinations.html">ButtonDestinations</a>, namely:</p>
-<ol><li>
-<p><strong>found_media_element</strong> (or simply <strong>found</strong>) for
-a media element seen in a results list of the search engine</p>
-</li><li>
-<p><strong>compact_media_element</strong> (or simply <strong>compact</strong>)
-for a media element seen in the compact mode</p>
-</li><li>
-<p><strong>expanded_media_element</strong> (or simply
-<strong>expanded</strong>) for a media element seen in expanded mode (this
+href="ButtonDestinations.html">ButtonDestinations</a>, namely: 1.
+<em>found_media_element</em> (or simply <em>found</em>) for a media element
+seen in a results list of the search engine 2.
+<em>compact_media_element</em> (or simply <em>compact</em>) for a media
+element seen in the compact mode 3. <em>expanded_media_element</em> (or
+simply <em>expanded</em>) for a media element seen in expanded mode (this
 happens only in the dashboard, see <a
 href="DashboardController.html">DashboardController</a>)</p>
-</li></ol>
 
-<h2 id="class-MediaElementsController-label-Models+used">Models used</h2>
+<h3 id="class-MediaElementsController-label-Models+used">Models used</h3>
 <ul><li>
 <p><a href="MediaElement.html">MediaElement</a></p>
 </li><li>
@@ -284,14 +279,10 @@ href="DashboardController.html">DashboardController</a>)</p>
             <div class="description">
               <h3 id="method-i-add-label-Description">Description</h3>
 
-<p>Adds a link of this element to your section.</p>
-<ul><li>
-<p><strong>found</strong>: reloads the element in compact mode</p>
-</li><li>
-<p><strong>compact</strong>: <em>[this action doesn&#39;t occur]</em></p>
-</li><li>
-<p><strong>expanded</strong>: removes the element and reloads the whole page</p>
-</li></ul>
+<p>Adds a link of this element to your section. * <em>found</em>: reloads the
+element in compact mode * <em>compact</em>: <em>[this action doesn&#39;t
+occur]</em> * <em>expanded</em>: removes the element and reloads the whole
+page</p>
 
 <h3 id="method-i-add-label-Mode">Mode</h3>
 
@@ -592,14 +583,10 @@ href="ApplicationController.html#method-i-initialize_players_counter">Applicatio
             <div class="description">
               <h3 id="method-i-destroy-label-Description">Description</h3>
 
-<p>Deletes definitively an element.</p>
-<ul><li>
-<p><strong>found</strong>: removes the element and reloads the whole page</p>
-</li><li>
-<p><strong>compact</strong>: removes the element and reloads the whole page</p>
-</li><li>
-<p><strong>expanded</strong>: removes the element and reloads the whole page</p>
-</li></ul>
+<p>Deletes definitively an element. * <em>found</em>: removes the element and
+reloads the whole page * <em>compact</em>: removes the element and reloads
+the whole page * <em>expanded</em>: removes the element and reloads the
+whole page</p>
 
 <h3 id="method-i-destroy-label-Mode">Mode</h3>
 
@@ -817,19 +804,15 @@ href="MediaElementsController.html#method-i-initialize_paginator">#initialize_pa
             <div class="description">
               <h3 id="method-i-new-label-Description">Description</h3>
 
-<p>Opens the general page of the elements editor:</p>
-<ul><li>
-<p>the <strong>video</strong> icon redirects to <a
-href="VideoEditorController.html#method-i-new">VideoEditorController#new</a></p>
-</li><li>
-<p>the <strong>audio</strong> icon redirects to <a
-href="AudioEditorController.html#method-i-new">AudioEditorController#new</a></p>
-</li><li>
-<p>the <strong>image</strong> icon redirects to <a
+<p>Opens the general page of the elements editor: * the <em>video</em> icon
+redirects to <a
+href="VideoEditorController.html#method-i-new">VideoEditorController#new</a>
+* the <em>audio</em> icon redirects to <a
+href="AudioEditorController.html#method-i-new">AudioEditorController#new</a>
+* the <em>image</em> icon redirects to <a
 href="GalleriesController.html#method-i-image_for_image_editor">GalleriesController#image_for_image_editor</a>
 (and successively to <a
 href="ImageEditorController.html#method-i-edit">ImageEditorController#edit</a>)</p>
-</li></ul>
 
 <h3 id="method-i-new-label-Mode">Mode</h3>
 
@@ -872,14 +855,10 @@ href="ImageEditorController.html#method-i-edit">ImageEditorController#edit</a>)<
             <div class="description">
               <h3 id="method-i-remove-label-Description">Description</h3>
 
-<p>Removes the link of this element from your section.</p>
-<ul><li>
-<p><strong>found</strong>: reloads the element in compact mode</p>
-</li><li>
-<p><strong>compact</strong>: removes the element and reloads the whole page</p>
-</li><li>
-<p><strong>expanded</strong>: removes the element and reloads the whole page</p>
-</li></ul>
+<p>Removes the link of this element from your section. * <em>found</em>:
+reloads the element in compact mode * <em>compact</em>: removes the element
+and reloads the whole page * <em>expanded</em>: removes the element and
+reloads the whole page</p>
 
 <h3 id="method-i-remove-label-Mode">Mode</h3>
 

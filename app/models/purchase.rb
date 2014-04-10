@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +purchases+.
 #
-# == Fields
+# ### Fields
 #
 # * *name*: name of the buyer
 # * *responsible*: name and surname of the person who is responsible for the transaction
@@ -23,12 +23,12 @@
 # * *location_id*: location which must be forced to the users who benefit this purchase
 # * *token*: token used to associate a user subscription to this purchase
 #
-# == Associations
+# ### Associations
 #
 # * *users*: users associated to this purchase (see User) (*has_many*)
 # * *location*: location to which all the user must belong (this is not inserted into a validation, not to overload the model, but just in the methods for the frontend) (*belongs_to*, it can be nil)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* of +name+, +responsible+, +email+, +accounts_number+, +release_date+, +start_date+, +expiration_date+
 # * *numericality* greater than 0 for +accounts_number+
@@ -42,11 +42,11 @@
 # * *decrease* *not* *available* for +accounts_number+
 # * *uniqueness* ok +token+
 #
-# == Callbacks
+# ### Callbacks
 #
 # 1. *before_create* creates a random encoded string and writes it in +token+
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # None
 #
@@ -73,11 +73,11 @@ class Purchase < ActiveRecord::Base
   before_validation :init_validation
   before_create :create_token
   
-  # === Description
+  # ### Description
   #
   # Used in the front end, it returns a resume of the address depending on the field filled up
   #
-  # === Returns
+  # ### Returns
   #
   # A string
   #
@@ -85,11 +85,11 @@ class Purchase < ActiveRecord::Base
     resp = ([self.address, self.postal_code, self.city, self.country].reject {|i| i.blank?}).join(', ')
   end
   
-  # === Description
+  # ### Description
   #
   # Method used in the front end that returns the resume of the location
   #
-  # === Returns
+  # ### Returns
   #
   # A string
   #
@@ -116,11 +116,11 @@ class Purchase < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Checks if the actual time is greater than expiration_date
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #

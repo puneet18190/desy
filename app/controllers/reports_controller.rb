@@ -1,18 +1,18 @@
-# == Description
+# ### Description
 #
 # Contains the actions necessary to send a report of inappropriate content
 #
-# == Models used
+# ### Models used
 #
 # * Report
 #
 class ReportsController < ApplicationController
   
-  # === Description
+  # ### Description
   #
   # Reports a lesson
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -28,11 +28,11 @@ class ReportsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Reports an element
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #

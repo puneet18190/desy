@@ -50,12 +50,12 @@ module Media
 
         # Create a new Media::Audio::Editing::Conversion instance
         #
-        # === Arguments
+        # ### Arguments
         #
         # * *uploaded_path*: path to the file to be converted. The file will be moved to the temporary path and removed after the conversion
         # * *output_path_without_extension*: output path without the extension (it will be added automatically by the conversion for each output format)
         #
-        # === Examples
+        # ### Examples
         #
         #   Media::Audio::Editing::Conversion.new('/tmp/path.abcdef', '/path/to/desy/public/media_elements/13/valid-audio', 'valid audio.flv', 13)
         def initialize(uploaded_path, output_path_without_extension, original_filename, model_id)

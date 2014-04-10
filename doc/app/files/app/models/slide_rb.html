@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>app/models/slide.rb</li>
-            <li>Last modified: 2014-01-10 12:19:07 +0100</li>
+            <li>Last modified: 2014-04-10 16:21:40 +0200</li>
         </ul>
     </div>
 
@@ -32,111 +32,107 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h3 id="label-Description">Description</h3>
 
 <p>ActiveRecord class that corresponds to the table <code>slides</code>.</p>
 
-<h2 id="label-Fields">Fields</h2>
+<h3 id="label-Fields">Fields</h3>
 <ul><li>
-<p><strong>lesson_id</strong>: reference to the <a
+<p><em>lesson_id</em>: reference to the <a
 href="../../../classes/Lesson.html">Lesson</a> the slide belongs to</p>
 </li><li>
-<p><strong>title</strong>: title of the slide</p>
+<p><em>title</em>: title of the slide</p>
 </li><li>
-<p><strong>text</strong>: text of the slide if present</p>
+<p><em>text</em>: text of the slide if present</p>
 </li><li>
-<p><strong>position</strong>: position respect to the other slides in the
-lesson</p>
+<p><em>position</em>: position respect to the other slides in the lesson</p>
 </li><li>
-<p><strong>kind</strong>: the kind of the slide (the type is an enum defined
-in postgrsql, in total there are 10 types)</p>
+<p><em>kind</em>: the kind of the slide (the type is an enum defined in
+postgrsql, in total there are 10 types)</p>
 </li><li>
-<p><strong>metadata</strong>: contains only math images.</p>
+<p><em>metadata</em>: contains only math images.</p>
 </li></ul>
 
-<h2 id="label-Associations">Associations</h2>
+<h3 id="label-Associations">Associations</h3>
 <ul><li>
-<p><strong>lesson</strong>: reference to the <a
+<p><em>lesson</em>: reference to the <a
 href="../../../classes/Lesson.html">Lesson</a> where the slide is contained
-(<strong>belongs_to</strong>)</p>
+(<em>belongs_to</em>)</p>
 </li><li>
-<p><strong>media_elements_slides</strong>: instances of <a
+<p><em>media_elements_slides</em>: instances of <a
 href="../../../classes/MediaElement.html">MediaElement</a> contained in
 this slide (see <a
 href="../../../classes/MediaElementsSlide.html">MediaElementsSlide</a>)
-(<strong>has_many</strong>)</p>
+(<em>has_many</em>)</p>
 </li><li>
-<p><strong>media_elements</strong>: list of media elements inside the slide
-(see <a href="../../../classes/MediaElement.html">MediaElement</a>)
-(through the class <a
+<p><em>media_elements</em>: list of media elements inside the slide (see <a
+href="../../../classes/MediaElement.html">MediaElement</a>) (through the
+class <a
 href="../../../classes/MediaElementsSlide.html">MediaElementsSlide</a>)
-(<strong>has_many</strong>)</p>
+(<em>has_many</em>)</p>
 </li><li>
-<p><strong>documents_slides</strong>: instances of <a
+<p><em>documents_slides</em>: instances of <a
 href="../../../classes/Document.html">Document</a> contained in this slide
 (see <a href="../../../classes/DocumentsSlide.html">DocumentsSlide</a>)
-(<strong>has_many</strong>)</p>
+(<em>has_many</em>)</p>
 </li></ul>
 
-<h2 id="label-Validations">Validations</h2>
+<h3 id="label-Validations">Validations</h3>
 <ul><li>
-<p><strong>presence</strong> with numericality greater than zero and presence
-of associated record, for the field <code>lesson_id</code></p>
+<p><em>presence</em> with numericality greater than zero and presence of
+associated record, for the field <code>lesson_id</code></p>
 </li><li>
-<p><strong>presence</strong> of <code>position</code></p>
+<p><em>presence</em> of <code>position</code></p>
 </li><li>
-<p><strong>length</strong>  of <code>title</code> (value configured in the
-I18n translation file: if the value is greater than 255 it&#39;s set to
-255); it&#39;s possible for <code>title</code> to be <code>nil</code></p>
+<p><em>length</em> of <code>title</code> (value configured in the I18n
+translation file: if the value is greater than 255 it&#39;s set to 255);
+it&#39;s possible for <code>title</code> to be <code>nil</code></p>
 </li><li>
-<p><strong>inclusion</strong> of <code>kind</code> in the list of available
-kinds</p>
+<p><em>inclusion</em> of <code>kind</code> in the list of available kinds</p>
 </li><li>
-<p><strong>uniqueness</strong> of the couple [<code>position</code>,
+<p><em>uniqueness</em> of the couple [<code>position</code>,
 <code>lesson_id</code>]</p>
 </li><li>
-<p><strong>uniqueness</strong> of the couple [<code>kind</code>,
+<p><em>uniqueness</em> of the couple [<code>kind</code>,
 <code>lesson_id</code>] <strong>only if the slide is of kind
 <code>cover</code></strong></p>
 </li><li>
-<p><strong>modifications</strong> <strong>not</strong>
-<strong>allowed</strong> for the fields <code>lesson_id</code>,
-<code>kind</code>, <code>title</code></p>
+<p><em>modifications</em> <em>not</em> <em>allowed</em> for the fields
+<code>lesson_id</code>, <code>kind</code>, <code>title</code></p>
 </li><li>
-<p><strong>the</strong> <strong>position</strong> of the cover must be 1; on
-the other side, the position of other kinds of slides can&#39;t be 1</p>
+<p><em>the</em> <em>position</em> of the cover must be 1; on the other side,
+the position of other kinds of slides can&#39;t be 1</p>
 </li><li>
-<p><strong>the</strong> <strong>text</strong> must be <code>nil</code> if the
-kind of slide doesn&#39;t contain text</p>
+<p><em>the</em> <em>text</em> must be <code>nil</code> if the kind of slide
+doesn&#39;t contain text</p>
 </li><li>
-<p><strong>the</strong> <strong>title</strong> must be <code>nil</code> if the
-kind of slide doesn&#39;t contain title</p>
+<p><em>the</em> <em>title</em> must be <code>nil</code> if the kind of slide
+doesn&#39;t contain title</p>
 </li><li>
-<p><strong>the</strong> <strong>maximum</strong> <strong>number</strong> of
-slides must be the one configured in settings.yml. This validation uses <a
+<p><em>the</em> <em>maximum</em> <em>number</em> of slides must be the one
+configured in settings.yml. This validation uses <a
 href="../../../classes/Lesson.html#method-i-reached_the_maximum_of_slides-3F">Lesson#reached_the_maximum_of_slides?</a></p>
 </li><li>
-<p><strong>correctness</strong> of math images</p>
+<p><em>correctness</em> of math images</p>
 </li><li>
-<p><strong>correctness</strong> of math images links</p>
+<p><em>correctness</em> of math images links</p>
 </li></ul>
 
-<h2 id="label-Callbacks">Callbacks</h2>
+<h3 id="label-Callbacks">Callbacks</h3>
 <ol><li>
-<p><strong>before_destroy</strong> stop the destruction if the slide is of
-kind &#39;cover&#39;</p>
+<p><em>before_destroy</em> stop the destruction if the slide is of kind
+&#39;cover&#39;</p>
 </li><li>
 <p>many callbacks related to math_formulas.</p>
 </li></ol>
 
-<h2 id="label-Database+callbacks">Database callbacks</h2>
+<h3 id="label-Database+callbacks">Database callbacks</h3>
 <ol><li>
-<p><strong>cascade</strong> <strong>destruction</strong> for the associated
-table <a
+<p><em>cascade</em> <em>destruction</em> for the associated table <a
 href="../../../classes/MediaElementsSlide.html">MediaElementsSlide</a></p>
 </li><li>
-<p><strong>cascade</strong> <strong>destruction</strong> for the associated
-table <a href="../../../classes/DocumentsSlide.html">DocumentsSlide</a></p>
+<p><em>cascade</em> <em>destruction</em> for the associated table <a
+href="../../../classes/DocumentsSlide.html">DocumentsSlide</a></p>
 </li></ol>
 
     </div>

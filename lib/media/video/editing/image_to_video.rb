@@ -28,14 +28,14 @@ module Media
   
         # Create a new Media::Video::Editing::ImageToVideo instance
         #
-        # === Arguments
+        # ### Arguments
         #
         # * *inputs*: hash with the input paths per video format
         # * *output_without_extension*: output path without the extension
         # * *duration*: duration of the output videos (in seconds)
         # * *log_folder* _optional_: log folder path
         #
-        # === Examples
+        # ### Examples
         #
         #  Media::Video::Editing::ImageToVideo.new({ mp4: '/path/to/media.mp4', webm: '/path/to/media.webm' }, '/path/to/new/video/files', 15)
         def initialize(input_path, output_without_extension, duration, log_folder = nil)

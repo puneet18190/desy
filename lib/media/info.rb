@@ -30,7 +30,7 @@ module Media
     # Supplied path to the media file
     attr_reader :path
 
-    # === Args
+    # ### Args
     # 
     # * *path*: path to a media file
     # * *raise_if_invalid*: if +true+, raises a Media::Error when +avprobe+ doesn't consider the supplied media valid
@@ -56,12 +56,12 @@ module Media
 
     # Compares two media info hashes (should be retrieved using Media::Info#to_hash), returning +true+ if they are considered similar, +false+ otherwise
     #
-    # === Args
+    # ### Args
     #
     # * *other_infos_hash*: hash of another media file infos
     # * *ignore_bitrate*: when +true+ the bitrates are not compared
     #
-    # === Examples
+    # ### Examples
     #
     #  Media::Info.new('video1.webm').similar_to? Media::Info.new('video1.webm').to_hash #=> true
     #  Media::Info.new('video1.webm').similar_to? Media::Info.new('video1.mp4').to_hash  #=> false

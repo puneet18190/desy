@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Controller of documents in the administration section. See AdminController.
 #
-# == Models used
+# ### Models used
 #
 # * Document
 # * AdminSearchForm
@@ -11,15 +11,15 @@ class Admin::DocumentsController < AdminController
   
   layout 'admin'
   
-  # === Description
+  # ### Description
   #
   # Main page of documents in the admin. If params[:search] is present, it is used AdminSearchForm to perform the requested search.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -33,15 +33,15 @@ class Admin::DocumentsController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Destroys a document, sending notifications if it's used in somebody's lessons.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #

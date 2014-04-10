@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Controller of the Dashboard in the administration section. See AdminController.
 #
-# == Models used
+# ### Models used
 #
 # * User
 # * Report
@@ -11,15 +11,15 @@ class Admin::DashboardController < AdminController
   
   layout 'admin'
   
-  # === Description
+  # ### Description
   #
   # Action that creates instances of all the main information to be shown in the administration dashboard
   #
-  # === Mode
+  # ### Mode
   #
   # Html + Xml
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #

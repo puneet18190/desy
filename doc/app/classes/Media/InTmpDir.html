@@ -46,18 +46,13 @@ supplied <code>path</code> relative to <code>@tmp_dir</code></p>
 
 <h3 id="module-Media::InTmpDir-label-Example">Example</h3>
 
-<pre><code>class VideoProcessing
-  include Media::InTmpDir
-  def process
-    puts @tmp_path               #=&gt; nil
-    in_tmp_dir do
-      puts @tmp_path             #=&gt; &quot;/tmp/rrgiun39fsf9jwnwq3r&quot;
-      puts tmp_path(&#39;video.mp4&#39;) #=&gt; &quot;/tmp/rrgiun39fsf9jwnwq3r/video.mp4&quot;
-    end
-    puts @tmp_path               #=&gt; nil
-  end
-end
-</code></pre>
+<p>class VideoProcessing  include <a href="InTmpDir.html">Media::InTmpDir</a> 
+def process  puts @tmp_path #=&gt; nil  <a
+href="InTmpDir.html#method-i-in_tmp_dir">#in_tmp_dir</a> do  puts @tmp_path
+#=&gt; “/tmp/rrgiun39fsf9jwnwq3r”  puts <a
+href="InTmpDir.html#method-i-tmp_path">#tmp_path</a>(&#39;video.mp4&#39;)
+#=&gt; “/tmp/rrgiun39fsf9jwnwq3r/video.mp4”  end  puts @tmp_path #=&gt; nil
+end  end</p>
 
     </div>
   

@@ -40,111 +40,107 @@
   
     <div class="description">
       
-<h2 id="class-Purchase-label-Description">Description</h2>
+<h3 id="class-Purchase-label-Description">Description</h3>
 
 <p>ActiveRecord class that corresponds to the table <code>purchases</code>.</p>
 
-<h2 id="class-Purchase-label-Fields">Fields</h2>
+<h3 id="class-Purchase-label-Fields">Fields</h3>
 <ul><li>
-<p><strong>name</strong>: name of the buyer</p>
+<p><em>name</em>: name of the buyer</p>
 </li><li>
-<p><strong>responsible</strong>: name and surname of the person who is
-responsible for the transaction</p>
+<p><em>responsible</em>: name and surname of the person who is responsible for
+the transaction</p>
 </li><li>
-<p><strong>phone_number</strong>: phone number of the responsible</p>
+<p><em>phone_number</em>: phone number of the responsible</p>
 </li><li>
-<p><strong>fax</strong>: fax of the responsible</p>
+<p><em>fax</em>: fax of the responsible</p>
 </li><li>
-<p><strong>email</strong>: official email of the buyer</p>
+<p><em>email</em>: official email of the buyer</p>
 </li><li>
-<p><strong>ssn_code</strong>: personal code</p>
+<p><em>ssn_code</em>: personal code</p>
 </li><li>
-<p><strong>vat_code</strong>: code of the company</p>
+<p><em>vat_code</em>: code of the company</p>
 </li><li>
-<p><strong>address</strong>: address of the buyer</p>
+<p><em>address</em>: address of the buyer</p>
 </li><li>
-<p><strong>postal_code</strong>: postal code of the buyer</p>
+<p><em>postal_code</em>: postal code of the buyer</p>
 </li><li>
-<p><strong>city</strong>: city of the buyer</p>
+<p><em>city</em>: city of the buyer</p>
 </li><li>
-<p><strong>country</strong>: country of the buyer</p>
+<p><em>country</em>: country of the buyer</p>
 </li><li>
-<p><strong>accounts_number</strong>: how many accounts are associated to this
-purchase</p>
+<p><em>accounts_number</em>: how many accounts are associated to this purchase</p>
 </li><li>
-<p><strong>includes_invoice</strong>: if true, the purchae must be associated
-to an invoice (not implemented in the application)</p>
+<p><em>includes_invoice</em>: if true, the purchae must be associated to an
+invoice (not implemented in the application)</p>
 </li><li>
-<p><strong>release_date</strong>: date of purchase</p>
+<p><em>release_date</em>: date of purchase</p>
 </li><li>
-<p><strong>start_date</strong>: date of beginning of the validity of the
-purchase</p>
+<p><em>start_date</em>: date of beginning of the validity of the purchase</p>
 </li><li>
-<p><strong>expiration_date</strong>: expiration date of the purchase</p>
+<p><em>expiration_date</em>: expiration date of the purchase</p>
 </li><li>
-<p><strong>location_id</strong>: location which must be forced to the users
-who benefit this purchase</p>
+<p><em>location_id</em>: location which must be forced to the users who
+benefit this purchase</p>
 </li><li>
-<p><strong>token</strong>: token used to associate a user subscription to this
+<p><em>token</em>: token used to associate a user subscription to this
 purchase</p>
 </li></ul>
 
-<h2 id="class-Purchase-label-Associations">Associations</h2>
+<h3 id="class-Purchase-label-Associations">Associations</h3>
 <ul><li>
-<p><strong>users</strong>: users associated to this purchase (see <a
-href="User.html">User</a>) (<strong>has_many</strong>)</p>
+<p><em>users</em>: users associated to this purchase (see <a
+href="User.html">User</a>) (<em>has_many</em>)</p>
 </li><li>
-<p><strong>location</strong>: location to which all the user must belong (this
-is not inserted into a validation, not to overload the model, but just in
-the methods for the frontend) (<strong>belongs_to</strong>, it can be nil)</p>
+<p><em>location</em>: location to which all the user must belong (this is not
+inserted into a validation, not to overload the model, but just in the
+methods for the frontend) (<em>belongs_to</em>, it can be nil)</p>
 </li></ul>
 
-<h2 id="class-Purchase-label-Validations">Validations</h2>
+<h3 id="class-Purchase-label-Validations">Validations</h3>
 <ul><li>
-<p><strong>presence</strong> of <code>name</code>, <code>responsible</code>,
+<p><em>presence</em> of <code>name</code>, <code>responsible</code>,
 <code>email</code>, <code>accounts_number</code>,
 <code>release_date</code>, <code>start_date</code>,
 <code>expiration_date</code></p>
 </li><li>
-<p><strong>numericality</strong> greater than 0 for
-<code>accounts_number</code></p>
+<p><em>numericality</em> greater than 0 for <code>accounts_number</code></p>
 </li><li>
-<p><strong>numericality</strong> greater than 0 and allow_nil and eventually
-presence of associated object for <code>location_id</code></p>
+<p><em>numericality</em> greater than 0 and allow_nil and eventually presence
+of associated object for <code>location_id</code></p>
 </li><li>
-<p><strong>length</strong> of <code>name</code>, <code>responsible</code>,
+<p><em>length</em> of <code>name</code>, <code>responsible</code>,
 <code>phone_number</code>, <code>fax</code>, <code>email</code>,
 <code>ssn_code</code>, <code>vat_code</code>, <code>address</code>,
 <code>postal_code</code>, <code>city</code>, <code>country</code> (maximum
 255)</p>
 </li><li>
-<p><strong>inclusion</strong> of <code>includes_invoice</code> in [true,
-false]</p>
+<p><em>inclusion</em> of <code>includes_invoice</code> in [true, false]</p>
 </li><li>
-<p><strong>correctness</strong> of <code>email</code> as an e-mail address</p>
+<p><em>correctness</em> of <code>email</code> as an e-mail address</p>
 </li><li>
-<p><strong>format</strong> of dates <code>release_date</code>,
+<p><em>format</em> of dates <code>release_date</code>,
 <code>start_date</code>, <code>expiration_date</code></p>
 </li><li>
-<p><strong>presence</strong> of at least one between <code>vat_code</code> and
+<p><em>presence</em> of at least one between <code>vat_code</code> and
 <code>ssn_code</code></p>
 </li><li>
-<p><strong>modifications</strong> <strong>not</strong>
-<strong>available</strong> for <code>token</code></p>
+<p><em>modifications</em> <em>not</em> <em>available</em> for
+<code>token</code></p>
 </li><li>
-<p><strong>decrease</strong> <strong>not</strong> <strong>available</strong>
-for <code>accounts_number</code></p>
+<p><em>decrease</em> <em>not</em> <em>available</em> for
+<code>accounts_number</code></p>
 </li><li>
-<p><strong>uniqueness</strong> ok <code>token</code></p>
+<p><em>uniqueness</em> ok <code>token</code></p>
 </li></ul>
 
-<h2 id="class-Purchase-label-Callbacks">Callbacks</h2>
+<h3 id="class-Purchase-label-Callbacks">Callbacks</h3>
 <ol><li>
-<p><strong>before_create</strong> creates a random encoded string and writes
-it in <code>token</code></p>
+<p><em>before_create</em> creates a random encoded string and writes it in
+<code>token</code></p>
 </li></ol>
 
-<h2 id="class-Purchase-label-Database+callbacks">Database callbacks</h2>
+<h3 id="class-Purchase-label-Database+callbacks">Database callbacks</h3>
 
 <p>None</p>
 
@@ -292,15 +288,15 @@ it in <code>token</code></p>
           <tr valign='top'>
             <td class="attr-name">ATTR_ACCESSIBLE</td>
             <td>=</td>
-            <td class="attr-value">[:name,             :responsible,  :phone_number, :fax,
-:email,            :ssn_code,     :vat_code,     :address,
-:postal_code,      :city,         :country,      :accounts_number,
-:includes_invoice, :release_date, :start_date,   :expiration_date, :location_id]</td>
+            <td class="attr-value">[ :accounts_number, :address, :city, :country, :email, 
+:expiration_date, :fax, :includes_invoice, :location_id, 
+:name, :phone_number, :postal_code, :release_date, 
+:responsible, :ssn_code, :start_date, :vat_code ]</td>
           </tr>
           
             <tr valign='top'>
               <td>&nbsp;</td>
-              <td colspan="2" class="attr-desc"><p>List of attributes which are accessible for massive assignment</p></td>
+              <td colspan="2" class="attr-desc"><p>List of attributes which are accessible for mass assignment</p></td>
             </tr>
           
         
@@ -350,7 +346,7 @@ field filled up</p>
                 
               </p>
               <div id="method-i-address_to_s_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 85</span>
+                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">address_to_s</span>
   <span class="ruby-identifier">resp</span> = ([<span class="ruby-keyword">self</span>.<span class="ruby-identifier">address</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">postal_code</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">city</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">country</span>].<span class="ruby-identifier">reject</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">blank?</span>}).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;, &#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -393,7 +389,7 @@ field filled up</p>
                 
               </p>
               <div id="method-i-expired-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 128</span>
+                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">expired?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">expiration_date</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span>
 <span class="ruby-keyword">end</span></pre>
@@ -436,7 +432,7 @@ field filled up</p>
                 
               </p>
               <div id="method-i-location_to_s_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 97</span>
+                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">location_to_s</span>
   <span class="ruby-keyword">return</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;admin.purchases.links.empty_location&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">location_id</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-string">&#39;&#39;</span>
@@ -495,7 +491,7 @@ field filled up</p>
                 
               </p>
               <div id="method-i-create_token_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 172</span>
+                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 171</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create_token</span>
   <span class="ruby-identifier">my_token</span> = <span class="ruby-identifier">generate_token</span>
   <span class="ruby-keyword">while</span> <span class="ruby-constant">Purchase</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:token</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">my_token</span>).<span class="ruby-identifier">any?</span>
@@ -537,7 +533,7 @@ field filled up</p>
                 
               </p>
               <div id="method-i-generate_token_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 182</span>
+                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 181</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">generate_token</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">random_number</span>(<span class="ruby-number">10000000000000000</span>).<span class="ruby-identifier">to_s</span>
   <span class="ruby-keyword">while</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-number">16</span>
@@ -578,7 +574,7 @@ field filled up</p>
                 
               </p>
               <div id="method-i-init_validation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 135</span>
+                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 134</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
   <span class="ruby-ivar">@purchase</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@location</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:location_id</span>
@@ -616,7 +612,7 @@ field filled up</p>
                 
               </p>
               <div id="method-i-validate_associations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 146</span>
+                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_associations</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:location_id</span>, <span class="ruby-value">:doesnt_exist</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@location</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">location_id</span>.<span class="ruby-identifier">present?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -653,7 +649,7 @@ field filled up</p>
                 
               </p>
               <div id="method-i-validate_codes_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 141</span>
+                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 140</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_codes</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:base</span>, <span class="ruby-value">:missing_both_codes</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">vat_code</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ssn_code</span>.<span class="ruby-identifier">blank?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -690,7 +686,7 @@ field filled up</p>
                 
               </p>
               <div id="method-i-validate_dates_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 157</span>
+                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_dates</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:release_date</span>, <span class="ruby-value">:is_not_a_date</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">release_date</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Time</span>)
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:start_date</span>, <span class="ruby-value">:is_not_a_date</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_date</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Time</span>)
@@ -730,7 +726,7 @@ href="Valid.html#method-c-email-3F">Valid.email?</a>)</p>
                 
               </p>
               <div id="method-i-validate_email_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 151</span>
+                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_email</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">blank?</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:email</span>, <span class="ruby-value">:not_a_valid_email</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">Valid</span>.<span class="ruby-identifier">email?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>)
@@ -769,7 +765,7 @@ href="Valid.html#method-c-email-3F">Valid.email?</a>)</p>
                 
               </p>
               <div id="method-i-validate_impossible_changes_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 164</span>
+                <pre><span class="ruby-comment"># File app/models/purchase.rb, line 163</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_impossible_changes</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@purchase</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:accounts_number</span>, <span class="ruby-value">:cant_be_decreased</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@purchase</span>.<span class="ruby-identifier">accounts_number</span> <span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">accounts_number</span>

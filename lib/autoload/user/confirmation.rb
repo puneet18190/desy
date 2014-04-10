@@ -15,7 +15,7 @@ module User::Confirmation
 
     # Searches for a user with a confirmation_token equals to the token arg; if found confirms it
     #
-    # === Returns
+    # ### Returns
     #
     # The matched user if found; +nil+ otherwise
     def confirm!(token)

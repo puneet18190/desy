@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>app/models/media_elements_slide.rb</li>
-            <li>Last modified: 2014-01-10 12:19:07 +0100</li>
+            <li>Last modified: 2014-04-10 16:21:39 +0200</li>
         </ul>
     </div>
 
@@ -32,94 +32,93 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h3 id="label-Description">Description</h3>
 
 <p>ActiveRecord class that corresponds to the table
 <code>media_elements_slides</code>: this table contains all the instances
 of media elements inside a slide.</p>
 
-<h2 id="label-Fields">Fields</h2>
+<h3 id="label-Fields">Fields</h3>
 <ul><li>
-<p><strong>media_element_id</strong>: the id that references <a
+<p><em>media_element_id</em>: the id that references <a
 href="../../../classes/MediaElement.html">MediaElement</a></p>
 </li><li>
-<p><strong>slide_id</strong>: the id that references <a
+<p><em>slide_id</em>: the id that references <a
 href="../../../classes/Slide.html">Slide</a></p>
 </li><li>
-<p><strong>position</strong>: the position of the media element inside the
-slide, (if there is only one element available, the position is 1)</p>
+<p><em>position</em>: the position of the media element inside the slide, (if
+there is only one element available, the position is 1)</p>
 </li><li>
-<p><strong>caption</strong>: the caption to put below the media element, if
-it&#39;s an image</p>
-</li><li>
-<p><strong>alignment</strong>: the alignment of the media element, if it&#39;s
+<p><em>caption</em>: the caption to put below the media element, if it&#39;s
 an image</p>
 </li><li>
-<p><strong>inscribed</strong>: true if the image is inscribed inside the
-available space without parts left outside</p>
+<p><em>alignment</em>: the alignment of the media element, if it&#39;s an
+image</p>
+</li><li>
+<p><em>inscribed</em>: true if the image is inscribed inside the available
+space without parts left outside</p>
 </li></ul>
 
-<h2 id="label-Associations">Associations</h2>
+<h3 id="label-Associations">Associations</h3>
 <ul><li>
-<p><strong>media_element</strong>: reference to the <a
+<p><em>media_element</em>: reference to the <a
 href="../../../classes/MediaElement.html">MediaElement</a> of which the
-slide contains an instance (<strong>belongs_to</strong>)</p>
+slide contains an instance (<em>belongs_to</em>)</p>
 </li><li>
-<p><strong>slide</strong>: reference to the <a
+<p><em>slide</em>: reference to the <a
 href="../../../classes/Slide.html">Slide</a> in which the media element is
-saved (<strong>belongs_to</strong>)</p>
+saved (<em>belongs_to</em>)</p>
 </li><li>
-<p><strong>lesson</strong>: reference to the <a
+<p><em>lesson</em>: reference to the <a
 href="../../../classes/Lesson.html">Lesson</a> containing the <a
 href="../../../classes/Slide.html">Slide</a> in which the media element is
-saved (<strong>has_one</strong>)</p>
+saved (<em>has_one</em>)</p>
 </li></ul>
 
-<h2 id="label-Validations">Validations</h2>
+<h3 id="label-Validations">Validations</h3>
 <ul><li>
-<p><strong>presence</strong> with numericality and existence of associated
-record for <code>media_element_id</code> and <code>slide_id</code></p>
+<p><em>presence</em> with numericality and existence of associated record for
+<code>media_element_id</code> and <code>slide_id</code></p>
 </li><li>
-<p><strong>numericality</strong> allowing <code>nil</code> values for
+<p><em>numericality</em> allowing <code>nil</code> values for
 <code>alignment</code></p>
 </li><li>
-<p><strong>inclusion</strong> of <code>position</code> in [1, 2, 3, 4]</p>
+<p><em>inclusion</em> of <code>position</code> in [1, 2, 3, 4]</p>
 </li><li>
-<p><strong>inclusion</strong> of <code>inscribed</code> in [true, false]</p>
+<p><em>inclusion</em> of <code>inscribed</code> in [true, false]</p>
 </li><li>
-<p><strong>uniqueness</strong> of the triple [<code>position</code>,
+<p><em>uniqueness</em> of the triple [<code>position</code>,
 <code>media_element_id</code>, <code>slide_id</code>]</p>
 </li><li>
-<p><strong>coherence</strong> of the type of the <a
+<p><em>coherence</em> of the type of the <a
 href="../../../classes/Slide.html">Slide</a> with the <a
 href="../../../classes/MediaElement.html">MediaElement</a></p>
 </li><li>
-<p><strong>coherence</strong> of the <code>position</code> with the type of
-the <a href="../../../classes/Slide.html">Slide</a> (if the slide is of
-kind image1 it may have for instance only position = 1)</p>
+<p><em>coherence</em> of the <code>position</code> with the type of the <a
+href="../../../classes/Slide.html">Slide</a> (if the slide is of kind
+image1 it may have for instance only position = 1)</p>
 </li><li>
-<p><strong>availability</strong> of the <a
+<p><em>availability</em> of the <a
 href="../../../classes/MediaElement.html">MediaElement</a> (it must be
 public or belongs to the <a href="../../../classes/User.html">User</a> who
 created the <a href="../../../classes/Lesson.html">Lesson</a> in which the
 <a href="../../../classes/Slide.html">Slide</a> is contained)</p>
 </li><li>
-<p><strong>modifications</strong> <strong>not</strong>
-<strong>available</strong> for the field <code>slide_id</code></p>
+<p><em>modifications</em> <em>not</em> <em>available</em> for the field
+<code>slide_id</code></p>
 </li><li>
-<p><strong>properties</strong> <strong>specific</strong> <strong>for</strong>
-<strong>images</strong>, such as <code>alignment</code> and
-<code>caption</code> are checked to be present only if the <a
-href="../../../classes/MediaElement.html">MediaElement</a> is an <a
-href="../../../classes/Image.html">Image</a></p>
+<p><em>properties</em> <em>specific</em> <em>for</em> <em>images</em>, such as
+<code>alignment</code> and <code>caption</code> are checked to be present
+only if the <a href="../../../classes/MediaElement.html">MediaElement</a>
+is an <a href="../../../classes/Image.html">Image</a></p>
 </li><li>
-<p><strong>inscribed</strong> <strong>cannot</strong> <strong>be</strong>
-<strong>true</strong> if the element is not an image</p>
+<p><em>inscribed</em> <em>cannot</em> <em>be</em> <em>true</em> if the element
+is not an image</p>
 </li></ul>
 
-<h2 id="label-Callbacks">Callbacks</h2>
+<h3 id="label-Callbacks">Callbacks</h3>
 <ol><li>
-<p><strong>after_destroy</strong> if the element is an <a
+<p><em>after_destroy</em> if the element is an <a
 href="../../../classes/Audio.html">Audio</a> or <a
 href="../../../classes/Video.html">Video</a> in conversion, and it was the
 last present on the <a href="../../../classes/Lesson.html">Lesson</a>
@@ -128,7 +127,7 @@ the lesson is turned available using <a
 href="../../../classes/Lesson.html#method-i-available-21">Lesson#available!</a></p>
 </li></ol>
 
-<h2 id="label-Database+callbacks">Database callbacks</h2>
+<h3 id="label-Database+callbacks">Database callbacks</h3>
 
 <p>None</p>
 

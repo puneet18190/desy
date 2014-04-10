@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>app/models/location.rb</li>
-            <li>Last modified: 2014-04-03 12:38:38 +0200</li>
+            <li>Last modified: 2014-04-10 16:21:39 +0200</li>
         </ul>
     </div>
 
@@ -32,61 +32,60 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h3 id="label-Description">Description</h3>
 
 <p>ActiveRecord class that corresponds to the table <code>locations</code>.
 The class uses single table inheritance to be divided into different
 categories: the categories are configured into settings.yml (for each
 category the application creates a submodel)</p>
 
-<h2 id="label-Fields">Fields</h2>
+<h3 id="label-Fields">Fields</h3>
 <ul><li>
-<p><strong>name</strong>: the name of the location</p>
+<p><em>name</em>: the name of the location</p>
 </li><li>
-<p><strong>sti_type</strong>: category to which the location belongs (for
-example city, region, etc)</p>
+<p><em>sti_type</em>: category to which the location belongs (for example
+city, region, etc)</p>
 </li><li>
-<p><strong>ancestry</strong>: list of ancestries of the location. If the
-location belongs to the top category, this field is <code>nil</code>; if it
-belongs to the second category from the top, the field is a string
-containing only the id of the parent location; for any other case, the
-field contains a string with the list top-bottom of all the ancestries of
-the location (ex. “1/5/13/18”)</p>
+<p><em>ancestry</em>: list of ancestries of the location. If the location
+belongs to the top category, this field is <code>nil</code>; if it belongs
+to the second category from the top, the field is a string containing only
+the id of the parent location; for any other case, the field contains a
+string with the list top-bottom of all the ancestries of the location (ex.
+“1/5/13/18”)</p>
 </li><li>
-<p><strong>code</strong>: a unique code for each sti_type (it is not
-compulsory)</p>
+<p><em>code</em>: a unique code for each sti_type (it is not compulsory)</p>
 </li></ul>
 
-<h2 id="label-Associations">Associations</h2>
+<h3 id="label-Associations">Associations</h3>
 <ul><li>
-<p><strong>parent</strong> the parent location if there is one, found with the
-field ancestry</p>
+<p><em>parent</em> the parent location if there is one, found with the field
+ancestry</p>
 </li></ul>
 
-<h2 id="label-Validations">Validations</h2>
+<h3 id="label-Validations">Validations</h3>
 <ul><li>
-<p><strong>presence</strong> and length of <code>name</code> (maximum 255)</p>
+<p><em>presence</em> and length of <code>name</code> (maximum 255)</p>
 </li><li>
-<p><strong>presence</strong> of sti_type</p>
+<p><em>presence</em> of sti_type</p>
 </li><li>
-<p><strong>length</strong> for code if not nil (maximum 255)</p>
+<p><em>length</em> for code if not nil (maximum 255)</p>
 </li><li>
-<p><strong>uniqueness</strong> for code with scope inside locations of the
-same sti_type</p>
+<p><em>uniqueness</em> for code with scope inside locations of the same
+sti_type</p>
 </li><li>
-<p><strong>inclusion</strong> of sti_type in the list of allowed classes</p>
+<p><em>inclusion</em> of sti_type in the list of allowed classes</p>
 </li><li>
-<p><strong>internal</strong> <strong>validations</strong> for the field
-ancestry (this are not very strict, because we don&#39;t want to overload
-the model of validations which must interact with an external gem; for the
-same reason there are not associations &#39;has_many&#39; from here)</p>
+<p><em>internal</em> <em>validations</em> for the field ancestry (this are not
+very strict, because we don&#39;t want to overload the model of validations
+which must interact with an external gem; for the same reason there are not
+associations &#39;has_many&#39; from here)</p>
 </li></ul>
 
-<h2 id="label-Callbacks">Callbacks</h2>
+<h3 id="label-Callbacks">Callbacks</h3>
 
 <p>None</p>
 
-<h2 id="label-Database+callbacks">Database callbacks</h2>
+<h3 id="label-Database+callbacks">Database callbacks</h3>
 
 <p>None</p>
 

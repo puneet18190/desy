@@ -243,21 +243,23 @@ instance, which can be used to concatenate various audio files.</p>
 
 <h3 id="method-c-new-label-Arguments">Arguments</h3>
 <ul><li>
-<p><strong>inputs</strong>: an array with hash values containing the audio
-files per format</p>
+<p><em>inputs</em>: an array with hash values containing the audio files per
+format</p>
 </li><li>
-<p><strong>output_without_extension</strong>: output path without extension</p>
+<p><em>output_without_extension</em>: output path without extension</p>
 </li><li>
-<p><strong>log_folder</strong> <em>optional</em>: Custom log folder path</p>
+<p><em>log_folder</em> <em>optional</em>: Custom log folder path</p>
 </li></ul>
 
 <p>See <a href="#method-c-new-label-Examples">Examples</a> for usage examples.</p>
 
 <h3 id="method-c-new-label-Examples">Examples</h3>
 
-<pre><code>Media::Audio::Editing::Concat.new([ { ogg: &#39;input.ogg&#39;, m4a: &#39;input.m4a&#39;}, { ogg: &#39;input2.ogg&#39;, m4a: &#39;input2.m4a&#39;} ], &#39;/output/without/extension&#39;).run 
-#=&gt; { m4a:&#39;/output/without/extension.m4a&#39;, ogg:&#39;/output/without/extension.ogg&#39; }
-</code></pre>
+<p><a href="Concat.html#method-c-new">::new</a>([ { ogg: &#39;input.ogg&#39;,
+m4a: &#39;input.m4a&#39;}, { ogg: &#39;input2.ogg&#39;, m4a:
+&#39;input2.m4a&#39;} ], &#39;/output/without/extension&#39;).run  #=&gt; {
+m4a:&#39;/output/without/extension.m4a&#39;,
+ogg:&#39;/output/without/extension.ogg&#39; }</p>
             </div>
           
           

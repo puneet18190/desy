@@ -40,7 +40,7 @@
   
     <div class="description">
       
-<h2 id="class-AdminSearchForm-label-Description">Description</h2>
+<h3 id="class-AdminSearchForm-label-Description">Description</h3>
 
 <p>This class contains the list of search methods used in the administrator.
 Unlike the methods used in the application&#39;s search engine (see <a
@@ -236,9 +236,9 @@ href="Admin/DocumentsController.html">Admin::DocumentsController</a></p>
 
 <h3 id="method-c-search_documents-label-Args">Args</h3>
 <ul><li>
-<p><strong>params</strong>: url subparams, under the scope of the keyword
+<p><em>params</em>: url subparams, under the scope of the keyword
 &#39;search&#39;: the options are</p>
-<ul><li>
+</li><li>
 <p><code>id</code>: if present the methods filters by id</p>
 </li><li>
 <p><code>title</code>: if present the methods filters by title</p>
@@ -265,7 +265,6 @@ from the constant <a href="AdminSearchForm.html#ORDERINGS">ORDERINGS</a></p>
 </li><li>
 <p><code>desc</code>: for default the ordering is <code>ASC</code>, if this
 parameter is present it&#39;s turned to <code>DESC</code></p>
-</li></ul>
 </li></ul>
 
 <h3 id="method-c-search_documents-label-Returns">Returns</h3>
@@ -347,9 +346,9 @@ href="Admin/LessonsController.html">Admin::LessonsController</a></p>
 
 <h3 id="method-c-search_lessons-label-Args">Args</h3>
 <ul><li>
-<p><strong>params</strong>: url subparams, under the scope of the keyword
+<p><em>params</em>: url subparams, under the scope of the keyword
 &#39;search&#39;: the options are</p>
-<ul><li>
+</li><li>
 <p><code>id</code>: if present the methods filters by id</p>
 </li><li>
 <p><code>title</code>: if present the methods filters by title</p>
@@ -378,7 +377,6 @@ from the constant <a href="AdminSearchForm.html#ORDERINGS">ORDERINGS</a></p>
 </li><li>
 <p><code>desc</code>: for default the ordering is <code>ASC</code>, if this
 parameter is present it&#39;s turned to <code>DESC</code></p>
-</li></ul>
 </li></ul>
 
 <h3 id="method-c-search_lessons-label-Returns">Returns</h3>
@@ -470,9 +468,9 @@ href="Admin/MediaElementsController.html">Admin::MediaElementsController</a></p>
 
 <h3 id="method-c-search_media_elements-label-Args">Args</h3>
 <ul><li>
-<p><strong>params</strong>: url subparams, under the scope of the keyword
+<p><em>params</em>: url subparams, under the scope of the keyword
 &#39;search&#39;: the options are</p>
-<ul><li>
+</li><li>
 <p><code>id</code>: if present the methods filters by id</p>
 </li><li>
 <p><code>title</code>: if present the methods filters by title</p>
@@ -502,7 +500,6 @@ from the constant <a href="AdminSearchForm.html#ORDERINGS">ORDERINGS</a></p>
 </li><li>
 <p><code>desc</code>: for default the ordering is <code>ASC</code>, if this
 parameter is present it&#39;s turned to <code>DESC</code></p>
-</li></ul>
 </li></ul>
 
 <h3 id="method-c-search_media_elements-label-Returns">Returns</h3>
@@ -593,9 +590,9 @@ href="Admin/MessagesController.html">Admin::MessagesController</a></p>
 
 <h3 id="method-c-search_notifications_users-label-Args">Args</h3>
 <ul><li>
-<p><strong>params</strong>: url subparams, under the scope of the keyword
+<p><em>params</em>: url subparams, under the scope of the keyword
 &#39;search&#39;: the options are</p>
-<ul><li>
+</li><li>
 <p><code>id</code>: if present the methods filters by id</p>
 </li><li>
 <p><code>user</code>: if present the keyword is matched against
@@ -616,11 +613,10 @@ user (see settings.yml for the possible names of this parameter)</p>
 </li><li>
 <p><code>user_ids</code>: list of users added manually to the list of
 recipients</p>
-</li></ul>
 </li><li>
-<p><strong>count_only</strong>: if set to <code>true</code>, the method
-returns only the number of users; if not otherwise specified, it&#39;s set
-to <code>false</code></p>
+<p><em>count_only</em>: if set to <code>true</code>, the method returns only
+the number of users; if not otherwise specified, it&#39;s set to
+<code>false</code></p>
 </li></ul>
 
 <h3 id="method-c-search_notifications_users-label-Returns">Returns</h3>
@@ -722,9 +718,9 @@ href="Admin/PurchasesController.html">Admin::PurchasesController</a></p>
 
 <h3 id="method-c-search_purchases-label-Args">Args</h3>
 <ul><li>
-<p><strong>params</strong>: url subparams, under the scope of the keyword
+<p><em>params</em>: url subparams, under the scope of the keyword
 &#39;search&#39;: the options are</p>
-<ul><li>
+</li><li>
 <p><code>id</code>: if present the methods filters by id</p>
 </li><li>
 <p><code>ssn_code</code>: if present the methods filters by ssn_code with an
@@ -741,7 +737,6 @@ with an like on both sides</p>
 </li><li>
 <p><code>email</code>: if present the methods filters by email with an like on
 both sides</p>
-</li></ul>
 </li></ul>
 
 <h3 id="method-c-search_purchases-label-Returns">Returns</h3>
@@ -808,9 +803,9 @@ href="Admin/SettingsController.html">Admin::SettingsController</a></p>
 
 <h3 id="method-c-search_tags-label-Args">Args</h3>
 <ul><li>
-<p><strong>params</strong>: url subparams, under the scope of the keyword
+<p><em>params</em>: url subparams, under the scope of the keyword
 &#39;search&#39;: the options are</p>
-<ul><li>
+</li><li>
 <p><code>id</code>: if present the methods filters by id</p>
 </li><li>
 <p><code>recency</code>: if present, it filters by <code>created_at</code>
@@ -825,7 +820,6 @@ from the constant <a href="AdminSearchForm.html#ORDERINGS">ORDERINGS</a></p>
 </li><li>
 <p><code>desc</code>: for default the ordering is <code>ASC</code>, if this
 parameter is present it&#39;s turned to <code>DESC</code></p>
-</li></ul>
 </li></ul>
 
 <h3 id="method-c-search_tags-label-Returns">Returns</h3>
@@ -888,9 +882,9 @@ href="Admin/UsersController.html">Admin::UsersController</a></p>
 
 <h3 id="method-c-search_users-label-Args">Args</h3>
 <ul><li>
-<p><strong>params</strong>: url subparams, under the scope of the keyword
+<p><em>params</em>: url subparams, under the scope of the keyword
 &#39;search&#39;: the options are</p>
-<ul><li>
+</li><li>
 <p><code>id</code>: if present the methods filters by id</p>
 </li><li>
 <p><code>user</code>: if present the keyword is matched against
@@ -921,7 +915,6 @@ from the constant <a href="AdminSearchForm.html#ORDERINGS">ORDERINGS</a></p>
 </li><li>
 <p><code>desc</code>: for default the ordering is <code>ASC</code>, if this
 parameter is present it&#39;s turned to <code>DESC</code></p>
-</li></ul>
 </li></ul>
 
 <h3 id="method-c-search_users-label-Returns">Returns</h3>

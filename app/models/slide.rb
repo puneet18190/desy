@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +slides+.
 #
-# == Fields
+# ### Fields
 #
 # * *lesson_id*: reference to the Lesson the slide belongs to
 # * *title*: title of the slide
@@ -11,14 +11,14 @@
 # * *kind*: the kind of the slide (the type is an enum defined in postgrsql, in total there are 10 types)
 # * *metadata*: contains only math images.
 #
-# == Associations
+# ### Associations
 #
 # * *lesson*: reference to the Lesson where the slide is contained (*belongs_to*)
 # * *media_elements_slides*: instances of MediaElement contained in this slide (see MediaElementsSlide) (*has_many*)
 # * *media_elements*: list of media elements inside the slide (see MediaElement) (through the class MediaElementsSlide) (*has_many*)
 # * *documents_slides*: instances of Document contained in this slide (see DocumentsSlide) (*has_many*)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* with numericality greater than zero and presence of associated record, for the field +lesson_id+
 # * *presence* of +position+
@@ -34,12 +34,12 @@
 # * *correctness* of math images
 # * *correctness* of math images links
 #
-# == Callbacks
+# ### Callbacks
 #
 # 1. *before_destroy* stop the destruction if the slide is of kind 'cover'
 # 2. many callbacks related to math_formulas.
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # 1. *cascade* *destruction* for the associated table MediaElementsSlide
 # 2. *cascade* *destruction* for the associated table DocumentsSlide
@@ -185,11 +185,11 @@ class Slide < ActiveRecord::Base
     write_attribute(:text, sanitize(text, attributes: (HTML::WhiteListSanitizer.allowed_attributes + ['style'])))
   end
   
-  # === Description
+  # ### Description
   #
   # Checks if the slide is of kind 'cover'
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -197,11 +197,11 @@ class Slide < ActiveRecord::Base
     self.kind == COVER
   end
   
-  # === Description
+  # ### Description
   #
   # Checks if the +kind+ of this slide allows a title (used in the validations of this model).
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -212,11 +212,11 @@ class Slide < ActiveRecord::Base
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Checks if the +kind+ of this slide allows an attached document (see DocumentsSlide).
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -224,11 +224,11 @@ class Slide < ActiveRecord::Base
     self.allows_title? && ![TITLE, COVER].include?(self.kind)
   end
   
-  # === Description
+  # ### Description
   #
   # Checks if the +kind+ of this slide allows a text (used in the validations of this model).
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -239,11 +239,11 @@ class Slide < ActiveRecord::Base
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the accepted sti_type for instances of MediaElement contained in this slide through MediaElementsSlide (in which model it's used for validations). If no media element is available, it returns nil.
   #
-  # === Returns
+  # ### Returns
   #
   # A string representing MediaElement sti_types, or nil
   #
@@ -260,7 +260,7 @@ class Slide < ActiveRecord::Base
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Method that performs the list of actions related to the update of a slide's content:
   # * updates title and text
@@ -268,7 +268,7 @@ class Slide < ActiveRecord::Base
   # * if the lesson is public, each private element added is turned into public too
   # * calls Lesson.modify
   #
-  # === Args
+  # ### Args
   #
   # * *title*: title (it might be +nil+)
   # * *text*: text (it might be +nil+)
@@ -280,11 +280,11 @@ class Slide < ActiveRecord::Base
   # * *documents*: an array of integers. Each item of this argument represents a document
   # * *math_images*: math images.
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
-  # === Usage
+  # ### Usage
   #
   # See LessonEditorController#save_slide, LessonEditorController#save_slide_and_exit, LessonEditorController#save_slide_and_edit
   #   slide.update_with_media_elements((params[:title].blank? ? nil : params[:title]), (params[:text].blank? ? nil : params[:text]), media_elements_params)
@@ -349,11 +349,11 @@ class Slide < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the previous slide if any
   #
-  # === Returns
+  # ### Returns
   #
   # Either an object of type Slide or +nil+
   #
@@ -361,11 +361,11 @@ class Slide < ActiveRecord::Base
     self.new_record? ? nil : Slide.where(:lesson_id => self.lesson_id, :position => (self.position - 1)).first
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the following slide if any
   #
-  # === Returns
+  # ### Returns
   #
   # Either an object of type Slide or +nil+
   #
@@ -373,11 +373,11 @@ class Slide < ActiveRecord::Base
     self.new_record? ? nil : Slide.where(:lesson_id => self.lesson_id, :position => (self.position + 1)).first
   end
   
-  # === Description
+  # ### Description
   #
   # Destroys the slide keeping updated the position of the other slides in the same lesson. It's not suggested to use the original method destroy. Used in LessonEditorController#delete_slide
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -403,15 +403,15 @@ class Slide < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Changes the position of the slide. If the given position is not valid (<= 1, or > number of slides in the lesson) it does nothing. Used in LessonEditorController#change_slide_position
   #
-  # === Args
+  # ### Args
   #
   # * *position*: the new position of the slide
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -444,11 +444,11 @@ class Slide < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Extracts the media elements optimizing the number of queries
   #
-  # === Returns
+  # ### Returns
   #
   # Either a MediaElementsSlide (if it contains an image), or a MediaElement (if it contains an audio or a video), or an array (if the slide accepts more than one media element)
   #

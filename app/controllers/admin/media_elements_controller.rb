@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Controller of elements in the administration section. See AdminController.
 #
-# == Models used
+# ### Models used
 #
 # * MediaElement
 # * Location
@@ -13,15 +13,15 @@ class Admin::MediaElementsController < AdminController
   before_filter :initialize_media_element_with_owner_and_private, :only => :update
   layout 'admin'
   
-  # === Description
+  # ### Description
   #
   # Main page of elements in the admin. If params[:search] is present, it is used AdminSearchForm to perform the requested search.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -36,15 +36,15 @@ class Admin::MediaElementsController < AdminController
     @from_reporting = params[:from_reporting]
   end
   
-  # === Description
+  # ### Description
   #
   # It opens the page for multiple loading of elements
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -52,15 +52,15 @@ class Admin::MediaElementsController < AdminController
     @files = current_user.admin_quick_uploading_cache
   end
   
-  # === Description
+  # ### Description
   #
   # It opens the page for updating and sharing the private elements loaded by the administrator
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -68,15 +68,15 @@ class Admin::MediaElementsController < AdminController
     @private_elements = MediaElement.order('created_at DESC').where(:user_id => current_user.id, :is_public => false, :converted => true).preload(:user, :taggings, {:taggings => :tag})
   end
   
-  # === Description
+  # ### Description
   #
   # Single action of a multiple loading of elements (with a multiple loading many of these actions are fired)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -89,15 +89,15 @@ class Admin::MediaElementsController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Deletes a temporary file in the multiple uploading section
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -106,15 +106,15 @@ class Admin::MediaElementsController < AdminController
     @ok = current_user.remove_from_admin_quick_uploading_cache @key
   end
   
-  # === Description
+  # ### Description
   #
   # Submits one of the multiple upload temporary files and creates a new element
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -155,15 +155,15 @@ class Admin::MediaElementsController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Updates or publishes a private media element loaded by the administrator
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   # * ApplicationController#initialize_media_element_with_owner_and_private
@@ -182,15 +182,15 @@ class Admin::MediaElementsController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Destroys an element without the normal filters, from the administrator
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -201,15 +201,15 @@ class Admin::MediaElementsController < AdminController
     redirect_to params[:back_url]
   end
   
-  # === Description
+  # ### Description
   #
   # Loads an element in the administrator (so the server is not charged too much)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #

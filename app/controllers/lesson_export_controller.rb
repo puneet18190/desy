@@ -1,10 +1,10 @@
 require 'export'
 
-# == Description
+# ### Description
 #
 # Controller for exporting lessons
 #
-# == Models used
+# ### Models used
 #
 # * Lesson
 # * Slide
@@ -17,19 +17,19 @@ class LessonExportController < ApplicationController
   before_filter :initialize_and_authenticate_for_lesson_export, :redirect_or_setup
   layout 'lesson_archive', only: :archive
   
-  # === Description
+  # ### Description
   #
   # Exports the lesson in format HTML
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonExportController#initialize_and_authenticate_for_lesson_export
   # * LessonExportController#redirect_or_setup
@@ -43,19 +43,19 @@ class LessonExportController < ApplicationController
     redirect_to Export::Lesson::Archive.new(@lesson, render_to_string).url
   end
   
-  # === Description
+  # ### Description
   #
   # Exports the lesson in format EPUB
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonExportController#initialize_and_authenticate_for_lesson_export
   # * LessonExportController#redirect_or_setup
@@ -64,19 +64,19 @@ class LessonExportController < ApplicationController
     redirect_to Export::Lesson::Ebook.new(@lesson).url
   end
   
-  # === Description
+  # ### Description
   #
   # Exports the lesson in format SCORM
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonExportController#initialize_and_authenticate_for_lesson_export
   # * LessonExportController#redirect_or_setup

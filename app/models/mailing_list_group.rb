@@ -1,18 +1,18 @@
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +mailing_list_groups+.
 #
-# == Fields
+# ### Fields
 # 
 # * *user_id*: the reference to the User owner of the group
 # * *name*: the name of the group
 #
-# == Associations
+# ### Associations
 #
 # * *user*: reference to the User owner of the group (*belongs_to*)
 # * *addresses*: reference to the associated addresses (see MailingListAddress) (*has_many*)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* for +name+
 # * *presence* with numericality and existence of associated record for +user_id+
@@ -20,11 +20,11 @@
 # * *uniqueness* for +name+
 # * *modifications* *not* *available* for +user_id+, if the record is not new
 #
-# == Callbacks
+# ### Callbacks
 #
 # None
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # 1. *cascade* *destruction* for the associated table MailingListAddress
 #

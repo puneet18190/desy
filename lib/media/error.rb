@@ -7,7 +7,7 @@ module Media
 
     # Construct a new Exception object, passing a message and optionally debug data
     #
-    # === Args
+    # ### Args
     #
     # * *msg*: error message
     # * *data*: data useful for debugging

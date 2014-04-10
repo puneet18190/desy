@@ -1,26 +1,26 @@
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +subjects+.
 #
-# == Fields
+# ### Fields
 #
 # * *description*: a word identifying the subject
 #
-# == Associations
+# ### Associations
 #
 # * *users_subjects*: list of instances of this subject associated to a User through records of UsersSubject (*has_many*)
 # * *lessons*: list of lessons associated to this subjects (see Lesson) (*has_many*)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* of +description+
 # * *length* of +description+ (maximum allowed is 255)
 #
-# == Callbacks
+# ### Callbacks
 #
 # None
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # None
 #
@@ -32,7 +32,7 @@ class Subject < ActiveRecord::Base
   validates_presence_of :description
   validates_length_of :description, :maximum => 255
   
-  # === Description
+  # ### Description
   #
   # Returns the description of the object
   #
@@ -40,7 +40,7 @@ class Subject < ActiveRecord::Base
     description.to_s
   end
   
-  # === Description
+  # ### Description
   #
   # Used to generate a graph of the distribution of the subjects among the lessons in the application. Used in UsersController#statistics and in Statistics
   #
@@ -57,7 +57,7 @@ class Subject < ActiveRecord::Base
     colors[0..(tot - 1)]
   end
   
-  # === Description
+  # ### Description
   #
   # Used to assign a cathegory to each subject
   #
@@ -75,11 +75,11 @@ class Subject < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # A subject is deletable if it has no associated lessons or users. Used in the administrator (Admin::SettingsController#subjects)
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #

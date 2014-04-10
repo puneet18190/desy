@@ -3,7 +3,7 @@ require 'media/image/editing'
 require 'media/image/editing/add_text_to_image'
 require 'media/image/editing/crop'
 
-# == Description
+# ### Description
 #
 # This class inherits from MediaElement, and contains the specific methods needed for media elements of type +image+.
 # 
@@ -39,7 +39,7 @@ class Image < MediaElement
   CONTAINER_HEIGHTS_BY_KIND = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, (_, h)| [ k, h ] } ]
   CONTAINER_RATIOS_BY_KIND  = Hash[ CONTAINER_SIZE_BY_KIND.map{ |k, (w, h)| [ k, Rational(w, h) ] } ]
 
-  # === Description
+  # ### Description
   #
   # Elaborates the CSS background-position property in order to 
   # position the image when used as background of a HTML element.
@@ -111,7 +111,7 @@ class Image < MediaElement
   #   adesso mi serve il rapporto di x / wc moltiplicato per 100 per ottenere la percentuale
   #   x / wc * 100 = o * wc * 100 / ((wc - wi) * wc) = o * 100 / (wc - wi)
   #
-  # === Returns
+  # ### Returns
   #
   # A value compliant to background-position
   #
@@ -146,15 +146,15 @@ class Image < MediaElement
     ( height.to_f * CONTAINER_WIDTHS_BY_KIND[kind] / width ).to_i + 1
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the url of the attached image.
   #
-  # === Returns
+  # ### Returns
   #
   # An url
   #
-  # === Usage
+  # ### Usage
   #
   #   <%= image_tag image.url %>
   #
@@ -164,15 +164,15 @@ class Image < MediaElement
     url_by_url_type url, url_type
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the url of the 200x200 thumb of the attached image.
   #
-  # === Returns
+  # ### Returns
   #
   # An url
   #
-  # === Usage
+  # ### Usage
   #
   #   <%= image_tag image.thumb_url %>
   #
@@ -180,11 +180,11 @@ class Image < MediaElement
     media.thumb.url
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the width in pixels.
   #
-  # === Returns
+  # ### Returns
   #
   # A float.
   #
@@ -192,11 +192,11 @@ class Image < MediaElement
     metadata.width
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the height in pixels.
   #
-  # === Returns
+  # ### Returns
   #
   # A float.
   #
@@ -204,11 +204,11 @@ class Image < MediaElement
     metadata.height
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the url of the folder where it's conserved the temporary image during editing.
   #
-  # === Returns
+  # ### Returns
   # An url.
   #
   def editing_url
@@ -217,11 +217,11 @@ class Image < MediaElement
     "#{url.gsub(file_name, '')}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}"
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the path of the previous step conserved in image editor: this replaces the current step if the user clicks on 'undo'
   #
-  # === Returns
+  # ### Returns
   #
   # A path.
   #
@@ -230,11 +230,11 @@ class Image < MediaElement
     "#{self.media.folder}/editing/user_#{@edit_mode}/prev.#{self.media.file.extension}"
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the path of the current step conserved in image editor.
   #
-  # === Returns
+  # ### Returns
   #
   # A path.
   #
@@ -243,15 +243,15 @@ class Image < MediaElement
     "#{self.media.folder}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}"
   end
   
-  # === Description
+  # ### Description
   #
   # Used to check if the image is in *edit* *mode*: the image enters in edit mode when the image editor is opened, this implies that a temporary folder is automaticly created to contain the progressive steps of the editing. This method is useful to deny the access to specific methods if the image is not in editing.
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean.
   #
-  # === Usage
+  # ### Usage
   #
   #   return '' if !self.in_edit_mode?
   #
@@ -259,11 +259,11 @@ class Image < MediaElement
     !@edit_mode.nil?
   end
   
-  # === Description
+  # ### Description
   #
   # The image enters in *edit* *mode* for a particular user (who is not necessarily the creator of the image, this is checked in the controller). Used in ImageEditorController.
   #
-  # === Arguments
+  # ### Arguments
   #
   # * *user_id*: id of the user who is editing the image
   #
@@ -276,15 +276,15 @@ class Image < MediaElement
     true
   end
   
-  # === Description
+  # ### Description
   #
   # The image leaves the *edit* *mode* for a particular user. Used in ImageEditorController#edit.
   #
-  # === Arguments
+  # ### Arguments
   #
   # * *user_id*: id of the user who is editing the image
   #
-  # === Returns
+  # ### Returns
   #
   # True if the user was in editing mode, false otherwise.
   #
@@ -299,11 +299,11 @@ class Image < MediaElement
     true
   end
   
-  # === Description
+  # ### Description
   #
   # Copies the current temporary image into the previous temporary image.
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean.
   #
@@ -320,11 +320,11 @@ class Image < MediaElement
     true
   end
   
-  # === Description
+  # ### Description
   #
   # Copies the previous temporary image into the current temporary image. Used in ImageEditorController#undo.
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean.
   #
@@ -339,11 +339,11 @@ class Image < MediaElement
     true
   end
   
-  # === Description
+  # ### Description
   #
   # Adds multiple texts in the temporary image. Used in ImageEditorController#add_text
   #
-  # === Arguments
+  # ### Arguments
   #
   # * *texts*: an array of hashes, one for each text added. Each hash has the keys
   #   * +font_size+: the font size
@@ -351,7 +351,7 @@ class Image < MediaElement
   #   * +coord_y+: vertical coordinates of the top left corner of the text
   #   * +color+: hexagonal color of the text
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean.
   #
@@ -374,18 +374,18 @@ class Image < MediaElement
     true
   end
   
-  # === Description
+  # ### Description
   #
   # Crops the temporary image. Used in ImageEditorController#crop
   #
-  # === Arguments
+  # ### Arguments
   #
   # * *x1*: horizontal coordinate of the top left corner of the crop
   # * *y1*: vertical coordinate of the top left corner of the crop
   # * *x2*: horizontal coordinate of the bottom right corner of the crop
   # * *y2*: vertical coordinate of the bottom right corner of the crop
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean.
   #

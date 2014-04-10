@@ -1,11 +1,11 @@
-# == Description
+# ### Description
 #
 # Controller for all the actions related to elements and their buttons. All over this controller we use the constant keywords defined in ButtonDestinations, namely:
 # 1. *found_media_element* (or simply *found*) for a media element seen in a results list of the search engine
 # 2. *compact_media_element* (or simply *compact*) for a media element seen in the compact mode
 # 3. *expanded_media_element* (or simply *expanded*) for a media element seen in expanded mode (this happens only in the dashboard, see DashboardController)
 #
-# == Models used
+# ### Models used
 #
 # * MediaElement
 # * Notification
@@ -28,19 +28,19 @@ class MediaElementsController < ApplicationController
     before_filter :admin_authenticate, :only => [:videos_test, :audios_test]
     layout false, :only => [:videos_test, :audios_test]
     
-    # === Description
+    # ### Description
     #
     # Test useful to check correctness of conversion and cross browser visibility of all elements of kind Video
     #
-    # === Mode
+    # ### Mode
     #
     # Html
     #
-    # === Specific filters
+    # ### Specific filters
     #
     # * ApplicationController#admin_authenticate
     #
-    # === Skipped filters
+    # ### Skipped filters
     #
     # * ApplicationController#authenticate
     # * ApplicationController#initialize_location
@@ -49,19 +49,19 @@ class MediaElementsController < ApplicationController
     def videos_test
     end
     
-    # === Description
+    # ### Description
     #
     # Test useful to check correctness of conversion and cross browser visibility of all elements of kind Audio
     #
-    # === Mode
+    # ### Mode
     #
     # Html
     #
-    # === Specific filters
+    # ### Specific filters
     #
     # * ApplicationController#admin_authenticate
     #
-    # === Skipped filters
+    # ### Skipped filters
     #
     # * ApplicationController#authenticate
     # * ApplicationController#initialize_location
@@ -72,15 +72,15 @@ class MediaElementsController < ApplicationController
     
   end
   
-  # === Description
+  # ### Description
   #
   # Main page of the section 'elements'. When it's called via ajax it's because of the application of filters, paginations, or after an operation that changed the number of items in the page.
   #
-  # === Mode
+  # ### Mode
   #
   # Html + Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_layout
   # * MediaElementsController#initialize_paginator
@@ -94,14 +94,14 @@ class MediaElementsController < ApplicationController
     render_js_or_html_index
   end
   
-  # === Description
+  # ### Description
   #
   # Opens the general page of the elements editor:
   # * the *video* icon redirects to VideoEditorController#new
   # * the *audio* icon redirects to AudioEditorController#new
   # * the *image* icon redirects to GalleriesController#image_for_image_editor (and successively to ImageEditorController#edit)
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
@@ -109,11 +109,11 @@ class MediaElementsController < ApplicationController
     render :layout => 'media_element_editor'
   end
   
-  # === Description
+  # ### Description
   #
   # This action checks for errors without setting the media on the new element
   #
-  # === Mode
+  # ### Mode
   #
   # Js
   #
@@ -129,11 +129,11 @@ class MediaElementsController < ApplicationController
     @errors[:media] = t('forms.error_captions.media_file_too_large').downcase
   end
   
-  # === Description
+  # ### Description
   #
   # Action that calls the uploader, casts the type, and creates the new element
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
@@ -163,18 +163,18 @@ class MediaElementsController < ApplicationController
     render :layout => false
   end
   
-  # === Description
+  # ### Description
   #
   # Adds a link of this element to your section.
   # * *found*: reloads the element in compact mode
   # * *compact*: <i>[this action doesn't occur]</i>
   # * *expanded*: removes the element and reloads the whole page
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax + Json
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_media_element
   # * ApplicationController#initialize_media_element_destination
@@ -198,18 +198,18 @@ class MediaElementsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Deletes definitively an element.
   # * *found*: removes the element and reloads the whole page
   # * *compact*: removes the element and reloads the whole page
   # * *expanded*: removes the element and reloads the whole page
   #
-  # === Mode
+  # ### Mode
   #
   # Json
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_media_element_with_owner
   # * ApplicationController#initialize_media_element_destination
@@ -226,18 +226,18 @@ class MediaElementsController < ApplicationController
     render :json => {:ok => @ok, :msg => @error}
   end
   
-  # === Description
+  # ### Description
   #
   # Removes the link of this element from your section.
   # * *found*: reloads the element in compact mode
   # * *compact*: removes the element and reloads the whole page
   # * *expanded*: removes the element and reloads the whole page
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax + Json
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_media_element
   # * ApplicationController#initialize_media_element_destination
@@ -267,15 +267,15 @@ class MediaElementsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Updates the general information of the element (title, description and tags)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_media_element_with_owner_and_private
   #
@@ -293,11 +293,11 @@ class MediaElementsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Loads the preview of the element (to be shown inside a special popup)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -312,11 +312,11 @@ class MediaElementsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Reloads the element if it's in conversion
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -338,15 +338,15 @@ class MediaElementsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Deletes an element which has not been correctly converted
   #
-  # === Mode
+  # ### Mode
   #
   # Json
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_media_element_destination
   #

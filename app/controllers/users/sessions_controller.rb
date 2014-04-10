@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Controller that handles sessions and login (see UsersController).
 #
-# === Models used
+# ### Models used
 #
 # * User
 #
@@ -10,15 +10,15 @@ class Users::SessionsController < ApplicationController
   
   skip_before_filter :authenticate, :only => [:create, :destroy]
   
-  # === Description
+  # ### Description
   #
   # Create a new user session
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
@@ -67,15 +67,15 @@ class Users::SessionsController < ApplicationController
     redirect_to *redirect_args
   end
   
-  # === Description
+  # ### Description
   #
   # Destroys a user session
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #

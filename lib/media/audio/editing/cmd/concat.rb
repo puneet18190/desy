@@ -17,13 +17,13 @@ module Media
   
           # Instances a new Media::Audio::Editing::Cmd::Concat object
           #
-          # === Arguments
+          # ### Arguments
           #
           # * *audios_with_paddings*: audios with their possible relative paddings
           # * *output*: output path with the extension
           # * *format*: input files format
           #
-          # === Examples
+          # ### Examples
           #
           #  Media::Audio::Editing::Cmd.new([ ['concat 0.wav', [1.234, 5.678] ], ['concat 1.wav', [8.765, 4.321] ] ], 'output.wav')
           #  Media::Audio::Editing::Cmd.new([ ['concat 0.m4a', [1.234, 5.678] ], ['concat 1.m4a', [8.765, 4.321] ] ], 'output.m4a', :m4a)

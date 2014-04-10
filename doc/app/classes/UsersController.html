@@ -40,11 +40,11 @@
   
     <div class="description">
       
-<h2 id="class-UsersController-label-Description">Description</h2>
+<h3 id="class-UsersController-label-Description">Description</h3>
 
 <p>Controller for actions related to user&#39;s profile and statistics</p>
 
-<h2 id="class-UsersController-label-Models+used">Models used</h2>
+<h3 id="class-UsersController-label-Models+used">Models used</h3>
 <ul><li>
 <p><a href="User.html">User</a></p>
 </li><li>
@@ -57,7 +57,7 @@
 <p><a href="SchoolLevel.html">SchoolLevel</a></p>
 </li></ul>
 
-<h2 id="class-UsersController-label-Subcontrollers">Subcontrollers</h2>
+<h3 id="class-UsersController-label-Subcontrollers">Subcontrollers</h3>
 <ul><li>
 <p><a href="Users/SessionsController.html">Users::SessionsController</a></p>
 </li></ul>
@@ -1293,7 +1293,7 @@ href="ApplicationController.html#method-i-initialize_layout">ApplicationControll
       <span class="ruby-identifier">subject_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">to_i</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">subject_ids</span><span class="ruby-operator">:</span> <span class="ruby-identifier">subject_ids</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">subject_ids</span><span class="ruby-operator">:</span> <span class="ruby-identifier">subject_ids</span>)
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">my_subjects_path</span>, { <span class="ruby-identifier">flash</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;users.subjects.ok_popup&#39;</span>) } }
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@errors</span> = <span class="ruby-identifier">convert_user_error_messages</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">errors</span>

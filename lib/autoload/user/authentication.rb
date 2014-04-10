@@ -21,7 +21,7 @@ module User::Authentication
     
     # Strings comparison time-attacks safe
     #
-    # === Returns
+    # ### Returns
     #
     # +true+ if the strings match, +false+ otherwise
     def secure_compare(a, b)
@@ -46,7 +46,7 @@ module User::Authentication
     
     # Checks whether a string matches the password hash or not
     #
-    # === Returns
+    # ### Returns
     #
     # +true+ if the string matches, +false+ otherwise
     def valid_password?(password)

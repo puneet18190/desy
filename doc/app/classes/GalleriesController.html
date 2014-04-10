@@ -42,97 +42,52 @@
   
     <div class="description">
       
-<h2 id="class-GalleriesController-label-Description">Description</h2>
+<h3 id="class-GalleriesController-label-Description">Description</h3>
 
 <p>List of actions to handle all the instances of galleries in the
 application. Since the gallery pagination is made with infinite scroll, for
 each gallery there is an action that extracts it first, and another one
-that gets a new block of elements. List of galleries for each section</p>
-<ul><li>
-<p>lesson editor (see <a
-href="LessonEditorController.html">LessonEditorController</a>):</p>
-<ul><li>
-<p>audio gallery</p>
-<ul><li>
-<p><a
-href="GalleriesController.html#method-i-audio_for_lesson_editor">#audio_for_lesson_editor</a></p>
-</li><li>
-<p><a
-href="GalleriesController.html#method-i-audio_for_lesson_editor_new_block">#audio_for_lesson_editor_new_block</a></p>
-</li></ul>
-</li><li>
-<p>image gallery</p>
-<ul><li>
-<p><a
-href="GalleriesController.html#method-i-image_for_lesson_editor">#image_for_lesson_editor</a></p>
-</li><li>
-<p><a
-href="GalleriesController.html#method-i-image_for_lesson_editor_new_block">#image_for_lesson_editor_new_block</a></p>
-</li></ul>
-</li><li>
-<p>video gallery</p>
-<ul><li>
-<p><a
-href="GalleriesController.html#method-i-video_for_lesson_editor">#video_for_lesson_editor</a></p>
-</li><li>
-<p><a
-href="GalleriesController.html#method-i-video_for_lesson_editor_new_block">#video_for_lesson_editor_new_block</a></p>
-</li></ul>
-</li></ul>
-</li><li>
-<p>image editor (see <a
-href="ImageEditorController.html">ImageEditorController</a>):</p>
-<ul><li>
-<p>image gallery</p>
-<ul><li>
-<p><a
-href="GalleriesController.html#method-i-image_for_image_editor">#image_for_image_editor</a></p>
-</li><li>
-<p><a
-href="GalleriesController.html#method-i-image_for_image_editor_new_block">#image_for_image_editor_new_block</a></p>
-</li></ul>
-</li></ul>
-</li><li>
-<p>audio editor (see <a
-href="AudioEditorController.html">AudioEditorController</a>):</p>
-<ul><li>
-<p>audio gallery</p>
-<ul><li>
-<p><a
-href="GalleriesController.html#method-i-audio_for_audio_editor">#audio_for_audio_editor</a></p>
-</li><li>
-<p><a
-href="GalleriesController.html#method-i-audio_for_audio_editor_new_block">#audio_for_audio_editor_new_block</a></p>
-</li></ul>
-</li></ul>
-</li><li>
-<p>video editor (see <a
-href="VideoEditorController.html">VideoEditorController</a>):</p>
-<ul><li>
-<p>mixed gallery (video + image + texts)</p>
-<ul><li>
-<p><a
-href="GalleriesController.html#method-i-mixed_for_video_editor">#mixed_for_video_editor</a></p>
-</li><li>
-<p><a
-href="GalleriesController.html#method-i-mixed_for_video_editor_video_new_block">#mixed_for_video_editor_video_new_block</a></p>
-</li><li>
-<p><a
-href="GalleriesController.html#method-i-mixed_for_video_editor_image_new_block">#mixed_for_video_editor_image_new_block</a></p>
-</li></ul>
-</li><li>
-<p>audio gallery</p>
-<ul><li>
-<p><a
-href="GalleriesController.html#method-i-audio_for_video_editor">#audio_for_video_editor</a></p>
-</li><li>
-<p><a
+that gets a new block of elements. List of galleries for each section *
+lesson editor (see <a
+href="LessonEditorController.html">LessonEditorController</a>):  * audio
+gallery  * <a
+href="GalleriesController.html#method-i-audio_for_lesson_editor">#audio_for_lesson_editor</a>
+* <a
+href="GalleriesController.html#method-i-audio_for_lesson_editor_new_block">#audio_for_lesson_editor_new_block</a>
+* image gallery  * <a
+href="GalleriesController.html#method-i-image_for_lesson_editor">#image_for_lesson_editor</a>
+* <a
+href="GalleriesController.html#method-i-image_for_lesson_editor_new_block">#image_for_lesson_editor_new_block</a>
+* video gallery  * <a
+href="GalleriesController.html#method-i-video_for_lesson_editor">#video_for_lesson_editor</a>
+* <a
+href="GalleriesController.html#method-i-video_for_lesson_editor_new_block">#video_for_lesson_editor_new_block</a>
+* image editor (see <a
+href="ImageEditorController.html">ImageEditorController</a>):  * image
+gallery  * <a
+href="GalleriesController.html#method-i-image_for_image_editor">#image_for_image_editor</a>
+* <a
+href="GalleriesController.html#method-i-image_for_image_editor_new_block">#image_for_image_editor_new_block</a>
+* audio editor (see <a
+href="AudioEditorController.html">AudioEditorController</a>):  * audio
+gallery  * <a
+href="GalleriesController.html#method-i-audio_for_audio_editor">#audio_for_audio_editor</a>
+* <a
+href="GalleriesController.html#method-i-audio_for_audio_editor_new_block">#audio_for_audio_editor_new_block</a>
+* video editor (see <a
+href="VideoEditorController.html">VideoEditorController</a>):  * mixed
+gallery (video + image + texts)  * <a
+href="GalleriesController.html#method-i-mixed_for_video_editor">#mixed_for_video_editor</a>
+* <a
+href="GalleriesController.html#method-i-mixed_for_video_editor_video_new_block">#mixed_for_video_editor_video_new_block</a>
+* <a
+href="GalleriesController.html#method-i-mixed_for_video_editor_image_new_block">#mixed_for_video_editor_image_new_block</a>
+* audio gallery  * <a
+href="GalleriesController.html#method-i-audio_for_video_editor">#audio_for_video_editor</a>
+* <a
 href="GalleriesController.html#method-i-audio_for_video_editor_new_block">#audio_for_video_editor_new_block</a></p>
-</li></ul>
-</li></ul>
-</li></ul>
 
-<h2 id="class-GalleriesController-label-Models+used">Models used</h2>
+<h3 id="class-GalleriesController-label-Models+used">Models used</h3>
 <ul><li>
 <p><a href="User.html">User</a></p>
 </li><li>

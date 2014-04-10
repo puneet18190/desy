@@ -1,10 +1,10 @@
 require 'lessons_media_elements_shared'
 
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +lessons+.
 #
-# == Fields
+# ### Fields
 #
 # * *uuid*: UUIDv4, used for ebooks univoque identifying
 # * *user_id*: id of the creator of the lesson
@@ -21,7 +21,7 @@ require 'lessons_media_elements_shared'
 #   * +available_audio+: true if the lesson doesn't contain any audio in conversion
 # * *notified*: boolean, set to false only if the lesson has been modified and its modification not notified to users who have a link of the lesson
 #
-# == Associations
+# ### Associations
 #
 # * *user*: reference to the User who created the lesson (*belongs_to*)
 # * *subject*: Subject associated to the lesson (*belongs_to*)
@@ -37,7 +37,7 @@ require 'lessons_media_elements_shared'
 # * *media_elements*: list of media elements attached to slides of this lesson (see MediaElement) (through the class Slide and MediaElementsSlide) (*has_and_belongs_to_many*)
 # * *virtual_classroom_lessons*: copies of this lesson into the Virtual Classroom of the creator or other users (see VirtualClassroomLesson) (*has_many*)
 #
-# == Validations
+# ### Validations
 #
 # * *format* for +uuid+. IMPORTANT: actually this is not validated, there is an inner validation in the database, for technical reasons the validation is not incapsulated in rails. Hence, if the uuid is not valid the database will throw an exception
 # * *presence* with numericality and existence of associated record for +user_id+, +subject_id+, +school_level_id+
@@ -51,7 +51,7 @@ require 'lessons_media_elements_shared'
 # * *modifications* *not* *available* for +uuid+, +user_id+, +parent_id+, +token+
 # * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute save_tags is set as +true+</b>
 #
-# == Callbacks
+# ### Callbacks
 #
 # 1. *before_destroy* destroys associated bookmarks (see Bookmark)
 # 2. *before_destroy* destroys associated reports (see Report)
@@ -63,14 +63,14 @@ require 'lessons_media_elements_shared'
 # 7. *after_save* updates taggings associated to the lesson (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+
 # 8. *cascade* *destruction* for Slide (this was added late to handle math images).
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # 1. *cascade* *destruction* for the associated table Like
 # 2. *cascade* *destruction* for the associated table Slide (this besides the normal destruction cascade, see above).
 # 3. *cascade* *destruction* for the associated table VirtualClassroomLesson
 # 4. *set* *null* *on* *destruction* on the column +parent_id+ of all the lessons copied by the current lesson
 #
-# == Scopes
+# ### Scopes
 #
 # * *of*: lessons owned by a user (see User#own_lessons). Example (1: user_id):
 #   SELECT "lessons".* FROM "lessons" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = lessons.id AND bookmarks.bookmarkable_type = 'Lesson'
@@ -141,15 +141,15 @@ class Lesson < ActiveRecord::Base
     where("(EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = 'Lesson' AND bookmarks.user_id = :user_id AND bookmarks.bookmarkable_id = lessons.id) OR lessons.user_id = :user_id) AND NOT EXISTS (SELECT * FROM lessons AS son_lessons WHERE son_lessons.parent_id = lessons.id AND son_lessons.user_id = :user_id) AND lessons.copied_not_modified = FALSE", user_id: user_or_user_id)
   end
   
-  # === Description
+  # ### Description
   #
   # Send a notification (containing the details of modifications) to all the users who have a link of the lesson. This method is called only if the link was created *before* that the lesson was modified. The method also sets +notified+ as +true+. Used in LessonsController#notify_modification.
   #
-  # === Args
+  # ### Args
   #
   # * *msg*: details of the modifications
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean.
   #
@@ -168,11 +168,11 @@ class Lesson < ActiveRecord::Base
     self.save
   end
   
-  # === Description
+  # ### Description
   #
   # Sets +notified+ as +true+ without sending the notification of modifications (see Lesson#notify_changes). Used in LessonsController#dont_notify_modification.
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean.
   #
@@ -181,15 +181,15 @@ class Lesson < ActiveRecord::Base
     self.save
   end
   
-  # === Description
+  # ### Description
   #
   # Checks whether the lesson is available for editing in the Lesson Editor (if at least one between +metadata+.+available_audio+ and +metadata+.+available_video+ is false, the lesson is not available). Used in the filters of LessonEditorController.
   #
-  # === Args
+  # ### Args
   #
   # * *type*: if the parameter is inserted explicitly, the methods returns only the value for the specific type; otherwise it returns +available_video+ && +available_audio+.
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean.
   #
@@ -202,11 +202,11 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Sets the value of one of the two metadata (+available_video+ or +available_audio+).
   #
-  # === Args
+  # ### Args
   #
   # * *type*: used to select which of the two metadata is going to be set
   # * *value*: +true+ for default.
@@ -216,11 +216,11 @@ class Lesson < ActiveRecord::Base
     update_attribute(:metadata, metadata)
   end
   
-  # === Description
+  # ### Description
   #
   # Used as (unproper) substitute for the attr_reader relative to the attribute +tags+: it extracts the tags directly from the database
   #
-  # === Returns
+  # ### Returns
   #
   # An array of Tag objects.
   #
@@ -228,11 +228,11 @@ class Lesson < ActiveRecord::Base
     self.new_record? ? '' : Tag.get_friendly_tags(self)
   end
   
-  # === Description
+  # ### Description
   #
   # Used as (unproper) substitute for the attribute writer relative to the attribute +tags+: the attribute +tags+ is filled with a string of words separated by comma. During the validation, +tags+ is converted in another attribute called +inner_tags+: this attribute is an array of objects of type Tag (if the tag doesn't exist yet, the object is new_record) ready to be saved together with their taggings in the +after_save+ validation.
   #
-  # === Args
+  # ### Args
   #
   # Either an array of strings, or a string of words separated by comma
   #
@@ -252,11 +252,11 @@ class Lesson < ActiveRecord::Base
     Slide.order('position DESC').where(:lesson_id => self.id).first
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the cover slide of the lesson.
   #
-  # === Returns
+  # ### Returns
   #
   # An object of type Slide, or +nil+ if the lesson is new_record
   #
@@ -265,15 +265,15 @@ class Lesson < ActiveRecord::Base
     Slide.where(:kind => Slide::COVER, :lesson_id => self.id).first
   end
   
-  # === Description
+  # ### Description
   #
   # Checks whether the dashboard of a particular user is empty because he picked all the suggested lessons and not because the database is empty (see DashboardController#index).
   #
-  # === Args
+  # ### Args
   #
   # * *user_id*: the id of a User
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -290,15 +290,15 @@ class Lesson < ActiveRecord::Base
     slides.map{ |r| r.math_images.to_a(modality) }.flatten.uniq{ |v| v.basename }
   end
   
-  # === Description
+  # ### Description
   #
   # Substitute for the attr_reader relative to the attribute +status+.
   #
-  # === Args
+  # ### Args
   #
   # * *with_captions*: if +true+ returns the translated caption of the status (this means that it's used in the front-end), otherwise it returns the status keyword (for default).
   #
-  # === Returns
+  # ### Returns
   #
   # A string, or a keyword representing the status (see Statuses and LessonsMediaElementsShared)
   #
@@ -306,11 +306,11 @@ class Lesson < ActiveRecord::Base
     @status.nil? ? nil : (with_captions ? Lesson.status(@status) : @status)
   end
   
-  # === Description
+  # ### Description
   #
   # This function fills the attributes is_reportable, status, in_vc and linked (the last three being private). If the model has the four of these attributes different by +nil+, it means that the lesson has a status and the application knows which functionalities are available for the user who requested it. If the status is +nil+, it means that the user can't see this lesson.
   #
-  # === Args
+  # ### Args
   #
   # * *an_user_id*: the id of the user who is asking permission to see the lesson.
   # * *selects*: optionally, a hash of symbols of methods that optimize the extraction of records in other tables, necessary to set the status. These symbols are passed to Lesson#bookmarked?, Lesson#in_virtual_classroom? and Lesson#liked?
@@ -342,11 +342,11 @@ class Lesson < ActiveRecord::Base
     true
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the list of buttons available for the user who wants to see this lesson. If the lesson status hasn't been set yet for that user, or the lesson is not visible for him, it returns an empty array.
   #
-  # === Returns
+  # ### Returns
   #
   # An array of keywords representing buttons (see Buttons)
   #
@@ -368,16 +368,16 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Checks if the lesson has a Bookmark for a particular user
   #
-  # === Args
+  # ### Args
   #
   # * *an_user_id*: the id of the User
   # * *select*: a symbol representing a method that optimizes the extraction of bookmarks (if it's passed it means that the record has been optimized)
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -387,7 +387,7 @@ class Lesson < ActiveRecord::Base
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).any?
   end
   
-  # === Description
+  # ### Description
   #
   # Creates a copy of the lesson for a particular user. First, it checks if that user is allowed to copy the lesson (he must be the owner of the lesson, or alternatively he must have a bookmark for that lesson). Then the method checks if the user hasn't already copied the lesson. Then it copies, in sequence:
   # 1. the lesson with the cover
@@ -396,11 +396,11 @@ class Lesson < ActiveRecord::Base
   # 4. the tags (see Tagging).
   # Used in LessonsController#copy.
   #
-  # === Args
+  # ### Args
   #
   # * *an_user_id*: the id of the User who is copying the lesson
   #
-  # === Returns
+  # ### Returns
   #
   # If the process ended correctly, the object of the new lesson,  otherwise +nil+
   #
@@ -487,11 +487,11 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Returns a string of tags separated by comma and space ("tag1, tag2, tag3"), by calling a class method of Tag. This is necessary for the front end, since in the backend tags are managed without spaces and with two additional commas in the beginning and in the end of the string (",tag1,tag2,tag3,"). It uses Tagging.visive_tags (see also MediaElement#visive_tags)
   #
-  # === Returns
+  # ### Returns
   #
   # A string
   #
@@ -499,11 +499,11 @@ class Lesson < ActiveRecord::Base
     Tagging.visive_tags(self.tags)
   end
   
-  # === Description
+  # ### Description
   #
   # A method that sets all the fields that must be updated at any time the lesson or one of its slides is modified (that is, this method is related to the models Lesson, Slide and MediaElementsSlide).
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -513,11 +513,11 @@ class Lesson < ActiveRecord::Base
     self.save
   end
   
-  # === Description
+  # ### Description
   #
   # Sets +is_public+ as +true+ for the lesson and for each private MediaElement attached to the lesson through MediaElementsSlide and Slide. Used in LessonsController#publish.
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -565,11 +565,11 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Sets +is_public+ as +false+, deletes all bookmarks (see Bookmark) and copies in Virtual Classroom (see VirtualClassroomLesson) associated to the present lesson. Also, sends a notification to all the user who lost a bookmark of the lesson. Used in LessonsController#unpublish.
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -609,11 +609,11 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Destroys the lesson and sends notifications to the users who had a Bookmark of it (the bookmarks are destroyed by the +before_destroy+ callback). Used in LessonsController#destroy.
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -644,16 +644,16 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Adds a slide of a specific type. Used in LessonEditorController#add_slide
   #
-  # === Args
+  # ### Args
   #
   # * *kind*: the template chosen for the new slide
   # * *position*: the position in which the new slide must be inserted
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -673,11 +673,11 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Checks if the maximum number of slides has been reached by this lesson (this number is configured in settings.yml). Used in the validations of Slide.
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -685,15 +685,15 @@ class Lesson < ActiveRecord::Base
     Slide.where(:lesson_id => self.id).count == SETTINGS['max_number_slides_in_a_lesson']
   end
   
-  # === Description
+  # ### Description
   #
   # Creates a record of VirtualClassroomLesson for this lesson. First it checks whether the record can be created or not (for instance, it is not possible if the user is not owner of the lesson and doesn't have a bookmark for it). Used in VirtualClassroomController#add_lesson and in VirtualClassroomController#load_lessons.
   #
-  # === Args
+  # ### Args
   #
   # * *an_user_id*: the id of the User who is adding the lesson to his Virtual Classroom
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -721,15 +721,15 @@ class Lesson < ActiveRecord::Base
     true
   end
   
-  # === Description
+  # ### Description
   #
   # Removes the associated record of VirtualClassroomLesson for a particular User, if any. Used in VirtualClassroomController#remove_lesson and in VirtualClassroomController#remove_lesson_from_inside.
   #
-  # === Args
+  # ### Args
   #
   # * *an_user_id*: the id of the User
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -758,16 +758,16 @@ class Lesson < ActiveRecord::Base
     true
   end
   
-  # === Description
+  # ### Description
   #
   # Checks if the lesson has a corresponding VirtualClassroomLesson for a specific USer
   #
-  # === Args
+  # ### Args
   #
   # * *an_user_id*: the id of the User
   # * *select*: a symbol representing a method that optimizes the extraction of virtual classroom lessons (if it's passed it means that the record has been optimized)
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -777,16 +777,16 @@ class Lesson < ActiveRecord::Base
     VirtualClassroomLesson.where(:user_id => an_user_id, :lesson_id => self.id).any?
   end
   
-  # === Description
+  # ### Description
   #
   # Checks if there is a record of Like for a particular User
   #
-  # === Args
+  # ### Args
   #
   # * *an_user_id*: the id of the User
   # * *select*: a symbol representing a method that optimizes the extraction of likes (if it's passed it means that the record has been optimized)
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #

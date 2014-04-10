@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Contains the actions used in the lesson viewer (view sinle lessons, or view your whole playlist)
 #
-# == Models used
+# ### Models used
 #
 # * Lesson
 # * VirtualClassroomLesson
@@ -12,19 +12,19 @@ class LessonViewerController < ApplicationController
   skip_before_filter :authenticate, :only => :index
   before_filter :skip_authenticate_user_if_token, :only => :index
   
-  # === Description
+  # ### Description
   #
   # Index of a single lesson viewer; it's not necessary to authenticate, if in the url is present the correct token of the lesson
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonViewerController#skip_authenticate_user_if_token
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
@@ -38,11 +38,11 @@ class LessonViewerController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Index of the playlist viewer
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #

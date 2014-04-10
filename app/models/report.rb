@@ -1,20 +1,20 @@
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +reports+: this table contains reports of inappropriate content sent by users about lessons or media elements.
 #
-# == Fields
+# ### Fields
 #
 # * *reportable_id*: id of the item (lesson or media element) the report is about
 # * *reportable_type*: contains the string description of the classes Lesson or MediaElement (the type is an enum defined in postgrsql)
 # * *user_id*: id of the User who sent the report
 # * *comment*: text message associated to the report
 #
-# == Associations
+# ### Associations
 #
 # * *user*: User who sent the report (*belongs_to*)
 # * *reportable*: Lesson or MediaElement reported (polymorphic association) (*belongs_to*)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* with numericality and existence of associated record for +user_id+ and +reportable_id+
 # * *presence* of +content+
@@ -22,11 +22,11 @@
 # * *uniqueness* of the triple [+user_id+, +reportable_type+, +reportable_id+] <b>only if +reportable_type+ is correct</b>
 # * *modifications* *not* *available* for the four fields, if the record is not new
 #
-# == Callbacks
+# ### Callbacks
 #
 # None
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # None
 #
@@ -43,7 +43,7 @@ class Report < ActiveRecord::Base
   
   before_validation :init_validation
   
-  # === Description
+  # ### Description
   #
   # The report is accepted as valid: hence the associated Lesson or MediaElement is destroyed, together with the report itself (used in Admin::ReportsController#accept).
   #
@@ -54,7 +54,7 @@ class Report < ActiveRecord::Base
     self.destroy
   end
   
-  # === Description
+  # ### Description
   #
   # The report is not accepted as valid: hence the associated Lesson or MediaElement is not destroyed. The report is destroyed in any case (used in Admin::ReportsController#decline).
   #

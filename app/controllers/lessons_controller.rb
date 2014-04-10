@@ -1,11 +1,11 @@
-# == Description
+# ### Description
 #
 # Controller for all the actions related to lessons and their buttons. The only two action buttons excluded here are VirtualClassroomController#add_lesson and VirtualClassroomController#remove_lesson. All over this controller we use the constant keywords defined in ButtonDestinations, namely:
 # 1. *found_lesson* (or simply *found*) for a lesson seen in a results list of the search engine
 # 2. *compact_lesson* (or simply *compact*) for a lesson seen in the compact mode
 # 3. *expanded_lesson* (or simply *expanded*) for a lesson seen in expanded mode (this happens only in the dashboard, see DashboardController)
 #
-# == Models used
+# ### Models used
 #
 # * Lesson
 # * User
@@ -21,15 +21,15 @@ class LessonsController < ApplicationController
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_lesson_destination, :only => [:add, :copy, :like, :remove, :dislike, :destroy, :publish, :unpublish]
   
-  # === Description
+  # ### Description
   #
   # Main page of the section 'lessons'. When it's called via ajax it's because of the application of filters, paginations, or after an operation that changed the number of items in the page.
   #
-  # === Mode
+  # ### Mode
   #
   # Html + Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_layout
   # * LessonsController#initialize_paginator
@@ -43,18 +43,18 @@ class LessonsController < ApplicationController
     render_js_or_html_index
   end
   
-  # === Description
+  # ### Description
   #
   # Adds a link of this lesson to your section.
   # * *found*: reloads the lesson in compact mode
   # * *compact*: <i>[this action doesn't occur]</i>
   # * *expanded*: removes the lesson and reloads the whole page
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax + Json
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_lesson
   # * ApplicationController#initialize_lesson_destination
@@ -78,15 +78,15 @@ class LessonsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Creates a copy of this lesson, and opens a popup asking you if you want to edit immediately the new lesson or reload the page
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonsController#check_available_for_user
   # * ApplicationController#initialize_lesson
@@ -104,18 +104,18 @@ class LessonsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Deletes definitively a lesson.
   # * *found*: removes the lesson and reloads the whole page
   # * *compact*: removes the lesson and reloads the whole page
   # * *expanded*: <i>[this action doesn't occur]</i>
   #
-  # === Mode
+  # ### Mode
   #
   # Json
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_lesson_with_owner
   # * ApplicationController#initialize_lesson_destination
@@ -132,18 +132,18 @@ class LessonsController < ApplicationController
     render :json => {:ok => @ok, :msg => @error}
   end
   
-  # === Description
+  # ### Description
   #
   # Removes your 'I like it' from the lesson
   # * *found*: reloads the lesson in compact mode
   # * *compact*: reloads the lesson in compact mode
   # * *expanded*: reloads the lesson in expanded mode
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_lesson
   # * ApplicationController#initialize_lesson_destination
@@ -165,18 +165,18 @@ class LessonsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Records a 'I like it' on the lesson
   # * *found*: reloads the lesson in compact mode
   # * *compact*: reloads the lesson in compact mode
   # * *expanded*: reloads the lesson in expanded mode
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_lesson
   # * ApplicationController#initialize_lesson_destination
@@ -198,18 +198,18 @@ class LessonsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Calls Lesson#publish on the lesson.
   # * *found*: reloads the lesson in compact mode
   # * *compact*: reloads the lesson in compact mode
   # * *expanded*: <i>[this action doesn't occur]</i>
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonsController#check_available_for_user
   # * ApplicationController#initialize_lesson_with_owner
@@ -238,18 +238,18 @@ class LessonsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Calls Lesson#unpublish on the lesson.
   # * *found*: reloads the lesson in compact mode
   # * *compact*: reloads the lesson in compact mode
   # * *expanded*: <i>[this action doesn't occur]</i>
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_lesson_with_owner
   # * ApplicationController#initialize_lesson_destination
@@ -272,18 +272,18 @@ class LessonsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Removes the link of this lesson from your section.
   # * *found*: reloads the lesson in compact mode
   # * *compact*: removes the lesson and reloads the whole page
   # * *expanded*: <i>[this action doesn't occur]</i>
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax + Json
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_lesson
   # * ApplicationController#initialize_lesson_destination
@@ -313,15 +313,15 @@ class LessonsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Sends a notification about the details of the modification and sets the lesson as *notified* (using Lesson#notify_changes)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_lesson_with_owner
   #
@@ -332,15 +332,15 @@ class LessonsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Doesn't send any notification and sets the lesson as *notified* (using Lesson#dont_notify_changes)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#initialize_lesson_with_owner
   #

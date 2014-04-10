@@ -2,7 +2,7 @@ require 'media/video/uploader'
 require 'media/video/editing/parameters'
 require 'media/shared'
 
-# == Description
+# ### Description
 #
 # This class inherits from MediaElement, and contains the specific methods needed for media elements of type +video+. For methods shared by elements of type +audio+ and +video+, see Media::Shared.
 # 
@@ -23,15 +23,15 @@ class Video < MediaElement
 
   EBOOK_FORMATS = UPLOADER::FORMATS + UPLOADER::VERSION_FORMATS.keys - [:thumb]
   
-  # === Description
+  # ### Description
   #
   # Returns the lower integer approximation of the minimum between +webm_duration+ and +mp4_duration+. This is necessary to insert in the html players an integer duration in seconds that can be used without risks.
   #
-  # === Returns
+  # ### Returns
   #
   # An integer.
   #
-  # === Usage
+  # ### Usage
   #
   #   <div class="videoPlayer _instance_of_player" data-media-type="video" data-initialized="false" data-duration="<%= video.min_duration %>">
   #
@@ -39,15 +39,15 @@ class Video < MediaElement
     [mp4_duration, webm_duration].map(&:to_i).min
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the url for the video in format +mp4+
   #
-  # === Returns
+  # ### Returns
   #
   # An url.
   #
-  # === Usage
+  # ### Usage
   #
   #   <video>
   #     <source src="<%= video.mp4_url %>" type="video/mp4">
@@ -63,15 +63,15 @@ class Video < MediaElement
     url_by_url_type url, url_type
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the url for the video in format +webm+
   #
-  # === Returns
+  # ### Returns
   #
   # An url.
   #
-  # === Usage
+  # ### Usage
   #
   #   <video>
   #     <source src="<%= video.webm_url %>" type="video/webm">
@@ -87,15 +87,15 @@ class Video < MediaElement
     url_by_url_type url, url_type
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the url of the image used anywhere it's necessary the cover of the video with original proportions (it's the middle frame of the video, in 960 x 540 pixels).
   #
-  # === Returns
+  # ### Returns
   #
   # An url.
   #
-  # === Usage
+  # ### Usage
   #
   #   <%= image_tag video.cover_url %>
   #
@@ -109,15 +109,15 @@ class Video < MediaElement
     url_by_url_type url, url_type
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the url of the thumb image used in the section "elements" (the middle frame of the video resized to 200 x 200 pixels).
   #
-  # === Returns
+  # ### Returns
   #
   # An url.
   #
-  # === Usage
+  # ### Usage
   #
   #   <%= image_tag video.thumb_url %>
   #
@@ -125,11 +125,11 @@ class Video < MediaElement
     media.try(:url, :thumb) if converted
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the url of the placeholder used in case the video is being converted (an animated gif).
   #
-  # === Args
+  # ### Args
   #
   # * *type*: the type of placeholder required: it can be
   #   * +:thumb+: used in the expanded media element
@@ -137,11 +137,11 @@ class Video < MediaElement
   #   * +:lesson_viewer_small+: used in the lesson viewer (slides of kind 'video1', see Slide)
   #   * +:gallery+: used in the Video Gallery
   #
-  # === Returns
+  # ### Returns
   #
   # An url.
   #
-  # === Usage
+  # ### Usage
   #
   #   <% if video.converted? %>
   #     <%= render :partial => "shared/players/custom/video", :locals => {:video => video} %>
@@ -153,11 +153,11 @@ class Video < MediaElement
     url_by_url_type "/assets/placeholders/video_#{type}.gif", url_type
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the float duration in seconds of the mp4 track;
   #
-  # === Returns
+  # ### Returns
   #
   # A float.
   #
@@ -165,11 +165,11 @@ class Video < MediaElement
     converted ? metadata.mp4_duration : nil
   end
   
-  # === Description
+  # ### Description
   #
   # Sets the float duration in seconds of the mp4 track;
   #
-  # === Args
+  # ### Args
   #
   # * *mp4_duration*: the duration to be set
   #
@@ -177,11 +177,11 @@ class Video < MediaElement
     metadata.mp4_duration = mp4_duration
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the float duration in seconds of the webm track;
   #
-  # === Returns
+  # ### Returns
   #
   # A float.
   #
@@ -189,11 +189,11 @@ class Video < MediaElement
     converted ? metadata.webm_duration : nil
   end
   
-  # === Description
+  # ### Description
   #
   # Sets the float duration in seconds of the webm track;
   #
-  # === Args
+  # ### Args
   #
   # * *webm_duration*: the duration to be set
   #

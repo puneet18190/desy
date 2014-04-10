@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Contains the actions to handle mailing lists and addresses. All these actions can be called from UsersController#mailing_lists
 #
-# == Models used
+# ### Models used
 #
 # * User
 # * MailingListGroup
@@ -13,11 +13,11 @@ class MailingListsController < ApplicationController
   before_filter :initialize_mailing_list_group_with_owner, :only => [:create_address, :update_group, :delete_group]
   before_filter :initialize_mailing_list_address_with_owner, :only => :delete_address
   
-  # === Description
+  # ### Description
   #
   # Creates a new group
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
@@ -29,15 +29,15 @@ class MailingListsController < ApplicationController
     render 'update_list'
   end
   
-  # === Description
+  # ### Description
   #
   # Creates a new address inside a given group
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * MailingListController#initialize_mailing_list_group_with_owner
   #
@@ -52,15 +52,15 @@ class MailingListsController < ApplicationController
     render 'update_addresses'
   end
   
-  # === Description
+  # ### Description
   #
   # Updates an existing group (it's possible to change the name)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * MailingListController#initialize_mailing_list_group_with_owner
   #
@@ -72,15 +72,15 @@ class MailingListsController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Removes a group
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * MailingListController#initialize_mailing_list_group_with_owner
   #
@@ -89,15 +89,15 @@ class MailingListsController < ApplicationController
     render 'update_list'
   end
   
-  # === Description
+  # ### Description
   #
   # Removes an address inside a group
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * MailingListController#initialize_mailing_list_address_with_owner
   #

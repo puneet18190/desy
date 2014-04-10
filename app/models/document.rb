@@ -1,10 +1,10 @@
 require 'filename_token'
 
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +documents+.
 #
-# == Fields
+# ### Fields
 #
 # * *user_id*: id of the creator of the document
 # * *title*: title
@@ -13,24 +13,24 @@ require 'filename_token'
 # * *metadata*: contains:
 #   * +size+: dimension of the attached file
 #
-# == Associations
+# ### Associations
 #
 # * *user*: reference to the User who created the document (*belongs_to*)
 # * *documents_slides*: instances of this Document contained in a slide (see DocumentsSlide) (*has_many*)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* with numericality and existence of associated record for +user_id+
 # * *presence* for +title+ and +attachment+
 # * *length* of +title+ and +description+ (values configured in the I18n translation file; only for title, if the value is greater than 255 it's set to 255)
 # * *modifications* *not* *available* for the +user_id+
 #
-# == Callbacks
+# ### Callbacks
 #
 # 1. *before_validation* saves the +title+ from the attachment if it's not present
 # 2. *before_save* sets the +size+ in metadata
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # 1. *cascade* *destruction* for the associated table DocumentsSlide
 #
@@ -148,11 +148,11 @@ class Document < ActiveRecord::Base
     DocumentsSlide.joins(:slide, {:slide => :lesson}).where(:documents_slides => {:document_id => self.id}, :lessons => {:user_id => self.user_id}).any?
   end
   
-  # === Description
+  # ### Description
   #
   # Destroys the document and sends notifications to the users who had a Lesson containing it.
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #

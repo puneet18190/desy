@@ -40,44 +40,44 @@
   
     <div class="description">
       
-<h2 id="class-Tag-label-Description">Description</h2>
+<h3 id="class-Tag-label-Description">Description</h3>
 
 <p>ActiveRecord class that corresponds to the table <code>tags</code>.</p>
 
-<h2 id="class-Tag-label-Fields">Fields</h2>
+<h3 id="class-Tag-label-Fields">Fields</h3>
 <ul><li>
-<p><strong>word</strong>: the tag contained in the object</p>
+<p><em>word</em>: the tag contained in the object</p>
 </li></ul>
 
-<h2 id="class-Tag-label-Associations">Associations</h2>
+<h3 id="class-Tag-label-Associations">Associations</h3>
 <ul><li>
-<p><strong>taggings</strong>: list of instances associated to this tag (see <a
-href="Tagging.html">Tagging</a>) (<strong>has_many</strong>)</p>
+<p><em>taggings</em>: list of instances associated to this tag (see <a
+href="Tagging.html">Tagging</a>) (<em>has_many</em>)</p>
 </li></ul>
 
-<h2 id="class-Tag-label-Validations">Validations</h2>
+<h3 id="class-Tag-label-Validations">Validations</h3>
 <ul><li>
-<p><strong>presence</strong> of <code>word</code></p>
+<p><em>presence</em> of <code>word</code></p>
 </li><li>
-<p><strong>length</strong> of <code>word</code> minimum and maximum allowed
-are configured in settings.yml</p>
+<p><em>length</em> of <code>word</code> minimum and maximum allowed are
+configured in settings.yml</p>
 </li><li>
-<p><strong>uniqueness</strong> of <code>word</code></p>
+<p><em>uniqueness</em> of <code>word</code></p>
 </li><li>
-<p><strong>modifications</strong> <strong>not</strong>
-<strong>available</strong> for <code>word</code></p>
+<p><em>modifications</em> <em>not</em> <em>available</em> for
+<code>word</code></p>
 </li></ul>
 
-<h2 id="class-Tag-label-Callbacks">Callbacks</h2>
+<h3 id="class-Tag-label-Callbacks">Callbacks</h3>
 <ol><li>
-<p><strong>before_destroy</strong> destroys associated taggings (this callback
-is written manually because before destroying a <a
+<p><em>before_destroy</em> destroys associated taggings (this callback is
+written manually because before destroying a <a
 href="Tagging.html">Tagging</a> it&#39;s necessary to switch off the
 callback that destroy the assocaited tag if it was the last tagging
 associated)</p>
 </li></ol>
 
-<h2 id="class-Tag-label-Database+callbacks">Database callbacks</h2>
+<h3 id="class-Tag-label-Database+callbacks">Database callbacks</h3>
 
 <p>None</p>
 
@@ -255,7 +255,7 @@ associated)</p>
 
 <h3 id="method-c-get_friendly_tags-label-Args">Args</h3>
 <ul><li>
-<p><strong>item</strong>: item (lesson or element)</p>
+<p><em>item</em>: item (lesson or element)</p>
 </li></ul>
 
 <h3 id="method-c-get_friendly_tags-label-Returns">Returns</h3>
@@ -278,7 +278,7 @@ associated)</p>
                 
               </p>
               <div id="method-c-get_friendly_tags_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/tag.rb, line 121</span>
+                <pre><span class="ruby-comment"># File app/models/tag.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">get_friendly_tags</span>(<span class="ruby-identifier">item</span>)
   <span class="ruby-identifier">tags</span> = <span class="ruby-identifier">item</span>.<span class="ruby-identifier">taggings</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:tag_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">tags</span>.<span class="ruby-identifier">empty?</span>
@@ -308,11 +308,11 @@ href="TagsController.html#method-i-get_list">TagsController#get_list</a></p>
 
 <h3 id="method-c-get_tags_for_autocomplete-label-Args">Args</h3>
 <ul><li>
-<p><strong>user</strong>: the user who is autocompleting tags</p>
+<p><em>user</em>: the user who is autocompleting tags</p>
 </li><li>
-<p><strong>a_word</strong>: word to be autocompleted</p>
+<p><em>a_word</em>: word to be autocompleted</p>
 </li><li>
-<p><strong>item</strong>: either &#39;lesson&#39; or &#39;media_element&#39;</p>
+<p><em>item</em>: either &#39;lesson&#39; or &#39;media_element&#39;</p>
 </li></ul>
 
 <h3 id="method-c-get_tags_for_autocomplete-label-Return">Return</h3>
@@ -335,7 +335,7 @@ href="TagsController.html#method-i-get_list">TagsController#get_list</a></p>
                 
               </p>
               <div id="method-c-get_tags_for_autocomplete_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/tag.rb, line 60</span>
+                <pre><span class="ruby-comment"># File app/models/tag.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">get_tags_for_autocomplete</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">a_word</span>, <span class="ruby-identifier">item</span>)
   <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">if</span> <span class="ruby-identifier">a_word</span>.<span class="ruby-identifier">blank?</span>
   <span class="ruby-identifier">a_word</span> = <span class="ruby-identifier">a_word</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">mb_chars</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_s</span>
@@ -387,9 +387,9 @@ private attribute <code>inner_tags</code>)</p>
 
 <h3 id="method-c-get_tags_for_item-label-Args">Args</h3>
 <ul><li>
-<p><strong>item_id</strong>: if of the item (lesson or element)</p>
+<p><em>item_id</em>: if of the item (lesson or element)</p>
 </li><li>
-<p><strong>kind</strong>: &#39;Lesson&#39; or &#39;MediaElement&#39;</p>
+<p><em>kind</em>: &#39;Lesson&#39; or &#39;MediaElement&#39;</p>
 </li></ul>
 
 <h3 id="method-c-get_tags_for_item-label-Returns">Returns</h3>
@@ -412,7 +412,7 @@ private attribute <code>inner_tags</code>)</p>
                 
               </p>
               <div id="method-c-get_tags_for_item_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/tag.rb, line 101</span>
+                <pre><span class="ruby-comment"># File app/models/tag.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">self</span>.<span class="ruby-identifier">get_tags_for_item</span>(<span class="ruby-identifier">item_id</span>, <span class="ruby-identifier">kind</span>)
   <span class="ruby-identifier">resp</span> = []
   <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:tag</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:taggable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">kind</span>, <span class="ruby-value">:taggable_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">item_id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-value">:tag_id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
@@ -445,7 +445,7 @@ href="Admin/SettingsController.html#method-i-lessons_for_tag">Admin::SettingsCon
 
 <h3 id="method-i-get_lessons-label-Args">Args</h3>
 <ul><li>
-<p><strong>page</strong>: the requested page</p>
+<p><em>page</em>: the requested page</p>
 </li></ul>
 
 <h3 id="method-i-get_lessons-label-Returns">Returns</h3>
@@ -468,7 +468,7 @@ href="Admin/SettingsController.html#method-i-lessons_for_tag">Admin::SettingsCon
                 
               </p>
               <div id="method-i-get_lessons_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/tag.rb, line 159</span>
+                <pre><span class="ruby-comment"># File app/models/tag.rb, line 157</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_lessons</span>(<span class="ruby-identifier">page</span>)
   <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:taggings</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:taggings</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:tag_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>}).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;lessons.updated_at DESC&#39;</span>).<span class="ruby-identifier">page</span>(<span class="ruby-identifier">page</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -495,7 +495,7 @@ href="Admin/SettingsController.html#method-i-media_elements_for_tag">Admin::Sett
 
 <h3 id="method-i-get_media_elements-label-Args">Args</h3>
 <ul><li>
-<p><strong>page</strong>: the requested page</p>
+<p><em>page</em>: the requested page</p>
 </li></ul>
 
 <h3 id="method-i-get_media_elements-label-Returns">Returns</h3>
@@ -518,7 +518,7 @@ href="Admin/SettingsController.html#method-i-media_elements_for_tag">Admin::Sett
                 
               </p>
               <div id="method-i-get_media_elements_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/tag.rb, line 175</span>
+                <pre><span class="ruby-comment"># File app/models/tag.rb, line 173</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_media_elements</span>(<span class="ruby-identifier">page</span>)
   <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:taggings</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:taggings</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:tag_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>}).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;media_elements.updated_at DESC&#39;</span>).<span class="ruby-identifier">page</span>(<span class="ruby-identifier">page</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -557,7 +557,7 @@ href="Admin/SettingsController.html#method-i-media_elements_for_tag">Admin::Sett
                 
               </p>
               <div id="method-i-to_s_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/tag.rb, line 143</span>
+                <pre><span class="ruby-comment"># File app/models/tag.rb, line 141</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">to_s</span>
   <span class="ruby-identifier">word</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -583,7 +583,7 @@ word to downcase without initial and last spaces</p>
 
 <h3 id="method-i-word-3D-label-Args">Args</h3>
 <ul><li>
-<p><strong>word</strong>: the word to be converted</p>
+<p><em>word</em>: the word to be converted</p>
 </li></ul>
             </div>
           
@@ -602,7 +602,7 @@ word to downcase without initial and last spaces</p>
                 
               </p>
               <div id="method-i-word-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/tag.rb, line 135</span>
+                <pre><span class="ruby-comment"># File app/models/tag.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">word=</span>(<span class="ruby-identifier">word</span>)
   <span class="ruby-identifier">write_attribute</span>(<span class="ruby-value">:word</span>, <span class="ruby-identifier">word</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">mb_chars</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">word</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -642,7 +642,7 @@ tag</p>
                 
               </p>
               <div id="method-i-destroy_taggings_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/tag.rb, line 192</span>
+                <pre><span class="ruby-comment"># File app/models/tag.rb, line 190</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">destroy_taggings</span>
   <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:tag_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tagging</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">tagging</span>.<span class="ruby-identifier">not_orphans</span> = <span class="ruby-keyword">true</span>
@@ -683,7 +683,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-init_validation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/tag.rb, line 182</span>
+                <pre><span class="ruby-comment"># File app/models/tag.rb, line 180</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
   <span class="ruby-ivar">@tag</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
 <span class="ruby-keyword">end</span></pre>
@@ -720,7 +720,7 @@ href="Valid.html#method-c-get_association">Valid.get_association</a>)</p>
                 
               </p>
               <div id="method-i-word_not_changed_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/tag.rb, line 187</span>
+                <pre><span class="ruby-comment"># File app/models/tag.rb, line 185</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">word_not_changed</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:word</span>, <span class="ruby-value">:cant_be_changed</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@tag</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@tag</span>.<span class="ruby-identifier">word</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">word</span>
 <span class="ruby-keyword">end</span></pre>

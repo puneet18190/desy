@@ -21,14 +21,14 @@ module Media
   
         # Create a new Media::Video::Editing::ReplaceAudio instance
         #
-        # === Arguments
+        # ### Arguments
         #
         # * *video_inputs*: hash with the input paths per video format
         # * *audio_inputs*: hash with the audio paths which will replace the original audios per video format
         # * *output_without_extension*: output path without the extension
         # * *log_folder* _optional_: log folder path
         #
-        # === Examples
+        # ### Examples
         #
         #  Media::Video::Editing::ImageToVideo.new({ mp4: '/path/to/media.mp4', webm: '/path/to/media.webm' }, { m4a: '/path/to/media.m4a', ogg: '/path/to/media.ogg' }, '/path/to/new/video/files')
         def initialize(video_inputs, audio_inputs, output_without_extension, log_folder = nil)

@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +media_elements_slides+: this table contains all the instances of media elements inside a slide.
 #
-# == Fields
+# ### Fields
 #
 # * *media_element_id*: the id that references MediaElement
 # * *slide_id*: the id that references Slide
@@ -11,13 +11,13 @@
 # * *alignment*: the alignment of the media element, if it's an image
 # * *inscribed*: true if the image is inscribed inside the available space without parts left outside
 #
-# == Associations
+# ### Associations
 #
 # * *media_element*: reference to the MediaElement of which the slide contains an instance (*belongs_to*)
 # * *slide*: reference to the Slide in which the media element is saved (*belongs_to*)
 # * *lesson*: reference to the Lesson containing the Slide in which the media element is saved (*has_one*)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* with numericality and existence of associated record for +media_element_id+ and +slide_id+
 # * *numericality* allowing +nil+ values for +alignment+
@@ -31,11 +31,11 @@
 # * *properties* *specific* *for* *images*, such as +alignment+ and +caption+ are checked to be present only if the MediaElement is an Image
 # * *inscribed* *cannot* *be* *true* if the element is not an image
 #
-# == Callbacks
+# ### Callbacks
 #
 # 1. *after_destroy* if the element is an Audio or Video in conversion, and it was the last present on the Lesson containing the referenced Slide, the lesson is turned available using Lesson#available!
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # None
 #
@@ -57,11 +57,11 @@ class MediaElementsSlide < ActiveRecord::Base
   
   after_destroy :restore_lesson_availability
   
-  # === Description
+  # ### Description
   #
   # Returns media_element.background_position. media_element must be an Image.
   #
-  # === Returns
+  # ### Returns
   #
   # A value compliant to background-position
   #
@@ -73,15 +73,15 @@ class MediaElementsSlide < ActiveRecord::Base
     inscribed ? 'contain' : 'cover'
   end
 
-  # === Description
+  # ### Description
   #
   # Method to check that it's horizontal
   #
-  # === Args
+  # ### Args
   #
   # * *kind*: the kind of the slide (it can be nil)
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -89,15 +89,15 @@ class MediaElementsSlide < ActiveRecord::Base
     media_element.is_horizontal?(kind || slide.kind)
   end
   
-  # === Description
+  # ### Description
   #
   # Method that resizes width according to the kind
   #
-  # === Args
+  # ### Args
   #
   # * *kind*: the kind of the slide (it can be nil)
   #
-  # === Returns
+  # ### Returns
   #
   # A float
   #
@@ -105,15 +105,15 @@ class MediaElementsSlide < ActiveRecord::Base
     media_element.resize_width(kind || slide.kind)
   end
   
-  # === Description
+  # ### Description
   #
   # Method that resizes height according to the kind
   #
-  # === Args
+  # ### Args
   #
   # * *kind*: the kind of the slide (it can be nil)
   #
-  # === Returns
+  # ### Returns
   #
   # A float
   #

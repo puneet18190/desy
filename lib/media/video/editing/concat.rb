@@ -34,7 +34,7 @@ module Media
         
         # Creates a new Media::Video::Editing::Concat instance, which can be used to concatenate various video files.
         #
-        # === Arguments
+        # ### Arguments
         #
         # * *inputs*: an array with hash values containing the video files per format
         # * *output_without_extension*: output path without extension
@@ -42,7 +42,7 @@ module Media
         # 
         # See {Examples}[rdoc-label:method-c-new-label-Examples] for usage examples.
         #
-        # === Examples
+        # ### Examples
         #
         #  Media::Video::Editing::Concat.new([ { webm: 'input.webm', mp4: 'input.mp4'}, { webm: 'input2.webm', mp4: 'input2.mp4'} ], '/output/without/extension').run 
         #  #=> { mp4:'/output/without/extension.mp4', webm:'/output/without/extension.webm' }
@@ -102,7 +102,7 @@ module Media
   
         # Concatenation core processing
         #
-        # === Logic
+        # ### Logic
         #
         # 1. If there is at least one audio streamse c'è almeno uno stream audio:
         #    a. we generate its wav file
@@ -110,7 +110,7 @@ module Media
         # 2. We generate the video track concatenating the webm video tracks and discarding their audio tracks; after this operation we have the final audio track in wav format and the final video track in web format
         # 3. We generate the mp4 and the webm videos joining and converting the two tracks
         #
-        # === Arguments
+        # ### Arguments
         #
         # * *mp4_inputs_infos*: Media::Info instances about the mp4 input files
         # * *paddings*: an array with the paddings which should be between an audio track and another
@@ -140,7 +140,7 @@ module Media
   
         # Final wav track file generation
         #
-        # === Logic
+        # ### Logic
         #
         # 1. Extracting the m4a from the mp4
         # 2. Converting them to wav (cut-join operations are more precise using lossless formats)

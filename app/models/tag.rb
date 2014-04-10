@@ -1,27 +1,27 @@
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +tags+.
 #
-# == Fields
+# ### Fields
 #
 # * *word*: the tag contained in the object
 #
-# == Associations
+# ### Associations
 #
 # * *taggings*: list of instances associated to this tag (see Tagging) (*has_many*)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* of +word+
 # * *length* of +word+ minimum and maximum allowed are configured in settings.yml
 # * *uniqueness* of +word+
 # * *modifications* *not* *available* for +word+
 #
-# == Callbacks
+# ### Callbacks
 #
 # 1. *before_destroy* destroys associated taggings (this callback is written manually because before destroying a Tagging it's necessary to switch off the callback that destroy the assocaited tag if it was the last tagging associated)
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # None
 #
@@ -41,17 +41,17 @@ class Tag < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :destroy_taggings
   
-  # === Description
+  # ### Description
   #
   # Method used in the autocomplete. It extracts the most used 20 tags matching the inserted word. If the word is already a tag itself, it adds it on top of the list, extracting the remaining 19 tags. Used in TagsController#get_list
   #
-  # === Args
+  # ### Args
   #
   # * *user*: the user who is autocompleting tags
   # * *a_word*: word to be autocompleted
   # * *item*: either 'lesson' or 'media_element'
   #
-  # === Return
+  # ### Return
   #
   # An array of tags
   #
@@ -83,16 +83,16 @@ class Tag < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Used as a helper for the tag validations in Lesson and MediaElement (it's used to fill the private attribute +inner_tags+)
   #
-  # === Args
+  # ### Args
   #
   # * *item_id*: if of the item (lesson or element)
   # * *kind*: 'Lesson' or 'MediaElement'
   #
-  # === Returns
+  # ### Returns
   #
   # A set of tags
   #
@@ -104,15 +104,15 @@ class Tag < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Used as support for Lesson#tags and MediaElement#tags
   #
-  # === Args
+  # ### Args
   #
   # * *item*: item (lesson or element)
   #
-  # === Returns
+  # ### Returns
   #
   # A string of tags in the shape ',tag1,tag2,tag3,tag4,'
   #
@@ -122,11 +122,11 @@ class Tag < ActiveRecord::Base
     ([''] + (tags.map { |t| t.tag.word }) + ['']).join(',')
   end
   
-  # === Description
+  # ### Description
   #
   # Setter method for the field +word+: it automatically turns the word to downcase without initial and last spaces
   #
-  # === Args
+  # ### Args
   #
   # * *word*: the word to be converted
   #
@@ -134,7 +134,7 @@ class Tag < ActiveRecord::Base
     write_attribute(:word, word.present? ? word.to_s.strip.mb_chars.downcase.to_s : word)
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the word
   #
@@ -142,15 +142,15 @@ class Tag < ActiveRecord::Base
     word.to_s
   end
   
-  # === Description
+  # ### Description
   #
   # Gets the lessons associated to this tag through Tagging. Used in the administrator section (see Admin::SettingsController#lessons_for_tag)
   #
-  # === Args
+  # ### Args
   #
   # * *page*: the requested page
   #
-  # === Returns
+  # ### Returns
   #
   # An array of tags
   #
@@ -158,15 +158,15 @@ class Tag < ActiveRecord::Base
     Lesson.joins(:taggings).where(:taggings => {:tag_id => self.id}).order('lessons.updated_at DESC').page(page)
   end
   
-  # === Description
+  # ### Description
   #
   # Gets the media elements associated to this tag through Tagging. Used in the administrator section (see Admin::SettingsController#media_elements_for_tag)
   #
-  # === Args
+  # ### Args
   #
   # * *page*: the requested page
   #
-  # === Returns
+  # ### Returns
   #
   # An array of tags
   #

@@ -2,7 +2,7 @@ require 'media/audio/uploader'
 require 'media/audio/editing/parameters'
 require 'media/shared'
 
-# == Description
+# ### Description
 #
 # This class inherits from MediaElement, and contains the specific methods needed for media elements of type +audio+. For methods shared by elements of type +audio+ and +video+, see Media::Shared.
 # 
@@ -26,15 +26,15 @@ class Audio < MediaElement
 
   EBOOK_FORMATS = UPLOADER::FORMATS + UPLOADER::VERSION_FORMATS.keys - [:thumb]
   
-  # === Description
+  # ### Description
   #
   # Returns the url for the audio in format +m4a+
   #
-  # === Returns
+  # ### Returns
   #
   # An url.
   #
-  # === Usage
+  # ### Usage
   #
   #   <audio>
   #     <source src="<%= audio.m4a_url %>" type="audio/mp4">
@@ -50,15 +50,15 @@ class Audio < MediaElement
     url_by_url_type url, url_type
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the url for the audio in format +ogg+
   #
-  # === Returns
+  # ### Returns
   #
   # An url.
   #
-  # === Usage
+  # ### Usage
   #
   #   <audio>
   #     <source src="<%= audio.ogg_url %>" type="audio/ogg">
@@ -74,15 +74,15 @@ class Audio < MediaElement
     url_by_url_type url, url_type
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the url of the thumb image used in the section "elements" (a musical note on gray bottom). If the audio is not converted, returns the animated gif from Audio#placeholder_url with +type+=+thumb+.
   #
-  # === Returns
+  # ### Returns
   #
   # An url.
   #
-  # === Usage
+  # ### Usage
   #
   #   <%= image_tag audio.thumb_url %>
   #
@@ -90,21 +90,21 @@ class Audio < MediaElement
     converted ? THUMB_URL : placeholder_url(:thumb, url_type)
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the url of the placeholder used in case the audio is being converted (an animated gif).
   #
-  # === Args
+  # ### Args
   #
   # * *type*: the type of placeholder required: it can be
   #   * +:thumb+: used in the expanded media element
   #   * +:lesson_viewer+: used in the lesson viewer
   #
-  # === Returns
+  # ### Returns
   #
   # An url.
   #
-  # === Usage
+  # ### Usage
   #
   #   <% if audio.converted? %>
   #     <%= render :partial => 'shared/players/custom/audio', :locals => {:audio => audio} %>
@@ -118,11 +118,11 @@ class Audio < MediaElement
     url_by_url_type url, url_type
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the float duration in seconds of the m4a track;
   #
-  # === Returns
+  # ### Returns
   #
   # A float.
   #
@@ -130,11 +130,11 @@ class Audio < MediaElement
     metadata.m4a_duration
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the float duration in seconds of the ogg track;
   #
-  # === Returns
+  # ### Returns
   #
   # A float.
   #
@@ -142,11 +142,11 @@ class Audio < MediaElement
     metadata.ogg_duration
   end
   
-  # === Description
+  # ### Description
   #
   # Sets the float duration in seconds of the m4a track;
   #
-  # === Args
+  # ### Args
   #
   # * *m4a_duration*: the duration to be set
   #
@@ -154,11 +154,11 @@ class Audio < MediaElement
     metadata.m4a_duration = m4a_duration
   end
   
-  # === Description
+  # ### Description
   #
   # Sets the float duration in seconds of the ogg track;
   #
-  # === Args
+  # ### Args
   #
   # * *ogg_duration*: the duration to be set
   #
@@ -166,15 +166,15 @@ class Audio < MediaElement
     metadata.ogg_duration = ogg_duration
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the lower integer approximation of the minimum between +ogg_duration+ and +m4a_duration+. This is necessary to insert in the html players an integer duration in seconds that can be used without risks.
   #
-  # === Returns
+  # ### Returns
   #
   # An integer.
   #
-  # === Usage
+  # ### Usage
   #
   #   <div class="audioPlayer _instance_of_player" data-media-type="audio" data-initialized="false" data-duration="<%= audio.min_duration %>">
   #

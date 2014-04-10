@@ -328,9 +328,9 @@ medias are considered different)</p></td>
             <div class="description">
               <h3 id="method-c-new-label-Args">Args</h3>
 <ul><li>
-<p><strong>path</strong>: path to a media file</p>
+<p><em>path</em>: path to a media file</p>
 </li><li>
-<p><strong>raise_if_invalid</strong>: if <code>true</code>, raises a <a
+<p><em>raise_if_invalid</em>: if <code>true</code>, raises a <a
 href="Error.html">Media::Error</a> when <code>avprobe</code> doesn&#39;t
 consider the supplied media valid</p>
 </li></ul>
@@ -480,17 +480,21 @@ otherwise</p>
 
 <h3 id="method-i-similar_to-3F-label-Args">Args</h3>
 <ul><li>
-<p><strong>other_infos_hash</strong>: hash of another media file infos</p>
+<p><em>other_infos_hash</em>: hash of another media file infos</p>
 </li><li>
-<p><strong>ignore_bitrate</strong>: when <code>true</code> the bitrates are
-not compared</p>
+<p><em>ignore_bitrate</em>: when <code>true</code> the bitrates are not
+compared</p>
 </li></ul>
 
 <h3 id="method-i-similar_to-3F-label-Examples">Examples</h3>
 
-<pre><code>Media::Info.new(&#39;video1.webm&#39;).similar_to? Media::Info.new(&#39;video1.webm&#39;).to_hash #=&gt; true
-Media::Info.new(&#39;video1.webm&#39;).similar_to? Media::Info.new(&#39;video1.mp4&#39;).to_hash  #=&gt; false
-</code></pre>
+<p><a
+href="Info.html#method-c-new">::new</a>(&#39;video1.webm&#39;).similar_to?
+<a href="Info.html#method-c-new">::new</a>(&#39;video1.webm&#39;).to_hash
+#=&gt; true  <a
+href="Info.html#method-c-new">::new</a>(&#39;video1.webm&#39;).similar_to?
+<a href="Info.html#method-c-new">::new</a>(&#39;video1.mp4&#39;).to_hash
+#=&gt; false</p>
             </div>
           
           

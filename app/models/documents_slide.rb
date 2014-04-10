@@ -1,18 +1,18 @@
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +documents_slides+.
 #
-# == Fields
+# ### Fields
 #
 # * *document_id*: id of the document
 # * *slide_id*: id of the slide
 #
-# == Associations
+# ### Associations
 #
 # * *document*: reference to the Document (*belongs_to*)
 # * *slide*: reference to the Slide (*belongs_to*)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* with numericality and existence of associated record for +document_id+ and +slide_id+
 # * *modifications* *not* *available* for the +document_id+ and +slide_id+
@@ -20,11 +20,11 @@
 # * *the* *slide* must allow +title+
 # * *maximum* number of documents in the same slide, as configured in settings.yml
 #
-# == Callbacks
+# ### Callbacks
 #
 # None
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # None
 #

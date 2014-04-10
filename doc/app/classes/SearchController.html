@@ -40,11 +40,11 @@
   
     <div class="description">
       
-<h2 id="class-SearchController-label-Description">Description</h2>
+<h3 id="class-SearchController-label-Description">Description</h3>
 
 <p>Controller for the search engine with all its options</p>
 
-<h2 id="class-SearchController-label-Models+used">Models used</h2>
+<h3 id="class-SearchController-label-Models+used">Models used</h3>
 <ul><li>
 <p><a href="Lesson.html">Lesson</a></p>
 </li><li>
@@ -197,32 +197,23 @@
               <h3 id="method-i-index-label-Description">Description</h3>
 
 <p>Search for lessons and elements in the application&#39;s database. There
-are different options:</p>
-<ul><li>
-<p>if <code>params</code> has the key <code>word</code>, it means that the
-user searched for something (even when he only used filters, the parameter
-<code>word</code> is present and blank); if this is not verified, it means
-that the user entered in the search engine through the direct link labelled
-as &#39;advanced search&#39;</p>
-</li><li>
-<p>the search engine contains two subsections, one for lessons and one for
+are different options: * if <code>params</code> has the key
+<code>word</code>, it means that the user searched for something (even when
+he only used filters, the parameter <code>word</code> is present and
+blank); if this is not verified, it means that the user entered in the
+search engine through the direct link labelled as &#39;advanced search&#39;
+* the search engine contains two subsections, one for lessons and one for
 elements: to choose which subsection needs to be visible, the filter checks
-a specific parameter called <code>item</code></p>
-</li><li>
-<p>if the parameter <code>tag_id</code> is present, the method calls <a
+a specific parameter called <code>item</code> * if the parameter
+<code>tag_id</code> is present, the method calls <a
 href="User.html#method-i-search_media_elements">User#search_media_elements</a>
 or <a href="User.html#method-i-search_lessons">User#search_lessons</a>
-twice:</p>
-<ul><li>
-<p>first with <code>word</code> = <code>tag_id</code> in <code>params</code></p>
-</li><li>
-<p>second with <code>word</code> = <code>word</code> in <code>params</code>
-and the option <code>only_tags</code> = <code>true</code>: this way
-it&#39;s shown the whole range of tags associated to the original word, and
-only the requested tag is selected</p>
-</li></ul>
-</li><li>
-<p>if the parameter <code>tag_id</code> is blank, the method calls <a
+twice:  * first with <code>word</code> = <code>tag_id</code> in
+<code>params</code>  * second with <code>word</code> = <code>word</code> in
+<code>params</code> and the option <code>only_tags</code> =
+<code>true</code>: this way it&#39;s shown the whole range of tags
+associated to the original word, and only the requested tag is selected *
+if the parameter <code>tag_id</code> is blank, the method calls <a
 href="User.html#method-i-search_media_elements">User#search_media_elements</a>
 or <a href="User.html#method-i-search_lessons">User#search_lessons</a>
 normally, passing it the <code>word</code> as it received it (possibly
@@ -230,7 +221,6 @@ blank, in which case there is a call to the submethods <a
 href="User.html#method-i-search_lessons_without_tag">User#search_lessons_without_tag</a>
 or <a
 href="User.html#method-i-search_media_elements_without_tag">User#search_media_elements_without_tag</a>)</p>
-</li></ul>
 
 <h3 id="method-i-index-label-Mode">Mode</h3>
 

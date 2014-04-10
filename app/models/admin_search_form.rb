@@ -1,4 +1,4 @@
-# == Description
+# ### Description
 #
 # This class contains the list of search methods used in the administrator.
 # Unlike the methods used in the application's search engine (see User#search_lessons, User#search_media_elements), these search methods are not optimized and indicized.
@@ -68,11 +68,11 @@ class AdminSearchForm
     ]
   }
   
-  # === Description
+  # ### Description
   #
   # Search for documents: used in Admin::DocumentsController
   #
-  # === Args
+  # ### Args
   #
   # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
@@ -85,7 +85,7 @@ class AdminSearchForm
   #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
   #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
   #
-  # === Returns
+  # ### Returns
   #
   # An array, not paginated yet, of records of type Document
   #
@@ -125,11 +125,11 @@ class AdminSearchForm
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Search for purchases: used in Admin::PurchasesController
   #
-  # === Args
+  # ### Args
   #
   # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
@@ -139,7 +139,7 @@ class AdminSearchForm
   #   * +responsible+: if present the methods filters by responsible with an like on both sides
   #   * +email+: if present the methods filters by email with an like on both sides
   #
-  # === Returns
+  # ### Returns
   #
   # An array, not paginated yet, of records of type Document
   #
@@ -164,11 +164,11 @@ class AdminSearchForm
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Search for lessons: used in Admin::LessonsController
   #
-  # === Args
+  # ### Args
   #
   # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
@@ -182,7 +182,7 @@ class AdminSearchForm
   #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
   #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
   #
-  # === Returns
+  # ### Returns
   #
   # An array, not paginated yet, of records of type Lesson
   #
@@ -232,11 +232,11 @@ class AdminSearchForm
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Search for media elements: used in Admin::MediaElementsController
   #
-  # === Args
+  # ### Args
   #
   # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
@@ -250,7 +250,7 @@ class AdminSearchForm
   #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
   #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
   #
-  # === Returns
+  # ### Returns
   #
   # An array, not paginated yet, of records of type MediaElement
   #
@@ -297,11 +297,11 @@ class AdminSearchForm
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Search for users: used in Admin::UsersController
   #
-  # === Args
+  # ### Args
   #
   # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
@@ -315,7 +315,7 @@ class AdminSearchForm
   #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
   #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
   #
-  # === Returns
+  # ### Returns
   #
   # An array, not paginated yet, of records of type User.
   #
@@ -371,11 +371,11 @@ class AdminSearchForm
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Search for tags: used in Admin::SettingsController
   #
-  # === Args
+  # ### Args
   #
   # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
@@ -384,7 +384,7 @@ class AdminSearchForm
   #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
   #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
   #
-  # === Returns
+  # ### Returns
   #
   # An array, not paginated yet, of objects of type Tag
   #
@@ -406,11 +406,11 @@ class AdminSearchForm
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Search for users who are going to receive a massive notification: this method is used to update asynchronously the form to send a massive notification from the administrator. Used in Admin::MessagesController
   #
-  # === Args
+  # ### Args
   #
   # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
@@ -422,7 +422,7 @@ class AdminSearchForm
   #   * +user_ids+: list of users added manually to the list of recipients
   # * *count_only*: if set to +true+, the method returns only the number of users; if not otherwise specified, it's set to +false+
   #
-  # === Returns
+  # ### Returns
   #
   # Depending on the value of +count_only+, either the number of records found, or a not paginated array of records of kind User
   #

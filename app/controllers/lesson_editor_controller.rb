@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Actions for lesson editor.
 #
-# == Models used
+# ### Models used
 #
 # * Lesson
 # * Slide
@@ -31,15 +31,15 @@ class LessonEditorController < ApplicationController
   before_filter :initialize_documents_slides, :only => [:change_slide_position, :load_slide]
   layout 'lesson_editor'
   
-  # === Description
+  # ### Description
   #
   # Main page of the editor for a specific lesson
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonEditorController#check_available_for_user
   # * ApplicationController#initialize_lesson_with_owner
@@ -55,15 +55,15 @@ class LessonEditorController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Form to create a new lesson
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonEditorController#check_available_for_user
   # * LessonEditorController#initialize_subjects
@@ -71,15 +71,15 @@ class LessonEditorController < ApplicationController
   def new
   end
   
-  # === Description
+  # ### Description
   #
   # Action that creates a new lesson
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonEditorController#check_available_for_user
   #
@@ -95,15 +95,15 @@ class LessonEditorController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Action that updates general information (title, description, tags, subject) of an existing lesson
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonEditorController#check_available_for_user
   # * ApplicationController#initialize_lesson_with_owner
@@ -126,15 +126,15 @@ class LessonEditorController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Form to edit general information (title, description, tags, subject) of an existing lesson
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonEditorController#check_available_for_user
   # * ApplicationController#initialize_lesson_with_owner
@@ -148,15 +148,15 @@ class LessonEditorController < ApplicationController
     @subjects = Subject.order(:description)
   end
   
-  # === Description
+  # ### Description
   #
   # Action that adds a new slide to the lesson
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonEditorController#check_available_for_user
   # * LessonEditorController#initialize_lesson_with_owner_and_slide
@@ -169,15 +169,15 @@ class LessonEditorController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Action that saves the current slide without doing anything else
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonEditorController#check_available_for_user
   # * LessonEditorController#initialize_lesson_with_owner_and_slide
@@ -186,15 +186,15 @@ class LessonEditorController < ApplicationController
     save_current_slide if @ok
   end
   
-  # === Description
+  # ### Description
   #
   # Action that saves the current slide and leaving the editor right after
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonEditorController#check_available_for_user
   # * LessonEditorController#initialize_lesson_with_owner_and_slide
@@ -203,15 +203,15 @@ class LessonEditorController < ApplicationController
     save_current_slide if @ok
   end
   
-  # === Description
+  # ### Description
   #
   # Action that saves the current slide and redirecting to LessonEditorController#edit right after
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonEditorController#check_available_for_user
   # * LessonEditorController#initialize_lesson_with_owner_and_slide
@@ -220,15 +220,15 @@ class LessonEditorController < ApplicationController
     save_current_slide if @ok
   end
   
-  # === Description
+  # ### Description
   #
   # Action that deletes the current slide
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonEditorController#check_available_for_user
   # * LessonEditorController#initialize_lesson_with_owner_and_slide
@@ -241,15 +241,15 @@ class LessonEditorController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Action that changes the position of a slide
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonEditorController#check_available_for_user
   # * LessonEditorController#initialize_lesson_with_owner_and_slide
@@ -265,15 +265,15 @@ class LessonEditorController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Action that loads via Ajax a new slide
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * LessonEditorController#check_available_for_user
   # * LessonEditorController#initialize_lesson_with_owner_and_slide
@@ -282,11 +282,11 @@ class LessonEditorController < ApplicationController
   def load_slide
   end
   
-  # === Description
+  # ### Description
   #
   # Reloads videos and audios in the galleries if they are in conversion
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #

@@ -52,7 +52,7 @@ module Media
 
     # Called by the relative model attribute setter and getter
     #
-    # === Args
+    # ### Args
     #
     # * *model*: instance to which the media supplied will be associated
     # * *column*: column of the record table which will contain the media name

@@ -72,13 +72,14 @@ else
       rdoc.rdoc_dir = 'doc/app'
       rdoc.template = ENV['template'] if ENV['template']
       rdoc.title    = ENV['title'] || "DESY - Digital Educational SYstem application documentation"
-      rdoc.main     = 'doc/README.rdoc'
+      rdoc.main     = 'doc/README.md'
+      rdoc.markup   = 'markdown'
 
       rdoc.options << '--fmt' << 'sdoc'
       rdoc.options << '--all'
       rdoc.options << '--line-numbers'
       rdoc.options << '--charset' << 'utf-8'
-      rdoc.rdoc_files.include('README.rdoc')
+      rdoc.rdoc_files.include('doc/README.md')
       rdoc.rdoc_files.include('app/**/*.rb')
       rdoc.rdoc_files.include('lib/**/*.rb')
     }

@@ -24,7 +24,7 @@ module Media
   
         # Create a new Media::Video::Editing::TextToVideo instance
         #
-        # === Arguments
+        # ### Arguments
         #
         # * *text*: text which will be displayed in the video
         # * *output_without_extension*: output path without the extension
@@ -32,7 +32,7 @@ module Media
         # * *options*: hash with the options to be passed to Media::Image::Editing::Cmd::TextToImage
         # * *log_folder* _optional_: log folder path
         #
-        # === Examples
+        # ### Examples
         #
         #  Media::Video::Editing::TextToVideo.new('Hello', '/path/to/new/video/files', 3, { width: 100, height: 200 })
         def initialize(text, output_without_extension, duration, options = {}, log_folder = nil)

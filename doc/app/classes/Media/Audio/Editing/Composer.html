@@ -275,20 +275,11 @@ created using <a
 href="Parameters.html#method-i-convert_to_primitive_parameters">Media::Audio::Editing::Parameters#convert_to_primitive_parameters</a>
 . Example of the <code>params</code> hash:</p>
 
-<pre><code>{
-  :initial_audio =&gt; 12 # initial audio id,
-  :components =&gt; [
-    {
-      :audio =&gt; 123, # audio id
-      :from =&gt; 12, # start of the audio in seconds (the new audio will contain the audio component starting from this second)
-      :to =&gt; 24 # end of the audio in seconds (the new audio will contain the audio component ending to this second)
-    },
-    {
-      # etc...
-    }
-  ]
-}
-</code></pre>
+<p>{  :initial_audio =&gt; 12 # initial audio id,  :components =&gt; [ {
+:audio =&gt; 123, # audio id :from =&gt; 12, # start of the audio in
+seconds (the new audio will contain the audio component starting from this
+second) :to =&gt; 24 # end of the audio in seconds (the new audio will
+contain the audio component ending to this second) }, { # etc… } ]  }</p>
             </div>
           
           

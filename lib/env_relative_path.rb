@@ -7,7 +7,7 @@ require 'pathname'
 #
 # The method +env_relative_pathname+ returns a Pathname instance instead of a String.
 #
-# === Examples
+# ### Examples
 #
 #  # Rails.env == "production"
 #  env_relative_path('asd') #=> 'asd'

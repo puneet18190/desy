@@ -20,7 +20,7 @@ module Media
         
         # Creates a new Media::Audio::Editing::Concat instance, which can be used to concatenate various audio files.
         #
-        # === Arguments
+        # ### Arguments
         #
         # * *inputs*: an array with hash values containing the audio files per format
         # * *output_without_extension*: output path without extension
@@ -28,7 +28,7 @@ module Media
         # 
         # See {Examples}[rdoc-label:method-c-new-label-Examples] for usage examples.
         #
-        # === Examples
+        # ### Examples
         #
         #  Media::Audio::Editing::Concat.new([ { ogg: 'input.ogg', m4a: 'input.m4a'}, { ogg: 'input2.ogg', m4a: 'input2.m4a'} ], '/output/without/extension').run 
         #  #=> { m4a:'/output/without/extension.m4a', ogg:'/output/without/extension.ogg' }

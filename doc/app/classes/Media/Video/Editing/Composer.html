@@ -291,30 +291,22 @@ new video based on them</p>
           
           
             <div class="description">
-              <pre><code># video components (the components which will be manipulated in order to produce the new video)
-:components =&gt; [
-  {
-    :type =&gt; Media::Video::Editing::Parameters::VIDEO_COMPONENT, # component type (one between Media::Video::Editing::Parameters::COMPONENTS)
-    :video =&gt; 321 # video id
-    :from =&gt; 12, # start of the video in seconds (the new video will contain the video component starting from this second)
-    :to =&gt; 24, # end of the video in seconds (the new video will contain the video component ending to this second)
-  },
-  {
-    :type =&gt; Media::Video::Editing::Parameters::TEXT_COMPONENT, # as above
-    :content =&gt; &#39;Some text&#39;, # Contents of the text which will be converted to video
-    :duration =&gt; 14, # Duration of the displaying
-    :background_color =&gt; &#39;red&#39;, # Background color
-    :text_color =&gt; &#39;white&#39; # Text color
-  },
-  {
-    :type =&gt; Media::Video::Editing::Parameters::IMAGE_COMPONENT, # as above
-    :image =&gt; 456, # image id which will be converted to video
-    :duration =&gt; 2 # Duration of the displaying
-  }
-]
-</code></pre>
-
-<p>}</p>
+              <p># video components (the components which will be manipulated in order to
+produce the new video)  :components =&gt; [ { :type =&gt;
+Media::Video::Editing::Parameters::VIDEO_COMPONENT, # component type (one
+between Media::Video::Editing::Parameters::COMPONENTS) :video =&gt; 321 #
+video id :from =&gt; 12, # start of the video in seconds (the new video
+will contain the video component starting from this second) :to =&gt; 24, #
+end of the video in seconds (the new video will contain the video component
+ending to this second) }, { :type =&gt;
+Media::Video::Editing::Parameters::TEXT_COMPONENT, # as above :content
+=&gt; &#39;Some text&#39;, # Contents of the text which will be converted
+to video :duration =&gt; 14, # Duration of the displaying :background_color
+=&gt; &#39;red&#39;, # Background color :text_color =&gt; &#39;white&#39; #
+Text color }, { :type =&gt;
+Media::Video::Editing::Parameters::IMAGE_COMPONENT, # as above :image =&gt;
+456, # image id which will be converted to video :duration =&gt; 2 #
+Duration of the displaying } ] }</p>
             </div>
           
           

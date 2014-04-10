@@ -7,7 +7,7 @@ module Media
   # * Media::InTmpDir#in_tmp_dir takes a block in which you can access to a temporary folder path set to <tt>@tmp_dir</tt>
   # * Media::InTmpDir#tmp_path(path) returns the supplied +path+ relative to <tt>@tmp_dir</tt>
   #
-  # === Example
+  # ### Example
   #
   #  class VideoProcessing
   #    include Media::InTmpDir

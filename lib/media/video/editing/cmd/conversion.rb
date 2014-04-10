@@ -26,7 +26,7 @@ module Media
 
           # Creates a new Media::Video::Editing::Cmd::Conversion instance
           #
-          # === Arguments
+          # ### Arguments
           #
           # * *input_file*: the path of file to be converted
           # * *output_file*: the output path

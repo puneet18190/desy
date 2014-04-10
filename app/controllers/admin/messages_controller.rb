@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Controller of notifications and general messages in the administration section. See AdminController.
 #
-# == Models used
+# ### Models used
 #
 # * Location
 # * Notification
@@ -14,15 +14,15 @@ class Admin::MessagesController < AdminController
   
   layout 'admin'
   
-  # === Description
+  # ### Description
   #
   # Main page of the multiple notification sender
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authentication
   #
@@ -35,15 +35,15 @@ class Admin::MessagesController < AdminController
     @users = User.find(params[:users].gsub(/[\[\]\"]/, '').split(',')) if params[:users]
   end
   
-  # === Description
+  # ### Description
   #
   # Ajax action that updates the number of recipients in the multiple notification sender main page
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authentication
   #
@@ -65,15 +65,15 @@ class Admin::MessagesController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Main page of the reports (for actions related to reports, see Admin::ReportsController)
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authentication
   #

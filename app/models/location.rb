@@ -1,19 +1,19 @@
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +locations+. The class uses single table inheritance to be divided into different categories: the categories are configured into settings.yml (for each category the application creates a submodel)
 #
-# == Fields
+# ### Fields
 # 
 # * *name*: the name of the location
 # * *sti_type*: category to which the location belongs (for example city, region, etc)
 # * *ancestry*: list of ancestries of the location. If the location belongs to the top category, this field is +nil+; if it belongs to the second category from the top, the field is a string containing only the id of the parent location; for any other case, the field contains a string with the list top-bottom of all the ancestries of the location (ex. "1/5/13/18")
 # * *code*: a unique code for each sti_type (it is not compulsory)
 #
-# == Associations
+# ### Associations
 #
 # * *parent* the parent location if there is one, found with the field ancestry
 #
-# == Validations
+# ### Validations
 #
 # * *presence* and length of +name+ (maximum 255)
 # * *presence* of sti_type
@@ -22,11 +22,11 @@
 # * *inclusion* of sti_type in the list of allowed classes
 # * *internal* *validations* for the field ancestry (this are not very strict, because we don't want to overload the model of validations which must interact with an external gem; for the same reason there are not associations 'has_many' from here)
 #
-# == Callbacks
+# ### Callbacks
 #
 # None
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # None
 #
@@ -49,11 +49,11 @@ class Location < ActiveRecord::Base
   # List of submodels in string format
   SUBMODEL_NAMES = SUBMODELS.map { |a_class| a_class.to_s }
   
-  # === Description
+  # ### Description
   #
   # Used in the frontend, to extract the label of the location's category (translated with I18n)
   #
-  # === Returns
+  # ### Returns
   #
   # A string
   #
@@ -65,11 +65,11 @@ class Location < ActiveRecord::Base
     Location.label_at index
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the field +ancestry+, adding to its beginning the id of the current location
   #
-  # === Returns
+  # ### Returns
   #
   # A string of ids separated by '/'
   #
@@ -77,15 +77,15 @@ class Location < ActiveRecord::Base
     self.ancestry.nil? ? "#{self.id}/" : "#{self.ancestry}/#{self.id}/"
   end
   
-  # === Description
+  # ### Description
   #
   # Checks if the current location is a descendant of a given one
   #
-  # === Parameters
+  # ### Parameters
   #
   # An object of type Location
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -100,15 +100,15 @@ class Location < ActiveRecord::Base
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the label of the lowest category of location
   #
-  # === Args
+  # ### Args
   #
   # * *plural*: pluralizes the label (default = false)
   #
-  # === Returns
+  # ### Returns
   #
   # A string translated with I18n
   #
@@ -120,16 +120,16 @@ class Location < ActiveRecord::Base
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the label of a chosen category
   #
-  # === Args
+  # ### Args
   #
   # * *index*: the depth of the chosen category
   # * *plural*: pluralizes the label (default = false)
   #
-  # === Returns
+  # ### Returns
   #
   # A string translated with I18n
   #
@@ -141,11 +141,11 @@ class Location < ActiveRecord::Base
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Shortcut to return the name of the location
   #
-  # === Returns
+  # ### Returns
   #
   # A string
   #
@@ -153,11 +153,11 @@ class Location < ActiveRecord::Base
     name.to_s
   end
   
-  # === Description
+  # ### Description
   #
   # Returns an array of arrays, starting from the first ancestors until the direct children of the location. If the location is a leaf, the response stops to the location itself.
   #
-  # === Returns
+  # ### Returns
   #
   # An array of strings
   #
@@ -171,15 +171,15 @@ class Location < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Returns an array of hashes (:selected, which may be either an id or zero if no location is selected, and :content, which contains the effective locations): it starts from the first ancestors until the leaves. After the first children of the current location, the response loads empty arrays until the leaves.
   #
-  # === Args
+  # ### Args
   #
   # * *stop_before_leaves*: default = false, if true the response doesn't contain locations below the direct children of the current location
   #
-  # === Returns
+  # ### Returns
   #
   # An array of hashes
   #
@@ -209,15 +209,15 @@ class Location < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Given a hash of parameters with the names of the categories as keys, this method returns the Location corresponding to the last parameter (from parent to son) which is not null. Used in AdminSearchForm and in UsersController.
   #
-  # === Args
+  # ### Args
   #
   # * *params*: a hash which has the names of each category as keys
   #
-  # === Returns
+  # ### Returns
   #
   # An object of type Location
   #
@@ -236,11 +236,11 @@ class Location < ActiveRecord::Base
     Location.find_by_id loc_param
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the gender (masculine, feminine) of the location.
   #
-  # === Returns
+  # ### Returns
   #
   # The string 'masculine' or 'feminine'
   #

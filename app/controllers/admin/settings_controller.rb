@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Controller for minor tables, such as +tags+ and +subjects+. See AdminController
 #
-# == Models used
+# ### Models used
 #
 # * Subject
 # * SchoolLevel
@@ -13,15 +13,15 @@ class Admin::SettingsController < AdminController
   
   layout 'admin'
   
-  # === Description
+  # ### Description
   #
   # Main subpage to manage subjects
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -29,15 +29,15 @@ class Admin::SettingsController < AdminController
     @subjects = Subject.select('subjects.*, ((SELECT COUNT (*) FROM users_subjects WHERE users_subjects.subject_id = subjects.id) + (SELECT COUNT (*) FROM lessons WHERE lessons.subject_id = subjects.id)) AS instances').order(:description)
   end
   
-  # === Description
+  # ### Description
   #
   # Action that creates a new subject
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -46,15 +46,15 @@ class Admin::SettingsController < AdminController
     redirect_to '/admin/settings/subjects'
   end
   
-  # === Description
+  # ### Description
   #
   # Action that deletes a subject; it's possible to do it only if the subject doesn't have associated users or lessons (see Subject#is_deletable?)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -64,15 +64,15 @@ class Admin::SettingsController < AdminController
     subject.destroy if subject.is_deletable?
   end
   
-  # === Description
+  # ### Description
   #
   # Main subpage to manage school levels
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -80,15 +80,15 @@ class Admin::SettingsController < AdminController
     @school_levels = SchoolLevel.select('school_levels.*, ((SELECT COUNT (*) FROM users WHERE users.school_level_id = school_levels.id) + (SELECT COUNT (*) FROM lessons WHERE lessons.school_level_id = school_levels.id)) AS instances')
   end
   
-  # === Description
+  # ### Description
   #
   # Action that creates a new school level
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -97,15 +97,15 @@ class Admin::SettingsController < AdminController
     redirect_to '/admin/settings/school_levels'
   end
   
-  # === Description
+  # ### Description
   #
   # Action that deletes a school level; it's possible to do it only if the school level doesn't have associated users or lessons (see SchoolLevel#is_deletable?)
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -115,15 +115,15 @@ class Admin::SettingsController < AdminController
     level.destroy if level.is_deletable?
   end
   
-  # === Description
+  # ### Description
   #
   # Main subpage to manage tags. If params[:search] is present, it is used AdminSearchForm to perform the requested search.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -132,15 +132,15 @@ class Admin::SettingsController < AdminController
     @tags = tags.page(params[:page])
   end
   
-  # === Description
+  # ### Description
   #
   # Action that deletes a tag; with the cascade destruction, all taggings are destroyed too (in this case it's not validated the minimum amount of tags)
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -153,15 +153,15 @@ class Admin::SettingsController < AdminController
     redirect_to params[:back_url]
   end
   
-  # === Description
+  # ### Description
   #
   # 'Show' action for all the lessons associated to a given tag
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -175,15 +175,15 @@ class Admin::SettingsController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # 'Show' action for all the elements associated to a given tag
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -192,15 +192,15 @@ class Admin::SettingsController < AdminController
     @media_elements = @tag.get_media_elements(params[:page]).preload(:user, :taggings, {:taggings => :tag})
   end
   
-  # === Description
+  # ### Description
   #
   # 'Show' action for locations
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -216,15 +216,15 @@ class Admin::SettingsController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Updates a location
   #
-  # === Mode
+  # ### Mode
   #
   # JavaScript
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -239,15 +239,15 @@ class Admin::SettingsController < AdminController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Creates a new location
   #
-  # === Mode
+  # ### Mode
   #
   # JavaScript
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #

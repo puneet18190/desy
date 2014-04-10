@@ -1,21 +1,21 @@
 require 'lessons_media_elements_shared'
 
-# == Description
+# ### Description
 #
 # ActiveRecord class that corresponds to the table +virtual_classroom_lessons+: the table represents the instance of a lesson in the user's Virtual Classroom
 #
-# == Fields
+# ### Fields
 #
 # * *lesson_id*: id of the lesson
 # * *user_id*: id of the owner of the Virtual Classroom
 # * *position*: position of the lesson in the playlist (if it's +nil+, the lesson is not in the playlist)
 #
-# == Associations
+# ### Associations
 #
 # * *user*: reference to the User who owns the Virtual Classroom (*belongs_to*)
 # * *lesson*: reference to the Lesson linked in the Virtual Classroom (*belongs_to*)
 #
-# == Validations
+# ### Validations
 #
 # * *presence* with numericality greater than 0 and existence of associated record for +user_id+ and +lesson_id+
 # * *numericality* greater than 0 that allows nil for +position+
@@ -27,11 +27,11 @@ require 'lessons_media_elements_shared'
 # * *presence* *in* *playlist* *not* *allowed* if it's a new record
 # * *number* of lessons in the playlist must be smaller than the number configured
 #
-# == Callbacks
+# ### Callbacks
 #
 # None
 #
-# == Database callbacks
+# ### Database callbacks
 #
 # None
 #
@@ -49,11 +49,11 @@ class VirtualClassroomLesson < ActiveRecord::Base
   
   before_validation :init_validation
   
-  # === Description
+  # ### Description
   #
   # Returns the next lesson in the playlist
   #
-  # === Returns
+  # ### Returns
   #
   # An object of type VirtualClassroomLesson
   #
@@ -61,11 +61,11 @@ class VirtualClassroomLesson < ActiveRecord::Base
     self.new_record? ? nil : (self.in_playlist? ? VirtualClassroomLesson.where(:user_id => self.user_id, :position => (self.position + 1)).first : nil)
   end
   
-  # === Description
+  # ### Description
   #
   # Returns the previous lesson in the playlist
   #
-  # === Returns
+  # ### Returns
   #
   # An object of type VirtualClassroomLesson
   #
@@ -73,11 +73,11 @@ class VirtualClassroomLesson < ActiveRecord::Base
     self.new_record? ? nil : (self.in_playlist? ? VirtualClassroomLesson.where(:user_id => self.user_id, :position => (self.position - 1)).first : nil)
   end
   
-  # === Description
+  # ### Description
   #
   # Checks if the lesson is in the playlist (i.e. if the field +position+ is not null). Used in VirtualClassroomController
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -86,11 +86,11 @@ class VirtualClassroomLesson < ActiveRecord::Base
     !self.position.blank?
   end
   
-  # === Description
+  # ### Description
   #
   # Removes the lesson from the playlist and updates the positions of the other lessons. Used in VirtualClassroomController#remove_lesson_from_playlist.
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -121,11 +121,11 @@ class VirtualClassroomLesson < ActiveRecord::Base
     resp
   end
   
-  # === Description
+  # ### Description
   #
   # Adds a lesson to the playlist. Used in VirtualClassroomController#add_lesson_to_playlist.
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #
@@ -156,15 +156,15 @@ class VirtualClassroomLesson < ActiveRecord::Base
     true
   end
   
-  # === Description
+  # ### Description
   #
   # Sets a new position of this lesson inside the playlist. The position must be valid, i.e. it can't be < 1, > number of lessons in playlist. Used in VirtualClassroomController#change_position_in_playlist.
   #
-  # === Args
+  # ### Args
   #
   # * *x*: the new position
   #
-  # === Returns
+  # ### Returns
   #
   # A boolean
   #

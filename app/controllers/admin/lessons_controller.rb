@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Controller of lessons in the administration section. See AdminController.
 #
-# == Models used
+# ### Models used
 #
 # * AdminSearchForm
 # * Lesson
@@ -12,15 +12,15 @@ class Admin::LessonsController < AdminController
   
   layout 'admin'
   
-  # === Description
+  # ### Description
   #
   # Main page of the section 'lessons' in admin. If params[:search] is present, it is used AdminSearchForm to perform the requested search.
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -40,15 +40,15 @@ class Admin::LessonsController < AdminController
     @from_reporting = params[:from_reporting]
   end
   
-  # === Description
+  # ### Description
   #
   # Destroys a lesson without the normal filters
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #
@@ -58,15 +58,15 @@ class Admin::LessonsController < AdminController
     redirect_to params[:back_url]
   end
   
-  # === Description
+  # ### Description
   #
   # If the lesson is public, it unpublishes it; if it's private, it publishes it
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * ApplicationController#admin_authenticate
   #

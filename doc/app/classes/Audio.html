@@ -42,7 +42,7 @@
   
     <div class="description">
       
-<h2 id="class-Audio-label-Description">Description</h2>
+<h3 id="class-Audio-label-Description">Description</h3>
 
 <p>This class inherits from <a href="MediaElement.html">MediaElement</a>, and
 contains the specific methods needed for media elements of type
@@ -312,7 +312,7 @@ href="Media/Shared.html">Media::Shared</a>.</p>
 
 <h3 id="method-i-m4a_duration-3D-label-Args">Args</h3>
 <ul><li>
-<p><strong>m4a_duration</strong>: the duration to be set</p>
+<p><em>m4a_duration</em>: the duration to be set</p>
 </li></ul>
             </div>
           
@@ -360,9 +360,8 @@ href="Media/Shared.html">Media::Shared</a>.</p>
 
 <h3 id="method-i-m4a_url-label-Usage">Usage</h3>
 
-<pre><code>&lt;audio&gt;
-  &lt;source src=&quot;&lt;%= audio.m4a_url %&gt;&quot; type=&quot;audio/mp4&quot;&gt;
-&lt;/audio&gt;</code></pre>
+<p>&lt;audio&gt;  &lt;source src=“&lt;%= audio.m4a_url %&gt;”
+type=“audio/mp4”&gt;  &lt;/audio&gt;</p>
             </div>
           
           
@@ -418,7 +417,9 @@ used without risks.</p>
 
 <h3 id="method-i-min_duration-label-Usage">Usage</h3>
 
-<pre><code>&lt;div class=&quot;audioPlayer _instance_of_player&quot; data-media-type=&quot;audio&quot; data-initialized=&quot;false&quot; data-duration=&quot;&lt;%= audio.min_duration %&gt;&quot;&gt;</code></pre>
+<p>&lt;div class=“audioPlayer _instance_of_player” data-media-type=“audio”
+data-initialized=“false” data-duration=“&lt;%= audio.min_duration
+%&gt;”&gt;</p>
             </div>
           
           
@@ -504,7 +505,7 @@ used without risks.</p>
 
 <h3 id="method-i-ogg_duration-3D-label-Args">Args</h3>
 <ul><li>
-<p><strong>ogg_duration</strong>: the duration to be set</p>
+<p><em>ogg_duration</em>: the duration to be set</p>
 </li></ul>
             </div>
           
@@ -552,9 +553,8 @@ used without risks.</p>
 
 <h3 id="method-i-ogg_url-label-Usage">Usage</h3>
 
-<pre><code>&lt;audio&gt;
-  &lt;source src=&quot;&lt;%= audio.ogg_url %&gt;&quot; type=&quot;audio/ogg&quot;&gt;
-&lt;/audio&gt;</code></pre>
+<p>&lt;audio&gt;  &lt;source src=“&lt;%= audio.ogg_url %&gt;”
+type=“audio/ogg”&gt;  &lt;/audio&gt;</p>
             </div>
           
           
@@ -604,12 +604,11 @@ converted (an animated gif).</p>
 
 <h3 id="method-i-placeholder_url-label-Args">Args</h3>
 <ul><li>
-<p><strong>type</strong>: the type of placeholder required: it can be</p>
-<ul><li>
+<p><em>type</em>: the type of placeholder required: it can be</p>
+</li><li>
 <p><code>:thumb</code>: used in the expanded media element</p>
 </li><li>
 <p><code>:lesson_viewer</code>: used in the lesson viewer</p>
-</li></ul>
 </li></ul>
 
 <h3 id="method-i-placeholder_url-label-Returns">Returns</h3>
@@ -618,11 +617,10 @@ converted (an animated gif).</p>
 
 <h3 id="method-i-placeholder_url-label-Usage">Usage</h3>
 
-<pre><code>&lt;% if audio.converted? %&gt;
-  &lt;%= render :partial =&gt; &#39;shared/players/custom/audio&#39;, :locals =&gt; {:audio =&gt; audio} %&gt;
-&lt;% else %&gt;
-  &lt;%= image_tag audio.placeholder_url(:lesson_viewer) %&gt;
-&lt;% end %&gt;</code></pre>
+<p>&lt;% if audio.converted? %&gt;  &lt;%= render :partial =&gt;
+&#39;shared/players/custom/audio&#39;, :locals =&gt; {:audio =&gt; audio}
+%&gt;  &lt;% else %&gt;  &lt;%= image_tag
+audio.placeholder_url(:lesson_viewer) %&gt;  &lt;% end %&gt;</p>
             </div>
           
           
@@ -675,7 +673,7 @@ href="Audio.html#method-i-placeholder_url">#placeholder_url</a> with
 
 <h3 id="method-i-thumb_url-label-Usage">Usage</h3>
 
-<pre><code>&lt;%= image_tag audio.thumb_url %&gt;</code></pre>
+<p>&lt;%= image_tag audio.thumb_url %&gt;</p>
             </div>
           
           

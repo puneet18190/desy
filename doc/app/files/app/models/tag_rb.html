@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>app/models/tag.rb</li>
-            <li>Last modified: 2014-04-03 12:38:38 +0200</li>
+            <li>Last modified: 2014-04-10 16:21:40 +0200</li>
         </ul>
     </div>
 
@@ -32,45 +32,44 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h3 id="label-Description">Description</h3>
 
 <p>ActiveRecord class that corresponds to the table <code>tags</code>.</p>
 
-<h2 id="label-Fields">Fields</h2>
+<h3 id="label-Fields">Fields</h3>
 <ul><li>
-<p><strong>word</strong>: the tag contained in the object</p>
+<p><em>word</em>: the tag contained in the object</p>
 </li></ul>
 
-<h2 id="label-Associations">Associations</h2>
+<h3 id="label-Associations">Associations</h3>
 <ul><li>
-<p><strong>taggings</strong>: list of instances associated to this tag (see <a
-href="../../../classes/Tagging.html">Tagging</a>)
-(<strong>has_many</strong>)</p>
+<p><em>taggings</em>: list of instances associated to this tag (see <a
+href="../../../classes/Tagging.html">Tagging</a>) (<em>has_many</em>)</p>
 </li></ul>
 
-<h2 id="label-Validations">Validations</h2>
+<h3 id="label-Validations">Validations</h3>
 <ul><li>
-<p><strong>presence</strong> of <code>word</code></p>
+<p><em>presence</em> of <code>word</code></p>
 </li><li>
-<p><strong>length</strong> of <code>word</code> minimum and maximum allowed
-are configured in settings.yml</p>
+<p><em>length</em> of <code>word</code> minimum and maximum allowed are
+configured in settings.yml</p>
 </li><li>
-<p><strong>uniqueness</strong> of <code>word</code></p>
+<p><em>uniqueness</em> of <code>word</code></p>
 </li><li>
-<p><strong>modifications</strong> <strong>not</strong>
-<strong>available</strong> for <code>word</code></p>
+<p><em>modifications</em> <em>not</em> <em>available</em> for
+<code>word</code></p>
 </li></ul>
 
-<h2 id="label-Callbacks">Callbacks</h2>
+<h3 id="label-Callbacks">Callbacks</h3>
 <ol><li>
-<p><strong>before_destroy</strong> destroys associated taggings (this callback
-is written manually because before destroying a <a
+<p><em>before_destroy</em> destroys associated taggings (this callback is
+written manually because before destroying a <a
 href="../../../classes/Tagging.html">Tagging</a> it&#39;s necessary to
 switch off the callback that destroy the assocaited tag if it was the last
 tagging associated)</p>
 </li></ol>
 
-<h2 id="label-Database+callbacks">Database callbacks</h2>
+<h3 id="label-Database+callbacks">Database callbacks</h3>
 
 <p>None</p>
 

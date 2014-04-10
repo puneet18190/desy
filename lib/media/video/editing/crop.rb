@@ -19,7 +19,7 @@ module Media
   
         # Create a new Media::Video::Editing::Crop instance
         #
-        # === Arguments
+        # ### Arguments
         #
         # * *inputs*: hash with the input paths per video format
         # * *output_without_extension*: output path without the extension
@@ -27,7 +27,7 @@ module Media
         # * *duration*: duration of the cropped file (in seconds)
         # * *log_folder* _optional_: log folder path
         #
-        # === Examples
+        # ### Examples
         #
         #  Media::Video::Editing::Crop.new({ mp4: '/path/to/media.mp4', webm: '/path/to/media.webm' }, '/path/to/cropped/files', 13, 20)
         def initialize(inputs, output_without_extension, start, duration, log_folder = nil)

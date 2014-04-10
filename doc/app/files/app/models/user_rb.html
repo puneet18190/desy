@@ -23,7 +23,7 @@
         </h1>
         <ul class="files">
             <li>app/models/user.rb</li>
-            <li>Last modified: 2014-04-03 12:38:38 +0200</li>
+            <li>Last modified: 2014-04-10 16:21:40 +0200</li>
         </ul>
     </div>
 
@@ -32,43 +32,42 @@
   
     <div class="description">
       
-<h2 id="label-Description">Description</h2>
+<h3 id="label-Description">Description</h3>
 
 <p>ActiveRecord class that corresponds to the table <code>users</code>.</p>
 
-<h2 id="label-Fields">Fields</h2>
+<h3 id="label-Fields">Fields</h3>
 <ul><li>
-<p><strong>email</strong>: unique identifier for the user, and e-mail address</p>
+<p><em>email</em>: unique identifier for the user, and e-mail address</p>
 </li><li>
-<p><strong>name</strong>: name of the user</p>
+<p><em>name</em>: name of the user</p>
 </li><li>
-<p><strong>surname</strong>: surname of the user</p>
+<p><em>surname</em>: surname of the user</p>
 </li><li>
-<p><strong>school_level_id</strong>: reference to the user&#39;s <a
+<p><em>school_level_id</em>: reference to the user&#39;s <a
 href="../../../classes/SchoolLevel.html">SchoolLevel</a></p>
 </li><li>
-<p><strong>encrypted_password</strong>: password, encrypted with SecureRandom</p>
+<p><em>encrypted_password</em>: password, encrypted with SecureRandom</p>
 </li><li>
-<p><strong>confirmed</strong>: boolean, <code>true</code> if the user has
-completed the registration procedure clicking on a link he received by
-email</p>
+<p><em>confirmed</em>: boolean, <code>true</code> if the user has completed
+the registration procedure clicking on a link he received by email</p>
 </li><li>
-<p><strong>active</strong>: boolean, false if the user is banned</p>
+<p><em>active</em>: boolean, false if the user is banned</p>
 </li><li>
-<p><strong>location_id</strong>: location of the user</p>
+<p><em>location_id</em>: location of the user</p>
 </li><li>
-<p><strong>purchase_id</strong>: references to the <a
+<p><em>purchase_id</em>: references to the <a
 href="../../../classes/Purchase.html">Purchase</a> that allows the user to
 log in</p>
 </li><li>
-<p><strong>confirmation_token</strong>: token used for confirmation, generated
+<p><em>confirmation_token</em>: token used for confirmation, generated
 automaticly</p>
 </li><li>
-<p><strong>password_token</strong>: token used for resetting the password,
-generated automaticly</p>
+<p><em>password_token</em>: token used for resetting the password, generated
+automaticly</p>
 </li><li>
-<p><strong>metadata</strong>:</p>
-<ul><li>
+<p><em>metadata</em>:</p>
+</li><li>
 <p><code>video_editor_cache</code>: cache of the <a
 href="../../../classes/Video.html">Video</a> Editor (screenshot of the last
 video edited)</p>
@@ -77,107 +76,101 @@ video edited)</p>
 href="../../../classes/Audio.html">Audio</a> Editor (screenshot of the last
 audio edited)</p>
 </li></ul>
-</li></ul>
 
-<h2 id="label-Associations">Associations</h2>
+<h3 id="label-Associations">Associations</h3>
 <ul><li>
-<p><strong>bookmarks</strong>: links created by this user elements or lessons
-(see <a href="../../../classes/Bookmark.html">Bookmark</a>)
-(<strong>has_many</strong>)</p>
+<p><em>bookmarks</em>: links created by this user elements or lessons (see <a
+href="../../../classes/Bookmark.html">Bookmark</a>) (<em>has_many</em>)</p>
 </li><li>
-<p><strong>notifications</strong>: notifications of this user (see <a
+<p><em>notifications</em>: notifications of this user (see <a
 href="../../../classes/Notification.html">Notification</a>)
-(<strong>has_many</strong>)</p>
+(<em>has_many</em>)</p>
 </li><li>
-<p><strong>likes</strong>: list of “I like you” registered by this user on
-other users&#39; lessons (see <a
-href="../../../classes/Like.html">Like</a>) (<strong>has_many</strong>)</p>
+<p><em>likes</em>: list of “I like you” registered by this user on other
+users&#39; lessons (see <a href="../../../classes/Like.html">Like</a>)
+(<em>has_many</em>)</p>
 </li><li>
-<p><strong>lessons</strong>: list of lessons created by this user (see <a
-href="../../../classes/Lesson.html">Lesson</a>) (<strong>has_many</strong>)</p>
+<p><em>lessons</em>: list of lessons created by this user (see <a
+href="../../../classes/Lesson.html">Lesson</a>) (<em>has_many</em>)</p>
 </li><li>
-<p><strong>media_elements</strong>: list of elements loaded or created by this
-user (includes also public elements, which are moved into the public
-database of the application, but they still record who was the user who
-first created them (see <a
-href="../../../classes/MediaElement.html">MediaElement</a>, <a
+<p><em>media_elements</em>: list of elements loaded or created by this user
+(includes also public elements, which are moved into the public database of
+the application, but they still record who was the user who first created
+them (see <a href="../../../classes/MediaElement.html">MediaElement</a>, <a
 href="../../../classes/Audio.html">Audio</a>, <a
 href="../../../classes/Image.html">Image</a>, <a
-href="../../../classes/Video.html">Video</a>) (<strong>has_many</strong>)</p>
+href="../../../classes/Video.html">Video</a>) (<em>has_many</em>)</p>
 </li><li>
-<p><strong>reports</strong>: reports sent by this user about elements or
-lessons (see <a href="../../../classes/Report.html">Report</a>)
-(<strong>has_many</strong>)</p>
+<p><em>reports</em>: reports sent by this user about elements or lessons (see
+<a href="../../../classes/Report.html">Report</a>) (<em>has_many</em>)</p>
 </li><li>
-<p><strong>users_subjects</strong>: list of instances of this subject
-associated to this user through records of <a
+<p><em>users_subjects</em>: list of instances of this subject associated to
+this user through records of <a
 href="../../../classes/UsersSubject.html">UsersSubject</a>
-(<strong>has_many</strong>)</p>
+(<em>has_many</em>)</p>
 </li><li>
-<p><strong>subjects</strong>: list of subjects associated to this user
-(through the association <code>users_subjects</code>) (see <a
+<p><em>subjects</em>: list of subjects associated to this user (through the
+association <code>users_subjects</code>) (see <a
 href="../../../classes/Subject.html">Subject</a>)
-(<strong>has_and_belongs_to_many</strong>)</p>
+(<em>has_and_belongs_to_many</em>)</p>
 </li><li>
-<p><strong>virtual_classroom_lessons</strong>: list of lessons present in the
+<p><em>virtual_classroom_lessons</em>: list of lessons present in the
 user&#39;s Virtual Classroom (see <a
 href="../../../classes/VirtualClassroomLesson.html">VirtualClassroomLesson</a>)
-(<strong>has_many</strong>)</p>
+(<em>has_many</em>)</p>
 </li><li>
-<p><strong>mailing_list_groups</strong>: all the mailing list groups that this
-user created (see <a
+<p><em>mailing_list_groups</em>: all the mailing list groups that this user
+created (see <a
 href="../../../classes/MailingListGroup.html">MailingListGroup</a>)
-(<strong>has_many</strong>)</p>
+(<em>has_many</em>)</p>
 </li><li>
-<p><strong>school_level</strong>: the <a
+<p><em>school_level</em>: the <a
 href="../../../classes/SchoolLevel.html">SchoolLevel</a> associated to this
-user (<strong>belongs_to</strong>)</p>
+user (<em>belongs_to</em>)</p>
 </li><li>
-<p><strong>location</strong>: the <a
+<p><em>location</em>: the <a
 href="../../../classes/Location.html">Location</a> associated to this user
-(<strong>belongs_to</strong>, it can be nil)</p>
+(<em>belongs_to</em>, it can be nil)</p>
 </li><li>
-<p><strong>documents</strong>: documents uploaded by the user (see <a
-href="../../../classes/Document.html">Document</a>)
-(<strong>has_many</strong>)</p>
+<p><em>documents</em>: documents uploaded by the user (see <a
+href="../../../classes/Document.html">Document</a>) (<em>has_many</em>)</p>
 </li><li>
-<p><strong>purchase</strong>: the <a
+<p><em>purchase</em>: the <a
 href="../../../classes/Purchase.html">Purchase</a> allowing the user to be
 logged in with his account</p>
 </li></ul>
 
-<h2 id="label-Validations">Validations</h2>
+<h3 id="label-Validations">Validations</h3>
 <ul><li>
-<p><strong>presence</strong> of <code>email</code>, <code>name</code>,
+<p><em>presence</em> of <code>email</code>, <code>name</code>,
 <code>surname</code></p>
 </li><li>
-<p><strong>presence</strong> with numericality greater than 0 and presence of
+<p><em>presence</em> with numericality greater than 0 and presence of
 associated object for <code>school_level_id</code></p>
 </li><li>
-<p><strong>numericality</strong> greater than 0 and allow_nil and eventually
-presence of associated object for <code>location_id</code> and
+<p><em>numericality</em> greater than 0 and allow_nil and eventually presence
+of associated object for <code>location_id</code> and
 <code>purchase_id</code> (for the location, it&#39;s also checked that the
 subclass is the last in the locations chain, see <a
 href="../../../classes/Location.html">Location</a>)</p>
 </li><li>
-<p><strong>confirmation</strong> of <code>encrypted_password</code> (the
-attribute password must coincide with its confirmation provided by the
-user): this validation uses the private attribute
-<code>password_confirmation</code>, associated to password</p>
+<p><em>confirmation</em> of <code>encrypted_password</code> (the attribute
+password must coincide with its confirmation provided by the user): this
+validation uses the private attribute <code>password_confirmation</code>,
+associated to password</p>
 </li><li>
-<p><strong>confirmation</strong> of <code>email</code> (the attribute email
-must coincide with its confirmation provided by the user): this validation
-uses the private attribute <code>email_confirmation</code></p>
+<p><em>confirmation</em> of <code>email</code> (the attribute email must
+coincide with its confirmation provided by the user): this validation uses
+the private attribute <code>email_confirmation</code></p>
 </li><li>
-<p><strong>presence</strong> of at least one associated record of <a
+<p><em>presence</em> of at least one associated record of <a
 href="../../../classes/UsersSubject.html">UsersSubject</a></p>
 </li><li>
-<p><strong>uniqueness</strong> of <code>email</code></p>
+<p><em>uniqueness</em> of <code>email</code></p>
 </li><li>
-<p><strong>length</strong> of <code>name</code> and <code>surname</code>
-(maximum 255)</p>
+<p><em>length</em> of <code>name</code> and <code>surname</code> (maximum 255)</p>
 </li><li>
-<p><strong>length</strong> of the attribute password associated to
+<p><em>length</em> of the attribute password associated to
 <code>encrypted_password</code> (the maximum is configured in settings.yml,
 same as the minimum, but the minimum can be null, in which case the minimum
 size is one character). Since this attribute doesn&#39;t correspond to a
@@ -186,33 +179,31 @@ user is updated, instead, the validation allows <code>nil</code> and
 <code>blank</code> values, in case the user doesn&#39;t want to change his
 password</p>
 </li><li>
-<p><strong>inclusion</strong> of <code>active</code> and
-<code>confirmed</code> in [<code>true</code>, <code>false</code>]</p>
+<p><em>inclusion</em> of <code>active</code> and <code>confirmed</code> in
+[<code>true</code>, <code>false</code>]</p>
 </li><li>
-<p><strong>correctness</strong> of <code>email</code> as an e-mail address</p>
+<p><em>correctness</em> of <code>email</code> as an e-mail address</p>
 </li><li>
-<p><strong>modifications</strong> <strong>not</strong>
-<strong>available</strong> for <code>email</code> if the user is not a new
-record</p>
+<p><em>modifications</em> <em>not</em> <em>available</em> for
+<code>email</code> if the user is not a new record</p>
 </li><li>
-<p><strong>acceptance</strong> of each policy configured in settings.yml</p>
+<p><em>acceptance</em> of each policy configured in settings.yml</p>
 </li><li>
-<p><strong>control</strong> that accounts_number in purchase is less than
-users count associated to that <a
-href="../../../classes/Purchase.html">Purchase</a> (if purchase_id is not
-nil)</p>
+<p><em>control</em> that accounts_number in purchase is less than users count
+associated to that <a href="../../../classes/Purchase.html">Purchase</a>
+(if purchase_id is not nil)</p>
 </li></ul>
 
-<h2 id="label-Callbacks">Callbacks</h2>
+<h3 id="label-Callbacks">Callbacks</h3>
 <ol><li>
-<p><strong>before_destroy</strong> destroys associated instances of subjects
-(see <a href="../../../classes/UsersSubject.html">UsersSubject</a>)</p>
+<p><em>before_destroy</em> destroys associated instances of subjects (see <a
+href="../../../classes/UsersSubject.html">UsersSubject</a>)</p>
 </li></ol>
 
-<h2 id="label-Database+callbacks">Database callbacks</h2>
+<h3 id="label-Database+callbacks">Database callbacks</h3>
 <ol><li>
-<p><strong>cascade</strong> <strong>destruction</strong> for the associated
-table <a href="../../../classes/MailingListGroup.html">MailingListGroup</a></p>
+<p><em>cascade</em> <em>destruction</em> for the associated table <a
+href="../../../classes/MailingListGroup.html">MailingListGroup</a></p>
 </li></ol>
 
     </div>

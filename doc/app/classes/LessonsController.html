@@ -40,7 +40,7 @@
   
     <div class="description">
       
-<h2 id="class-LessonsController-label-Description">Description</h2>
+<h3 id="class-LessonsController-label-Description">Description</h3>
 
 <p>Controller for all the actions related to lessons and their buttons. The
 only two action buttons excluded here are <a
@@ -48,20 +48,15 @@ href="VirtualClassroomController.html#method-i-add_lesson">VirtualClassroomContr
 and <a
 href="VirtualClassroomController.html#method-i-remove_lesson">VirtualClassroomController#remove_lesson</a>.
 All over this controller we use the constant keywords defined in <a
-href="ButtonDestinations.html">ButtonDestinations</a>, namely:</p>
-<ol><li>
-<p><strong>found_lesson</strong> (or simply <strong>found</strong>) for a
-lesson seen in a results list of the search engine</p>
-</li><li>
-<p><strong>compact_lesson</strong> (or simply <strong>compact</strong>) for a
-lesson seen in the compact mode</p>
-</li><li>
-<p><strong>expanded_lesson</strong> (or simply <strong>expanded</strong>) for
-a lesson seen in expanded mode (this happens only in the dashboard, see <a
+href="ButtonDestinations.html">ButtonDestinations</a>, namely: 1.
+<em>found_lesson</em> (or simply <em>found</em>) for a lesson seen in a
+results list of the search engine 2. <em>compact_lesson</em> (or simply
+<em>compact</em>) for a lesson seen in the compact mode 3.
+<em>expanded_lesson</em> (or simply <em>expanded</em>) for a lesson seen in
+expanded mode (this happens only in the dashboard, see <a
 href="DashboardController.html">DashboardController</a>)</p>
-</li></ol>
 
-<h2 id="class-LessonsController-label-Models+used">Models used</h2>
+<h3 id="class-LessonsController-label-Models+used">Models used</h3>
 <ul><li>
 <p><a href="Lesson.html">Lesson</a></p>
 </li><li>
@@ -280,14 +275,10 @@ href="DashboardController.html">DashboardController</a>)</p>
             <div class="description">
               <h3 id="method-i-add-label-Description">Description</h3>
 
-<p>Adds a link of this lesson to your section.</p>
-<ul><li>
-<p><strong>found</strong>: reloads the lesson in compact mode</p>
-</li><li>
-<p><strong>compact</strong>: <em>[this action doesn&#39;t occur]</em></p>
-</li><li>
-<p><strong>expanded</strong>: removes the lesson and reloads the whole page</p>
-</li></ul>
+<p>Adds a link of this lesson to your section. * <em>found</em>: reloads the
+lesson in compact mode * <em>compact</em>: <em>[this action doesn&#39;t
+occur]</em> * <em>expanded</em>: removes the lesson and reloads the whole
+page</p>
 
 <h3 id="method-i-add-label-Mode">Mode</h3>
 
@@ -418,14 +409,10 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
             <div class="description">
               <h3 id="method-i-destroy-label-Description">Description</h3>
 
-<p>Deletes definitively a lesson.</p>
-<ul><li>
-<p><strong>found</strong>: removes the lesson and reloads the whole page</p>
-</li><li>
-<p><strong>compact</strong>: removes the lesson and reloads the whole page</p>
-</li><li>
-<p><strong>expanded</strong>: <em>[this action doesn&#39;t occur]</em></p>
-</li></ul>
+<p>Deletes definitively a lesson. * <em>found</em>: removes the lesson and
+reloads the whole page * <em>compact</em>: removes the lesson and reloads
+the whole page * <em>expanded</em>: <em>[this action doesn&#39;t
+occur]</em></p>
 
 <h3 id="method-i-destroy-label-Mode">Mode</h3>
 
@@ -485,14 +472,9 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
             <div class="description">
               <h3 id="method-i-dislike-label-Description">Description</h3>
 
-<p>Removes your &#39;I like it&#39; from the lesson</p>
-<ul><li>
-<p><strong>found</strong>: reloads the lesson in compact mode</p>
-</li><li>
-<p><strong>compact</strong>: reloads the lesson in compact mode</p>
-</li><li>
-<p><strong>expanded</strong>: reloads the lesson in expanded mode</p>
-</li></ul>
+<p>Removes your &#39;I like it&#39; from the lesson * <em>found</em>: reloads
+the lesson in compact mode * <em>compact</em>: reloads the lesson in
+compact mode * <em>expanded</em>: reloads the lesson in expanded mode</p>
 
 <h3 id="method-i-dislike-label-Mode">Mode</h3>
 
@@ -557,8 +539,8 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
             <div class="description">
               <h3 id="method-i-dont_notify_modification-label-Description">Description</h3>
 
-<p>Doesn&#39;t send any notification and sets the lesson as
-<strong>notified</strong> (using <a
+<p>Doesn&#39;t send any notification and sets the lesson as <em>notified</em>
+(using <a
 href="Lesson.html#method-i-dont_notify_changes">Lesson#dont_notify_changes</a>)</p>
 
 <h3 id="method-i-dont_notify_modification-label-Mode">Mode</h3>
@@ -670,14 +652,9 @@ href="LessonsController.html#method-i-initialize_paginator">#initialize_paginato
             <div class="description">
               <h3 id="method-i-like-label-Description">Description</h3>
 
-<p>Records a &#39;I like it&#39; on the lesson</p>
-<ul><li>
-<p><strong>found</strong>: reloads the lesson in compact mode</p>
-</li><li>
-<p><strong>compact</strong>: reloads the lesson in compact mode</p>
-</li><li>
-<p><strong>expanded</strong>: reloads the lesson in expanded mode</p>
-</li></ul>
+<p>Records a &#39;I like it&#39; on the lesson * <em>found</em>: reloads the
+lesson in compact mode * <em>compact</em>: reloads the lesson in compact
+mode * <em>expanded</em>: reloads the lesson in expanded mode</p>
 
 <h3 id="method-i-like-label-Mode">Mode</h3>
 
@@ -743,7 +720,7 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
               <h3 id="method-i-notify_modification-label-Description">Description</h3>
 
 <p>Sends a notification about the details of the modification and sets the
-lesson as <strong>notified</strong> (using <a
+lesson as <em>notified</em> (using <a
 href="Lesson.html#method-i-notify_changes">Lesson#notify_changes</a>)</p>
 
 <h3 id="method-i-notify_modification-label-Mode">Mode</h3>
@@ -797,14 +774,9 @@ href="ApplicationController.html#method-i-initialize_lesson_with_owner">Applicat
               <h3 id="method-i-publish-label-Description">Description</h3>
 
 <p>Calls <a href="Lesson.html#method-i-publish">Lesson#publish</a> on the
-lesson.</p>
-<ul><li>
-<p><strong>found</strong>: reloads the lesson in compact mode</p>
-</li><li>
-<p><strong>compact</strong>: reloads the lesson in compact mode</p>
-</li><li>
-<p><strong>expanded</strong>: <em>[this action doesn&#39;t occur]</em></p>
-</li></ul>
+lesson. * <em>found</em>: reloads the lesson in compact mode *
+<em>compact</em>: reloads the lesson in compact mode * <em>expanded</em>:
+<em>[this action doesn&#39;t occur]</em></p>
 
 <h3 id="method-i-publish-label-Mode">Mode</h3>
 
@@ -878,14 +850,10 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
             <div class="description">
               <h3 id="method-i-remove-label-Description">Description</h3>
 
-<p>Removes the link of this lesson from your section.</p>
-<ul><li>
-<p><strong>found</strong>: reloads the lesson in compact mode</p>
-</li><li>
-<p><strong>compact</strong>: removes the lesson and reloads the whole page</p>
-</li><li>
-<p><strong>expanded</strong>: <em>[this action doesn&#39;t occur]</em></p>
-</li></ul>
+<p>Removes the link of this lesson from your section. * <em>found</em>:
+reloads the lesson in compact mode * <em>compact</em>: removes the lesson
+and reloads the whole page * <em>expanded</em>: <em>[this action
+doesn&#39;t occur]</em></p>
 
 <h3 id="method-i-remove-label-Mode">Mode</h3>
 
@@ -959,14 +927,9 @@ href="ApplicationController.html#method-i-initialize_lesson_destination">Applica
               <h3 id="method-i-unpublish-label-Description">Description</h3>
 
 <p>Calls <a href="Lesson.html#method-i-unpublish">Lesson#unpublish</a> on the
-lesson.</p>
-<ul><li>
-<p><strong>found</strong>: reloads the lesson in compact mode</p>
-</li><li>
-<p><strong>compact</strong>: reloads the lesson in compact mode</p>
-</li><li>
-<p><strong>expanded</strong>: <em>[this action doesn&#39;t occur]</em></p>
-</li></ul>
+lesson. * <em>found</em>: reloads the lesson in compact mode *
+<em>compact</em>: reloads the lesson in compact mode * <em>expanded</em>:
+<em>[this action doesn&#39;t occur]</em></p>
 
 <h3 id="method-i-unpublish-label-Mode">Mode</h3>
 

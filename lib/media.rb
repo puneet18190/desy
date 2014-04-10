@@ -1,9 +1,9 @@
 #
-# == Description
+# ### Description
 #
 # Main module of the media elements management, processing and editing implementation.
 # 
-# == Configuration
+# ### Configuration
 #
 # For details about the configuration, see Media::CONFIG .
 #

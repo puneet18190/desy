@@ -42,7 +42,7 @@
   
     <div class="description">
       
-<h2 id="class-Image-label-Description">Description</h2>
+<h3 id="class-Image-label-Description">Description</h3>
 
 <p>This class inherits from <a href="MediaElement.html">MediaElement</a>, and
 contains the specific methods needed for media elements of type
@@ -442,9 +442,9 @@ href="ImageEditorController.html#method-i-add_text">ImageEditorController#add_te
 
 <h3 id="method-i-add_text-label-Arguments">Arguments</h3>
 <ul><li>
-<p><strong>texts</strong>: an array of hashes, one for each text added. Each
-hash has the keys</p>
-<ul><li>
+<p><em>texts</em>: an array of hashes, one for each text added. Each hash has
+the keys</p>
+</li><li>
 <p><code>font_size</code>: the font size</p>
 </li><li>
 <p><code>coord_x</code>: horizontal coordinates of the top left corner of the
@@ -454,7 +454,6 @@ text</p>
 text</p>
 </li><li>
 <p><code>color</code>: hexagonal color of the text</p>
-</li></ul>
 </li></ul>
 
 <h3 id="method-i-add_text-label-Returns">Returns</h3>
@@ -513,72 +512,52 @@ text</p>
             <div class="description">
               <h3 id="method-i-background_position-label-Description">Description</h3>
 
-<p>Elaborates the CSS background-position property in order to  position the
+<p>Elaborates the CSS background-position property in order to position the
 image when used as background of a HTML element. The returned property is
 in percentage so it can be used regardless of the container size.</p>
 
 <p>Calcolo background-position immagine orizzontale e spalmata</p>
 
-<pre><code>o    offset dell&#39;immagine
-hc   altezza del contenitore
-hi   altezza dell&#39;immagine
-s    centro di posizione
-x    valore di background-position in percentuale
+<p>o offset dell&#39;immagine  hc altezza del contenitore  hi altezza
+dell&#39;immagine  s centro di posizione  x valore di background-position
+in percentuale</p>
 
-          immagine
-─   ┌──────────────────┐       ─
-    │                  │     
-    │                  │     
-o   │                  │     
-    │                  │     
-    │                  │     
-    │                  │     
-    │   contenitore    │     
-─   ┢━━━━━━━━━━━━━━━━━━┪   ─ 
-    ┃                  ┃     
-    ┃                  ┃   hc  hi
-    ┃                  ┃     
-s ─ ┃                  ┃     
-    ┡━━━━━━━━━━━━━━━━━━┩   ─ 
-    │                  │     
-    └──────────────────┘       ─
+<pre><code>        immagine</code></pre>
 
-o va da 0 a hi - hc
-il centro di posizione va da 0 a hc
-dunque x : o = hc : (hi - hc)
-x = o * hc / (hi - hc)
-adesso mi serve il rapporto di x / hc moltiplicato per 100 per ottenere la percentuale
-x / hc * 100 = o * hc * 100 / ((hi - hc) * hc) = o * 100 / (hi - hc)</code></pre>
+<p>─ ┌──────────────────┐ ─  │ │<br>  │ │<br>  o │ │<br>  │ │<br>  │ │<br>  │
+│<br>  │ contenitore │<br>  ─ ┢━━━━━━━━━━━━━━━━━━┪ ─  ┃ ┃<br>  ┃ ┃ hc hi  ┃
+┃<br>  s ─ ┃ ┃<br>  ┡━━━━━━━━━━━━━━━━━━┩ ─  │ │<br>  └──────────────────┘ ─</p>
+
+<p>o va da 0 a hi - hc  il centro di posizione va da 0 a hc  dunque x : o = hc
+: (hi - hc)  x = o * hc / (hi - hc)  adesso mi serve il rapporto di x / hc
+moltiplicato per 100 per ottenere la percentuale  x / hc * 100 = o * hc *
+100 / ((hi - hc) * hc) = o * 100 / (hi - hc)</p>
 
 <p>Calcolo background-position immagine verticale e iscritta</p>
 
-<pre><code>o    offset dell&#39;immagine
-wc   larghezza del contenitore
-wi   larghezza dell&#39;immagine iscritta
-s    centro di posizione
-x    valore di background-position in percentuale
+<p>o offset dell&#39;immagine  wc larghezza del contenitore  wi larghezza
+dell&#39;immagine iscritta  s centro di posizione  x valore di
+background-position in percentuale</p>
 
-    │                wc                  │
+<pre><code>  │                wc                  │
 
-                │  wi   │
+              │  wi   │
 
-    ┌───────────┲━━━━━━━┱────────────────┐
-    │           ┃       ┃                │
-    │           ┃       ┃                │
-    │           ┃       ┃ immagine       │ contenitore
-    │           ┃       ┃                │
-    │           ┃       ┃                │
-    │           ┃       ┃                │
-    └───────────┺━━━━━━━┹────────────────┘
-                   │
-    │     o     │  s
+  ┌───────────┲━━━━━━━┱────────────────┐
+  │           ┃       ┃                │
+  │           ┃       ┃                │
+  │           ┃       ┃ immagine       │ contenitore
+  │           ┃       ┃                │
+  │           ┃       ┃                │
+  │           ┃       ┃                │
+  └───────────┺━━━━━━━┹────────────────┘
+                 │
+  │     o     │  s</code></pre>
 
-o va da 0 a wc - wi
-il centro di posizione va da 0 a wc
-dunque x : o = wc : (wc - wi)
-x = o * wc / (wc - wi)
-adesso mi serve il rapporto di x / wc moltiplicato per 100 per ottenere la percentuale
-x / wc * 100 = o * wc * 100 / ((wc - wi) * wc) = o * 100 / (wc - wi)</code></pre>
+<p>o va da 0 a wc - wi  il centro di posizione va da 0 a wc  dunque x : o = wc
+: (wc - wi)  x = o * wc / (wc - wi)  adesso mi serve il rapporto di x / wc
+moltiplicato per 100 per ottenere la percentuale  x / wc * 100 = o * wc *
+100 / ((wc - wi) * wc) = o * 100 / (wc - wi)</p>
 
 <h3 id="method-i-background_position-label-Returns">Returns</h3>
 
@@ -638,16 +617,13 @@ href="ImageEditorController.html#method-i-crop">ImageEditorController#crop</a></
 
 <h3 id="method-i-crop-label-Arguments">Arguments</h3>
 <ul><li>
-<p><strong>x1</strong>: horizontal coordinate of the top left corner of the
-crop</p>
+<p><em>x1</em>: horizontal coordinate of the top left corner of the crop</p>
 </li><li>
-<p><strong>y1</strong>: vertical coordinate of the top left corner of the crop</p>
+<p><em>y1</em>: vertical coordinate of the top left corner of the crop</p>
 </li><li>
-<p><strong>x2</strong>: horizontal coordinate of the bottom right corner of
-the crop</p>
+<p><em>x2</em>: horizontal coordinate of the bottom right corner of the crop</p>
 </li><li>
-<p><strong>y2</strong>: vertical coordinate of the bottom right corner of the
-crop</p>
+<p><em>y2</em>: vertical coordinate of the bottom right corner of the crop</p>
 </li></ul>
 
 <h3 id="method-i-crop-label-Returns">Returns</h3>
@@ -783,14 +759,14 @@ during editing.</p>
             <div class="description">
               <h3 id="method-i-enter_edit_mode-label-Description">Description</h3>
 
-<p>The image enters in <strong>edit</strong> <strong>mode</strong> for a
-particular user (who is not necessarily the creator of the image, this is
-checked in the controller). Used in <a
+<p>The image enters in <em>edit</em> <em>mode</em> for a particular user (who
+is not necessarily the creator of the image, this is checked in the
+controller). Used in <a
 href="ImageEditorController.html">ImageEditorController</a>.</p>
 
 <h3 id="method-i-enter_edit_mode-label-Arguments">Arguments</h3>
 <ul><li>
-<p><strong>user_id</strong>: id of the user who is editing the image</p>
+<p><em>user_id</em>: id of the user who is editing the image</p>
 </li></ul>
             </div>
           
@@ -915,11 +891,11 @@ href="ImageEditorController.html">ImageEditorController</a>.</p>
             <div class="description">
               <h3 id="method-i-in_edit_mode-3F-label-Description">Description</h3>
 
-<p>Used to check if the image is in <strong>edit</strong>
-<strong>mode</strong>: the image enters in edit mode when the image editor
-is opened, this implies that a temporary folder is automaticly created to
-contain the progressive steps of the editing. This method is useful to deny
-the access to specific methods if the image is not in editing.</p>
+<p>Used to check if the image is in <em>edit</em> <em>mode</em>: the image
+enters in edit mode when the image editor is opened, this implies that a
+temporary folder is automaticly created to contain the progressive steps of
+the editing. This method is useful to deny the access to specific methods
+if the image is not in editing.</p>
 
 <h3 id="method-i-in_edit_mode-3F-label-Returns">Returns</h3>
 
@@ -927,7 +903,7 @@ the access to specific methods if the image is not in editing.</p>
 
 <h3 id="method-i-in_edit_mode-3F-label-Usage">Usage</h3>
 
-<pre><code>return &#39;&#39; if !self.in_edit_mode?</code></pre>
+<p>return &#39;&#39; if !self.in_edit_mode?</p>
             </div>
           
           
@@ -1003,13 +979,13 @@ the access to specific methods if the image is not in editing.</p>
             <div class="description">
               <h3 id="method-i-leave_edit_mode-label-Description">Description</h3>
 
-<p>The image leaves the <strong>edit</strong> <strong>mode</strong> for a
-particular user. Used in <a
+<p>The image leaves the <em>edit</em> <em>mode</em> for a particular user.
+Used in <a
 href="ImageEditorController.html#method-i-edit">ImageEditorController#edit</a>.</p>
 
 <h3 id="method-i-leave_edit_mode-label-Arguments">Arguments</h3>
 <ul><li>
-<p><strong>user_id</strong>: id of the user who is editing the image</p>
+<p><em>user_id</em>: id of the user who is editing the image</p>
 </li></ul>
 
 <h3 id="method-i-leave_edit_mode-label-Returns">Returns</h3>
@@ -1276,7 +1252,7 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
 
 <h3 id="method-i-thumb_url-label-Usage">Usage</h3>
 
-<pre><code>&lt;%= image_tag image.thumb_url %&gt;</code></pre>
+<p>&lt;%= image_tag image.thumb_url %&gt;</p>
             </div>
           
           
@@ -1375,7 +1351,7 @@ href="ImageEditorController.html#method-i-undo">ImageEditorController#undo</a>.<
 
 <h3 id="method-i-url-label-Usage">Usage</h3>
 
-<pre><code>&lt;%= image_tag image.url %&gt;</code></pre>
+<p>&lt;%= image_tag image.url %&gt;</p>
             </div>
           
           

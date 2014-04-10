@@ -1,8 +1,8 @@
-# == Description
+# ### Description
 #
 # Contains the actions called while the user is not logged in
 #
-# == Models used
+# ### Models used
 #
 # * User
 # * SchoolLevel
@@ -15,38 +15,38 @@ class PreloginController < ApplicationController
   before_filter :redirect_to_dashboard_if_logged_in
   layout 'prelogin'
     
-  # === Description
+  # ### Description
   #
   # Home page of the application
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * PreloginController#redirect_to_dashboard_if_logged_in
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
   def home
   end
   
-  # === Description
+  # ### Description
   #
   # Matches the purchase code in the sign_up form
   #
-  # === Mode
+  # ### Mode
   #
   # Js
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * PreloginController#redirect_to_dashboard_if_logged_in
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
@@ -65,19 +65,19 @@ class PreloginController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Form to sign in
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * PreloginController#redirect_to_dashboard_if_logged_in
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #
@@ -93,19 +93,19 @@ class PreloginController < ApplicationController
     }
   end
   
-  # === Description
+  # ### Description
   #
   # Section of the main page
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * PreloginController#redirect_to_dashboard_if_logged_in
   #
-  # === Skipped filters
+  # ### Skipped filters
   #
   # * ApplicationController#authenticate
   #

@@ -1,4 +1,4 @@
-# == Description
+# ### Description
 #
 # Contains the FAQS, organized into cathegories
 #

@@ -192,13 +192,13 @@ href="Conversion.html">Media::Video::Editing::Cmd::Conversion</a> instance</p>
 
 <h3 id="method-c-new-label-Arguments">Arguments</h3>
 <ul><li>
-<p><strong>input_file</strong>: the path of file to be converted</p>
+<p><em>input_file</em>: the path of file to be converted</p>
 </li><li>
-<p><strong>output_file</strong>: the output path</p>
+<p><em>output_file</em>: the output path</p>
 </li><li>
-<p><strong>format</strong>: the output format</p>
+<p><em>format</em>: the output format</p>
 </li><li>
-<p><strong>input_file_info</strong> <em>optional</em>: the <a
+<p><em>input_file_info</em> <em>optional</em>: the <a
 href="../../../Info.html">Media::Info</a> of the input file</p>
 </li></ul>
             </div>
@@ -324,34 +324,31 @@ href="../../../Info.html">Media::Info</a> of the input file</p>
               <p>avconv video filters option (<code>-vf</code>)</p>
 
 <p>The goal here is to resize the input video keeping the original ratio to a
-size  which fills in OUTPUT_WIDTH and OUTPUT_HEIGHT values, and then
-eventually crop  the parts of the input video which exceed in order to
+size which fills in OUTPUT_WIDTH and OUTPUT_HEIGHT values, and then
+eventually crop the parts of the input video which exceed in order to
 obtain an output video of OUTPUT_WIDTH and OUTPUT_HEIGHT sizes.</p>
 
 <p>In order to reach our goal, we apply two avconv filters; in order to
-understand  how they work, you should read carefully AVConv manual before
+understand how they work, you should read carefully AVConv manual before
 (<code>man avconv</code>), expecially sections &#39;EXPRESSION
 EVALUATION&#39; and &#39;VIDEO FILTERS&#39;.</p>
 
 <p>We apply two filters:</p>
 
-<pre><code>scale:
-  output width:
-    lt(iw/ih\,#{OAR})    #=&gt; if input_width/input_height is less than the output aspect ratio
-    *#{OW}               #=&gt; then resize width to OUTPUT_WIDTH
-    +gte(iw/ih\\,#{OAR}) #=&gt; else if input_width/input_height is greater than or equal to the output aspect ratio
-    *-1                  #=&gt; then resize width to a value which maintains the aspect ratio of the input video
-  output height:
-    lt(iw/ih\,#{OAR})    #=&gt; if input_width/input_height is less than the output aspect ratio
-    *-1                  #=&gt; then resize height to a value which maintains the aspect ratio of the input video
-    +gte(iw/ih\\,#{OAR}) #=&gt; else if input_width/input_height is greater than or equal to the output aspect ratio
-    *#{OH}               #=&gt; then resize height to OUTPUT_HEIGHT
-crop:
-  output width and output height:
-    #{OW}:#{OH}         #=&gt; set respectively equal to OUTPUT_WIDTH and OUTPUT_HEIGHT
-  crop x and crop y:
-    (iw-OW)/2:(ih-OH)/2 #=&gt; sets the position of the top-left corner of the output in order to center the video
-</code></pre>
+<p>scale:  output width:  lt(iw/ih,#{OAR}) #=&gt; if input_width/input_height
+is less than the output aspect ratio  *#{OW} #=&gt; then resize width to
+OUTPUT_WIDTH  +gte(iw/ih,#{OAR}) #=&gt; else if input_width/input_height is
+greater than or equal to the output aspect ratio  *-1 #=&gt; then resize
+width to a value which maintains the aspect ratio of the input video 
+output height:  lt(iw/ih,#{OAR}) #=&gt; if input_width/input_height is less
+than the output aspect ratio  *-1 #=&gt; then resize height to a value
+which maintains the aspect ratio of the input video  +gte(iw/ih,#{OAR})
+#=&gt; else if input_width/input_height is greater than or equal to the
+output aspect ratio  *#{OH} #=&gt; then resize height to OUTPUT_HEIGHT 
+crop:  output width and output height:  #{OW}:#{OH} #=&gt; set respectively
+equal to OUTPUT_WIDTH and OUTPUT_HEIGHT  crop x and crop y: 
+(iw-OW)/2:(ih-OH)/2 #=&gt; sets the position of the top-left corner of the
+output in order to center the video</p>
             </div>
           
           

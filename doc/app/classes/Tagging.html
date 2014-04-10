@@ -40,62 +40,61 @@
   
     <div class="description">
       
-<h2 id="class-Tagging-label-Description">Description</h2>
+<h3 id="class-Tagging-label-Description">Description</h3>
 
 <p>ActiveRecord class that corresponds to the table <code>taggings</code>. A
 tagging is an instance of a tag on a <a href="Lesson.html">Lesson</a> or a
 <a href="MediaElement.html">MediaElement</a>.</p>
 
-<h2 id="class-Tagging-label-Fields">Fields</h2>
+<h3 id="class-Tagging-label-Fields">Fields</h3>
 <ul><li>
-<p><strong>taggable_id</strong>: id of the item (lesson or media element) to
-which the tag is associated</p>
+<p><em>taggable_id</em>: id of the item (lesson or media element) to which the
+tag is associated</p>
 </li><li>
-<p><strong>taggable_type</strong>: contains the string description of the
-classes <a href="Lesson.html">Lesson</a> or <a
+<p><em>taggable_type</em>: contains the string description of the classes <a
+href="Lesson.html">Lesson</a> or <a
 href="MediaElement.html">MediaElement</a> (the type is an enum defined in
 postgrsql)</p>
 </li><li>
-<p><strong>tag_id</strong>: id of the <a href="Tag.html">Tag</a> associated to
-the item</p>
+<p><em>tag_id</em>: id of the <a href="Tag.html">Tag</a> associated to the
+item</p>
 </li></ul>
 
-<h2 id="class-Tagging-label-Associations">Associations</h2>
+<h3 id="class-Tagging-label-Associations">Associations</h3>
 <ul><li>
-<p><strong>tag</strong>: associated <a href="Tag.html">Tag</a>
-(<strong>belongs_to</strong>)</p>
+<p><em>tag</em>: associated <a href="Tag.html">Tag</a> (<em>belongs_to</em>)</p>
 </li><li>
-<p><strong>taggable</strong>: <a href="Lesson.html">Lesson</a> or <a
+<p><em>taggable</em>: <a href="Lesson.html">Lesson</a> or <a
 href="MediaElement.html">MediaElement</a> tagged (polymorphic association)
-(<strong>belongs_to</strong>)</p>
+(<em>belongs_to</em>)</p>
 </li></ul>
 
-<h2 id="class-Tagging-label-Validations">Validations</h2>
+<h3 id="class-Tagging-label-Validations">Validations</h3>
 <ul><li>
-<p><strong>presence</strong> with numericality and existence of associated
-record for <code>tag_id</code> and <code>taggable_id</code></p>
+<p><em>presence</em> with numericality and existence of associated record for
+<code>tag_id</code> and <code>taggable_id</code></p>
 </li><li>
-<p><strong>inclusion</strong> of <code>taggable_type</code> between
-&#39;Lesson&#39; and &#39;MediaElement&#39;</p>
+<p><em>inclusion</em> of <code>taggable_type</code> between &#39;Lesson&#39;
+and &#39;MediaElement&#39;</p>
 </li><li>
-<p><strong>uniqueness</strong> of the triple [<code>tag_id</code>,
+<p><em>uniqueness</em> of the triple [<code>tag_id</code>,
 <code>taggable_type</code>, <code>taggable_id</code>] <strong>only if
 <code>taggable_type</code> is correct</strong></p>
 </li><li>
-<p><strong>modifications</strong> <strong>not</strong>
-<strong>available</strong> for the three fields, if the record is not new</p>
+<p><em>modifications</em> <em>not</em> <em>available</em> for the three
+fields, if the record is not new</p>
 </li></ul>
 
 <h3 id="class-Tagging-label-Callbacks">Callbacks</h3>
 <ol><li>
-<p><strong>after_destroy</strong>: destroys the associated <a
-href="Tag.html">Tag</a>, if this tagging was the last attached to it:
-<strong>this happens only if the attribute <a
+<p><em>after_destroy</em>: destroys the associated <a href="Tag.html">Tag</a>,
+if this tagging was the last attached to it: <strong>this happens only if
+the attribute <a
 href="Tagging.html#attribute-i-not_orphans">#not_orphans</a> is set as
 true</strong></p>
 </li></ol>
 
-<h2 id="class-Tagging-label-Database+callbacks">Database callbacks</h2>
+<h3 id="class-Tagging-label-Database+callbacks">Database callbacks</h3>
 
 <p>None.</p>
 
@@ -231,7 +230,7 @@ href="MediaElement.html#method-i-visive_tags">MediaElement#visive_tags</a></p>
 
 <h3 id="method-c-visive_tags-label-Args">Args</h3>
 <ul><li>
-<p><strong>tags</strong>: the string containing tags in the shape
+<p><em>tags</em>: the string containing tags in the shape
 &#39;,tag1,tag2,tag3,tag4,&#39;</p>
 </li></ul>
 

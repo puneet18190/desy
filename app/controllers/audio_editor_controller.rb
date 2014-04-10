@@ -1,10 +1,10 @@
 require 'media/audio/editing/composer/job'
 
-# == Description
+# ### Description
 #
 # Controller for all the actions in the audio editor
 #
-# == Models used
+# ### Models used
 #
 # * Audio
 # * Notification
@@ -16,15 +16,15 @@ class AudioEditorController < ApplicationController
   before_filter :extract_cache, :only => [:edit, :new, :restore_cache]
   layout 'media_element_editor'
   
-  # === Description
+  # ### Description
   #
   # Opens the audio editor with only one component, corresponding to a given audio
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * AudioEditorController#check_available_for_user
   # * AudioEditorController#initialize_audio_with_owner_or_public
@@ -43,15 +43,15 @@ class AudioEditorController < ApplicationController
     end
   end
   
-  # === Description
+  # ### Description
   #
   # Opens the audio editor empty
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * AudioEditorController#check_available_for_user
   # * AudioEditorController#extract_cache
@@ -64,15 +64,15 @@ class AudioEditorController < ApplicationController
     render :edit
   end
   
-  # === Description
+  # ### Description
   #
   # Opens the audio editor restoring the cache (if there is no cache, the Editor is empty but there is no redirection to AudioEditorController#new)
   #
-  # === Mode
+  # ### Mode
   #
   # Html
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * AudioEditorController#check_available_for_user
   # * AudioEditorController#extract_cache
@@ -85,15 +85,15 @@ class AudioEditorController < ApplicationController
     render :edit
   end
   
-  # === Description
+  # ### Description
   #
   # Empties the cache
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * AudioEditorController#check_available_for_user
   #
@@ -102,15 +102,15 @@ class AudioEditorController < ApplicationController
     render :nothing => true
   end
   
-  # === Description
+  # ### Description
   #
   # Saves the cache
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * AudioEditorController#check_available_for_user
   #
@@ -119,15 +119,15 @@ class AudioEditorController < ApplicationController
     render :nothing => true
   end
   
-  # === Description
+  # ### Description
   #
   # Saves the work as a new audio
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * AudioEditorController#check_available_for_user
   #
@@ -164,15 +164,15 @@ class AudioEditorController < ApplicationController
     render 'media_elements/info_form_in_editor/save'
   end
   
-  # === Description
+  # ### Description
   #
   # Saves the work overwriting an existing audio
   #
-  # === Mode
+  # ### Mode
   #
   # Ajax
   #
-  # === Specific filters
+  # ### Specific filters
   #
   # * AudioEditorController#check_available_for_user
   #

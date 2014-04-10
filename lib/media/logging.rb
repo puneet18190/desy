@@ -22,11 +22,11 @@ module Media
       # Returns the class log folder which will contain the instances log folders.
       # The naming of the folder is elaborated considering the first 4 nestings (3 if +folder_name+ is supplied) of the module in which the method is called - see {Examples}[rdoc-label:method-i-log_folder-label-Examples]
       #
-      # === Args
+      # ### Args
       #
       # * *folder_name*: if present, it will be used instead of the name of the module included - see {Examples}[rdoc-label:method-i-log_folder-label-Examples]
       #
-      # === Examples
+      # ### Examples
       #
       #  Media::A::B::C.log_folder        #=> "/path/to/app/log/media/a/b/c"
       #  Media::A::B::C.log_folder('asd') #=> "/path/to/app/log/media/a/b/asd"
@@ -41,7 +41,7 @@ module Media
     module InstanceMethods
       # Create the instance log folder (calling Media::Logging::InstanceMethods#log_folder)
       #
-      # === Args
+      # ### Args
       #
       # * *folder_name*: it is passed to the Media::Logging::InstanceMethods#log_folder call
       def create_log_folder(folder_name = nil)

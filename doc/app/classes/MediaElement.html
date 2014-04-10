@@ -44,7 +44,7 @@
   
     <div class="description">
       
-<h2 id="class-MediaElement-label-Description">Description</h2>
+<h3 id="class-MediaElement-label-Description">Description</h3>
 
 <p>ActiveRecord class that corresponds to the table
 <code>media_elements</code>; this model has single table inheritance on the
@@ -53,156 +53,149 @@ field <code>sti_type</code> (see the models <a href="Image.html">Image</a>,
 and videos have shared behaviors, defined in <a
 href="Media/Shared.html">Media::Shared</a>.</p>
 
-<h2 id="class-MediaElement-label-Fields">Fields</h2>
+<h3 id="class-MediaElement-label-Fields">Fields</h3>
 <ul><li>
-<p><strong>user_id</strong>: reference to the <a href="User.html">User</a> who
-created the element</p>
+<p><em>user_id</em>: reference to the <a href="User.html">User</a> who created
+the element</p>
 </li><li>
-<p><strong>sti_type</strong>: single table iheritance representing the media
-type</p>
+<p><em>sti_type</em>: single table iheritance representing the media type</p>
 </li><li>
-<p><strong>media</strong>: attached audio, video or image</p>
+<p><em>media</em>: attached audio, video or image</p>
 </li><li>
-<p><strong>title</strong>: title</p>
+<p><em>title</em>: title</p>
 </li><li>
-<p><strong>description</strong>: description</p>
+<p><em>description</em>: description</p>
 </li><li>
-<p><strong>metadata</strong>: can contain different keys, depending on
+<p><em>metadata</em>: can contain different keys, depending on
 <code>sti_type</code></p>
+</li><li>
+<p><em>audio</em></p>
 <ul><li>
-<p><strong>audio</strong></p>
-<ul><li>
-<p><code>creation_mode</code>: it can be <strong>uploaded</strong> (if the
-element was originally uploaded), or <strong>composed</strong> (if it was
-created inside the application using other elements)</p>
+<p><code>creation_mode</code>: it can be <em>uploaded</em> (if the element was
+originally uploaded), or <em>composed</em> (if it was created inside the
+application using other elements)</p>
 </li><li>
 <p><code>m4a_duration</code>: the float duration of the m4a attached file</p>
 </li><li>
 <p><code>ogg_duration</code>: the float duration of the ogg attached file</p>
 </li></ul>
 </li><li>
-<p><strong>image</strong></p>
+<p><em>image</em></p>
 <ul><li>
 <p><code>width</code>: width of the original image</p>
 </li><li>
 <p><code>height</code>: height of the original image</p>
 </li></ul>
 </li><li>
-<p><strong>video</strong></p>
+<p><em>video</em></p>
 <ul><li>
-<p><code>creation_mode</code>: it can be <strong>uploaded</strong> (if the
-element was originally uploaded), or <strong>composed</strong> (if it was
-created inside the application using other elements)</p>
+<p><code>creation_mode</code>: it can be <em>uploaded</em> (if the element was
+originally uploaded), or <em>composed</em> (if it was created inside the
+application using other elements)</p>
 </li><li>
 <p><code>mp4_duration</code>: the float duration of the mp4 attached file</p>
 </li><li>
 <p><code>webm_duration</code>: the float duration of the webm attached file</p>
 </li></ul>
-</li></ul>
 </li><li>
-<p><strong>converted</strong>: always <code>true</code> for <a
+<p><em>converted</em>: always <code>true</code> for <a
 href="Image.html">Image</a>; for <a href="Video.html">Video</a> and <a
 href="Audio.html">Audio</a> it is <code>false</code> if the media element
 is not available</p>
 </li><li>
-<p><strong>is_public</strong>: if <code>true</code>, the element is contained
-in the public database of the application</p>
+<p><em>is_public</em>: if <code>true</code>, the element is contained in the
+public database of the application</p>
 </li><li>
-<p><strong>publication_date</strong>: if <code>is_public</code> is
-<code>true</code>, this is the date in which the element has been published
-(once it&#39;s published it can&#39;t be turned back into private)</p>
+<p><em>publication_date</em>: if <code>is_public</code> is <code>true</code>,
+this is the date in which the element has been published (once it&#39;s
+published it can&#39;t be turned back into private)</p>
 </li></ul>
 
-<h2 id="class-MediaElement-label-Associations">Associations</h2>
+<h3 id="class-MediaElement-label-Associations">Associations</h3>
 <ul><li>
-<p><strong>bookmarks</strong>: links created by other users to this element
-(see <a href="Bookmark.html">Bookmark</a>) (<strong>has_many</strong>)</p>
+<p><em>bookmarks</em>: links created by other users to this element (see <a
+href="Bookmark.html">Bookmark</a>) (<em>has_many</em>)</p>
 </li><li>
-<p><strong>media_elements_slides</strong>: all the instances of this element
-(see <a href="MediaElementsSlide.html">MediaElementsSlide</a>)
-(<strong>has_many</strong>)</p>
+<p><em>media_elements_slides</em>: all the instances of this element (see <a
+href="MediaElementsSlide.html">MediaElementsSlide</a>) (<em>has_many</em>)</p>
 </li><li>
-<p><strong>reports</strong>: reports on the element (see <a
-href="Report.html">Report</a>) (<strong>has_many</strong>)</p>
+<p><em>reports</em>: reports on the element (see <a
+href="Report.html">Report</a>) (<em>has_many</em>)</p>
 </li><li>
-<p><strong>taggings</strong>: tags associated to the element (see <a
+<p><em>taggings</em>: tags associated to the element (see <a
 href="Tagging.html">Tagging</a>, <a href="Tag.html">Tag</a>)
-(<strong>has_many</strong>)</p>
+(<em>has_many</em>)</p>
 </li><li>
-<p><strong>taggings_tags</strong>: link to the objects of type <a
+<p><em>taggings_tags</em>: link to the objects of type <a
 href="Tag.html">Tag</a>, through the association <code>taggings</code>
-(<strong>has_many</strong>)</p>
+(<em>has_many</em>)</p>
 </li><li>
-<p><strong>user</strong>: the <a href="User.html">User</a> who created the
-element (<strong>belongs_to</strong>)</p>
+<p><em>user</em>: the <a href="User.html">User</a> who created the element
+(<em>belongs_to</em>)</p>
 </li></ul>
 
-<h2 id="class-MediaElement-label-Validations">Validations</h2>
+<h3 id="class-MediaElement-label-Validations">Validations</h3>
 <ul><li>
-<p><strong>presence</strong> with numericality &gt; 0 and presence of
-associated object for <code>user_id</code></p>
+<p><em>presence</em> with numericality &gt; 0 and presence of associated
+object for <code>user_id</code></p>
 </li><li>
-<p><strong>presence</strong> of <code>title</code> and
-<code>description</code></p>
+<p><em>presence</em> of <code>title</code> and <code>description</code></p>
 </li><li>
-<p><strong>inclusion</strong> of <code>is_public</code> in [<code>true</code>,
+<p><em>inclusion</em> of <code>is_public</code> in [<code>true</code>,
 <code>false</code>]</p>
 </li><li>
-<p><strong>inclusion</strong> of <code>sti_type</code> in
+<p><em>inclusion</em> of <code>sti_type</code> in
 [&#39;<code>Audio</code>&#39;, &#39;<code>Image</code>&#39;,
 &#39;<code>Video</code>&#39;] (these three values correspond to an
-<strong>enum</strong> defined in postgresql)</p>
+<em>enum</em> defined in postgresql)</p>
 </li><li>
-<p><strong>length</strong> of <code>title</code> (maximum configured in the
+<p><em>length</em> of <code>title</code> (maximum configured in the
 translation file; if the value is greater than 255 it&#39;s set to 255)</p>
 </li><li>
-<p><strong>length</strong> of <code>description</code> (maximum configured in
-the translation file)</p>
+<p><em>length</em> of <code>description</code> (maximum configured in the
+translation file)</p>
 </li><li>
-<p><strong>presence</strong> of <code>media</code>; <strong>this validation is
-skipped if the element is of type <a href="Video.html">Video</a> or <a
+<p><em>presence</em> of <code>media</code>; <strong>this validation is skipped
+if the element is of type <a href="Video.html">Video</a> or <a
 href="Audio.html">Audio</a>, and if the element is being composed</strong>:
 in fact, in this case there is not yet a media to be attached (unlike when
 the element is uploaded, because when it&#39;s uploaded there exists a
 media file but it&#39;s not yet converted)</p>
 </li><li>
-<p><strong>if</strong> <strong>the</strong> <strong>element</strong>
-<strong>is</strong> <strong>public</strong>, <code>publication_date</code>
-can&#39;t be null, whereas if it&#39;s private it must be null</p>
+<p><em>if</em> <em>the</em> <em>element</em> <em>is</em> <em>public</em>,
+<code>publication_date</code> can&#39;t be null, whereas if it&#39;s
+private it must be null</p>
 </li><li>
-<p><strong>the</strong> <strong>element</strong> <strong>cannot</strong>
-<strong>be</strong> <strong>public</strong> if new record. <strong>This
-validation is not fired if <a
+<p><em>the</em> <em>element</em> <em>cannot</em> <em>be</em> <em>public</em>
+if new record. <strong>This validation is not fired if <a
 href="MediaElement.html#attribute-i-skip_public_validations">#skip_public_validations</a>
 is <code>true</code></strong></p>
 </li><li>
-<p><strong>if</strong> <strong>the</strong> <strong>element</strong>
-<strong>is</strong> <strong>public</strong>, the fields <code>media</code>,
-<code>title</code>, <code>description</code>, <code>is_public</code>,
-<code>publication_date</code> can&#39;t be changed anymore. <strong>This
-validation is not fired if <a
+<p><em>if</em> <em>the</em> <em>element</em> <em>is</em> <em>public</em>, the
+fields <code>media</code>, <code>title</code>, <code>description</code>,
+<code>is_public</code>, <code>publication_date</code> can&#39;t be changed
+anymore. <strong>This validation is not fired if <a
 href="MediaElement.html#attribute-i-skip_public_validations">#skip_public_validations</a>
 is <code>true</code></strong></p>
 </li><li>
-<p><strong>if</strong> <strong>the</strong> <strong>element</strong>
-<strong>is</strong> <strong>private</strong>, the field
-<code>user_id</code> can&#39;t be changed (this field may be changed only
-if the element is public, because if the user decides to close his profile,
-the public elements that he created can&#39;t be deleted: using <a
+<p><em>if</em> <em>the</em> <em>element</em> <em>is</em> <em>private</em>, the
+field <code>user_id</code> can&#39;t be changed (this field may be changed
+only if the element is public, because if the user decides to close his
+profile, the public elements that he created can&#39;t be deleted: using <a
 href="User.html#method-i-destroy_with_dependencies">User#destroy_with_dependencies</a>
 they are switched to another owner (the super administrator of the
 application, see <a href="User.html#method-c-admin">User.admin</a>)</p>
 </li><li>
-<p><strong>minimum</strong> <strong>number</strong> of tags (configurated in
+<p><em>minimum</em> <em>number</em> of tags (configurated in
 config/settings.yml), <strong>only if the attribute <a
 href="MediaElement.html#attribute-i-save_tags">#save_tags</a> is set as
 <code>true</code></strong></p>
 </li><li>
-<p><strong>size</strong> of the file attached to <code>media</code>
-(configured in settings.yml, in megabytes)</p>
+<p><em>size</em> of the file attached to <code>media</code> (configured in
+settings.yml, in megabytes)</p>
 </li><li>
-<p><strong>specific</strong> <strong>media</strong>
-<strong>validation</strong> depending on the type of attached media (see <a
+<p><em>specific</em> <em>media</em> <em>validation</em> depending on the type
+of attached media (see <a
 href="Media/Video/Uploader/Validation.html">Media::Video::Uploader::Validation</a>,
 <a
 href="Media/Audio/Uploader/Validation.html">Media::Audio::Uploader::Validation</a>,
@@ -213,96 +206,94 @@ automatically by CarrierWave)</p>
 (configured in config/settings.yml, in gigabytes)</p>
 </li></ul>
 
-<h2 id="class-MediaElement-label-Callbacks">Callbacks</h2>
+<h3 id="class-MediaElement-label-Callbacks">Callbacks</h3>
 <ul><li>
-<p><strong>general</strong> <strong>callbacks</strong>:</p>
-<ul><li>
-<p><strong>on</strong> <strong>the</strong> <strong>method</strong>
-<strong>new</strong>, it&#39;s called <a
+<p><em>general</em> <em>callbacks</em>:</p>
+</li><li>
+<p><em>on</em> <em>the</em> <em>method</em> <em>new</em>, it&#39;s called <a
 href="MediaElement.html#method-i-new_with_sti_type_inferring">#new_with_sti_type_inferring</a>,
 which infers the type of <code>media</code> and defines the correct class
 among <a href="Image.html">Image</a>, <a href="Audio.html">Audio</a>, <a
 href="Video.html">Video</a></p>
 </li><li>
-<p><strong>before_destroy</strong>, if <code>is_public</code> ==
-<code>true</code> the destruction is stopped (<strong>this callback is not
-executed if the attribute <a
+<p><em>before_destroy</em>, if <code>is_public</code> == <code>true</code> the
+destruction is stopped (<strong>this callback is not executed if the
+attribute <a
 href="MediaElement.html#attribute-i-destroyable_even_if_public">#destroyable_even_if_public</a>
 is set as <code>true</code></strong>: this is necessary to destroy public
 elements from the administrator, see <a
 href="Admin/MediaElementsController.html#method-i-destroy">Admin::MediaElementsController#destroy</a>)</p>
 </li><li>
-<p><strong>before_destroy</strong> destroys associated bookmarks (see <a
+<p><em>before_destroy</em> destroys associated bookmarks (see <a
 href="Bookmark.html">Bookmark</a>)</p>
 </li><li>
-<p><strong>before_destroy</strong> destroys associated reports (see <a
+<p><em>before_destroy</em> destroys associated reports (see <a
 href="Report.html">Report</a>)</p>
 </li><li>
-<p><strong>before_destroy</strong> destroys associated taggings (see <a
+<p><em>before_destroy</em> destroys associated taggings (see <a
 href="Tagging.html">Tagging</a>)</p>
 </li><li>
-<p><strong>after_save</strong> updates taggings associated to the media
-element (see <a href="Tagging.html">Tagging</a>). If a <a
-href="Tag.html">Tag</a> doesn&#39;t exist yet, it is created too. The tags
-are stored before the validation in the private attribute
-<code>inner_tags</code>. Notice that <strong>this callback must be declared
-before calling <code>require</code> for the submodels</strong>, because the
-<code>after_save</code> of tags must be called before the
-<code>after_save</code> of the uploader (see private validation methods in
-<a href="Media/Shared.html">Media::Shared</a>, and callbacks in <a
+<p><em>after_save</em> updates taggings associated to the media element (see
+<a href="Tagging.html">Tagging</a>). If a <a href="Tag.html">Tag</a>
+doesn&#39;t exist yet, it is created too. The tags are stored before the
+validation in the private attribute <code>inner_tags</code>. Notice that
+<strong>this callback must be declared before calling <code>require</code>
+for the submodels</strong>, because the <code>after_save</code> of tags
+must be called before the <code>after_save</code> of the uploader (see
+private validation methods in <a
+href="Media/Shared.html">Media::Shared</a>, and callbacks in <a
 href="Image.html">Image</a>)</p>
-</li></ul>
 </li><li>
-<p><strong>callbacks</strong> <strong>only</strong> <strong>for</strong> <a
+<p><em>callbacks</em> <em>only</em> <em>for</em> <a
 href="Image.html">Image</a> type:</p>
-<ul><li>
-<p><strong>before_save</strong> sets <code>width</code> and
-<code>height</code> according to the attached image</p>
 </li><li>
-<p><strong>before_create</strong> sets <code>converted</code> to true, since
-during the uploading of an <a href="Image.html">Image</a> we don&#39;t have
-to wait for conversion, as happens in <a href="Video.html">Video</a> and <a
+<p><em>before_save</em> sets <code>width</code> and <code>height</code>
+according to the attached image</p>
+</li><li>
+<p><em>before_create</em> sets <code>converted</code> to true, since during
+the uploading of an <a href="Image.html">Image</a> we don&#39;t have to
+wait for conversion, as happens in <a href="Video.html">Video</a> and <a
 href="Audio.html">Audio</a></p>
-</li></ul>
 </li><li>
-<p><strong>callbacks</strong> <strong>only</strong> <strong>for</strong> <a
+<p><em>callbacks</em> <em>only</em> <em>for</em> <a
 href="Audio.html">Audio</a> and <a href="Video.html">Video</a> types:</p>
-<ul><li>
-<p><strong>before_create</strong> sets the +creation_mode*
-(<code>uploaded</code> if the element was originally uploaded, or
-<code>composed</code> if it was created inside the application)</p>
 </li><li>
-<p><strong>after_save</strong> calls <code>upload_or_copy</code> in <a
+<p><em>before_create</em> sets the +creation_mode* (<code>uploaded</code> if
+the element was originally uploaded, or <code>composed</code> if it was
+created inside the application)</p>
+</li><li>
+<p><em>after_save</em> calls <code>upload_or_copy</code> in <a
 href="Media/Shared.html">Media::Shared</a></p>
 </li><li>
-<p><strong>before_destroy</strong> stops the destruction if
-<code>converted</code> == <code>false</code> (<strong>this callback
-doesn&#39;t execute if the attribute destroyable_even_if_not_converted in
-<a href="Media/Shared.html">Media::Shared</a> is set to
+<p><em>before_destroy</em> stops the destruction if <code>converted</code> ==
+<code>false</code> (<strong>this callback doesn&#39;t execute if the
+attribute destroyable_even_if_not_converted in <a
+href="Media/Shared.html">Media::Shared</a> is set to
 <code>true</code></strong>: this is necessary if something goes wrong with
 the creation of a new media element, in this case the not converted element
 must be deleted)</p>
 </li><li>
-<p><strong>after_destroy</strong> cleans the folder containing the attached
-files (mp4, m4a, webm, ogg)</p>
-</li></ul>
+<p><em>after_destroy</em> cleans the folder containing the attached files
+(mp4, m4a, webm, ogg)</p>
 </li></ul>
 
-<h2 id="class-MediaElement-label-Database+callbacks">Database callbacks</h2>
+<h3 id="class-MediaElement-label-Database+callbacks">Database callbacks</h3>
 <ul><li>
-<p><strong>cascade</strong> <strong>destruction</strong> for the associated
-table <a href="MediaElementsSlide.html">MediaElementsSlide</a></p>
+<p><em>cascade</em> <em>destruction</em> for the associated table <a
+href="MediaElementsSlide.html">MediaElementsSlide</a></p>
 </li></ul>
 
-<h2 id="class-MediaElement-label-Other+details">Other details</h2>
+<h3 id="class-MediaElement-label-Other+details">Other details</h3>
 
-<p>It&#39;s defined a scope <strong>of</strong> that filters automaticly all
-the elements of a user (see <a
-href="User.html#method-i-own_media_elements">User#own_media_elements</a>):</p>
-
-<pre><code>SELECT &quot;media_elements&quot;.* FROM &quot;media_elements&quot; LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id
-AND bookmarks.bookmarkable_type = &#39;MediaElement&#39; AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL
-OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY COALESCE(bookmarks.created_at, media_elements.updated_at) DESC</code></pre>
+<p>It&#39;s defined a scope <em>of</em> that filters automaticly all the
+elements of a user (see <a
+href="User.html#method-i-own_media_elements">User#own_media_elements</a>): 
+SELECT “media_elements”.* FROM “media_elements” LEFT JOIN bookmarks ON
+bookmarks.bookmarkable_id = media_elements.id  AND
+bookmarks.bookmarkable_type = &#39;MediaElement&#39; AND bookmarks.user_id
+= 1 WHERE (bookmarks.user_id IS NOT NULL  OR (media_elements.is_public =
+false AND media_elements.user_id = 1)) ORDER BY
+COALESCE(bookmarks.created_at, media_elements.updated_at) DESC</p>
 
     </div>
   
@@ -454,7 +445,12 @@ OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY C
             
               
               <li>
-                <a href="#method-i-manage_lessons_containing_me">manage_lessons_containing_me</a>
+                <a href="#method-i-manage_lessons_containing_me">manage_lessons_containing_me</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-max_media_column_size">max_media_column_size</a>
               </li>
             
           </ul>
@@ -680,6 +676,14 @@ by 255 if it&#39;s higher</p></td>
         
           <tr valign='top'>
             <td class='attr-rw'>
+              [W]
+            </td>
+            <td class='attr-name'>max_media_column_size</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
               [RW]
             </td>
             <td class='attr-name'>destroyable_even_if_public</td>
@@ -766,7 +770,7 @@ href="Audio.html">Audio</a></p>
                 
               </p>
               <div id="method-i-audio-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 332</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 337</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">audio?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sti_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">AUDIO_TYPE</span>
 <span class="ruby-keyword">end</span></pre>
@@ -792,9 +796,9 @@ particular user</p>
 
 <h3 id="method-i-bookmarked-3F-label-Args">Args</h3>
 <ul><li>
-<p><strong>an_user_id</strong>: the id of the <a href="User.html">User</a></p>
+<p><em>an_user_id</em>: the id of the <a href="User.html">User</a></p>
 </li><li>
-<p><strong>select</strong>: a symbol representing a method that optimizes the
+<p><em>select</em>: a symbol representing a method that optimizes the
 extraction of bookmarks (if it&#39;s passed it means that the record has
 been optimized)</p>
 </li></ul>
@@ -819,7 +823,7 @@ been optimized)</p>
                 
               </p>
               <div id="method-i-bookmarked-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 468</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 473</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">bookmarked?</span>(<span class="ruby-identifier">an_user_id</span>, <span class="ruby-identifier">select</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">return</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">select</span>).<span class="ruby-identifier">to_i</span> <span class="ruby-operator">!=</span> <span class="ruby-number">0</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">select</span>.<span class="ruby-identifier">nil?</span>
@@ -867,7 +871,7 @@ href="Buttons.html">Buttons</a>)</p>
                 
               </p>
               <div id="method-i-buttons_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 442</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 447</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">buttons</span>
   <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">if</span> [<span class="ruby-ivar">@status</span>, <span class="ruby-ivar">@is_reportable</span>, <span class="ruby-ivar">@info_changeable</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@status</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Statuses</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIVATE</span>
@@ -921,7 +925,7 @@ href="MediaElementsController.html#method-i-destroy">MediaElementsController#des
                 
               </p>
               <div id="method-i-check_and_destroy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 482</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 487</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">check_and_destroy</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -984,7 +988,7 @@ href="MediaElementsController.html#method-i-destroy">MediaElementsController#des
                 
               </p>
               <div id="method-i-cover_of-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 276</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 281</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">cover_of?</span>(<span class="ruby-identifier">lesson</span>)
   <span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Image</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">lesson</span>.<span class="ruby-identifier">cover</span>.<span class="ruby-identifier">media_elements</span>.<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1012,7 +1016,7 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>).</
 
 <h3 id="method-i-dashboard_emptied-3F-label-Args">Args</h3>
 <ul><li>
-<p><strong>user_id</strong>: the id of a <a href="User.html">User</a></p>
+<p><em>user_id</em>: the id of a <a href="User.html">User</a></p>
 </li></ul>
 
 <h3 id="method-i-dashboard_emptied-3F-label-Returns">Returns</h3>
@@ -1035,7 +1039,7 @@ href="DashboardController.html#method-i-index">DashboardController#index</a>).</
                 
               </p>
               <div id="method-i-dashboard_emptied-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 237</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 235</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">dashboard_emptied?</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-constant">Bookmark</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-string">&quot;INNER JOIN media_elements ON media_elements.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = &#39;MediaElement&#39;&quot;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;media_elements.is_public = ? AND media_elements.user_id != ? AND bookmarks.user_id = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-identifier">an_user_id</span>, <span class="ruby-identifier">an_user_id</span>).<span class="ruby-identifier">any?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1077,7 +1081,7 @@ see <a href="Media/Shared.html">Media::Shared</a>.</p>
                 
               </p>
               <div id="method-i-disable_lessons_containing_me_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 300</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 305</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">disable_lessons_containing_me</span>
   <span class="ruby-identifier">manage_lessons_containing_me</span>(<span class="ruby-keyword">false</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1114,7 +1118,7 @@ see <a href="Media/Shared.html">Media::Shared</a>.</p>
                 
               </p>
               <div id="method-i-ebook_resources_formats_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 280</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 285</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ebook_resources_formats</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">EBOOK_FORMATS</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1159,7 +1163,7 @@ href="Media/Audio/Editing/Composer.html">Media::Audio::Editing::Composer</a>.</p
                 
               </p>
               <div id="method-i-enable_lessons_containing_me_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 308</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 313</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">enable_lessons_containing_me</span>
   <span class="ruby-identifier">manage_lessons_containing_me</span>(<span class="ruby-keyword">true</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1189,12 +1193,12 @@ href="Media/Audio/Editing/Parameters.html">Media::Audio::Editing::Parameters</a>
 
 <h3 id="method-i-extract-label-Args">Args</h3>
 <ul><li>
-<p><strong>media_element_id</strong>: the id of the element</p>
+<p><em>media_element_id</em>: the id of the element</p>
 </li><li>
-<p><strong>an_user_id</strong>: the id of the <a href="User.html">User</a> who
-is using the editor</p>
+<p><em>an_user_id</em>: the id of the <a href="User.html">User</a> who is
+using the editor</p>
 </li><li>
-<p><strong>my_sti_type</strong>: the sti_type of the requested element</p>
+<p><em>my_sti_type</em>: the sti_type of the requested element</p>
 </li></ul>
 
 <h3 id="method-i-extract-label-Returns">Returns</h3>
@@ -1209,9 +1213,10 @@ href="Image.html">Image</a>, depending on the element, otherwise it returns
 <p>See for instance <a
 href="Media/Video/Editing/Parameters.html#method-i-convert_parameters">Media::Video::Editing::Parameters#convert_parameters</a>
 and <a
-href="Media/Video/Editing/Parameters.html#method-i-get_media_element_from_hash">Media::Video::Editing::Parameters#get_media_element_from_hash</a></p>
-
-<pre><code>hash[key].kind_of?(Integer) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil</code></pre>
+href="Media/Video/Editing/Parameters.html#method-i-get_media_element_from_hash">Media::Video::Editing::Parameters#get_media_element_from_hash</a>
+<a href="key">hash</a>.kind_of?(Integer) ? <a
+href="MediaElement.html#method-i-extract">#extract</a>, user_id,
+my_sti_type) : nil</p>
             </div>
           
           
@@ -1229,7 +1234,7 @@ href="Media/Video/Editing/Parameters.html#method-i-get_media_element_from_hash">
                 
               </p>
               <div id="method-i-extract_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 217</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 215</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">extract</span>(<span class="ruby-identifier">media_element_id</span>, <span class="ruby-identifier">an_user_id</span>, <span class="ruby-identifier">my_sti_type</span>)
   <span class="ruby-identifier">media_element</span> = <span class="ruby-identifier">find_by_id</span> <span class="ruby-identifier">media_element_id</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">media_element</span>.<span class="ruby-identifier">sti_type</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">my_sti_type</span>
@@ -1264,7 +1269,7 @@ saved as media elements)</p>
 
 <h3 id="method-i-filetype-label-Args">Args</h3>
 <ul><li>
-<p><strong>path</strong>: the path to be checked</p>
+<p><em>path</em>: the path to be checked</p>
 </li></ul>
 
 <h3 id="method-i-filetype-label-Returns">Returns</h3>
@@ -1287,7 +1292,7 @@ saved as media elements)</p>
                 
               </p>
               <div id="method-i-filetype_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 253</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 251</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">filetype</span>(<span class="ruby-identifier">path</span>)
   <span class="ruby-identifier">path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">path</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-constant">Audio</span><span class="ruby-operator">::</span><span class="ruby-constant">EXTENSION_WHITE_LIST</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">path</span>[<span class="ruby-number">1</span>, <span class="ruby-identifier">path</span>.<span class="ruby-identifier">length</span>])
@@ -1340,9 +1345,48 @@ href="Image.html">Image</a></p>
                 
               </p>
               <div id="method-i-image-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 320</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 325</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">image?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sti_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">IMAGE_TYPE</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-max_media_column_size">
+            
+              <b>max_media_column_size</b>()
+            
+            <a href="../classes/MediaElement.html#method-i-max_media_column_size" name="method-i-max_media_column_size" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-max_media_column_size_source')" id="l_method-i-max_media_column_size_source">show</a>
+                
+              </p>
+              <div id="method-i-max_media_column_size_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 264</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">max_media_column_size</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@max_media_column_size</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">instance_variable_defined?</span> <span class="ruby-value">:@max_media_column_size</span>
+
+  <span class="ruby-ivar">@max_media_column_size</span> = <span class="ruby-identifier">columns_hash</span>[<span class="ruby-string">&#39;media&#39;</span>].<span class="ruby-identifier">limit</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -1367,22 +1411,20 @@ href="Image.html">Image</a> and <a href="Video.html">Video</a></p>
 
 <h3 id="method-i-new_with_sti_type_inferring-label-Args">Args</h3>
 <ul><li>
-<p><strong>attributes</strong>: attributes that eventually can be initialized
-in the new media element</p>
+<p><em>attributes</em>: attributes that eventually can be initialized in the
+new media element</p>
 </li><li>
-<p><strong>options</strong>: additional options</p>
+<p><em>options</em>: additional options</p>
 </li><li>
-<p><strong>block</strong>: block to be executed</p>
+<p><em>block</em>: block to be executed</p>
 </li></ul>
 
 <h3 id="method-i-new_with_sti_type_inferring-label-Usage">Usage</h3>
 
 <p>See for instance <a
-href="MediaElementsController.html#method-i-create">MediaElementsController#create</a></p>
-
-<pre><code>media = params[:media]
-record = MediaElement.new :media =&gt; media
-</code></pre>
+href="MediaElementsController.html#method-i-create">MediaElementsController#create</a>
+media = <a href=":media">params</a>  record = MediaElement.new :media =&gt;
+media</p>
             </div>
           
           
@@ -1400,7 +1442,7 @@ record = MediaElement.new :media =&gt; media
                 
               </p>
               <div id="method-i-new_with_sti_type_inferring_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 176</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 174</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">new_with_sti_type_inferring</span>(<span class="ruby-identifier">attributes</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
   <span class="ruby-identifier">media</span> = <span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">try</span> <span class="ruby-value">:[]</span>, <span class="ruby-value">:media</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">ActionDispatch</span><span class="ruby-operator">::</span><span class="ruby-constant">Http</span><span class="ruby-operator">::</span><span class="ruby-constant">UploadedFile</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">File</span>)
@@ -1450,12 +1492,12 @@ can&#39;t see this element.</p>
 
 <h3 id="method-i-set_status-label-Args">Args</h3>
 <ul><li>
-<p><strong>an_user_id</strong>: the id of the user who is asking permission to
-see the element.</p>
+<p><em>an_user_id</em>: the id of the user who is asking permission to see the
+element.</p>
 </li><li>
-<p><strong>selects</strong>: optionally, a hash of symbols of methods that
-optimize the extraction of records in other tables, necessary to set the
-status. These symbols are passed to <a
+<p><em>selects</em>: optionally, a hash of symbols of methods that optimize
+the extraction of records in other tables, necessary to set the status.
+These symbols are passed to <a
 href="MediaElement.html#method-i-bookmarked-3F">#bookmarked?</a></p>
 </li></ul>
             </div>
@@ -1475,7 +1517,7 @@ href="MediaElement.html#method-i-bookmarked-3F">#bookmarked?</a></p>
                 
               </p>
               <div id="method-i-set_status_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 412</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 417</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">set_status</span>(<span class="ruby-identifier">an_user_id</span>, <span class="ruby-identifier">selects</span>={})
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-identifier">am_i_bookmarked</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">bookmarked?</span>(<span class="ruby-identifier">an_user_id</span>, <span class="ruby-identifier">selects</span>[<span class="ruby-value">:bookmarked</span>])
@@ -1519,9 +1561,9 @@ href="MediaElement.html#method-i-bookmarked-3F">#bookmarked?</a></p>
 
 <h3 id="method-i-status-label-Args">Args</h3>
 <ul><li>
-<p><strong>with_captions</strong>: if <code>true</code> returns the translated
-caption of the status (this means that it&#39;s used in the front-end),
-otherwise it returns the status keyword (for default).</p>
+<p><em>with_captions</em>: if <code>true</code> returns the translated caption
+of the status (this means that it&#39;s used in the front-end), otherwise
+it returns the status keyword (for default).</p>
 </li></ul>
 
 <h3 id="method-i-status-label-Returns">Returns</h3>
@@ -1545,7 +1587,7 @@ href="Statuses.html">Statuses</a>)</p>
                 
               </p>
               <div id="method-i-status_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 399</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 404</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">status</span>(<span class="ruby-identifier">with_captions</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-ivar">@status</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> (<span class="ruby-identifier">with_captions</span> <span class="ruby-operator">?</span> <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">status</span>(<span class="ruby-ivar">@status</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@status</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1589,7 +1631,7 @@ file</p>
                 
               </p>
               <div id="method-i-sti_type_to_s_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 292</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 297</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">sti_type_to_s</span>
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-node">&quot;sti_types.#{self.sti_type.downcase}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1633,7 +1675,7 @@ file</p>
                 
               </p>
               <div id="method-i-tags_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 364</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 369</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">tags</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">get_friendly_tags</span>(<span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1683,7 +1725,7 @@ new_record) ready to be saved together with their taggings in the
                 
               </p>
               <div id="method-i-tags-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 376</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 381</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">tags=</span>(<span class="ruby-identifier">tags</span>)
   <span class="ruby-ivar">@tags</span> = 
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">tags</span>
@@ -1734,7 +1776,7 @@ href="Video.html">Video</a></p>
                 
               </p>
               <div id="method-i-video-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 344</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 349</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">video?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sti_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">VIDEO_TYPE</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1775,7 +1817,7 @@ href="Lesson.html#method-i-visive_tags">Lesson#visive_tags</a>)</p>
                 
               </p>
               <div id="method-i-visive_tags_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 352</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 357</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">visive_tags</span>
   <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">visive_tags</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">tags</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1816,7 +1858,7 @@ It&#39;s initialized also the private attribute <code>inner_tags</code></p>
                 
               </p>
               <div id="method-i-init_validation_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 536</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 541</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">init_validation</span>
   <span class="ruby-ivar">@media_element</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:user_id</span>
@@ -1875,7 +1917,7 @@ href="MediaElement.html#method-i-enable_lessons_containing_me">#enable_lessons_c
                 
               </p>
               <div id="method-i-manage_lessons_containing_me_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 615</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 620</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">manage_lessons_containing_me</span>(<span class="ruby-identifier">value</span>)
   <span class="ruby-constant">MediaElementsSlide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:media_element_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mes</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">l</span> = <span class="ruby-identifier">mes</span>.<span class="ruby-identifier">slide</span>.<span class="ruby-identifier">lesson</span>
@@ -1923,7 +1965,7 @@ is true</p>
                 
               </p>
               <div id="method-i-stop_if_public_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 603</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 608</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">stop_if_public</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">destroyable_even_if_public</span>
   <span class="ruby-ivar">@media_element</span> = <span class="ruby-constant">Valid</span>.<span class="ruby-identifier">get_association</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">:id</span>
@@ -1969,7 +2011,7 @@ created</p>
                 
               </p>
               <div id="method-i-update_or_create_tags_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 515</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 520</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">update_or_create_tags</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@inner_tags</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@save_tags</span>
   <span class="ruby-identifier">words</span> = []
@@ -2022,7 +2064,7 @@ created</p>
                 
               </p>
               <div id="method-i-validate_associations_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 569</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 574</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_associations</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-value">:doesnt_exist</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -2063,7 +2105,7 @@ validates that <code>user_id</code> can&#39;t be changed</p>
                 
               </p>
               <div id="method-i-validate_impossible_changes_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 583</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 588</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_impossible_changes</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@media_element</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:is_public</span>, <span class="ruby-value">:must_be_false_if_new_record</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">skip_public_validations</span>
@@ -2116,7 +2158,7 @@ maximum size available</p>
                 
               </p>
               <div id="method-i-validate_maximum_media_elements_folder_size_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 628</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 633</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_maximum_media_elements_folder_size</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:media</span>, <span class="ruby-value">:folder_size_exceeded</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Media</span><span class="ruby-operator">::</span><span class="ruby-constant">Uploader</span>.<span class="ruby-identifier">maximum_media_elements_folder_size_exceeded?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -2155,7 +2197,7 @@ is public</p>
                 
               </p>
               <div id="method-i-validate_publication_date_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 574</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 579</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_publication_date</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:publication_date</span>, <span class="ruby-value">:is_not_a_date</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">publication_date</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">publication_date</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Time</span>)
@@ -2197,7 +2239,7 @@ configured in megabytes in settings.yml</p>
                 
               </p>
               <div id="method-i-validate_size_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 560</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 565</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_size</span>
   <span class="ruby-keyword">if</span> ( (<span class="ruby-identifier">audio?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">video?</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:value</span>).<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_a?</span>, <span class="ruby-constant">ActionDispatch</span><span class="ruby-operator">::</span><span class="ruby-constant">Http</span><span class="ruby-operator">::</span><span class="ruby-constant">UploadedFile</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">value</span>.<span class="ruby-identifier">tempfile</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">MAX_MEDIA_SIZE</span> ) <span class="ruby-operator">||</span>
      ( <span class="ruby-identifier">image?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">media</span>.<span class="ruby-identifier">file</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">MAX_MEDIA_SIZE</span> ) <span class="ruby-operator">||</span>
@@ -2239,7 +2281,7 @@ unless the attribute <code>save_tags</code> is false</p>
                 
               </p>
               <div id="method-i-validate_tags_length_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 509</span>
+                <pre><span class="ruby-comment"># File app/models/media_element.rb, line 514</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">validate_tags_length</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:tags</span>, <span class="ruby-value">:are_not_enough</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@save_tags</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@inner_tags</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;min_tags_for_item&#39;</span>]
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:tags</span>, <span class="ruby-value">:too_many</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@save_tags</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@inner_tags</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;max_tags_for_item&#39;</span>]

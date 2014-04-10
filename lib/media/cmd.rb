@@ -14,12 +14,12 @@ module Media
 
     # It runs the supplied command, logging 
     #
-    # === Args
+    # ### Args
     #
     # * *stdout*: a valid +Subexec+ value for stdout logging; if +:dev_null+ discards the output. Defaults to +:dev_null+
     # * *stderr*: a valid +Subexec+ value for stderr logging; if +:dev_null+ discards the output. Defaults to +:dev_null+
     #
-    # === Returns
+    # ### Returns
     #
     # The executed +Subexec+ instance
     def run(stdout = :dev_null, stderr = :dev_null)

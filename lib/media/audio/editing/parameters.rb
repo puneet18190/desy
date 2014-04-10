@@ -32,7 +32,7 @@ module Media
           resp
         end
         
-        # === Description
+        # ### Description
         #
         # Validates and converts the parameters. See the code for further details about the validations achieved. The product is in the following format:
         # * an initial parameter, 'initial_audio'
@@ -41,7 +41,7 @@ module Media
         #   * if the type is 'video', there is an object of kind VIDEO associated to the key :video
         #   * if the type is 'image', there is an object of kind IMAGE associated to the key :image
         #
-        # === Usage
+        # ### Usage
         #
         #  {
         #    :initial_audio => OBJECT OF TYPE AUDIO or NIL,
