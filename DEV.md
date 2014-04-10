@@ -27,7 +27,6 @@ puts h.convert(input_string)
 5-  risolvere la doppia chiamata di Chrome al document ready! e controllare che sia OK anche in IE
 6-  Spaziare i video nella galleria perché non c'è spazio, il cursore quando arriva in fondo tocca il minutaggio e a volte vi si sovrappone
 7-  eventualmente fai una rescue dei numerosi errori che mi manda quando non riesce ad inviare una email, e se rescuo riprova ad inviare la mail altre volte!
-8-  maurizio deve sistemare il task rake onnicomprensivo degli exports, quello che contiene il TODO
 9-  aggiorna tutte le selectbox come vuole walter, a uscire invece che a rientrare!! --- e fai una passata a controllare come si vedono tutti
 10- controlla ottimizzazione chiamate db di profile + anche eventualmente prelogin, assicurati che se ci sono cose di troppo che siano accettabili
 11- cambia traduzione benvenuto emanuela!
