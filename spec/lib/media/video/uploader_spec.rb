@@ -3,7 +3,6 @@ require 'spec_helper'
 module Media
   module Video
     describe Uploader do
-
       def media_folder
         @media_folder ||= Rails.root.join('spec/support/samples')
       end
@@ -301,7 +300,6 @@ module Media
         end
 
         context 'when media type is a String' do
-
           context 'when the model is not marked for renaming' do
             context 'when media is valid and not changed' do
               subject do 
@@ -344,7 +342,6 @@ module Media
         end
 
         context 'when media is a Hash' do
-
           context 'when media is valid' do
             let(:media) { media_hash }
             it { expect(subject).to be true }
@@ -384,10 +381,8 @@ module Media
             let(:media) { media_hash.merge(mp4: media_folder.join('concat 1.mp4').to_s, webm: media_folder.join('concat 2.webm').to_s) }
             it { expect(subject).to be false }
           end
-
         end
       end
-
     end
   end
 end

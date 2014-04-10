@@ -3,7 +3,6 @@ require 'spec_helper'
 module Media
   module Audio
     describe Uploader do
-
       def media_folder
         @media_folder ||= Rails.root.join('spec/support/samples')
       end
@@ -223,7 +222,6 @@ module Media
       end
 
       describe 'validations' do
-
         subject { ::Audio.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media, user: User.admin).valid? }
 
         shared_examples 'when media is a not converted audio' do
@@ -329,7 +327,6 @@ module Media
         end
 
         context 'when media is a Hash' do
-
           context 'when media is valid' do
             let(:media) { media_hash }
             it { expect(subject).to be true }
@@ -369,7 +366,6 @@ module Media
             let(:media) { media_hash.merge(m4a: media_folder.join('concat 1.m4a').to_s, ogg: media_folder.join('concat 2.ogg').to_s) }
             it { expect(subject).to be false }
           end
-
         end
       end
 
