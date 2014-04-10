@@ -1,4 +1,4 @@
-# METODO DI DEBUG
+# Per il debugging
 case Rails.env
 when 'development', 'test'
   begin
@@ -15,7 +15,7 @@ when 'development', 'test'
     def _d!(*_); end
   end
 else
-  # lo dichiaro anche in produzione sia mai che mi scappa di lasciarlo nel codice
+  # Lo dichiaro anche in produzione sia mai che mi scappa di lasciarlo nel codice
   def _d(*_);  end
   def _d!(*_); end
 end
