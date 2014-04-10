@@ -8,6 +8,12 @@
 1. Attivare e far funzionare turbolinks
 1. Mettere tutto in autoload
 1. rspec: definire `set` e `set!` per avere syntactic sugar per i metodi cacheabili. Al pari di `let`, `set` cachea dopo la prima chiamata, mentre `set!` forza l'esecuzione.
+1. Convertire la sintassi dei commenti di rdoc da rdoc a markdown usando il [convertitore di rdoc](http://docs.seattlerb.org/rdoc/RDoc/Markup/ToMarkdown.html):
+```
+require 'rdoc'
+h = RDoc::Markup::ToMarkdown.new
+puts h.convert(input_string)
+```
 
 ## Lista di cose da fare lasciata in eredità da Adriano
 
