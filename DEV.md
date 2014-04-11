@@ -10,11 +10,13 @@
 1. rspec: definire `set` e `set!` per avere syntactic sugar per i metodi cacheabili. Al pari di `let`, `set` cachea dopo la prima chiamata, mentre `set!` forza l'esecuzione.
 1. refattorizzare Parameters
 
+
+
 ## Lista di cose da fare lasciata in eredità da Adriano
 
 
 
-######################################################## DESY - PRIORITÀ 1 ########################################################
+### PRIORITÀ 1
 
 1-  controlla gender comune in purchase (cerca una comune per)!!! +++ risolvi bug gender per fill_locations.js!!!!!!!
 2-  amicocloud aggiorna caption approfondimento popup documento e label grigia sempre nella stess popup
@@ -32,11 +34,9 @@
 16- escapare . e : e altri caratteri dalle tags... o forse è meglio vietarli proprio, insieme con gli altri -- si ricollega a <<<<< non funziona la colorazione se le tags contengono caratteri del tipo '/' nella autocomplete; inoltre, se le tags contengono caratteri balordi tipo ', o <>, non funziona la ricarica della url con una tag già selezionata nel motore di ricerca +++ IN DUE PUNTI: views/video_editor/previews/_text.html.erb:8 ++ views/video_editor/components/thumbs/_text.html.erb:2 c'è un html_safe a rischio, nelle componenti testo nel video editor, però in questo caso non dovrebbe danneggiare nessuno in quanto viene tramutata in immagine
 17- sistemare problema audio IE 352 che si sente senza il player ma non si sente con il player
 
-###################################################################################################################################
 
 
-
-######################################################## DESY - PRIORITÀ 2 ########################################################
+### PRIORITÀ 2
 
 1-  notifica lampo tipo flash nel momento in cui ricevo una notifica!!!!!
 2-  metti paginazione e miniature thumb in lesson viewer
@@ -61,11 +61,9 @@
 21- video e audio editor: come gestisco dimensioni troppo grandi in caso di conversione video o audio???? una specie di create fake???? BAAAAHH chiedi a maurizio forse addirittura non si gestisce neanche ++ idem per folder full, come si fa???
 22- inserire in un metadata quali utenti erano stati legati all'acquisto vecchio!!!!! e fare in modo che tale informazione resti accessibile dall'esterno +++ cambiare anche il titolo del form EDIT PURCHASE, se sto rinnovandolo oppure no!
 
-###################################################################################################################################
 
 
-
-######################################################## DESY - PRIORITÀ 3 ########################################################
+### PRIORITÀ 3
 
 1-  SISTEMARE BUGGINO LAZIO RESTA IN B IN ADMIN SOLAMENTE!!!
 2-  ottimizzare anche la procedura di check conversion in media_elements_controller????? fa una chiamata al DB per ogni valore inserito nella key!!!!!! è potenzialmente pericolosa oppure no?? --- DIREI CHE NON è PERICOLOSA a livello di uso normale NON VA OTTIMIZZATA... del resto se qualcuno sta convertendo quintali di video si può certamente aspettare che DESY rallenti minimamente... PIUTTOSTO È PERICOLOSISSIMO NON METTERE UN LIMITE AGLI ELEMENTI DIDATTICI"!!!!! DEVO CHOPPARE O QUALCOSA DEL GENERE!!! altrimenti rischio che me la sfondano
@@ -93,11 +91,9 @@
 24- Controlla ottimizzazione in tutte le azioni di lesson_export_controller
 25- metti form_error anche in upgrade trial purchase code interno??? dovrebbe avercelo allineato con tutti gli altri dello stesso tipo (profilo)
 
-###################################################################################################################################
 
 
-
-######################################################## DESY - PRIORITÀ 4 ########################################################
+### PRIORITÀ 4
 
 1-  Organizzazione delle cartelle di elementi (cartella accesa se il suo contenuto è caricato in lesson editor + crea nuova cartella, elimina cartella, filtra per cartella)
 2-  mettere filtro non mostrare privati elementi in admin
@@ -124,11 +120,9 @@
 23- Importazione PPT: (g) lezione inseribile in playlist, unico vincolo non copiabile; il link matitina apre una finestra scarica carica (h) caricabile solo da admin; thumb, un'immagine automatica eventualmente personalizzabile dall'admin; NON È PSSIBILE COPIARLO (i) preparare ambiente conversione mentre si aspetta che l'aplicazione finisca... scegli placeholders... (j) prossima cosa da fare: trovare una maniera di simulare il funzionamento JS del convertitore in HTML5 -- semplicemente, ficca dentro desy attuale delle slides colorate di colori diversi ma vuote, e prova a lanciare il javascript per passare da una all'altra
 24- esplicitare la chiamata al layout lesson viewer dal controller, che è fatta in modo implicito leggendo il nome del controller, e quindi attualmente è rischioso
 
-###################################################################################################################################
 
 
-
-######################################################## DESY - PRIORITÀ 5 ########################################################
+### PRIORITÀ 5
 
 1-  Quando qualcuno vede delle lezioni interessanti nelle statistiche, come le aggiunge???? O vede???
 2-  Inserire buffering nei players?
@@ -143,5 +137,3 @@
 11- full text search per la ricerca di documenti va rimandata a DOPO, ma non dimenticata!
 12- migliorie del send notifications massivo in admin: (1) migliora la grafica, (2) migliora le traduzioni, (3) migliora il funzionamento del controller che è caotico, (4) fai funzionare anche una preview così si controlla la notifica che si sta per mandare
 13- uploader, per il futuro: metti un disclaimer nella popup di upload che ti dice che se vuoi continuare a lavorare ti conviene aprire una nuova scheda. Se la apro, mi segno qualcosa nella prima finestra che fa sì che si chiuda quando l'azione risponde. Inoltre, nella nuova finestra attivo un sensore del tipo check_conversion
-
-###################################################################################################################################
