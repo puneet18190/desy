@@ -9,7 +9,7 @@
 1. Mettere tutto in autoload
 1. rspec: definire `set` e `set!` per avere syntactic sugar per i metodi cacheabili. Al pari di `let`, `set` cachea dopo la prima chiamata, mentre `set!` forza l'esecuzione.
 1. refattorizzare Parameters
-
+1. Sostituire `expect(subject)` con `is_expected`
 
 
 ## Lista di cose da fare lasciata in eredità da Adriano
