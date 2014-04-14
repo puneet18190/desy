@@ -20,6 +20,7 @@ gem 'rack-maintenance'
 gem 'recursive-open-struct'
 gem 'rubyzip'
 gem 'schema_plus'
+# This fork has support for output redirection
 gem 'subexec',                                                 github: 'mdesantis/subexec'
 gem 'tinymce-rails',            '~> 3.0'
 gem 'tinymce-rails-langs'
