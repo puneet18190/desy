@@ -1,8 +1,3 @@
-# The requires are needed by delayed_job jobs (excluding previously loaded initializers)
-require 'media'
-require 'notifications_job'
-require 'eventmachine' unless WINDOWS
-
 DELAYED_JOB = begin
   basename                = File.basename $0
   delayed_jobs_task_regex = /\Ajobs:/
@@ -12,7 +7,11 @@ DELAYED_JOB = begin
 end
 
 if DELAYED_JOB
-  # ActiveRecord::Base.logger = ActiveSupport::TaggedLogging.new(Logger.new(Except))
+  # The requires are needed by delayed_job jobs (excluding previously loaded initializers)
+  require 'media'
+  require 'notifications_job'
+  require 'eventmachine' unless WINDOWS
+
   ActiveRecord::Base.logger = ActiveSupport::TaggedLogging.new Logger.new LOG_FOLDER.join "delayed_job.activerecord.#{Rails.env}.log"
 end
 
