@@ -17,5 +17,5 @@ if DELAYED_JOB
 end
 
 # Delayed::Job configuration
-Delayed::Worker.destroy_failed_jobs = Rails.env.production?
 Delayed::Worker.delay_jobs = !Rails.env.test?
+Delayed::Worker.max_attempts = 1 if Rails.env.production?
