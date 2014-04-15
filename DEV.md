@@ -10,6 +10,7 @@
 1. rspec: definire `set` e `set!` per avere syntactic sugar per i metodi cacheabili. Al pari di `let`, `set` cachea dopo la prima chiamata, mentre `set!` forza l'esecuzione.
 1. refattorizzare Parameters
 1. Sostituire `expect(subject)` con `is_expected`
+1. Passare da Rails 4.0 a 4.1
 
 
 ## Lista di cose da fare lasciata in eredità da Adriano
