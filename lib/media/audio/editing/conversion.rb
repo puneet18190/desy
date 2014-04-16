@@ -115,7 +115,7 @@ module Media
           model[:media]      = output_filename_without_extension
           model.save!
 
-          FileUtils.rm temp_path
+          FileUtils.rm_r temp_folder
           
           Notification.send_to(
             model.user_id,
