@@ -180,12 +180,12 @@ class Seeds
       else
         DOCUMENTS_FOLDER.join(
           case id % 6
-            when 0 then 'doc1.ppt'
-            when 1 then 'doc2.pdf'
-            when 2 then 'doc3.tar.gz'
-            when 3 then 'doc4.ods'
-            when 4 then 'doc5.svg'
-            when 5 then 'doc6.txt'
+            when 1 then 'doc1.ppt'
+            when 2 then 'doc2.pdf'
+            when 3 then 'doc3.tar.gz'
+            when 4 then 'doc4.ods'
+            when 5 then 'doc5.svg'
+            when 0 then 'doc6.txt'
           end )
       end
     File.open path
