@@ -1,5 +1,6 @@
 require 'csv'
 
+require 'media'
 require 'env_relative_path'
 
 class Seeds
