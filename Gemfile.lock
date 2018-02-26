@@ -5,7 +5,7 @@ GIT
     subexec (0.2.3)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     CFPropertyList (2.2.8)
     actionmailer (4.0.4)
@@ -318,3 +318,6 @@ DEPENDENCIES
   unicorn
   whenever
   win32-dir
+
+BUNDLED WITH
+   1.16.0.pre.3

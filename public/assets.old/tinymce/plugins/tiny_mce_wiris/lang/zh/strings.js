@@ -1,0 +1,1 @@
+var strings=new Array;strings.cancel="\u53d6\u6d88",strings.accept="\u786e\u5b9a",strings.manual="\u624b\u518c",strings.latex="LaTeX";

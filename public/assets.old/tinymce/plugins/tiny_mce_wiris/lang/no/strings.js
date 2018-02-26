@@ -1,0 +1,1 @@
+var strings=new Array;strings.cancel="Avbryt",strings.accept="OK",strings.manual="H\xe5ndbok",strings.latex="LaTeX";

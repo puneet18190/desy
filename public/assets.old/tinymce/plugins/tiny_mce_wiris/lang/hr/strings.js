@@ -1,0 +1,1 @@
+var strings=new Array;strings.cancel="Poni\u0161ti",strings.accept="U redu",strings.manual="Priru\u010dnik",strings.latex="LaTeX";

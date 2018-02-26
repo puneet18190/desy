@@ -1,0 +1,1 @@
+var strings=new Array;strings.cancel="\ucde8\uc18c",strings.accept="\uc2b9\uc778",strings.manual="\uc124\uba85\uc11c",strings.latex="LaTeX";

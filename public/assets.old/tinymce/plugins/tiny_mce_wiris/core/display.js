@@ -1,0 +1,1 @@
+window.attachEvent&&window.attachEvent("onload",function(){function t(n){return null==n?!1:n.contentEditable&&"inherit"!==n.contentEditable?!0:t(n.parentNode)}for(var n=document.getElementsByTagName("img"),e=n.length-1;e>=0;--e)"Wirisformula"!=n[e].className||t(n[e])||(n[e].align="",n[e].style.verticalAlign=-n[e].height/2+"px")});

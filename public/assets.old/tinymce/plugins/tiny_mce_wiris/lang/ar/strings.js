@@ -1,0 +1,1 @@
+var strings=new Array;strings.cancel="\u0625\u0644\u063a\u0627\u0621",strings.accept="\u0645\u0648\u0627\u0641\u0642",strings.manual="\u0627\u0644\u062f\u0644\u064a\u0644",strings.latex="LaTeX";

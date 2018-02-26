@@ -70,6 +70,8 @@
   </div>
   
   <br class="clearfloat"/>
+<%
+=begin%>
   <h2 class="title_for_registration_subsection">
     <%= t('registration.title_sections.location') %>
   </h2>
@@ -118,7 +120,8 @@
       </select>
     </div>
   </div>
-  
+<%
+=end%>  
   <br class="clearfloat"/>
   <h2 class="title_for_registration_subsection">
     <%= t('registration.title_sections.subjects') %>
@@ -156,6 +159,8 @@
   </div>
   
   <br class="clearfloat"/>
+<%
+=begin%>
   <h2 class="title_for_registration_subsection">
     <%= t('registration.title_sections.policies') %>
   </h2>
@@ -186,7 +191,9 @@
       <% end %>
     </ul>
   </div>
-  
+<%
+=end%>
+	  
   <div class="form_submit">
     <input type="submit" value="<%= t('registration.done') %>"/>
   </div>
