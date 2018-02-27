@@ -129,6 +129,7 @@
   </h2>
   <div id="registration-subjects" class="registration-element-container">
     <% subjects.each_with_index do |cathegory, index| %>
+      <% if cathegory[:label].nil? %>
       <div class="profile-subject-cathegory-container <%= (index == subjects.length - 1) ? 'no-border' : '' %>">
         <!-- <div class="profile-subject-cathegory-label">
           <%#= cathegory[:label].present? ? cathegory[:label] : (subjects.first[:label].blank? ? '' : t('users.subjects.no_cathegory')) %>
@@ -153,6 +154,7 @@
           <!-- <a class="checkAllSubjects"><%#= t('registration.select_all_subjects') %></a> -->
         <%# end %>
       </div>
+      <%end%>
     <% end %>
     <ul class="profile-errors">
       <% errors[:subjects].each do |err| %>
