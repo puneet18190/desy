@@ -130,12 +130,12 @@
   <div id="registration-subjects" class="registration-element-container">
     <% subjects.each_with_index do |cathegory, index| %>
       <div class="profile-subject-cathegory-container <%= (index == subjects.length - 1) ? 'no-border' : '' %>">
-        <div class="profile-subject-cathegory-label">
-          <%= cathegory[:label].present? ? cathegory[:label] : (subjects.first[:label].blank? ? '' : t('users.subjects.no_cathegory')) %>
-        </div>
+        <!-- <div class="profile-subject-cathegory-label">
+          <%#= cathegory[:label].present? ? cathegory[:label] : (subjects.first[:label].blank? ? '' : t('users.subjects.no_cathegory')) %>
+        </div> -->
         <% additional_subj_class = errors[:subjects].any? ? 'true' : '' %>
         <% cathegory[:items].each do |subject| %>
-          <%# if subject.description == "Chemistry" %>
+          <% if subject.description == "Chemistry" %>
             <div class="profile-element">
               <% if subject_ids.include?(subject.id) %>
                 <input id="profile-subject-<%= subject.id %>" type="checkbox" value="1" name="subjects[id_<%= subject.id %>]" checked="checked"/>
@@ -144,9 +144,9 @@
                 <input id="profile-subject-<%= subject.id %>" type="checkbox" value="1" name="subjects[id_<%= subject.id %>]"/>
                 <%= label_tag "profile-subject-#{subject.id}", '', :class => "unchecked #{additional_subj_class}" %>
               <% end %>
-              <span><%= subject.to_s %></span>
+              <span>Formazione<%#= subject.to_s %></span>
             </div>
-          <%#end%>  
+          <%end%>  
         <% end %>
         <br class="clearfloat"/>
         <%# if cathegory[:label].present? %>
