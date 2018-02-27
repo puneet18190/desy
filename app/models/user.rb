@@ -112,22 +112,22 @@ class User < ActiveRecord::Base
   
   validates_presence_of :email, :name, :surname, :school_level_id
   validates_numericality_of :school_level_id, :only_integer => true, :greater_than => 0
-  validates_numericality_of :location_id, :purchase_id, :only_integer => true, :greater_than => 0, :allow_nil => true
+  # validates_numericality_of :location_id, :purchase_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_confirmation_of :password, :email
-  validates_presence_of :users_subjects
+  # validates_presence_of :users_subjects
   validates_uniqueness_of :email
   validates_length_of :name, :surname, :email, :maximum => 255
   validates_length_of :password, PASSWORD_LENGTH_CONSTRAINTS.merge(:on => :create, :unless => proc { |record| record.encrypted_password.present? })
   validates_length_of :password, PASSWORD_LENGTH_CONSTRAINTS.merge(:on => :update, :allow_nil => true, :allow_blank => true)
   validates_inclusion_of :active, :confirmed, :in => [true, false]
-  validate :validate_associations, :validate_email
+  validate :validate_email#, :validate_associations
   validate :validate_email_not_changed, :on => :update
-  validate :validate_accounts_number_for_purchase
-  REGISTRATION_POLICIES.each do |policy|
-    validates_acceptance_of policy, on: :create, allow_nil: false
-  end
+  # validate :validate_accounts_number_for_purchase
+  # REGISTRATION_POLICIES.each do |policy|
+  #   validates_acceptance_of policy, on: :create, allow_nil: false
+  # end
   
-  before_validation :init_validation
+  # before_validation :init_validation
   
   scope :confirmed,     ->() { where(confirmed: true) }
   scope :not_confirmed, ->() { where(confirmed: false) }

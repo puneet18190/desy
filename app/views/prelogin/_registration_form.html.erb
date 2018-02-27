@@ -120,10 +120,10 @@
       </select>
     </div>
   </div>
-
   <br class="clearfloat"/>
 <%
 =end%>  
+  <%= hidden_field_tag :school_level_id, 1 %>
   <h2 class="title_for_registration_subsection">
     <%= t('registration.title_sections.subjects') %>
   </h2>
@@ -135,7 +135,7 @@
         </div>
         <% additional_subj_class = errors[:subjects].any? ? 'true' : '' %>
         <% cathegory[:items].each do |subject| %>
-          <% if subject.description == "Chemistry" %>
+          <%# if subject.description == "Chemistry" %>
             <div class="profile-element">
               <% if subject_ids.include?(subject.id) %>
                 <input id="profile-subject-<%= subject.id %>" type="checkbox" value="1" name="subjects[id_<%= subject.id %>]" checked="checked"/>
@@ -146,7 +146,7 @@
               <% end %>
               <span><%= subject.to_s %></span>
             </div>
-          <%end%>  
+          <%#end%>  
         <% end %>
         <br class="clearfloat"/>
         <%# if cathegory[:label].present? %>
