@@ -70,3 +70,5 @@ end
 group :production do
   gem 'exception_notification'
 end
+gem 'pry'
+gem 'rails_db_info'

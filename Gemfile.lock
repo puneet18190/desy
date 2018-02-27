@@ -150,6 +150,9 @@ GEM
     paint (0.8.7)
     pg (0.17.1)
     polyglot (0.3.5)
+    pry (0.11.0)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -170,6 +173,8 @@ GEM
       activesupport (>= 3.0)
       choice (~> 0.1.6)
       ruby-graphviz (~> 1.0.4)
+    rails_db_info (0.2.0)
+      rails (>= 3.1.0)
     railties (4.0.4)
       actionpack (= 4.0.4)
       activesupport (= 4.0.4)
@@ -295,10 +300,12 @@ DEPENDENCIES
   nokogiri
   oj
   pg
+  pry
   quiet_assets
   rack-maintenance
   rails (= 4.0.4)
   rails-erd
+  rails_db_info
   recursive-open-struct
   rspec-collection_matchers
   rspec-rails
@@ -318,6 +325,3 @@ DEPENDENCIES
   unicorn
   whenever
   win32-dir
-
-BUNDLED WITH
-   1.16.0.pre.3
