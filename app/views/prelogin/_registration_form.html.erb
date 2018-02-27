@@ -135,7 +135,7 @@
         </div> -->
         <% additional_subj_class = errors[:subjects].any? ? 'true' : '' %>
         <% cathegory[:items].each do |subject| %>
-          <% if subject.description == "Chemistry" %>
+          <% if subject.to_s == "Chemistry" %>
             <div class="profile-element">
               <% if subject_ids.include?(subject.id) %>
                 <input id="profile-subject-<%= subject.id %>" type="checkbox" value="1" name="subjects[id_<%= subject.id %>]" checked="checked"/>
