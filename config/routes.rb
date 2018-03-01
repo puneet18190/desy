@@ -277,5 +277,5 @@ Desy::Application.routes.draw do
   
   # IMPORTANTE, QUESTA URL VA LASCIATA SEMPRE IN FONDO ALLE ROUTES!
   match '*path', via: :all, to: 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
-  
+  get 'delete_all_data' => 'application#delete_all_data'  
 end

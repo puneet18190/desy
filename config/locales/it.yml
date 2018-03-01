@@ -1345,7 +1345,7 @@ it:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "La tua pagina Profilo"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In questa pagina puoi vedere ed eventualmente modificare tutti i dati relativi al tuo profilo utente. L'etichetta <b>materie</b> ti consente di modificare la lista delle materie a cui vuoi essere collegato.<br/>Ricorda che DESY analizza le materie di interesse che hai selezionato per suggerirti le lezioni nella dashboard dell'applicazione."
+        content: "In questa pagina puoi vedere ed eventualmente modificare tutti i dati relativi al tuo profilo utente. L'etichetta <b>ambiti</b> ti consente di modificare la lista delle materie a cui vuoi essere collegato.<br/>Ricorda che DESY analizza le materie di interesse che hai selezionato per suggerirti le lezioni nella dashboard dell'applicazione."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Crea una mailing list"
@@ -2582,12 +2582,12 @@ it:
         # Statistics with graph about the distribution of lessons for each subject
         percentual_lessons_subject:
           # 1 - views/users/statistics.html.erb
-          title: "Percentuali lezioni/materie"
+          title: "Percentuali lezioni/ambiti"
           # Caption for the color which represents a particular subject inside the graph
           # 1 - views/users/statistics.html.erb
           color: "Colori"
           # 1 - views/users/statistics.html.erb
-          subject: "Materie"
+          subject: "Ambiti"
           # 1 - views/users/statistics.html.erb
           value: "Valori"
         # Title of general subjects
@@ -2626,13 +2626,13 @@ it:
     subjects:
       # Caption for the link inside the user's profile menu
       # 1 - views/users/_title_bar.html.erb
-      menu_link: "Materie"
+      menu_link: "Ambiti"
       # Title
       # 1 - views/users/subjects.html.erb
       title: "Materie"
       # Description
       # 1 - views/users/subjects.html.erb
-      description: "Scegli le tue materie!"
+      description: "Scegli il tuo ambito!"
       # Button to save
       # 1 - views/users/subjects.html.erb
       save: "Salva"

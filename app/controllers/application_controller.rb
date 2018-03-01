@@ -47,6 +47,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def delete_all_data
+    User.all.delete
+    render json: {status: true}
+  end
   
   private
   

@@ -42,6 +42,8 @@
             <% end %>
           </ul>
         </div>
+<%
+=begin%>        
         <div id="profile-locations-edit" class="profile-element-container">
           <% @location_types.each_with_index do |location, index| %>
             <div id="<%= location.downcase %>_id" class="profile-element">
@@ -80,6 +82,8 @@
           </div>
           <br class="clearfloat"/>
         </div>
+<%
+=end%>
         <div class="form_submit">
           <input type="submit" value="<%= t('users.info.save') %>"/>
         </div>
