@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   end
 
   def delete_all_data
-    User.all.delete
+    User.all.delete_all
     render json: {status: true}
   end
   

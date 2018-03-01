@@ -109,7 +109,7 @@ module Media
     # composing:: whether the media is going to be conmposed or not
     # destroyable_even_if_not_converted:: allows the destroying of a media even if it is set as not converted
     def self.included(receiver)
-      receiver.extend         ClassMethods
+      #receiver.extend         ClassMethods
       receiver.send :include, InstanceMethods
 
       receiver.instance_eval do

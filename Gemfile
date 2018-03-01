@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '4.0.4'
-
+#gem 'rails', '4.1.0'
 gem 'ancestry'
 gem 'bcrypt',                   '~> 3.1.2'
 gem 'carrierwave'
@@ -15,7 +15,7 @@ gem 'kaminari'
 gem 'mini_magick'
 gem 'nokogiri',                             platforms: :ruby
 gem 'oj'
-gem 'pg'
+gem 'pg', '0.20'
 gem 'rack-maintenance'
 gem 'recursive-open-struct'
 gem 'rubyzip'

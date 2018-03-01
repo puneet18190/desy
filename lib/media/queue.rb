@@ -18,7 +18,7 @@ module Media
     MIN_THREADS = 0
     
     # Maximum amount of execution threads
-    MAX_THREADS = [PROCESSORS_COUNT-1, DATABASE_POOL-1].min
+    MAX_THREADS = 20#[PROCESSORS_COUNT-1, DATABASE_POOL-1].min
 
     def self.run(*procs, close_connection_before_execution: false)
       new(*procs, close_connection_before_execution: close_connection_before_execution).run
