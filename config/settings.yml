@@ -16,20 +16,21 @@ application:
     :port:
   # Rails Mailing parameters (see guides.rubyonrails.org/action_mailer_basics.html for details about available settings)
   smtp:
-    :address: 'smtp.example.com'
+    address: 'mail2.mclink.it'
+    password: 'morganspa$'
   # The sender of the mail sent by the application
-  email: 'noreply@example.com'
+  email: 'customer@morganspa.com'
   maintainer:
     # The recipients of the emails related to maintenance tasks (errors, administration tasks) sent by the application
     emails: ['maintainer@example.com']
   # Email used in Contact Us link
-  contact_us_email: 'info@example.com'
+  contact_us_email: 'customer@morganspa.com'
 # Types of the locations related to Desy
 # The order is important: it determines the parent->child relation
 # The last location is the one associated the the user
 location_types: ['Province', 'City', 'County', 'School']
 # Email of the only super admin user
-super_admin: 'desy@example.com'
+super_admin: 'customer@morganspa.com'
 # More emails to grant admin privileges to: IMPORTANT, these emails must be configured ONLY AFTER the corresponding user has registered and confirmed.
 grant_admin_privileges: ['email1@example.com', 'email2@example.com', 'email3@example.com']
 # Minimum length of a tag (in characters)
